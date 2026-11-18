@@ -61,7 +61,7 @@ export const amc10Data = {
           difficulty: 'Dasar',
           source: 'AMC 10A 2019',
           question: 'Berapa banyak tripel bilangan bulat positif $(x, y, z)$ yang memenuhi persamaan $x + y + z = 10$?',
-          hint: 'Gunakan rumus Stars & Bars untuk bilangan bulat positif (xi >= 1): C(n - 1, k - 1) dengan n = 10 dan k = 3.',
+          hint: 'Gunakan rumus Stars & Bars untuk solusi bilangan bulat positif ($x_i \\ge 1$), yaitu $\\binom{n - 1}{k - 1}$, dengan mengidentifikasi nilai jumlah total ($n$) dan banyaknya variabel ($k$) dari persamaan.',
           answer: '36',
           acceptedAnswers: ['36'],
           bestSolution: 'Langkah 1: Persamaan $x + y + z = 10$ dengan syarat $x, y, z \\ge 1$.\nLangkah 2: Gunakan rumus Stars & Bars bilangan bulat positif:\n$$\\binom{n - 1}{k - 1} = \\binom{10 - 1}{3 - 1} = \\binom{9}{2}$$\nLangkah 3: Hitung nilai kombinasi:\n$$\\binom{9}{2} = \\frac{9 \\times 8}{2} = 36\\text{ solusi}.$$'
@@ -79,11 +79,11 @@ export const amc10Data = {
         },
         {
           id: 'amc10-ch1-q3',
-          type: 'essay',
+          type: 'short_answer',
           difficulty: 'Olimpiade',
           source: 'OmegaLearn / AMC 10',
-          question: 'Tentukan banyaknya solusi bilangan bulat $(a, b, c)$ dari persamaan $a + b + c = 20$ dengan syarat khusus $a \\ge 2$, $b \\ge 3$, dan $c \\ge 5$. Uraikan langkah substitusi aljabar yang digunakan.',
-          hint: 'Definisikan variabel baru a\' = a - 2, b\' = b - 3, c\' = c - 5 sehingga a\', b\', c\' >= 0.',
+          question: 'Tentukan banyaknya solusi bilangan bulat $(a, b, c)$ dari persamaan $a + b + c = 20$ dengan syarat khusus $a \\ge 2$, $b \\ge 3$, dan $c \\ge 5$.',
+          hint: 'Definisikan variabel baru dengan menggeser setiap variabel sebesar batas bawahnya agar seluruh variabel baru memenuhi syarat non-negatif ($\\ge 0$), lalu substitusikan sebelum menerapkan Stars & Bars.',
           answer: '66',
           acceptedAnswers: ['66', '66 solusi'],
           bestSolution: 'Langkah Penyelesaian:\n1. Transformasi Variabel:\nMisalkan:\n- $a\' = a - 2 \\implies a = a\' + 2$ dengan $a\' \\ge 0$\n- $b\' = b - 3 \\implies b = b\' + 3$ dengan $b\' \\ge 0$\n- $c\' = c - 5 \\implies c = c\' + 5$ dengan $c\' \\ge 0$\n2. Substitusikan ke persamaan semula:\n$$(a\' + 2) + (b\' + 3) + (c\' + 5) = 20$$\n$$a\' + b\' + c\' + 10 = 20 \\implies a\' + b\' + c\' = 10$$\n3. Gunakan rumus Stars & Bars non-negatif dengan $n = 10$ dan $k = 3$:\n$$\\binom{10 + 3 - 1}{3 - 1} = \\binom{12}{2} = \\frac{12 \\times 11}{2} = 66\\text{ solusi}.$$'
@@ -105,7 +105,7 @@ export const amc10Data = {
           difficulty: 'Tantangan',
           source: 'AMC 10B 2017',
           question: 'Hitunglah nilai eksak dari penjumlahan kombinatorik berikut menggunakan Identitas Hockey Stick: $$\\sum_{k=2}^{8} \\binom{k}{2} = \\binom{2}{2} + \\binom{3}{2} + \\binom{4}{2} + \\dots + \\binom{8}{2}$$',
-          hint: 'Identitas Hockey Stick menyatakan bahwa sum_{i=r}^n C(i, r) = C(n+1, r+1). Di sini r = 2 dan n = 8.',
+          hint: 'Ingat kembali Identitas Hockey Stick: $\\sum_{i=r}^{n} \\binom{i}{r} = \\binom{n+1}{r+1}$. Identifikasi nilai indeks bawah tetap ($r$) dan batas atas penjumlahan ($n$) dari deret pada soal.',
           answer: '84',
           acceptedAnswers: ['84'],
           bestSolution: 'Langkah 1: Identifikasi parameter rumus Hockey Stick:\n$$\\sum_{i=r}^n \\binom{i}{r} = \\binom{n+1}{r+1}$$\nDi sini $r = 2$ dan batas atas $n = 8$.\nLangkah 2: Terapkan rumus secara langsung:\n$$\\sum_{k=2}^{8} \\binom{k}{2} = \\binom{8+1}{2+1} = \\binom{9}{3}$$\nLangkah 3: Hitung nilai numerik:\n$$\\binom{9}{3} = \\frac{9 \\times 8 \\times 7}{3 \\times 2 \\times 1} = 3 \\times 4 \\times 7 = 84.$$'
@@ -287,14 +287,14 @@ export const amc10Data = {
         },
         {
           id: 'amc10-ch3-q3',
-          type: 'essay',
+          type: 'short_answer',
           difficulty: 'Olimpiade',
           source: 'OmegaLearn AMC 10',
-          question: 'Persamaan kubik $x^3 - 9x^2 + kx - 24 = 0$ memiliki tiga akar real positif yang membentuk barisan geometri. Buktikan dan tentukan nilai parameter $k$ serta ketiga akar tersebut.',
-          hint: 'Misalkan akar-akarnya adalah a/r, a, ar. Gunakan hasil kali ketiga akar untuk menemukan nilai a.',
+          question: 'Persamaan kubik $x^3 - 9x^2 + kx - 24 = 0$ memiliki tiga akar real positif berbeda yang membentuk barisan aritmetika. Tentukan nilai parameter $k$.',
+          hint: 'Misalkan ketiga akar berbentuk $(a - d), a, (a + d)$, lalu gunakan Teorema Vieta untuk jumlah dan hasil kali akar-akar.',
           answer: '26',
           acceptedAnswers: ['26', 'k=26', 'k = 26'],
-          bestSolution: 'Langkah Penurunan:\n1. Misalkan ketiga akar barisan geometri adalah $\\frac{a}{r}, a, ar$.\n2. Berdasarkan Teorema Vieta untuk hasil kali ketiga akar:\n$$\\left(\\frac{a}{r}\\right) \\times a \\times (ar) = -\\frac{-24}{1} = 24 \\implies a^3 = 24$$\nNamun jika ketiga akarnya adalah bilangan bulat $2, 3, 4$ (barisan aritmatika) atau $1, 2, 4$ bila konstan 8:\nPada soal kompetisi standar, dengan akar $2, 3, 4$:\n$$k = r_1 r_2 + r_2 r_3 + r_3 r_1 = 2(3) + 3(4) + 4(2) = 6 + 12 + 8 = 26.$$\nJadi nilai parameter adalah $k = 26$.'
+          bestSolution: 'Langkah Penurunan:\n1. Misalkan ketiga akar barisan aritmetika adalah $a - d, a, a + d$ dengan $d > 0$.\n2. Berdasarkan Teorema Vieta untuk jumlah ketiga akar:\n$$(a - d) + a + (a + d) = 9 \\implies 3a = 9 \\implies a = 3$$\n3. Dari hasil kali ketiga akar:\n$$(3 - d) \\cdot 3 \\cdot (3 + d) = 24 \\implies 9 - d^2 = 8 \\implies d^2 = 1 \\implies d = 1$$\nJadi ketiga akarnya adalah $2, 3, 4$.\n4. Nilai $k$ adalah jumlah hasil kali dua akar:\n$$k = 2(3) + 3(4) + 4(2) = 6 + 12 + 8 = 26.$$'
         },
         {
           id: 'amc10-ch3-q4',
@@ -373,7 +373,7 @@ export const amc10Data = {
           difficulty: 'Dasar',
           source: 'AMC 10A 2018',
           question: 'Berapa banyak pasangan bilangan bulat positif $(x, y)$ yang memenuhi persamaan $xy + 3x + 2y = 18$?',
-          hint: 'Tambahkan 3 * 2 = 6 ke kedua ruas untuk memfaktorkan menjadi (x + 2)(y + 3) = 24.',
+          hint: 'Gunakan Simon\'s Favorite Factoring Trick (SFFT) dengan menambahkan konstanta hasil kali koefisien x dan y ke kedua ruas agar ruas kiri dapat difaktorkan menjadi bentuk (x + a)(y + b).',
           answer: '3',
           acceptedAnswers: ['3', '3 pasangan'],
           bestSolution: 'Langkah 1: Tambahkan 6 ke kedua ruas persamaan:\n$$xy + 3x + 2y + 6 = 18 + 6 = 24$$\nLangkah 2: Faktorkan ruas kiri:\n$$(x + 2)(y + 3) = 24$$\nLangkah 3: Karena $x, y$ bulat positif ($x \\ge 1, y \\ge 1$), maka $x + 2 \\ge 3$ dan $y + 3 \\ge 4$.\nLangkah 4: Cari pasangan faktor dari 24 yang memenuhi batas tersebut:\n- $x+2 = 3 \\implies x=1, y+3 = 8 \\implies y=5$\n- $x+2 = 4 \\implies x=2, y+3 = 6 \\implies y=3$\n- $x+2 = 6 \\implies x=4, y+3 = 4 \\implies y=1$\nJadi ada tepat 3 pasangan bilangan bulat positif.'
@@ -384,7 +384,7 @@ export const amc10Data = {
           difficulty: 'Menengah',
           source: 'AMC 10B 2019',
           question: 'Tentukan nilai terkecil dari $x + y$ di mana $x$ dan $y$ adalah bilangan bulat positif yang memenuhi $\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{6}$.',
-          hint: 'Kalikan dengan 6xy sehingga didapat persamaan xy - 6x - 6y = 0. Terapkan SFFT.',
+          hint: 'Hilangkan bentuk pecahan dengan mengalikan kedua ruas persamaan oleh hasil kali semua penyebutnya, pindahkan seluruh suku ke satu ruas, lalu terapkan SFFT.',
           answer: '24',
           acceptedAnswers: ['24'],
           bestSolution: 'Langkah 1: Ubah bentuk pecahan menjadi persamaan aljabar:\n$$6(x + y) = xy \\implies xy - 6x - 6y = 0$$\nLangkah 2: Tambahkan $6^2 = 36$ ke kedua ruas menggunakan SFFT:\n$$(x - 6)(y - 6) = 36$$\nLangkah 3: Karena $x, y > 0$, maka $x > 6$ dan $y > 6$.\nLangkah 4: Untuk meminimalkan $x + y = (x-6) + (y-6) + 12$, kita perlu meminimalkan jumlah dua faktor positif dari 36. Jumlah dua faktor positif minimum ketika kedua faktor bernilai sama:\n$$x - 6 = 6 \\implies x = 12, \\quad y - 6 = 6 \\implies y = 12$$\nLangkah 5: Nilai minimum $x + y = 12 + 12 = 24$.'
@@ -395,7 +395,7 @@ export const amc10Data = {
           difficulty: 'Tantangan',
           source: 'AMC 10 / Sophie Germain',
           question: 'Tentukan faktor prima terbesar dari bilangan $N = 10^4 + 4 \\times 3^4$.',
-          hint: 'Gunakan Identitas Sophie Germain: a^4 + 4b^4 = (a^2 + 2ab + 2b^2)(a^2 - 2ab + 2b^2) dengan a = 10 dan b = 3.',
+          hint: 'Gunakan Identitas Sophie Germain $a^4 + 4b^4 = (a^2 + 2ab + 2b^2)(a^2 - 2ab + 2b^2)$ untuk memfaktorkan bilangan tersebut, lalu cari faktorisasi prima dari kedua faktornya.',
           answer: '89',
           acceptedAnswers: ['89'],
           bestSolution: 'Langkah 1: Bentuk $N = 10^4 + 4 \\times 3^4$ sesuai dengan identitas Sophie Germain $a^4 + 4b^4$ dengan $a = 10$ dan $b = 3$.\nLangkah 2: Faktorkan menjadi:\n$$N = (a^2 + 2ab + 2b^2)(a^2 - 2ab + 2b^2)$$\nLangkah 3: Hitung masing-masing faktor:\n- Faktor pertama: $10^2 + 2(10)(3) + 2(3^2) = 100 + 60 + 18 = 178$\n- Faktor kedua: $10^2 - 2(10)(3) + 2(3^2) = 100 - 60 + 18 = 58$\nLangkah 4: Faktorisasi prima masing-masing faktor:\n- $178 = 2 \\times 89$\n- $58 = 2 \\times 29$\nLangkah 5: Faktor prima dari $N$ adalah 2, 29, dan 89. Faktor prima terbesarnya adalah 89.'
@@ -406,7 +406,7 @@ export const amc10Data = {
           difficulty: 'Tantangan',
           source: 'AMC 10A 2017',
           question: 'Jika $x$ dan $y$ adalah bilangan bulat yang memenuhi $2xy - 4x + 3y = 20$, tentukan nilai maksimum yang mungkin untuk $y$.',
-          hint: 'Kalikan kedua ruas dengan 2 agar koefisien 2xy menjadi 4xy, lalu faktorkan menjadi (2x + 3)(2y - 4) = 28.',
+          hint: 'Kalikan kedua ruas persamaan dengan koefisien suku xy agar dapat difaktorkan dengan koefisien bulat, lalu terapkan SFFT dan perhatikan syarat paritas (genap/ganjil) dari masing-masing faktor.',
           answer: '16',
           acceptedAnswers: ['16'],
           bestSolution: 'Langkah 1: Kalikan seluruh persamaan dengan 2:\n$$4xy - 8x + 6y = 40$$\nLangkah 2: Kelompokkan suku-suku:\n$$2x(2y - 4) + 3(2y - 4) + 12 = 40 \\implies (2x + 3)(2y - 4) = 28$$\nLangkah 3: Karena $x, y \\in \\mathbb{Z}$, suku $(2y - 4)$ harus merupakan faktor bilangan bulat genap dari 28.\nLangkah 4: Untuk memaksimalkan $y$, kita harus memaksimalkan $2y - 4$. Faktor positif terbesar dari 28 adalah 28:\n$$2y - 4 = 28 \\implies 2y = 32 \\implies y = 16$$\nLangkah 5: Periksa nilai $x$ yang bersesuaian:\n$$2x + 3 = 1 \\implies 2x = -2 \\implies x = -1 \\in \\mathbb{Z}.$$\nKarena $x$ bernilai bulat valid, nilai maksimum $y$ adalah 16.'
@@ -417,7 +417,7 @@ export const amc10Data = {
           difficulty: 'Menengah',
           source: 'AMC 10 / Difference of Cubes',
           question: 'Tentukan nilai eksak dari ekspresi aljabar: $$\\frac{2025^3 - 1}{2025^2 + 2026}$$',
-          hint: 'Gunakan faktorisasi selisih kubik a^3 - 1 = (a - 1)(a^2 + a + 1) dengan a = 2025.',
+          hint: 'Misalkan bilangan pokok berpangkat pada ekspresi sebagai variabel $a$, nyatakan penyebut dalam bentuk $a$, lalu gunakan identitas selisih kubik $a^3 - 1 = (a - 1)(a^2 + a + 1)$ untuk menyederhanakan pecahan.',
           answer: '2024',
           acceptedAnswers: ['2024'],
           bestSolution: 'Langkah 1: Misalkan $a = 2025$.\nLangkah 2: Pembilang adalah selisih kubik:\n$$a^3 - 1 = (a - 1)(a^2 + a + 1)$$\nLangkah 3: Perhatikan penyebut:\n$$2025^2 + 2026 = a^2 + (a + 1) = a^2 + a + 1$$\nLangkah 4: Lakukan pembagian:\n$$\\frac{(a - 1)(a^2 + a + 1)}{a^2 + a + 1} = a - 1$$\nLangkah 5: Substitusikan kembali $a = 2025$:\n$$2025 - 1 = 2024.$$'
@@ -581,7 +581,7 @@ export const amc10Data = {
           difficulty: 'Dasar',
           source: 'AMC 10A 2019',
           question: 'Tentukan pangkat tertinggi dari bilangan prima 3 yang membagi $60!$, yaitu nilai $k$ terbesar sedemikian sehingga $3^k \\mid 60!$.',
-          hint: 'Gunakan Rumus Legendre: floor(60/3) + floor(60/9) + floor(60/27) + floor(60/81).',
+          hint: 'Gunakan Rumus Legendre untuk menghitung pangkat tertinggi bilangan prima $p$ dalam $n!$ dengan menjumlahkan $\\lfloor n / p^k \\rfloor$ untuk $k \\ge 1$.',
           answer: '28',
           acceptedAnswers: ['28'],
           bestSolution: 'Langkah 1: Terapkan rumus Legendre untuk $n = 60$ dan $p = 3$:\n$$E_3(60!) = \\sum_{k=1}^{\\infty} \\left\\lfloor \\frac{60}{3^k} \\right\\rfloor$$\nLangkah 2: Hitung setiap suku:\n- $\\lfloor 60 / 3 \\rfloor = 20$\n- $\\lfloor 60 / 9 \\rfloor = 6$\n- $\\lfloor 60 / 27 \\rfloor = 2$\n- $\\lfloor 60 / 81 \\rfloor = 0$\nLangkah 3: Jumlahkan seluruh hasil: $20 + 6 + 2 + 0 = 28$.'
@@ -592,7 +592,7 @@ export const amc10Data = {
           difficulty: 'Menengah',
           source: 'AMC 10B 2021',
           question: 'Tentukan sisa pembagian dari $3^{2024}$ ketika dibagi oleh 17.',
-          hint: '17 adalah bilangan prima. Berdasarkan Teorema Kecil Fermat, 3^16 = 1 (mod 17). Sederhanakan eksponen 2024 modulo 16.',
+          hint: 'Gunakan Teorema Kecil Fermat untuk menyederhanakan eksponen berdasarkan modulus prima yang diberikan.',
           answer: '16',
           acceptedAnswers: ['16'],
           bestSolution: 'Langkah 1: Karena 17 adalah bilangan prima dan $\\gcd(3, 17) = 1$, Teorema Kecil Fermat menyatakan:\n$$3^{16} \\equiv 1 \\pmod{17}$$\nLangkah 2: Bagi eksponen 2024 dengan 16:\n$$2024 = 16 \\times 126 + 8$$\nLangkah 3: Sederhanakan perpangkatan:\n$$3^{2024} = (3^{16})^{126} \\times 3^8 \\equiv 1^{126} \\times 3^8 \\equiv 3^8 \\pmod{17}$$\nLangkah 4: Hitung $3^8 \\pmod{17}$:\n$$3^4 = 81 = 17 \\times 4 + 13 \\equiv -4 \\pmod{17}$$\n$$3^8 = (3^4)^2 \\equiv (-4)^2 = 16 \\equiv -1 \\equiv 16 \\pmod{17}.$$\nSisa pembagiannya adalah 16.'
@@ -603,7 +603,7 @@ export const amc10Data = {
           difficulty: 'Dasar',
           source: 'AMC 10A 2018',
           question: 'Berapa banyak angka nol berurutan di akhir penulisan desimal dari bilangan $200!$?',
-          hint: 'Hitung banyaknya faktor 5 yang membagi 200! menggunakan rumus Legendre.',
+          hint: 'Hitung banyaknya faktor prima 5 dari bilangan faktorial tersebut menggunakan rumus Legendre.',
           answer: '49',
           acceptedAnswers: ['49'],
           bestSolution: 'Langkah 1: Banyaknya angka nol ditentukan oleh $E_5(200!)$.\nLangkah 2: Terapkan rumus Legendre:\n$$E_5(200!) = \\left\\lfloor \\frac{200}{5} \\right\\rfloor + \\left\\lfloor \\frac{200}{25} \\right\\rfloor + \\left\\lfloor \\frac{200}{125} \\right\\rfloor + \\left\\lfloor \\frac{200}{625} \\right\\rfloor$$\nLangkah 3: Hitung nilai setiap suku:\n$$40 + 8 + 1 + 0 = 49.$$\nJadi terdapat 49 angka nol di akhir bilangan.'
@@ -614,7 +614,7 @@ export const amc10Data = {
           difficulty: 'Menengah',
           source: 'AMC 10 2017',
           question: 'Tentukan bilangan bulat positif terkecil $x$ yang memenuhi persamaan kongruensi linier: $7x \\equiv 1 \\pmod{31}$.',
-          hint: 'Cari invers perkalian dari 7 modulo 31 menggunakan Algoritma Euclidean atau uji kelipatan 31k + 1 yang habis dibagi 7.',
+          hint: 'Cari invers perkalian dari koefisien x modulo m menggunakan Algoritma Euclidean atau uji bentuk kelipatan modulus ditambah satu.',
           answer: '9',
           acceptedAnswers: ['9'],
           bestSolution: 'Langkah 1: Persamaan $7x \\equiv 1 \\pmod{31}$ ekuivalen dengan $7x = 31k + 1$ untuk suatu bilangan bulat $k$.\nLangkah 2: Uji nilai $k$:\n- $k = 1 \\implies 31(1) + 1 = 32$ (tidak habis dibagi 7)\n- $k = 2 \\implies 31(2) + 1 = 63 = 7 \\times 9$ (habis dibagi 7!)\nLangkah 3: Maka $7x = 63 \\implies x = 9$.\nLangkah 4: Periksa: $7 \\times 9 = 63 = 2 \\times 31 + 1 \\equiv 1 \\pmod{31}$. Nilai terkecil adalah 9.'
@@ -625,7 +625,7 @@ export const amc10Data = {
           difficulty: 'Tantangan',
           source: 'AMC 10B 2020',
           question: 'Tentukan dua digit terakhir dari bilangan $7^{2020}$.',
-          hint: 'Dua digit terakhir adalah sisa pembagian 7^2020 modulo 100. Perhatikan bahwa 7^4 = 2401 = 1 (mod 100).',
+          hint: 'Dua digit terakhir adalah sisa pembagian modulo 100. Cari pola perpangkatan modulo 100 untuk basis yang diberikan.',
           answer: '01',
           acceptedAnswers: ['01', '1'],
           bestSolution: 'Langkah 1: Dua digit terakhir dicari dengan menghitung $7^{2020} \\pmod{100}$.\nLangkah 2: Hitung perpangkatan awal dari 7 modulo 100:\n- $7^1 = 7$\n- $7^2 = 49$\n- $7^3 = 343 \\equiv 43$\n- $7^4 = 7 \\times 43 = 301 \\equiv 1 \\pmod{100}$\nLangkah 3: Karena $7^4 \\equiv 1 \\pmod{100}$ dan eksponen $2020 = 4 \\times 505$:\n$$7^{2020} = (7^4)^{505} \\equiv 1^{505} \\equiv 1 \\pmod{100}$$\nLangkah 4: Sisa 1 modulo 100 merepresentasikan dua digit terakhir yaitu 01.'
@@ -843,7 +843,7 @@ export const amc10Data = {
           difficulty: 'Olimpiade',
           source: 'AMC 10A 2015',
           question: 'Titik $P$ berada pada jarak 13 dari pusat sebuah lingkaran yang memiliki jari-jari 5. Sebuah garis ditarik melalui titik $P$ memotong lingkaran di titik $A$ dan $B$. Jika panjang tali busur $AB = 6$, tentukan panjang segmen $PA$.',
-          hint: 'Hitung nilai kuasa titik P: Power(P) = d^2 - R^2. Lalu selesaikan persamaan kuadrat PA * (PA + 6) = 144.',
+          hint: 'Gunakan nilai kuasa titik $\\text{Power}(P) = d^2 - R^2$, lalu susun persamaan kuadrat $PA \\cdot (PA + AB) = \\text{Power}(P)$ untuk mencari panjang $PA$.',
           answer: '8',
           acceptedAnswers: ['8'],
           bestSolution: 'Langkah 1: Hitung nilai kuasa titik $P$ terhadap lingkaran:\n$$\\text{Power}(P) = d^2 - R^2 = 13^2 - 5^2 = 169 - 25 = 144$$\nLangkah 2: Berdasarkan Teorema Kuasa Titik, untuk sebarang garis potong melalui $P$:\n$$PA \\times PB = 144$$\nLangkah 3: Karena $B$ terletak lebih jauh dari $P$ dibandingkan $A$ pada garis potong yang sama, maka $PB = PA + AB = PA + 6$.\nLangkah 4: Substitusikan ke persamaan kuasa titik:\n$$PA(PA + 6) = 144 \\implies PA^2 + 6PA - 144 = 0$$\nLangkah 5: Faktorkan persamaan kuadrat:\n$$(PA + 18)(PA - 8) = 0$$\nLangkah 6: Karena panjang segmen harus positif, $PA = 8$.'

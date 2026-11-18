@@ -129,7 +129,7 @@ export default bab({
       q: 'Sebuah partikel bermassa $2 \\times 10^{-30}\\ \\text{kg}$ bergerak dengan kelajuan $3{,}3 \\times 10^5\\ \\text{m/s}$. Jika konstanta Planck $h = 6{,}6 \\times 10^{-34}\\ \\text{J}\\cdot\\text{s}$, panjang gelombang de Broglie partikel tersebut adalah...',
       options: ['$10\\ \\text{nm}$', '$0{,}1\\ \\text{nm}$', '$2\\ \\text{nm}$', '$1\\ \\text{nm}$'],
       answer: 'D',
-      hint: 'Gunakan $\\lambda = h / (m v)$ dan ingat $1\\ \\text{nm} = 10^{-9}\\ \\text{m}$.',
+      hint: 'Gunakan $\\lambda = h / (m v)$ lalu konversikan hasilnya dari meter ke nanometer ($10^{-9}\\ \\text{m}$ per nanometer).',
       solution: '$\\lambda = \\dfrac{6{,}6 \\times 10^{-34}}{2 \\times 10^{-30} \\times 3{,}3 \\times 10^5} = \\dfrac{6{,}6 \\times 10^{-34}}{6{,}6 \\times 10^{-25}} = 10^{-9}\\ \\text{m} = 1\\ \\text{nm}$. Jawaban: **D**.'
     }),
     soal({

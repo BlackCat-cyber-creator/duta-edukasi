@@ -68,7 +68,7 @@ export default bab({
       q: 'Sebuah mobil menempuh jarak 150 km dalam waktu 3 jam. Kelajuan rata-rata mobil tersebut adalah...',
       options: ['50 km/jam', '450 km/jam', '153 km/jam', '30 km/jam'],
       answer: 'A',
-      hint: '$v = s : t$.',
+      hint: 'Kelajuan rata-rata diperoleh dengan membagi jarak tempuh total terhadap selang waktu tempuh ($v = s : t$).',
       solution: '$v = 150\\ \\text{km} : 3\\ \\text{jam} = 50\\ \\text{km/jam}$. Jawaban: **A**.'
     }),
     soal({

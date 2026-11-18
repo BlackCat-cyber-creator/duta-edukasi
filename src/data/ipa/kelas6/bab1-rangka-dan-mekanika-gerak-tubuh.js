@@ -73,10 +73,10 @@ export default bab({
     }),
     soal({
       level: 'Dasar',
-      q: 'Sendi yang terdapat pada siku dan lutut hanya memungkinkan gerakan satu arah seperti engsel pintu, yaitu sendi...',
+      q: 'Sendi yang terdapat pada siku dan lutut hanya memungkinkan gerakan satu arah untuk menekuk dan meluruskan, yaitu sendi...',
       options: ['peluru', 'putar', 'pelana', 'engsel'],
       answer: 'D',
-      hint: 'Namanya sama dengan bagian yang membuat daun pintu membuka satu arah.',
+      hint: 'Sendi ini memiliki satu poros gerak seperti gerakan bukaan daun pintu.',
       solution: '**Sendi engsel** hanya memungkinkan gerakan ke satu arah (menekuk dan meluruskan), misalnya pada siku dan lutut. Jawaban: **D**.'
     }),
     soal({

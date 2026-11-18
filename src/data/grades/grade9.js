@@ -607,7 +607,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Misalkan $p = l + 6$. Keliling: $2(p + l) = 44 \\implies p + l = 22$.",
+          "hint": "Misalkan panjang $p = l + 6$ dan gunakan rumus keliling persegi panjang untuk menyusun sistem persamaan bersama lebar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $(l + 6) + l = 22 \\implies 2l = 16 \\implies l = 8\\text{ cm}$\n2. $p = 8 + 6 = 14\\text{ cm}$\n3. Luas $= 14 \\times 8 = 112\\text{ cm}^2$ (Opsi D).",
           "visual": {
             "type": "quadrilateral",
@@ -645,7 +645,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Empat tahun lalu jumlah umur mereka adalah $48 - 8 = 40$ tahun. Umur Susi 4 tahun lalu: $40 : 5 = 8$ tahun.",
+          "hint": "Buat model matematika dari jumlah umur saat ini dan perbandingan umur pada empat tahun yang lalu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Empat tahun lalu: $(I - 4) + (S - 4) = 40$\n2. Karena $I - 4 = 4(S - 4)$, maka $5(S - 4) = 40 \\implies S - 4 = 8$\n3. Umur Susi sekarang: $8 + 4 = 12\\text{ tahun}$ (Opsi C)."
         },
         {
@@ -699,7 +699,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "SPLDV: $a + b = 50$ dan $12.000a + 10.000b = 50 \\times 11.200 = 560.000$.",
+          "hint": "Buat sistem persamaan linear dari total massa beras dan total harga campuran.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $12a + 10b = 560$\n2. $10a + 10b = 500$\n3. $2a = 60 \\implies a = 30\\text{ kg}$ (Opsi A)."
         },
         {
@@ -726,7 +726,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Misalkan $u = \\frac{1}{x}$ dan $v = \\frac{1}{y}$. Maka $2u = 1 \\implies u = \\frac{1}{2} \\implies x = 2$.",
+          "hint": "Gunakan pemisalan $u = \\frac{1}{x}$ dan $v = \\frac{1}{y}$ untuk mengubah bentuk SPLDV menjadi bentuk linear biasa.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $2u = \\frac{6}{6} = 1 \\implies u = \\frac{1}{2} \\implies x = 2$\n2. $v = \\frac{5}{6} - \\frac{3}{6} = \\frac{2}{6} = \\frac{1}{3} \\implies y = 3$\n3. $x \\times y = 2 \\times 3 = 6$ (Opsi C)."
         },
         {
@@ -780,7 +780,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Kecepatan lawan arus: $v_p - v_a = 36 : 3 = 12$. Kecepatan searah arus: $v_p + v_a = 36 : 2 = 18$.",
+          "hint": "Tentukan kecepatan perahu saat melawan arus dan searah arus dengan membagi jarak dengan waktu masing-masing.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $v_p - v_a = 12$\n2. $v_p + v_a = 18$\n3. Kurangkan: $2v_a = 6 \\implies v_a = 3\\text{ km/jam}$ (Opsi B)."
         },
         {
@@ -807,7 +807,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Misalkan bilangan $10a + b$. $10a + b = 7(a + b) \\implies 3a = 6b \\implies a = 2b$. Selisih tukar: $9(a - b) = 36 \\implies a - b = 4$.",
+          "hint": "Nyatakan bilangan dua digit sebagai $10a + b$, lalu buat persamaan berdasarkan jumlah digit dan selisih saat posisi digit ditukar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $a = 2b$\n2. $2b - b = 4 \\implies b = 4$\n3. $a = 2(4) = 8$\nBilangan semula adalah **84** (Opsi A)."
         },
         {
@@ -861,7 +861,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Faktorkan: $(x - y)(x + y) = 33 \\implies (x - y)(11) = 33 \\implies x - y = 3$.",
+          "hint": "Faktorkan bentuk selisih kuadrat $x^2 - y^2$ menjadi $(x - y)(x + y)$ dan substitusikan nilai $x + y$ yang diketahui.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $x + y = 11$\n2. $x - y = 3$\n3. Jumlahkan: $2x = 14 \\implies x = 7$\n4. $y = 11 - 7 = 4$\n5. $2(7) - 4 = 14 - 4 = 10$ (Opsi B)."
         }
       ]
@@ -1111,37 +1111,37 @@ export const grade9Data = {
           "id": "smp9-b2-6",
           "category": "Latihan",
           "difficulty": "Sedang",
-          "question": "Sebuah tabung memiliki jari-jari alas 7 cm dan tinggi 10 cm. Volume tabung tersebut dengan $\\pi = \\frac{22}{7}$ adalah...",
+          "question": "Sebuah tabung memiliki volume $1.232\\text{ cm}^3$ dan tinggi $8\\text{ cm}$. Jika $\\pi = \\frac{22}{7}$, panjang jari-jari alas tabung tersebut adalah...",
           "options": [
             {
               "key": "A",
-              "text": "1.450 cm³"
+              "text": "5 cm"
             },
             {
               "key": "B",
-              "text": "1.520 cm³"
+              "text": "6 cm"
             },
             {
               "key": "C",
-              "text": "1.540 cm³"
+              "text": "7 cm"
             },
             {
               "key": "D",
-              "text": "1.600 cm³"
+              "text": "14 cm"
             }
           ],
           "correctAnswer": "C",
-          "hint": "Rumus volume tabung: $V = \\pi r^2 t = \\frac{22}{7} \\times 7^2 \\times 10$.",
-          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V = \\frac{22}{7} \\times 49 \\times 10 = 154 \\times 10 = 1.540\\text{ cm}^3$$\nVolumenya adalah **1.540 cm³** (Opsi C).",
+          "hint": "Gunakan rumus volume tabung $V = \\pi r^2 t$ untuk menentukan nilai $r^2$ terlebih dahulu, lalu tarik akarnya.",
+          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V = \\pi r^2 t \\implies 1.232 = \\frac{22}{7} \\times r^2 \\times 8$$\n$$r^2 = \\frac{1.232 \\times 7}{22 \\times 8} = \\frac{1.232 \\times 7}{176} = 7 \\times 7 = 49 \\implies r = 7\\text{ cm}$$\nPanjang jari-jari alasnya adalah **7 cm** (Opsi C).",
           "visual": {
             "type": "solid-3d",
             "props": {
-              "title": "Volume Tabung",
-              "caption": "*Jari-jari 7 cm dan tinggi 10 cm",
+              "title": "Jari-Jari Alas Tabung",
+              "caption": "*Volume 1.232 cm³ dan tinggi 8 cm",
               "solid": "cylinder",
-              "radiusLabel": "r = 7 cm",
-              "heightLabel": "t = 10 cm",
-              "targetLabel": "Volume = ? cm³"
+              "radiusLabel": "r = ? cm",
+              "heightLabel": "t = 8 cm",
+              "targetLabel": "r = ? cm"
             }
           }
         },
@@ -1169,7 +1169,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Luas selimut $= 2\\pi r t = \\pi d t = \\frac{22}{7} \\times 14 \\times 20$.",
+          "hint": "Gunakan rumus luas selimut tabung $L_s = 2\\pi r t = \\pi d t$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L_s = \\frac{22}{7} \\times 14 \\times 20 = 44 \\times 20 = 880\\text{ cm}^2$$\nLuas selimutnya adalah **880 cm²** (Opsi A).",
           "visual": {
             "type": "solid-3d",
@@ -1301,36 +1301,36 @@ export const grade9Data = {
           "id": "smp9-b2-11",
           "category": "Latihan",
           "difficulty": "Sedang",
-          "question": "Luas permukaan bola yang berjari-jari 7 cm dengan $\\pi = \\frac{22}{7}$ adalah...",
+          "question": "Luas permukaan setengah bola pejal (padat) yang berjari-jari 14 cm dengan $\\pi = \\frac{22}{7}$ adalah...",
           "options": [
             {
               "key": "A",
-              "text": "616 cm²"
+              "text": "1.848 cm²"
             },
             {
               "key": "B",
-              "text": "308 cm²"
+              "text": "1.232 cm²"
             },
             {
               "key": "C",
-              "text": "154 cm²"
+              "text": "616 cm²"
             },
             {
               "key": "D",
-              "text": "1.232 cm²"
+              "text": "2.464 cm²"
             }
           ],
           "correctAnswer": "A",
-          "hint": "Luas bola $= 4\\pi r^2 = 4 \\times \\frac{22}{7} \\times 49$.",
-          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = 4 \\times 154 = 616\\text{ cm}^2$$\nLuas permukaannya adalah **616 cm²** (Opsi A).",
+          "hint": "Luas permukaan setengah bola pejal terdiri atas luas setengah kulit bola ditambah luas lingkaran penutupnya.",
+          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = 2\\pi r^2 + \\pi r^2 = 3\\pi r^2 = 3 \\times \\frac{22}{7} \\times 14^2 = 3 \\times 616 = 1.848\\text{ cm}^2$$\nLuas permukaannya adalah **1.848 cm²** (Opsi A).",
           "visual": {
             "type": "solid-3d",
             "props": {
-              "title": "Luas Permukaan Bola",
-              "caption": "*Jari-jari bola 7 cm",
-              "solid": "sphere",
-              "radiusLabel": "r = 7 cm",
-              "targetLabel": "Luas Kulit = ? cm²"
+              "title": "Luas Setengah Bola Pejal",
+              "caption": "*Jari-jari 14 cm",
+              "solid": "hemisphere",
+              "radiusLabel": "r = 14 cm",
+              "targetLabel": "Luas = ? cm²"
             }
           }
         },
@@ -1358,7 +1358,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Jari-jari $= 35$ cm, tinggi $= 100$ cm. $V = \\frac{22}{7} \\times 35^2 \\times 100 = 385.000\\text{ cm}^3 = 385\\text{ liter}$.",
+          "hint": "Tentukan panjang jari-jari dari setengah diameternya dan samakan satuan ke cm, lalu hitung $V = \\pi r^2 t$ dan konversikan ke liter.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V = \\frac{22}{7} \\times 1.225 \\times 100 = 385.000\\text{ cm}^3 = 385\\text{ liter}$$\nVolume minyak adalah **385 liter** (Opsi C).",
           "visual": {
             "type": "solid-3d",
@@ -1435,7 +1435,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Volume bola $= \\frac{4}{3}\\pi r^3$. Volume tabung $= \\pi r^2 (2r) = 2\\pi r^3$. Rasio $= \\frac{4}{3} : 2 = 4 : 6 = 2 : 3$.",
+          "hint": "Nyatakan tinggi tabung sebagai $t = 2r$ (diameter bola), lalu bandingkan rumus $V_{\\text{bola}} = \\frac{4}{3}\\pi r^3$ dan $V_{\\text{tabung}} = \\pi r^2 t$ secara aljabar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{V_{\\text{bola}}}{V_{\\text{tabung}}} = \\frac{\\frac{4}{3}\\pi r^3}{2\\pi r^3} = \\frac{2}{3}$$\nPerbandingannya adalah **2 : 3** (Opsi D).",
           "visual": {
             "type": "solid-3d",
@@ -1473,7 +1473,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Luas setengah bola pejal $= 3\\pi r^2 = 3 \\times 3{,}14 \\times 100$.",
+          "hint": "Hitung luas permukaan setengah bola pejal sebagai jumlah luas lengkung ($2\\pi r^2$) dan luas lingkaran alasnya ($\\pi r^2$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = 3\\pi r^2 = 3 \\times 314 = 942\\text{ cm}^2$$\nLuas permukaannya adalah **942 cm²** (Opsi B).",
           "visual": {
             "type": "solid-3d",
@@ -1510,7 +1510,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$V_2 = \\pi (2r)^2 (\\frac{1}{2}t) = \\pi (4r^2) (\\frac{1}{2}t) = 2\\pi r^2 t = 2 V_1$.",
+          "hint": "Substitusikan jari-jari $2r$ dan tinggi $\\frac{1}{2}t$ ke dalam rumus volume tabung $V_2 = \\pi R^2 T$, lalu nyatakan hasilnya dalam $V_1 = \\pi r^2 t$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V_2 = \\pi (2r)^2 \\left(\\frac{1}{2}t\\right) = 2 \\pi r^2 t = 2V_1$$\nPerbandingannya adalah **2 : 1** (Opsi C).",
           "visual": {
             "type": "solid-3d",
@@ -1548,7 +1548,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Volume kerucut: $\\frac{1}{3} \\times \\frac{22}{7} \\times 49 \\times 24 = 1.232$. Setengah bola: $\\frac{2}{3} \\times \\frac{22}{7} \\times 343 = 718{,}67$. Total $= 1.232 + 718{,}67 = 1.950{,}67$.",
+          "hint": "Hitung volume kerucut dan setengah bola secara terpisah menggunakan rumus masing-masing, kemudian jumlahkan keduanya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $V_{\\text{kerucut}} = \\frac{1}{3} \\times 154 \\times 24 = 1.232\\text{ cm}^3$\n2. $V_{\\text{setengah bola}} = \\frac{2}{3} \\times \\frac{22}{7} \\times 343 = 718{,}67\\text{ cm}^3$\n3. Total $= 1.232 + 718{,}67 = 1.950{,}67\\text{ cm}^3$ (Opsi B).",
           "visual": {
             "type": "solid-3d",
@@ -1586,7 +1586,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Volume tangki $= \\frac{22}{7} \\times 1{,}4^2 \\times 2 = 12{,}32\\text{ m}^3 = 12.320\\text{ liter}$. Waktu $= 12.320 : 308 = 40$ jam.",
+          "hint": "Hitung volume tabung dalam meter kubik, konversikan ke liter, lalu bagi dengan debit kebocoran per jam.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $V = \\frac{22}{7} \\times 1{,}96 \\times 2 = 12{,}32\\text{ m}^3 = 12.320\\text{ liter}$\n2. Waktu $= 12.320 : 308 = 40\\text{ jam}$ (Opsi B).",
           "visual": {
             "type": "solid-3d",
@@ -1624,7 +1624,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Volume kerucut terpancung: $V = \\frac{1}{3}\\pi t (R^2 + Rr + r^2) = \\frac{1}{3} \\times 3{,}14 \\times 8 \\times (100 + 40 + 16) = \\frac{1}{3} \\times 25{,}12 \\times 156 = 1.306{,}24$.",
+          "hint": "Gunakan rumus volume kerucut terpancung: $V = \\frac{1}{3}\\pi t(R^2 + Rr + r^2)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V = \\frac{1}{3}\\pi t (R^2 + Rr + r^2) = \\frac{1}{3} \\times 3{,}14 \\times 8 \\times 156 = 1.306{,}24\\text{ cm}^3$$ (Opsi D).",
           "visual": {
             "type": "solid-3d",
@@ -1663,7 +1663,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Volume kawat $= \\pi r^2 t = 3{,}14 \\times (0{,}1)^2 \\times 10.000 = 314\\text{ cm}^3$. Massa $= 314 \\times 8{,}9 = 2.794{,}6$ gram.",
+          "hint": "Hitung terlebih dahulu volume kawat berbentuk tabung dengan $V = \\pi r^2 t$, kemudian kalikan dengan massa jenis logam.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $V = 3{,}14 \\times 0{,}01 \\times 10.000 = 314\\text{ cm}^3$\n2. $\\text{Massa} = 314 \\times 8{,}9 = 2.794{,}6\\text{ gram}$ (Opsi D).",
           "visual": {
             "type": "solid-3d",
@@ -1755,7 +1755,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Jumlahkan komponen absis dan ordinat: $x' = 3 + (-2)$ dan $y' = -5 + 7$.",
+          "hint": "Untuk mencari bayangan titik $(x, y)$ oleh translasi $\\begin{pmatrix} a \\\\ b \\end{pmatrix}$, jumlahkan komponen absis dengan $a$ dan komponen ordinat dengan $b$ menggunakan aturan $(x, y) \\to (x + a, y + b)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $x' = 3 + (-2) = 1$\n2. $y' = -5 + 7 = 2$\nKoordinat bayangannya adalah **$(1, 2)$** (Opsi D).",
           "visual": {
             "type": "cartesian-plot",
@@ -1891,7 +1891,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Lakukan dilatasi terlebih dahulu: $(-3(-2), -3(3)) = (6, -9)$, lalu tukar posisinya untuk refleksi garis $y = x$.",
+          "hint": "Lakukan transformasi secara berurutan: tentukan terlebih dahulu bayangan dilatasi dengan pusat $O(0, 0)$ dan faktor skala $k$ menggunakan aturan $(x, y) \\to (kx, ky)$, lalu cerminkan hasilnya terhadap garis $y = x$ dengan menukar posisi absis dan ordinatnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Dilatasi dengan pusat $O$ dan skala $k = -3$:\n$$K'(-3(-2), -3(3)) = K'(6, -9)$$\n2. Refleksi titik $K'(6, -9)$ terhadap garis $y = x$ menukar posisinya: $(x, y) \\to (y, x)$:\n$$K''(-9, 6)$$\nKoordinat akhirnya adalah **$(-9, 6)$** (Opsi A)."
         },
         {
@@ -1918,7 +1918,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Jumlahkan koordinat awal dengan vektor translasi: $(x + a, y + b) = (2 + 3, 5 - 2)$.",
+          "hint": "Jumlahkan masing-masing komponen koordinat awal $(x, y)$ dengan komponen vektor translasi $\\begin{pmatrix} a \\\\ b \\end{pmatrix}$ menggunakan rumus $(x, y) \\to (x + a, y + b)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$A' = (2 + 3, 5 - 2) = (5, 3)$$\nKoordinat bayangannya adalah **A'(5, 3)** (Opsi B).",
           "visual": {
             "type": "cartesian-plot",
@@ -2112,7 +2112,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Dilatasi $[O, k]$: $(x, y) \\to (kx, ky) = (3(-2), 3(6))$.",
+          "hint": "Pada dilatasi dengan pusat $O(0, 0)$ dan faktor skala $k$, kalikan masing-masing koordinat titik asal dengan $k$ menggunakan aturan $(x, y) \\to (kx, ky)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$Q' = (3 \\times (-2), 3 \\times 6) = (-6, 18)$$\nBayangannya adalah **Q'(-6, 18)** (Opsi D).",
           "visual": {
             "type": "cartesian-plot",
@@ -2156,7 +2156,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Translasi gabungan: $T = T_1 + T_2 = \\begin{pmatrix} 2 - 4 \\\\ 3 + 1 \\end{pmatrix} = \\begin{pmatrix} -2 \\\\ 4 \\end{pmatrix}$. $A' = (1 - 2, 4 + 4)$.",
+          "hint": "Untuk komposisi dua translasi berurutan, jumlahkan vektor translasi pertama $T_1$ dan kedua $T_2$ untuk memperoleh translasi gabungan, lalu tambahkan komponennya ke koordinat titik awal $(x, y)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$A' = (1 + 2 - 4, 4 + 3 + 1) = (-1, 8)$$\nBayangannya adalah **A'(-1, 8)** (Opsi C)."
         },
         {
@@ -2183,7 +2183,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Refleksi terhadap $x = h$: $x' = 2h - x = 2(5) - 3 = 7$, sedangkan $y' = y = 7$.",
+          "hint": "Pada refleksi titik $(x, y)$ terhadap garis $x = h$, nilai ordinat tetap, sedangkan nilai absisnya berubah mengikuti aturan $(x, y) \\to (2h - x, y)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x' = 2(5) - 3 = 7, \\quad y' = 7 \\implies K'(7, 7)$$\nBayangannya adalah **K'(7, 7)** (Opsi B).",
           "visual": {
             "type": "cartesian-plot",
@@ -2232,7 +2232,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Refleksi terhadap $y = k$: $y' = 2k - y = 2(1) - 4 = -2$, sedangkan $x' = x = -2$.",
+          "hint": "Pada refleksi titik $(x, y)$ terhadap garis $y = k$, nilai absis tetap, sedangkan nilai ordinatnya berubah mengikuti aturan $(x, y) \\to (x, 2k - y)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x' = -2, \\quad y' = 2(1) - 4 = -2 \\implies M'(-2, -2)$$\nBayangannya adalah **M'(-2, -2)** (Opsi A)."
         },
         {
@@ -2303,7 +2303,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Luas bangun hasil dilatasi $= k^2 \\times \\text{Luas awal} = 4^2 \\times 15 = 16 \\times 15 = 240$ cm².",
+          "hint": "Jika suatu bangun datar didilatasikan dengan faktor skala $k$, luas bayangannya sebanding dengan kuadrat faktor skalanya, yaitu hasil kali $k^2$ dengan luas bangun awal.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Luas bayangan} = 4^2 \\times 15 = 16 \\times 15 = 240\\text{ cm}^2$$\nLuasnya adalah **240 cm²** (Opsi D)."
         },
         {
@@ -2330,7 +2330,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Gunakan substitusi $x = x' - 1$ dan $y = y' + 2$: $2(x - 1) + 3(y + 2) = 6 \\implies 2x - 2 + 3y + 6 = 6 \\implies 2x + 3y = 2$.",
+          "hint": "Untuk menentukan bayangan persamaan garis oleh translasi $\\begin{pmatrix} a \\\\ b \\end{pmatrix}$, nyatakan $x$ dan $y$ dalam koordinat bayangan $(x', y')$ dengan hubungan $x = x' - a$ dan $y = y' - b$, lalu substitusikan ke persamaan garis awal dan sederhanakan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$2(x - 1) + 3(y + 2) = 6 \\implies 2x + 3y + 4 = 6 \\implies 2x + 3y = 2$$ (Opsi B)."
         },
         {
@@ -2357,7 +2357,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "1. Refleksi $y = -x$: $(x, y) \\to (-y, -x) = (3, -2)$. 2. Translasi: $(3 - 1, -2 + 4) = (2, 2)$.",
+          "hint": "Kerjakan secara bertahap: pertama, tentukan bayangan refleksi terhadap garis $y = -x$ menggunakan aturan $(x, y) \\to (-y, -x)$, lalu translasikan koordinat hasil tersebut dengan menambahkan komponen vektor translasi $\\begin{pmatrix} a \\\\ b \\end{pmatrix}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Cermin $y = -x$: $P'(3, -2)$\n2. Translasi: $P''(3 - 1, -2 + 4) = P''(2, 2)$ (Opsi C)."
         },
         {
@@ -2384,7 +2384,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Rumus dilatasi pusat $(a, b)$: $x' = a + k(x - a) = 1 + 2(3 - 1) = 5$, $y' = b + k(y - b) = 2 + 2(5 - 2) = 8$.",
+          "hint": "Gunakan rumus dilatasi titik $(x, y)$ dengan pusat $(a, b)$ dan faktor skala $k$, yaitu $x' = a + k(x - a)$ dan $y' = b + k(y - b)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n- $x' = 1 + 2(2) = 5$\n- $y' = 2 + 2(3) = 8$\nBayangannya adalah **A'(5, 8)** (Opsi A)."
         },
         {
@@ -2411,7 +2411,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Dari $T'(4, -6)$ cermin sumbu-$X$, maka $a = 4$ dan $b = 6$. Bayangan translasi: $c = 4 - 1 = 3$ dan $d = -6 + 2 = -4$. $a + b + c + d = 4 + 6 + 3 - 4 = 9$.",
+          "hint": "Untuk mencari $(a, b)$, balikkan proses refleksi terhadap sumbu-$X$ dengan aturan $(x, y) \\to (x, -y)$ karena refleksi bersifat saling berkebalikan. Selanjutnya, cari $(c, d)$ dengan mentranslasikan bayangan pertama menggunakan vektor translasi yang diberikan, lalu jumlahkan nilai $a + b + c + d$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $T(a, b) = (4, 6) \\implies a = 4, b = 6$\n2. $(c, d) = (4 - 1, -6 + 2) = (3, -4)$\n3. $a + b + c + d = 4 + 6 + 3 - 4 = 9$ (Opsi A)."
         },
         {
@@ -2438,7 +2438,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Luas awal $= \\frac{22}{7} \\times 49 = 154$ cm². Luas baru $= 3^2 \\times 154 = 9 \\times 154 = 1.386$ cm². Pertambahan luas $= 1.386 - 154 = 1.232$ cm².",
+          "hint": "Hitung terlebih dahulu luas lingkaran awal menggunakan rumus $\\pi r^2$. Setelah didilatasikan dengan faktor skala $k$, luas bayangannya menjadi $k^2$ kali luas awal, sehingga pertambahan luas dapat diperoleh dari selisih antara luas bayangan dan luas awal.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Luas awal $= 154\\text{ cm}^2$\n2. Luas baru $= 9 \\times 154 = 1.386\\text{ cm}^2$\n3. Pertambahan $= 1.386 - 154 = 1.232\\text{ cm}^2$ (Opsi C)."
         }
       ]
@@ -2566,7 +2566,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Total seluruh kelereng: $8 + 10 + 6 = 24$. Peluangnya adalah $\\frac{10}{24}$.",
+          "hint": "Tentukan jumlah seluruh kelereng sebagai titik sampel total, lalu bandingkan jumlah kelereng kuning dengan total seluruh kelereng.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Ruang sampel: $n(S) = 8 + 10 + 6 = 24$.\n2. Kelereng kuning: $n(K) = 10$.\n3. Peluang: $P = \\frac{10}{24} = \\frac{5}{12}$.\nPeluangnya adalah **$\\frac{5}{12}$** (Opsi B)."
         },
         {
@@ -2593,7 +2593,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Peluang sisi Gambar $= \\frac{1}{2}$, peluang mata dadu ganjil $\\{1, 3, 5\\} = \\frac{3}{6} = \\frac{1}{2}$. Kalikan keduanya, lalu kalikan 120.",
+          "hint": "Gunakan aturan peluang kejadian saling bebas untuk masing-masing objek, lalu kalikan hasilnya dengan banyak percobaan (frekuensi harapan).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Peluang gabungan saling bebas:\n$$P = P(\\text{Gambar}) \\times P(\\text{Ganjil}) = \\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$$\n2. Frekuensi harapan:\n$$F_h = 120 \\times \\frac{1}{4} = 30\\text{ kali}$$\nFrekuensi harapan adalah **30 kali** (Opsi D)."
         },
         {
@@ -2674,7 +2674,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Mata dadu kembar: (1,1), (2,2), (3,3), (4,4), (5,5), (6,6) ada 6 dari 36 kemungkinan. Peluang $= \\frac{6}{36} = \\frac{1}{6}$.",
+          "hint": "Daftar atau tentukan banyak pasangan mata dadu yang bernilai sama (kembar) dari seluruh kemungkinan pasangan pada dua dadu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{6}{36} = \\frac{1}{6}$$\nPeluangnya adalah **$\\frac{1}{6}$** (Opsi D)."
         },
         {
@@ -2701,7 +2701,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Terdapat 4 kartu As dalam 52 kartu. Peluang $= \\frac{4}{52} = \\frac{1}{13}$.",
+          "hint": "Bandingkan banyak kartu As dengan total keseluruhan kartu dalam satu set bridge.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{4}{52} = \\frac{1}{13}$$\nPeluangnya adalah **$\\frac{1}{13}$** (Opsi A)."
         },
         {
@@ -2728,7 +2728,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Peluang faktor dari 6 $= \\frac{4}{6} = \\frac{2}{3}$. Frekuensi harapan $= 120 \\times \\frac{2}{3} = 80$ kali.",
+          "hint": "Tentukan peluang munculnya mata dadu yang merupakan faktor dari $6$, kemudian kalikan dengan banyak total pelemparan untuk mencari frekuensi harapan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$F_h = 120 \\times \\frac{4}{6} = 80\\text{ kali}$$\nFrekuensi harapannya adalah **80 kali** (Opsi C)."
         },
         {
@@ -2755,7 +2755,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Bukan kuning $= 8 + 5 = 13$. Total $= 20$. Peluang $= \\frac{13}{20}$.",
+          "hint": "Hitung banyak kelereng selain warna kuning dengan menjumlahkan kelereng warna lainnya, lalu bandingkan dengan total seluruh kelereng.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = 1 - \\frac{7}{20} = \\frac{13}{20}$$\nPeluangnya adalah **$\\frac{13}{20}$** (Opsi C)."
         },
         {
@@ -2809,7 +2809,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Proporsi sampel $= \\frac{35}{50} = 0{,}7$. Estimasi total $= 0{,}7 \\times 400 = 280$ suara.",
+          "hint": "Gunakan proporsi atau perbandingan dari sampel acak terhadap ukuran populasi total untuk mengestimasi perolehan keseluruhan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Estimasi} = \\frac{35}{50} \\times 400 = 280\\text{ suara}$$\nPerkiraannya adalah **280 suara** (Opsi C)."
         },
         {
@@ -2836,7 +2836,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Pasangan jumlah < 5: jumlah 2 (1,1), jumlah 3 (1,2),(2,1), jumlah 4 (1,3),(2,2),(3,1) total 6 pasangan. Peluang $= \\frac{6}{36} = \\frac{1}{6}$.",
+          "hint": "Daftar semua pasangan mata dadu dari dua buah dadu yang jumlahnya kurang dari $5$, lalu bandingkan dengan total kemungkinan hasil.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{6}{36} = \\frac{1}{6}$$\nPeluangnya adalah **$\\frac{1}{6}$** (Opsi C)."
         },
         {
@@ -2863,7 +2863,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Persentase cacat $= \\frac{15}{500} = 0{,}03 = 3\\%$. Total cacat $= 3\\% \\times 10.000 = 300$ bohlam.",
+          "hint": "Tentukan rasio temuan sampel cacat terhadap ukuran sampel uji, lalu kalikan dengan total seluruh produksi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Estimasi} = \\frac{15}{500} \\times 10.000 = 300\\text{ bohlam}$$\nPerkiraannya adalah **300 bohlam** (Opsi A)."
         },
         {
@@ -2890,7 +2890,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Peluang meleset $= 1 - 0{,}85 = 0{,}15$. Frekuensi meleset $= 40 \\times 0{,}15 = 6$ kali.",
+          "hint": "Gunakan peluang komplemen untuk menentukan peluang meleset, lalu kalikan dengan total banyak tembakan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$F_h = 40 \\times (1 - 0{,}85) = 40 \\times 0{,}15 = 6\\text{ kali}$$\nFrekuensi meleset adalah **6 kali** (Opsi B)."
         },
         {
@@ -2917,7 +2917,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Peluang merah pertama $= \\frac{6}{10}$. Peluang putih kedua $= \\frac{4}{9}$. Peluang bersama $= \\frac{6}{10} \\times \\frac{4}{9} = \\frac{24}{90} = \\frac{4}{15}$.",
+          "hint": "Gunakan konsep peluang kejadian bersyarat untuk pengambilan tanpa pengembalian (perhatikan bahwa jumlah total objek berkurang pada pengambilan kedua).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{6}{10} \\times \\frac{4}{9} = \\frac{24}{90} = \\frac{4}{15}$$\nPeluangnya adalah **$\\frac{4}{15}$** (Opsi B)."
         },
         {
@@ -2944,7 +2944,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Jumlah 2: 1 pasang; Jumlah 3: 2 pasang; Jumlah 5: 4 pasang; Jumlah 7: 6 pasang; Jumlah 11: 2 pasang. Total $= 1 + 2 + 4 + 6 + 2 = 15$. Peluang $= \\frac{15}{36} = \\frac{5}{12}$.",
+          "hint": "Daftar seluruh kemungkinan pasangan mata dadu yang jumlahnya merupakan bilangan prima, lalu bandingkan dengan total titik sampel dua dadu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{15}{36} = \\frac{5}{12}$$\nPeluangnya adalah **$\\frac{5}{12}$** (Opsi C)."
         },
         {
@@ -2971,7 +2971,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Gunakan komplemen: $1 - P(\\text{semua perempuan}) = 1 - \\frac{1}{8} = \\frac{7}{8}$.",
+          "hint": "Gunakan aturan komplemen: peluang paling sedikit satu anak laki-laki sama dengan satu dikurangi peluang seluruh anak berjenis kelamin perempuan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = 1 - \\left(\\frac{1}{2}\\right)^3 = 1 - \\frac{1}{8} = \\frac{7}{8}$$\nPeluangnya adalah **$\\frac{7}{8}$** (Opsi D)."
         },
         {
@@ -2998,7 +2998,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Kartu genap: 2, 4, 6, 8, 10 (ada 5). Total cara $= C(10, 2) = 45$. Cara genap $= C(5, 2) = 10$. Peluang $= \\frac{10}{45} = \\frac{2}{9}$.",
+          "hint": "Gunakan konsep kombinasi untuk menentukan banyak cara pengambilan kartu genap dibagi dengan total cara pengambilan seluruh kartu secara acak.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{C(5, 2)}{C(10, 2)} = \\frac{10}{45} = \\frac{2}{9}$$\nPeluangnya adalah **$\\frac{2}{9}$** (Opsi A)."
         },
         {
@@ -3025,7 +3025,7 @@ export const grade9Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Pengambilan sampel berstrata sesuai tingkatan disebut stratified random sampling.",
+          "hint": "Perhatikan teknik pengambilan sampel yang membagi populasi ke dalam kelompok-kelompok (strata) berdasarkan kategori tertentu sebelum dilakukan pengambilan sampel secara acak.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nTeknik tersebut adalah **Stratified Random Sampling** (Opsi B)."
         }
       ]

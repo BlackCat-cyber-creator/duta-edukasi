@@ -92,7 +92,7 @@ export default bab({
       q: 'Sebuah resistor 20 Ω dihubungkan dengan sumber tegangan 12 V. Kuat arus yang mengalir adalah...',
       options: ['240 A', '1,67 A', '32 A', '0,6 A'],
       answer: 'D',
-      hint: '$I = V : R$.',
+      hint: 'Gunakan Hukum Ohm yang menghubungkan beda potensial, hambatan, dan kuat arus listrik ($I = V : R$).',
       solution: '$I = 12 : 20 = 0{,}6\\ \\text{A}$. Jawaban: **D**.'
     }),
     soal({

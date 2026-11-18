@@ -3,6 +3,10 @@ import { VISUAL_THEME } from '../theme';
 import { SvgContainer } from '../common/SvgContainer';
 import { DimensionLine, RightAngleMarker } from '../common/VisualElements';
 
+function pillWidth(label, minW = 56, scale = 6.6, pad = 16) {
+  return Math.max(minW, Math.ceil(String(label || '').length * scale) + pad);
+}
+
 /**
  * RightTriangleVisual:
  * Segitiga siku-siku parametrik presisi untuk Teorema Pythagoras dan Trigonometri.
@@ -31,6 +35,13 @@ export function RightTriangleVisual({
   const isBaseTarget = String(baseLabel).includes('?');
   const isHeightTarget = String(heightLabel).includes('?');
 
+  const topW = pillWidth(vertices.top, 48);
+  const rightW = pillWidth(vertices.right, 48);
+  const farW = pillWidth(vertices.far, 56);
+  const baseW = pillWidth(baseLabel, 56);
+  const heightW = pillWidth(heightLabel, 72);
+  const hypW = pillWidth(hypLabel, 72, 6.8);
+
   return (
     <SvgContainer width={width} height={heightSvg} title={title} caption={caption}>
       <polygon 
@@ -45,7 +56,7 @@ export function RightTriangleVisual({
 
       {vertices.top && (
         <g transform={`translate(${pTop.x}, ${pTop.y - 12})`}>
-          <rect x="-24" y="-8" width="48" height="16" rx="3" fill="#FFFFFF" stroke={VISUAL_THEME.borderSubtle} strokeWidth="1" />
+          <rect x={-topW / 2} y="-8" width={topW} height="16" rx="3" fill="#FFFFFF" stroke={VISUAL_THEME.borderSubtle} strokeWidth="1" />
           <text x="0" y="4" textAnchor="middle" fontSize="10" fontWeight="800" fill={VISUAL_THEME.textDark}>
             {vertices.top}
           </text>
@@ -54,7 +65,7 @@ export function RightTriangleVisual({
 
       {vertices.right && (
         <g transform={`translate(${pRight.x - 30}, ${pRight.y + 14})`}>
-          <rect x="-24" y="-8" width="48" height="16" rx="3" fill="#FFFFFF" stroke={VISUAL_THEME.borderSubtle} strokeWidth="1" />
+          <rect x={-rightW / 2} y="-8" width={rightW} height="16" rx="3" fill="#FFFFFF" stroke={VISUAL_THEME.borderSubtle} strokeWidth="1" />
           <text x="0" y="4" textAnchor="middle" fontSize="9.5" fontWeight="800" fill={VISUAL_THEME.textDark}>
             {vertices.right}
           </text>
@@ -63,7 +74,7 @@ export function RightTriangleVisual({
 
       {vertices.far && (
         <g transform={`translate(${pFar.x + 30}, ${pFar.y + 14})`}>
-          <rect x="-28" y="-8" width="56" height="16" rx="3" fill="#FFFFFF" stroke={VISUAL_THEME.borderSubtle} strokeWidth="1" />
+          <rect x={-farW / 2} y="-8" width={farW} height="16" rx="3" fill="#FFFFFF" stroke={VISUAL_THEME.borderSubtle} strokeWidth="1" />
           <text x="0" y="4" textAnchor="middle" fontSize="9.5" fontWeight="800" fill={VISUAL_THEME.textDark}>
             {vertices.far}
           </text>
@@ -78,7 +89,7 @@ export function RightTriangleVisual({
           
           <g transform={`translate(${ox + triW / 2}, ${oy + 14})`}>
             <rect 
-              x="-28" y="-9" width="56" height="18" rx="4" 
+              x={-baseW / 2} y="-9" width={baseW} height="18" rx="4" 
               fill={isBaseTarget ? VISUAL_THEME.accentSoft : "#FFFFFF"} 
               stroke={isBaseTarget ? VISUAL_THEME.accent : VISUAL_THEME.borderSubtle} 
               strokeWidth="1.25" 
@@ -98,7 +109,7 @@ export function RightTriangleVisual({
 
           <g transform={`translate(${ox - 24}, ${(oy - triH + oy) / 2})`}>
             <rect 
-              x="-36" y="-10" width="72" height="20" rx="4" 
+              x={-heightW / 2} y="-10" width={heightW} height="20" rx="4" 
               fill={isHeightTarget ? VISUAL_THEME.accentSoft : "#FFFFFF"} 
               stroke={isHeightTarget ? VISUAL_THEME.accent : VISUAL_THEME.borderSubtle} 
               strokeWidth="1.25" 
@@ -113,7 +124,7 @@ export function RightTriangleVisual({
       {hypLabel && (
         <g transform={`translate(${(pTop.x + pFar.x) / 2 + 18}, ${(pTop.y + pFar.y) / 2 - 14})`}>
           <rect 
-            x="-36" y="-10" width="72" height="20" rx="4" 
+            x={-hypW / 2} y="-10" width={hypW} height="20" rx="4" 
             fill={isHypTarget ? VISUAL_THEME.accentSoft : '#FFFFFF'} 
             stroke={isHypTarget ? VISUAL_THEME.accent : VISUAL_THEME.borderSubtle} 
             strokeWidth="1.25" 
@@ -329,14 +340,18 @@ export function QuadrilateralVisual({
         </g>
       )}
 
-      {targetBadge && (
-        <g transform={`translate(${width - 65}, 78)`}>
-          <rect x="-38" y="-14" width="76" height="28" rx="5" fill={VISUAL_THEME.accentSoft} stroke={VISUAL_THEME.accent} strokeWidth="1.5" />
-          <text x="0" y="4" textAnchor="middle" fontSize="10.5" fontWeight="800" fill={VISUAL_THEME.accentDark}>
-            {targetBadge}
-          </text>
-        </g>
-      )}
+      {targetBadge && (() => {
+        const bw = pillWidth(targetBadge, 76);
+        const bx = Math.min(width - 65, width - bw / 2 - 8);
+        return (
+          <g transform={`translate(${bx}, 78)`}>
+            <rect x={-bw / 2} y="-14" width={bw} height="28" rx="5" fill={VISUAL_THEME.accentSoft} stroke={VISUAL_THEME.accent} strokeWidth="1.5" />
+            <text x="0" y="4" textAnchor="middle" fontSize="10.5" fontWeight="800" fill={VISUAL_THEME.accentDark}>
+              {targetBadge}
+            </text>
+          </g>
+        );
+      })()}
     </SvgContainer>
   );
 }
@@ -424,14 +439,18 @@ export function TriangleVisual({
       )}
 
       {/* Target Badge */}
-      {targetBadge && (
-        <g transform={`translate(${width - 65}, 78)`}>
-          <rect x="-36" y="-14" width="72" height="28" rx="5" fill={VISUAL_THEME.accentSoft} stroke={VISUAL_THEME.accent} strokeWidth="1.5" />
-          <text x="0" y="4" textAnchor="middle" fontSize="10.5" fontWeight="800" fill={VISUAL_THEME.accentDark}>
-            {targetBadge}
-          </text>
-        </g>
-      )}
+      {targetBadge && (() => {
+        const bw = pillWidth(targetBadge, 72);
+        const bx = Math.min(width - 65, width - bw / 2 - 8);
+        return (
+          <g transform={`translate(${bx}, 78)`}>
+            <rect x={-bw / 2} y="-14" width={bw} height="28" rx="5" fill={VISUAL_THEME.accentSoft} stroke={VISUAL_THEME.accent} strokeWidth="1.5" />
+            <text x="0" y="4" textAnchor="middle" fontSize="10.5" fontWeight="800" fill={VISUAL_THEME.accentDark}>
+              {targetBadge}
+            </text>
+          </g>
+        );
+      })()}
     </SvgContainer>
   );
 }
@@ -697,14 +716,18 @@ export function Solid3DVisual({
       )}
 
       {/* Target Badge di Sisi Kanan (Bebas Tabrakan) */}
-      {targetLabel && (
-        <g transform={`translate(${width - 58}, 75)`}>
-          <rect x="-38" y="-15" width="76" height="30" rx="6" fill={VISUAL_THEME.accentSoft} stroke={VISUAL_THEME.accent} strokeWidth="1.5" />
-          <text x="0" y="4.5" textAnchor="middle" fontSize="9.5" fontWeight="800" fill={VISUAL_THEME.accentDark}>
-            {targetLabel}
-          </text>
-        </g>
-      )}
+      {targetLabel && (() => {
+        const bw = pillWidth(targetLabel, 76, 6.2);
+        const bx = Math.min(width - 58, width - bw / 2 - 8);
+        return (
+          <g transform={`translate(${bx}, 75)`}>
+            <rect x={-bw / 2} y="-15" width={bw} height="30" rx="6" fill={VISUAL_THEME.accentSoft} stroke={VISUAL_THEME.accent} strokeWidth="1.5" />
+            <text x="0" y="4.5" textAnchor="middle" fontSize="9.5" fontWeight="800" fill={VISUAL_THEME.accentDark}>
+              {targetLabel}
+            </text>
+          </g>
+        );
+      })()}
     </SvgContainer>
   );
 }

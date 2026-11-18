@@ -65,7 +65,7 @@ export default bab({
         'pisau tajam terbuat dari bahan yang berbeda'
       ],
       answer: 'A',
-      hint: '$P = F : A$.',
+      hint: 'Tekanan zat padat berbanding lurus dengan gaya tekan dan berbanding terbalik dengan luas bidang tekannya ($P = F : A$).',
       solution: 'Dengan gaya yang sama, **luas bidang tekan yang kecil menghasilkan tekanan besar**, sehingga pisau tajam mudah memotong. Jawaban: **A**.'
     }),
     soal({

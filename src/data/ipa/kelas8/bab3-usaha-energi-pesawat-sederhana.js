@@ -109,7 +109,7 @@ export default bab({
       q: 'Seorang anak menaiki tangga dan melakukan usaha 1.500 J dalam waktu 30 s. Daya anak tersebut adalah...',
       options: ['50 W', '45.000 W', '1.530 W', '20 W'],
       answer: 'A',
-      hint: '$P = W : t$.',
+      hint: 'Daya merupakan laju usaha yang dilakukan setiap satu sekon ($P = W : t$).',
       solution: '$P = 1.500 : 30 = 50\\ \\text{W}$. Jawaban: **A**.'
     }),
     soal({

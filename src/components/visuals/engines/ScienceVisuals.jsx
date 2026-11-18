@@ -280,12 +280,13 @@ export function WaveVisual({
 }
 
 function Dimension({ x0, x1, y, label }) {
+  const boxW = Math.max(68, Math.ceil(String(label || '').length * 6.4) + 14);
   return (
     <g>
       <line x1={x0} y1={y} x2={x1} y2={y} stroke={T.textMuted} strokeWidth={1} />
       <line x1={x0} y1={y - 6} x2={x0} y2={y + 6} stroke={T.textMuted} strokeWidth={1} />
       <line x1={x1} y1={y - 6} x2={x1} y2={y + 6} stroke={T.textMuted} strokeWidth={1} />
-      <rect x={(x0 + x1) / 2 - 34} y={y - 9} width={68} height={18} rx={4} fill={T.bgContainer} />
+      <rect x={(x0 + x1) / 2 - boxW / 2} y={y - 9} width={boxW} height={18} rx={4} fill={T.bgContainer} />
       <Label x={(x0 + x1) / 2} y={y + 4} size={10.5} color={T.textSecondary}>{label}</Label>
     </g>
   );
@@ -409,7 +410,17 @@ export function MotionGraphVisual({
 export function FoodWebVisual({ title = 'Jaring-Jaring Makanan', caption, nodes = [], edges = [] }) {
   const width = 340;
   const height = 200;
-  const pos = Object.fromEntries(nodes.map((n) => [n.id, { x: 40 + n.x * 260, y: 24 + n.y * 150 }]));
+  const pillWidth = (n) => Math.max(54, n.label.length * 6.6 + 14);
+  const pos = Object.fromEntries(
+    nodes.map((n) => [n.id, { x: 40 + n.x * 260, y: 24 + n.y * 150, hw: pillWidth(n) / 2, hh: 11 }])
+  );
+  const boxEdgeDist = (dx, dy, node, margin) => {
+    const adx = Math.abs(dx);
+    const ady = Math.abs(dy);
+    const tx = adx > 1e-6 ? (node.hw + margin) / adx : Infinity;
+    const ty = ady > 1e-6 ? (node.hh + margin) / ady : Infinity;
+    return Math.min(tx, ty);
+  };
 
   return (
     <SvgContainer width={width} height={height} title={title} caption={caption}>
@@ -419,9 +430,8 @@ export function FoodWebVisual({ title = 'Jaring-Jaring Makanan', caption, nodes 
         if (!a || !b) return null;
         const dx = b.x - a.x;
         const dy = b.y - a.y;
-        const dist = Math.hypot(dx, dy) || 1;
-        const shrinkA = 16 / dist;
-        const shrinkB = 18 / dist;
+        const shrinkA = Math.min(0.45, boxEdgeDist(dx, dy, a, 3));
+        const shrinkB = Math.min(0.45, boxEdgeDist(dx, dy, b, 5));
         return (
           <Arrow
             key={i}
@@ -436,7 +446,7 @@ export function FoodWebVisual({ title = 'Jaring-Jaring Makanan', caption, nodes 
       })}
       {nodes.map((n) => {
         const p = pos[n.id];
-        const w = Math.max(54, n.label.length * 6.6 + 14);
+        const w = pillWidth(n);
         return (
           <g key={n.id}>
             <rect x={p.x - w / 2} y={p.y - 11} width={w} height={22} rx={11} fill={n.highlight ? T.accentSoft : '#FFFFFF'} stroke={n.highlight ? T.accent : T.secondary} strokeWidth={1.5} />
@@ -571,11 +581,15 @@ export function OpticsVisual({
   focalLabel,
   objectDistLabel,
   objectHeightLabel,
-  imageDistLabel
+  imageDistLabel,
+  showImage
 }) {
   const width = 360;
   const height = 200;
   const axisY = 105;
+  const shouldRenderImage =
+    showImage === true ||
+    (Boolean(imageDistLabel) && !String(imageDistLabel).includes('?'));
 
   if (kind === 'concave-mirror') {
     const mx = 265;
@@ -591,7 +605,7 @@ export function OpticsVisual({
         {objectHeightLabel && <Label x={ox - 8} y={82} anchor="end" size={10.5} color={T.secondaryDark}>{objectHeightLabel}</Label>}
         {focalLabel && <Dimension x0={fx} x1={mx} y={axisY + 30} label={focalLabel} />}
         {objectDistLabel && <Dimension x0={ox} x1={mx} y={axisY + 54} label={objectDistLabel} />}
-        {imageDistLabel && (
+        {shouldRenderImage && (
           <g>
             <Arrow x1={152} y1={axisY} x2={152} y2={138} color={T.purple} width={2} />
             <Dimension x0={152} x1={mx} y={axisY + 76} label={imageDistLabel} />
@@ -618,7 +632,7 @@ export function OpticsVisual({
       {objectHeightLabel && <Label x={ox - 7} y={80} anchor="end" size={10.5} color={T.secondaryDark}>{objectHeightLabel}</Label>}
       {focalLabel && <Dimension x0={lx} x1={fr} y={axisY + 28} label={focalLabel} />}
       {objectDistLabel && <Dimension x0={ox} x1={lx} y={axisY + 54} label={objectDistLabel} />}
-      {imageDistLabel && (
+      {shouldRenderImage && (
         <g>
           <Arrow x1={288} y1={axisY} x2={288} y2={146} color={T.purple} width={2} />
           <Dimension x0={lx} x1={288} y={axisY + 54} label={imageDistLabel} />

@@ -99,7 +99,7 @@ export default bab({
       q: 'Pelestarian hewan langka komodo di Taman Nasional Komodo, habitat aslinya, termasuk pelestarian...',
       options: ['ex situ', 'in situ', 'budidaya', 'reboisasi'],
       answer: 'B',
-      hint: '"In situ" berarti di tempat asalnya.',
+      hint: 'Pelestarian jenis ini dilakukan langsung di habitat atau ekosistem asli tempat makhluk hidup tersebut berada.',
       solution: 'Pelestarian yang dilakukan **di habitat aslinya** disebut pelestarian **in situ**. Kebun binatang adalah contoh ex situ. Jawaban: **B**.'
     }),
     soal({

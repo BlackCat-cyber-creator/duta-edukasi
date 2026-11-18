@@ -93,7 +93,7 @@ export default bab({
       q: 'Sebuah bandul melakukan 60 getaran dalam waktu 20 sekon. Frekuensi getaran bandul tersebut adalah...',
       options: ['3 Hz', '0,33 Hz', '40 Hz', '1.200 Hz'],
       answer: 'A',
-      hint: '$f = n : t$.',
+      hint: 'Frekuensi getaran adalah banyaknya getaran yang terjadi setiap satu sekon ($f = n : t$).',
       solution: '$f = 60 : 20 = 3\\ \\text{Hz}$. Jawaban: **A**.'
     }),
     soal({
@@ -109,7 +109,7 @@ export default bab({
       q: 'Periode getaran sebuah pegas adalah 0,25 s. Frekuensi getarannya adalah...',
       options: ['0,25 Hz', '2,5 Hz', '25 Hz', '4 Hz'],
       answer: 'D',
-      hint: '$f = 1 : T$.',
+      hint: 'Frekuensi getaran berbanding terbalik dengan periodenya ($f = 1 : T$).',
       solution: '$f = 1 : 0{,}25 = 4\\ \\text{Hz}$. Jawaban: **D**.'
     }),
     soal({

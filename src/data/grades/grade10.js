@@ -1,6 +1,5 @@
 /**
- * Data Kurikulum Kelas 10 SMA (Fase E)
- * 8 Bab Wajib Resmi Sesuai Buku Siswa Matematika
+ * Data Kurikulum Kelas 10 SMA
  */
 
 export const grade10Data = {
@@ -87,7 +86,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Ubah numerus ke bentuk perpangkatan basisnya: $16 = 2^4$, $27 = 3^3$, dan $25 = 5^2$.",
+          "hint": "Ubah setiap bilangan di dalam logaritma ke dalam bentuk berpangkat sesuai dengan basis logaritmannya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sederhanakan masing-masing suku logaritma:\n- ${}^2\\log 16 = {}^2\\log(2^4) = 4$\n- ${}^3\\log 27 = {}^3\\log(3^3) = 3$\n- ${}^5\\log 25 = {}^5\\log(5^2) = 2$\n2. Operasikan seluruh suku:\n$$4 + 3 - 2 = 5$$\nJadi, nilai akhirnya adalah **5** (Opsi C)."
         },
         {
@@ -141,7 +140,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Kalikan pembilang dan penyebut dengan bentuk sekawan $(\\sqrt{7} + \\sqrt{3})$, lalu bagi dengan $(7 - 3 = 4)$.",
+          "hint": "Kalikan pembilang dan penyebut pecahan dengan bentuk sekawan dari penyebutnya ($a + b$ dengan $a - b$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Kalikan dengan bentuk sekawan:\n$$\\frac{8}{\\sqrt{7} - \\sqrt{3}} \\times \\frac{\\sqrt{7} + \\sqrt{3}}{\\sqrt{7} + \\sqrt{3}} = \\frac{8(\\sqrt{7} + \\sqrt{3})}{(\\sqrt{7})^2 - (\\sqrt{3})^2}$$\n2. Hitung penyebut: $7 - 3 = 4$\n3. Sederhanakan:\n$$\\frac{8(\\sqrt{7} + \\sqrt{3})}{4} = 2(\\sqrt{7} + \\sqrt{3}) = 2\\sqrt{7} + 2\\sqrt{3}$$\nBentuk rasionalnya adalah **$2\\sqrt{7} + 2\\sqrt{3}$** (Opsi A)."
         },
         {
@@ -168,7 +167,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Gunakan persamaan $200 \\cdot 2^n = 6.400$, cari nilai periode pembelahan $n$, lalu kalikan dengan 4 hari.",
+          "hint": "Gunakan model pertumbuhan eksponensial $P(t) = P_0 \\cdot 2^{t/k}$ dengan $P_0$ populasi awal dan $k$ periode pelipatgandaan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Buat model persamaan eksponensial:\n$$200 \\cdot 2^n = 6.400$$\n2. Bagi kedua ruas dengan 200:\n$$2^n = \\frac{6.400}{200} = 32$$\n3. Selesaikan nilai $n$ menggunakan sifat eksponen:\n$$2^n = 2^5 \\implies n = 5$$\n4. Karena satu periode pembelahan adalah 4 hari, maka total waktu yang dibutuhkan adalah:\n$$t = 5 \\times 4\\text{ hari} = 20\\text{ hari}$$\nPopulasi mencapai 6.400 ekor setelah **20 hari** (Opsi A)."
         },
         {
@@ -195,7 +194,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Gunakan sifat: $^a\\log b - ^a\\log c = ^a\\log (b/c)$.",
+          "hint": "Gunakan sifat pengurangan logaritma dengan basis sama: ${}^a\\log x - {}^a\\log y = {}^a\\log\\left(\\frac{x}{y}\\right)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$^2\\log 32 - ^2\\log 4 = ^2\\log \\left(\\frac{32}{4}\\right) = ^2\\log 8 = 3$$\nNilainya adalah **3** (Opsi B)."
         },
         {
@@ -222,7 +221,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Pangkatkan pembilang $(x^2)^2 y^{-6} = x^4 y^{-6}$, lalu kurangkan eksponen penyebut.",
+          "hint": "Kalikan pangkat di dalam dan di luar tanda kurung dengan sifat $(a^m)^n = a^{m \\cdot n}$, kemudian sederhanakan pembagian eksponennya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{x^4 y^{-6}}{x^{-1} y^2} = x^{4 - (-1)} y^{-6 - 2} = x^5 y^{-8} = \\frac{x^5}{y^8}$$ (Opsi D)."
         },
         {
@@ -276,7 +275,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Faktorkan $12 = 2^2 \\times 3$. Gunakan sifat penjumlahan logaritma.",
+          "hint": "Nyatakan bilangan numerus ke dalam perkalian faktor prima berbasis bilangan logaritma yang diketahui, lalu uraikan dengan sifat penjumlahan logaritma.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$^3\\log 12 = ^3\\log (2^2 \\times 3) = 2(^3\\log 2) + ^3\\log 3 = 2a + 1$$ (Opsi B)."
         },
         {
@@ -303,7 +302,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Gunakan sifat perkalian berantai logaritma: $^a\\log b \\cdot ^b\\log c = ^a\\log c$.",
+          "hint": "Gunakan sifat perkalian berantai logaritma: ${}^a\\log b \\cdot {}^b\\log c = {}^a\\log c$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$^2\\log 3 \\cdot ^3\\log 5 \\cdot ^5\\log 8 = ^2\\log 8 = 3$$ (Opsi A)."
         },
         {
@@ -357,7 +356,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Eksponen harus sama dengan nol karena $5^0 = 1$.",
+          "hint": "Ingat bahwa $a^0 = 1$ untuk $a \\neq 0$. Samakan pangkat pada persamaan dengan nol lalu selesaikan akar-akarnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x^2 - 3x - 4 = 0 \\implies (x - 4)(x + 1) = 0 \\implies x = 4 \\text{ atau } x = -1$$ (Opsi A)."
         },
         {
@@ -384,7 +383,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Rumus bunga majemuk: $M_3 = M_0 (1 + i)^3$.",
+          "hint": "Gunakan rumus bunga majemuk $M_n = M_0(1 + i)^n$ dengan $M_0$ modal awal, $i$ suku bunga, dan $n$ lama periode.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$M_3 = 10.000.000 \\times (1{,}1)^3 = 10.000.000 \\times 1{,}331 = \\text{Rp}13.310.000,00$$ (Opsi D)."
         },
         {
@@ -411,7 +410,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Periode $n = 16 / 4 = 4$. Rumus: $M = 160 \\times (1/2)^4$.",
+          "hint": "Tentukan berapa banyak periode peluruhan yang terjadi dengan membagi total waktu dengan durasi waktu peluruhan, lalu hitung sisa massa dengan fungsi eksponensial peluruhan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$M = 160 \\times \\left(\\frac{1}{2}\\right)^4 = 160 \\times \\frac{1}{16} = 10\\text{ gram}$$ (Opsi D)."
         },
         {
@@ -438,7 +437,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$\\log 18 = \\log (2 \\times 3^2) = \\log 2 + 2\\log 3$.",
+          "hint": "Uraikan numerus ke dalam faktor prima yang muncul pada logaritma yang diketahui, lalu gunakan sifat logaritma perkalian dan perpangkatan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\log 18 = 0{,}3010 + 2(0{,}4771) = 0{,}3010 + 0{,}9542 = 1{,}2552$$ (Opsi C)."
         },
         {
@@ -465,7 +464,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Gabungkan logaritma: $(x+6)(x-3) = 10$. Periksa syarat numerus $x > 3$.",
+          "hint": "Gabungkan dua suku logaritma di ruas kiri, nyatakan konstanta ruas kanan sebagai logaritma basis 10, lalu periksa syarat numerus ($> 0$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $x^2 + 3x - 18 = 10 \\implies x^2 + 3x - 28 = 0 \\implies (x + 7)(x - 4) = 0$\n2. Syarat numerus: $x > 3$, sehingga yang memenuhi hanya $x = 4$ (Opsi B)."
         },
         {
@@ -492,7 +491,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Misalkan $y = 3^x$, persamaan menjadi $y^2 - 12y + 27 = 0$.",
+          "hint": "Gunakan permisalan variabel eksponensial $y = a^x$ agar persamaan berubah menjadi persamaan kuadrat dalam $y$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $(y - 3)(y - 9) = 0 \\implies y = 3$ atau $y = 9$\n2. $3^x = 3 \\implies x = 1$ dan $3^x = 9 \\implies x = 2$ (Opsi C)."
         },
         {
@@ -519,7 +518,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Ubah basis ke 3: $^{15}\\log 20 = \\frac{^3\\log 20}{^3\\log 15}$.",
+          "hint": "Gunakan sifat perubahan basis logaritma ${}^p\\log q = \\frac{{}^c\\log q}{{}^c\\log p}$ dengan memilih basis $c$ yang menghubungkan kedua nilai diketahui.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$^{15}\\log 20 = \\frac{2(^3\\log 2) + ^3\\log 5}{^3\\log 3 + ^3\\log 5} = \\frac{\\frac{2}{a} + b}{1 + b} = \\frac{2 + ab}{a(1 + b)}$$ (Opsi B)."
         },
         {
@@ -546,7 +545,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Ubah ke basis 3: $3^{-(2x - 1)} \\le 3^3 \\implies -2x + 1 \\le 3$.",
+          "hint": "Ubah basis kedua ruas menjadi bilangan 3, lalu ingat bahwa untuk fungsi eksponen dengan basis antara 0 dan 1, tanda pertidaksamaan berbalik saat eksponennya dibandingkan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$-2x + 1 \\le 3 \\implies -2x \\le 2 \\implies x \\ge -1$$ (Opsi C)."
         },
         {
@@ -573,7 +572,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Selesaikan $x - 2 < 2^3 = 8$ dengan syarat numerus $x - 2 > 0$.",
+          "hint": "Ubah konstanta ruas kanan menjadi bentuk logaritma dengan basis yang sama, lalu selesaikan pertidaksamaan sambil memeriksa syarat numerus $> 0$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $x - 2 < 8 \\implies x < 10$\n2. Syarat numerus: $x > 2$\n3. Irisan: $2 < x < 10$ (Opsi B)."
         },
         {
@@ -600,7 +599,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Faktorkan persamaan kuadrat terhadap $^x\\log 2$: $(^x\\log 2 - 1)(^x\\log 2 - 2) = 0$.",
+          "hint": "Misalkan bentuk logaritma pada persamaan sebagai variabel $y$, selesaikan persamaan kuadratnya, lalu kembalikan ke $x$ dan periksa syarat basis.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $^x\\log 2 = 1 \\implies x = 2$\n2. $^x\\log 2 = 2 \\implies x^2 = 2 \\implies x = \\sqrt{2}$\n3. Jumlah $= 2 + \\sqrt{2}$ (Opsi A)."
         }
       ]
@@ -679,7 +678,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Tentukan suku pertama $a = 3$ dan beda $b = 4$, lalu gunakan rumus $U_{10} = a + 9b$.",
+          "hint": "Gunakan rumus suku ke-$n$ barisan aritmetika $U_n = a + (n-1)b$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Suku pertama: $a = 3$, beda: $b = 7 - 3 = 4$.\n2. Masukkan ke rumus suku ke-$n$:\n$$U_{10} = 3 + (10 - 1)(4) = 3 + 9(4) = 3 + 36 = 39$$\nNilai suku ke-10 adalah **39** (Opsi A)."
         },
         {
@@ -706,7 +705,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Suku pertama $a = 2$, rasio $r = 3$. Gunakan rumus $S_5 = \\frac{a(r^5 - 1)}{r - 1}$.",
+          "hint": "Gunakan rumus jumlah $n$ suku pertama deret geometri $S_n = \\frac{a(r^n - 1)}{r - 1}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Identifikasi $a = 2$ dan $r = \\frac{6}{2} = 3$.\n2. Masukkan ke formula jumlah deret geometri:\n$$S_5 = \\frac{2(3^5 - 1)}{3 - 1} = \\frac{2(243 - 1)}{2} = 242$$\nJumlah 5 suku pertama adalah **242** (Opsi D)."
         },
         {
@@ -733,7 +732,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Gunakan formula praktis: $S = h_0 \\cdot \\frac{q + p}{q - p}$ dengan $h_0 = 16$ dan rasio $\\frac{p}{q} = \\frac{1}{2}$.",
+          "hint": "Gunakan rumus lintasan bola vertikal: jumlah deret tak hingga naik dan turun.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Diketahui $h_0 = 16\\text{ m}$ dan rasio $r = \\frac{1}{2}$ ($p = 1, q = 2$).\n2. Gunakan rumus terpadu lintasan bola memantul:\n$$S_{\\text{total}} = 16 \\cdot \\frac{2 + 1}{2 - 1} = 16 \\cdot \\frac{3}{1} = 48\\text{ meter}$$\nPanjang seluruh lintasan bola adalah **48 meter** (Opsi A)."
         },
         {
@@ -760,7 +759,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Susun SPLDV dari $U_3 = a + 2b = 11$ dan $S_6 = 3(2a + 5b) = 78$.",
+          "hint": "Buat Sistem Persamaan Linear Dua Variabel dari $U_3$ dan $S_6$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Persamaan 1: $a + 2b = 11 \\implies a = 11 - 2b$.\n2. Persamaan 2: $S_6 = \\frac{6}{2}(2a + 5b) = 78 \\implies 3(2a + 5b) = 78 \\implies 2a + 5b = 26$.\n3. Substitusikan $a$ ke persamaan 2:\n$$2(11 - 2b) + 5b = 26 \\implies 22 - 4b + 5b = 26 \\implies b = 4$$\n4. Hitung nilai $a$:\n$$a = 11 - 2(4) = 11 - 8 = 3$$\nJadi, suku pertama adalah **3** dan beda adalah **4** (Opsi B)."
         },
         {
@@ -787,7 +786,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Gunakan rumus $U_n = a + (n - 1)b$ dengan $a = 3$ dan $b = 4$.",
+          "hint": "Gunakan rumus suku ke-$n$ barisan aritmetika $U_{15} = a + 14b$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$U_{15} = 3 + 14(4) = 3 + 56 = 59$$ (Opsi C)."
         },
         {
@@ -814,7 +813,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Gunakan rumus $S_n = \\frac{n}{2}(2a + (n - 1)b)$.",
+          "hint": "Gunakan rumus jumlah $n$ suku pertama deret aritmetika $S_n = \\frac{n}{2}(2a + (n-1)b)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$S_{20} = 10(2(4) + 19(3)) = 10(8 + 57) = 650$$ (Opsi B)."
         },
         {
@@ -841,7 +840,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Rumus $U_n = a r^{n-1}$ dengan $a = 2$ dan $r = 3$.",
+          "hint": "Gunakan rumus suku ke-$n$ barisan geometri $U_n = ar^{n-1}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$U_7 = 2 \\times 3^6 = 2 \\times 729 = 1.458$$ (Opsi A)."
         },
         {
@@ -868,7 +867,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Rumus $S_\\infty = \\frac{a}{1 - r}$ dengan $a = 18$ dan $r = 1/3$.",
+          "hint": "Gunakan rumus jumlah deret geometri tak hingga $S_\\infty = \\frac{a}{1 - r}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$S_\\infty = \\frac{18}{1 - \\frac{1}{3}} = 18 \\times \\frac{3}{2} = 27$$ (Opsi C)."
         },
         {
@@ -895,7 +894,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$5b = U_8 - U_3 = 15 \\implies b = 3$.",
+          "hint": "Eliminasi persamaan $U_3$ dan $U_8$ untuk mencari nilai $a$ dan $b$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$a = 11 - 2(3) = 5, \\quad b = 3$$ (Opsi B)."
         },
         {
@@ -922,7 +921,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$5 + (n - 1)4 = 121 \\implies 4(n - 1) = 116$.",
+          "hint": "Gunakan rumus $U_n = a + (n-1)b$ dengan $U_n = 121$ untuk mencari $n$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$n - 1 = 29 \\implies n = 30$$ (Opsi B)."
         },
         {
@@ -949,7 +948,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Rumus pantulan bola: $S = h \\times \\frac{b + a}{b - a}$.",
+          "hint": "Gunakan rumus cepat total lintasan bola pemantul.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$S = 12 \\times \\frac{3 + 2}{3 - 2} = 12 \\times 5 = 60\\text{ meter}$$ (Opsi C)."
         },
         {
@@ -976,7 +975,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$S_{12} = 6(2(15) + 11(3))$.",
+          "hint": "Gunakan rumus jumlah deret aritmetika $S_{12}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$S_{12} = 6(30 + 33) = 6 \\times 63 = 378\\text{ kursi}$$ (Opsi A)."
         },
         {
@@ -1003,7 +1002,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Total gaji $= 12 \\times S_5$ (deret aritmetika tahunan).",
+          "hint": "Hitung deret aritmetika untuk kenaikan gaji tahunan, lalu kalikan 12 untuk total per tahun.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $S_5 = \\frac{5}{2}(8.000.000 + 4(200.000)) = 22.000.000$\n2. Total $= 12 \\times 22.000.000 = \\text{Rp}264.000.000,00$ (Opsi D)."
         },
         {
@@ -1030,7 +1029,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Hasil kali tiga suku berurutan geometri: $(U_2)^3 = 216$.",
+          "hint": "Gunakan sifat hasil kali tiga suku barisan geometri $a^3 = \\text{hasil kali}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$a^3 = 216 \\implies a = 6$$ (Opsi A)."
         },
         {
@@ -1057,7 +1056,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$U_8 = S_8 - S_7$.",
+          "hint": "Gunakan hubungan $U_n = S_n - S_{n-1}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$S_8 = 2(64) + 24 = 152, \\quad S_7 = 2(49) + 21 = 119 \\implies U_8 = 33$$ (Opsi C)."
         },
         {
@@ -1084,7 +1083,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Rumus rasio sisipan: $r' = \\sqrt[k+1]{\\frac{b}{a}}$.",
+          "hint": "Gunakan rumus rasio sisipan geometri $r' = \\sqrt[k+1]{\\frac{U_{\\text{akhir}}}{U_{\\text{awal}}}}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$r' = \\sqrt[4]{\\frac{48}{3}} = \\sqrt[4]{16} = 2$$ (Opsi D)."
         },
         {
@@ -1111,7 +1110,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$\\frac{S_{\\text{ganjil}}}{S} = \\frac{1}{1 + r} = \\frac{18}{24} = \\frac{3}{4}$.",
+          "hint": "Gunakan perbandingan jumlah suku ganjil dan seluruh suku deret geometri tak hingga.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$3(1 + r) = 4 \\implies 3r = 1 \\implies r = \\frac{1}{3}$$ (Opsi B)."
         },
         {
@@ -1138,7 +1137,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$3 r^5 = 96 \\implies r = 2$. Cari $S_6$.",
+          "hint": "Gunakan rumus jumlah $n$ suku pertama deret geometri setelah menentukan rasio $r$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$S_6 = \\frac{3(2^6 - 1)}{2 - 1} = 3(63) = 189\\text{ cm}$$ (Opsi D)."
         },
         {
@@ -1165,7 +1164,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Syarat geometri: $(k + 1)^2 = (k - 2)(2k + 2)$.",
+          "hint": "Gunakan sifat tengah barisan geometri: $U_2^2 = U_1 \\cdot U_3$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$k^2 + 2k + 1 = 2k^2 - 2k - 4 \\implies k^2 - 4k - 5 = 0 \\implies k = 5$$ (Opsi C)."
         },
         {
@@ -1192,7 +1191,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$U_n = n^2 + n$. Jumlahkan $\\sum n^2 + \\sum n$.",
+          "hint": "Nyatakan suku ke-$n$ sebagai $n(n+1) = n^2 + n$, lalu gunakan rumus jumlah deret kuadrat dan bilangan bulat.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{10 \\times 11 \\times 21}{6} + \\frac{10 \\times 11}{2} = 385 + 55 = 440$$ (Opsi D)."
         }
       ]
@@ -1271,7 +1270,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Gunakan teorema Pythagoras: $|\\vec{v}| = \\sqrt{x^2 + y^2} = \\sqrt{5^2 + (-12)^2}$.",
+          "hint": "Gunakan rumus panjang vektor pada bidang: $|\\vec{v}| = \\sqrt{x^2 + y^2}$, dengan $x$ dan $y$ berturut-turut adalah koefisien vektor satuan $\\vec{i}$ dan $\\vec{j}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Komponen: $x = 5, y = -12$.\n2. Panjang vektor:\n$$|\\vec{v}| = \\sqrt{5^2 + (-12)^2} = \\sqrt{25 + 144} = \\sqrt{169} = 13$$\nPanjang vektor adalah **13 satuan** (Opsi D)."
         },
         {
@@ -1325,7 +1324,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Gunakan $\\vec{u} \\cdot \\vec{v} = x_1 x_2 + y_1 y_2$.",
+          "hint": "Gunakan rumus perkalian skalar (dot product) vektor dua dimensi: $\\vec{u} \\cdot \\vec{v} = x_1 x_2 + y_1 y_2$, yaitu jumlahkan hasil kali komponen yang seletak.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Komponen: $x_1 = 3, y_1 = 4$ dan $x_2 = 6, y_2 = -2$.\n2. Dot product:\n$$\\vec{u} \\cdot \\vec{v} = (3)(6) + (4)(-2) = 18 - 8 = 10$$\nHasil perkalian skalar adalah **10** (Opsi A)."
         },
         {
@@ -1352,7 +1351,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Dua vektor tegak lurus jika hasil kali skalarnya sama dengan nol: $\\vec{p} \\cdot \\vec{q} = 0$.",
+          "hint": "Dua vektor saling tegak lurus jika hasil perkalian skalarnya (dot product) sama dengan nol ($\\vec{p} \\cdot \\vec{q} = 0$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Syarat tegak lurus: $\\vec{p} \\cdot \\vec{q} = 0$\n2. Operasikan perkalian komponen:\n$$(k)(3) + (6)(-2) = 0$$\n$$3k - 12 = 0$$\n$$3k = 12 \\implies k = 4$$\nNilai $k$ yang memenuhi adalah **4** (Opsi C)."
         },
         {
@@ -1379,7 +1378,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Rumus $|\\vec{v}| = \\sqrt{x^2 + y^2}$.",
+          "hint": "Untuk vektor kolom $\\vec{v} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$, hitung panjangnya menggunakan teorema Pythagoras: $|\\vec{v}| = \\sqrt{x^2 + y^2}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$|\\vec{v}| = \\sqrt{6^2 + (-8)^2} = \\sqrt{100} = 10$$ (Opsi C)."
         },
         {
@@ -1433,7 +1432,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$\\vec{AB} = B - A$.",
+          "hint": "Vektor dari titik pangkal $A$ ke titik ujung $B$ diperoleh dengan mengurangkan koordinat titik ujung oleh koordinat titik pangkal: $\\vec{AB} = \\vec{b} - \\vec{a}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\vec{AB} = \\begin{pmatrix} 7 - 2 \\\\ 9 - (-3) \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 12 \\end{pmatrix}$$ (Opsi C)."
         },
         {
@@ -1460,7 +1459,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$\\vec{u} \\cdot \\vec{v} = x_1 x_2 + y_1 y_2 + z_1 z_2$.",
+          "hint": "Untuk vektor tiga dimensi, kalikan masing-masing komponen yang bersesuaian ($x, y, z$) lalu jumlahkan seluruh hasilnya: $\\vec{u} \\cdot \\vec{v} = x_1 x_2 + y_1 y_2 + z_1 z_2$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\vec{u} \\cdot \\vec{v} = 12 - 12 + 5 = 5$$ (Opsi D)."
         },
         {
@@ -1487,7 +1486,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Bagi komponen vektor dengan panjangnya ($|\\vec{a}| = 5$).",
+          "hint": "Vektor satuan yang searah dengan $\\vec{a}$ diperoleh dengan membagi vektor $\\vec{a}$ oleh panjangnya sendiri: $\\hat{e} = \\frac{\\vec{a}}{|\\vec{a}|}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\vec{e} = \\frac{1}{5}\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix} = \\begin{pmatrix} \\frac{3}{5} \\\\ \\frac{4}{5} \\end{pmatrix}$$ (Opsi B)."
         },
         {
@@ -1514,7 +1513,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Syarat tegak lurus: $\\vec{p} \\cdot \\vec{q} = 0$.",
+          "hint": "Ingat syarat dua vektor saling tegak lurus: hasil perkalian skalar (dot product) kedua vektor tersebut bernilai nol ($\\vec{p} \\cdot \\vec{q} = 0$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$6x - 12 = 0 \\implies x = 2$$ (Opsi A)."
         },
         {
@@ -1541,7 +1540,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$\\cos \\theta = \\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{a}||\\vec{b}|}$.",
+          "hint": "Gunakan rumus kosinus sudut antara dua vektor: $\\cos \\theta = \\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{a}| |\\vec{b}|}$, lalu tentukan sudut $\\theta$ yang sesuai.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\cos \\theta = \\frac{1}{\\sqrt{1} \\cdot \\sqrt{2}} = \\frac{1}{2}\\sqrt{2} \\implies \\theta = 45^\\circ$$ (Opsi D)."
         },
         {
@@ -1568,7 +1567,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Rumus $|\\vec{c}| = \\frac{\\vec{u} \\cdot \\vec{v}}{|\\vec{v}|}$.",
+          "hint": "Panjang proyeksi skalar ortogonal vektor $\\vec{u}$ pada $\\vec{v}$ dirumuskan sebagai $\\frac{|\\vec{u} \\cdot \\vec{v}|}{|\\vec{v}|}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{2(3) + 4(4)}{\\sqrt{3^2 + 4^2}} = \\frac{22}{5}$$ (Opsi B)."
         },
         {
@@ -1595,7 +1594,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$M = \\frac{2B + A}{3}$.",
+          "hint": "Gunakan rumus perbandingan segmen garis vektor: jika $AM : MB = m : n$, maka vektor posisi titik $M$ adalah $\\vec{m} = \\frac{n\\vec{a} + m\\vec{b}}{m + n}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$M = \\left(\\frac{14+1}{3}, \\frac{20+4}{3}\\right) = (5, 8)$$ (Opsi A)."
         },
         {
@@ -1622,7 +1621,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Resultan Pythagoras: $v = \\sqrt{8^2 + 6^2}$.",
+          "hint": "Karena kedua arah kecepatan saling tegak lurus, tentukan besar kecepatan resultannya menggunakan teorema Pythagoras: $v_R = \\sqrt{v_1^2 + v_2^2}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$v = \\sqrt{64 + 36} = 10\\text{ m/s}$$ (Opsi C)."
         },
         {
@@ -1649,7 +1648,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$\\vec{a} \\cdot \\vec{b} = |\\vec{a}||\\vec{b}| \\cos 60^\\circ$.",
+          "hint": "Jika panjang kedua vektor dan sudut apitnya diketahui, gunakan rumus dot product bentuk trigonometri: $\\vec{a} \\cdot \\vec{b} = |\\vec{a}| |\\vec{b}| \\cos \\theta$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\vec{a} \\cdot \\vec{b} = 4 \\times 6 \\times \\frac{1}{2} = 12$$ (Opsi B)."
         },
         {
@@ -1676,7 +1675,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Identitas jajar genjang: $|\\vec{u} + \\vec{v}|^2 + |\\vec{u} - \\vec{v}|^2 = 2(|\\vec{u}|^2 + |\\vec{v}|^2)$.",
+          "hint": "Manfaatkan identitas jajaran genjang atau kuadrat jumlah dan selisih dua vektor: $|\\vec{u} + \\vec{v}|^2 + |\\vec{u} - \\vec{v}|^2 = 2(|\\vec{u}|^2 + |\\vec{v}|^2)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$|\\vec{u} + \\vec{v}|^2 + 49 = 2(25 + 9) = 68 \\implies |\\vec{u} + \\vec{v}| = \\sqrt{19}$$ (Opsi A)."
         },
         {
@@ -1703,7 +1702,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$\\vec{p} = \\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|^2} \\vec{b}$.",
+          "hint": "Proyeksi vektor ortogonal $\\vec{a}$ pada $\\vec{b}$ dirumuskan sebagai $\\vec{p} = \\left(\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|^2}\\right) \\vec{b}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\vec{p} = \\frac{4}{5}\\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} \\frac{8}{5} \\\\ \\frac{4}{5} \\end{pmatrix}$$ (Opsi A)."
         },
         {
@@ -1730,7 +1729,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Rasio vektor: $\\vec{BC} = 2\\vec{AB}$.",
+          "hint": "Tiga titik $A, B, C$ segaris (kolinier) jika vektor $\\vec{AB}$ dan $\\vec{BC}$ (atau $\\vec{AC}$) saling sejajar, artinya memenuhi kelipatan skalar $\\vec{BC} = k \\cdot \\vec{AB}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x - 2 = 2(1) \\implies x = 4; \\quad y - 5 = 2(2) \\implies y = 9 \\implies x + y = 13$$ (Opsi C)."
         },
         {
@@ -1757,7 +1756,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Vektor posisi titik tengah $D = \\frac{B + C}{2}$.",
+          "hint": "Nyatakan $\\vec{AD}$ melalui lintasan $\\vec{AB} + \\vec{BD}$ dengan $\\vec{BD} = \\frac{1}{2}\\vec{BC}$, dan ingat bahwa $\\vec{BC} = \\vec{AC} - \\vec{AB}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\vec{AD} = \\frac{1}{2}(\\vec{u} + \\vec{v})$$ (Opsi B)."
         },
         {
@@ -1784,7 +1783,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Resultan gaya $F_1$ dan $F_2$: $R = \\sqrt{F_1^2 + F_2^2 + 2F_1 F_2 \\cos 60^\\circ}$.",
+          "hint": "Agar seimbang, besar gaya penyeimbang $F_3$ harus sama dengan besar resultan kedua gaya lainnya: $R = \\sqrt{F_1^2 + F_2^2 + 2 F_1 F_2 \\cos \\theta}$ dengan $\\theta$ adalah selisih sudut kedua gaya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$R = \\sqrt{100 + 100 + 100} = \\sqrt{300} = 10\\sqrt{3}\\text{ N}$$ (Opsi D)."
         }
       ]
@@ -1859,7 +1858,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Cari sisi miring $AC$ dengan Pythagoras: $\\sqrt{8^2 + 6^2} = 10$. Sisi depan sudut $A$ adalah $BC = 6$.",
+          "hint": "Gunakan definisi $\\sin \\angle A = \\frac{\\text{sisi depan}}{\\text{sisi miring}}$ setelah menentukan panjang sisi miring dengan teorema Pythagoras.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sisi miring $AC = \\sqrt{8^2 + 6^2} = \\sqrt{64 + 36} = 10\\text{ cm}$.\n2. Sisi depan sudut $A$ adalah $BC = 6\\text{ cm}$.\n3. Nilai sinus:\n$$\\sin \\angle A = \\frac{\\text{depan}}{\\text{miring}} = \\frac{6}{10} = \\frac{3}{5}$$\nNilai $\\sin \\angle A$ adalah **$\\frac{3}{5}$** (Opsi B).",
           "visual": {
             "type": "right-triangle",
@@ -1901,7 +1900,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Nilai $\\sin 30^\\circ = \\frac{1}{2}$, $\\cos 60^\\circ = \\frac{1}{2}$, dan $\\tan 45^\\circ = 1$.",
+          "hint": "Substitusikan nilai sudut istimewa $\\sin 30^\\circ$, $\\cos 60^\\circ$, dan $\\tan 45^\\circ$ ke dalam ekspresi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Masukkan nilai masing-masing sudut istimewa:\n$$\\frac{1}{2} + \\frac{1}{2} - 1 = 1 - 1 = 0$$\nHasilnya adalah **0** (Opsi C)."
         },
         {
@@ -1928,7 +1927,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Gunakan $\\tan 60^\\circ = \\frac{t}{20}$ dengan nilai $\\tan 60^\\circ = \\sqrt{3}$.",
+          "hint": "Gunakan perbandingan trigonometri $\\tan \\theta = \\frac{\\text{depan}}{\\text{samping}}$ pada segitiga siku-siku.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Perbandingan tangen:\n$$\\tan 60^\\circ = \\frac{t}{20}$$\n2. Masukkan nilai $\\tan 60^\\circ = \\sqrt{3}$:\n$$\\sqrt{3} = \\frac{t}{20} \\implies t = 20\\sqrt{3}\\text{ meter}$$\nTinggi menara adalah **$20\\sqrt{3}\\text{ meter}$** (Opsi D)."
         },
         {
@@ -1955,7 +1954,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Gunakan Aturan Kosinus: $c^2 = a^2 + b^2 - 2ab \\cos C$ dengan $\\cos 60^\\circ = \\frac{1}{2}$.",
+          "hint": "Gunakan aturan kosinus $c^2 = a^2 + b^2 - 2ab \\cos C$ untuk mencari panjang sisi $c$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Aturan kosinus:\n$$c^2 = 8^2 + 10^2 - 2(8)(10)\\cos 60^\\circ$$\n$$c^2 = 64 + 100 - 160\\left(\\frac{1}{2}\\right) = 164 - 80 = 84$$\n2. Sederhanakan bentuk akar:\n$$c = \\sqrt{84} = \\sqrt{4 \\times 21} = 2\\sqrt{21}\\text{ cm}$$\nPanjang sisi $c$ adalah **$2\\sqrt{21}\\text{ cm}$** (Opsi C)."
         },
         {
@@ -1982,7 +1981,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$\\cos 60^\\circ = 1/2$ dan $\\sin 30^\\circ = 1/2$.",
+          "hint": "Substitusikan nilai sudut istimewa $\\cos 60^\\circ$ dan $\\sin 30^\\circ$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{1}{2} + \\frac{1}{2} = 1$$ (Opsi D)."
         },
         {
@@ -2009,7 +2008,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Tripel Pythagoras 3-4-5, sisi samping $= 4$.",
+          "hint": "Gunakan hubungan $\\sin A$ dan teorema Pythagoras untuk mencari panjang sisi samping, lalu tentukan $\\tan A$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\tan A = \\frac{\\text{depan}}{\\text{samping}} = \\frac{3}{4}$$ (Opsi A)."
         },
         {
@@ -2036,7 +2035,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$\\sin(180^\\circ - 30^\\circ) = \\sin 30^\\circ = \\frac{1}{2}$.",
+          "hint": "Gunakan relasi sudut di kuadran II: $\\sin(180^\\circ - \\alpha) = \\sin \\alpha$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\sin 150^\\circ = \\frac{1}{2}$$ (Opsi B)."
         },
         {
@@ -2063,7 +2062,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Kuadran III: $\\cos(180^\\circ + 60^\\circ) = -\\cos 60^\\circ = -\\frac{1}{2}$.",
+          "hint": "Gunakan relasi sudut di kuadran III: $\\cos(180^\\circ + \\alpha) = -\\cos \\alpha$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\cos 240^\\circ = -\\frac{1}{2}$$ (Opsi B)."
         },
         {
@@ -2090,7 +2089,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$1 - \\sin^2 \\theta = \\cos^2 \\theta$ dan $1 + \\tan^2 \\theta = \\sec^2 \\theta$.",
+          "hint": "Gunakan identitas Pythagoras trigonometri dasar $\\sin^2\\theta + \\cos^2\\theta = 1$ serta $1 + \\tan^2\\theta = \\sec^2\\theta$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\cos^2 \\theta \\times \\frac{1}{\\cos^2 \\theta} = 1$$ (Opsi D)."
         },
         {
@@ -2117,7 +2116,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$\\tan 45^\\circ = t / 30 \\implies t = 30$.",
+          "hint": "Gunakan perbandingan tangen untuk sudut elevasi $45^\\circ$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$t = 30 \\times \\tan 45^\\circ = 30\\text{ meter}$$ (Opsi B)."
         },
         {
@@ -2144,7 +2143,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Aturan sinus: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B}$.",
+          "hint": "Gunakan aturan sinus $\\frac{a}{\\sin A} = \\frac{b}{\\sin B}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$b = \\frac{6 \\times \\sin 45^\\circ}{\\sin 30^\\circ} = \\frac{6 \\times \\frac{1}{2}\\sqrt{2}}{\\frac{1}{2}} = 6\\sqrt{2}\\text{ cm}$$ (Opsi A)."
         },
         {
@@ -2171,7 +2170,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Aturan cosinus: $a^2 = b^2 + c^2 - 2bc\\cos 60^\\circ$.",
+          "hint": "Gunakan aturan kosinus untuk mencari panjang sisi $a$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$a^2 = 25 + 64 - 80(1/2) = 49 \\implies a = 7\\text{ cm}$$ (Opsi C)."
         },
         {
@@ -2198,7 +2197,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Luas $= \\frac{1}{2} a b \\sin C$.",
+          "hint": "Gunakan rumus luas segitiga dengan dua sisi dan satu sudut apit: $L = \\frac{1}{2}ab \\sin C$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = \\frac{1}{2} \\times 10 \\times 12 \\times \\sin 30^\\circ = 60 \\times \\frac{1}{2} = 30\\text{ cm}^2$$ (Opsi D)."
         },
         {
@@ -2225,7 +2224,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Di Kuadran II, cosinus bernilai negatif: $-3/5$.",
+          "hint": "Gunakan segitiga siku-siku atau identitas $1 + \\tan^2\\alpha = \\sec^2\\alpha$, dan perhatikan tanda perbandingan trigonometri di Kuadran II.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\cos \\alpha = -\\frac{3}{5}$$ (Opsi D)."
         },
         {
@@ -2252,7 +2251,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$\\sin 120^\\circ = \\frac{1}{2}\\sqrt{3}, \\cos 300^\\circ = \\frac{1}{2}, \\tan 225^\\circ = 1$.",
+          "hint": "Ubah setiap nilai sudut ke kuadran masing-masing dan hitung nilai trigonometrinya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{\\frac{1}{2}\\sqrt{3} \\times \\frac{1}{2}}{1} = \\frac{1}{4}\\sqrt{3}$$ (Opsi A)."
         },
         {
@@ -2333,7 +2332,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$\\sin x = \\frac{1}{2}\\sqrt{3}$ di Kuadran I dan II.",
+          "hint": "Tentukan nilai $\\sin x = \\frac{\\sqrt{3}}{2}$, lalu cari sudut $x$ pada interval $0^\\circ \\le x \\le 360^\\circ$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x = 60^\\circ \\text{ dan } x = 180^\\circ - 60^\\circ = 120^\\circ$$ (Opsi B)."
         },
         {
@@ -2360,7 +2359,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Sudut terbesar di depan sisi 7. Aturan cosinus: $\\cos C = \\frac{25 + 36 - 49}{60}$.",
+          "hint": "Sudut terbesar berhadapan dengan sisi terpanjang. Gunakan aturan kosinus.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\cos C = \\frac{12}{60} = \\frac{1}{5}$$ (Opsi C)."
         },
         {
@@ -2387,7 +2386,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$\\sin 75^\\circ = \\cos 15^\\circ$. Gunakan $\\sin^2 \\theta + \\cos^2 \\theta = 1$.",
+          "hint": "Gunakan sifat sudut berelasi $\\sin(90^\\circ - \\alpha) = \\cos \\alpha$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\sin^2 15^\\circ + \\cos^2 15^\\circ = 1$$ (Opsi A)."
         }
       ]
@@ -2457,7 +2456,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Kurangkan persamaan kedua dengan persamaan pertama: $(x + 2y + z) - (x + y + z) = 12 - 9$.",
+          "hint": "Kurangkan persamaan (1) dari persamaan (2) untuk mengeliminasi $x$ dan $z$ sekaligus mendapatkan nilai $y$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Kurangkan pers (2) dengan pers (1):\n$$(x + 2y + z) - (x + y + z) = 12 - 9$$\n$$y = 3$$\nNilai $y$ adalah **3** (Opsi B)."
         },
         {
@@ -2484,7 +2483,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kurangkan persamaan ketiga dengan persamaan pertama: $(x + y + 3z) - (x + y + z) = 17 - 9$.",
+          "hint": "Kurangkan persamaan (1) dari persamaan (3) untuk mengeliminasi $x$ dan $y$ sekaligus mendapatkan nilai $z$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Kurangkan pers (3) dengan pers (1):\n$$(x + y + 3z) - (x + y + z) = 17 - 9$$\n$$2z = 8 \\implies z = 4$$\nNilai $z$ adalah **4** (Opsi C)."
         },
         {
@@ -2511,7 +2510,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Jumlahkan ketiga nilai variabel: $2 + 3 + 4$.",
+          "hint": "Jumlahkan nilai ketiga variabel yang diketahui untuk mendapatkan hasil akhir.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x + y + z = 2 + 3 + 4 = 9$$\nHasilnya adalah **9** (Opsi A)."
         },
         {
@@ -2538,7 +2537,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Misalkan buku $= b$ dan pensil $= p$. Bentuk SPLDV, cari nilai $b$ dan $p$, lalu hitung $2b + p$.",
+          "hint": "Nyatakan harga buku dan pensil dalam sistem persamaan linear dua variabel, lalu eliminasi salah satu variabel.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sistem persamaan:\n$$3b + 2p = 18.000 \\quad (\\times 2) \\implies 6b + 4p = 36.000$$\n$$b + 4p = 16.000 \\quad (\\times 1) \\implies b + 4p = 16.000$$\n2. Eliminasi $p$:\n$$5b = 20.000 \\implies b = 4.000$$\n3. Hitung $p$:\n$$4.000 + 4p = 16.000 \\implies 4p = 12.000 \\implies p = 3.000$$\n4. Hitung harga 2 buku dan 1 pensil:\n$$2(4.000) + 3.000 = 8.000 + 3.000 = 11.000$$\nHarga yang harus dibayar adalah **Rp11.000,00** (Opsi D)."
         },
         {
@@ -2565,7 +2564,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Uji titik $(1, 2)$: $2(1) + 3(2) = 8 \\le 12$ (benar).",
+          "hint": "Substitusikan koordinat titik pilihan ke dalam pertidaksamaan untuk mencari yang bernilai benar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$2(1) + 3(2) = 8 \\le 12$$ (Opsi A)."
         },
         {
@@ -2592,7 +2591,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Kurangkan pers 2 dengan pers 1: $y = 2$. Lalu selesaikan untuk $x$.",
+          "hint": "Kurangkan persamaan (1) dengan persamaan (2) untuk mendapatkan nilai $y$, lalu gunakan untuk mencari $x$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $y = 2 \\implies x + z = 4$\n2. $2x - 2 + z = 3 \\implies 2x + z = 5$\n3. $x = 5 - 4 = 1$ (Opsi B)."
         },
         {
@@ -2646,7 +2645,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Syarat $x \\ge 0$ dan $y \\ge 0$ membatasi daerah hanya di Kuadran I.",
+          "hint": "Perhatikan tanda koordinat $(x, y)$ ketika $x \\ge 0$ dan $y \\ge 0$ pada bidang Kartesius.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nDaerah berada di **Kuadran I** (Opsi B)."
         },
         {
@@ -2673,7 +2672,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Uji $f(2, 3) = 3(2) + 4(3) = 18$.",
+          "hint": "Substitusikan setiap titik pojok ke dalam fungsi objektif $f(x, y) = 3x + 4y$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$f(2, 3) = 6 + 12 = 18$$ (Opsi C)."
         },
         {
@@ -2700,7 +2699,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Masukkan $y=0 \\implies x=2$ dan $x=0 \\implies y=-3$.",
+          "hint": "Tentukan titik potong sumbu $x$ (dengan pemisalan $y = 0$) dan titik potong sumbu $y$ (dengan pemisalan $x = 0$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nTitik potongnya adalah **(2, 0) dan (0, -3)** (Opsi D)."
         },
         {
@@ -2727,7 +2726,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$A + (A - 2) + (A - 7) = 45 \\implies 3A = 54$.",
+          "hint": "Buat pemisalan umur masing-masing orang dalam bentuk persamaan linear satu variabel berdasarkan umur Ali.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$A = 18\\text{ tahun}$$ (Opsi A)."
         },
         {
@@ -2781,7 +2780,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Jumlahkan ketiga persamaan: $2(x + y + z) = 18$.",
+          "hint": "Jumlahkan seluruh persamaan yang diketahui untuk mendapatkan $2(x + y + z)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x + y + z = 9$$ (Opsi C)."
         },
         {
@@ -2808,7 +2807,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$6x + 24y \\le 360 \\implies x + 4y \\le 60$.",
+          "hint": "Buat model matematika berdasarkan kapasitas luas lahan dan total maksimum kendaraan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x + y \\le 30, \\quad x + 4y \\le 60, \\quad x \\ge 0, y \\ge 0$$ (Opsi D)."
         },
         {
@@ -2835,7 +2834,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Uji titik pojok $(8, 0)$ dan $(0, 4)$. $Z(0, 4) = 8$.",
+          "hint": "Uji titik-titik batas daerah penyelesaian pada fungsi objektif $Z = 5x + 2y$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$Z_{\\min} = 5(0) + 2(4) = 8$$ (Opsi A)."
         },
         {
@@ -2862,7 +2861,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Misalkan $a, b, c$. Jumlahkan: $a + b + c = 9 \\implies x = 1/2, y = 1/3, z = 1/4$.",
+          "hint": "Gunakan pemisalan variabel baru misal $u = 1/x$, $v = 1/y$, dan $w = 1/z$ sebelum menjumlahkan persamaan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x + y + z = \\frac{1}{2} + \\frac{1}{3} + \\frac{1}{4} = \\frac{13}{12}$$ (Opsi B)."
         },
         {
@@ -2889,7 +2888,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Uji $(20, 50)$: $40.000(20) + 30.000(50) = 800.000 + 1.500.000 = 2.300.000$.",
+          "hint": "Uji setiap titik ekstrim daerah layak ke dalam fungsi keuntungan untuk mencari nilai maksimum.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nKeuntungan maksimum adalah **Rp2.300.000,00** (Opsi B)."
         },
         {
@@ -2916,7 +2915,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Jumlahkan pers 1 dan 2: $3x + y + 0z = 7$.",
+          "hint": "Periksa syarat konsistensi sistem persamaan linear tiga variabel untuk memiliki banyak penyelesaian (misal melalui kombinasi linear persamaan).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nKoefisien $z$ harus cocok: $a = 0$ (Opsi D)."
         },
         {
@@ -2943,7 +2942,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$x^2 - 2x - 3 = 0 \\implies x = 3$ atau $x = -1$.",
+          "hint": "Substitusikan persamaan garis ke dalam persamaan kuadrat untuk memperoleh persamaan kuadrat dalam satu variabel $x$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x = 3 \\implies y = 5; \\quad x = -1 \\implies y = -3$$ (Opsi A)."
         },
         {
@@ -2970,7 +2969,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Susun sistem: $3A + C = 13$ dan $10A + 6C = 62$.",
+          "hint": "Nyatakan jumlah soal dan perolehan skor total ke dalam bentuk sistem persamaan linear, lalu selesaikan dengan substitusi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$10A + 6(13 - 3A) = 62 \\implies 8A = 16 \\implies A = 2 \\implies C = 7$$ (Opsi D)."
         }
       ]
@@ -3044,7 +3043,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Cari sumbu simetri $x_p = -\\frac{-4}{2(1)} = 2$, lalu substitusi ke $f(2)$.",
+          "hint": "Tentukan absis titik puncak (sumbu simetri) menggunakan rumus $x_p = -\\frac{b}{2a}$, lalu substitusikan hasilnya ke $f(x)$ untuk memperoleh nilai $y_p$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sumbu simetri: $x_p = -\\frac{b}{2a} = -\\frac{-4}{2(1)} = 2$\n2. Nilai optimum: $y_p = f(2) = (2)^2 - 4(2) + 7 = 4 - 8 + 7 = 3$\nTitik puncaknya adalah **$(2, 3)$** (Opsi D)."
         },
         {
@@ -3071,7 +3070,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Gunakan formula $D = b^2 - 4ac$ dengan $a = 2, b = -5, c = -3$.",
+          "hint": "Identifikasi koefisien $a$, $b$, dan $c$ dari bentuk umum $ax^2 + bx + c$, lalu hitung nilai diskriminan menggunakan rumus $D = b^2 - 4ac$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$D = (-5)^2 - 4(2)(-3) = 25 - (-24) = 25 + 24 = 49$$\nNilai diskriminannya adalah **49** (Opsi B)."
         },
         {
@@ -3098,7 +3097,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Gunakan $x = -\\frac{b}{2a}$ dengan $a = -3$ dan $b = 12$.",
+          "hint": "Gunakan rumus persamaan sumbu simetri parabola $x = -\\frac{b}{2a}$ dengan memperhatikan tanda koefisien $a$ dan $b$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x = -\\frac{12}{2(-3)} = -\\frac{12}{-6} = 2$$\nPersamaan sumbu simetrinya adalah **$x = 2$** (Opsi D)."
         },
         {
@@ -3125,7 +3124,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Cari waktu puncak $t = -\\frac{30}{2(-5)} = 3$ detik, lalu masukkan ke $h(3)$.",
+          "hint": "Tinggi maksimum dicapai pada titik puncak parabola. Cari waktu $t$ saat puncak menggunakan $t_p = -\\frac{b}{2a}$, lalu substitusikan kembali ke persamaan $h(t)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Waktu saat mencapai puncak:\n$$t = -\\frac{30}{2(-5)} = 3\\text{ detik}$$\n2. Ketinggian maksimum:\n$$h(3) = 30(3) - 5(3^2) = 90 - 5(9) = 90 - 45 = 45\\text{ meter}$$\nTinggi maksimumnya adalah **45 meter** (Opsi A)."
         },
         {
@@ -3152,7 +3151,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$x_p = -b / (2a) = 6 / 2 = 3$.",
+          "hint": "Persamaan sumbu simetri fungsi kuadrat $f(x) = ax^2 + bx + c$ dirumuskan oleh $x = -\\frac{b}{2a}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x = -\\frac{-6}{2} = 3$$ (Opsi B)."
         },
         {
@@ -3179,7 +3178,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$x_p = 2$, lalu $f(2) = 4 - 8 - 5 = -9$.",
+          "hint": "Hitung koordinat $x_p = -\\frac{b}{2a}$ terlebih dahulu, kemudian tentukan $y_p = f(x_p)$ sebagai ordinat titik puncak.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nPuncak berada di **(2, -9)** (Opsi C)."
         },
         {
@@ -3206,7 +3205,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$(x - 2)(x - 3) = 0 \\implies x = 2$ atau $x = 3$.",
+          "hint": "Grafik memotong sumbu-X saat $f(x) = 0$. Faktorkan persamaan kuadrat tersebut untuk menemukan nilai-nilai $x$ yang memenuhi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n**(2, 0) dan (3, 0)** (Opsi C)."
         },
         {
@@ -3233,7 +3232,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$D = b^2 - 4ac = 16 - 24 = -8$.",
+          "hint": "Substitusikan koefisien $a$, $b$, dan $c$ ke dalam rumus diskriminan $D = b^2 - 4ac$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$D = (-4)^2 - 4(2)(3) = -8$$ (Opsi D)."
         },
         {
@@ -3260,7 +3259,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Kurva selalu bernilai positif untuk setiap $x$.",
+          "hint": "Analisis dua hal: apa arti nilai $a > 0$ terhadap arah terbukanya parabola, dan apa arti $D < 0$ terhadap banyaknya titik potong grafik dengan sumbu-X.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nSifat ini dinamakan **definit positif** (Opsi A)."
         },
         {
@@ -3287,7 +3286,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$f(x) = a(x - 1)^2 - 4$. Melalui $(0, -3) \\implies a = 1$.",
+          "hint": "Gunakan bentuk umum persamaan fungsi kuadrat jika diketahui titik puncak $(x_p, y_p)$, yaitu $f(x) = a(x - x_p)^2 + y_p$, lalu cari nilai $a$ dengan mensubstitusikan titik yang dilalui grafik.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$f(x) = (x - 1)^2 - 4 = x^2 - 2x - 3$$ (Opsi A)."
         },
         {
@@ -3314,7 +3313,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$t_{\\max} = -40 / (2 \\times -5) = 4$ detik. $h(4) = 160 - 80 = 80$.",
+          "hint": "Tentukan waktu saat peluru mencapai puncak dengan $t = -\\frac{b}{2a}$, kemudian substitusikan ke fungsi $h(t)$ untuk memperoleh tinggi maksimum.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$h(4) = 40(4) - 5(16) = 80\\text{ meter}$$ (Opsi D)."
         },
         {
@@ -3341,7 +3340,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$p + 2l = 80 \\implies L(l) = l(80 - 2l)$. Puncak di $l = 20, p = 40$.",
+          "hint": "Misalkan panjang dan lebar kebun sebagai $p$ dan $l$, nyatakan keliling 3 sisi yang dipagari menjadi persamaan untuk menyatakan satu variabel dalam variabel lainnya, lalu cari nilai maksimum fungsi kuadrat luasnya ($L = p \\times l$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L_{\\max} = 40 \\times 20 = 800\\text{ m}^2$$ (Opsi C)."
         },
         {
@@ -3368,7 +3367,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$P(x) = x(x - 10) = x^2 - 10x$. Minimum di $x = 5 \\implies P(5) = -25$.",
+          "hint": "Nyatakan kedua bilangan dalam satu variabel berdasarkan selisihnya, susun fungsi kuadrat untuk hasil kali keduanya, lalu tentukan nilai minimumnya pada titik puncak.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P_{\\min} = 5(5 - 10) = -25$$ (Opsi B)."
         },
         {
@@ -3395,7 +3394,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$h(t) = a t(t - 6)$. $45 = a(3)(-3) \\implies a = -5$.",
+          "hint": "Gunakan bentuk faktorisasi $h(t) = a(t - t_1)(t - t_2)$ dari dua nilai $t$ saat $h = 0$, lalu tentukan nilai $a$ menggunakan titik puncak yang diketahui.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$h(t) = -5t(t - 6) = -5t^2 + 30t$$ (Opsi D)."
         },
         {
@@ -3422,7 +3421,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Masukkan nilai $x = 0 \\implies f(0) = c$.",
+          "hint": "Ingat bahwa setiap titik potong kurva dengan sumbu-Y selalu memiliki absis $x = 0$; substitusikan nilai tersebut ke dalam $f(x)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nTitik potong sumbu-Y adalah **(0, c)** (Opsi C)."
         },
         {
@@ -3449,7 +3448,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$x^2 - 6x + (10 - k) = 0$. Syarat menyinggung $D = 0 \\implies 36 - 4(10 - k) = 0$.",
+          "hint": "Samakan kedua persamaan $y$ untuk membentuk persamaan kuadrat gabungan, kemudian terapkan syarat dua kurva saling menyinggung, yaitu diskriminan $D = 0$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$36 - 40 + 4k = 0 \\implies 4k = 4 \\implies k = 1$$ (Opsi A)."
         },
         {
@@ -3503,7 +3502,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Samakan kedua fungsi kuadrat: $2x^2 - 3x + 1 = x^2 + 2x - 5$.",
+          "hint": "Titik potong kedua kurva terjadi saat nilai $y$ keduanya sama. Samakan kedua persamaan kuadrat tersebut lalu pindahkan semua suku ke satu ruas.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x^2 - 5x + 6 = 0$$ (Opsi B)."
         },
         {
@@ -3530,7 +3529,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$g(x) = f(x - 2) + 3$. Samakan koefisien.",
+          "hint": "Untuk menggeser grafik $f(x)$ ke kanan sejauh $h$ dan ke atas sejauh $k$, gunakan transformasi $g(x) = f(x - h) + k$, lalu samakan koefisien suku sejenisnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$b - 4 = -2 \\implies b = 2; \\quad 7 - 4 + c = 6 \\implies c = 3 \\implies b + c = 5$$ (Opsi B)."
         },
         {
@@ -3557,7 +3556,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Puncak di $x = 2 \\in [0, 5]$. $f(2) = 8 - 16 + k = 3$.",
+          "hint": "Tentukan letak sumbu simetri $x_p = -\\frac{b}{2a}$ terlebih dahulu untuk memeriksa apakah titik puncak berada di dalam interval yang diberikan, lalu hitung nilai minimumnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$k - 8 = 3 \\implies k = 11$$ (Opsi A)."
         }
       ]
@@ -3631,7 +3630,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Jumlahkan semua nilai: $6 + 8 + 7 + 9 + 10 = 40$, lalu bagi dengan banyaknya data $n = 5$.",
+          "hint": "Jumlahkan seluruh nilai data kemudian bagi dengan banyaknya data untuk mendapatkan nilai rata-rata.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\bar{x} = \\frac{6 + 8 + 7 + 9 + 10}{5} = \\frac{40}{5} = 8$$\nNilai rata-rata adalah **8** (Opsi B)."
         },
         {
@@ -3658,7 +3657,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Data sudah terurut dengan $n = 7$ (ganjil). Median adalah data ke-4.",
+          "hint": "Tentukan nilai tengah dari kumpulan data yang sudah terurut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nData ke-4 pada deretan tersebut adalah angka **8** (Opsi D)."
         },
         {
@@ -3685,7 +3684,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Jangkauan interkuartil adalah selisih antara $Q_3$ dan $Q_1$: $QR = Q_3 - Q_1$.",
+          "hint": "Jangkauan interkuartil dihitung dengan mengurangkan kuartil pertama dari kuartil ketiga (QR = Q3 - Q1).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$QR = Q_3 - Q_1 = 35 - 15 = 20$$\nJangkauan interkuartil adalah **20** (Opsi D)."
         },
         {
@@ -3739,7 +3738,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Rata-rata $= 8$. $SR = \\frac{4 + 2 + 0 + 2 + 4}{5}$.",
+          "hint": "Hitung rata-rata data terlebih dahulu, lalu jumlahkan nilai mutlak selisih setiap data dengan rata-rata dan bagi banyaknya data.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$SR = \\frac{12}{5} = 2{,}4$$ (Opsi B)."
         },
         {
@@ -3766,7 +3765,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Rata-rata $= 6$. Kuadrat selisih $= 16 + 4 + 0 + 4 + 16 = 40$.",
+          "hint": "Hitung rata-rata, lalu jumlahkan kuadrat selisih setiap datum dengan rata-rata dan bagi dengan banyaknya data.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$s^2 = \\frac{40}{5} = 8$$ (Opsi A)."
         },
         {
@@ -3793,7 +3792,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Simpangan baku $s = \\sqrt{s^2} = \\sqrt{8} = 2\\sqrt{2}$.",
+          "hint": "Simpangan baku adalah akar kuadrat dari varians (ragam) data.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$s = \\sqrt{8} = 2\\sqrt{2}$$ (Opsi C)."
         },
         {
@@ -3820,7 +3819,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Tepi bawah $= 41 - 0{,}5 = 40{,}5$. Panjang kelas $= 10$.",
+          "hint": "Tepi bawah diperoleh dari batas bawah dikurangi 0,5, dan panjang kelas adalah selisih batas atas dan batas bawah ditambah satu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = 40{,}5, \\quad c = 10$$ (Opsi B)."
         },
         {
@@ -3847,7 +3846,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Titik tengah $= \\frac{60 + 64}{2} = 62$.",
+          "hint": "Titik tengah kelas interval adalah setengah dari jumlah batas bawah dan batas atas kelas tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x_i = \\frac{60 + 64}{2} = 62$$ (Opsi D)."
         },
         {
@@ -3874,7 +3873,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Letak $D_3 = \\frac{3(20 + 1)}{10} = 6{,}3$.",
+          "hint": "Gunakan rumus letak desil ke-$i$ pada data tunggal: $D_i = \\text{data ke-}\\frac{i(n+1)}{10}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Letak } D_3 = 6{,}3$$ (Opsi C)."
         },
         {
@@ -3901,7 +3900,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$d_1 = 4, d_2 = 6$. $Mo = 50{,}5 + \\frac{4}{10} \\times 10 = 54{,}5$.",
+          "hint": "Gunakan rumus modus data berkelompok: $Mo = L + \\left(\\frac{d_1}{d_1 + d_2}\\right)c$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$Mo = 50{,}5 + 4 = 54{,}5$$ (Opsi D)."
         },
         {
@@ -3928,7 +3927,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$Me = 60{,}5 + \\left(\\frac{20 - 15}{10}\\right)10 = 65{,}5$.",
+          "hint": "Gunakan rumus median data berkelompok: $Me = L + \\left(\\frac{\\frac{1}{2}N - f_k}{f}\\right)c$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$Me = 60{,}5 + 5 = 65{,}5$$ (Opsi A)."
         },
         {
@@ -3955,7 +3954,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$\\bar{x} = 65 + \\frac{120}{40} = 68$.",
+          "hint": "Gunakan rumus rata-rata dengan rata-rata sementara: $\\bar{x} = \\bar{x}_s + \\frac{\\sum f_i d_i}{\\sum f_i}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\bar{x} = 65 + 3 = 68$$ (Opsi D)."
         },
         {
@@ -3982,7 +3981,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Penambahan konstanta tidak mengubah $s$. Perkalian mengalikan $s$: $3 \\times 4 = 12$.",
+          "hint": "Simpangan baku hanya terpengaruh oleh perkalian (dikalikan nilai mutlak pengali), sedangkan penambahan bilangan tidak mengubah simpangan baku.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$s_{\\text{baru}} = 3 \\times 4 = 12$$ (Opsi B)."
         },
         {
@@ -4036,7 +4035,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$x_{\\min} = 15 - 8 = 7$.",
+          "hint": "Jangkauan adalah selisih antara datum terbesar dan datum terkecil (J = x_{\\max} - x_{\\min}).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x_{\\min} = 7$$ (Opsi B)."
         },
         {
@@ -4063,7 +4062,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Letak $Q_3 = 60$. $Q_3 = 70{,}5 + \\frac{60 - 50}{20} \\times 10 = 75{,}5$.",
+          "hint": "Gunakan rumus kuartil ke-$i$ data berkelompok: $Q_i = L + \\left(\\frac{\\frac{i}{4}N - f_k}{f}\\right)c$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$Q_3 = 70{,}5 + 5 = 75{,}5$$ (Opsi C)."
         },
         {
@@ -4090,7 +4089,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$z = \\frac{86 - 70}{8} = 2{,}0$.",
+          "hint": "Gunakan rumus skor baku: $z = \\frac{x - \\bar{x}}{s}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$z = \\frac{16}{8} = 2{,}0$$ (Opsi A)."
         },
         {
@@ -4117,7 +4116,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$\\bar{x} = \\frac{3{,}5}{0{,}05} = 70$.",
+          "hint": "Gunakan rumus koefisien variasi: $KV = \\frac{s}{\\bar{x}} \\times 100\\%$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\bar{x} = 70$$ (Opsi C)."
         },
         {
@@ -4144,7 +4143,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Data: $4, 4, 6, d, e$. Jumlah $= 35 \\implies d + e = 21$. Agar $e$ maksimal, $d = 7$.",
+          "hint": "Gunakan informasi rata-rata, median, dan modus tunggal untuk membentuk persamaan bilangan terurut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$e = 21 - 7 = 14$$ (Opsi C)."
         }
       ]
@@ -4273,7 +4272,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Ruang sampel 2 koin adalah $\\{(A,A), (A,G), (G,A), (G,G)\\}$ dengan $P(G,G) = \\frac{1}{4}$. Lalu kalikan dengan 60.",
+          "hint": "Tentukan peluang muncul dua gambar pada sekali pelemparan dua koin, lalu kalikan dengan banyak percobaan (frekuensi harapan).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Peluang kedua sisi gambar: $P(GG) = \\frac{1}{4}$.\n2. Frekuensi harapan:\n$$F_h = 60 \\times \\frac{1}{4} = 15\\text{ kali}$$\nFrekuensi harapan adalah **15 kali** (Opsi B)."
         },
         {
@@ -4327,7 +4326,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Permutasi $P(7, 3) = 7 \\times 6 \\times 5 = 210$.",
+          "hint": "Karena susunan posisi jabatan memperhatikan urutan, gunakan rumus permutasi $P(n, r) = \\frac{n!}{(n - r)!}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P(7, 3) = 210$$ (Opsi C)."
         },
         {
@@ -4354,7 +4353,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$C(8, 3) = \\frac{8 \\times 7 \\times 6}{6} = 56$.",
+          "hint": "Karena pemilihan anggota tim tidak memperhatikan urutan, gunakan rumus kombinasi $C(n, r) = \\frac{n!}{r!(n - r)!}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$C(8, 3) = 56$$ (Opsi A)."
         },
         {
@@ -4381,7 +4380,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Ada 6 pasangan berjumlah 7: $6 / 36 = 1/6$.",
+          "hint": "Daftar pasangan mata dadu yang berjumlah 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{6}{36} = \\frac{1}{6}$$ (Opsi B)."
         },
         {
@@ -4408,7 +4407,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$P(A \\cup B) = \\frac{4 + 26 - 2}{52} = \\frac{28}{52} = \\frac{7}{13}$.",
+          "hint": "Gunakan rumus peluang gabungan dua kejadian: $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{28}{52} = \\frac{7}{13}$$ (Opsi A)."
         },
         {
@@ -4435,7 +4434,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$P = \\frac{C(5, 2)}{C(8, 2)} = \\frac{10}{28} = \\frac{5}{14}$.",
+          "hint": "Gunakan kombinasi untuk menentukan banyak cara pengambilan 2 bola merah dari 5 bola dibagi total cara pengambilan 2 bola dari 8 bola.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{10}{28} = \\frac{5}{14}$$ (Opsi A)."
         },
         {
@@ -4462,7 +4461,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$F_h = 120 \\times \\frac{1}{2} = 60$.",
+          "hint": "Tentukan peluang muncul gambar pada satu pelemparan koin, lalu kalikan dengan total banyaknya pelemparan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$F_h = 60\\text{ kali}$$ (Opsi B)."
         },
         {
@@ -4489,7 +4488,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Permutasi posisi: $P(10, 3) = 10 \\times 9 \\times 8 = 720$.",
+          "hint": "Karena jabatan berbeda (Ketua, Sekretaris, Bendahara), gunakan permutasi 3 dari 10.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P(10, 3) = 720$$ (Opsi C)."
         },
         {
@@ -4516,7 +4515,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Kombinasi $C(8, 2) = \\frac{8 \\times 7}{2} = 28$.",
+          "hint": "Setiap jabat tangan melibatkan tepat 2 orang tanpa memperhatikan urutan, sehingga dapat dihitung menggunakan kombinasi $C(n, 2)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$C(8, 2) = 28$$ (Opsi D)."
         },
         {
@@ -4543,7 +4542,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$P = 0{,}85 \\times (1 - 0{,}70) = 0{,}255$.",
+          "hint": "Untuk kejadian saling bebas, kalikan peluang lulus Matematika dengan peluang tidak lulus Fisika, yakni $P(M) \\times (1 - P(F))$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = 0{,}85 \\times 0{,}30 = 0{,}255$$ (Opsi C)."
         },
         {
@@ -4570,7 +4569,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$P = \\frac{4}{10} \\times \\frac{6}{9} = \\frac{4}{15}$.",
+          "hint": "Hitung peluang terambil merah pada pengambilan pertama, lalu kalikan dengan peluang terambil putih pada pengambilan kedua (tanpa pengembalian).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{4}{15}$$ (Opsi D)."
         },
         {
@@ -4597,7 +4596,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Satuan (1, 3, 5) ada 3 cara. Ratusan 5 cara, puluhan 4 cara: $3 \\times 5 \\times 4 = 60$.",
+          "hint": "Mulai dari pengisian tempat untuk angka satuan (harus ganjil), lalu ratusan, dan puluhan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$3 \\times 5 \\times 4 = 60$$ (Opsi C)."
         },
         {
@@ -4624,7 +4623,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Siklis 6 unsur: $(6 - 1)! \\times 2! = 120 \\times 2 = 240$.",
+          "hint": "Gunakan permutasi siklis dengan menganggap 2 orang yang berdampingan sebagai satu kesatuan, lalu kalikan dengan permutasi internal mereka (2!).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$5! \\times 2 = 240$$ (Opsi D)."
         },
         {
@@ -4651,7 +4650,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Permutasi unsur berulang: $\\frac{10!}{2! 3! 2!} = 151.200$.",
+          "hint": "Gunakan rumus permutasi unsur yang sama: $\\frac{n!}{n_1!\\,n_2!\\cdots n_k!}$ setelah menghitung frekuensi tiap huruf yang berulang.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{3.628.800}{24} = 151.200$$ (Opsi B)."
         },
         {
@@ -4678,7 +4677,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Komplemen: $1 - \\frac{C(6, 4)}{C(10, 4)} = 1 - \\frac{15}{210} = \\frac{13}{14}$.",
+          "hint": "Gunakan komplemen: peluang sekurang-kurangnya 1 wanita adalah 1 dikurangi peluang terpilih semuanya pria (0 wanita).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = 1 - \\frac{1}{14} = \\frac{13}{14}$$ (Opsi B)."
         },
         {
@@ -4705,7 +4704,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$P = \\frac{4}{C(8, 2)} = \\frac{4}{28} = \\frac{1}{7}$.",
+          "hint": "Bandingkan banyaknya cara memilih sepasang sepatu yang cocok warna/pasangannya dengan total cara memilih 2 sepatu sembarang dari seluruh sepatu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{1}{7}$$ (Opsi D)."
         },
         {
@@ -4732,7 +4731,7 @@ export const grade10Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$n(> 9) = 6$, $n(\\text{kelipatan 4}) = 9$, irisan $= 1$. Total $(6 + 9 - 1) / 36 = 14 / 36 = 7 / 18$.",
+          "hint": "Gunakan rumus peluang gabungan $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$ dengan mendata pasangan mata dadu yang jumlahnya memenuhi syarat $A$ maupun $B$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$P = \\frac{14}{36} = \\frac{7}{18}$$ (Opsi D)."
         }
       ]

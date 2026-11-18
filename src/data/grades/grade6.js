@@ -138,7 +138,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Kalikan $12 \\times 4 = 48$. Karena ada 2 angka di belakang koma (1 angka dari 1,2 dan 1 angka dari 0,4), hasilnya memiliki 2 desimal.",
+          "hint": "Kalikan kedua bilangan seolah tanpa tanda koma terlebih dahulu, lalu letakkan koma sesuai jumlah seluruh angka di belakang koma kedua bilangan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $12 \\times 4 = 48$\n2. Total digit desimal di belakang koma: $1 + 1 = 2$ angka.\n3. Letakkan koma: $0{,}48$\nHasilnya adalah **0,48** (Opsi D)."
         },
         {
@@ -228,7 +228,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Hitung total beras: $3 \\times 2{,}5 = 7{,}5\\text{ kg}$, lalu bagi dengan 0,5.",
+          "hint": "Hitung total berat beras seluruhnya dengan mengalikan banyak kantong dan berat tiap kantong, lalu bagi dengan kapasitas satu wadah.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Total beras: $3 \\times 2{,}5 = 7{,}5\\text{ kg}$.\n2. Banyak wadah yang dibutuhkan:\n$$\\text{Banyak wadah} = \\frac{7{,}5}{0{,}5} = \\frac{75}{5} = 15$$\nBanyak wadah kecil yang dibutuhkan adalah **15 wadah** (Opsi B)."
         },
         {
@@ -363,7 +363,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kalikan bilangan bulat $4 \\times 25 = 100$, lalu hitung total 3 tempat desimal.",
+          "hint": "Ubah hint menjadi: 'Ubah perkalian desimal ke bentuk pecahan biasa atau gunakan sifat perkalian bilangan bulat, lalu hitung jumlah tempat desimal.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$4 \\times 25 = 100 \\implies 0{,}100 = 0{,}1$$\nHasilnya adalah **0,1** (Opsi C)."
         },
         {
@@ -475,7 +475,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Ubah menjadi $30 : 6 = 5$.",
+          "hint": "Kalikan kedua bilangan pada pembagian desimal dengan 10 agar menjadi pembagian bilangan bulat yang lebih sederhana.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{3}{0{,}6} = \\frac{30}{6} = 5$$\nHasilnya adalah **5** (Opsi C)."
         },
         {
@@ -529,7 +529,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Air yang diminum $= \\frac{1}{3} \\times 1{,}2 = 0{,}4$ liter. Sisa $= 1{,}2 - 0{,}4 = 0{,}8$.",
+          "hint": "Ubah hint menjadi: 'Hitung terlebih dahulu bagian air yang diminum dengan mengalikan pecahan dengan total air, lalu kurangkan dari total volume awal.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Diminum: $1{,}2 \\times \\frac{1}{3} = 0{,}4\\text{ liter}$\n2. Sisa: $1{,}2 - 0{,}4 = 0{,}8\\text{ liter}$ (Opsi A).",
           "visual": {
             "type": "fraction-strip",
@@ -566,7 +566,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Ubah ke desimal: $1\\frac{1}{2} = 1{,}5$. Maka $(1{,}5 + 0{,}75) \\times 0{,}4 = 2{,}25 \\times 0{,}4$.",
+          "hint": "Ubah pecahan campuran ke dalam bentuk desimal agar seluruh bilangan di dalam kurung sejenis, baru kalikan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$2{,}25 \\times 0{,}4 = 0{,}90 = 0{,}9$$\nHasilnya adalah **0,9** (Opsi D)."
         },
         {
@@ -593,7 +593,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Bagi 4,5 dengan 0,75: $4{,}5 : 0{,}75 = 450 : 75 = 6$.",
+          "hint": "Geser koma ke kanan dengan jumlah langkah yang sama pada kedua bilangan desimal agar pembagian berubah menjadi bilangan bulat.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$4{,}5 : \\frac{3}{4} = \\frac{9}{2} \\times \\frac{4}{3} = \\frac{36}{6} = 6$$\nDiperoleh **6 potongan pita** (Opsi A)."
         },
         {
@@ -647,7 +647,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Ubah semua ke desimal: $0{,}7 = 0{,}70$; $0{,}65$; $\\frac{5}{8} = 0{,}625$; $60\\% = 0{,}60$.",
+          "hint": "Nyatakan semua bilangan (desimal, pecahan biasa, dan persen) ke bentuk desimal dua atau tiga angka di belakang koma agar mudah diurutkan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $0{,}7 = 0{,}700$\n2. $0{,}65 = 0{,}650$\n3. $\\frac{5}{8} = 0{,}625$\n4. $60\\% = 0{,}600$\nUrutan turun: **0,7; 0,65; 5/8; 60%** (Opsi D)."
         },
         {
@@ -674,7 +674,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Hitung pembilang: $0{,}25 \\times 0{,}8 = 0{,}2$. Lalu bagi: $0{,}2 : 0{,}05 = 20 : 5 = 4$.",
+          "hint": "Ubah hint menjadi: 'Sederhanakan pembilang dengan mengalikan desimalnya terlebih dahulu sebelum melakukan pembagian dengan penyebut.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{0{,}2}{0{,}05} = \\frac{20}{5} = 4$$\nHasilnya adalah **4** (Opsi B)."
         }
       ]
@@ -801,7 +801,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Hitung total seluruh ternak terlebih dahulu: $12 + 18 = 30$. Lalu bandingkan ayam terhadap total: $12 : 30$.",
+          "hint": "Hitung total seluruh ternak dengan menjumlahkan ayam dan itik, lalu nyatakan perbandingan ayam terhadap total tersebut dalam bentuk paling sederhana.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Total ternak: $12 + 18 = 30$\n2. Rasio ayam terhadap total: $12 : 30$\n3. Sederhanakan dengan membagi 6: $2 : 5$\nRasionya adalah **2 : 5** (Opsi C).",
           "visual": {
             "type": "bar-model",
@@ -859,7 +859,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Nilai 1 bagian rasio: $15 : 5 = 3$ tahun. Kalikan bagian adik dengan 3: $3 \\times 3$.",
+          "hint": "Tentukan nilai 1 bagian rasio dari umur yang diketahui, lalu kalikan dengan angka bagian milik adiknya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Nilai 1 bagian: $15 : 5 = 3\\text{ tahun}$\n2. Umur adik (3 bagian): $3 \\times 3 = 9\\text{ tahun}$\nUmur adik adalah **9 tahun** (Opsi C).",
           "visual": {
             "type": "bar-model",
@@ -947,7 +947,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Hitung per 1 bagian: $600 : 4 = 150$ gram. Lalu kalikan untuk gula: $3 \\times 150$.",
+          "hint": "Cari berat untuk 1 bagian rasio terlebih dahulu dengan membagi berat tepung oleh bagiannya, lalu kalikan untuk bagian gula.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Nilai 1 bagian rasio: $\\frac{600}{4} = 150\\text{ gram}$\n2. Gula pasir yang dibutuhkan: $3 \\times 150 = 450\\text{ gram}$\nGula yang harus ditambahkan adalah **450 gram** (Opsi D).",
           "visual": {
             "type": "bar-model",
@@ -1005,7 +1005,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Total bagian $= 3 + 5 = 8$. Nilai per bagian $= 120.000 : 8 = 15.000$. Selisih bagian $= 5 - 3 = 2$ bagian. Kalikan $2 \\times 15.000$.",
+          "hint": "Jumlahkan angka rasio untuk mencari nilai 1 bagian dari total tabungan mereka, lalu kalikan dengan selisih angka rasio.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Total bagian: $3 + 5 = 8$ bagian.\n2. Nilai 1 bagian: $\\frac{120.000}{8} = 15.000$.\n3. Selisih rasio: $5 - 3 = 2$ bagian.\n4. Selisih uang: $2 \\times 15.000 = \\text{Rp}30.000,00$.\nSelisih tabungan mereka adalah **Rp30.000,00** (Opsi D).",
           "visual": {
             "type": "bar-model",
@@ -1063,7 +1063,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Bagi kedua bilangan dengan FPB yaitu 6: $18 : 6 = 3$ dan $24 : 6 = 4$.",
+          "hint": "Bagi kedua suku perbandingan tersebut dengan FPB dari keduanya hingga diperoleh bentuk rasio paling sederhana.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$18 : 24 = (18:6) : (24:6) = 3 : 4$$\nRasio sederhananya adalah **3 : 4** (Opsi A)."
         },
         {
@@ -1090,7 +1090,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Nilai 1 bagian rasio $= 35 : 5 = 7$. Kelereng Doni $= 3 \\times 7 = 21$.",
+          "hint": "Hitung nilai 1 bagian rasio dengan membagi kelereng Budi dengan angka 5, lalu kalikan hasilnya dengan 3.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Kelereng Doni} = \\frac{3}{5} \\times 35 = 21\\text{ butir}$$\nBanyak kelereng Doni adalah **21 butir** (Opsi B).",
           "visual": {
             "type": "bar-model",
@@ -1148,7 +1148,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Jumlah bagian rasio $= 7 + 2 = 9$. Umur Dimas $= \\frac{2}{9} \\times 45 = 10$.",
+          "hint": "Jumlahkan bagian rasio Ayah dan Dimas sebagai penyebut, lalu kalikan pecahan bagian Dimas dengan total umur 45 tahun.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Umur Dimas} = \\frac{2}{7 + 2} \\times 45 = \\frac{2}{9} \\times 45 = 10\\text{ tahun}$$\nUmur Dimas adalah **10 tahun** (Opsi C).",
           "visual": {
             "type": "bar-model",
@@ -1206,7 +1206,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Selisih bagian rasio $= 7 - 4 = 3$. Nilai 1 bagian $= 15.000 : 3 = 5.000$. Uang Riko $= 4 \\times 5.000$.",
+          "hint": "Cari selisih bagian rasio untuk menemukan nilai 1 bagiannya dari selisih uang yang diketahui, lalu kalikan dengan bagian milik Riko.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Uang Riko} = \\frac{4}{7 - 4} \\times 15.000 = \\frac{4}{3} \\times 15.000 = 20.000$$\nUang saku Riko adalah **Rp20.000,00** (Opsi D).",
           "visual": {
             "type": "bar-model",
@@ -1264,7 +1264,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Rasio bensin : jarak $= 3 : 45 = 1 : 15$ km/liter. Untuk 120 km $= 120 : 15 = 8$ liter.",
+          "hint": "Tentukan banyak kilometer per liter bensin, lalu bagi total jarak 120 km dengan nilai tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Bensin} = \\frac{120}{15} = 8\\text{ liter}$$\nDibutuhkan **8 liter bensin** (Opsi C).",
           "visual": {
             "type": "bar-model",
@@ -1322,7 +1322,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Jarak sebenarnya $= 4 \\times 500.000 = 2.000.000$ cm $= 20$ km.",
+          "hint": "Kalikan jarak pada peta dengan angka skala peta, lalu konversikan hasilnya dari sentimeter ke kilometer.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Jarak sebenarnya} = 4 \\times 500.000 = 2.000.000\\text{ cm} = 20\\text{ km}$$\nJarak sebenarnya adalah **20 km** (Opsi A)."
         },
         {
@@ -1349,7 +1349,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Ubah meter ke cm ($150\\text{ m} = 15.000\\text{ cm}$), lalu bagi skala: $15.000 : 1.000 = 15$ cm.",
+          "hint": "Konversikan jarak sebenarnya dari meter ke sentimeter terlebih dahulu, lalu bagi dengan angka skala peta.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Jarak denah} = \\frac{15.000}{1.000} = 15\\text{ cm}$$\nJarak pada denah adalah **15 cm** (Opsi C)."
         },
         {
@@ -1376,7 +1376,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Faktor pengali tepung $= 600 : 200 = 3$. Gula $= 150 \\times 3 = 450$ gram.",
+          "hint": "Tentukan faktor kelipatan pemakaian tepung terhadap resep awal, lalu kalikan takaran gula dengan faktor pengali tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Gula} = 3 \\times 150 = 450\\text{ gram}$$\nDibutuhkan **450 gram gula** (Opsi A)."
         },
         {
@@ -1403,7 +1403,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Kecepatan penjahit $= 12 : 3 = 4$ kemeja/hari. Dalam 10 hari $= 10 \\times 4 = 40$ kemeja.",
+          "hint": "Hitung jumlah kemeja yang dapat diselesaikan dalam 1 hari, lalu kalikan dengan jumlah hari yang ditanyakan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Kemeja} = 4 \\times 10 = 40\\text{ potong}$$\nDapat diselesaikan **40 potong kemeja** (Opsi D)."
         },
         {
@@ -1430,7 +1430,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Laki-laki $= \\frac{3}{4} \\times 20 = 15$. Total siswa $= 15 + 20 = 35$ orang.",
+          "hint": "Hitung jumlah siswa laki-laki terlebih dahulu berdasarkan rasio dan jumlah siswa perempuan, lalu jumlahkan keduanya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Siswa laki-laki: $\\frac{3}{4} \\times 20 = 15$ orang\n2. Total siswa: $15 + 20 = 35$ orang (Opsi B).",
           "visual": {
             "type": "bar-model",
@@ -1488,7 +1488,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Samakan nilai B (KPK dari 3 dan 4 yaitu 12): A : B = 8 : 12, B : C = 12 : 15.",
+          "hint": "Samakan angka perbandingan untuk B pada kedua rasio menggunakan KPK-nya agar ketiga bagian dapat digabungkan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n- $A : B = 2 : 3 = 8 : 12$\n- $B : C = 4 : 5 = 12 : 15$\nMaka $A : B : C =$ **8 : 12 : 15** (Opsi A)."
         },
         {
@@ -1515,7 +1515,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Selisih rasio Farhan dan Hendi $= 5 - 2 = 3$. Nilai 1 bagian $= 24 : 3 = 8$. Total rasio $= 2 + 3 + 5 = 10$. Total $= 10 \\times 8 = 80$.",
+          "hint": "Cari nilai 1 bagian rasio dari selisih kelereng Farhan dan Hendi, lalu kalikan dengan jumlah total seluruh bagian rasio.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Total kelereng} = \\frac{2 + 3 + 5}{5 - 2} \\times 24 = \\frac{10}{3} \\times 24 = 80\\text{ butir}$$\nJumlah kelereng mereka adalah **80 butir** (Opsi A)."
         },
         {
@@ -1542,7 +1542,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Perbandingan berbalik nilai: $6 \\times 15 = P \\times 10 \\implies P = 90 : 10 = 9$ orang. Tambahan $= 9 - 6 = 3$ orang.",
+          "hint": "Gunakan konsep perbandingan berbalik nilai untuk mencari total pekerja yang dibutuhkan, lalu kurangi dengan jumlah pekerja awal.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Pekerja total yang dibutuhkan: $\\frac{6 \\times 15}{10} = 9$ orang\n2. Pekerja tambahan: $9 - 6 = 3$ orang (Opsi D)."
         },
         {
@@ -1596,7 +1596,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Dua tahun lalu: umur Adik $= 10 - 2 = 8$ tahun. Umur Kakak $= \\frac{3}{2} \\times 8 = 12$ tahun. Saat ini umur Kakak $= 12 + 2 = 14$ tahun.",
+          "hint": "Hitung umur Adik dua tahun lalu, cari umur Kakak dua tahun lalu menggunakan rasio, lalu tambahkan 2 tahun untuk mendapat umur Kakak saat ini.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Umur Adik 2 tahun lalu: $10 - 2 = 8$ tahun\n2. Umur Kakak 2 tahun lalu: $\\frac{3}{2} \\times 8 = 12$ tahun\n3. Umur Kakak sekarang: $12 + 2 = 14$ tahun (Opsi B)."
         }
       ]
@@ -1670,7 +1670,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Gunakan rumus volume kubus: $V = s \\times s \\times s = 8 \\times 8 \\times 8$.",
+          "hint": "Gunakan rumus volume kubus: kalikan panjang rusuknya sebanyak tiga kali ($V = s \\times s \\times s$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V = 8 \\times 8 \\times 8 = 64 \\times 8 = 512\\text{ cm}^3$$\nVolume kubus adalah **$512\\text{ cm}^3$** (Opsi A).",
           "visual": {
             "type": "solid-3d",
@@ -1787,7 +1787,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Hitung volume total balok: $80 \\times 60 \\times 50 = 240.000\\text{ cm}^3 = 240\\text{ liter}$. Karena sudah terisi setengah, sisa yang perlu ditambahkan adalah setengahnya.",
+          "hint": "Hitung volume total balok, lalu ubah ke satuan liter ($1\\text{ liter} = 1.000\\text{ cm}^3$) dan kurangi dengan air yang sudah ada.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Volume total bak mandi:\n$$V = 80 \\times 60 \\times 50 = 240.000\\text{ cm}^3 = 240\\text{ liter}$$\n2. Air yang perlu ditambahkan adalah setengah bagian:\n$$\\text{Air tambahan} = \\frac{1}{2} \\times 240 = 120\\text{ liter}$$\nVolume air yang perlu ditambahkan adalah **120 liter** (Opsi C).",
           "visual": {
             "type": "solid-3d",
@@ -1826,7 +1826,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Balok memiliki 6 sisi, 12 rusuk, dan 8 titik sudut.",
+          "hint": "Ingat kembali unsur-unsur pembentuk ruang balok (sisi, rusuk, dan titik sudut).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBanyak titik sudut balok adalah **8** (Opsi D)."
         },
         {
@@ -1853,7 +1853,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kubus memiliki 12 rusuk sama panjang: $s = 96 : 12 = 8$ cm.",
+          "hint": "Bagi panjang seluruh rusuk dengan banyak rusuk pada kubus.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$s = 96 : 12 = 8\\text{ cm}$$\nPanjang rusuknya adalah **8 cm** (Opsi C).",
           "visual": {
             "type": "solid-3d",
@@ -1892,7 +1892,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Total panjang rusuk balok $= 4 \\times (p + l + t) = 4 \\times (10 + 6 + 4) = 4 \\times 20 = 80$ cm.",
+          "hint": "Gunakan rumus jumlah panjang rusuk balok: $4 \\times (p + l + t)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$R = 4 \\times (10 + 6 + 4) = 4 \\times 20 = 80\\text{ cm}$$\nPanjang seluruh rusuk adalah **80 cm** (Opsi B).",
           "visual": {
             "type": "solid-3d",
@@ -2036,7 +2036,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Hitung kapasitas tiap dimensi: $(40 : 10) \\times (30 : 10) \\times (20 : 10) = 4 \\times 3 \\times 2 = 24$.",
+          "hint": "Hitung berapa banyak kubus mainan yang muat pada masing-masing ukuran panjang, lebar, dan tinggi kardus, kemudian kalikan ketiganya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Banyak kotak} = \\frac{40 \\times 30 \\times 20}{10 \\times 10 \\times 10} = 4 \\times 3 \\times 2 = 24\\text{ kotak}$$\nDapat memuat **24 kotak mainan** (Opsi D).",
           "visual": {
             "type": "solid-3d",
@@ -2075,7 +2075,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Volume penuh $= 1\\text{ m}^3 = 1.000$ liter. Kekurangan $= 1.000 - 650 = 350$ liter.",
+          "hint": "Ubah volume total bak dalam meter kubik menjadi liter ($1\\text{ m}^3 = 1.000\\text{ liter}$), lalu kurangi dengan air yang sudah terisi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$1.000 - 650 = 350\\text{ liter}$$\nHarus ditambahkan **350 liter air** (Opsi C).",
           "visual": {
             "type": "solid-3d",
@@ -2114,7 +2114,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Panjang kawat kerangka $= 4 \\times (20 + 15 + 10) = 4 \\times 45 = 180$ cm. Sisa $= 200 - 180 = 20$ cm.",
+          "hint": "Hitung total kebutuhan kawat untuk kerangka balok, lalu kurangkan dari panjang total kawat yang tersedia.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Kebutuhan kawat: $4 \\times (20 + 15 + 10) = 180\\text{ cm}$\n2. Sisa kawat: $200 - 180 = 20\\text{ cm}$ (Opsi B)."
         },
         {
@@ -2273,7 +2273,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Kubus dengan 2 sisi merah berada di rusuk tanpa sudut: $12 \\times (s - 2) = 12 \\times (6 - 2) = 12 \\times 4 = 48$.",
+          "hint": "Gunakan rumus banyak kubus kecil pada 12 rusuk kubus: $12 \\times (s - 2)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Banyak kubus} = 12 \\times (n - 2) = 12 \\times (6 - 2) = 48\\text{ kubus}$$\nAda **48 kubus kecil** (Opsi D)."
         },
         {
@@ -2327,7 +2327,7 @@ export const grade6Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Volume batu = Luas alas $\\times$ kenaikan tinggi air $= 80 \\times 50 \\times (33 - 30) = 4.000 \\times 3 = 12.000$ cm³.",
+          "hint": "Volume batu sama dengan volume air yang naik, yaitu Luas alas akuarium dikalikan dengan selisih tinggi air sebelum dan sesudah batu dimasukkan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V = 80 \\times 50 \\times 3 = 12.000\\text{ cm}^3$$\nVolume batu adalah **12.000 cm³** (Opsi D).",
           "visual": {
             "type": "solid-3d",

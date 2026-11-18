@@ -57,7 +57,7 @@ export default bab({
         'gelombang bunyi'
       ],
       answer: 'B',
-      hint: 'Menurut hukum pergeseran Wien, benda yang lebih dingin memancarkan radiasi pada panjang gelombang yang lebih panjang.',
+      hint: 'Menurut hukum pergeseran Wien, benda bersuhu jauh lebih rendah daripada Matahari memancarkan puncak radiasi elektromagnetik dengan energi foton dan frekuensi lebih rendah daripada cahaya merah tampak.',
       solution: 'Karena suhu permukaan Bumi sekitar $288\\text{ K}$ (jauh lebih rendah daripada Matahari $\\sim 5.800\\text{ K}$), puncak radiasi termal Bumi berada pada **radiasi inframerah gelombang panjang** yang kemudian diserap sebagian oleh gas rumah kaca. Jawaban: **B**.'
     }),
     soal({
@@ -83,7 +83,7 @@ export default bab({
         'hidrogen ($\\text{H}_2$) dan neon ($\\text{Ne}$)'
       ],
       answer: 'C',
-      hint: 'Pembakaran batu bara dan minyak melepas gas karbon hasil oksidasi, sedangkan fermentasi anaerob ternak dan rawa melepas gas metana.',
+      hint: 'Identifikasi dua senyawa gas rumah kaca beratom jamak (minimal tiga atom) yang masing-masing terbentuk dari oksidasi sempurna hidrokarbon dan dari penguraian bahan organik secara anaerob.',
       solution: 'Pembakaran bahan bakar fosil menyumbang emisi **karbon dioksida ($\\text{CO}_2$)** terbesar, sedangkan peternakan ruminansia, sawah tergenang, dan lahan gambut menghasilkan **metana ($\\text{CH}_4$)** yang sangat kuat menyerap inframerah. Jawaban: **C**.'
     }),
     soal({
@@ -149,7 +149,7 @@ export default bab({
         'penipisan lapisan ozon dan meningkatnya kecepatan angin laut'
       ],
       answer: 'C',
-      hint: 'Es yang sudah terapung di air tidak mengubah tinggi air saat mencair; perubahan volume berasal dari suhu air yang naik dan tambahan massa air dari daratan.',
+      hint: 'Pertimbangkan hukum Archimedes mengenai perbedaan dampak pencairan es yang mengapung di laut dibandingkan es di atas permukaan tanah/benua, serta sifat fisis zat cair ketika suhunya meningkat.',
       solution: 'Kenaikan permukaan laut global terutama didorong oleh **pemuaian termal volume air laut** akibat kenaikan suhu lautan serta tambahan air dari **mencairnya es daratan** (gletser pegunungan, Greenland, dan Antarktika). Jawaban: **C**.'
     }),
     soal({
@@ -162,15 +162,15 @@ export default bab({
         'es di kutub memiliki kalor jenis lebih kecil daripada aspal sehingga lebih cepat memanas'
       ],
       answer: 'A',
-      hint: 'Bandingkan albedo es ($\\approx 0{,}8$) dengan albedo air laut terbuka ($\\approx 0{,}1$) serta dampaknya terhadap energi yang diserap.',
+      hint: 'Bandingkan sifat pemantulan radiasi matahari antara permukaan tutupan es yang cerah dan air laut yang gelap, lalu telusuri bagaimana perubahan fraksi radiasi yang diserap memengaruhi laju pemanasan berikutnya.',
       solution: 'Es memantulkan sebagian besar radiasi matahari ($\\alpha \\approx 0{,}8$). Saat es mencair, permukaan laut gelap ($\\alpha \\approx 0{,}1$) tersingkap dan **menyerap jauh lebih banyak radiasi**, menaikkan suhu setempat dan memicu pencairan es lebih lanjut (umpan balik positif). Jawaban: **A**.'
     }),
     soal({
       level: 'Tantangan',
-      q: 'Anggap suatu kolom air laut memiliki kedalaman rata-rata $h_0 = 2.000\\text{ m}$ dengan luas penampang horizontal dianggap tetap. Jika seluruh kolom air mengalami kenaikan suhu rata-rata $\\Delta T = 0{,}5^\\circ\\text{C}$ dan koefisien muai volume air laut $\\gamma = 2 \\times 10^{-4}\\ /^\\circ\\text{C}$ ($\\Delta h = \\gamma h_0 \\Delta T$), kenaikan tinggi permukaan laut akibat pemuaian termal tersebut adalah...',
+      q: 'Anggap suatu kolom air laut memiliki kedalaman rata-rata $h_0 = 2.000\\text{ m}$ dengan luas penampang horizontal dianggap tetap. Jika seluruh kolom air mengalami kenaikan suhu rata-rata $\\Delta T = 0{,}5^\\circ\\text{C}$ dan koefisien muai volume air laut $\\gamma = 2 \\times 10^{-4}\\ /^\\circ\\text{C}$, kenaikan tinggi permukaan laut akibat pemuaian termal tersebut adalah...',
       options: ['0,02 m', '2,0 m', '0,5 m', '0,2 m'],
       answer: 'D',
-      hint: 'Substitusikan $\\gamma$, $h_0$, dan $\\Delta T$ langsung ke persamaan $\\Delta h = \\gamma h_0 \\Delta T$.',
+      hint: 'Gunakan persamaan pemuaian volume $\\Delta V = \\gamma V_0 \\Delta T$ dengan $V = A h$ (luas penampang horizontal $A$ tetap) untuk menyatakan $\\Delta h$ dalam $h_0$, $\\gamma$, dan $\\Delta T$.',
       solution: '$\\Delta h = (2 \\times 10^{-4}\\ /^\\circ\\text{C}) \\times 2.000\\text{ m} \\times 0{,}5^\\circ\\text{C} = 0{,}4 \\times 0{,}5 = 0{,}2\\text{ m}$ ($20\\text{ cm}$). Jawaban: **D**.'
     }),
     soal({
@@ -193,14 +193,14 @@ export default bab({
       level: 'Tantangan',
       q: 'Sebuah kota merancang paket kebijakan mitigasi berbasis fisika iklim untuk menekan pemanasan kota dan emisi karbon. Kombinasi tindakan yang secara bersamaan mengurangi penyerapan radiasi inframerah di atmosfer dan meningkatkan pemantulan radiasi matahari gelombang pendek di permukaan kota adalah...',
       options: [
-        'mengganti pembangkit listrik batu bara dengan PLTS/PLTP serta melapisi atap bangunan dengan cat putih ber-albedo tinggi',
-        'mengganti seluruh atap bangunan menjadi berwarna hitam pekat dan menambah armada bus berbahan bakar solar',
-        'memasang kaca gelap di semua jalan raya tanpa mengubah sumber listrik fosil',
-        'membakar seluruh sampah organik di pinggiran kota agar tidak menghasilkan metana'
+        'mengganti pembangkit listrik batu bara dengan PLTS/PLTP serta melapisi atap bangunan dengan cat putih reflektif',
+        'mengganti pembangkit listrik batu bara dengan PLTS/PLTP serta melapisi atap bangunan dan jalan dengan bahan beraspal gelap',
+        'melapisi atap bangunan dengan cat putih reflektif serta memperluas pembangkit listrik berbahan bakar minyak solar',
+        'memasang kaca gelap penyerap cahaya di atap gedung dan tetap mengoperasikan PLTU batu bara berkapasitas tinggi'
       ],
       answer: 'A',
-      hint: 'Cari tindakan yang memutus emisi gas rumah kaca (penyerap inframerah) sekaligus menaikkan nilai albedo permukaan kota.',
-      solution: 'Peralihan dari batu bara ke **PLTS/PLTP** menekan emisi $\\text{CO}_2$ sehingga mengurangi pemerangkapan radiasi inframerah, sedangkan **cat putih ber-albedo tinggi** memantulkan lebih banyak radiasi gelombang pendek Matahari agar energi tidak terserap sebagai panas kota. Jawaban: **A**.'
+      hint: 'Cari kombinasi kebijakan yang menghentikan pelepasan gas penahan radiasi termal Bumi ke atmosfer sekaligus memilih warna permukaan yang paling banyak memantulkan cahaya matahari.',
+      solution: 'Peralihan dari batu bara ke **PLTS/PLTP** menekan emisi $\\text{CO}_2$ sehingga mengurangi pemerangkapan radiasi inframerah, sedangkan **cat putih reflektif** memiliki albedo tinggi untuk memantulkan lebih banyak radiasi gelombang pendek Matahari agar energi tidak terserap sebagai panas kota. Jawaban: **A**.'
     })
   ]
 });

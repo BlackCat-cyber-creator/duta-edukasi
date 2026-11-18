@@ -124,7 +124,7 @@ export default bab({
       q: 'Batas lempeng tempat dua lempeng saling bertumbukan dan dapat membentuk palung laut serta pegunungan disebut batas...',
       options: ['konvergen', 'divergen', 'transform', 'paralel'],
       answer: 'A',
-      hint: '"Konvergen" berarti saling mendekat.',
+      hint: 'Batas lempeng ini terjadi ketika dua lempeng tektonik bergerak saling mendekati hingga bertumbukan.',
       solution: 'Pada batas **konvergen**, lempeng saling mendekat dan bertumbukan; lempeng samudra menunjam membentuk palung, dan terbentuk jalur gunung api. Jawaban: **A**.'
     }),
     soal({

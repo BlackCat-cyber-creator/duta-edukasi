@@ -154,7 +154,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Hitung total harga pupuk ($25 \\times 32.000 = 800.000$), total uang bayar ($9 \\times 100.000 = 900.000$), lalu kurangkan keduanya.",
+          "hint": "Hitung total harga pupuk dengan mengalikan jumlah sak dengan harga per sak, lalu kurangkan dari total uang pembayaran.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Total harga belanja: $25 \\times 32.000 = 800.000$.\n2. Uang pembayaran: $9 \\times 100.000 = 900.000$.\n3. Uang kembalian: $900.000 - 800.000 = \\text{Rp}100.000,00$.\nUang kembalian yang diterima adalah **Rp100.000,00** (Opsi A)."
         },
         {
@@ -262,7 +262,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$35 \\times 4 = 140$, lalu tambahkan dua angka nol di belakangnya.",
+          "hint": "Kalikan bilangan depannya terlebih dahulu tanpa nol, lalu tambahkan total banyak angka nol dari kedua bilangan pengali.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$350 \\times 40 = 14.000$$ (Opsi D)."
         },
         {
@@ -289,7 +289,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Coret satu nol: $4.800 : 6 = 800$.",
+          "hint": "Hilangkan jumlah nol yang sama pada bilangan yang dibagi dan pembaginya terlebih dahulu sebelum membagi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$48.000 : 60 = 800$$ (Opsi A)."
         },
         {
@@ -343,7 +343,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Total belanja $= 47.500 + 22.500 = 70.000$. Sisa $= 85.000 - 70.000$.",
+          "hint": "Jumlahkan terlebih dahulu harga buku dan alat tulis untuk mendapatkan total belanja, kemudian kurangkan dari modal awal.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$85.000 - (47.500 + 22.500) = 85.000 - 70.000 = \\text{Rp}15.000,00$$ (Opsi C)."
         },
         {
@@ -424,7 +424,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Dahulukan operasi perkalian: $4.000 \\times 5 = 20.000$.",
+          "hint": "Dahulukan operasi perkalian sebelum penjumlahan dan pengurangan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$15.000 + 20.000 - 8.000 = 35.000 - 8.000 = 27.000$$ (Opsi B)."
         },
         {
@@ -478,7 +478,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Tiap panti $= 75.000.000 / 30 = 2.500.000$. Tiap anak $= 2.500.000 / 25$.",
+          "hint": "Hitung bagian uang untuk setiap panti asuhan terlebih dahulu dengan membagi total sumbangan dengan jumlah panti, lalu bagi hasilnya dengan jumlah anak asuh di setiap panti.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Per panti: $75.000.000 : 30 = 2.500.000$\n2. Per anak: $2.500.000 : 25 = \\text{Rp}100.000,00$ (Opsi D)."
         },
         {
@@ -505,7 +505,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Sederhanakan ruas kanan: $46.250$, lalu tambahkan $18.750$.",
+          "hint": "Sederhanakan terlebih dahulu operasi penjumlahan di ruas kanan persamaan, kemudian cari nilai n.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$n = 46.250 + 18.750 = 65.000$$ (Opsi A)."
         },
         {
@@ -532,7 +532,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Total botol $= 64 \\times 48 = 3.072$. Sisa $= 3.072 - 2.500$.",
+          "hint": "Hitung total keseluruhan botol air mineral dengan mengalikan jumlah kotak dengan isi per kotak, lalu kurangkan dengan jumlah botol yang sudah dibagikan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$64 \\times 48 - 2.500 = 3.072 - 2.500 = 572\\text{ botol}$$ (Opsi A)."
         },
         {
@@ -586,7 +586,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Opsi 1: $3 \\times 10\\text{ kg} = 3 \\times 125.000 = 375.000$. Opsi 2: $6 \\times 5\\text{ kg} = 6 \\times 65.000 = 390.000$.",
+          "hint": "Bandingkan total harga jika membeli kemasan 10 kg sebanyak 3 buah dengan membeli kemasan 5 kg sebanyak 6 buah untuk menentukan pilihan yang paling murah.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nPaling hemat membeli 3 karung kemasan 10 kg: $$3 \\times 125.000 = \\text{Rp}375.000,00$$ (Opsi A)."
         }
       ]
@@ -655,7 +655,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Bagi 60 dengan bilangan prima: $60 : 2 = 30$, $30 : 2 = 15$, $15 : 3 = 5$.",
+          "hint": "Gunakan pembagian berulang dengan bilangan prima terkecil secara berturut-turut hingga tersisa bilangan prima.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$60 = 2 \\times 2 \\times 3 \\times 5 = 2^2 \\times 3 \\times 5$$\nFaktorisasi primanya adalah **$2^2 \\times 3 \\times 5$** (Opsi D)."
         },
         {
@@ -709,7 +709,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Faktorisasi: $12 = 2^2 \\times 3$ dan $15 = 3 \\times 5$. KPK $= 2^2 \\times 3 \\times 5 = 4 \\times 15 = 60$.",
+          "hint": "Tentukan faktorisasi prima dari masing-masing bilangan, lalu kalikan semua faktor prima dengan mengambil pangkat terbesar untuk setiap faktor.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{KPK} = 2^2 \\times 3 \\times 5 = 4 \\times 15 = 60$$\nKPK-nya adalah **60** (Opsi C)."
         },
         {
@@ -817,7 +817,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Bagi 72 dengan bilangan prima berturut-turut: $72 : 2 = 36 : 2 = 18 : 2 = 9 : 3 = 3$.",
+          "hint": "Lakukan pembagian berturut-turut dengan bilangan prima mulai dari 2 sampai habis.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$72 = 2^3 \\times 3^2$$ (Opsi C)."
         },
         {
@@ -844,7 +844,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Faktor prima yang sama berpangkat terendah: $2^2 \\times 3 = 12$.",
+          "hint": "Tentukan faktorisasi prima dari setiap bilangan, lalu pilih faktor prima yang sama dengan pangkat terkecil.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nFPB(24, 36, 48) = **12** (Opsi A)."
         },
         {
@@ -871,7 +871,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Faktor prima: $12 = 2^2 \\times 3, 18 = 2 \\times 3^2, 24 = 2^3 \\times 3$. KPK $= 2^3 \\times 3^2 = 72$.",
+          "hint": "Cari faktorisasi prima dari semua bilangan, lalu kalikan seluruh faktor prima yang muncul dengan pangkat tertinggi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{KPK} = 8 \\times 9 = 72$$ (Opsi A)."
         },
         {
@@ -952,7 +952,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "KPK(4, 6) = 12 hari. Senin + 12 hari = Senin + 5 hari = Sabtu.",
+          "hint": "Cari KPK dari kedua interval waktu untuk mengetahui berapa hari lagi mereka berenang bersama, lalu hitung kelanjutan harinya dari hari Senin.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. KPK(4, 6) = 12 hari\n2. 12 hari setelah Senin: Senin + 7 hari (Senin) + 5 hari = **Sabtu** (Opsi D)."
         },
         {
@@ -979,7 +979,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Banyak siswa $= \\text{FPB}(24, 36) = 12$. Buku per siswa $= 24 : 12 = 2$.",
+          "hint": "Cari FPB dari jumlah kedua benda untuk mengetahui jumlah maksimal kelompok siswa yang sama rata, lalu bagi jumlah buku dengan nilai FPB tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$24 : \\text{FPB}(24, 36) = 24 : 12 = 2\\text{ buku tulis}$$ (Opsi C)."
         },
         {
@@ -1033,7 +1033,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$36 = 2^2 \\times 3^2$, $60 = 2^2 \\times 3 \\times 5$. KPK $= 180$, FPB $= 12$.",
+          "hint": "Tentukan faktorisasi prima kedua bilangan. KPK diperoleh dari perkalian faktor prima pangkat terbesar, sedangkan FPB dari faktor prima yang sama dengan pangkat terkecil.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nKPK = 180 dan FPB = 12 (Opsi D)."
         },
         {
@@ -1060,7 +1060,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "KPK(15, 20, 30) = 60 menit (1 jam). Pukul 07.00 + 1 jam = 08.00.",
+          "hint": "Tentukan KPK dari selang waktu dering alarm untuk mengetahui durasi waktu mereka berdering bersamaan kembali, lalu tambahkan durasi tersebut ke waktu awal.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{KPK}(15, 20, 30) = 60\\text{ menit} = 1\\text{ jam} \\implies 07.00 + 1\\text{ jam} = 08.00$$ (Opsi D)."
         },
         {
@@ -1087,7 +1087,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Banyak petak $= \\text{FPB}(48, 72, 96) = 24$. Total bibit per petak $= (48 + 72 + 96) : 24 = 216 : 24 = 9$.",
+          "hint": "Tentukan FPB dari jumlah masing-masing bibit untuk mengetahui banyak petak kebun, lalu hitung jumlah seluruh bibit dibagi banyak petak.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. FPB(48, 72, 96) = 24 petak\n2. Tiap petak: $\\frac{48 + 72 + 96}{24} = \\frac{216}{24} = 9\\text{ bibit}$ (Opsi B)."
         },
         {
@@ -1141,7 +1141,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "KPK(8, 12, 16) = 48 hari. Maret ada 31 hari. Sisa hari Maret: $31 - 1 = 30$ hari. April: $48 - 30 = 18$ April.",
+          "hint": "Tentukan KPK dari hari-hari pengiriman untuk mengetahui selang waktu pertemuan berikutnya, lalu sesuaikan dengan jumlah hari pada bulan yang berjalan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. KPK(8, 12, 16) = 48 hari\n2. Tanggal: 1 Maret + 48 hari = 18 April (Opsi B)."
         },
         {
@@ -1168,7 +1168,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Piring $= \\text{FPB}(54, 72, 90) = 18$. Pastel $= 90 / 18 = 5$. Lemper $= 54 / 18 = 3$. Selisih $= 5 - 3 = 2$.",
+          "hint": "Tentukan FPB dari jumlah masing-masing jenis kue untuk mengetahui banyak piring, lalu hitung jumlah setiap kue per piring untuk mencari selisihnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. FPB(54, 72, 90) = 18 piring\n2. Pastel per piring: $90 : 18 = 5$\n3. Lemper per piring: $54 : 18 = 3$\n4. Selisih $= 5 - 3 = 2\\text{ buah}$ (Opsi A)."
         }
       ]
@@ -1277,7 +1277,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kalikan bilangan bulat dengan penyebut, lalu tambahkan pembilang: $(2 \\times 5) + 3 = 13$.",
+          "hint": "Kalikan bilangan bulat dengan penyebut, lalu tambahkan dengan pembilang untuk menjadi pembilang baru, sementara penyebut tetap.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$2\\frac{3}{5} = \\frac{(2 \\times 5) + 3}{5} = \\frac{10 + 3}{5} = \\frac{13}{5}$$\nBentuk pecahan biasanya adalah **$\\frac{13}{5}$** (Opsi C).",
           "visual": {
             "type": "fraction-strip",
@@ -1341,7 +1341,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kurangkan: $4\\frac{1}{2} - \\frac{1}{2} = 4$, lalu $4 - 1\\frac{3}{4} = 2\\frac{1}{4}$.",
+          "hint": "Kurangkan panjang pita awal secara berurutan dengan potongan untuk hiasan dan kerajinan tangan, atau samakan penyebut pecahan campurannya terlebih dahulu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Selesaikan pengurangan mudah: $4\\frac{1}{2} - \\frac{1}{2} = 4\\text{ meter}$.\n2. Kurangkan potongan kedua: $4 - 1\\frac{3}{4} = 2\\frac{1}{4}\\text{ meter}$.\nSisa panjang pita adalah **$2\\frac{1}{4}$ meter** (Opsi C).",
           "visual": {
             "type": "bar-model",
@@ -1399,7 +1399,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Kalikan dengan 100%: $\\frac{3}{4} \\times 100\\% = 75\\%$.",
+          "hint": "Ubah pecahan ke bentuk persen dengan mengalikan pecahan tersebut dengan $100\\%$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{3}{4} \\times 100\\% = 75\\%$$ (Opsi A).",
           "visual": {
             "type": "circle-fraction",
@@ -1463,7 +1463,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Ubah ke pecahan biasa: $\\frac{5}{2} - \\frac{4}{3} = \\frac{15 - 8}{6} = \\frac{7}{6} = 1\\frac{1}{6}$.",
+          "hint": "Ubah pecahan campuran menjadi pecahan biasa terlebih dahulu, lalu samakan penyebutnya sebelum dikurangkan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$2\\frac{1}{2} - 1\\frac{1}{3} = \\frac{15 - 8}{6} = 1\\frac{1}{6}$$ (Opsi A).",
           "visual": {
             "type": "bar-model",
@@ -1580,7 +1580,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Bagi 5 dengan 8 secara bersusun: $5 : 8 = 0{,}625$.",
+          "hint": "Lakukan pembagian bersusun antara pembilang dan penyebut, atau ubah penyebut pecahan menjadi kelipatan 10.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{5}{8} = 0{,}625$$ (Opsi B)."
         },
         {
@@ -1607,7 +1607,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$3\\frac{1}{4} - 1\\frac{2}{4} = 2\\frac{5}{4} - 1\\frac{2}{4} = 1\\frac{3}{4}$.",
+          "hint": "Kurangkan berat awal gula dengan jumlah gula yang digunakan; jika pecahan pengurang lebih besar, lakukan teknik meminjam dari bilangan bulat.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$3\\frac{1}{4} - 1\\frac{2}{4} = 1\\frac{3}{4}\\text{ kg}$$ (Opsi C)."
         },
         {
@@ -1634,7 +1634,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Bagian kedelai $= 1 - 2/5 = 3/5$. Luas $= \\frac{3}{5} \\times 600 = 360$.",
+          "hint": "Tentukan bagian pecahan untuk kedelai dengan mengurangkan total bagian utuh dengan bagian yang ditanami jagung, lalu kalikan pecahan tersebut dengan total luas tanah.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{3}{5} \\times 600 = 360\\text{ m}^2$$ (Opsi D)."
         },
         {
@@ -1661,7 +1661,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Lakukan penjumlahan desimal: $7{,}45 - 1{,}32 = 6{,}13$.",
+          "hint": "Kerjakan operasi hitung campuran bilangan desimal dari kiri ke kanan dengan meluruskan tanda koma desimal.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$4{,}85 + 2{,}60 - 1{,}32 = 6{,}13$$ (Opsi B)."
         },
         {
@@ -1688,7 +1688,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Bagi $15\\frac{3}{4} = \\frac{63}{4}$ dengan $\\frac{3}{4}$.",
+          "hint": "Ubah pecahan campuran menjadi pecahan biasa, kemudian lakukan operasi pembagian pecahan dengan cara mengalikan dengan kebalikan pecahan pembagi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{63}{4} : \\frac{3}{4} = \\frac{63}{3} = 21\\text{ botol}$$ (Opsi A)."
         },
         {
@@ -1715,7 +1715,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Ubah ke bentuk desimal: $45\\% = 0{,}45$, $1/2 = 0{,}50$, $0{,}60$, $3/4 = 0{,}75$.",
+          "hint": "Samakan bentuk semua bilangan (misalnya ke bentuk desimal atau persen) agar mudah dibandingkan nilai besarnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n0,45 < 0,50 < 0,60 < 0,75 $\\implies$ **45%, 1/2, 0,6, 3/4** (Opsi D)."
         },
         {
@@ -1742,7 +1742,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Selisih bagian: $\\frac{5}{6} - \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}$. Kapasitas $= 40 : \\frac{1}{2} = 80$.",
+          "hint": "Tentukan selisih pecahan bagian sebelum dan sesudah ditambah air untuk mengetahui pecahan yang mewakili volume air tambahan, lalu bagi volume tersebut dengan pecahan selisihnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Kapasitas} = 40 : \\left(\\frac{5}{6} - \\frac{1}{3}\\right) = 40 : \\frac{1}{2} = 80\\text{ liter}$$ (Opsi C)."
         },
         {
@@ -1769,7 +1769,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Diskon $= 25\\% \\times 120.000 = 30.000$. Harga bayar $= 120.000 - 30.000$.",
+          "hint": "Hitung besar potongan harga dengan mengalikan persentase diskon dengan harga awal, lalu kurangkan harga awal dengan besar potongan tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$120.000 - 30.000 = \\text{Rp}90.000,00$$ (Opsi B)."
         },
         {
@@ -1796,7 +1796,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$5\\frac{2}{4} - 1\\frac{3}{4} + 2\\frac{1}{4} = 3\\frac{3}{4} + 2\\frac{1}{4} = 6$.",
+          "hint": "Lakukan operasi hitung penjumlahan dan pengurangan pecahan campuran secara berurutan dari kiri dengan menyamakan penyebutnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$5\\frac{1}{2} - 1\\frac{3}{4} + 2\\frac{1}{4} = 6\\text{ meter}$$ (Opsi B)."
         },
         {
@@ -1823,7 +1823,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Sederhanakan setiap kurung: $\\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{3}{4} \\times \\frac{4}{5} = \\frac{1}{5}$.",
+          "hint": "Selesaikan operasi pengurangan di dalam masing-masing tanda kurung terlebih dahulu, lalu kalikan hasilnya secara berurutan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{3}{4} \\times \\frac{4}{5} = \\frac{1}{5}$$ (Opsi D)."
         },
         {
@@ -1850,7 +1850,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Selisih $= \\frac{5 - 3}{3 + 5} \\times 400.000 = \\frac{2}{8} \\times 400.000 = 100.000$.",
+          "hint": "Gunakan perbandingan: selisih perbandingan dibagi jumlah perbandingan, lalu dikalikan dengan jumlah total tabungan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{2}{8} \\times 400.000 = \\text{Rp}100.000,00$$ (Opsi A)."
         }
       ]
@@ -1924,7 +1924,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Kalikan panjang sisi dengan 4: $K = 4 \\times 9$.",
+          "hint": "Kalikan panjang sisi dengan 4 menggunakan rumus keliling persegi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 4 \\times 9 = 36\\text{ cm}$$\nKeliling persegi adalah **36 cm** (Opsi B).",
           "visual": {
             "type": "square",
@@ -1960,7 +1960,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Gunakan rumus $K = 2 \\times (p + l) = 2 \\times (14 + 6)$.",
+          "hint": "Jumlahkan ukuran panjang dan lebar terlebih dahulu, lalu kalikan hasilnya dengan 2 sesuai rumus $K = 2(p + l)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 2 \\times (14 + 6) = 2 \\times 20 = 40\\text{ cm}$$\nKelilingnya adalah **40 cm** (Opsi C).",
           "visual": {
             "type": "rectangle",
@@ -1997,7 +1997,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Segitiga sama sisi memiliki 3 sisi sama panjang: bagi keliling dengan 3 ($45 : 3$).",
+          "hint": "Segitiga sama sisi memiliki 3 sisi yang sama panjang, bagilah keliling dengan 3.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$s = \\frac{K}{3} = \\frac{45}{3} = 15\\text{ cm}$$\nPanjang sisinya adalah **15 cm** (Opsi A).",
           "visual": {
             "type": "triangle",
@@ -2035,7 +2035,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Hitung keliling kebun terlebih dahulu: $K = 2 \\times (20 + 15) = 70\\text{ m}$, lalu bagi dengan jarak antar-tiang (5 m).",
+          "hint": "Hitung keliling kebun terlebih dahulu menggunakan rumus keliling persegi panjang, lalu bagi hasil keliling tersebut dengan jarak antar-tiang.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Keliling kebun: $K = 2 \\times (20 + 15) = 2 \\times 35 = 70\\text{ meter}$.\n2. Banyak tiang yang dibutuhkan:\n$$\\text{Banyak tiang} = \\frac{70}{5} = 14\\text{ tiang}$$\nBanyak tiang yang dibutuhkan adalah **14 tiang** (Opsi B).",
           "visual": {
             "type": "rectangle",
@@ -2108,7 +2108,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$K = 2(p + l) = 2(18 + 10) = 56$.",
+          "hint": "Gunakan rumus keliling persegi panjang dengan memasukkan nilai panjang dan lebar yang diketahui.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 2(18 + 10) = 2 \\times 28 = 56\\text{ cm}$$ (Opsi D).",
           "visual": {
             "type": "rectangle",
@@ -2182,7 +2182,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$K = 2(a + b) = 2(14 + 9) = 46$.",
+          "hint": "Gunakan rumus keliling jajar genjang: $K = 2 \\times (a + b)$ dengan $a$ dan $b$ adalah sisi-sisi yang berdekatan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 2(14 + 9) = 46\\text{ cm}$$ (Opsi C)."
         },
         {
@@ -2209,7 +2209,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Sisi belah ketupat: $s = K / 4 = 68 / 4 = 17$.",
+          "hint": "Belah ketupat memiliki 4 sisi yang sama panjang, bagilah keliling dengan 4 untuk mencari panjang sisinya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$s = \\frac{68}{4} = 17\\text{ cm}$$ (Opsi D)."
         },
         {
@@ -2236,7 +2236,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$K = 2(12 + 18) = 60$.",
+          "hint": "Gunakan rumus keliling layang-layang: $K = 2 \\times (s_1 + s_2)$ dengan menjumlahkan kedua sisi yang berdekatan lalu dikalikan 2.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 2(12 + 18) = 60\\text{ cm}$$ (Opsi C).",
           "visual": {
             "type": "kite",
@@ -2275,7 +2275,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Keliling $= 2(25 + 15) = 80$ m. Biaya $= 80 \\times 50.000$.",
+          "hint": "Hitung keliling kebun persegi panjang terlebih dahulu, kemudian kalikan hasil keliling tersebut dengan biaya per meter.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$80 \\times 50.000 = \\text{Rp}4.000.000,00$$ (Opsi D)."
         },
         {
@@ -2302,7 +2302,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Keliling $= 10 + 20 + 8 + 8 = 46$.",
+          "hint": "Keliling trapesium diperoleh dengan menjumlahkan seluruh sisi-sisinya, termasuk kedua sisi miring yang sama panjang.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 10 + 20 + 2(8) = 46\\text{ cm}$$ (Opsi A)."
         },
         {
@@ -2329,7 +2329,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Jarak $= 3 \\times 160 = 480$ meter.",
+          "hint": "Kalikan keliling lapangan dengan jumlah putaran yang ditempuh oleh Danu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$3 \\times 160 = 480\\text{ meter}$$ (Opsi D)."
         },
         {
@@ -2356,7 +2356,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Hipotenusa $= \\sqrt{6^2 + 8^2} = 10$ cm. Keliling $= 6 + 8 + 10 = 24$.",
+          "hint": "Tentukan panjang sisi miring (hipotenusa) menggunakan teorema Pythagoras terlebih dahulu, lalu jumlahkan ketiga sisi segitiga.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 6 + 8 + 10 = 24\\text{ cm}$$ (Opsi A)."
         },
         {
@@ -2383,7 +2383,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$p = (K / 2) - l = 22 - 8 = 14$.",
+          "hint": "Gunakan setengah keliling dikurangi lebar untuk mencari panjang persegi panjang.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$p = \\frac{44}{2} - 8 = 22 - 8 = 14\\text{ cm}$$ (Opsi B)."
         },
         {
@@ -2410,7 +2410,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Sisi kecil $= 32 / 4 = 8$ cm. Sisi besar $= \\frac{3}{2} \\times 8 = 12$ cm. Keliling $= 4 \\times 12 = 48$.",
+          "hint": "Karena perbandingan keliling persegi sama dengan perbandingan sisi-sisinya, gunakan perbandingan untuk mencari keliling persegi yang lebih besar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K_2 = \\frac{3}{2} \\times 32 = 48\\text{ cm}$$ (Opsi A)."
         },
         {
@@ -2437,7 +2437,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$2(3x + 5) = 46 \\implies 3x + 5 = 23 \\implies 3x = 18 \\implies x = 6$. Panjang $= 2(6) + 3 = 15$.",
+          "hint": "Susun persamaan keliling persegi panjang $K = 2(p + l)$, selesaikan untuk mencari nilai $x$, lalu substitusikan nilai $x$ ke bentuk panjang.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$p = 2(6) + 3 = 15\\text{ meter}$$ (Opsi C)."
         },
         {
@@ -2464,7 +2464,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Panjang luar $= 16 + 2 = 18$ m, lebar luar $= 12 + 2 = 14$ m. $K = 2(18 + 14) = 64$.",
+          "hint": "Tambahkan lebar jalan pada kedua sisi untuk menentukan ukuran luar persegi panjang, lalu hitung kelilingnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 2(18 + 14) = 64\\text{ meter}$$ (Opsi D)."
         },
         {
@@ -2491,7 +2491,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Kaki segitiga $= (60 - 16) / 2 = 44 / 2 = 22$.",
+          "hint": "Kurangi keliling total dengan panjang alas, kemudian bagi sisanya sama rata untuk kedua sisi kaki segitiga sama kaki.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{kaki} = \\frac{60 - 16}{2} = 22\\text{ cm}$$ (Opsi A)."
         },
         {
@@ -2518,7 +2518,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Keliling $= 2(15 + 25) = 80$ cm. Total $= 80 + 30 + 40 = 150$ cm.",
+          "hint": "Hitung keliling layang-layang untuk mengetahui panjang kawat, lalu tambahkan dengan panjang kedua bilah bambu penyangga.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$80 + 30 + 40 = 150\\text{ cm}$$ (Opsi C)."
         }
       ]
@@ -2596,7 +2596,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Gunakan rumus luas segitiga: $L = \\frac{1}{2} \\times a \\times t = \\frac{1}{2} \\times 10 \\times 8$.",
+          "hint": "Gunakan rumus luas segitiga setengah alas kali tinggi ($L = \\frac{1}{2} \\times a \\times t$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = \\frac{1}{2} \\times 10 \\times 8 = 5 \\times 8 = 40\\text{ cm}^2$$\nLuas segitiga adalah **$40\\text{ cm}^2$** (Opsi D).",
           "visual": {
             "type": "triangle",
@@ -2634,7 +2634,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Kalikan panjang dengan lebar: $15 \\times 7$.",
+          "hint": "Kalikan panjang dengan lebar bangun persegi panjang tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = 15 \\times 7 = 105\\text{ cm}^2$$\nLuasnya adalah **$105\\text{ cm}^2$** (Opsi A).",
           "visual": {
             "type": "rectangle",
@@ -2671,7 +2671,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Rumus luas jajar genjang adalah $L = a \\times t = 12 \\times 9$. (Jangan dibagi 2!)",
+          "hint": "Gunakan rumus luas jajar genjang yaitu alas dikali tinggi ($L = a \\times t$), jangan dibagi dua.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = 12 \\times 9 = 108\\text{ cm}^2$$\nLuas jajar genjang adalah **$108\\text{ cm}^2$** (Opsi B).",
           "visual": {
             "type": "parallelogram",
@@ -2708,7 +2708,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Gunakan rumus: $L = \\frac{a + b}{2} \\times t = \\frac{14 + 18}{2} \\times 8$.",
+          "hint": "Gunakan rumus luas trapesium: jumlah sisi sejajar dibagi dua dikali tinggi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Jumlah sisi sejajar: $14 + 18 = 32\\text{ cm}$.\n2. Luas trapesium:\n$$L = \\frac{32}{2} \\times 8 = 16 \\times 8 = 128\\text{ cm}^2$$\nLuas trapesium adalah **$128\\text{ cm}^2$** (Opsi A).",
           "visual": {
             "type": "trapezoid",
@@ -2746,7 +2746,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Luas persegi: $L = s \\times s = 9 \\times 9$.",
+          "hint": "Luas persegi dihitung dengan mengalikan panjang sisi dengan sisi itu sendiri ($L = s \\times s$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = 9 \\times 9 = 81\\text{ cm}^2$$ (Opsi A).",
           "visual": {
             "type": "square",
@@ -2782,7 +2782,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$L = p \\times l = 15 \\times 8 = 120$.",
+          "hint": "Gunakan rumus luas persegi panjang yaitu panjang dikali lebar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = 15 \\times 8 = 120\\text{ cm}^2$$ (Opsi C).",
           "visual": {
             "type": "rectangle",
@@ -2857,7 +2857,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Luas jajar genjang: $L = a \\times t = 18 \\times 7$.",
+          "hint": "Gunakan rumus luas jajar genjang yaitu alas dikali tinggi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = 18 \\times 7 = 126\\text{ cm}^2$$ (Opsi C).",
           "visual": {
             "type": "parallelogram",
@@ -2921,7 +2921,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$L = \\frac{1}{2} \\times 20 \\times 15 = 150$.",
+          "hint": "Gunakan rumus luas layang-layang: setengah dikali hasil kali kedua diagonalnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = \\frac{1}{2} \\times 20 \\times 15 = 150\\text{ cm}^2$$ (Opsi B).",
           "visual": {
             "type": "kite",
@@ -2958,7 +2958,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$L = \\frac{a + b}{2} \\times t = \\frac{30}{2} \\times 8 = 120$.",
+          "hint": "Gunakan rumus luas trapesium: jumlah sisi sejajar dikali tinggi lalu dibagi dua.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = \\frac{12 + 18}{2} \\times 8 = 15 \\times 8 = 120\\text{ cm}^2$$ (Opsi C)."
         },
         {
@@ -2985,7 +2985,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Sisi $= \\sqrt{144} = 12$ cm. Keliling $= 4 \\times 12 = 48$.",
+          "hint": "Cari panjang sisi persegi dengan menarik akar kuadrat dari luasnya, kemudian hitung kelilingnya dengan mengalikan sisi dengan empat.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 4 \\times \\sqrt{144} = 4 \\times 12 = 48\\text{ cm}$$ (Opsi A)."
         },
         {
@@ -3012,7 +3012,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Luas lantai $= 240.000\\text{ cm}^2$. Luas ubin $= 1.600\\text{ cm}^2$. Banyak ubin $= 240.000 / 1.600 = 150$.",
+          "hint": "Hitung luas lantai dan luas satu ubin dalam satuan yang sama, lalu bagi luas lantai dengan luas satu ubin.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Banyak ubin} = \\frac{600 \\times 400}{40 \\times 40} = 15 \\times 10 = 150\\text{ ubin}$$ (Opsi D)."
         },
         {
@@ -3039,7 +3039,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Alas $= \\frac{2 \\times L}{t} = \\frac{168}{12} = 14$.",
+          "hint": "Gunakan rumus balikan luas segitiga: alas sama dengan dua kali luas dibagi tinggi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$a = \\frac{2 \\times 84}{12} = 14\\text{ cm}$$ (Opsi A)."
         },
         {
@@ -3066,7 +3066,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Tinggi $= L / a = 180 / 15 = 12$.",
+          "hint": "Gunakan rumus balikan jajar genjang: tinggi sama dengan luas dibagi panjang alas.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$t = \\frac{180}{15} = 12\\text{ meter}$$ (Opsi D)."
         },
         {
@@ -3093,7 +3093,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Persegi: $s = 10 \\implies L = 100$. Persegi panjang: $p = 12 \\implies L = 96$. Selisih $= 100 - 96 = 4$.",
+          "hint": "Hitung sisi persegi dari kelilingnya, cari panjang persegi panjang dari keliling dan lebar yang diketahui, lalu bandingkan luas keduanya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$100 - (12 \\times 8) = 100 - 96 = 4\\text{ cm}^2$$ (Opsi C)."
         },
         {
@@ -3147,7 +3147,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$a + b = \\frac{2 \\times 150}{10} = 30$. Sisi panjang $= \\frac{3}{5} \\times 30 = 18$.",
+          "hint": "Gunakan rumus luas trapesium untuk mencari jumlah sisi sejajar, lalu gunakan perbandingan untuk menentukan sisi yang diminta.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{3}{5} \\times 30 = 18\\text{ cm}$$ (Opsi C)."
         },
         {
@@ -3174,7 +3174,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Luas persegi panjang $= 60$. Luas segitiga $= \\frac{1}{2} \\times 10 \\times 4 = 20$. Total $= 60 + 20 = 80$.",
+          "hint": "Hitung luas persegi panjang dan luas segitiga secara terpisah, lalu jumlahkan keduanya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$60 + 20 = 80\\text{ cm}^2$$ (Opsi D)."
         },
         {
@@ -3201,7 +3201,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Sisi $= 13$. Diagonal lain: $2 \\times \\sqrt{13^2 - 12^2} = 10$. Luas $= \\frac{1}{2} \\times 24 \\times 10 = 120$.",
+          "hint": "Tentukan sisi belah ketupat dari kelilingnya, gunakan teorema Pythagoras untuk mencari setengah diagonal lainnya, lalu hitung luasnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = \\frac{1}{2} \\times 24 \\times 10 = 120\\text{ cm}^2$$ (Opsi B)."
         }
       ]
@@ -3274,7 +3274,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Sudut lancip memiliki ukuran bukaan yang sempit di bawah $90^\\circ$.",
+          "hint": "Pikirkan jenis sudut yang ukurannya berada di antara nol dan sudut siku-siku.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nSudut dengan ukuran antara $0^\\circ$ dan $90^\\circ$ disebut **sudut lancip** (Opsi C)."
         },
         {
@@ -3377,7 +3377,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Satu putaran penuh $= 360^\\circ$. Hitung $\\frac{1}{3} \\times 360^\\circ = 120^\\circ$, lalu tentukan jenisnya.",
+          "hint": "Satu putaran penuh adalah $360^\\circ$. Kalikan pecahan tersebut dengan $360^\\circ$ untuk mendapatkan besar sudutnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Hitung besar sudut: $\\frac{1}{3} \\times 360^\\circ = 120^\\circ$.\n2. Karena $120^\\circ$ berada di antara $90^\\circ$ dan $180^\\circ$, maka termasuk **sudut tumpul** (Opsi D).",
           "visual": {
             "type": "circle-fraction",
@@ -3414,7 +3414,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Sudut $90^\\circ$ membentuk sudut siku-siku.",
+          "hint": "Pikirkan sudut yang tegak lurus sempurna atau berbentuk huruf L.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nSudut $90^\\circ$ adalah **sudut siku-siku** (Opsi A)."
         },
         {
@@ -3441,7 +3441,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Besar sudut kurang dari $90^\\circ$ adalah sudut lancip.",
+          "hint": "Perhatikan rentang ukuran sudut yang berada di bawah $90^\\circ$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nSudut tersebut adalah **sudut lancip** (Opsi B)."
         },
         {
@@ -3506,7 +3506,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Tiap 1 jam bernilai $30^\\circ$. Pukul 04.00 $= 4 \\times 30^\\circ = 120^\\circ$.",
+          "hint": "Tiap 1 jam pada jam dinding bernilai $30^\\circ$. Hitung perkalian 4 dengan $30^\\circ$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$4 \\times 30^\\circ = 120^\\circ$$ (Opsi C).",
           "visual": {
             "type": "clock-angle",
@@ -3544,7 +3544,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Busur derajat adalah instrumen pengukur besar sudut.",
+          "hint": "Gunakan alat khusus berbentuk setengah lingkaran yang biasa dipakai untuk mengukur besar sudut pada pelajaran geometri.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nAlatnya adalah **busur derajat** (Opsi C)."
         },
         {
@@ -3571,7 +3571,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Teorema jumlah sudut segitiga $= 180^\\circ$.",
+          "hint": "Ingat kembali sifat dasar bahwa jika ketiga sudut dalam segitiga dijumlahkan, hasilnya selalu membentuk sudut lurus.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nJumlah sudut segitiga adalah **$180^\\circ$** (Opsi B)."
         },
         {
@@ -3598,7 +3598,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Sudut kedua $= 90^\\circ - 35^\\circ = 55^\\circ$.",
+          "hint": "Jumlah kedua sudut lancip pada segitiga siku-siku adalah $90^\\circ$. Kurangkan $90^\\circ$ dengan $35^\\circ$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$90^\\circ - 35^\\circ = 55^\\circ$$ (Opsi A).",
           "visual": {
             "type": "right-triangle",
@@ -3642,7 +3642,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Sudut alas $= (180^\\circ - 50^\\circ) / 2 = 130^\\circ / 2 = 65^\\circ$.",
+          "hint": "Kurangkan sudut puncak dari total sudut segitiga $180^\\circ$, lalu bagi dua karena kedua sudut alas sama besar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{180^\\circ - 50^\\circ}{2} = 65^\\circ$$ (Opsi D).",
           "visual": {
             "type": "triangle",
@@ -3680,7 +3680,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Sudut lurus bernilai $180^\\circ$.",
+          "hint": "Pikirkan sudut yang membentuk garis lurus sempurna.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBesarnya adalah **$180^\\circ$** (Opsi A)."
         },
         {
@@ -3707,7 +3707,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Jarum membentuk garis lurus ($180^\\circ$).",
+          "hint": "Perhatikan posisi jarum jam dan jarum menit yang saling bertolak belakang membentuk garis lurus.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$6 \\times 30^\\circ = 180^\\circ$$ (Opsi C).",
           "visual": {
             "type": "clock-angle",
@@ -3745,7 +3745,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Segi empat terdiri dari 2 segitiga: $2 \\times 180^\\circ = 360^\\circ$.",
+          "hint": "Bayangkan sebuah segi empat dibagi menjadi dua buah segitiga menggunakan garis diagonal.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nJumlah sudut segi empat adalah **$360^\\circ$** (Opsi C)."
         },
         {
@@ -3772,7 +3772,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Jarum menit di angka 6 ($180^\\circ$). Jarum jam di $3{,}5 \\times 30^\\circ = 105^\\circ$. Selisih $= 180^\\circ - 105^\\circ = 75^\\circ$.",
+          "hint": "Tentukan posisi jarum menit di angka 6 dan jarum jam di antara angka 3 dan 4, lalu hitung selisih posisinya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$180^\\circ - 105^\\circ = 75^\\circ$$ (Opsi A).",
           "visual": {
             "type": "clock-angle",
@@ -3810,7 +3810,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$3x + x = 180^\\circ \\implies 4x = 180^\\circ \\implies x = 45^\\circ$. Sudut pertama $= 3(45^\\circ) = 135^\\circ$.",
+          "hint": "Gunakan pemisalan aljabar di mana jumlah dua sudut berpelurus adalah $180^\\circ$ dan salah satunya 3 kali sudut lainnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$3 \\times 45^\\circ = 135^\\circ$$ (Opsi A)."
         },
         {
@@ -3874,7 +3874,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Jarum jam: $8 \\times 30^\\circ + 20 \\times 0{,}5^\\circ = 250^\\circ$. Jarum menit: $20 \\times 6^\\circ = 120^\\circ$. Selisih $= 250^\\circ - 120^\\circ = 130^\\circ$.",
+          "hint": "Hitung posisi perpindahan jarum jam dan jarum menit dari angka 12, lalu cari selisih besar sudut keduanya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$250^\\circ - 120^\\circ = 130^\\circ$$ (Opsi B).",
           "visual": {
             "type": "clock-angle",
@@ -3912,7 +3912,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Total sudut segi-$n$: $(n - 2) \\times 180^\\circ = 3 \\times 180^\\circ = 540^\\circ$. Tiap sudut $= 540^\\circ / 5 = 108^\\circ$.",
+          "hint": "Gunakan rumus jumlah sudut segi-$n$ untuk mencari total sudut dalam segi lima, lalu bagi dengan banyak sudutnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{3 \\times 180^\\circ}{5} = 108^\\circ$$ (Opsi D)."
         }
       ]
@@ -4163,7 +4163,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Persegi panjang memiliki 2 simetri lipat dan 2 simetri putar.",
+          "hint": "Ingat kembali jumlah simetri lipat dan simetri putar dari berbagai bangun datar segiempat khusus.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBangun tersebut adalah **persegi panjang** (Opsi A)."
         },
         {
@@ -4244,7 +4244,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Definisi trapesium adalah bangun segi empat dengan tepat sepasang sisi sejajar.",
+          "hint": "Perhatikan sifat sisi-sisi pada bangun segi empat, khususnya definisi bangun yang hanya memiliki satu pasang sisi sejajar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBangun tersebut adalah **trapesium** (Opsi A)."
         },
         {
@@ -4336,7 +4336,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Lingkaran simetris sempurna di setiap garis tengahnya.",
+          "hint": "Pikirkan bangun lengkung yang dapat dilipat atau diputar pada sudut berapapun dan tetap menutupi bentuk aslinya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBangun tersebut adalah **lingkaran** (Opsi D)."
         },
         {
@@ -4498,7 +4498,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Saling tegak lurus, membagi dua, dan sama panjang adalah ciri khusus persegi.",
+          "hint": "Perhatikan gabungan sifat diagonal: saling tegak lurus, membagi dua sama panjang, dan sama panjang.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBangun tersebut adalah **persegi** (Opsi C)."
         },
         {
@@ -4525,7 +4525,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Rumus banyak diagonal segi-$n$: $D = \\frac{n(n - 3)}{2} = \\frac{6 \\times 3}{2} = 9$.",
+          "hint": "Gunakan rumus banyak diagonal pada segi-$n$, yaitu $D = \\frac{n(n - 3)}{2}$ dengan $n$ banyak sisi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$D = \\frac{6(6 - 3)}{2} = 9$$ (Opsi D)."
         },
         {
@@ -4552,7 +4552,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Ciri-ciri tersebut mendefinisikan bangun layang-layang.",
+          "hint": "Perhatikan ciri bangun datar dengan dua pasang sisi sama panjang yang bersebelahan dan sepasang sudut berhadapan yang sama besar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBangun datar tersebut adalah **layang-layang** (Opsi B)."
         }
       ]
@@ -4862,7 +4862,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Total $= 7 \\times 50 = 350$.",
+          "hint": "Kalikan jumlah simbol buku dengan nilai yang diwakili oleh setiap 1 simbol buku.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$7 \\times 50 = 350\\text{ buku}$$ (Opsi A).",
           "visual": {
             "type": "pictogram",
@@ -4912,7 +4912,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$142 - 135 = 7$ cm.",
+          "hint": "Temukan nilai tinggi badan tertinggi dan terendah dari data, lalu cari selisih (pengurangan) antara keduanya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$142 - 135 = 7\\text{ cm}$$ (Opsi B).",
           "visual": {
             "type": "bar-chart",
@@ -5047,7 +5047,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Siswa nilai 8 dan 9: $8 + 2 = 10$ anak.",
+          "hint": "Jumlahkan frekuensi (banyak anak) untuk nilai-nilai yang lebih besar dari 7 (yaitu nilai 8 dan 9).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$8 + 2 = 10\\text{ anak}$$ (Opsi D)."
         },
         {
@@ -5410,7 +5410,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Digit ke-6 dari kanan menempati nilai tempat ratusan ribu ($9 \\times 100.000 = 900.000$).",
+          "hint": "Urutkan nama nilai tempat mulai dari digit paling kanan hingga digit paling kiri bilangan tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nDigit 9 menempati nilai tempat **ratusan ribu** (Opsi C)."
         },
         {
@@ -5437,7 +5437,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Jumlahkan: $450 + 380 = 830$, lalu tambahkan tiga angka nol.",
+          "hint": "Jumlahkan angka penyusun ribuan terlebih dahulu, lalu tambahkan kembali nilai ribuan atau nol di belakangnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$450.000 + 380.000 = 830.000$$\nHasilnya adalah **830.000** (Opsi A)."
         },
         {
@@ -5464,7 +5464,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Hitung total sumbangan ($350.000 + 425.000 = 775.000$), lalu kurangkan dari 1.000.000.",
+          "hint": "Hitung terlebih dahulu total pengeluaran (jumlahkan semua sumbangan), kemudian kurangkan total uang awal dengan jumlah seluruh sumbangan tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Total sumbangan: $350.000 + 425.000 = 775.000$.\n2. Sisa uang:\n$$1.000.000 - 775.000 = \\text{Rp}225.000,00$$\nSisa uang dermawan adalah **Rp225.000,00** (Opsi D)."
         },
         {
@@ -5491,7 +5491,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Angka 4 berada di posisi ratus ribuan.",
+          "hint": "Hitung posisi digit tersebut mulai dari nilai tempat satuan di ujung kanan hingga ke digit paling depan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nNilai tempatnya adalah **ratus ribuan** (Opsi D)."
         },
         {
@@ -5518,7 +5518,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "375 ribu (375.000) + 620 = 375.620.",
+          "hint": "Perhatikan kelompok nilai tempat (ratusan ribu, puluhan ribu, ribuan, ratusan, dan seterusnya) lalu susun angka sesuai urutannya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nPenulisan yang benar adalah **375.620** (Opsi A)."
         },
         {
@@ -5545,7 +5545,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$450 + 375 = 825$ ribu.",
+          "hint": "Jumlahkan bagian ribuan terlebih dahulu, kemudian gabungkan dengan nilai tempat di bawahnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$450.000 + 375.000 = 825.000$$ (Opsi B)."
         },
         {
@@ -5572,7 +5572,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$1.000 - 645 = 355$ ribu.",
+          "hint": "Lakukan pengurangan bersusun dari nilai tempat terkecil atau gunakan teknik peminjaman yang sesuai.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$1.000.000 - 645.000 = 355.000$$ (Opsi C)."
         },
         {
@@ -5599,7 +5599,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$25 \\times 3 = 75$ diikuti empat nol: 750.000.",
+          "hint": "Kalikan angka utamanya terlebih dahulu, lalu sesuaikan jumlah nol pada hasil akhir.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$25.000 \\times 30 = 750.000$$ (Opsi D)."
         },
         {
@@ -5626,7 +5626,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$60 : 15 = 4$ diikuti empat nol: 40.000.",
+          "hint": "Sederhanakan pembagian dengan membuang jumlah nol yang sama atau gunakan pembagian bersusun.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$600.000 : 15 = 40.000$$ (Opsi B)."
         },
         {
@@ -5680,7 +5680,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$500 \\times 180.000 = 90.000.000$.",
+          "hint": "Kalikan jumlah paket dengan nilai harga per paket, lalu perhatikan penempatan jumlah nol.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$500 \\times 180.000 = \\text{Rp}90.000.000,00$$ (Opsi B)."
         },
         {
@@ -5707,7 +5707,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Selisih $498.750$ ke $500.000$ hanya $1.250$ (terkecil).",
+          "hint": "Hitung selisih mutlak antara masing-masing pilihan jawaban dengan bilangan acuan, lalu cari selisih yang paling kecil.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nSelisih terkecil adalah $|500.000 - 498.750| = 1.250$ (Opsi D)."
         },
         {
@@ -5734,7 +5734,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Dahulukan pembagian: $150.000 : 3 = 50.000$. Lalu jumlahkan: $250.000 + 50.000 = 300.000$.",
+          "hint": "Gunakan aturan operasi hitung campuran di mana pembagian didahulukan daripada penjumlahan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$250.000 + 50.000 = 300.000$$ (Opsi C)."
         },
         {
@@ -5761,7 +5761,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$40.000 - (12.500 + 18.750) = 40.000 - 31.250 = 8.750$.",
+          "hint": "Jumlahkan terlebih dahulu panjang jalan pada tahap I dan tahap II, lalu kurangkan dari target total pembangunan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$40.000 - 31.250 = 8.750\\text{ meter}$$ (Opsi B)."
         },
         {
@@ -5788,7 +5788,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$850.000 - 555.000 + 175.000 = 295.000 + 175.000 = 470.000$.",
+          "hint": "Ikuti urutan peristiwa secara bertahap: kurangi stok awal dengan barang yang dikeluarkan, lalu tambahkan dengan pasokan baru yang masuk.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$850.000 - (240.000 + 315.000) + 175.000 = 470.000\\text{ kg}$$ (Opsi B)."
         },
         {
@@ -5815,7 +5815,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$300.000 : 100 = 3.000$.",
+          "hint": "Selesaikan operasi di dalam tanda kurung masing-masing terlebih dahulu sebelum melakukan pembagian akhir.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$300.000 : 100 = 3.000$$ (Opsi A)."
         },
         {
@@ -5842,7 +5842,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$12.000 \\times 8 \\times 5 = 12.000 \\times 40 = 480.000$.",
+          "hint": "Hitung total jam operasi per hari, kalikan dengan jumlah hari kerja, lalu kalikan dengan jumlah produksi per jam.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$12.000 \\times 40 = 480.000\\text{ lembar}$$ (Opsi C)."
         },
         {
@@ -5869,7 +5869,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Angka 7 ratus ribuan (700.000) dan angka 7 puluhan (70): $700.000 - 70 = 699.930$.",
+          "hint": "Tentukan nilai tempat dari masing-masing kemunculan angka 7 yang memiliki nilai terbesar dan terkecil, lalu hitung selisih keduanya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$700.000 - 70 = 699.930$$ (Opsi A)."
         },
         {
@@ -5896,7 +5896,7 @@ export const grade5Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Tiap kabupaten $= 1.000.000 : 8 = 125.000$. Tiap kecamatan $= 125.000 : 25 = 5.000$.",
+          "hint": "Lakukan pembagian secara bertahap: bagikan jumlah total bibit dengan jumlah kabupaten, lalu hasilnya dibagi lagi dengan jumlah kecamatan per kabupaten.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{1.000.000}{8 \\times 25} = \\frac{1.000.000}{200} = 5.000\\text{ bibit}$$ (Opsi D)."
         }
       ]

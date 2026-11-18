@@ -38,25 +38,34 @@ export function DimensionLine({
         </>
       )}
       {/* Label Dimensi */}
-      {label && (
-        <g transform={`translate(${midX}, ${midY + offset})`}>
-          <rect 
-            x="-22" y="-9" width="44" height="18" rx="4" 
-            fill={isTarget ? VISUAL_THEME.accentSoft : '#FFFFFF'} 
-            stroke={isTarget ? VISUAL_THEME.accent : VISUAL_THEME.borderSubtle} 
-            strokeWidth="1"
-          />
-          <text 
-            x="0" y="4" 
-            textAnchor="middle" 
-            fontSize="10.5" 
-            fontWeight={isTarget ? "800" : "700"} 
-            fill={isTarget ? VISUAL_THEME.accentDark : VISUAL_THEME.textDark}
-          >
-            {label}
-          </text>
-        </g>
-      )}
+      {label && (() => {
+        const labelStr = String(label);
+        const boxW = Math.max(44, Math.ceil(labelStr.length * 6.4) + 14);
+        return (
+          <g transform={`translate(${midX}, ${midY + offset})`}>
+            <rect
+              x={-boxW / 2}
+              y="-9"
+              width={boxW}
+              height="18"
+              rx="4"
+              fill={isTarget ? VISUAL_THEME.accentSoft : '#FFFFFF'}
+              stroke={isTarget ? VISUAL_THEME.accent : VISUAL_THEME.borderSubtle}
+              strokeWidth="1"
+            />
+            <text
+              x="0"
+              y="4"
+              textAnchor="middle"
+              fontSize="10.5"
+              fontWeight={isTarget ? "800" : "700"}
+              fill={isTarget ? VISUAL_THEME.accentDark : VISUAL_THEME.textDark}
+            >
+              {label}
+            </text>
+          </g>
+        );
+      })()}
     </g>
   );
 }

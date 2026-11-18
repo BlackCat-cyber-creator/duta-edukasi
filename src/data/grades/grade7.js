@@ -121,7 +121,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Perkalian tanda beda menghasilkan negatif: $(-6) \\times 4 = -24$. Lalu negatif dibagi negatif menghasilkan positif.",
+          "hint": "Perhatikan aturan tanda pada operasi perkalian dan pembagian bilangan bulat: perkalian atau pembagian dua bilangan dengan tanda berbeda menghasilkan negatif, sedangkan tanda yang sama menghasilkan positif. Lakukan operasi secara berurutan dari kiri ke kanan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $(-6) \\times 4 = -24$\n2. $-24 : (-2) = 12$\nHasilnya adalah **12** (Opsi C)."
         },
         {
@@ -192,7 +192,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Hitung jumlah soal yang dijawab salah terlebih dahulu: $40 - 31 - 3 = 6$ soal salah.",
+          "hint": "Tentukan terlebih dahulu jumlah soal yang dijawab salah dengan mengurangkan total soal dengan jumlah soal yang dijawab benar dan soal yang tidak dijawab. Gunakan skor masing-masing kategori untuk menghitung total skor.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Soal salah: $40 - (31 + 3) = 40 - 34 = 6$ soal.\n2. Hitung skor perolehan:\n- Benar: $31 \\times 4 = 124$\n- Salah: $6 \\times (-2) = -12$\n- Tidak dijawab: $3 \\times (-1) = -3$\n3. Total skor:\n$$\\text{Total} = 124 + (-12) + (-3) = 124 - 15 = 109$$\nTotal skor yang diperoleh adalah **109** (Opsi D)."
         },
         {
@@ -317,7 +317,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Dahulukan operasi perkalian: $(-6) \\times 4 = -24$. Kemudian $18 - (-24) + (-10) = 18 + 24 - 10 = 32$.",
+          "hint": "Gunakan urutan operasi hitung (koidabaku): selesaikan perkalian terlebih dahulu sebelum penjumlahan dan pengurangan dari kiri ke kanan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $(-6) \\times 4 = -24$\n2. $18 - (-24) + (-10) = 18 + 24 - 10 = 32$ (Opsi A)."
         },
         {
@@ -344,7 +344,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Operasikan: $-3 + 8 - 6 = 5 - 6 = -1^\\circ\\text{C}$.",
+          "hint": "Catat perubahan suhu secara bertahap: mulai dari suhu pagi hari, tambahkan besar kenaikan suhu pada siang hari, lalu kurangi dengan besar penurunan suhu pada malam hari.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$-3 + 8 - 6 = -1^\\circ\\text{C}$$ (Opsi D)."
         },
         {
@@ -371,7 +371,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Posisi awal $-18$. Naik $+7$, turun $-4$: $-18 + 7 - 4 = -15$.",
+          "hint": "Nyatakan kedalaman di bawah permukaan laut sebagai bilangan negatif, gerakan naik sebagai penambahan bilangan positif, dan penyelaman kembali sebagai pengurangan. Lakukan penjumlahan dan pengurangan secara berurutan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$-18 + 7 - 4 = -15\\text{ meter}$$ (Opsi B)."
         },
         {
@@ -398,7 +398,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Soal salah $= 40 - 31 - 3 = 6$. Total skor $= (31 \\times 4) + (6 \\times (-2)) + (3 \\times 0) = 124 - 12 = 112$.",
+          "hint": "Hitung banyak soal yang salah dari total soal dikurangi soal benar dan tidak dijawab. Kalikan banyak soal pada masing-masing kategori dengan skornya, lalu jumlahkan hasilnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Skor} = (31 \\times 4) + (6 \\times (-2)) = 124 - 12 = 112$$ (Opsi C)."
         },
         {
@@ -425,7 +425,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Kenaikan terjadi sebanyak $25 : 5 = 5$ kali. Kenaikan $= 5 \\times 3 = 15^\\circ\\text{C}$. Suhu akhir $= -12 + 15 = 3^\\circ\\text{C}$.",
+          "hint": "Tentukan berapa banyak periode waktu 5 menit yang berlalu dalam total waktu tersebut. Kalikan jumlah periode dengan besar kenaikan suhu setiap periode, lalu tambahkan ke suhu awal.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$-12 + \\left(\\frac{25}{5} \\times 3\\right) = -12 + 15 = 3^\\circ\\text{C}$$ (Opsi B)."
         },
         {
@@ -452,7 +452,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Nilai mutlak selalu non-negatif: $|-25| = 25$, $|14| = 14$, $|-8| = 8$. Hitung $25 - 14 + 8 = 19$.",
+          "hint": "Ingat bahwa nilai mutlak suatu bilangan selalu bernilai non-negatif ($|x| \\ge 0$). Ubah setiap bentuk nilai mutlak menjadi bilangan tak negatif, lalu hitung operasi penjumlahan dan pengurangannya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$25 - 14 + 8 = 19$$ (Opsi A)."
         },
         {
@@ -479,18 +479,18 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Faktorisasi prima: $48 = 2^4 \\times 3$ dan $72 = 2^3 \\times 3^2$. $\\text{FPB} = 2^3 \\times 3 = 24$.",
+          "hint": "Gunakan faktorisasi prima dari kedua bilangan. FPB diperoleh dari perkalian faktor-faktor prima yang sama dengan pangkat terkecil.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{FPB} = 2^3 \\times 3 = 24$$ (Opsi C)."
         },
         {
           "id": "smp7-b1-15",
           "category": "Latihan",
           "difficulty": "Sedang",
-          "question": "KPK dari 12, 18, dan 24 adalah...",
+          "question": "Selisih antara $\\text{KPK}$ dan $\\text{FPB}$ dari pasangan bilangan 24 dan 36 adalah...",
           "options": [
             {
               "key": "A",
-              "text": "72"
+              "text": "60"
             },
             {
               "key": "B",
@@ -498,16 +498,16 @@ export const grade7Data = {
             },
             {
               "key": "C",
-              "text": "96"
+              "text": "72"
             },
             {
               "key": "D",
-              "text": "144"
+              "text": "84"
             }
           ],
           "correctAnswer": "A",
-          "hint": "$12 = 2^2 \\times 3$, $18 = 2 \\times 3^2$, $24 = 2^3 \\times 3$. $\\text{KPK} = 2^3 \\times 3^2 = 8 \\times 9 = 72$.",
-          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{KPK} = 2^3 \\times 3^2 = 72$$ (Opsi A)."
+          "hint": "Tentukan $\\text{KPK}(24, 36)$ dan $\\text{FPB}(24, 36)$ menggunakan faktorisasi prima, lalu kurangkan keduanya.",
+          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Faktorisasi prima: $24 = 2^3 \\times 3$ dan $36 = 2^2 \\times 3^2$.\n2. $\\text{KPK}(24, 36) = 2^3 \\times 3^2 = 72$ dan $\\text{FPB}(24, 36) = 2^2 \\times 3 = 12$.\n3. Selisih $= 72 - 12 = 60$ (Opsi A)."
         },
         {
           "id": "smp7-b1-16",
@@ -533,7 +533,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Cari KPK dari 6, 8, dan 12: $\\text{KPK}(6, 8, 12) = 24$ detik.",
+          "hint": "Tentukan KPK dari ketiga interval waktu menyala lampu tersebut untuk menemukan waktu nyala bersamaan berikutnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{KPK}(6, 8, 12) = 24\\text{ detik}$$ (Opsi D)."
         },
         {
@@ -560,7 +560,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Pembilang: $(-3)^2 - 2(2)(-4) = 9 - (-16) = 25$. Penyebut: $-3 + 2 - 4 = -5$. Nilai $= \\frac{25}{-5} = -5$.",
+          "hint": "Substitusikan nilai $a$, $b$, dan $c$ ke dalam pembilang dan penyebut secara terpisah, lalu selesaikan operasi hitung dengan memperhatikan aturan tanda bilangan bulat.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{(-3)^2 - 2(2)(-4)}{-3 + 2 - 4} = \\frac{9 + 16}{-5} = \\frac{25}{-5} = -5$$ (Opsi A)."
         },
         {
@@ -587,7 +587,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Total penurunan suhu $= 25 - (-7) = 32^\\circ\\text{C}$. Banyak kali penurunan $= 32 : 2 = 16$ kali. Waktu $= 16 \\times 3 = 48$ menit.",
+          "hint": "Hitung total penurunan suhu dari suhu awal ke suhu akhir. Bagilah dengan besar penurunan suhu per satuan waktu untuk mengetahui berapa banyak interval waktu yang terjadi, lalu kalikan dengan durasi setiap interval.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Penurunan suhu: $25 - (-7) = 32^\\circ\\text{C}$\n2. Waktu: $\\frac{32}{2} \\times 3 = 48\\text{ menit}$ (Opsi B)."
         },
         {
@@ -614,7 +614,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kelipatan 4 antara -50 dan 50: $\\pm 4, \\pm 8, \\dots, \\pm 48$ (ada $12 \\times 2 = 24$ bilangan, tambah 0 jika non-nol atau cek batas). Antara -50 dan 50: kelipatan 4 positif ada 12 (4..48), negatif ada 12 (-4..-48), total 24 (tidak termasuk 0). Kelipatan 12 (KPK 4 dan 6): positif ada 4 (12,24,36,48), negatif ada 4 (-12,-24,-36,-48), total 8. Sisa $= 24 - 8 = 16$.",
+          "hint": "Tentukan jumlah bilangan kelipatan suatu angka dalam rentang tertentu, lalu kurangi dengan jumlah kelipatan persekutuannya (KPK dari kedua pembagi) pada rentang yang sama menggunakan prinsip inklusi-eksklusi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Kelipatan 4: $12 + 12 = 24$\n2. Kelipatan 12: $4 + 4 = 8$\n3. Banyak bilangan: $24 - 8 = 16$ (Opsi C)."
         },
         {
@@ -641,7 +641,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Faktor dari $-36$ dengan jumlah $-5$ adalah $4$ dan $-9$. Karena $p > q$, maka $p = 4$ dan $q = -9$. $p - q = 4 - (-9) = 13$.",
+          "hint": "Cari dua bilangan yang jika dikalikan menghasilkan $-36$ dan jika dijumlahkan menghasilkan $-5$. Perhatikan syarat bahwa $p > q$, lalu hitung nilai $p - q$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $p = 4$ dan $q = -9$\n2. $p - q = 4 - (-9) = 13$ (Opsi C)."
         }
       ]
@@ -744,28 +744,28 @@ export const grade7Data = {
           "id": "smp7-b2-3",
           "category": "Latihan",
           "difficulty": "Sedang",
-          "question": "Bentuk pecahan biasa yang paling sederhana dari bilangan desimal 0,375 adalah...",
+          "question": "Urutan bilangan rasional berikut dari yang terkecil ke terbesar adalah: $0{,}65$; $\\frac{5}{8}$; $60\\%$; dan $\\frac{2}{3}$.",
           "options": [
             {
               "key": "A",
-              "text": "$\\frac{3}{8}$"
+              "text": "$60\\%$; $\\frac{5}{8}$; $0{,}65$; $\\frac{2}{3}$"
             },
             {
               "key": "B",
-              "text": "$\\frac{375}{100}$"
+              "text": "$\\frac{5}{8}$; $60\\%$; $0{,}65$; $\\frac{2}{3}$"
             },
             {
               "key": "C",
-              "text": "$\\frac{7}{20}$"
+              "text": "$60\\%$; $0{,}65$; $\\frac{5}{8}$; $\\frac{2}{3}$"
             },
             {
               "key": "D",
-              "text": "$\\frac{5}{16}$"
+              "text": "$\\frac{2}{3}$; $0{,}65$; $\\frac{5}{8}$; $60\\%$"
             }
           ],
           "correctAnswer": "A",
-          "hint": "Tulis sebagai $\\frac{375}{1000}$, lalu bagi pembilang dan penyebut dengan 125.",
-          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$0{,}375 = \\frac{375}{1.000} = \\frac{375 : 125}{1.000 : 125} = \\frac{3}{8}$$\nBentuk pecahannya adalah **$\\frac{3}{8}$** (Opsi A)."
+          "hint": "Ubah seluruh bilangan menjadi bentuk desimal (minimal tiga angka di belakang koma) agar mudah dibandingkan secara berurutan.",
+          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $60\\% = 0{,}600$\n2. $\\frac{5}{8} = 0{,}625$\n3. $0{,}65 = 0{,}650$\n4. $\\frac{2}{3} \\approx 0{,}667$\nUrutan dari terkecil: **$60\\%$; $\\frac{5}{8}$; $0{,}65$; $\\frac{2}{3}$** (Opsi A)."
         },
         {
           "id": "smp7-b2-4",
@@ -791,7 +791,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Ubah ke pecahan biasa: $12\\frac{1}{2} = \\frac{25}{2}$, lalu bagi dengan $\\frac{1}{4}$.",
+          "hint": "Ubah pecahan campuran menjadi pecahan biasa, kemudian lakukan operasi pembagian dengan pecahan pembagi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Banyak botol} = \\frac{25}{2} : \\frac{1}{4} = \\frac{25}{2} \\times \\frac{4}{1} = \\frac{100}{2} = 50$$\nBanyak botol yang diperlukan adalah **50 botol** (Opsi C)."
         },
         {
@@ -845,7 +845,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Misalkan $x = 0{,}333... \\implies 10x = 3{,}333... \\implies 9x = 3 \\implies x = \\frac{1}{3}$.",
+          "hint": "Misalkan $x$ adalah bilangan desimal berulang, kalikan dengan perpangkatan 10 yang sesuai, lalu kurangi untuk mengubahnya menjadi pecahan biasa.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$9x = 3 \\implies x = \\frac{1}{3}$$ (Opsi B)."
         },
         {
@@ -872,7 +872,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Samakan penyebut menjadi 6: $-\\frac{4}{6} + \\frac{5}{6} = \\frac{1}{6}$.",
+          "hint": "Samakan terlebih dahulu penyebut kedua pecahan sebelum melakukan penjumlahan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$-\\frac{4}{6} + \\frac{5}{6} = \\frac{1}{6}$$ (Opsi D)."
         },
         {
@@ -899,7 +899,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Negatif kali negatif menghasilkan positif: $\\frac{3 \\times 8}{4 \\times 9} = \\frac{24}{36} = \\frac{2}{3}$.",
+          "hint": "Gunakan sifat perkalian tanda negatif, lalu kalikan pembilang dengan pembilang dan penyebut dengan penyebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{3 \\times 8}{4 \\times 9} = \\frac{24}{36} = \\frac{2}{3}$$ (Opsi C)."
         },
         {
@@ -926,7 +926,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Ubah pembagian menjadi perkalian dengan kebalikan: $-\\frac{5}{8} \\times \\frac{16}{15} = -\\frac{1 \\times 2}{1 \\times 3} = -\\frac{2}{3}$.",
+          "hint": "Ubah operasi pembagian pecahan menjadi perkalian dengan kebalikan pecahan pembagi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$-\\frac{5}{8} \\times \\frac{16}{15} = -\\frac{2}{3}$$ (Opsi A)."
         },
         {
@@ -953,7 +953,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Bagi 7 dengan 8: $7 : 8 = 0{,}875$, sehingga $-\\frac{7}{8} = -0{,}875$.",
+          "hint": "Lakukan pembagian pembilang dengan penyebut secara bersusun atau ubah penyebut menjadi kelipatan 10.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$-\\frac{7}{8} = -0{,}875$$ (Opsi D)."
         },
         {
@@ -980,7 +980,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Ubah semua ke desimal: $-\\frac{4}{5} = -0{,}80$, $-0{,}75$, $-0{,}60$, $-\\frac{1}{2} = -0{,}50$. Semakin ke kiri di garis bilangan nilainya semakin kecil.",
+          "hint": "Ubah semua bentuk bilangan (pecahan dan desimal) ke dalam bentuk yang seragam (misalnya desimal) agar mudah dibandingkan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nUrutan naik: **-4/5; -0,75; -0,6; -1/2** (Opsi A)."
         },
         {
@@ -1007,7 +1007,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Dalam kurung: $-0{,}5 + 0{,}75 = 0{,}25 = \\frac{1}{4}$. Pembagian: $\\frac{1}{4} : \\left(-\\frac{1}{4}\\right) = -1$.",
+          "hint": "Selesaikan operasi di dalam tanda kurung terlebih dahulu, ikuti urutan operasi hitung campuran pada bilangan pecahan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{1}{4} : \\left(-\\frac{1}{4}\\right) = -1$$ (Opsi D)."
         },
         {
@@ -1034,7 +1034,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Ubah ke desimal: $3{,}5 - 1{,}75 - 0{,}8 = 1{,}75 - 0{,}8 = 0{,}95$ kg.",
+          "hint": "Kurangi persediaan awal dengan total bagian yang digunakan untuk masing-masing keperluan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$3{,}5 - 1{,}75 - 0{,}8 = 0{,}95\\text{ kg}$$ (Opsi C)."
         },
         {
@@ -1061,7 +1061,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$100x - x = 45 \\implies 99x = 45 \\implies x = \\frac{45}{99} = \\frac{5}{11}$.",
+          "hint": "Gunakan pemisalan variabel untuk desimal berulang, kalikan dengan kelipatan 10, lalu eliminasi bagian berulangnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x = \\frac{45}{99} = \\frac{5}{11}$$ (Opsi B)."
         },
         {
@@ -1088,7 +1088,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Rata-rata: $\\frac{1}{2}\\left(\\frac{1}{3} + \\frac{1}{2}\\right) = \\frac{1}{2}\\left(\\frac{5}{6}\\right) = \\frac{5}{12}$.",
+          "hint": "Cari nilai rata-rata dari kedua bilangan tersebut dengan menjumlahkannya lalu membaginya dengan dua.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{\\frac{1}{3} + \\frac{1}{2}}{2} = \\frac{5}{12}$$ (Opsi B)."
         },
         {
@@ -1115,7 +1115,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Penyebut: $1 + \\frac{1}{2} = \\frac{3}{2}$. Kebalikan: $\\frac{1}{\\frac{3}{2}} = \\frac{2}{3}$. Hasil $= 1 - \\frac{2}{3} = \\frac{1}{3}$.",
+          "hint": "Selesaikan perhitungan penyebut bertingkat dari bagian paling bawah terlebih dahulu secara bertahap.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$1 - \\frac{2}{3} = \\frac{1}{3}$$ (Opsi D)."
         },
         {
@@ -1142,7 +1142,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Perkalian teleskopik: $\\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{3}{4} \\times \\dots \\times \\frac{9}{10} = \\frac{1}{10}$.",
+          "hint": "Sederhanakan masing-masing faktor di dalam kurung untuk melihat pola perkalian teleskopik yang terjadi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{3}{4} \\times \\dots \\times \\frac{9}{10} = \\frac{1}{10}$$ (Opsi C)."
         },
         {
@@ -1169,7 +1169,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Selisih bagian: $\\frac{3}{4} - \\frac{3}{8} = \\frac{3}{8}$ bagian $= 15$ liter. Kapasitas penuh $= 15 \\times \\frac{8}{3} = 40$ liter.",
+          "hint": "Tentukan selisih pecahan bagian sebelum dan sesudah penambahan untuk mengetahui nilai dari penambahan tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Kapasitas} = 15 : \\frac{3}{8} = 40\\text{ liter}$$ (Opsi A)."
         },
         {
@@ -1196,7 +1196,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "$\\sqrt{5}$ adalah bilangan irasional (desimal tak berulang dan tak terbatas). $\\sqrt{0{,}25} = 0{,}5 = \\frac{1}{2}$ adalah rasional.",
+          "hint": "Bilangan rasional dapat dinyatakan sebagai pecahan $\\frac{a}{b}$ atau desimal berhenti/berulang; periksa bentuk akar mana yang tidak menghasilkan bilangan bulat atau desimal berhenti.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\sqrt{5} \\text{ adalah bilangan irasional}$$ (Opsi D)."
         },
         {
@@ -1223,7 +1223,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Kalikan kedua ruas dengan KPK(3, 4, 2, 6) = 12: $8x - 3 = 6x + 2 \\implies 2x = 5 \\implies x = \\frac{5}{2}$.",
+          "hint": "Kalikan kedua ruas persamaan dengan KPK dari semua penyebutnya untuk menghilangkan bentuk pecahan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$8x - 3 = 6x + 2 \\implies 2x = 5 \\implies x = \\frac{5}{2}$$ (Opsi B)."
         }
       ]
@@ -1296,7 +1296,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Samakan satuan terlebih dahulu: $1\\text{ kg} = 1.000\\text{ gram}$. Lalu bagi keduanya dengan 250.",
+          "hint": "Samakan satuan massa terlebih dahulu, lalu sederhanakan perbandingannya dengan membagi kedua nilai dengan FPB-nya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Samakan satuan: 250 gram : 1.000 gram\n2. Sederhanakan:\n$$\\frac{250}{1.000} = \\frac{1}{4} = 1 : 4$$\nBentuk sederhananya adalah **1 : 4** (Opsi A).",
           "visual": {
             "type": "bar-model",
@@ -1354,7 +1354,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Ini perbandingan senilai: $\\frac{5}{60} = \\frac{x}{180}$.",
+          "hint": "Gunakan konsep perbandingan senilai antara volume bensin dan jarak tempuh.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Perbandingan senilai:\n$$x = 5 \\times \\frac{180}{60} = 5 \\times 3 = 15\\text{ liter}$$\nBensin yang dibutuhkan adalah **15 liter** (Opsi C)."
         },
         {
@@ -1381,7 +1381,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Kalikan 4 cm dengan 2.000.000 = 8.000.000 cm, lalu bagi 100.000 untuk konversi ke km.",
+          "hint": "Kalikan jarak pada peta dengan penyebut skala, lalu konversikan hasilnya dari centimeter ke kilometer.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$J_s = 4 \\times 2.000.000 = 8.000.000\\text{ cm} = \\frac{8.000.000}{100.000} = 80\\text{ km}$$\nJarak sebenarnya adalah **80 km** (Opsi D)."
         },
         {
@@ -1408,7 +1408,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Gunakan perbandingan berbalik nilai: $15 \\times 24 = x \\times 18$. Tambahan pekerja = $x - 15$.",
+          "hint": "Gunakan konsep perbandingan berbalik nilai untuk menentukan total pekerja yang diperlukan, lalu hitung selisihnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Hitung total pekerja yang dibutuhkan ($x$):\n$$15 \\times 24 = x \\times 18$$\n$$360 = 18x \\implies x = 20\\text{ pekerja}$$\n2. Hitung tambahan pekerja:\n$$\\text{Tambahan} = 20 - 15 = 5\\text{ orang}$$\nTambahan pekerja yang diperlukan adalah **5 orang** (Opsi A)."
         },
         {
@@ -1435,7 +1435,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Bagi kedua suku rasio dengan FPB yaitu 12: $24 : 12 = 2$ dan $36 : 12 = 3$.",
+          "hint": "Bagi kedua suku rasio dengan FPB dari kedua bilangan tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$24 : 36 = 2 : 3$$ (Opsi D)."
         },
         {
@@ -1462,7 +1462,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Uang Caca $= \\frac{5}{4} \\times 24.000 = 30.000$.",
+          "hint": "Gunakan nilai perbandingan Budi untuk mencari nilai satu bagian, lalu kalikan dengan perbandingan Caca.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Uang Caca} = \\frac{5}{4} \\times 24.000 = 30.000\\text{ rupiah}$$ (Opsi D)."
         },
         {
@@ -1489,7 +1489,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Laju perubahan (kecepatan) $= \\frac{\\text{jarak}}{\\text{waktu}} = \\frac{180}{3} = 60$ km/jam.",
+          "hint": "Gunakan rumus kecepatan rata-rata yaitu jarak total dibagi dengan waktu tempuh.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$v = \\frac{180}{3} = 60\\text{ km/jam}$$ (Opsi B)."
         },
         {
@@ -1516,7 +1516,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Harga per kg $= 65.000 : 5 = 13.000$. Untuk 8 kg $= 8 \\times 13.000 = 104.000$.",
+          "hint": "Tentukan harga per satuan berat terlebih dahulu sebelum mengalikan dengan berat yang ditanyakan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$8 \\times 13.000 = 104.000\\text{ rupiah}$$ (Opsi A)."
         },
         {
@@ -1543,7 +1543,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Ubah km ke cm: $25\\text{ km} = 2.500.000\\text{ cm}$. Skala $= 5 : 2.500.000 = 1 : 500.000$.",
+          "hint": "Samakan satuan jarak pada peta dan jarak sebenarnya dalam centimeter, lalu sederhanakan perbandingannya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Skala} = 5 : 2.500.000 = 1 : 500.000$$ (Opsi B)."
         },
         {
@@ -1570,7 +1570,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Bahan bakar $= 135 : 45 = 3$ liter.",
+          "hint": "Bagi jarak total perjalanan dengan jarak tempuh per satuan bahan bakar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$135 : 45 = 3\\text{ liter}$$ (Opsi C)."
         },
         {
@@ -1597,7 +1597,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Perbandingan berbalik nilai: $12 \\times 30 = 15 \\times H \\implies H = \\frac{360}{15} = 24$ hari.",
+          "hint": "Gunakan perbandingan berbalik nilai dengan total pekerja setelah penambahan orang.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$H = \\frac{12 \\times 30}{15} = 24\\text{ hari}$$ (Opsi A)."
         },
         {
@@ -1624,7 +1624,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Faktor perbesaran $k = 12 : 4 = 3$. Lebar baru $= 3 \\times 3 = 9$ cm. Luas baru $= 9 \\times 12 = 108$ cm².",
+          "hint": "Tentukan faktor skala perbesaran dari sisi panjang, hitung ukuran sisi lainnya, lalu hitung luas baru.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Luas} = 9 \\times 12 = 108\\text{ cm}^2$$ (Opsi B)."
         },
         {
@@ -1651,7 +1651,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Waktu $= \\frac{\\text{Volume}}{\\text{Debit}} = \\frac{240}{15} = 16$ menit.",
+          "hint": "Gunakan rumus waktu sama dengan volume dibagi debit air.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$t = \\frac{240}{15} = 16\\text{ menit}$$ (Opsi B)."
         },
         {
@@ -1678,7 +1678,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Bagian Amir + Candra $= 2 + 5 = 7$. Nilai 1 bagian $= 42 : 7 = 6$. Kelereng Budi $= 3 \\times 6 = 18$ butir.",
+          "hint": "Gunakan jumlah perbandingan Amir dan Candra untuk mencari nilai satu bagian perbandingan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Kelereng Budi} = \\frac{3}{2 + 5} \\times 42 = 18\\text{ butir}$$ (Opsi C)."
         },
         {
@@ -1705,7 +1705,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Kecepatan cetak $= 480 : 8 = 60$ lembar/menit. Dalam 15 menit $= 15 \\times 60 = 900$ lembar.",
+          "hint": "Hitung kecepatan cetak per satuan waktu terlebih dahulu sebelum mengalikan dengan waktu yang ditanyakan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$15 \\times 60 = 900\\text{ lembar}$$ (Opsi B)."
         },
         {
@@ -1732,7 +1732,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Total sapi $= 40 + 20 = 60$. Perbandingan berbalik nilai: $40 \\times 18 = 60 \\times H \\implies H = \\frac{720}{60} = 12$ hari.",
+          "hint": "Hitung total jumlah sapi setelah pembelian, lalu gunakan perbandingan berbalik nilai.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$H = \\frac{40 \\times 18}{60} = 12\\text{ hari}$$ (Opsi D)."
         },
         {
@@ -1759,7 +1759,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$120\\text{ km} = 12.000.000\\text{ cm}$. Jarak pada peta $= 12.000.000 : 1.500.000 = 8$ cm.",
+          "hint": "Konversikan jarak kilometer ke centimeter, lalu bagi dengan penyebut skala peta.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Jarak peta} = \\frac{12.000.000}{1.500.000} = 8\\text{ cm}$$ (Opsi A)."
         },
         {
@@ -1786,7 +1786,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Sisa beban kerja: 16 pekerja selama 20 hari $= 320$ orang-hari. Sisa waktu tersedia: $20 - 4 = 16$ hari. Pekerja yang dibutuhkan: $320 : 16 = 20$ pekerja. Pekerja tambahan: $20 - 16 = 4$ orang.",
+          "hint": "Hitung sisa beban kerja dalam orang-hari dan sisa waktu efektif setelah proyek dihentikan sementara.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sisa beban kerja: $16 \\times (30 - 10) = 320\\text{ orang-hari}$\n2. Sisa hari riil: $20 - 4 = 16\\text{ hari}$\n3. Pekerja total: $320 : 16 = 20\\text{ orang}$\n4. Tambahan pekerja: $20 - 16 = 4\\text{ orang}$ (Opsi D)."
         },
         {
@@ -1813,7 +1813,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Rasio keliling sama dengan rasio jari-jari $r_1 : r_2 = 3 : 5$. Rasio luas $= r_1^2 : r_2^2 = 3^2 : 5^2 = 9 : 25$.",
+          "hint": "Ingat kembali hubungan antara perbandingan keliling lingkaran dan perbandingan luasnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Rasio luas} = 3^2 : 5^2 = 9 : 25$$ (Opsi C)."
         },
         {
@@ -1840,7 +1840,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$\\frac{1}{B} = \\frac{1}{6} - \\frac{1}{10} = \\frac{5 - 3}{30} = \\frac{2}{30} = \\frac{1}{15} \\implies B = 15$ hari.",
+          "hint": "Gunakan selisih antara kecepatan kerja gabungan dan kecepatan kerja individu A per hari.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{1}{B} = \\frac{1}{6} - \\frac{1}{10} = \\frac{1}{15} \\implies B = 15\\text{ hari}$$ (Opsi C)."
         }
       ]
@@ -1909,7 +1909,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Perhatikan tanda minus di depan angka 7 yang melekat pada variabel $x$.",
+          "hint": "Perhatikan tanda pada suku yang memuat variabel $x$ beserta koefisiennya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBentuk aljabar $3x^2 - 7x + 9$ memiliki koefisien untuk variabel $x$ sebesar **-7** (Opsi B)."
         },
         {
@@ -1936,7 +1936,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Gabungkan suku sejenis: $(4a - 2a) + (7b + 3b)$.",
+          "hint": "Kelompokkan suku-suku yang sejenis (suku yang memiliki variabel yang sama) terlebih dahulu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Suku $a$: $4a - 2a = 2a$\n2. Suku $b$: $7b + 3b = 10b$\nHasilnya adalah **$2a + 10b$** (Opsi D)."
         },
         {
@@ -1963,7 +1963,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Kalikan distributif: $2x(x) + 2x(5) - 3(x) - 3(5) = 2x^2 + 10x - 3x - 15$.",
+          "hint": "Gunakan sifat distributif perkalian bentuk aljabar (mengalikan setiap suku pada kurung pertama dengan setiap suku pada kurung kedua).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $2x(x + 5) - 3(x + 5) = 2x^2 + 10x - 3x - 15$\n2. Gabungkan suku tengah: $10x - 3x = 7x$\nHasilnya adalah **$2x^2 + 7x - 15$** (Opsi A)."
         },
         {
@@ -1990,35 +1990,35 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Sederhanakan bentuk aljabar terlebih dahulu menjadi $10x + 2$, lalu masukkan $x = 4$.",
+          "hint": "Jabarkan bentuk aljabar keliling terlebih dahulu, sederhanakan suku-suku sejenis, kemudian substitusikan nilai $x$ yang diketahui.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sederhanakan bentuk aljabar keliling:\n$$K = 6x + 4 + 4x - 2 = 10x + 2$$\n2. Substitusikan nilai $x = 4$:\n$$K = 10(4) + 2 = 40 + 2 = 42\\text{ cm}$$\nKeliling persegi panjang adalah **42 cm** (Opsi B)."
         },
         {
           "id": "smp7-b4-5",
           "category": "Latihan",
           "difficulty": "Dasar",
-          "question": "Koefisien dari variabel $x$ pada bentuk aljabar $3x^2 - 7x + 5$ adalah...",
+          "question": "Banyaknya suku dan nilai konstanta berturut-turut pada bentuk aljabar $4x^3 - 2x^2 + 5x - 11$ adalah...",
           "options": [
             {
               "key": "A",
-              "text": "7"
+              "text": "4 suku dan konstanta 11"
             },
             {
               "key": "B",
-              "text": "-7"
+              "text": "4 suku dan konstanta $-11$"
             },
             {
               "key": "C",
-              "text": "3"
+              "text": "3 suku dan konstanta $-11$"
             },
             {
               "key": "D",
-              "text": "5"
+              "text": "4 suku dan konstanta 5"
             }
           ],
           "correctAnswer": "B",
-          "hint": "Koefisien adalah angka pengali yang berada tepat di depan variabel $x$, yaitu $-7$.",
-          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nKoefisien dari $x$ adalah **-7** (Opsi B)."
+          "hint": "Hitung semua suku yang dipisahkan tanda tambah atau kurang, dan perhatikan tanda di depan bilangan yang tidak memuat variabel.",
+          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBentuk aljabar $4x^3 - 2x^2 + 5x - 11$ memiliki **4 suku** ($4x^3$, $-2x^2$, $5x$, $-11$) dan **konstanta $-11$** (Opsi B)."
         },
         {
           "id": "smp7-b4-6",
@@ -2044,7 +2044,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Kelompokkan suku sejenis: $(4x + 3x) + (-5y + 8y) = 7x + 3y$.",
+          "hint": "Kelompokkan suku-suku yang sejenis untuk variabel $x$ dan variabel $y$ secara terpisah.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$(4x + 3x) + (-5y + 8y) = 7x + 3y$$ (Opsi A)."
         },
         {
@@ -2071,7 +2071,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Distribusikan $3a$: $3a \\times 2a - 3a \\times 5b = 6a^2 - 15ab$.",
+          "hint": "Gunakan sifat distributif untuk mengalikan suku di luar kurung dengan masing-masing suku di dalam kurung.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$3a(2a - 5b) = 6a^2 - 15ab$$ (Opsi D)."
         },
         {
@@ -2098,7 +2098,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "$(2x)(x) + (2x)(-4) + (3)(x) + (3)(-4) = 2x^2 - 8x + 3x - 12 = 2x^2 - 5x - 12$.",
+          "hint": "Gunakan metode perkalian pelangi (FOIL) untuk mengalikan dua bentuk aljabar berderajat satu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$2x^2 - 8x + 3x - 12 = 2x^2 - 5x - 12$$ (Opsi B)."
         },
         {
@@ -2125,7 +2125,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Pengurangan $A$ oleh $B$ berarti $A - B$: $(3x - 2y) - (5x + 4y) = 3x - 2y - 5x - 4y = -2x - 6y$.",
+          "hint": "Ingat bahwa pengurangan bentuk $A$ oleh $B$ berarti $A - B$. Hati-hati dengan tanda negatif saat membuka tanda kurung.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$(3x - 2y) - (5x + 4y) = -2x - 6y$$ (Opsi C)."
         },
         {
@@ -2152,7 +2152,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$2(3^2) - 3(3)(-2) + (-2)^2 = 2(9) - (-18) + 4 = 18 + 18 + 4 = 40$.",
+          "hint": "Substitusikan nilai $x = 3$ dan $y = -2$ dengan teliti ke setiap suku aljabar, lalu hitung hasilnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$2(9) + 18 + 4 = 40$$ (Opsi A)."
         },
         {
@@ -2179,7 +2179,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Selisih dua kuadrat: $a^2 - b^2 = (a - b)(a + b) \\implies (x - 3)(x + 3)$.",
+          "hint": "Gunakan rumus selisih dua kuadrat $a^2 - b^2 = (a - b)(a + b)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x^2 - 9 = (x - 3)(x + 3)$$ (Opsi C)."
         },
         {
@@ -2206,7 +2206,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$K = 2[(3x + 2) + (x + 4)] = 2(4x + 6) = 8x + 12$.",
+          "hint": "Masukkan bentuk aljabar panjang dan lebar ke dalam rumus keliling persegi panjang, lalu sederhanakan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 2(4x + 6) = 8x + 12\\text{ cm}$$ (Opsi C)."
         },
         {
@@ -2217,23 +2217,23 @@ export const grade7Data = {
           "options": [
             {
               "key": "A",
-              "text": "\\frac{2x}{3y}"
+              "text": "$\\frac{2x}{3y}$"
             },
             {
               "key": "B",
-              "text": "\\frac{3x}{2y}"
+              "text": "$\\frac{3x}{2y}$"
             },
             {
               "key": "C",
-              "text": "\\frac{2y}{3x}"
+              "text": "$\\frac{2y}{3x}$"
             },
             {
               "key": "D",
-              "text": "\\frac{3y}{2x}"
+              "text": "$\\frac{3y}{2x}$"
             }
           ],
           "correctAnswer": "A",
-          "hint": "Bagi pembilang dan penyebut dengan $3xy$: $\\frac{6 : 3}{9 : 3} \\times \\frac{x}{y} = \\frac{2x}{3y}$.",
+          "hint": "Sederhanakan koefisien angka terlebih dahulu, kemudian gunakan sifat eksponen pada variabel pembilang dan penyebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{6x^2 y}{9xy^2} = \\frac{2x}{3y}$$ (Opsi A)."
         },
         {
@@ -2244,23 +2244,23 @@ export const grade7Data = {
           "options": [
             {
               "key": "A",
-              "text": "\\frac{5}{x + y}"
+              "text": "$\\frac{5}{x + y}$"
             },
             {
               "key": "B",
-              "text": "\\frac{5}{xy}"
+              "text": "$\\frac{5}{xy}$"
             },
             {
               "key": "C",
-              "text": "\\frac{2x + 3y}{xy}"
+              "text": "$\\frac{2x + 3y}{xy}$"
             },
             {
               "key": "D",
-              "text": "\\frac{2y + 3x}{xy}"
+              "text": "$\\frac{2y + 3x}{xy}$"
             }
           ],
           "correctAnswer": "D",
-          "hint": "Samakan penyebut menjadi $xy$: $\\frac{2y}{xy} + \\frac{3x}{xy} = \\frac{2y + 3x}{xy}$.",
+          "hint": "Samakan penyebut kedua pecahan aljabar dengan menentukan KPK dari penyebutnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{2}{x} + \\frac{3}{y} = \\frac{2y + 3x}{xy}$$ (Opsi D)."
         },
         {
@@ -2287,7 +2287,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Faktorkan pembilang: $(2x + 5)(3x - 4) : (2x + 5) = 3x - 4$.",
+          "hint": "Faktorkan bentuk kuadrat di pembilang atau gunakan pembagian bersusun bentuk aljabar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{(2x + 5)(3x - 4)}{2x + 5} = 3x - 4$$ (Opsi D)."
         },
         {
@@ -2314,7 +2314,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kuadrat suku dua: $(a - b)^2 = a^2 - 2ab + b^2 = (2x)^2 - 2(2x)(3) + 3^2 = 4x^2 - 12x + 9$.",
+          "hint": "Gunakan rumus kuadrat binomial $(a - b)^2 = a^2 - 2ab + b^2$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$(2x - 3)^2 = 4x^2 - 12x + 9$$ (Opsi C)."
         },
         {
@@ -2341,7 +2341,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Identitas aljabar: $a^2 + b^2 = (a + b)^2 - 2ab = 7^2 - 2(10) = 49 - 20 = 29$.",
+          "hint": "Gunakan bentuk kuadrat dari jumlah dua bilangan: $(a + b)^2 = a^2 + b^2 + 2ab$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$a^2 + b^2 = (a + b)^2 - 2ab = 49 - 20 = 29$$ (Opsi A)."
         },
         {
@@ -2352,23 +2352,23 @@ export const grade7Data = {
           "options": [
             {
               "key": "A",
-              "text": "\\frac{x - 3}{x - 2}"
+              "text": "$\\frac{x - 3}{x - 2}$"
             },
             {
               "key": "B",
-              "text": "\\frac{x + 3}{x + 2}"
+              "text": "$\\frac{x + 3}{x + 2}$"
             },
             {
               "key": "C",
-              "text": "\\frac{x - 2}{x + 2}"
+              "text": "$\\frac{x - 2}{x + 2}$"
             },
             {
               "key": "D",
-              "text": "\\frac{x - 3}{x + 2}"
+              "text": "$\\frac{x - 3}{x + 2}$"
             }
           ],
           "correctAnswer": "D",
-          "hint": "Faktorkan pembilang dan penyebut: $\\frac{(x - 2)(x - 3)}{(x - 2)(x + 2)} = \\frac{x - 3}{x + 2}$.",
+          "hint": "Faktorkan bentuk kuadrat pada pembilang dan penyebut terlebih dahulu sebelum menyederhanakan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{(x - 2)(x - 3)}{(x - 2)(x + 2)} = \\frac{x - 3}{x + 2}$$ (Opsi D)."
         },
         {
@@ -2395,7 +2395,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kuadratkan kedua ruas: $(x + \\frac{1}{x})^2 = x^2 + 2 + \\frac{1}{x^2} = 16 \\implies x^2 + \\frac{1}{x^2} = 14$.",
+          "hint": "Kuadratkan kedua ruas dari persamaan yang diketahui: $(x + \\frac{1}{x})^2$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x^2 + \\frac{1}{x^2} = 4^2 - 2 = 14$$ (Opsi C)."
         },
         {
@@ -2422,7 +2422,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Selisih umur selalu tetap: $(5x + 2) - (2x - 1) = 3x + 3$ tahun.",
+          "hint": "Ingat bahwa selisih umur antara dua orang selalu tetap dari waktu ke waktu, lalu kurangkan bentuk aljabar umur Ayah dan Anak.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Selisih} = (5x + 2) - (2x - 1) = 3x + 3\\text{ tahun}$$ (Opsi B)."
         }
       ]
@@ -2518,7 +2518,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Faktor perbesaran: $k = \\frac{9}{3} = 3$. Kalikan sisi panjang dengan faktor perbesaran: $4 \\times 3$.",
+          "hint": "Tentukan faktor perbesaran dengan membagi ukuran sisi terpendek setelah perbesaran dengan ukuran semula, lalu kalikan faktor tersebut dengan sisi panjang foto.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Faktor skala: $k = \\frac{9}{3} = 3$\n2. Sisi panjang baru: $4 \\times 3 = 12\\text{ cm}$\nUkuran sisi terpanjangnya adalah **12 cm** (Opsi A)."
         },
         {
@@ -2545,7 +2545,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Gunakan perbandingan kesebangunan bayangan: $\\frac{T}{6} = \\frac{24}{4}$.",
+          "hint": "Gunakan perbandingan kesebangunan antara tinggi benda dan panjang bayangannya: $\\frac{\\text{Tinggi gedung}}{\\text{Tinggi tiang}} = \\frac{\\text{Bayangan gedung}}{\\text{Bayangan tiang}}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Perbandingan senilai:\n$$\\frac{T}{6} = \\frac{24}{4} = 6$$\n$$T = 6 \\times 6 = 36\\text{ meter}$$\nTinggi gedung tersebut adalah **36 meter** (Opsi B)."
         },
         {
@@ -2572,7 +2572,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Cari panjang foto $p$ dari perbandingan kesebangunan: $\\frac{p}{40} = \\frac{24}{30}$, lalu hitung luas $= p \\times 24$.",
+          "hint": "Gunakan perbandingan senilai antara panjang dan lebar bingkai dengan panjang dan lebar foto, lalu hitung luasnya dengan rumus panjang kali lebar foto.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Cari panjang foto dalam ($p$):\n$$\\frac{p}{40} = \\frac{24}{30} = \\frac{4}{5} \\implies p = 40 \\times \\frac{4}{5} = 32\\text{ cm}$$\n2. Hitung luas foto:\n$$\\text{Luas} = 32 \\times 24 = 768\\text{ cm}^2$$\nLuas foto bagian dalam adalah **$768\\text{ cm}^2$** (Opsi B)."
         },
         {
@@ -2653,7 +2653,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Rasio panjang $= 18 : 6 = 3$. Lebar II $= 4 \\times 3 = 12$ cm.",
+          "hint": "Tentukan rasio perbandingan panjang kedua persegi panjang yang sebangun, lalu gunakan rasio tersebut untuk menentukan lebar persegi panjang kedua.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$l_2 = 4 \\times \\frac{18}{6} = 12\\text{ cm}$$ (Opsi A)."
         },
         {
@@ -2680,7 +2680,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Perbandingan kesebangunan: $\\frac{T}{1{,}5} = \\frac{12}{2} \\implies T = 6 \\times 1{,}5 = 9$ meter.",
+          "hint": "Gunakan perbandingan senilai antara tinggi benda dan panjang bayangannya yang sebangun pada saat yang sama.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$T = \\frac{12}{2} \\times 1{,}5 = 9\\text{ meter}$$ (Opsi C)."
         },
         {
@@ -2707,7 +2707,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Sisi terpendek $AB = 6$, pada $DEF = 9 \\implies$ faktor skala $k = \\frac{9}{6} = 1{,}5$. Sisi terpanjang $= 10 \\times 1{,}5 = 15$ cm.",
+          "hint": "Tentukan faktor skala dari perbandingan sisi-sisi yang bersesuaian (sisi terpendek), lalu kalikan faktor tersebut dengan panjang sisi terpanjang segitiga pertama.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Sisi terpanjang} = 10 \\times 1{,}5 = 15\\text{ cm}$$ (Opsi D)."
         },
         {
@@ -2761,7 +2761,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Lebar foto $= 40 - 8 = 32$ cm. Panjang foto $= 32 \\times \\frac{50}{40} = 40$ cm. Sisa bawah $= 50 - 4 - 40 = 6$ cm.",
+          "hint": "Gunakan sifat kesebangunan antara foto dan karton untuk mencari panjang foto terlebih dahulu dengan memperhatikan sisa karton di sisi kiri, kanan, dan atas.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Lebar foto $= 32\\text{ cm}$\n2. Tinggi foto $= \\frac{32}{40} \\times 50 = 40\\text{ cm}$\n3. Sisa bawah $= 50 - 4 - 40 = 6\\text{ cm}$ (Opsi C)."
         },
         {
@@ -2788,7 +2788,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Panjang $AB = 4 + 6 = 10$ cm. Kesebangunan: $\\frac{DE}{BC} = \\frac{AD}{AB} \\implies \\frac{8}{BC} = \\frac{4}{10} \\implies BC = 20$ cm.",
+          "hint": "Gunakan kesebangunan segitiga $ADE$ dan $ABC$ dengan perbandingan sisi yang bersesuaian: $\\frac{DE}{BC} = \\frac{AD}{AB}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$BC = \\frac{8 \\times 10}{4} = 20\\text{ cm}$$ (Opsi C)."
         },
         {
@@ -2815,7 +2815,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Rasio luas dua bangun sebangun sama dengan kuadrat rasio sisinya/kelilingnya: $2^2 : 5^2 = 4 : 25$.",
+          "hint": "Perbandingan luas dua bangun yang sebangun sama dengan kuadrat dari perbandingan panjang sisi atau kelilingnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Rasio luas} = 2^2 : 5^2 = 4 : 25$$ (Opsi B)."
         },
         {
@@ -2842,7 +2842,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "$AC = \\sqrt{8^2 + 6^2} = 10$ cm. Luas segitiga: $\\frac{1}{2} \\times 8 \\times 6 = \\frac{1}{2} \\times 10 \\times BD \\implies BD = \\frac{48}{10} = 4{,}8$ cm.",
+          "hint": "Cari dahulu panjang sisi miring segitiga siku-siku dengan menyamakan perbandingan luas atau sifat kesebangunan dua segitiga siku-siku sebangun, lalu hitung garis tingginya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$BD = \\frac{8 \\times 6}{10} = 4{,}8\\text{ cm}$$ (Opsi A)."
         },
         {
@@ -2869,7 +2869,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Rasio sisi $= 6 : 9 = 2 : 3$. Rasio luas $= 2^2 : 3^2 = 4 : 9$.",
+          "hint": "Sederhanakan perbandingan panjang sisi kedua segitiga tersebut, lalu kuadratkan perbandingan sisinya untuk memperoleh rasio luas.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Rasio luas} = 2^2 : 3^2 = 4 : 9$$ (Opsi A)."
         },
         {
@@ -2896,7 +2896,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Rumus garis bagi trapesium: $EF = \\frac{AE \\times CD + ED \\times AB}{AE + ED} = \\frac{2(6) + 1(18)}{2 + 1} = \\frac{12 + 18}{3} = 10$ cm.",
+          "hint": "Gunakan rumus trapesium atau buat garis bantu sejajar untuk menghitung panjang segmen garis tengah pada trapesium berdasarkan perbandingan sisi yang diketahui.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$EF = \\frac{2(6) + 1(18)}{3} = \\frac{30}{3} = 10\\text{ cm}$$ (Opsi D)."
         },
         {
@@ -2923,7 +2923,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Rasio volume $= k^3 = 200^3 = 8.000.000$. Volume nyata $= 500 \\times 8.000.000\\text{ cm}^3 = 4.000.000.000\\text{ cm}^3 = 4.000\\text{ m}^3$.",
+          "hint": "Gunakan pangkat tiga dari faktor skala ($k^3$) untuk perbandingan volume bangun ruang sebangun, lalu konversikan satuannya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V = 500 \\times 200^3\\text{ cm}^3 = 4.000\\text{ m}^3$$ (Opsi A)."
         },
         {
@@ -2950,7 +2950,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Teorema air mancur (kesebangunan): $AD^2 = BD \\times CD = 4 \\times 9 = 36 \\implies AD = 6$ cm.",
+          "hint": "Gunakan teorema kesebangunan pada segitiga siku-siku (teorema garis tinggi / air mancur): kuadrat garis tinggi sama dengan hasil kali bagian sisi miring yang terbagi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$AD = \\sqrt{4 \\times 9} = 6\\text{ cm}$$ (Opsi B)."
         },
         {
@@ -2977,7 +2977,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "$AB^2 = BD \\times BC = 4 \\times (4 + 9) = 4 \\times 13 = 52 \\implies AB = \\sqrt{52} = 2\\sqrt{13}$ cm.",
+          "hint": "Gunakan sifat kesebangunan dua segitiga siku-siku yang terbentuk oleh garis tinggi ke sisi miring ($AB^2 = BD \\times BC$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$AB = \\sqrt{4 \\times 13} = 2\\sqrt{13}\\text{ cm}$$ (Opsi C)."
         },
         {
@@ -3004,7 +3004,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Rumus titik potong kabel silang: $\\frac{1}{h} = \\frac{1}{h_1} + \\frac{1}{h_2} = \\frac{1}{6} + \\frac{1}{3} = \\frac{3}{6} = \\frac{1}{2} \\implies h = 2$ meter.",
+          "hint": "Gunakan hubungan kesebangunan pada dua tiang bersilang: $\\frac{1}{h} = \\frac{1}{h_1} + \\frac{1}{h_2}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$h = \\frac{6 \\times 3}{6 + 3} = \\frac{18}{9} = 2\\text{ meter}$$ (Opsi B)."
         }
       ]
@@ -3073,7 +3073,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Satu putaran lingkaran utuh bernilai $360^\\circ$.",
+          "hint": "Ingat besar sudut satu putaran penuh pada geometri lingkaran.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nSatu lingkaran penuh memiliki total sudut putaran sebesar **$360^\\circ$** (Opsi A)."
         },
         {
@@ -3100,7 +3100,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Data yang dicatat secara berkesinambungan menurut waktu paling jelas ditampilkan dengan diagram garis.",
+          "hint": "Pilih jenis diagram yang paling efektif menampilkan perubahan atau tren kenaikan dan penurunan data dari waktu ke waktu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nUntuk melihat tren fluktuasi data yang berkembang menurut urutan waktu (time-series), jenis diagram yang paling representatif adalah **diagram garis** (Opsi D)."
         },
         {
@@ -3127,7 +3127,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Hitung sudut juring: $\\frac{10}{40} \\times 360^\\circ$.",
+          "hint": "Hitung besar sudut juring dengan membagi bagian siswa dengan total siswa, lalu dikalikan dengan total sudut satu lingkaran penuh ($360^\\circ$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Sudut} = \\frac{10}{40} \\times 360^\\circ = \\frac{1}{4} \\times 360^\\circ = 90^\\circ$$\nBesar sudut juringnya adalah **$90^\\circ$** (Opsi A)."
         },
         {
@@ -3154,7 +3154,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Hitung persentase menggambar: $100\\% - (30\\% + 25\\% + 20\\%) = 25\\%$. Lalu kalikan dengan 200 siswa.",
+          "hint": "Tentukan persentase hobi menggambar terlebih dahulu dengan mengurangkan total persentase dari 100%, lalu kalikan dengan total jumlah siswa.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Persentase menggambar:\n$$100\\% - (30\\% + 25\\% + 20\\%) = 100\\% - 75\\% = 25\\%$$\n2. Jumlah siswa:\n$$25\\% \\times 200 = \\frac{25}{100} \\times 200 = 50\\text{ orang}$$\nJumlah siswa yang hobi menggambar adalah **50 orang** (Opsi A)."
         },
         {
@@ -3181,7 +3181,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Total seluruh persentase lingkaran utuh adalah 100%.",
+          "hint": "Satu lingkaran penuh menyatakan keseluruhan data (satu kesatuan utuh dalam satuan persen).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nTotal persentase adalah **100%** (atau $360^\\circ$) (Opsi D)."
         },
         {
@@ -3208,7 +3208,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Frekuensi kemunculan: 6 (1x), 7 (3x), 8 (4x), 9 (1x), 10 (1x). Nilai 8 paling sering muncul.",
+          "hint": "Tentukan nilai yang memiliki frekuensi kemunculan terbanyak dalam kumpulan data tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nModus adalah **8** (frekuensi 4) (Opsi B)."
         },
         {
@@ -3235,7 +3235,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Urutkan data: 5, 6, 6, 7, 7, 8, 8, 9, 9. Data ke-5 (tengah) adalah 7.",
+          "hint": "Urutkan data terlebih dahulu dari yang terkecil hingga terbesar, lalu tentukan nilai yang berada tepat di tengah.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nData terurut: 5, 6, 6, 7, **7**, 8, 8, 9, 9 $\\implies$ Median $= 7$ (Opsi B)."
         },
         {
@@ -3262,7 +3262,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Jumlah $= 12 + 15 + 18 + 20 + 25 = 90$. Mean $= 90 : 5 = 18$.",
+          "hint": "Jumlahkan seluruh nilai data yang ada, kemudian bagi hasilnya dengan banyaknya data tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\bar{x} = \\frac{90}{5} = 18$$ (Opsi A)."
         },
         {
@@ -3289,7 +3289,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Persentase $= \\frac{108}{360} \\times 100\\% = \\frac{3}{10} \\times 100\\% = 30\\%$.",
+          "hint": "Bagi besar sudut pusat juring dengan total sudut satu lingkaran penuh ($360^\\circ$), lalu kalikan dengan $100\\%$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{108}{360} \\times 100\\% = 30\\%$$ (Opsi C)."
         },
         {
@@ -3316,7 +3316,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Jangkauan $= X_{\\text{maks}} - X_{\\text{min}} = 62 - 28 = 34$.",
+          "hint": "Kurangi nilai maksimum dengan nilai minimum dari kumpulan data tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$R = 62 - 28 = 34$$ (Opsi D)."
         },
         {
@@ -3343,7 +3343,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Total nilai awal: $29 \\times 76 = 2.204$. Total nilai baru: $30 \\times 76{,}5 = 2.295$. Nilai susulan: $2.295 - 2.204 = 91$.",
+          "hint": "Hitung selisih antara total nilai seluruh siswa setelah digabung dengan total nilai kelompok semula.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$x = (30 \\times 76{,}5) - (29 \\times 76) = 2.295 - 2.204 = 91$$ (Opsi D)."
         },
         {
@@ -3370,7 +3370,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Mean gabungan: $\\frac{(16 \\times 155) + (14 \\times 165)}{30} = \\frac{2.480 + 2.310}{30} = \\frac{4.790}{30} \\approx 159{,}67$ cm.",
+          "hint": "Hitung jumlah total tinggi badan seluruh siswa dibagi dengan total keseluruhan jumlah siswa.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\bar{x} = \\frac{4.790}{30} \\approx 159{,}67\\text{ cm}$$ (Opsi B)."
         },
         {
@@ -3424,7 +3424,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Total nilai $= (4 \\times 60) + (8 \\times 70) + (12 \\times 80) + (6 \\times 90) = 240 + 560 + 960 + 540 = 2.300$. Total siswa $= 30$. Mean $= 2.300 : 30 \\approx 76{,}67$.",
+          "hint": "Kalikan setiap nilai dengan frekuensinya, jumlahkan semuanya, lalu bagi dengan jumlah total siswa.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\bar{x} = \\frac{2.300}{30} \\approx 76{,}67$$ (Opsi B)."
         },
         {
@@ -3451,7 +3451,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Median ($Q_2$) data ke-5 adalah 6. Separuh bawah: 3, 4, 4, 5. $Q_1 = \\frac{4 + 4}{2} = 4$.",
+          "hint": "Tentukan median keseluruhan data untuk membagi data menjadi dua bagian, lalu cari median dari bagian bawah.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$Q_1 = 4$$ (Opsi C)."
         },
         {
@@ -3478,7 +3478,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Bilangan tengah $= 18$. Kelima bilangan: 16, 17, 18, 19, 20. Hasil kali $= 16 \\times 20 = 320$.",
+          "hint": "Gunakan sifat rata-rata bilangan asli berurutan untuk menemukan bilangan tengah dan bilangan-bilangan lainnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$16 \\times 20 = 320$$ (Opsi C)."
         },
         {
@@ -3505,7 +3505,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Median $= 7$. Bawah: 2, 4, 5, 6 $\\implies Q_1 = 4{,}5$. Atas: 8, 9, 10, 12 $\\implies Q_3 = 9{,}5$. $QR = 9{,}5 - 4{,}5 = 5$.",
+          "hint": "Tentukan kuartil bawah dan kuartil atas dari data terurut, lalu hitung selisih keduanya untuk mendapatkan jangkauan interkuartil.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $Q_1 = 4{,}5$\n2. $Q_3 = 9{,}5$\n3. $QR = 9{,}5 - 4{,}5 = 5$ (Opsi B)."
         },
         {
@@ -3532,7 +3532,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Total 8 siswa $= 600$. Total 7 siswa tanpa tertinggi $= 7 \\times 73 = 511 \\implies X_{\\text{maks}} = 600 - 511 = 89$. Total 7 siswa tanpa terendah $= 7 \\times 77 = 539 \\implies X_{\\text{min}} = 600 - 539 = 61$. Selisih $= 89 - 61 = 28$.",
+          "hint": "Gunakan selisih total nilai setelah nilai ekstrem dikeluarkan untuk menentukan nilai tertinggi dan terendah.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$X_{\\text{maks}} - X_{\\text{min}} = 89 - 61 = 28$$ (Opsi C)."
         },
         {
@@ -3559,7 +3559,7 @@ export const grade7Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Operasi linear $Y = aX + b$: rata-rata berubah menjadi $a\\bar{X} + b$, ukuran penyebaran (simpangan kuartil) hanya dipengaruhi faktor skala $|a| = 1{,}2$ (bertambah 20%).",
+          "hint": "Pada perubahan data linear $Y = aX + b$, mean ikut dikali $a$ dan ditambah $b$, sedangkan ukuran penyebaran hanya dipengaruhi faktor pengali $|a|$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nUkuran penyebaran hanya terpengaruh pengali 20% (Opsi D)."
         },
         {

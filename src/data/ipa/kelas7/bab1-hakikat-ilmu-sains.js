@@ -59,7 +59,7 @@ export default bab({
         'menarik kesimpulan → melakukan percobaan → menyusun hipotesis → merumuskan masalah'
       ],
       answer: 'A',
-      hint: 'Sebelum menduga jawaban, kita harus tahu dulu pertanyaannya.',
+      hint: 'Pikirkan urutan logis dari merumuskan masalah atau pertanyaan penelitian, membuat dugaan awal, hingga mengujinya dengan percobaan sebelum menyimpulkan.',
       solution: 'Metode ilmiah dimulai dari **merumuskan masalah** (pertanyaan), lalu **menyusun hipotesis** (dugaan jawaban), kemudian **menguji dengan percobaan**, dan terakhir **menarik kesimpulan** dari data. Jawaban: **A**.'
     }),
     soal({

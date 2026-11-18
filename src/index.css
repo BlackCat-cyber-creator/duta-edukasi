@@ -750,6 +750,17 @@ img, svg {
   padding: 2px 2px 4px 2px;
 }
 
+@media (min-width: 900px) {
+  .handbook-grade-tabs-wrapper {
+    overflow-x: visible;
+  }
+
+  .handbook-grade-tabs {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
 .handbook-grade-btn {
   flex-shrink: 0;
   white-space: nowrap;

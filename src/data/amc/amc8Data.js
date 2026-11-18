@@ -1331,7 +1331,7 @@ export const amc8Data = {
           difficulty: 'Menengah',
           source: 'MATHCOUNTS Chapter',
           question: 'Segitiga $ABC$ sebangun dengan segitiga $DEF$. Panjang sisi-sisi $\\triangle ABC$ adalah 6, 8, dan 10. Jika sisi terpanjang dari $\\triangle DEF$ memiliki panjang 25, tentukan keliling dari $\\triangle DEF$.',
-          hint: 'Sisi terpanjang segitiga ABC adalah 10 dan bersesuaian dengan sisi 25 pada segitiga DEF. Rasio kesebangunan adalah 25/10 = 2.5.',
+          hint: 'Tentukan faktor skala dari perbandingan sisi terpanjang segitiga DEF dengan sisi terpanjang segitiga ABC, lalu gunakan untuk menghitung keliling segitiga DEF.',
           answer: '60',
           acceptedAnswers: ['60'],
           bestSolution: 'Langkah 1: Tentukan faktor skala kesebangunan $k$ dari rasio sisi terpanjang:\n$$k = \\frac{25}{10} = 2.5$$\nLangkah 2: Hitung keliling segitiga $\\triangle ABC$:\n$$K_{ABC} = 6 + 8 + 10 = 24$$\nLangkah 3: Karena keliling berbanding lurus dengan panjang sisi:\n$$K_{DEF} = k \\times K_{ABC} = 2.5 \\times 24 = 60.$$'
@@ -1364,7 +1364,7 @@ export const amc8Data = {
           difficulty: 'Tantangan',
           source: 'OmegaLearn / AMC 8 Shortlist',
           question: 'Pada $\\triangle ABC$, sebuah garis ditarik sejajar sisi $BC$ memotong sisi $AB$ di $D$ dan sisi $AC$ di $E$ sedemikian hingga $AD = 3$ dan $DB = 2$. Jika luas trapesium $BDEC$ adalah 32, buktikan kesebangunan $\\triangle ADE \\sim \\triangle ABC$ dan tentukan luas segitiga $\\triangle ADE$.',
-          hint: 'Gunakan kriteria AA: sudut sehadap sama besar. Rasio sisi adalah 3 : 5, sehingga rasio luas adalah (3/5)^2 = 9/25.',
+          hint: 'Gunakan perbandingan panjang sisi AD terhadap total sisi AB untuk mencari rasio kesebangunan, lalu gunakan kuadrat rasio tersebut untuk menentukan perbandingan luas.',
           answer: '18',
           acceptedAnswers: ['18'],
           bestSolution: 'Langkah Pembuktian dan Penurunan:\n1. Bukti Kesebangunan:\nKarena ruas garis $DE \\parallel BC$:\n- $\\angle ADE = \\angle ABC$ (sudut sehadap)\n- $\\angle AED = \\angle ACB$ (sudut sehadap)\n- $\\angle A$ adalah sudut bersama.\nBerdasarkan kriteria Angle-Angle (AA), terbukti bahwa $\\triangle ADE \\sim \\triangle ABC$.\n2. Menentukan Rasio Sisi:\nPanjang $AB = AD + DB = 3 + 2 = 5$.\nRasio kesebangunan sisi adalah:\n$$k = \\frac{AD}{AB} = \\frac{3}{5}.$$\n3. Menentukan Rasio Luas:\nRasio luas dua segitiga yang sebangun adalah kuadrat rasio sisinya:\n$$\\frac{[ADE]}{[ABC]} = k^2 = \\left(\\frac{3}{5}\\right)^2 = \\frac{9}{25}.$$\n4. Menghubungkan Luas Segitiga dan Trapesium:\nMisalkan luas $[ADE] = 9x$, maka luas $[ABC] = 25x$.\nLuas trapesium $BDEC$ adalah selisihnya:\n$$[BDEC] = [ABC] - [ADE] = 25x - 9x = 16x.$$\n5. Selesaikan Nilai $x$ dan Luas $[ADE]$:\nDiketahui $[BDEC] = 32$:\n$$16x = 32 \\implies x = 2.$$\nMaka luas $\\triangle ADE$ adalah:\n$$[ADE] = 9x = 9(2) = 18.$$'

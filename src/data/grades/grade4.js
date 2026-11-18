@@ -161,7 +161,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Bagi angka puluhan dulu: $8 : 3 = 2$ sisa 2. Gabungkan dengan 4 menjadi $24 : 3 = 8$.",
+          "hint": "Lakukan pembagian bersusun dengan membagi angka puluhan terlebih dahulu, kemudian sisa pembagian digabungkan dengan angka satuan di belakangnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $8 : 3 = 2$ sisa 2 ($2 \\times 3 = 6$, $8 - 6 = 2$)\n2. Turunkan angka 4 menjadi 24\n3. $24 : 3 = 8$ ($8 \\times 3 = 24$, sisa 0)\nHasil baginya adalah **28** (Opsi A)."
         },
         {
@@ -215,7 +215,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Hitung total bolu: $7 \\times 24 = 168$, lalu bagi 6.",
+          "hint": "Hitung terlebih dahulu jumlah keseluruhan benda dengan perkalian, kemudian bagi hasilnya secara merata dengan jumlah penerima.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Total bolu: $7 \\times 24 = 168$ potong.\n2. Dibagi ke 6 panti asuhan: $168 : 6 = 28$ potong.\nSetiap panti asuhan menerima **28 potong bolu** (Opsi D)."
         },
         {
@@ -242,7 +242,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Jumlahkan dari nilai satuan: $6 + 9 = 15$ (tulis 5, simpan 1 ke puluhan).",
+          "hint": "Lakukan penjumlahan bersusun mulai dari nilai tempat terkecil (satuan), lalu perhatikan penyimpanan angka ke nilai tempat yang lebih tinggi jika hasil penjumlahannya melebihi sembilan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Satuan: $6 + 9 = 15$ (simpan 1)\n2. Puluhan: $1 + 5 + 8 = 14$ (simpan 1)\n3. Ratusan: $1 + 4 + 7 = 12$ (simpan 1)\n4. Ribuan: $1 + 3 + 2 = 6$\nHasilnya adalah **6.245** (Opsi B)."
         },
         {
@@ -323,7 +323,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Bagi puluhan terlebih dahulu: $9 : 4 = 2$ sisa 1. Turunkan 5 menjadi 15, lalu $15 : 4 = 3$ sisa 3.",
+          "hint": "Gunakan metode pembagian bersusun (porogapit) dengan membagi angka dari nilai tempat tertinggi terlebih dahulu, lalu turunkan angka berikutnya secara bertahap.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $9 : 4 = 2$ sisa 1 ($2 \\times 4 = 8$)\n2. Turunkan 5 menjadi 15\n3. $15 : 4 = 3$ sisa 3 ($3 \\times 4 = 12$, $15 - 12 = 3$)\nHasilnya adalah **23 sisa 3** (Opsi C)."
         },
         {
@@ -458,7 +458,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Daftar kelipatan 6: $6 \\times 6 = 36$, $6 \\times 7 = 42$, $6 \\times 8 = 48$.",
+          "hint": "Tuliskan urutan hasil perkalian bilangan tersebut secara berurutan, lalu pilih yang nilainya terletak di antara batas bawah dan batas atas yang ditentukan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nKelipatan 6 setelah 30 adalah $36, 42, 48$ (Opsi B)."
         },
         {
@@ -485,7 +485,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Tentukan setiap nilai tempat: ribuan = 5, ratusan = 0, puluhan = $2 \\times 3 = 6$, satuan = 3.",
+          "hint": "Tentukan nilai dari masing-masing tempat (ribuan, ratusan, puluhan, dan satuan) satu per satu sesuai dengan informasi hubungan antar digit yang diberikan pada soal.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Ribuan: 5\n2. Ratusan: 0\n3. Puluhan: $2 \\times 3 = 6$\n4. Satuan: 3\nMaka bilangan tersebut adalah **5.063** (Opsi C)."
         },
         {
@@ -663,7 +663,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kalikan pembilang dan penyebut dengan angka 3: $\\frac{1 \\times 3}{3 \\times 3}$.",
+          "hint": "Gunakan sifat pecahan senilai dengan mengalikan pembilang dan penyebut dengan bilangan bulat yang sama.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{1 \\times 3}{3 \\times 3} = \\frac{3}{9}$$\nPecahan yang senilai adalah **$\\frac{3}{9}$** (Opsi C).",
           "visual": {
             "type": "fraction-strip",
@@ -700,7 +700,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Bagi pembilang dan penyebut dengan angka 2.",
+          "hint": "Bagi pembilang dan penyebut dengan FPB dari kedua bilangan tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{6 : 2}{8 : 2} = \\frac{3}{4}$$\nBentuk sederhananya adalah **$\\frac{3}{4}$** (Opsi D).",
           "visual": {
             "type": "fraction-strip",
@@ -737,7 +737,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Penyebutnya sudah sama yaitu 7, jumlahkan pembilangnya: $3 + 2$.",
+          "hint": "Karena penyebutnya sudah sama, jumlahkan pembilang kedua pecahan tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{3}{7} + \\frac{2}{7} = \\frac{3 + 2}{7} = \\frac{5}{7}$$\nHasilnya adalah **$\\frac{5}{7}$** (Opsi C).",
           "visual": {
             "type": "fraction-strip",
@@ -777,7 +777,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Karena penyebutnya sama (5), bandingkan pembilangnya: 3 lebih besar dari 2.",
+          "hint": "Karena penyebutnya sudah sama, bandingkan nilai pembilang dari kedua pecahan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nKarena $3 > 2$, maka $\\frac{3}{5} > \\frac{2}{5}$ (Opsi A).",
           "visual": {
             "type": "fraction-strip",
@@ -814,7 +814,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Melon utuh $= \\frac{6}{6}$. Kurangkan dengan total yang dibagikan: $\\frac{6}{6} - (\\frac{2}{6} + \\frac{3}{6})$.",
+          "hint": "Jumlahkan bagian yang diberikan kepada Dedi dan Lani, lalu kurangkan dari satu bagian utuh.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Melon yang dibagikan: $\\frac{2}{6} + \\frac{3}{6} = \\frac{5}{6}$.\n2. Sisa melon: $\\frac{6}{6} - \\frac{5}{6} = \\frac{1}{6}$.\nSisa melon Ibu adalah **$\\frac{1}{6}$ bagian** (Opsi A).",
           "visual": {
             "type": "fraction-strip",
@@ -854,7 +854,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Bagi pembilang dan penyebut dengan FPB dari 12 dan 16 yaitu 4.",
+          "hint": "Tentukan FPB dari pembilang dan penyebut, lalu bagi keduanya dengan nilai tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{12 : 4}{16 : 4} = \\frac{3}{4}$$\nBentuk paling sederhananya adalah **$\\frac{3}{4}$** (Opsi D).",
           "visual": {
             "type": "circle-fraction",
@@ -891,7 +891,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Kalikan pembilang dan penyebut dengan bilangan yang sama: $\\frac{2 \\times 3}{5 \\times 3}$.",
+          "hint": "Kalikan pembilang dan penyebut dengan bilangan bulat yang sama untuk mencari pecahan senilai.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{2 \\times 3}{5 \\times 3} = \\frac{6}{15}$$\nPecahan yang senilai adalah **$\\frac{6}{15}$** (Opsi B)."
         },
         {
@@ -918,7 +918,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Penyebutnya sudah sama, jadi cukup kurangkan pembilangnya: $6 - 3$.",
+          "hint": "Karena penyebutnya sudah sama, kurangkan pembilang kedua pecahan tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{6}{8} - \\frac{3}{8} = \\frac{6 - 3}{8} = \\frac{3}{8}$$\nHasilnya adalah **$\\frac{3}{8}$** (Opsi D)."
         },
         {
@@ -945,7 +945,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kurangkan pembilangnya: $7 - 4 = 3$, lalu sederhanakan $\\frac{3}{9}$.",
+          "hint": "Kurangkan pembilang pecahan yang berpenyebut sama, lalu sederhanakan hasilnya jika perlu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{7 - 4}{9} = \\frac{3}{9} = \\frac{1}{3}$$\nHasilnya adalah **$\\frac{1}{3}$** (Opsi C)."
         },
         {
@@ -972,7 +972,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Bagi 11 dengan 4: $11 : 4 = 2$ sisa 3, sehingga menjadi $2 \\frac{3}{4}$.",
+          "hint": "Bagi pembilang dengan penyebut untuk mendapatkan hasil bagi sebagai bilangan bulat dan sisa sebagai pembilang pecahan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$11 : 4 = 2 \\text{ sisa } 3 \\implies 2\\frac{3}{4}$$\nBentuk campurannya adalah **$2\\frac{3}{4}$** (Opsi B)."
         },
         {
@@ -999,7 +999,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Jumlahkan bagian Kakak dan Adik: $\\frac{2}{8} + \\frac{3}{8}$.",
+          "hint": "Jumlahkan bagian yang dimakan oleh Kakak dan Adik.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{2}{8} + \\frac{3}{8} = \\frac{5}{8}$$\nBagian yang telah dimakan adalah **$\\frac{5}{8}$** (Opsi B)."
         },
         {
@@ -1026,7 +1026,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Kurangkan 1 bagian utuh ($\\frac{8}{8}$) dengan bagian yang sudah dimakan ($\\frac{5}{8}$).",
+          "hint": "Kurangkan jumlah seluruh bagian dengan total bagian yang sudah dimakan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{8}{8} - \\frac{5}{8} = \\frac{3}{8}$$\nSisa semangka adalah **$\\frac{3}{8}$** (Opsi A)."
         },
         {
@@ -1053,7 +1053,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Ubah penyebut menjadi per 100 dengan mengalikan 25: $\\frac{3 \\times 25}{4 \\times 25} = \\frac{75}{100}$.",
+          "hint": "Ubah penyebut pecahan menjadi kelipatan 10, 100, atau seterusnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{3 \\times 25}{4 \\times 25} = \\frac{75}{100} = 0{,}75$$\nBentuk desimalnya adalah **0,75** (Opsi C)."
         },
         {
@@ -1080,7 +1080,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Persen artinya per seratus: $\\frac{1}{5} \\times 100\\% = 20\\%$.",
+          "hint": "Kalikan pembilang dan penyebut dengan bilangan yang sama agar penyebutnya menjadi 100.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{1}{5} \\times 100\\% = 20\\%$$\nBentuk persennya adalah **20%** (Opsi B).",
           "visual": {
             "type": "fraction-strip",
@@ -1117,7 +1117,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Samakan penyebut atau kali silang: $3 \\times 7 = 21$ dibandingkan $4 \\times 5 = 20$.",
+          "hint": "Gunakan cara kali silang atau samakan penyebut terlebih dahulu untuk membandingkan kedua pecahan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nKali silang:\n- $3 \\times 7 = 21$\n- $4 \\times 5 = 20$\nKarena $21 > 20$, maka $\\frac{3}{5} > \\frac{4}{7}$ (Opsi D)."
         },
         {
@@ -1144,7 +1144,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Kurangkan bilangan bulat dan pecahannya: $(3 - 1) + (\\frac{1}{2} - \\frac{1}{2})$.",
+          "hint": "Kurangkan bilangan bulat dengan bilangan bulat dan pecahan dengan pecahan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$3\\frac{1}{2} - 1\\frac{1}{2} = 2\\text{ meter}$$\nSisa tali Ayah adalah **2 meter** (Opsi D)."
         },
         {
@@ -1171,7 +1171,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Ubah ke bentuk desimal: $\\frac{2}{5} = 0,4$, $\\frac{1}{2} = 0,5$, $\\frac{3}{4} = 0,75$.",
+          "hint": "Samakan penyebut atau ubah ke bentuk desimal terlebih dahulu untuk membandingkan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $\\frac{2}{5} = 0{,}40$\n2. $\\frac{1}{2} = 0{,}50$\n3. $\\frac{3}{4} = 0{,}75$\nUrutan naik: **$\\frac{2}{5}, \\frac{1}{2}, \\frac{3}{4}$** (Opsi B)."
         },
         {
@@ -1198,7 +1198,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Operasikan berurutan: $\\frac{4}{5} - \\frac{1}{5} + \\frac{2}{5} = \\frac{5}{5} = 1$ liter.",
+          "hint": "Lakukan operasi penjumlahan dan pengurangan pecahan berpenyebut sama secara berurutan dari kiri.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{4 - 1 + 2}{5} = \\frac{5}{5} = 1\\text{ liter}$$\nMinyak di dalam botol adalah **1 liter** (Opsi A)."
         },
         {
@@ -1225,7 +1225,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Samakan penyebut Dayu: $\\frac{3}{5} = \\frac{6}{10}$. Selisih: $\\frac{7}{10} - \\frac{6}{10}$.",
+          "hint": "Samakan penyebut kedua pecahan terlebih dahulu sebelum menghitung selisihnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{7}{10} - \\frac{6}{10} = \\frac{1}{10}\\text{ meter}$$\nSelisihnya adalah **$\\frac{1}{10}$ meter** (Opsi A)."
         },
         {
@@ -1252,7 +1252,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Apel merah: $\\frac{2}{5} \\times 30 = 12$. Apel hijau: $30 - 12 = 18$.",
+          "hint": "Hitung jumlah bagian apel merah terlebih dahulu, lalu kurangkan dari total seluruh apel.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Apel merah: $\\frac{2}{5} \\times 30 = 12$ buah\n2. Apel hijau: $30 - 12 = 18$ buah (Opsi C)."
         }
       ]
@@ -1321,7 +1321,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Cari selisihnya: $9 - 5 = 4$. Tambahkan 4 ke angka 17.",
+          "hint": "Tentukan selisih tetap antarsuku yang berdekatan pada barisan tersebut, lalu tambahkan selisih itu ke suku terakhir.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Aturan pola: bertambah 4 ($+4$).\n2. Suku berikutnya: $17 + 4 = 21$.\nBilangan berikutnya adalah **21** (Opsi C).",
           "visual": {
             "type": "number-line",
@@ -1362,7 +1362,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Aturan polanya berkurang 5: $20 - 5 = 15$, lalu $15 - 5 = 10$.",
+          "hint": "Kurangi 5 secara terus menerus dari suku sebelumnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Aturan pola: berkurang 5 ($-5$).\n2. Suku berikutnya: $20 - 5 = 15$ dan $15 - 5 = 10$.\nDua bilangan berikutnya adalah **15 dan 10** (Opsi D).",
           "visual": {
             "type": "number-line",
@@ -1425,7 +1425,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Selisih polanya adalah $+4$: $10 + 4 = 14$ dan $14 + 4 = 18$.",
+          "hint": "Tentukan selisih antar suku yang berurutan, lalu tambahkan pada suku sebelum titik-titik.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Beda pola: $6 - 2 = 4$ dan $10 - 6 = 4$.\n2. Angka pengisi titik-titik: $10 + 4 = 14$.\nBilangan yang tepat adalah **14** (Opsi B).",
           "visual": {
             "type": "number-line",
@@ -1487,7 +1487,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Barisan bilangan ganjil bertambah 2: baris kelima $= 7 + 2 = 9$, baris keenam $= 9 + 2 = 11$.",
+          "hint": "Perhatikan bahwa banyak kelereng tiap baris membentuk barisan bilangan ganjil yang bertambah 2 setiap barisnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Pola bilangan ganjil: $1, 3, 5, 7, \\dots$ (bertambah 2).\n2. Baris ke-5: $7 + 2 = 9$.\n3. Baris ke-6: $9 + 2 = 11$.\nBanyak kelereng pada baris keenam adalah **11 kelereng** (Opsi C)."
         },
         {
@@ -1514,7 +1514,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Perhatikan selisih antar suku yang berurutan: $4 - 2 = 2, 6 - 4 = 2$.",
+          "hint": "Bandingkan dua suku berurutan dari kiri ke kanan untuk menemukan aturan pertambahannya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nSelisih tiap suku adalah $+2$, jadi polanya **bertambah 2** (Opsi C)."
         },
         {
@@ -1568,7 +1568,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Perhatikan beda suku: $16 - 12 = 4$, maka suku ketiga adalah $16 + 4$.",
+          "hint": "Hitung selisih dua suku yang berdekatan untuk menentukan pola barisan, lalu tambahkan ke suku sebelumnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$16 + 4 = 20$$\nBilangannya adalah **20** (Opsi A).",
           "visual": {
             "type": "number-line",
@@ -1626,7 +1626,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Pola berkurang 5: $40 - 5 = 35$.",
+          "hint": "Perhatikan aturan pengurangan tetap pada barisan bilangan tersebut dari kiri ke kanan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$40 - 5 = 35$$\nBilangannya adalah **35** (Opsi D).",
           "visual": {
             "type": "number-line",
@@ -1684,7 +1684,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Pola bertambah 2: $3, 5, 7, 9$.",
+          "hint": "Tentukan selisih jumlah batang korek api antar pola yang berurutan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$7 + 2 = 9$$\nPola ke-4 membutuhkan **9 batang korek api** (Opsi D)."
         },
         {
@@ -1711,7 +1711,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Rumus suku ke-n bilangan ganjil adalah $2n - 1$. Untuk $n = 6$: $2(6) - 1 = 11$.",
+          "hint": "Gunakan rumus suku ke-n pada bilangan ganjil atau lanjutkan barisan hingga suku ke-6.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBarisan: 1, 3, 5, 7, 9, 11\nSuku ke-6 adalah **11** (Opsi B).",
           "visual": {
             "type": "number-line",
@@ -1754,7 +1754,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Pola bertambah Rp500,00 setiap hari: hari ke-4 Rp2.500, hari ke-5 Rp3.000.",
+          "hint": "Tentukan besar penambahan tabungan setiap harinya, lalu hitung secara bertahap sampai hari ke-5.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n- Hari 4: $2.000 + 500 = 2.500$\n- Hari 5: $2.500 + 500 = 3.000$\nUang tabungan hari ke-5 adalah **Rp3.000,00** (Opsi D)."
         },
         {
@@ -1781,7 +1781,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Pola berulang setiap 4 warna. Bagi $10 : 4 = 2$ sisa 2. Urutan ke-2 adalah Kuning.",
+          "hint": "Tentukan banyak warna dalam satu siklus pengulangan, lalu gunakan sisa pembagian untuk menentukan warna pada urutan ke-10.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nSiklus 4 warna: 1 Merah, 2 Kuning, 3 Hijau, 4 Biru.\n$10 = (2 \\times 4) + 2 \\implies$ sisa 2 = **Kuning** (Opsi A)."
         },
         {
@@ -1808,7 +1808,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Jumlahkan seluruhnya: $1 + 3 + 5 + 7 = 16$.",
+          "hint": "Jumlahkan banyak jeruk dari baris pertama sampai baris keempat.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$1 + 3 + 5 + 7 = 16$$\nTotalnya adalah **16 jeruk** (Opsi C)."
         },
         {
@@ -1905,7 +1905,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Perhatikan penambahannya: $+1, +2, +3, +4, +5$. Maka $11 + 5 = 16$.",
+          "hint": "Perhatikan pola penambahan antar suku yang bertambah 1 secara terus-menerus.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nSelisih bertambah 1 setiap langkah: $11 + 5 = 16$ (Opsi A)."
         },
         {
@@ -1932,7 +1932,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Gunakan rumus kelipatan 4: $4 \\times n$. Untuk $n = 10$: $4 \\times 10 = 40$.",
+          "hint": "Gunakan aturan kelipatan 4 atau rumus suku ke-n dari barisan tersebut untuk mencari pola ke-10.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$4 \\times 10 = 40$$\nBanyak ubin putih pada pola ke-10 adalah **40 ubin** (Opsi B)."
         },
         {
@@ -1986,7 +1986,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kursi baris ke-n: $12 + (n - 1) \\times 3$. Untuk $n = 8$: $12 + 7 \\times 3 = 33$.",
+          "hint": "Gunakan rumus suku ke-n pada barisan aritmetika dengan suku awal 12 dan beda 3.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$12 + (7 \\times 3) = 12 + 21 = 33$$\nBanyak kursi baris ke-8 adalah **33 kursi** (Opsi C)."
         },
         {
@@ -2013,7 +2013,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Hitung berurutan: S1 = 3, S2 = $2(3) - 1 = 5$, S3 = $2(5) - 1 = 9$, S4 = $2(9) - 1 = 17$.",
+          "hint": "Terapkan aturan tersebut secara berurutan mulai dari suku pertama hingga mencapai suku keempat.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n- Suku 1 = 3\n- Suku 2 = $2 \\times 3 - 1 = 5$\n- Suku 3 = $2 \\times 5 - 1 = 9$\n- Suku 4 = $2 \\times 9 - 1 = 17$ (Opsi B)."
         }
       ]
@@ -2211,7 +2211,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Hitung luas lantai: $5 \\times 4 = 20\\text{ m}^2$. Karena luas 1 ubin adalah $1\\text{ m}^2$, dibutuhkan 20 ubin.",
+          "hint": "Hitung luas lantai dengan mengalikan panjang dan lebar, lalu bagi dengan luas satu ubin karpet.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Luas lantai} = 5 \\times 4 = 20\\text{ m}^2$$\nBanyak ubin $= \\frac{20}{1} = 20$ ubin (Opsi A).",
           "visual": {
             "type": "unit-grid",
@@ -2247,7 +2247,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Gunakan $V = p \\times l \\times t$: $64 = 4 \\times 4 \\times t = 16 \\times t$. Bagi 64 dengan 16.",
+          "hint": "Gunakan $V = p \\times l \\times t$, lalu bagi volume balok atau kubus tersebut dengan luas alasnya ($p \\times l$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$64 = 16 \\times t \\implies t = \\frac{64}{16} = 4\\text{ kubus satuan}$$\nTinggi kotak adalah **4 kubus satuan** (Opsi B)."
         },
         {
@@ -2274,7 +2274,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "2 botol $= 6$ cangkir. Maka 1 botol $= 6 : 2$.",
+          "hint": "Bagi banyaknya cangkir air yang mengisi penuh kedua botol dengan banyaknya botol yang digunakan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Kapasitas 1 botol} = \\frac{6}{2} = 3\\text{ cangkir}$$\nHasilnya adalah **3 cangkir** (Opsi B)."
         },
         {
@@ -2301,7 +2301,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Gunakan rumus luas persegi panjang: $L = p \\times l = 15 \\times 8$.",
+          "hint": "Gunakan rumus luas persegi panjang: kalikan panjang dengan lebarnya ($L = p \\times l$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = 15 \\times 8 = 120\\text{ cm}^2$$\nLuasnya adalah **120 cm²** (Opsi A).",
           "visual": {
             "type": "rectangle",
@@ -2339,7 +2339,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Rumus luas persegi: $L = s \\times s = 12 \\times 12$.",
+          "hint": "Gunakan rumus luas persegi: kalikan panjang sisi dengan dirinya sendiri ($L = s \\times s$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$L = 12 \\times 12 = 144\\text{ cm}^2$$\nLuasnya adalah **144 cm²** (Opsi B).",
           "visual": {
             "type": "square",
@@ -2375,7 +2375,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Panjang = Luas : lebar $= 84 : 7$.",
+          "hint": "Karena luas persegi panjang adalah $L = p \\times l$, carilah panjang dengan membagi luas terhadap lebarnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$p = 84 : 7 = 12\\text{ cm}$$\nPanjangnya adalah **12 cm** (Opsi C).",
           "visual": {
             "type": "rectangle",
@@ -2412,7 +2412,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Volume kubus: $s \\times s \\times s = 4 \\times 4 \\times 4$.",
+          "hint": "Gunakan rumus volume kubus: kalikan panjang rusuk sebanyak tiga kali ($V = s \\times s \\times s$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V = 4 \\times 4 \\times 4 = 64\\text{ kubus satuan}$$\nVolumenya adalah **64 kubus satuan** (Opsi C).",
           "visual": {
             "type": "solid-3d",
@@ -2451,7 +2451,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Volume balok: $V = p \\times l \\times t = 6 \\times 4 \\times 5$.",
+          "hint": "Gunakan rumus volume balok: kalikan panjang, lebar, dan tingginya ($V = p \\times l \\times t$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V = 6 \\times 4 \\times 5 = 120\\text{ cm}^3$$\nVolumenya adalah **120 cm³** (Opsi B).",
           "visual": {
             "type": "solid-3d",
@@ -2490,7 +2490,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Hitung total mL: $3 \\times 500 = 1.500$ mL, lalu ubah ke liter ($1.500 : 1.000$).",
+          "hint": "Kalikan jumlah botol dengan isi setiap botol, lalu konversikan hasil mililiter ke liter.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Total volume: $3 \\times 500 = 1.500\\text{ mL}$\n2. Konversi ke liter: $1.500 : 1.000 = 1{,}5\\text{ liter}$ (Opsi D)."
         },
         {
@@ -2553,7 +2553,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Tinggi = Volume : $(p \\times l) = 240 : (8 \\times 6)$.",
+          "hint": "Karena $V = p \\times l \\times t$, tentukan tinggi dengan membagi volume terhadap hasil kali panjang dan lebar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$t = 240 : 48 = 5\\text{ cm}$$\nTingginya adalah **5 cm** (Opsi D).",
           "visual": {
             "type": "solid-3d",
@@ -2619,7 +2619,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Volume penuh = $50 \\times 30 \\times 40 = 60.000$ cm³. Setengahnya $= 60.000 : 2$.",
+          "hint": "Hitung volume penuh akuarium dengan mengalikan panjang, lebar, dan tinggi, lalu ambil setengah bagiannya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V = \\frac{1}{2} \\times (50 \\times 30 \\times 40) = 30.000\\text{ cm}^3$$\nVolume air adalah **30.000 cm³** (Opsi D).",
           "visual": {
             "type": "solid-3d",
@@ -2658,7 +2658,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Rusuk kubus besar = $2 \\times 3 = 6$ cm. Volume kubus besar = $6 \\times 6 \\times 6$.",
+          "hint": "Tentukan panjang rusuk kubus besar berdasarkan perbandingannya dengan kubus kecil, lalu hitung volumenya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$V = 6 \\times 6 \\times 6 = 216\\text{ cm}^3$$\nVolumenya adalah **216 cm³** (Opsi C)."
         },
         {
@@ -2685,7 +2685,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Luas aula $= 80\\text{ m}^2$. Luas 1 karpet $= 4\\text{ m}^2$. Banyak karpet $= 80 : 4$.",
+          "hint": "Bagi luas lantai aula dengan luas satu buah karpet persegi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Banyak karpet} = \\frac{10 \\times 8}{2 \\times 2} = \\frac{80}{4} = 20\\text{ karpet}$$\nDibutuhkan **20 karpet** (Opsi C)."
         },
         {
@@ -2712,7 +2712,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Volume kubus $= 80^3 = 512.000\\text{ cm}^3$. Sisa $= 512.000 - 112.000 = 400.000\\text{ cm}^3 = 400\\text{ liter}$.",
+          "hint": "Hitung volume total bak mandi kubus, kurangi dengan air yang digunakan, lalu konversikan hasilnya dari cm³ ke liter.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Volume total: $80 \\times 80 \\times 80 = 512.000\\text{ cm}^3$\n2. Sisa volume: $512.000 - 112.000 = 400.000\\text{ cm}^3$\n3. Ubah ke liter ($1\\text{ liter} = 1.000\\text{ cm}^3$): $400.000 : 1.000 = 400\\text{ liter}$ (Opsi A)."
         }
       ]
@@ -2921,7 +2921,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Bangun tertutup bersisi tiga disebut segitiga.",
+          "hint": "Gunakan petunjuk umum tanpa menyebutkan nama bangun secara langsung, misalnya: 'Perhatikan jumlah sisi dan sudut bangun datar tersebut.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBangun datar bersisi 3 adalah **segitiga** (Opsi A)."
         },
         {
@@ -2948,7 +2948,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Jika ketiga sisi memiliki panjang sama, maka disebut sama sisi.",
+          "hint": "Gunakan petunjuk: 'Perhatikan kesamaan panjang dari ketiga sisi segitiga tersebut.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nSegitiga dengan tiga sisi sama panjang adalah **segitiga sama sisi** (Opsi D)."
         },
         {
@@ -2975,7 +2975,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Total ketiga sudut segitiga selalu sama dengan sudut lurus ($180^\\circ$).",
+          "hint": "Gunakan petunjuk: 'Ingat kembali teorema jumlah sudut dalam bidang datar segitiga.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nJumlah sudut segitiga $= 180^\\circ$ (Opsi B)."
         },
         {
@@ -3002,7 +3002,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Ciri khas trapesium adalah memiliki tepat sepasang sisi berhadapan yang sejajar.",
+          "hint": "Gunakan petunjuk: 'Perhatikan sifat sejajar pada sisi-sisi bangun segiempat tersebut.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBangun datar dengan sepasang sisi sejajar adalah **trapesium** (Opsi C).",
           "visual": {
             "type": "trapezoid",
@@ -3040,7 +3040,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Persegi memiliki 2 sumbu simetri melalui sisi dan 2 sumbu diagonal, total 4.",
+          "hint": "Gunakan petunjuk: 'Perhatikan garis lipat vertikal, horizontal, dan kedua diagonalnya.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nPersegi memiliki **4 sumbu simetri** (Opsi A)."
         },
         {
@@ -3121,7 +3121,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Keliling segitiga sama sisi $= 3 \\times s = 3 \\times 9$.",
+          "hint": "Segitiga sama sisi memiliki tiga sisi sama panjang, sehingga kelilingnya adalah tiga kali panjang sisinya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 3 \\times 9 = 27\\text{ cm}$$\nKelilingnya adalah **27 cm** (Opsi D).",
           "visual": {
             "type": "triangle",
@@ -3159,7 +3159,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Belah ketupat memiliki 4 sisi sama panjang, sedangkan sudutnya terdiri dari 2 lancip dan 2 tumpul.",
+          "hint": "Gunakan petunjuk: 'Perhatikan karakteristik panjang sisi dan besar sudut yang bukan siku-siku.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nBangun tersebut adalah **belah ketupat** (Opsi A).",
           "visual": {
             "type": "rhombus",
@@ -3196,7 +3196,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Panjang sisi = Keliling : $4 = 48 : 4$.",
+          "hint": "Persegi memiliki empat sisi sama panjang, sehingga panjang satu sisi diperoleh dengan membagi keliling oleh 4.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$s = 48 : 4 = 12\\text{ cm}$$\nPanjang sisinya adalah **12 cm** (Opsi C).",
           "visual": {
             "type": "square",
@@ -3232,7 +3232,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Keliling persegi panjang $= 2 \\times (p + l) = 2 \\times (14 + 6)$.",
+          "hint": "Gunakan rumus keliling persegi panjang $K = 2 \\times (p + l)$ dengan menjumlahkan panjang dan lebar terlebih dahulu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$K = 2 \\times (14 + 6) = 2 \\times 20 = 40\\text{ cm}$$\nKelilingnya adalah **40 cm** (Opsi D).",
           "visual": {
             "type": "rectangle",
@@ -3269,7 +3269,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Jumlah kedua kaki $= 36 - 10 = 26$ meter. Panjang tiap kaki $= 26 : 2$.",
+          "hint": "Gunakan petunjuk: 'Kurangi keliling dengan panjang alas, lalu bagi sisanya sama rata untuk kedua kaki.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Panjang satu kaki} = (36 - 10) : 2 = 26 : 2 = 13\\text{ meter}$$\nPanjang kakinya adalah **13 meter** (Opsi B).",
           "visual": {
             "type": "triangle",
@@ -3307,7 +3307,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Keliling lapangan $= 2 \\times (100 + 60) = 320$ m. Dalam 3 putaran $= 3 \\times 320$.",
+          "hint": "Gunanakan petunjuk: 'Hitung keliling persegi panjang terlebih dahulu, lalu kalikan dengan jumlah putaran.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Keliling lapangan: $2 \\times (100 + 60) = 320\\text{ m}$\n2. 3 putaran: $3 \\times 320 = 960\\text{ m}$ (Opsi B).",
           "visual": {
             "type": "rectangle",
@@ -3344,7 +3344,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Bagi panjang kawat dengan 4 sisi: $64 : 4 = 16$.",
+          "hint": "Gunakan petunjuk: 'Bagikan total panjang kawat dengan banyaknya sisi pada persegi.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$s = 64 : 4 = 16\\text{ cm}$$\nPanjang sisinya adalah **16 cm** (Opsi C)."
         },
         {
@@ -3371,7 +3371,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Keliling jajargenjang $= 2 \\times (a + b) = 50 \\implies a + b = 25$. Jika $a = 16$, maka $b = 25 - 16 = 9$.",
+          "hint": "Gunakan petunjuk: 'Bagian setengah dari keliling untuk mendapatkan jumlah panjang dua sisi yang bersebelahan.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$b = (50 : 2) - 16 = 25 - 16 = 9\\text{ cm}$$\nPanjang sisi lainnya adalah **9 cm** (Opsi B).",
           "visual": {
             "type": "parallelogram",
@@ -3408,7 +3408,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Banyak segitiga kecil $= 4^2 = 16$.",
+          "hint": "Gunakan petunjuk: 'Gunakan pola bilangan kuadrat dari perbandingan panjang sisi segitiga.'",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$4 \\times 4 = 16$$\nDibutuhkan **16 segitiga kecil** (Opsi B)."
         }
       ]
@@ -3519,7 +3519,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Diagram berbentuk balok tegak/mendatar disebut diagram batang.",
+          "hint": "Ingat jenis diagram yang menampilkan data dalam bentuk batang atau balok sejajar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nDiagram berbentuk persegi panjang tegak atau mendatar adalah **diagram batang** (Opsi C)."
         },
         {
@@ -3654,7 +3654,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Piktogram menyajikan data kuantitatif menggunakan gambar/ikon.",
+          "hint": "Cari istilah untuk diagram yang memakai lambang atau ikon gambar untuk mewakili banyaknya data.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nDiagram dengan simbol gambar disebut **piktogram** (Opsi A)."
         },
         {
@@ -3681,7 +3681,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Kalikan banyak simbol dengan nilai per simbol: $6 \\times 5 = 30$.",
+          "hint": "Kalikan banyak simbol dengan nilai per simbol untuk mendapatkan total keseluruhan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$6 \\times 5 = 30\\text{ buku}$$\nJumlahnya adalah **30 buku** (Opsi A).",
           "visual": {
             "type": "pictogram",
@@ -3731,7 +3731,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Bagi jumlah siswa dengan nilai per simbol: $40 : 8 = 5$.",
+          "hint": "Bagi jumlah siswa dengan nilai per satu simbol untuk menentukan berapa banyak simbol yang diperlukan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$40 : 8 = 5\\text{ simbol}$$\nDibutuhkan **5 simbol** (Opsi C)."
         },
         {
@@ -3974,7 +3974,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Jumlahkan data: $120 + 150 + 130 + 180 = 580$.",
+          "hint": "Jumlahkan seluruh data pengunjung dari setiap hari secara berurutan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$120 + 150 + 130 + 180 = 580\\text{ orang}$$\nTotalnya adalah **580 orang** (Opsi C)."
         },
         {
@@ -4028,7 +4028,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Bagi 48 pensil dengan 12: $48 : 12 = 4$.",
+          "hint": "Bagi total pensil yang diterima dengan nilai yang diwakili oleh satu simbol pensil.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$48 : 12 = 4\\text{ simbol}$$\nDigambar sebanyak **4 simbol** (Opsi A).",
           "visual": {
             "type": "pictogram",
@@ -4124,7 +4124,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Selisih simbol: $9 - 4 = 5$ simbol. Kenaikan panen: $5 \\times 250 = 1.250$ kg.",
+          "hint": "Tentukan selisih jumlah simbol antara tahun yang ditanyakan, lalu kalikan dengan nilai per satu simbol.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Kenaikan} = (9 - 4) \\times 250 = 5 \\times 250 = 1.250\\text{ kg}$$\nKenaikannya adalah **1.250 kg** (Opsi B)."
         },
         {
@@ -4224,7 +4224,7 @@ export const grade4Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Jumlahkan 5 hari pertama: $40 + 55 + 70 + 85 + 100 = 350$. Hari keenam: $500 - 350 = 150$.",
+          "hint": "Kurangi target total pengunjung dengan jumlah pengunjung dari hari-hari yang sudah diketahui.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Total 5 hari: $40 + 55 + 70 + 85 + 100 = 350$ orang\n2. Target hari ke-6: $500 - 350 = 150$ orang (Opsi C)."
         }
       ]

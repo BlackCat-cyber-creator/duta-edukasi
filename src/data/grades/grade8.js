@@ -136,7 +136,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Sederhanakan masing-masing bentuk akar: $\\sqrt{75} = 5\\sqrt{3}$, $2\\sqrt{12} = 4\\sqrt{3}$, dan $\\sqrt{27} = 3\\sqrt{3}$.",
+          "hint": "Sederhanakan masing-masing bentuk akar dengan memfaktorkan bilangan di dalam akar ke dalam bentuk perkalian dengan kuadrat sempurna terbesar.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sederhanakan tiap suku:\n- $\\sqrt{75} = \\sqrt{25 \\times 3} = 5\\sqrt{3}$\n- $2\\sqrt{12} = 2\\sqrt{4 \\times 3} = 2(2\\sqrt{3}) = 4\\sqrt{3}$\n- $\\sqrt{27} = \\sqrt{9 \\times 3} = 3\\sqrt{3}$\n2. Gabungkan akar-akar sejenis:\n$$(5 + 4 - 3)\\sqrt{3} = 6\\sqrt{3}$$\nHasilnya adalah **$6\\sqrt{3}$** (Opsi B)."
         },
         {
@@ -433,7 +433,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Kalikan isi akar: $\\sqrt{48}$, lalu sederhanakan $48 = 16 \\times 3$.",
+          "hint": "Gunakan sifat perkalian bentuk akar $\\sqrt{a} \\times \\sqrt{b} = \\sqrt{a \\times b}$, lalu sederhanakan hasilnya dengan mengeluarkan faktor kuadrat sempurna.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\sqrt{6 \\times 8} = \\sqrt{48} = \\sqrt{16 \\times 3} = 4\\sqrt{3}$$\nHasil sederhananya adalah **$4\\sqrt{3}$** (Opsi C)."
         },
         {
@@ -460,7 +460,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "2 jam $= 120$ menit. Banyak pembelahan $n = 120 / 20 = 6$. Total $= 15 \\times 2^6$.",
+          "hint": "Hitung total waktu dalam menit, tentukan berapa banyak periode pembelahan yang terjadi, lalu gunakan konsep pertumbuhan berpangkat.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $n = \\frac{120}{20} = 6$\n2. Banyak bakteri $= 15 \\times 2^6 = 15 \\times 64 = 960$ bakteri (Opsi D)."
         },
         {
@@ -514,7 +514,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Kalikan dengan sekawan penyebut yaitu $\\frac{\\sqrt{5} + 1}{\\sqrt{5} + 1}$.",
+          "hint": "Kalikan pembilang dan penyebut dengan bentuk sekawan dari penyebut pecahan tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\frac{4}{\\sqrt{5} - 1} \\times \\frac{\\sqrt{5} + 1}{\\sqrt{5} + 1} = \\frac{4(\\sqrt{5} + 1)}{5 - 1} = \\frac{4(\\sqrt{5} + 1)}{4} = \\sqrt{5} + 1$$ (Opsi D)."
         },
         {
@@ -568,7 +568,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Faktorkan masing-masing bentuk akar dengan bilangan kuadrat sempurna: $18=9\\times 2$, $50=25\\times 2$, $32=16\\times 2$.",
+          "hint": "Sederhanakan setiap bentuk akar dengan memfaktorkannya menggunakan kuadrat sempurna, kemudian gabungkan suku-suku yang sejenis.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\sqrt{18} + \\sqrt{50} - \\sqrt{32} = 3\\sqrt{2} + 5\\sqrt{2} - 4\\sqrt{2} = (3 + 5 - 4)\\sqrt{2} = 4\\sqrt{2}$$ (Opsi C)."
         },
         {
@@ -595,7 +595,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Konversikan ukuran ke meter terlebih dahulu: $1\\text{ m} = 10^2\\text{ cm}$.",
+          "hint": "Konversikan terlebih dahulu semua satuan panjang dari sentimeter ke meter, lalu hitung volume balok dengan mengalikan panjang, lebar, dan tinggi.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Panjang $= 40\\text{ m}$, Lebar $= 30\\text{ m}$, Tinggi $= 2{,}5\\text{ m}$\n2. Volume $= 40 \\times 30 \\times 2{,}5 = 300\\text{ m}^3$ (Opsi B).",
           "visual": {
             "type": "solid-3d",
@@ -680,7 +680,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Gunakan rumus $c = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64}$.",
+          "hint": "Gunakan Teorema Pythagoras untuk mencari panjang sisi miring (hipotenusa): kuadrat sisi miring sama dengan jumlah kuadrat kedua sisi siku-sikunya ($c = \\sqrt{a^2 + b^2}$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$c = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10\\text{ cm}$$\nPanjang sisi miringnya adalah **10 cm** (Opsi D).",
           "visual": {
             "type": "right-triangle",
@@ -724,7 +724,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Periksa apakah $a^2 + b^2 = c^2$: $5^2 + 12^2 = 25 + 144 = 169 = 13^2$.",
+          "hint": "Pada setiap pilihan, kuadratkan ketiga bilangan dan periksa apakah jumlah kuadrat dua bilangan yang lebih kecil sama dengan kuadrat bilangan terbesar ($a^2 + b^2 = c^2$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$5^2 + 12^2 = 25 + 144 = 169$$\n$$13^2 = 169$$\nKarena nilainya sama persis, maka **5, 12, 13** adalah tripel Pythagoras (Opsi B)."
         },
         {
@@ -751,7 +751,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Gunakan tripel Pythagoras: $\\sqrt{24^2 + 7^2} = \\sqrt{576 + 49} = \\sqrt{625}$.",
+          "hint": "Tiang yang berdiri tegak, jarak mendatar di tanah, dan kawat baja membentuk segitiga siku-siku dengan kawat sebagai sisi miringnya. Gunakan $c = \\sqrt{a^2 + b^2}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sisi tegak $t = 24\\text{ m}$, sisi alas $a = 7\\text{ m}$.\n2. Panjang kawat $k$:\n$$k = \\sqrt{24^2 + 7^2} = \\sqrt{576 + 49} = \\sqrt{625} = 25\\text{ meter}$$\nPanjang kawat baja yang diperlukan adalah **25 meter** (Opsi A).",
           "visual": {
             "type": "right-triangle",
@@ -775,7 +775,7 @@ export const grade8Data = {
           "id": "smp8-b2-4",
           "category": "Latihan",
           "difficulty": "Tantangan",
-          "question": "Diketahui segitiga $KLM$ memiliki panjang sisi-sisi berturut-turut 9 cm, 12 cm, dan 16 cm. Berdasarkan panjang sisi-sisinya, jenis segitiga $KLM$ tersebut adalah...",
+          "question": "Diketahui segitiga $KLM$ memiliki panjang sisi-sisi berturut-turut 9 cm, 12 cm, dan 16 cm. Berdasarkan besar sudutnya, jenis segitiga $KLM$ tersebut adalah...",
           "options": [
             {
               "key": "A",
@@ -791,11 +791,11 @@ export const grade8Data = {
             },
             {
               "key": "D",
-              "text": "Segitiga sama sisi"
+              "text": "Tidak dapat membentuk segitiga"
             }
           ],
           "correctAnswer": "B",
-          "hint": "Bandingkan kuadrat sisi terpanjang $16^2$ dengan jumlah kuadrat dua sisi lainnya: $9^2 + 12^2$.",
+          "hint": "Misalkan sisi terpanjang adalah $c$ dan dua sisi lainnya $a$ serta $b$. Bandingkan nilai $c^2$ dengan $a^2 + b^2$ untuk menentukan jenis segitiga berdasarkan besar sudutnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Kuadrat sisi terpanjang: $16^2 = 256$.\n2. Jumlah kuadrat dua sisi lainnya: $9^2 + 12^2 = 81 + 144 = 225$.\n3. Bandingkan:\n$$256 > 225 \\implies c^2 > a^2 + b^2$$\nKarena kuadrat sisi terpanjang lebih besar, maka segitiga tersebut adalah **segitiga tumpul** (Opsi B)."
         },
         {
@@ -889,11 +889,11 @@ export const grade8Data = {
             },
             {
               "key": "D",
-              "text": "Segitiga sama kaki"
+              "text": "Tidak dapat membentuk segitiga"
             }
           ],
           "correctAnswer": "A",
-          "hint": "Bandingkan nilai $c^2$ dengan $a^2 + b^2$.",
+          "hint": "Bandingkan kuadrat sisi terpanjang dengan jumlah kuadrat kedua sisi lainnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$17^2 = 289$$\n$$8^2 + 15^2 = 64 + 225 = 289$$\nKarena $c^2 = a^2 + b^2$, segitiga tersebut adalah **segitiga siku-siku** (Opsi A)."
         },
         {
@@ -920,7 +920,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Dinding dan tanah membentuk sudut siku-siku. Tinggi dinding $t = \\sqrt{10^2 - 6^2}$.",
+          "hint": "Dinding, permukaan tanah, dan tangga membentuk segitiga siku-siku dengan panjang tangga sebagai sisi miring ($c$). Gunakan $t = \\sqrt{c^2 - a^2}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$t = \\sqrt{10^2 - 6^2} = \\sqrt{100 - 36} = \\sqrt{64} = 8\\text{ meter}$$\nTinggi dinding adalah **8 meter** (Opsi D).",
           "visual": {
             "type": "right-triangle",
@@ -952,7 +952,7 @@ export const grade8Data = {
             },
             {
               "key": "B",
-              "text": "6\\sqrt{3} cm"
+              "text": "$6\\sqrt{3}$ cm"
             },
             {
               "key": "C",
@@ -960,7 +960,7 @@ export const grade8Data = {
             },
             {
               "key": "D",
-              "text": "6\\sqrt{2} cm"
+              "text": "$6\\sqrt{2}$ cm"
             }
           ],
           "correctAnswer": "D",
@@ -992,7 +992,7 @@ export const grade8Data = {
           "options": [
             {
               "key": "A",
-              "text": "5\\sqrt{3} cm"
+              "text": "$5\\sqrt{3}$ cm"
             },
             {
               "key": "B",
@@ -1004,7 +1004,7 @@ export const grade8Data = {
             },
             {
               "key": "D",
-              "text": "10\\sqrt{3} cm"
+              "text": "$10\\sqrt{3}$ cm"
             }
           ],
           "correctAnswer": "C",
@@ -1090,7 +1090,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Arah utara dan timur saling tegak lurus ($90^\\circ$). Jarak terdekat adalah hipotenusa: $s = \\sqrt{24^2 + 10^2}$.",
+          "hint": "Arah utara dan timur saling tegak lurus ($90^\\circ$), sehingga lintasan kapal membentuk dua sisi siku-siku dan jarak terdekatnya adalah hipotenusa ($s = \\sqrt{a^2 + b^2}$).",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$s = \\sqrt{24^2 + 10^2} = \\sqrt{576 + 100} = \\sqrt{676} = 26\\text{ km}$$\nJarak terdekatnya adalah **26 km** (Opsi B).",
           "visual": {
             "type": "right-triangle",
@@ -1104,8 +1104,8 @@ export const grade8Data = {
               "hypLabel": "Jarak Terdekat = ? km",
               "vertices": {
                 "right": "Belokan",
-                "top": "Tujuan",
-                "far": "Pelabuhan"
+                "top": "Pelabuhan",
+                "far": "Tujuan"
               }
             }
           }
@@ -1145,19 +1145,19 @@ export const grade8Data = {
           "options": [
             {
               "key": "A",
-              "text": "100 cm^2"
+              "text": "$100\\text{ cm}^2$"
             },
             {
               "key": "B",
-              "text": "25 cm^2"
+              "text": "$25\\text{ cm}^2$"
             },
             {
               "key": "C",
-              "text": "50 cm^2"
+              "text": "$50\\text{ cm}^2$"
             },
             {
               "key": "D",
-              "text": "75 cm^2"
+              "text": "$75\\text{ cm}^2$"
             }
           ],
           "correctAnswer": "C",
@@ -1188,7 +1188,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Tinggi layang-layang adalah salah satu sisi tegak segitiga siku-siku: $t = \\sqrt{25^2 - 15^2}$.",
+          "hint": "Tinggi layang-layang adalah salah satu sisi tegak segitiga siku-siku dengan panjang tali sebagai hipotenusa ($c$). Gunakan $t = \\sqrt{c^2 - a^2}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$t = \\sqrt{625 - 225} = \\sqrt{400} = 20\\text{ meter}$$\nTinggi layang-layang adalah **20 meter** (Opsi D).",
           "visual": {
             "type": "right-triangle",
@@ -1228,7 +1228,7 @@ export const grade8Data = {
             },
             {
               "key": "D",
-              "text": "12\\sqrt{2} cm"
+              "text": "$12\\sqrt{2}$ cm"
             }
           ],
           "correctAnswer": "A",
@@ -1243,38 +1243,38 @@ export const grade8Data = {
           "options": [
             {
               "key": "A",
-              "text": "240 cm^2"
+              "text": "$240\\text{ cm}^2$"
             },
             {
               "key": "B",
-              "text": "120 cm^2"
+              "text": "$120\\text{ cm}^2$"
             },
             {
               "key": "C",
-              "text": "144 cm^2"
+              "text": "$144\\text{ cm}^2$"
             },
             {
               "key": "D",
-              "text": "156 cm^2"
+              "text": "$156\\text{ cm}^2$"
             }
           ],
           "correctAnswer": "B",
-          "hint": "Sisi belah ketupat $s = 52 / 4 = 13$ cm. Setengah diagonal pertama $= 12$ cm. Cari setengah diagonal kedua dengan Pythagoras.",
+          "hint": "Cari panjang sisi belah ketupat dengan membagi keliling oleh 4, gunakan setengah diagonal yang diketahui untuk mencari setengah diagonal lainnya lewat teorema Pythagoras, lalu hitung luasnya.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sisi belah ketupat $s = 13\\text{ cm}$\n2. Setengah diagonal $d_2$: $\\sqrt{13^2 - 12^2} = \\sqrt{169 - 144} = 5\\text{ cm} \\implies d_2 = 10\\text{ cm}$\n3. Luas $= \\frac{1}{2} \\times d_1 \\times d_2 = \\frac{1}{2} \\times 24 \\times 10 = 120\\text{ cm}^2$ (Opsi B)."
         },
         {
           "id": "smp8-b2-18",
           "category": "Latihan",
           "difficulty": "Tantangan",
-          "question": "Diberikan segitiga dengan panjang sisi masing-masing 9 cm, 12 cm, dan 16 cm. Jenis segitiga tersebut berdasarkan besar sudutnya adalah...",
+          "question": "Diberikan segitiga dengan panjang sisi masing-masing 10 cm, 24 cm, dan 25 cm. Jenis segitiga tersebut berdasarkan besar sudutnya adalah...",
           "options": [
             {
               "key": "A",
-              "text": "Segitiga lancip"
+              "text": "Segitiga tumpul"
             },
             {
               "key": "B",
-              "text": "Segitiga tumpul"
+              "text": "Segitiga lancip"
             },
             {
               "key": "C",
@@ -1282,12 +1282,12 @@ export const grade8Data = {
             },
             {
               "key": "D",
-              "text": "Segitiga sembarang lancip"
+              "text": "Tidak dapat membentuk segitiga"
             }
           ],
           "correctAnswer": "B",
-          "hint": "Hitung $c^2$ dan bandingkan dengan $a^2 + b^2$. Jika $c^2 > a^2 + b^2$, segitiga adalah tumpul.",
-          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sisi terpanjang $c = 16 \\implies 16^2 = 256$\n2. $a^2 + b^2 = 9^2 + 12^2 = 81 + 144 = 225$\n3. Karena $256 > 225$ ($c^2 > a^2 + b^2$), segitiga tersebut adalah **segitiga tumpul** (Opsi B)."
+          "hint": "Bandingkan kuadrat sisi terpanjang $c^2$ dengan jumlah kuadrat dua sisi lainnya $a^2 + b^2$ untuk menentukan sifat sudut terbesarnya.",
+          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sisi terpanjang $c = 25 \\implies 25^2 = 625$.\n2. $a^2 + b^2 = 10^2 + 24^2 = 100 + 576 = 676$.\n3. Karena $625 < 676$ ($c^2 < a^2 + b^2$), segitiga tersebut adalah **segitiga lancip** (Opsi B)."
         },
         {
           "id": "smp8-b2-19",
@@ -1297,19 +1297,19 @@ export const grade8Data = {
           "options": [
             {
               "key": "A",
-              "text": "160 cm^2"
+              "text": "$160\\text{ cm}^2$"
             },
             {
               "key": "B",
-              "text": "96 cm^2"
+              "text": "$96\\text{ cm}^2$"
             },
             {
               "key": "C",
-              "text": "140 cm^2"
+              "text": "$140\\text{ cm}^2$"
             },
             {
               "key": "D",
-              "text": "128 cm^2"
+              "text": "$128\\text{ cm}^2$"
             }
           ],
           "correctAnswer": "D",
@@ -1352,7 +1352,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Bentuk segitiga siku-siku dengan alas 12 m dan tinggi selisih kedua tiang ($14 - 9 = 5$ m).",
+          "hint": "Tarik garis horizontal dari puncak tiang yang lebih pendek secara horizontal ke tiang yang lebih tinggi untuk membentuk segitiga siku-siku dengan alas sama dengan jarak antartiang dan tinggi sama dengan selisih tinggi kedua tiang.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$k = \\sqrt{12^2 + (14 - 9)^2} = \\sqrt{144 + 25} = \\sqrt{169} = 13\\text{ meter}$$\nPanjang kawat adalah **13 meter** (Opsi C)."
         }
       ]
@@ -1422,7 +1422,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Tambahkan 7 ke kedua ruas: $5x = 18 + 7 = 25$, lalu bagi dengan 5.",
+          "hint": "Pindahkan konstanta ke ruas kanan dengan operasi invers, lalu bagi kedua ruas dengan koefisien $x$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $5x = 18 + 7 = 25$\n2. $x = \\frac{25}{5} = 5$\nNilai $x$ adalah **$x = 5$** (Opsi D)."
         },
         {
@@ -1449,7 +1449,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Kurangkan 3: $2x < 8 \\implies x < 4$. Bilangan bulat positif yang kurang dari 4 adalah 1, 2, 3.",
+          "hint": "Selesaikan pertidaksamaan seperti persamaan biasa (ingat aturan tanda jika dikali/dibagi bilangan negatif), lalu tentukan anggota yang memenuhi syarat bilangan bulat positif.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $2x < 11 - 3 \\implies 2x < 8$\n2. $x < 4$\n3. Karena diminta bilangan bulat positif ($x \\in \\{1, 2, 3, \\dots\\}$):\nHimpunannya adalah **$\\{1, 2, 3\\}$** (Opsi D)."
         },
         {
@@ -1584,7 +1584,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Selesaikan pertidaksamaan: $2x < 12 \\implies x < 6$. Bilangan bulat positif dimulai dari 1.",
+          "hint": "Selesaikan pertidaksamaan untuk mendapatkan batas nilai $x$, lalu pilih bilangan bulat positif yang kurang dari batas tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$2x < 12 \\implies x < 6$$\nKarena $x$ bilangan bulat positif: **{1, 2, 3, 4, 5}** (Opsi B)."
         },
         {
@@ -1638,7 +1638,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Kalikan silang kedua ruas: $5(x - 1) = 2(2x + 1)$.",
+          "hint": "Gunakan perkalian silang antara pembilang dan penyebut di ruas yang berlawanan untuk menghilangkan pecahan, lalu kumpulkan suku $x$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$5x - 5 = 4x + 2 \\implies 5x - 4x = 2 + 5 \\implies x = 7$$\nNilai $x$ adalah **7** (Opsi A)."
         },
         {
@@ -1665,7 +1665,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Misalkan tiga bilangan itu $n - 1, n, n + 1$. Jumlahnya adalah $3n = 72$.",
+          "hint": "Nyatakan tiga bilangan bulat berurutan dalam bentuk aljabar (misalnya $n-1, n, n+1$), jumlahkan ketiganya, dan samakan dengan total yang diberikan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $3n = 72 \\implies n = 24$\n2. Ketiga bilangan: 23, 24, 25\n3. Bilangan terbesarnya adalah **25** (Opsi B)."
         },
         {
@@ -1692,7 +1692,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Keliling $= 2(p + l) = 64 \\implies p + l = 32$. Substitusi $p = l + 6$.",
+          "hint": "Gunakan rumus keliling persegi panjang $2(p + l) = \\text{Keliling}$, lalu substitusikan hubungan antara panjang dan lebar yang diketahui.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$(l + 6) + l = 32 \\implies 2l + 6 = 32 \\implies 2l = 26 \\implies l = 13\\text{ meter}$$ (Opsi D)."
         },
         {
@@ -1719,7 +1719,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Misalkan umur anak sekarang $x$, maka ayah $3x$. Empat tahun lalu: $(3x - 4) + (x - 4) = 48$.",
+          "hint": "Nyatakan umur masing-masing dalam variabel $x$ saat ini, lalu sesuaikan untuk waktu beberapa tahun yang lalu dan jumlahkan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$4x - 8 = 48 \\implies 4x = 56 \\implies x = 14\\text{ tahun}$$ (Opsi C)."
         },
         {
@@ -1746,7 +1746,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Total pendapatan yang diinginkan $= 450.000 + 50.000 = 500.000$. Total bungkus $= 5 \\times 40 = 200$.",
+          "hint": "Hitung total modal ditambah keuntungan yang diinginkan untuk mendapatkan total pendapatan, lalu bagi dengan jumlah total keseluruhan barang.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Harga per bungkus} = \\frac{500.000}{200} = \\text{Rp}2.500,00$$ (Opsi A)."
         },
         {
@@ -1773,7 +1773,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Hitung konsumsi per liter $= 96 / 8 = 12$ km/liter, lalu kalikan dengan 15 liter.",
+          "hint": "Gunakan perbandingan senilai (proporsi) antara jumlah bensin dan jarak tempuh.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Jarak} = 15 \\times 12 = 180\\text{ km}$$ (Opsi A)."
         },
         {
@@ -1800,7 +1800,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Keliling $= (x + 2) + (2x - 1) + (3x - 5) \\le 32$.",
+          "hint": "Jumlahkan ketiga sisi segitiga sebagai keliling, buat pertidaksamaan dengan batas maksimum yang diberikan, lalu selesaikan untuk $x$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$6x - 4 \\le 32 \\implies 6x \\le 36 \\implies x \\le 6$$ (Opsi B)."
         },
         {
@@ -1881,7 +1881,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Debit pengisian bersih $= \\frac{1}{20} - \\frac{1}{30} = \\frac{3 - 2}{60} = \\frac{1}{60}$ bagian/menit.",
+          "hint": "Tentukan bagian bak yang diisi per satuan waktu oleh masing-masing keran/lubang (sebagai pecahan dari kapasitas total), lalu kurangkan debit pengisian dengan debit pembuangan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\text{Laju netto} = \\frac{1}{20} - \\frac{1}{30} = \\frac{1}{60}\\text{ per menit}$$\nWaktu $= 60$ menit (Opsi C)."
         },
         {
@@ -1908,7 +1908,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Substitusikan $x = 3$ ke dalam persamaan: $3a + 5 = 17$.",
+          "hint": "Substitusikan nilai $x$ yang diketahui ke dalam persamaan, lalu selesaikan persamaan untuk mencari koefisien $a$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$3a + 5 = 17 \\implies 3a = 12 \\implies a = 4$$ (Opsi B)."
         },
         {
@@ -1935,7 +1935,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Misalkan banyak motor $= m$, maka mobil $= 60 - m$. Roda: $2m + 4(60 - m) = 160$.",
+          "hint": "Gunakan pemisalan jumlah masing-masing kendaraan dan total roda untuk membentuk sistem persamaan linear, lalu hitung total pendapatan dari tarif yang ditentukan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $2m + 240 - 4m = 160 \\implies 2m = 80 \\implies m = 40$ motor\n2. Banyak mobil $= 60 - 40 = 20$ mobil\n3. Pendapatan $= (40 \\times 2.000) + (20 \\times 5.000) = 80.000 + 100.000 = \\text{Rp}180.000,00$ (Opsi A)."
         }
       ]
@@ -2059,7 +2059,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Gunakan rumus banyak pemetaan dari $A$ ke $B$: $n(B)^{n(A)} = 2^3$.",
+          "hint": "Gunakan rumus banyaknya pemetaan dari himpunan $A$ ke himpunan $B$, yaitu $n(B)^{n(A)}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $n(A) = 3$ dan $n(B) = 2$.\n2. Banyak pemetaan dari $A$ ke $B$:\n$$n(B)^{n(A)} = 2^3 = 8$$\nBanyaknya pemetaan yang mungkin adalah **8** (Opsi C)."
         },
         {
@@ -2086,7 +2086,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Cari nilai $a$ dan $b$ terlebih dahulu: $2a = 11 - 5 = 6 \\implies a = 3, b = 2$. Lalu hitung $f(6) = 3(6) + 2$.",
+          "hint": "Gunakan eliminasi atau substitusi dari $f(1) = 5$ dan $f(3) = 11$ untuk menentukan nilai $a$ dan $b$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Sistem persamaan:\n$$a + b = 5$$\n$$3a + b = 11$$\n2. Eliminasi $b$:\n$$2a = 6 \\implies a = 3$$\n3. Cari $b$:\n$$3 + b = 5 \\implies b = 2$$\n4. Rumus fungsi: $f(x) = 3x + 2$.\n5. Nilai $f(6) = 3(6) + 2 = 18 + 2 = 20$.\nHasilnya adalah **20** (Opsi D)."
         },
         {
@@ -2194,7 +2194,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Buat persamaan $5 - 2a = -7$ lalu selesaikan untuk mencari $a$.",
+          "hint": "Substitusikan nilai fungsi ke dalam rumus yang diketahui dan selesaikan persamaan untuk variabel yang ditanyakan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$5 - 2a = -7 \\implies -2a = -12 \\implies a = 6$$ (Opsi B)."
         },
         {
@@ -2329,7 +2329,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Samakan argumen di dalam kurung: $2x - 3 = 5 \\implies 2x = 8 \\implies x = 4$.",
+          "hint": "Tentukan nilai variabel di dalam tanda kurung fungsi yang bersesuaian dengan argumen yang diminta.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $2x - 3 = 5 \\implies x = 4$\n2. Substitusikan $x = 4$: $f(5) = 4(4) + 5 = 16 + 5 = 21$ (Opsi A)."
         },
         {
@@ -2356,7 +2356,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Perhatikan hubungan antara anggota pertama dan kedua: 2 adalah setengah dari 4, 3 adalah setengah dari 6.",
+          "hint": "Bandingkan setiap elemen pertama terhadap pasangannya pada elemen kedua untuk menemukan aturan hubungan yang konsisten bagi semua pasangan.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\nKarena $2 = \\frac{1}{2} \\times 4$, $3 = \\frac{1}{2} \\times 6$, $4 = \\frac{1}{2} \\times 8$, relasi tersebut adalah **setengah dari** (Opsi D)."
         },
         {
@@ -2410,7 +2410,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Perhatikan $f(x+2) - f(x) = a(x+2) + b - (ax + b) = 2a = 6 \\implies a = 3$.",
+          "hint": "Manfaatkan sifat selisih fungsi $f(x+2) - f(x)$ untuk menentukan nilai gradien $a$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $2a = 6 \\implies a = 3$\n2. $f(1) = 3(1) + b = 4 \\implies b = 1$\n3. $f(x) = 3x + 1$\n4. $f(5) = 3(5) + 1 = 16$ (Opsi C)."
         },
         {
@@ -2437,7 +2437,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Selesaikan persamaan $1.200t + 500 = 7.700$.",
+          "hint": "Gunakan model fungsi linear yang diberikan dan tentukan nilai waktu saat volume mencapai kapasitas maksimal.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$1.200t = 7.700 - 500 = 7.200 \\implies t = \\frac{7.200}{1.200} = 6\\text{ jam}$$ (Opsi B)."
         },
         {
@@ -2518,7 +2518,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Selesaikan persamaan $\\frac{2k + 1}{k - 3} = 5$ dengan mengalikan silang.",
+          "hint": "Substitusikan nilai ke dalam fungsi pecahan dan selesaikan persamaan pecahan tersebut.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$2k + 1 = 5(k - 3) \\implies 2k + 1 = 5k - 15 \\implies 16 = 3k \\implies k = \\frac{16}{3}$$ (Opsi D)."
         }
       ]
@@ -2622,7 +2622,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Gunakan $m = \\frac{y}{x} = \\frac{8}{4}$.",
+          "hint": "Gunakan rumus gradien garis yang melalui titik asal $(0,0)$ dan titik $(x, y)$, yaitu $m = \\frac{y}{x}$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$m = \\frac{8 - 0}{4 - 0} = \\frac{8}{4} = 2$$\nGradien garis adalah **2** (Opsi A)."
         },
         {
@@ -2649,7 +2649,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Ubah ke bentuk $y = mx + c$ atau gunakan rumus $m = -\\frac{a}{b} = -\\frac{2}{4}$.",
+          "hint": "Ubah persamaan ke bentuk $y = mx + c$ atau gunakan rumus gradien $m = -\\frac{a}{b}$ dari bentuk $ax + by + c = 0$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Rumus bentuk implisit $ax + by + c = 0$:\n$$m = -\\frac{a}{b} = -\\frac{2}{4} = -\\frac{1}{2}$$\nGradien garis adalah **$-\\frac{1}{2}$** (Opsi D)."
         },
         {
@@ -2676,7 +2676,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Karena sejajar, gradiennya sama ($m = 2$). Gunakan $y - y_1 = m(x - x_1)$ dengan titik $(2, 3)$.",
+          "hint": "Dua garis sejajar memiliki gradien yang sama; tentukan gradien garis asal lalu susun persamaan dengan rumus $y - y_1 = m(x - x_1)$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Karena sejajar, maka $m = 2$.\n2. Masukkan ke rumus garis melalui titik $(2, 3)$:\n$$y - 3 = 2(x - 2)$$\n$$y - 3 = 2x - 4$$\n$$y = 2x - 4 + 3 \\implies y = 2x - 1$$\nPersamaan garisnya adalah **$y = 2x - 1$** (Opsi D)."
         },
         {
@@ -2865,7 +2865,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Karena sejajar, gradien garis baru adalah $m = 2$. Gunakan $y - y_1 = m(x - x_1)$.",
+          "hint": "Identifikasi gradien garis pertama (sejajar berarti gradiennya sama), lalu gunakan persamaan garis melalui satu titik.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$y - (-2) = 2(x - 3) \\implies y + 2 = 2x - 6 \\implies y = 2x - 8$$ (Opsi D)."
         },
         {
@@ -2892,7 +2892,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Garis tegak lurus: $m_1 \\times m_2 = -1 \\implies -\\frac{1}{3} \\times m_2 = -1 \\implies m_2 = 3$.",
+          "hint": "Dua garis saling tegak lurus memenuhi $m_1 \\times m_2 = -1$. Tentukan gradien garis pertama terlebih dahulu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$y - 4 = 3(x - 1) \\implies y - 4 = 3x - 3 \\implies y = 3x + 1$$ (Opsi C)."
         },
         {
@@ -2919,7 +2919,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Hitung gradien $m = \\frac{8 - 2}{3 - 1} = 3$, lalu masukkan ke salah satu titik.",
+          "hint": "Hitung gradien dari dua titik dengan $m = \\frac{y_2 - y_1}{x_2 - x_1}$, lalu susun persamaan garis melalui salah satu titik.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $m = \\frac{8 - 2}{3 - 1} = \\frac{6}{2} = 3$\n2. $y - 2 = 3(x - 1) \\implies y = 3x - 1$ (Opsi A)."
         },
         {
@@ -3000,7 +3000,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Substitusikan persamaan pertama ke persamaan kedua: $x + (2x - 1) = 5$.",
+          "hint": "Substitusikan persamaan pertama ke dalam persamaan kedua untuk mencari nilai x terlebih dahulu.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $3x - 1 = 5 \\implies 3x = 6 \\implies x = 2$\n2. $y = 2(2) - 1 = 3$\nTitik potongnya adalah **(2, 3)** (Opsi A)."
         },
         {
@@ -3027,7 +3027,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Gradien garis pertama $m_1 = \\frac{2}{5}$. Karena tegak lurus, $m_2 = -\\frac{5}{2}$.",
+          "hint": "Tentukan gradien garis yang diketahui, lalu cari gradien garis tegak lurusnya menggunakan syarat $m_1 \\times m_2 = -1$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $m_2 = -\\frac{5}{2}$\n2. $y - (-1) = -\\frac{5}{2}(x - 4) \\implies 2(y + 1) = -5(x - 4)$\n3. $2y + 2 = -5x + 20 \\implies 5x + 2y - 18 = 0$ (Opsi C)."
         },
         {
@@ -3185,7 +3185,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Jumlahkan semua nilai ($7+5+8+6+9=35$), lalu bagi dengan banyak data (5).",
+          "hint": "Jumlahkan seluruh nilai data yang tersedia, lalu bagilah hasil penjumlahan tersebut dengan banyaknya data.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\bar{x} = \\frac{7 + 5 + 8 + 6 + 9}{5} = \\frac{35}{5} = 7$$\nRata-ratanya adalah **7** (Opsi C)."
         },
         {
@@ -3212,7 +3212,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "C",
-          "hint": "Urutkan data: $4, 5, 6, 7, 8, 8, 9$. Ambil data yang berada tepat di posisi tengah.",
+          "hint": "Urutkan seluruh nilai data dari yang terkecil hingga terbesar terlebih dahulu, kemudian tentukan nilai yang berada tepat di posisi tengah.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Urutkan: $4, 5, 6, 7, 8, 8, 9$ (ada 7 data).\n2. Nilai tengah adalah data ke-4 yaitu **7** (Opsi C)."
         },
         {
@@ -3239,7 +3239,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "D",
-          "hint": "Cari angka yang memiliki frekuensi kemunculan paling banyak: angka 7 muncul 3 kali.",
+          "hint": "Hitung frekuensi kemunculan masing-masing nilai dalam data tersebut, lalu pilih nilai yang paling sering muncul.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n- Angka 6 muncul 2 kali\n- Angka 7 muncul 3 kali\n- Angka 8 muncul 2 kali\n- Angka 9 muncul 1 kali\n- Angka 10 muncul 1 kali\nModus data adalah **7** (Opsi D)."
         },
         {
@@ -3266,7 +3266,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "A",
-          "hint": "Bagi data menjadi dua bagian: paruh bawah $\\{3, 5, 6, 7\\} \\implies Q_1 = \\frac{5+6}{2} = 5{,}5$, paruh atas $\\{8, 9, 10, 12\\} \\implies Q_3 = \\frac{9+10}{2} = 9{,}5$. Lalu hitung $Q_3 - Q_1$.",
+          "hint": "Bagi data terurut menjadi paruh bawah dan paruh atas. Tentukan kuartil bawah ($Q_1$) dari nilai tengah paruh bawah dan kuartil atas ($Q_3$) dari nilai tengah paruh atas, lalu hitung $QR = Q_3 - Q_1$.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Paruh bawah: $3, 5, 6, 7 \\implies Q_1 = \\frac{5 + 6}{2} = 5{,}5$.\n2. Paruh atas: $8, 9, 10, 12 \\implies Q_3 = \\frac{9 + 10}{2} = 9{,}5$.\n3. Jangkauan interkuartil:\n$$QR = Q_3 - Q_1 = 9{,}5 - 5{,}5 = 4$$\nJangkauan interkuartilnya adalah **4** (Opsi A)."
         },
         {
@@ -3300,28 +3300,28 @@ export const grade8Data = {
           "id": "smp8-b6-6",
           "category": "Latihan",
           "difficulty": "Sedang",
-          "question": "Median dari sekumpulan data: 4, 7, 5, 6, 9, 8, 7 adalah...",
+          "question": "Median dari data berat badan (dalam kg): 42, 45, 40, 48, 44, 46, 43, 47 adalah...",
           "options": [
             {
               "key": "A",
-              "text": "6"
+              "text": "44"
             },
             {
               "key": "B",
-              "text": "6,5"
+              "text": "45"
             },
             {
               "key": "C",
-              "text": "7"
+              "text": "44,5"
             },
             {
               "key": "D",
-              "text": "8"
+              "text": "45,5"
             }
           ],
           "correctAnswer": "C",
-          "hint": "Urutkan data dari yang terkecil hingga terbesar, lalu cari nilai tengahnya.",
-          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Urutan data: 4, 5, 6, **7**, 7, 8, 9\n2. Karena banyak data ada 7 (ganjil), nilai tengahnya adalah data ke-4 yaitu **7** (Opsi C)."
+          "hint": "Urutkan seluruh data dari yang terkecil hingga terbesar, lalu ambil rata-rata dua data yang berada tepat di tengah.",
+          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Urutan data: 40, 42, 43, **44, 45**, 46, 47, 48 (8 data).\n2. Median $= \\frac{44 + 45}{2} = 44{,}5$ (Opsi C)."
         },
         {
           "id": "smp8-b6-7",
@@ -3489,28 +3489,28 @@ export const grade8Data = {
           "id": "smp8-b6-13",
           "category": "Latihan",
           "difficulty": "Sedang",
-          "question": "Jangkauan interkuartil ($QR$) dari data: 4, 5, 6, 7, 9, 10, 12, 15 adalah...",
+          "question": "Jangkauan interkuartil ($QR$) dari data: 12, 5, 9, 15, 7, 10, 4, 6, 14 adalah...",
           "options": [
             {
               "key": "A",
-              "text": "5"
+              "text": "6,5"
             },
             {
               "key": "B",
-              "text": "5,5"
+              "text": "7,5"
             },
             {
               "key": "C",
-              "text": "6"
+              "text": "8"
             },
             {
               "key": "D",
-              "text": "4,5"
+              "text": "8,5"
             }
           ],
           "correctAnswer": "B",
-          "hint": "Jangkauan interkuartil dirumuskan $QR = Q_3 - Q_1$.",
-          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. $Q_1 = \\frac{5 + 6}{2} = 5{,}5$\n2. $Q_3 = \\frac{10 + 12}{2} = 11$\n3. $QR = 11 - 5{,}5 = 5{,}5$ (Opsi B)."
+          "hint": "Urutkan data terlebih dahulu dari terkecil ke terbesar, tentukan kuartil bawah ($Q_1$) dan kuartil atas ($Q_3$), lalu hitung selisihnya ($QR = Q_3 - Q_1$).",
+          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Data berurutan (9 datum): 4, 5, 6, 7, **9**, 10, 12, 14, 15.\n2. $Q_1 = \\frac{5 + 6}{2} = 5{,}5$ dan $Q_3 = \\frac{12 + 14}{2} = 13$.\n3. $QR = 13 - 5{,}5 = 7{,}5$ (Opsi B)."
         },
         {
           "id": "smp8-b6-14",
@@ -3563,7 +3563,7 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Rata-rata gabungan $= \\frac{(15 \\times 80) + (10 \\times 75)}{15 + 10}$.",
+          "hint": "Kalikan rata-rata masing-masing kelompok dengan jumlah siswanya, jumlahkan kedua total nilai tersebut, lalu bagi dengan jumlah seluruh siswa.",
           "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n$$\\bar{x} = \\frac{1.200 + 750}{25} = \\frac{1.950}{25} = 78$$\nRata-rata seluruh siswa adalah **78** (Opsi B)."
         },
         {
@@ -3597,7 +3597,7 @@ export const grade8Data = {
           "id": "smp8-b6-17",
           "category": "Latihan",
           "difficulty": "Tantangan",
-          "question": "Diberikan sekumpulan data: $x, 4, 7, 8, 9, 11$. Jika median data tersebut adalah 7,5 dan $x$ adalah bilangan bulat positif terkecil, maka nilai mean data tersebut adalah...",
+          "question": "Diberikan sekumpulan data: $x, 4, 7, 8, 9, 11$. Jika median data tersebut adalah 7,5 dan nilai rata-rata (mean) data tersebut merupakan bilangan bulat dengan $x$ bilangan bulat positif terkecil yang memenuhi, maka nilai mean data tersebut adalah...",
           "options": [
             {
               "key": "A",
@@ -3617,8 +3617,8 @@ export const grade8Data = {
             }
           ],
           "correctAnswer": "B",
-          "hint": "Karena median 7,5 dari 6 data, maka dua nilai tengah yang dirata-ratakan adalah 7 dan 8. Maka $x \\le 4$. Jika $x=3$, periksa mean.",
-          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Karena dua nilai tengah adalah 7 dan 8, urutan data: $x, 4, 7, 8, 9, 11$.\n2. Jika $x = 3$, mean $= \\frac{3 + 4 + 7 + 8 + 9 + 11}{6} = \\frac{42}{6} = 7$ (Opsi B)."
+          "hint": "Tentukan batas nilai $x$ agar dua nilai tengah data terurut tetap 7 dan 8, lalu cari $x$ bilangan bulat positif terkecil sehingga jumlah keenam data habis dibagi 6.",
+          "bestSolution": "**Langkah Penyelesaian Terstruktur:**\n1. Agar median data terurut dari 6 datum bernilai $7{,}5 = \\frac{7 + 8}{2}$, dua data tengahnya harus 7 dan 8, sehingga $x \\le 7$.\n2. Agar mean bernilai bulat, jumlah total $x + 4 + 7 + 8 + 9 + 11 = x + 39$ harus kelipatan 6. Bilangan bulat positif terkecil dengan $x \\le 7$ yang membuat $x + 39$ habis dibagi 6 adalah $x = 3$ (jumlah 42).\n3. Mean $= \\frac{42}{6} = 7$ (Opsi B)."
         },
         {
           "id": "smp8-b6-18",

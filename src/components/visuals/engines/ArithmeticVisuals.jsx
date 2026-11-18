@@ -617,7 +617,7 @@ export function CircleFractionVisual({
         <path 
           key={`slice-${s.i}`}
           d={s.pathD}
-          fill={s.isShaded ? VISUAL_THEME.primarySoft : '#FFFFFF'}
+          fill={s.isShaded ? '#93C5FD' : '#FFFFFF'}
           stroke={VISUAL_THEME.primary}
           strokeWidth="1.75"
         />

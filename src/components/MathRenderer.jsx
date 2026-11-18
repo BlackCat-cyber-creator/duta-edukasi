@@ -76,16 +76,27 @@ export function MathText({ text = "", className = "", as = null }) {
         }
       }
 
-      // Teks biasa: tangani baris baru (\n)
+      // Teks biasa: tangani baris baru (\n) dan penebalan **teks**
       const lines = part.split("\n");
       return (
         <span key={`text-${index}`}>
-          {lines.map((line, lIdx) => (
-            <React.Fragment key={lIdx}>
-              {line}
-              {lIdx < lines.length - 1 && <br />}
-            </React.Fragment>
-          ))}
+          {lines.map((line, lIdx) => {
+            const segments = line.split(/(\*\*[^*\n]+?\*\*)/g);
+            return (
+              <React.Fragment key={lIdx}>
+                {segments.map((seg, sIdx) =>
+                  seg.startsWith("**") && seg.endsWith("**") && seg.length > 4 ? (
+                    <strong key={sIdx} style={{ fontWeight: 700, color: 'inherit' }}>
+                      {seg.slice(2, -2)}
+                    </strong>
+                  ) : (
+                    <React.Fragment key={sIdx}>{seg}</React.Fragment>
+                  )
+                )}
+                {lIdx < lines.length - 1 && <br />}
+              </React.Fragment>
+            );
+          })}
         </span>
       );
     });

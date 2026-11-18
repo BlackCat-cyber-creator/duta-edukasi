@@ -170,7 +170,7 @@ const chaptersList = [
         difficulty: 'Menengah',
         source: 'AMC 12B 2020',
         question: 'Jika $\\omega$ adalah akar kesatuan ketiga tak-real dari $z^3 = 1$ (sehingga $\\omega^2 + \\omega + 1 = 0$), tentukan nilai numerik dari $(1 - \\omega)(1 - \\omega^2)$.',
-        hint: 'Jabarkan perkalian aljabar: 1 - ω^2 - ω + ω^3 = 1 - (ω + ω^2) + 1. Ingat ω + ω^2 = -1 dan ω^3 = 1.',
+        hint: 'Gunakan sifat akar kesatuan ketiga di mana $\\omega^3 = 1$ dan $1 + \\omega + \\omega^2 = 0$ untuk menyederhanakan bentuk perkalian.',
         answer: '3',
         acceptedAnswers: ['3', '3.0'],
         bestSolution: 'Langkah 1: Jabarkan bentuk perkalian:\n$$(1 - \\omega)(1 - \\omega^2) = 1 - \\omega^2 - \\omega + \\omega^3 = 1 - (\\omega + \\omega^2) + \\omega^3$$\nLangkah 2: Karena $\\omega$ adalah akar dari $z^3 = 1$, maka $\\omega^3 = 1$.\nDan karena $\\omega^2 + \\omega + 1 = 0$, maka $\\omega + \\omega^2 = -1$.\nLangkah 3: Substitusikan ke hasil penjabaran:\n$$1 - (-1) + 1 = 1 + 1 + 1 = 3.$$'
@@ -192,7 +192,7 @@ const chaptersList = [
         difficulty: 'Menengah',
         source: 'AMC 12A 2019',
         question: 'Hitung nilai eksak dari penjumlahan bilangan kompleks: $(1 + i)^{20} + (1 - i)^{20}$.',
-        hint: 'Perhatikan bahwa (1+i)^2 = 2i dan (1-i)^2 = -2i. Pangkatkan 10.',
+        hint: 'Coba kuadratkan masing-masing bilangan kompleks terlebih dahulu sebelum memangkatkannya lebih lanjut.',
         answer: '-2048',
         acceptedAnswers: ['-2048', '-2,048'],
         bestSolution: 'Langkah 1: Sederhanakan kuadrat masing-masing bilangan:\n$$(1 + i)^2 = 1 + 2i + i^2 = 1 + 2i - 1 = 2i$$\n$$(1 - i)^2 = 1 - 2i + i^2 = 1 - 2i - 1 = -2i$$\nLangkah 2: Pangkatkan 10:\n$$(1 + i)^{20} = ((1 + i)^2)^{10} = (2i)^{10} = 2^{10} \\cdot i^{10} = 1024 \\cdot (-1) = -1024$$\n$$(1 - i)^{20} = ((1 - i)^2)^{10} = (-2i)^{10} = (-2)^{10} \\cdot i^{10} = 1024 \\cdot (-1) = -1024$$\nLangkah 3: Jumlahkan kedua hasil:\n$$-1024 + (-1024) = -2048.$$'
@@ -203,7 +203,7 @@ const chaptersList = [
         difficulty: 'Tantangan',
         source: 'AMC 12B 2021',
         question: 'Tentukan modulus $|z|$ dari bilangan kompleks $z = x + iy$ yang memenuhi persamaan: $z + |z| = 2 + 8i$.',
-        hint: 'Substitusi z = x + iy dan samakan bagian real serta imajiner: y = 8 dan x + √(x^2 + 64) = 2.',
+        hint: 'Substitusikan z = x + iy ke dalam persamaan, lalu pisahkan bagian real dan imajiner untuk menyelesaikan x dan y.',
         answer: '17',
         acceptedAnswers: ['17', '17.0'],
         bestSolution: 'Langkah 1: Tulis $z = x + iy$, sehingga $|z| = \\sqrt{x^2 + y^2}$.\nPersamaan menjadi:\n$$(x + \\sqrt{x^2 + y^2}) + iy = 2 + 8i$$\nLangkah 2: Samakan bagian imajiner:\n$$y = 8$$\nLangkah 3: Samakan bagian real dengan menyubstitusikan $y = 8$:\n$$x + \\sqrt{x^2 + 8^2} = 2 \\implies \\sqrt{x^2 + 64} = 2 - x$$\nLangkah 4: Kuadratkan kedua ruas (dengan syarat $2 - x \\ge 0 \\implies x \\le 2$):\n$$x^2 + 64 = (2 - x)^2 = 4 - 4x + x^2$$\n$$64 = 4 - 4x \\implies 4x = -60 \\implies x = -15$$\nLangkah 5: Hitung modulus $|z|$:\n$$|z| = \\sqrt{(-15)^2 + 8^2} = \\sqrt{225 + 64} = \\sqrt{289} = 17.$$'
@@ -265,7 +265,7 @@ const chaptersList = [
         difficulty: 'Dasar',
         source: 'AMC 12A 2017',
         question: 'Diketahui polinomial $x^3 - 4x^2 + 6x - 2 = 0$ memiliki akar-akar $a, b,$ dan $c$. Tentukan nilai dari $a^2 + b^2 + c^2$.',
-        hint: 'Gunakan Vieta: a + b + c = 4 dan ab + bc + ca = 6. Ingat a^2 + b^2 + c^2 = (a+b+c)^2 - 2(ab+bc+ca).',
+        hint: 'Gunakan Teorema Vieta untuk menentukan jumlah akar-akar dan jumlah hasil kali dua akar dari persamaan kubik tersebut, lalu terapkan identitas $(a + b + c)^2$.',
         answer: '4',
         acceptedAnswers: ['4', '4.0'],
         bestSolution: 'Langkah 1: Berdasarkan Teorema Vieta:\n$$a + b + c = 4$$\n$$ab + bc + ca = 6$$\n$$abc = 2$$\nLangkah 2: Terapkan rumus jumlah kuadrat:\n$$a^2 + b^2 + c^2 = (a + b + c)^2 - 2(ab + bc + ca)$$\n$$a^2 + b^2 + c^2 = 4^2 - 2(6) = 16 - 12 = 4.$$'
@@ -404,7 +404,7 @@ const chaptersList = [
         difficulty: 'Menengah',
         source: 'AMC 12B 2019',
         question: 'Tentukan hasil kali dari seluruh solusi real yang memenuhi persamaan: $x^{\\log_{10} x} = 100x$.',
-        hint: 'Ambil logaritma basis 10 pada kedua ruas: (log x)^2 = log(100x) = 2 + log x. Selesaikan persamaan kuadrat.',
+        hint: 'Ambil logaritma basis 10 pada kedua ruas, lalu gunakan sifat logaritma dari perkalian dan perpangkatan untuk menyederhanakannya menjadi persamaan kuadrat dalam variabel u = log x.',
         answer: '10',
         acceptedAnswers: ['10', '10.0'],
         bestSolution: 'Langkah 1: Ambil $\\log_{10}$ pada kedua ruas (dengan syarat domain $x > 0$):\n$$\\log_{10}(x^{\\log_{10} x}) = \\log_{10}(100x)$$\n$$(\\log_{10} x) \\cdot (\\log_{10} x) = \\log_{10}(100) + \\log_{10}(x)$$\nLangkah 2: Misalkan $u = \\log_{10} x$:\n$$u^2 = 2 + u \\iff u^2 - u - 2 = 0 \\iff (u - 2)(u + 1) = 0$$\nAkar-akarnya adalah $u_1 = 2$ dan $u_2 = -1$.\nLangkah 3: Cari nilai $x$:\n$$x_1 = 10^2 = 100$$\n$$x_2 = 10^{-1} = 0.1$$\nLangkah 4: Hitung hasil kali kedua solusi:\n$$x_1 \\cdot x_2 = 100 \\times 0.1 = 10.$$'
@@ -415,7 +415,7 @@ const chaptersList = [
         difficulty: 'Tantangan',
         source: 'AMC 12A 2016',
         question: 'Diberikan bilangan real $a, b > 1$ sedemikian hingga $\\log_a(b) + \\log_b(a) = \\frac{10}{3}$ dan $ab = 256$. Tentukan nilai dari $\\frac{a + b}{2}$.',
-        hint: 'Misalkan u = log_a(b). Persamaannya menjadi u + 1/u = 10/3 => u = 3 atau 1/3. Maka b = a^3 atau a = b^3.',
+        hint: 'Gunakan sifat pertukaran basis logaritma (misalkan $u = \\log_a b$) untuk mengubah persamaan menjadi bentuk aljabar pecahan, lalu selesaikan untuk memperoleh hubungan $a$ dan $b$.',
         answer: '34',
         acceptedAnswers: ['34', '34.0'],
         bestSolution: 'Langkah 1: Misalkan $u = \\log_a b$. Karena $a, b > 1$, maka $u > 0$.\n$$u + \\frac{1}{u} = \\frac{10}{3} \\implies 3u^2 - 10u + 3 = 0 \\implies (3u - 1)(u - 3) = 0$$\nSehingga $u = 3$ atau $u = 1/3$.\nLangkah 2: Karena bentuk $a$ dan $b$ simetris, tanpa mengurangi keumuman anggap $u = 3$, sehingga $\\log_a b = 3 \\implies b = a^3$.\nLangkah 3: Substitusikan ke dalam $ab = 256$:\n$$a \\cdot a^3 = a^4 = 256 \\implies a = 4$$\nMaka $b = 4^3 = 64$.\nLangkah 4: Hitung nilai rata-ratanya:\n$$\\frac{a + b}{2} = \\frac{4 + 64}{2} = \\frac{68}{2} = 34.$$'
@@ -627,7 +627,7 @@ const chaptersList = [
         difficulty: 'Tantangan',
         source: 'AIME 2018',
         question: 'Bilangan prima $p = 73$ dapat dinyatakan secara tunggal sebagai jumlah dua kuadrat bilangan bulat positif $p = a^2 + b^2$ dengan $a > b > 0$. Tentukan nilai dari $a + b$.',
-        hint: 'Cari kuadrat sempurna di bawah 73: 64, 49, 36... 73 - 64 = 9 = 3^2.',
+        hint: 'Cari kuadrat sempurna terbesar yang kurang dari 73, lalu periksa apakah selisihnya merupakan kuadrat sempurna.',
         answer: '11',
         acceptedAnswers: ['11', '11.0'],
         bestSolution: 'Langkah 1: Karena $73 \\equiv 1 \\pmod 4$, Teorema Dua Kuadrat Fermat menjamin bahwa 73 dapat ditulis sebagai jumlah dua kuadrat bilangan bulat.\nLangkah 2: Uji kuadrat terbesar di bawah 73:\n$$73 - 8^2 = 73 - 64 = 9 = 3^2$$\nSehingga $a = 8$ dan $b = 3$.\nLangkah 3: Hitung nilai $a + b = 8 + 3 = 11$.'
