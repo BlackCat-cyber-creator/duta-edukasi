@@ -33,14 +33,28 @@ export const ORGANIZATION = {
   sameAs: [
     'https://www.instagram.com/jonoyang78/',
     'https://www.instagram.com/jenovervy/',
+    'https://www.instagram.com/jevon.n.shield/',
     'https://maps.app.goo.gl/usZPR3tVRJciKsPJ7'
   ]
 };
 
 export const AUTHOR = {
   name: 'Jevon Naldo Yoshield',
-  jobTitle: 'Guru Matematika & Fisika serta Pembina Olimpiade',
-  sameAs: []
+  jobTitle: 'Lead Developer Platform Duta e-dukasi, Pengajar Matematika & Fisika, serta Pembina Olimpiade',
+  instagramHandle: '@jevon.n.shield',
+  instagramUrl: 'https://www.instagram.com/jevon.n.shield/',
+  githubUrl: 'https://github.com/BlackCat-cyber-creator',
+  websiteUrl: 'https://jevon-one.vercel.app',
+  sameAs: [
+    'https://www.instagram.com/jevon.n.shield/',
+    'https://github.com/BlackCat-cyber-creator',
+    'https://jevon-one.vercel.app'
+  ],
+  bioHighlights: [
+    'Lead Developer & Arsitek Platform Digital Duta e-dukasi — merancang portal buku saku interaktif, mesin kuis diagnostik, Studio Guru, lembar kerja cetak ber-QR, dan arsip Paket Soal Terstruktur.',
+    'Berlatar belakang kompetisi matematika tingkat sekolah menengah hingga perguruan tinggi (termasuk Finalis Nasional ONMIPA-PT Bidang Matematika dan juara kompetisi matematika tingkat provinsi di Kalimantan Barat).',
+    'Fokus mengembangkan teknologi edukasi modern dan sumber belajar terbuka Matematika & Fisika yang terstruktur bagi pelajar, pengajar, serta referensi AI.'
+  ]
 };
 
 export const FOUNDER = {

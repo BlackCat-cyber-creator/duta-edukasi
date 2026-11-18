@@ -34,10 +34,44 @@ export function AboutPage() {
         </div>
 
         <div className="info-card">
-          <h2>Penyusun Portal Digital</h2>
+          <h2>Lead Developer &amp; Penyusun Portal Digital</h2>
           <p><strong>{AUTHOR.name}</strong> — {AUTHOR.jobTitle}.</p>
+          {(AUTHOR.bioHighlights || []).length > 0 && (
+            <ul style={{ fontSize: '0.88rem', paddingLeft: '1.15rem', marginBottom: '0.6rem' }}>
+              {AUTHOR.bioHighlights.map((item) => (
+                <li key={item} style={{ marginBottom: '0.3rem' }}>{item}</li>
+              ))}
+            </ul>
+          )}
           <p style={{ fontSize: '0.88rem', marginBottom: 0 }}>
-            Lokasi Bimbel: {ORGANIZATION.shortAddress} · WhatsApp:{' '}
+            {AUTHOR.instagramUrl && (
+              <>
+                Instagram:{' '}
+                <a href={AUTHOR.instagramUrl} target="_blank" rel="noopener noreferrer">
+                  {AUTHOR.instagramHandle}
+                </a>{' '}
+                ·{' '}
+              </>
+            )}
+            {AUTHOR.githubUrl && (
+              <>
+                GitHub:{' '}
+                <a href={AUTHOR.githubUrl} target="_blank" rel="noopener noreferrer">
+                  BlackCat-cyber-creator
+                </a>{' '}
+                ·{' '}
+              </>
+            )}
+            {AUTHOR.websiteUrl && (
+              <>
+                Portfolio:{' '}
+                <a href={AUTHOR.websiteUrl} target="_blank" rel="noopener noreferrer">
+                  jevon-one.vercel.app
+                </a>{' '}
+                ·{' '}
+              </>
+            )}
+            WhatsApp:{' '}
             <a href={ORGANIZATION.whatsappUrl} target="_blank" rel="noopener noreferrer">
               {ORGANIZATION.whatsappDisplay}
             </a>

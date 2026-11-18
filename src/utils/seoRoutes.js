@@ -11,7 +11,7 @@
  *   /olimpiade/amc-8/ch1-permutations       → bab "amc8-ch1-permutations"
  */
 
-export const SITE_URL = 'https://awesomemathj.vercel.app';
+export const SITE_URL = 'https://dutaedukasi.vercel.app';
 export const SITE_NAME = 'Duta e-dukasi';
 
 const GRADE_PREFIX = /^(sd|smp|sma|ipa)(\d+)-/;

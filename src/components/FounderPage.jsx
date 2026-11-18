@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Award, ExternalLink } from 'lucide-react';
-import { FOUNDER, ORGANIZATION, PRESTASI_DATA } from '../data/siteInfo';
+import { AUTHOR, FOUNDER, ORGANIZATION, PRESTASI_DATA } from '../data/siteInfo';
 import { FOUNDER_META } from '../utils/seoMeta';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { WhatsappBanner } from './WhatsappCta';
@@ -60,6 +60,38 @@ export function FounderPage() {
           <Link to="/prestasi">Lihat Daftar Prestasi Siswa Binaan ({PRESTASI_DATA.length} catatan terverifikasi)</Link>
         </li>
       </ul>
+
+      <h2>Tim Pengajar &amp; Lead Developer Portal Digital</h2>
+      <div className="info-card" style={{ marginBottom: '1.25rem' }}>
+        <h3 style={{ fontSize: '1.05rem', marginBottom: '0.25rem' }}>{AUTHOR.name}</h3>
+        <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>{AUTHOR.jobTitle}</p>
+        <ul style={{ fontSize: '0.9rem', marginBottom: '0.55rem' }}>
+          {(AUTHOR.bioHighlights || []).map((item) => (
+            <li key={item} style={{ marginBottom: '0.35rem' }}>{item}</li>
+          ))}
+        </ul>
+        <p style={{ fontSize: '0.85rem', marginBottom: 0 }}>
+          {AUTHOR.instagramUrl && (
+            <>
+              Instagram:{' '}
+              <a href={AUTHOR.instagramUrl} target="_blank" rel="noopener noreferrer">{AUTHOR.instagramHandle}</a>
+            </>
+          )}
+          {AUTHOR.githubUrl && (
+            <>
+              {' '}· GitHub:{' '}
+              <a href={AUTHOR.githubUrl} target="_blank" rel="noopener noreferrer">BlackCat-cyber-creator</a>
+            </>
+          )}
+          {AUTHOR.websiteUrl && (
+            <>
+              {' '}· Portfolio:{' '}
+              <a href={AUTHOR.websiteUrl} target="_blank" rel="noopener noreferrer">jevon-one.vercel.app</a>
+            </>
+          )}
+          {' '}· <Link to="/tentang">Tentang Platform Duta e-dukasi</Link>
+        </p>
+      </div>
 
       <WhatsappBanner />
     </div>

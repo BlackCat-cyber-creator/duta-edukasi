@@ -66,3 +66,12 @@ Dua siswa SMA Pelita Cemerlang muncul bersama `@jenovervy` pada unggahan kolabor
 - **Edbert Adelwin Weisly** — Honorable Mention OSN 2026 Bidang Astronomi (`DdlV3h6kjTJ`).
 
 Karena keduanya dipublikasikan oleh akun sekolah Pelita Cemerlang sebagai rekan satu sekolah Jenover dan tidak diposting di `@jonoyang78`, keduanya **belum** dimasukkan ke daftar alumni binaan Duta e-dukasi di `/prestasi` agar tidak terjadi salah atribusi. Jika mereka memang siswa binaan Duta e-dukasi, silakan beri tahu untuk ditambahkan.
+
+---
+
+## 4. Tim Pengajar & Lead Developer Portal Digital: Jevon Naldo Yoshield (`@jevon.n.shield`)
+
+| Bidang | Ringkasan Profil Publik Terverifikasi | Sumber |
+| :--- | :--- | :--- |
+| Peran di Duta e-dukasi | **Lead Developer Platform Digital, Pengajar Matematika & Fisika, serta Pembina Olimpiade** — arsitek portal buku saku interaktif, Studio Guru, lembar kerja cetak ber-QR, dan arsip Paket Soal Terstruktur | [GitHub `BlackCat-cyber-creator`](https://github.com/BlackCat-cyber-creator), [`@jevon.n.shield`](https://www.instagram.com/jevon.n.shield/) |
+| Latar Belakang Akademik & Kompetisi | Alumnus **SMA Katolik Santu Petrus Pontianak** & mahasiswa **Institut Teknologi dan Bisnis Sabda Setia (ITB Sabda Setia)**; peraih Juara 3 SMA MC LIMAS ke-10 HIMMAT FKIP UNTAN (2022) dan peserta seleksi wilayah ke tingkat nasional **ONMIPA-PT 2024 Bidang Matematika** (Makassar) | [`@jonoyang78/p/CbnDcJmvHo6/`](https://www.instagram.com/jonoyang78/p/CbnDcJmvHo6/), [`@jonoyang78/p/C6pf7O7P6N3/`](https://www.instagram.com/jonoyang78/p/C6pf7O7P6N3/) |

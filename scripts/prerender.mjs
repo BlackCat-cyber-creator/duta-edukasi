@@ -387,9 +387,10 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
     <h2>Pendiri &amp; Penyusun Portal</h2>
     <ul>
       <li>Pendiri Bimbel: <a href="/pendiri">${escapeHtml(FOUNDER.name)} (${escapeHtml(FOUNDER.formalName)})</a> — ${escapeHtml(FOUNDER.role)}</li>
-      <li>Penyusun Portal: ${escapeHtml(AUTHOR.name)} — ${escapeHtml(AUTHOR.jobTitle)}</li>
+      <li>Lead Developer &amp; Penyusun Portal: ${escapeHtml(AUTHOR.name)} — ${escapeHtml(AUTHOR.jobTitle)} (${AUTHOR.instagramUrl ? `<a href="${escapeHtml(AUTHOR.instagramUrl)}">${escapeHtml(AUTHOR.instagramHandle)}</a> · ` : ''}${AUTHOR.githubUrl ? `<a href="${escapeHtml(AUTHOR.githubUrl)}">GitHub</a>` : ''})</li>
       <li>Lokasi &amp; Kontak: ${escapeHtml(ORGANIZATION.fullAddress)} · WhatsApp ${escapeHtml(ORGANIZATION.whatsappDisplay)}</li>
     </ul>
+    ${(AUTHOR.bioHighlights || []).length ? `<h2>Tentang Lead Developer Portal (${escapeHtml(AUTHOR.name)})</h2><ul>${AUTHOR.bioHighlights.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>` : ''}
     <h2>Lisensi Terbuka</h2>
     <p>Seluruh materi berlisensi <a href="${escapeHtml(ORGANIZATION.licenseUrl)}">${escapeHtml(ORGANIZATION.licenseName)}</a> dengan atribusi kepada ${escapeHtml(ORGANIZATION.name)}.</p>
     <h2>Mulai Belajar</h2>
@@ -450,7 +451,11 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
     <ul>${FOUNDER.bioHighlights.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>
     <h2>Rekam Jejak Terverifikasi</h2>
     <ul>${FOUNDER.credentials.map((c) => `<li><strong>${escapeHtml(c.year)} — ${escapeHtml(c.title)}</strong>: ${escapeHtml(c.detail)} (<a href="${escapeHtml(c.sourceUrl)}">Sumber</a>)</li>`).join('')}</ul>
-    <p>Instagram: <a href="${escapeHtml(FOUNDER.instagramUrl)}">${escapeHtml(FOUNDER.instagramHandle)}</a> · <a href="/prestasi">Prestasi Siswa Binaan</a></p>`;
+    <p>Instagram: <a href="${escapeHtml(FOUNDER.instagramUrl)}">${escapeHtml(FOUNDER.instagramHandle)}</a> · <a href="/prestasi">Prestasi Siswa Binaan</a></p>
+    <h2>Tim Pengajar &amp; Lead Developer Portal Digital</h2>
+    <p><strong>${escapeHtml(AUTHOR.name)}</strong> — ${escapeHtml(AUTHOR.jobTitle)}.</p>
+    <ul>${(AUTHOR.bioHighlights || []).map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>
+    <p>${AUTHOR.instagramUrl ? `Instagram: <a href="${escapeHtml(AUTHOR.instagramUrl)}">${escapeHtml(AUTHOR.instagramHandle)}</a> · ` : ''}${AUTHOR.githubUrl ? `<a href="${escapeHtml(AUTHOR.githubUrl)}">GitHub</a> · ` : ''}<a href="/tentang">Tentang Platform Duta e-dukasi</a></p>`;
   const ld = [
     {
       '@context': 'https://schema.org',

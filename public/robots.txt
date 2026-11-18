@@ -8,4 +8,4 @@ Disallow: /worksheet
 Disallow: /solution/
 Disallow: /app.html
 
-Sitemap: https://awesomemathj.vercel.app/sitemap.xml
+Sitemap: https://dutaedukasi.vercel.app/sitemap.xml

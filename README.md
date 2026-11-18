@@ -1,13 +1,15 @@
-# AwesomeMathJ • Platform Belajar & Studio Guru Matematika
+# Duta e-dukasi (`dutaedukasi.vercel.app`) • Portal Belajar & Studio Guru Matematika & Fisika
 
-> **Platform Pembelajaran & Manajemen Bimbingan Belajar Matematika Kurikulum Merdeka (Kelas 4 SD – 12 SMA)**  
-> Menggabungkan buku saku digital mandiri, studio manajemen bimbingan privat (*Sir Jevon*), lembar kerja cetak A4 ber-QR code, dan player penugasan digital interaktif.
+> **Platform Pembelajaran Digital & Sumber Terbuka Bimbingan Belajar Duta Edukasi Pontianak (`Jl. Siam No. 37`)**  
+> Menggabungkan buku saku digital Matematika & IPA/Fisika Kelas 4–12, modul Olimpiade (AMC & OSN), arsip Paket Soal Terstruktur lengkap kunci + rubrik, Studio Guru (*Duta e-dukasi* / *Sir Jevon*), lembar kerja cetak A4 ber-QR code, dan player penugasan interaktif.
+
+Live URL: **https://dutaedukasi.vercel.app** (`awesomemathj.vercel.app` dialihkan permanen 308 ke domain utama ini).
 
 ---
 
 ## 🌟 Gambaran Utama (Overview)
 
-**AwesomeMathJ** dirancang untuk menghubungkan pembelajaran di kelas, latihan mandiri di rumah, dan bimbingan guru secara efisien tanpa latensi server backend. Seluruh status aplikasi, data siswa, penugasan PR, dan riwayat pengerjaan dikelola secara instan melalui client-side architecture berbasis **React 19**, **Vite 8**, dan **KaTeX**.
+**Duta e-dukasi** dirancang untuk menghubungkan pembelajaran di kelas, latihan mandiri di rumah, dan bimbingan guru secara efisien tanpa latensi server backend. Seluruh status aplikasi, data siswa, penugasan PR, dan riwayat pengerjaan dikelola secara instan melalui client-side architecture berbasis **React 19**, **Vite 8**, dan **KaTeX**.
 
 ### 🎯 Fitur Unggulan
 
@@ -85,7 +87,7 @@ Aplikasi mengadopsi **React Router v7** dengan skema rute kanonik dan dukungan p
 ## 🏗️ Struktur Direktori Proyek
 
 ```
-AwesomeMathJ/
+duta-edukasi/
 ├── public/                    # Aset statis & favicon
 ├── scratch/                   # Skrip utilitas & pipeline
 ├── pipeline/                  # Pipeline kurikulum otomatis
@@ -162,8 +164,8 @@ AwesomeMathJ/
 
 ### 2. Instalasi Dependensi
 ```bash
-git clone https://github.com/BlackCat-cyber-creator/AwesomeMathJ.git
-cd AwesomeMathJ
+git clone https://github.com/BlackCat-cyber-creator/duta-edukasi.git
+cd duta-edukasi
 npm install
 ```
 
@@ -195,7 +197,7 @@ npm run lint
 
 ## 🛠️ Perintah Pipeline Kurikulum
 
-AwesomeMathJ menyertakan rangkaian alat untuk menjaga konsistensi konten kurikulum:
+Duta e-dukasi menyertakan rangkaian alat untuk menjaga konsistensi konten kurikulum:
 
 * **Periksa Status Kurikulum & Soal:**
   ```bash
@@ -225,5 +227,6 @@ AwesomeMathJ menyertakan rangkaian alat untuk menjaga konsistensi konten kurikul
 
 ## 📄 Lisensi & Hak Cipta
 
-- Platform web, kode sumber, dan antarmuka dikembangkan untuk ekosistem pembelajaran matematika **AwesomeMathJ**.
+- Platform web, kode sumber, dan antarmuka dikembangkan oleh **Jevon Naldo Yoshield** (`@jevon.n.shield`) untuk ekosistem **Duta e-dukasi** (didirikan oleh **Jono Yang** / `@jonoyang78`).
+- Konten pembelajaran publik dibagikan di bawah lisensi **CC BY 4.0** dengan atribusi kepada **Duta e-dukasi**.
 - Materi silabus diselaraskan dengan Capaian Pembelajaran Kurikulum Merdeka Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia.
