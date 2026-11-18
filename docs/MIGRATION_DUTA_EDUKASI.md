@@ -1,40 +1,38 @@
 # Catatan Migrasi Portal: AwesomeMathJ ke Duta e-dukasi
 
-Dokumen ini mencatat status pembaruan identitas merek, repositori, domain, serta layanan pendukung (`GitHub`, `Vercel`, `Firebase`, `Google Analytics 4`, dan `Google Search Console`).
+Dokumen ini mencatat status lengkap pembaruan identitas merek, paket soal, repositori, domain, serta layanan pendukung (`GitHub`, `Vercel`, `Firebase`, `Google Search Console`, dan `Google Analytics 4`).
 
 ---
 
-## 1. Status Langkah Terlaksana
+## 1. Status Selesai & Terverifikasi Live
 
 - **Identitas & Halaman Publik (`Phase P0–P2`, commit `0216c69`):**
   - Aset merek (`public/brand/logo-monogram.svg`, `favicon.svg`, `logo-full.svg`, `apple-touch-icon.png`, `og-default.png`) dibuat dari materi banner resmi Duta e-dukasi (`#B30C35` crimson, `#12337A` navy).
-  - Halaman informasi baru ditambahkan dan diprerender: `/tentang`, `/program`, `/pendiri`, `/prestasi`, `/kontak`, `/paket-soal`, `/paket-soal/:subject`, `/paket-soal/:subject/:slug`.
-  - Seluruh klaim prestasi pendiri (`Jono Yang` / `Jono, S.T.`) dan siswa dicatat bersama tautan bukti primer di [`docs/research/prestasi.md`](research/prestasi.md).
-- **Ingesti & Verifikasi Paket Soal Batch 1 (`Phase P3`, commit `ccbad93`):**
-  - `6` paket baru terpublikasi (`status: 'published'`, total `7` paket live termasuk pilot `fis10-kinematika2-p2`), terdiri atas `5` paket Fisika Kinematika Kelas 10 berbahasa Inggris dan `2` paket Bilangan Olimpiade Matematika SD Kelas 4–5 — semuanya lulus 100% blind solve (`pro`) + audit Hydrogen (`flash_lite`) tanpa mismatch.
-  - `2` paket Olimpiade Matematika SMP (`bilangan-smp-basic-1` dan `bilangan-smp-elite`) disimpan sebagai `status: 'needs-human'` di [`docs/research/audit-paket-soal.md`](research/audit-paket-soal.md) karena ditemukan cacat matematis pada PDF asli.
-- **Repositori GitHub:**
-  - Berhasil di-rename dari `BlackCat-cyber-creator/AwesomeMathJ` menjadi **`https://github.com/BlackCat-cyber-creator/duta-edukasi`** melalui `gh repo rename duta-edukasi --yes`.
-  - Remote lokal diperbarui ke `https://github.com/BlackCat-cyber-creator/duta-edukasi.git`.
-- **Proyek, Domain & Redirect Vercel (`b162d480`):**
-  - Koneksi Git terverifikasi menunjuk ke **`BlackCat-cyber-creator/duta-edukasi`** (`Ready` pada commit `ccbad93`).
-  - Nama proyek Vercel diubah dari `awesomemathj` menjadi **`dutaedukasi`**.
+  - Halaman baru live & ter-prerender: `/tentang`, `/program`, `/pendiri`, `/prestasi`, `/kontak`, `/paket-soal`, `/paket-soal/:subject`, `/paket-soal/:subject/:slug`.
+  - Ledger klaim terverifikasi pendiri (**Jono Yang** / `@jonoyang78`), pengembang (**Jevon Naldo Yoshield** / `@jevon.n.shield`), dan siswa binaan dicatat di [`docs/research/prestasi.md`](research/prestasi.md).
+- **Ingesti & Audit Dua-Model Paket Soal Batch 1 (`Phase P3`, commit `ccbad93`):**
+  - `7` paket berstatus `published` (`5` Fisika Kinematika Kelas 10 berbahasa Inggris + `2` Bilangan Olimpiade Matematika SD Kelas 4–5), semuanya lulus `pro` blind solve (`0` mismatch) dan audit 1-paket-per-panggilan `flash_lite` (`0` flag).
+  - `2` paket Bilangan Olimpiade SMP (`bilangan-smp-basic-1`, `bilangan-smp-elite`) disimpan sebagai `status: 'needs-human'` di [`docs/research/audit-paket-soal.md`](research/audit-paket-soal.md) karena terdapat 4 temuan cacat soal/kunci pada naskah PDF asli.
+- **GitHub Repository Rename:**
+  - Di-rename dari `BlackCat-cyber-creator/AwesomeMathJ` menjadi **`https://github.com/BlackCat-cyber-creator/duta-edukasi`** via `gh repo rename duta-edukasi --yes`.
+- **Proyek, Domain & Redirect 308 Vercel (`b162d480` + Python HTTP check):**
+  - Proyek Vercel diubah nama dari `awesomemathj` menjadi **`dutaedukasi`** (`Settings -> Git` tersambung ke `BlackCat-cyber-creator/duta-edukasi`).
   - Domain utama **`https://dutaedukasi.vercel.app`** aktif (`Valid Configuration`, Production).
-  - Domain lama **`awesomemathj.vercel.app`** tetap terpasang dan diarahkan melalui **308 Permanent Redirect** menuju `dutaedukasi.vercel.app`.
-- **Cutover URL Kanonik & Profil Pengembang:**
-  - `SITE_URL` di `src/utils/seoRoutes.js` dan `Sitemap:` di `public/robots.txt` diperbarui ke **`https://dutaedukasi.vercel.app`**.
-  - Profil Lead Developer & Penyusun Portal (**Jevon Naldo Yoshield**, `@jevon.n.shield`) ditambahkan ke `AUTHOR` (`src/data/siteInfo.js`), `/tentang`, `/pendiri`, `README.md`, dan JSON-LD/prerender (`scripts/prerender.mjs`).
+  - **`awesomemathj.vercel.app/*`** mengembalikan **`HTTP 308 Permanent Redirect`** ke `https://dutaedukasi.vercel.app/*` pada seluruh rute (`/`, `/paket-soal`, `/tentang`, `/pendiri`, `/prestasi`, `/matematika/kelas-4/bab2-pecahan`).
+  - Cek HTTP live pada `https://dutaedukasi.vercel.app/` (`/` hingga `/paket-soal/*`, `/robots.txt`, `/sitemap.xml` berisi `188` URL, dan `/llms.txt` berisi `227` baris): semua `HTTP 200`, tag `<link rel="canonical">` menunjuk `https://dutaedukasi.vercel.app/...`, tanpa sisa URL `awesomemathj.vercel.app`.
+- **Cutover Kanonik & Profil Lead Developer (commit `28214e0`):**
+  - `SITE_URL` (`src/utils/seoRoutes.js`), `Sitemap:` (`public/robots.txt`), `README.md`, JSON-LD, `/tentang`, dan `/pendiri` diperbarui dengan profil **Jevon Naldo Yoshield** (`@jevon.n.shield`, GitHub `BlackCat-cyber-creator`, `jevon-one.vercel.app`).
+- **Firebase Console (`projectId: awesomemathj`):**
+  - `Authentication -> Settings -> Authorized domains`: **`dutaedukasi.vercel.app`** ditambahkan (bersama `awesomemathj.vercel.app` dan `localhost`).
+  - `Project settings -> General`: nama tampilan proyek diubah menjadi **`Duta e-dukasi`** (`projectId: awesomemathj` tetap dipertahankan).
+- **Google Search Console:**
+  - Properti URL-prefix **`https://dutaedukasi.vercel.app/`** ditambahkan & terverifikasi otomatis via **File HTML**.
+  - `https://dutaedukasi.vercel.app/sitemap.xml` dikirim dan berstatus **`Sukses`** (`19 Nov 2026`, `188` halaman ditemukan).
 
 ---
 
-## 2. Langkah Berjalan / Berikutnya (`Phase P4 Finalization & P5`)
+## 2. Satu Langkah Tertunda karena Izin Akun (`BLOCKED / GA4_PERMISSION_REQUIRED`)
 
-Setelah pembaruan `SITE_URL` ke `https://dutaedukasi.vercel.app` di-push ke `main`:
-1. **Firebase Console (`projectId: awesomemathj`, tetap dipertahankan):**
-   - `Authentication -> Settings -> Authorized domains`: tambahkan `dutaedukasi.vercel.app`.
-   - `Project Settings`: perbarui nama tampilan proyek menjadi `Duta e-dukasi`.
-2. **Google Analytics 4 & Google Search Console:**
-   - Perbarui `Stream Name` (`Duta e-dukasi`) dan `Stream URL` (`https://dutaedukasi.vercel.app`) di GA4.
-   - Tambahkan properti URL-prefix `https://dutaedukasi.vercel.app/` di Search Console, kirim `https://dutaedukasi.vercel.app/sitemap.xml`, dan cek *Change of Address* dari `awesomemathj.vercel.app`.
-3. **Verifikasi Live Akhir:**
-   - Cek status HTTP `308` dari `https://awesomemathj.vercel.app/` menuju `https://dutaedukasi.vercel.app/`, cek `/sitemap.xml` dan `/llms.txt`, serta uji tampilan langsung pada domain baru.
+- **Google Analytics (GA4) — Properti `awesomemathj` (`G-G2BZYXCEFM`):**
+  - Saat `b162d480` membuka tautan stream langsung dari integrasi Firebase (`https://analytics.google.com/analytics/web/#/a378128144p553551452/admin/streams/table/15751926191`), akun Google aktif (`jevon.naldo@gmail.com`) hanya memiliki akses ke akun GA4 lain dan mendapat pesan **`Izin tidak ada`** (HTTP `403`) pada Account **`378128144`** / Property **`553551452`** / Stream **`15751926191`**.
+  - **Tindakan untuk Pemilik:** Buka URL stream GA4 tersebut memakai akun Google pemilik properti `G-G2BZYXCEFM` (atau berikan akses *Editor/Admin* ke `jevon.naldo@gmail.com`), lalu ubah **Stream URL** menjadi **`https://dutaedukasi.vercel.app`** dan **Stream Name** menjadi **`Duta e-dukasi`**.
