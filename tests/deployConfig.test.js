@@ -24,7 +24,14 @@ describe('Konfigurasi deploy Vercel', () => {
     expect(map['/ipa/:kelas']).toBe('/ipa/:kelas.html');
     expect(map['/olimpiade/:level/:bab']).toBe('/olimpiade/:level/:bab.html');
     expect(map['/olimpiade/:level']).toBe('/olimpiade/:level.html');
+    expect(map['/paket-soal/:subject/:slug']).toBe('/paket-soal/:subject/:slug.html');
+    expect(map['/paket-soal/:subject']).toBe('/paket-soal/:subject.html');
+    expect(map['/paket-soal']).toBe('/paket-soal.html');
     expect(map['/tentang']).toBe('/tentang.html');
+    expect(map['/program']).toBe('/program.html');
+    expect(map['/pendiri']).toBe('/pendiri.html');
+    expect(map['/prestasi']).toBe('/prestasi.html');
+    expect(map['/kontak']).toBe('/kontak.html');
     expect(map['/daftar-isi']).toBe('/daftar-isi.html');
     expect(map['/rumus']).toBe('/rumus.html');
     expect(map['/tka']).toBe('/tka.html');

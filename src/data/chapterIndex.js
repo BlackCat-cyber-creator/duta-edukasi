@@ -1,5 +1,5 @@
 /**
- * Lightweight Metadata and Chapter Index for AwesomeMathJ
+ * Lightweight Metadata and Chapter Index for Duta e-dukasi
  * 
  * Auto-generated index allows instant navigation, tab rendering,
  * and global search across all 55 chapters without loading 1,100 full question objects.

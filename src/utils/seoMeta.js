@@ -4,8 +4,17 @@
  * Dipakai oleh aplikasi (useDocumentMeta) dan prerender (scripts/prerender.mjs)
  * agar teks yang dibaca Google sama dengan yang tampil di browser.
  */
-import { SITE_NAME, gradePath, chapterPath, amcLevelPath, amcChapterPath, subjectOfChapter } from './seoRoutes.js';
-import { AUTHOR } from '../data/siteInfo.js';
+import {
+  SITE_NAME,
+  gradePath,
+  chapterPath,
+  amcLevelPath,
+  amcChapterPath,
+  subjectOfChapter,
+  packetHubPath,
+  packetPath
+} from './seoRoutes.js';
+import { AUTHOR, FOUNDER, ORGANIZATION } from '../data/siteInfo.js';
 
 /** Teks polos dari string bercampur LaTeX/markdown. */
 export function plainText(text) {
@@ -40,16 +49,72 @@ export function subjectDisplayName(subject, grade) {
 }
 
 export const HOME_META = {
-  title: `${SITE_NAME} oleh ${AUTHOR.name} • Materi & Latihan Matematika, IPA & Fisika (Kelas 4–12), dan AMC`,
-  description: `Belajar gratis tanpa daftar bersama ${AUTHOR.name}: ringkasan materi, rumus, contoh soal, dan latihan Matematika, IPA SD–SMP, dan Fisika SMA Kurikulum Merdeka Kelas 4–12, plus persiapan olimpiade AMC 8, 10, dan 12.`,
+  title: `${SITE_NAME} • Materi, Kuis & Paket Soal Matematika & Fisika (Kelas 4–12), dan Olimpiade`,
+  description: `Belajar gratis tanpa daftar di ${SITE_NAME} (${ORGANIZATION.legalName} Pontianak): materi, rumus, kuis interaktif, dan Paket Soal terstruktur Matematika, IPA SD–SMP, Fisika SMA (Kelas 4–12), serta persiapan Olimpiade AMC & OSN.`,
   path: '/'
 };
 
 export const ABOUT_META = {
-  title: `Tentang ${SITE_NAME} — ${AUTHOR.name}, ${AUTHOR.jobTitle}`,
-  description: `${SITE_NAME} dibuat dan dikelola oleh ${AUTHOR.name}, guru Matematika & Fisika Kelas 4 SD sampai 12 SMA dan pembina olimpiade AMC. Materi Matematika, IPA, dan Fisika gratis sesuai Capaian Pembelajaran Kurikulum Merdeka.`,
+  title: `Tentang ${SITE_NAME} — ${ORGANIZATION.legalName} Pontianak`,
+  description: `Tentang ${SITE_NAME} yang didirikan oleh ${FOUNDER.name} di ${ORGANIZATION.shortAddress}. Platform belajar Matematika, IPA & Fisika Kelas 4–12 gratis berlisensi CC BY 4.0 bersama ${AUTHOR.name}.`,
   path: '/tentang'
 };
+
+export const PROGRAM_META = {
+  title: `Program Bimbel Reguler, Privat & Olimpiade | ${SITE_NAME}`,
+  description: `Program bimbingan belajar ${ORGANIZATION.legalName} di Pontianak & daring: kelas reguler dan privat Matematika, IPA, dan Fisika SD–SMA serta pembinaan Olimpiade OSN & AMC.`,
+  path: '/program'
+};
+
+export const FOUNDER_META = {
+  title: `Profil Pendiri: ${FOUNDER.name} (${FOUNDER.formalName}) | ${SITE_NAME}`,
+  description: `Mengenal ${FOUNDER.name} (${FOUNDER.formalName}), pendiri ${ORGANIZATION.legalName} Pontianak dan pembina Olimpiade Matematika (OSN-Guru 2013 Matematika SMP, Bandung).`,
+  path: '/pendiri'
+};
+
+export const PRESTASI_META = {
+  title: `Prestasi Siswa & Peraih Medali Olimpiade | ${SITE_NAME}`,
+  description: `Catatan prestasi terverifikasi siswa binaan ${SITE_NAME} di ajang Olimpiade Sains Nasional (OSN Matematika) dan kompetisi sains nasional/internasional.`,
+  path: '/prestasi'
+};
+
+export const CONTACT_META = {
+  title: `Kontak & Lokasi Bimbel ${SITE_NAME} Pontianak (${ORGANIZATION.whatsappDisplay})`,
+  description: `Hubungi ${ORGANIZATION.legalName} di ${ORGANIZATION.fullAddress} melalui WhatsApp ${ORGANIZATION.whatsappDisplay} untuk informasi kelas reguler, privat, dan pembinaan olimpiade.`,
+  path: '/kontak'
+};
+
+export function papersHubMeta(subject = 'all') {
+  const labelMap = {
+    fisika: 'Fisika',
+    matematika: 'Matematika',
+    ipa: 'IPA',
+    'olimpiade-mat': 'Olimpiade Matematika',
+    'olimpiade-fis': 'Olimpiade Fisika'
+  };
+  const subLabel = labelMap[subject];
+  if (subLabel) {
+    return {
+      title: `Paket Soal ${subLabel} Terstruktur + Kunci & Rubrik | ${SITE_NAME}`,
+      description: `Kumpulan Paket Soal terstruktur ${subLabel} ${SITE_NAME} lengkap dengan gambar diagram, kunci jawaban eksak & desimal SI, pembahasan prinsip, dan rubrik penilaian B1/M1/A1.`,
+      path: packetHubPath(subject)
+    };
+  }
+  return {
+    title: `Paket Soal Matematika, Fisika & Olimpiade + Kunci & Rubrik | ${SITE_NAME}`,
+    description: `Arsip Paket Soal terstruktur ${SITE_NAME} (Matematika, Fisika, dan Olimpiade) dalam bahasa sumber asli lengkap dengan kunci jawaban, langkah pembahasan, dan rubrik penilaian.`,
+    path: '/paket-soal'
+  };
+}
+
+export function paperDetailMeta(paper) {
+  return {
+    title: `${paper.title} | Paket Soal ${SITE_NAME}`,
+    description: `${paper.title} (${paper.totalMarks} marks, ${paper.questions?.length || 0} soal terstruktur) — dilengkapi diagram, kunci jawaban, langkah pembahasan prinsip, dan rubrik penilaian dari ${SITE_NAME}.`,
+    path: packetPath(paper.subject, paper.slug),
+    lang: paper.lang || 'id'
+  };
+}
 
 export const TOPIC_INDEX_META = {
   title: `Daftar Isi Materi Matematika, IPA, Fisika, dan Olimpiade per Topik | ${SITE_NAME}`,

@@ -9,6 +9,8 @@ import { getGradeData, findChapterIndex, subjectOf } from '../data/curriculumDat
 import { ALL_AMC_CHAPTERS_INDEX } from '../data/amc/amcMetadata';
 import { getAmcModuleData, normalizeAmcLevel } from '../data/amc/amcData';
 import { exportWorksheetToPdf, triggerSafePrint } from '../utils/pdfExport';
+import { SITE_URL } from '../utils/seoRoutes';
+import { ORGANIZATION } from '../data/siteInfo';
 import { 
   Printer, 
   ArrowLeft, 
@@ -43,13 +45,13 @@ function getWorksheetSolutionUrl(quest, customOrigin = null) {
   const path = getWorksheetSolutionPath(quest);
   const origin = customOrigin || ((typeof window !== 'undefined' && window.location?.origin && window.location.origin !== 'null')
     ? window.location.origin
-    : 'https://awesomemathj.web.app');
+    : SITE_URL);
   return `${origin}${path}`;
 }
 
 /**
  * PrintableWorksheet:
- * Format Lembar Kerja Ujian Resmi AwesomeMathJ.
+ * Format Lembar Kerja Ujian Resmi Duta e-dukasi.
  * Siap cetak ke format PDF / Kertas A4 dengan CSS print teroptimasi,
  * dukungan ekspor PDF langsung (.pdf) anti-potong.
  */
@@ -76,8 +78,8 @@ export function PrintableWorksheet({ quest: propQuest = null, onBack = null }) {
   });
 
   const [isLoading, setIsLoading] = useState(!quest && Boolean(questId));
-  const [tutoringName, setTutoringName] = useState("AwesomeMathJ");
-  const [teacherName, setTeacherName] = useState("Studio Guru Matematika");
+  const [tutoringName, setTutoringName] = useState(ORGANIZATION.name);
+  const [teacherName, setTeacherName] = useState("Studio Guru Matematika & Fisika");
   const [studentName, setStudentName] = useState(quest?.studentName || "Lembar Siswa");
   const [timeAlloc, setTimeAlloc] = useState("20 Menit");
   const [isEditingHeader, setIsEditingHeader] = useState(false);
@@ -590,7 +592,7 @@ export function PrintableWorksheet({ quest: propQuest = null, onBack = null }) {
 
         {/* Footer verification note */}
         <div className="print-footer" style={{ marginTop: '2rem', paddingTop: '1rem', borderTop: '1px solid #D1D5DB', display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: '#6B7280' }}>
-          <span>AwesomeMathJ • Materi Matematika &amp; IPA Kurikulum Merdeka</span>
+          <span>{ORGANIZATION.legalName} · {ORGANIZATION.shortAddress} · WA {ORGANIZATION.whatsappDisplay}</span>
           <span>Tanda Tangan Guru: _____________________</span>
         </div>
       </div>

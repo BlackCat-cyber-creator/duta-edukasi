@@ -37,22 +37,22 @@ export default defineConfig({
           }
         ]
       },
-      includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'masked-icon.svg'],
+      includeAssets: ['brand/favicon.svg', 'brand/apple-touch-icon.png', 'brand/logo-monogram.svg'],
       manifest: {
-        name: 'AwesomeMathJ',
-        short_name: 'AwesomeMathJ',
-        description: 'Buku Saku Publik untuk Belajar Matematika',
-        theme_color: '#ffffff',
+        name: 'Duta e-dukasi',
+        short_name: 'Duta e-dukasi',
+        description: 'Portal Belajar & Paket Soal Matematika, IPA & Fisika (Kelas 4–12) serta Olimpiade',
+        theme_color: '#12337A',
         icons: [
           {
-            src: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>',
+            src: '/brand/favicon.svg',
             sizes: '192x192',
             type: 'image/svg+xml'
           },
           {
-            src: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>',
-            sizes: '512x512',
-            type: 'image/svg+xml'
+            src: '/brand/apple-touch-icon.png',
+            sizes: '180x180',
+            type: 'image/png'
           }
         ]
       }

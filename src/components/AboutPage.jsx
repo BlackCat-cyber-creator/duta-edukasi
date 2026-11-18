@@ -1,22 +1,62 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ABOUT, AUTHOR } from '../data/siteInfo';
+import { ABOUT, AUTHOR, FOUNDER, ORGANIZATION } from '../data/siteInfo';
 import { ABOUT_META } from '../utils/seoMeta';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { gradePath, amcLevelPath } from '../utils/seoRoutes';
+import { WhatsappBanner } from './WhatsappCta';
 
-/** Halaman /tentang: siapa pembuat AwesomeMathJ (isi sama dengan hasil prerender). */
+/** Halaman /tentang: profil Duta e-dukasi, pendiri, pembuat, dan lisensi. */
 export function AboutPage() {
   useDocumentMeta(ABOUT_META);
   return (
     <div className="handbook-container seo-page">
-      <h1>{ABOUT.title}</h1>
-      <p><strong>{ABOUT.intro}</strong></p>
+      <nav className="seo-breadcrumb" aria-label="Navigasi">
+        <Link to="/">Beranda</Link> › <span>Tentang</span>
+      </nav>
+      <section className="info-hero">
+        <h1>{ABOUT.title}</h1>
+        <p style={{ margin: 0 }}><strong>{ABOUT.intro}</strong></p>
+      </section>
+
       {ABOUT.paragraphs.map((p) => <p key={p}>{p}</p>)}
-      <h2>Pembuat</h2>
-      <p>{AUTHOR.name} — {AUTHOR.jobTitle}</p>
+
+      <div className="info-grid">
+        <div className="info-card">
+          <h2>Pendiri &amp; Pembina Utama</h2>
+          <p>
+            <strong>{FOUNDER.name}</strong> ({FOUNDER.formalName}) — {FOUNDER.role}.
+          </p>
+          <p style={{ fontSize: '0.88rem', marginBottom: 0 }}>
+            <Link to="/pendiri">Baca profil lengkap Pendiri</Link> ·{' '}
+            <Link to="/prestasi">Lihat Prestasi Siswa</Link>
+          </p>
+        </div>
+
+        <div className="info-card">
+          <h2>Penyusun Portal Digital</h2>
+          <p><strong>{AUTHOR.name}</strong> — {AUTHOR.jobTitle}.</p>
+          <p style={{ fontSize: '0.88rem', marginBottom: 0 }}>
+            Lokasi Bimbel: {ORGANIZATION.shortAddress} · WhatsApp:{' '}
+            <a href={ORGANIZATION.whatsappUrl} target="_blank" rel="noopener noreferrer">
+              {ORGANIZATION.whatsappDisplay}
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <h2>Lisensi &amp; Hak Cipta Terbuka</h2>
+      <p>
+        Seluruh materi dan Paket Soal di portal ini dibagikan di bawah lisensi{' '}
+        <a href={ORGANIZATION.licenseUrl} target="_blank" rel="noopener noreferrer">
+          Creative Commons Attribution 4.0 International ({ORGANIZATION.licenseName})
+        </a>{' '}
+        dengan atribusi kepada <strong>{ORGANIZATION.name}</strong> (serta sumber kompetisi asli bila tercantum).
+      </p>
+
       <h2>Mulai Belajar</h2>
       <ul>
+        <li><Link to="/paket-soal">Arsip Paket Soal Terstruktur (dengan Kunci &amp; Rubrik)</Link></li>
         {[4, 5, 6, 7, 8, 9, 10, 11, 12].map((g) => (
           <li key={g}><Link to={gradePath(g)}>Matematika Kelas {g}</Link></li>
         ))}
@@ -30,6 +70,8 @@ export function AboutPage() {
         <li><Link to="/daftar-isi">Daftar Isi per Topik</Link></li>
         <li><Link to="/tka">Latihan TKA</Link></li>
       </ul>
+
+      <WhatsappBanner />
     </div>
   );
 }

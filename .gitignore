@@ -34,3 +34,6 @@ scratch/
 # Agent and test caches
 .agents/
 .vitest/
+
+# Local archive inbox (Drive & Instagram raw files + intermediate reports)
+content-inbox/

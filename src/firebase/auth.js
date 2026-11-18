@@ -52,7 +52,7 @@ export async function loginTeacherWithEmail(email, password) {
 /**
  * Pendaftaran Akun Guru Baru dengan Email & Password
  */
-export async function registerTeacherWithEmail(email, password, displayName = "Guru AwesomeMathJ") {
+export async function registerTeacherWithEmail(email, password, displayName = "Guru Duta e-dukasi") {
   if (!auth) {
     return { success: false, error: "Layanan autentikasi belum siap atau tidak tersedia." };
   }

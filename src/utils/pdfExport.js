@@ -2,7 +2,7 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 
 /**
- * PDF Export Utilities for AwesomeMathJ
+ * PDF Export Utilities for Duta e-dukasi
  * 
  * Features:
  * - Smart Element-Aware Pagination (Anti-potong):
@@ -309,7 +309,7 @@ export async function exportWorksheetToPdf(element, filename = 'Lembar_Kerja_Mat
       pdf.setFontSize(8);
       pdf.setTextColor(140, 140, 140);
       pdf.text(
-        `AwesomeMathJ • Halaman ${pageIndex + 1} dari ${totalPages}`,
+        `Duta e-dukasi • Halaman ${pageIndex + 1} dari ${totalPages}`,
         pageWidthMm / 2,
         pageHeightMm - 6,
         { align: 'center' }

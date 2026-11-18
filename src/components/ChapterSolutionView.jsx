@@ -16,7 +16,7 @@ import {
 
 /**
  * ChapterSolutionView:
- * Halaman Kunci Jawaban & Pembahasan Online Resmi AwesomeMathJ.
+ * Halaman Kunci Jawaban & Pembahasan Online Resmi Duta e-dukasi.
  * Dibuka langsung saat siswa atau pengajar memindai QR Code di Lembar Kerja Cetak A4
  * atau membuka URL rute /solution/:grade/:chapterId maupun /solution/amc/:level/:chapterId.
  * Bersifat polimorfik: mendukung soal pilihan ganda (ABCD) dan soal kompetisi non-MCQ (isian singkat/esai).
@@ -131,7 +131,7 @@ export function ChapterSolutionView({
           </p>
           <button className="btn btn-royal" onClick={handleBack}>
             <ArrowLeft size={16} />
-            Kembali ke Beranda AwesomeMathJ
+            Kembali ke Beranda Duta e-dukasi
           </button>
         </div>
       </div>
@@ -193,7 +193,7 @@ export function ChapterSolutionView({
           Kunci Jawaban & Pembahasan: {chapterData.title}
         </h2>
         <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-          Panduan penyelesaian resmi AwesomeMathJ. Disertai langkah terstruktur, rumus, dan penjabaran detail per butir soal.
+          Panduan penyelesaian resmi Duta e-dukasi. Disertai langkah terstruktur, rumus, dan penjabaran detail per butir soal.
         </p>
       </div>
 
@@ -482,8 +482,8 @@ export function ChapterSolutionView({
         </h4>
         <p style={{ margin: '0 0 1.25rem', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
           {isAmc 
-            ? 'Jelajahi seluruh materi kompetisi AMC dan modul mandiri kelas 4 sampai 12 di AwesomeMathJ.' 
-            : 'Jelajahi materi Matematika Kelas 4–12 dan IPA Kelas 7–9 secara mandiri di AwesomeMathJ.'}
+            ? 'Jelajahi seluruh materi kompetisi AMC dan modul mandiri kelas 4 sampai 12 di Duta e-dukasi.' 
+            : 'Jelajahi materi Matematika Kelas 4–12 serta IPA & Fisika di Duta e-dukasi.'}
         </p>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <button className="btn btn-royal" onClick={handleBack} style={{ padding: '0.65rem 1.5rem' }}>

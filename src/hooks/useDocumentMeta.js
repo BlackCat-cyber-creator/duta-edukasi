@@ -12,15 +12,16 @@ function setMeta(attr, key, content) {
 }
 
 /**
- * Menyamakan judul, deskripsi, canonical, dan tag Open Graph dengan halaman
+ * Menyamakan judul, deskripsi, canonical, bahasa dokumen, dan tag Open Graph dengan halaman
  * yang sedang dibuka (navigasi di dalam aplikasi tidak memuat ulang HTML).
  */
 export function useDocumentMeta(meta) {
-  const { title, description, path } = meta || {};
+  const { title, description, path, lang } = meta || {};
   useEffect(() => {
     if (!title || typeof document === 'undefined') return;
     const url = `${SITE_URL}${path || '/'}`;
     document.title = title;
+    document.documentElement.lang = lang || 'id';
     setMeta('name', 'description', description || '');
     setMeta('property', 'og:title', title);
     setMeta('property', 'og:description', description || '');
@@ -32,7 +33,7 @@ export function useDocumentMeta(meta) {
       document.head.appendChild(canonical);
     }
     canonical.setAttribute('href', url);
-  }, [title, description, path]);
+  }, [title, description, path, lang]);
 }
 
 export default useDocumentMeta;

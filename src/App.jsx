@@ -1,28 +1,34 @@
 import React, { useEffect, Suspense, lazy } from 'react';
-import { Routes, Route, Navigate, Link, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
+import { Routes, Route, Navigate, Link, NavLink, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { useAuth } from './hooks/useAuth';
 import { handbookPath } from './utils/seoRoutes';
-import { AUTHOR } from './data/siteInfo';
-import { 
-  GraduationCap, 
-  Lock, 
-  ShieldCheck, 
-  BookOpen, 
+import { AUTHOR, ORGANIZATION } from './data/siteInfo';
+import { FloatingWhatsappButton } from './components/WhatsappCta';
+import {
+  Lock,
+  ShieldCheck,
+  BookOpen,
   LogOut,
   Loader2
 } from 'lucide-react';
 
 // Lazy-loaded Views for maximal code-splitting
-const TeacherDashboard = lazy(() => import('./components/TeacherDashboard').then(m => ({ default: m.TeacherDashboard })));
-const StudentQuestView = lazy(() => import('./components/StudentQuestView').then(m => ({ default: m.StudentQuestView })));
-const PrintableWorksheet = lazy(() => import('./components/PrintableWorksheet').then(m => ({ default: m.PrintableWorksheet })));
-const ChapterSolutionView = lazy(() => import('./components/ChapterSolutionView').then(m => ({ default: m.ChapterSolutionView })));
-const PublicHandbook = lazy(() => import('./components/PublicHandbook').then(m => ({ default: m.PublicHandbook })));
-const AboutPage = lazy(() => import('./components/AboutPage').then(m => ({ default: m.AboutPage })));
-const TopicIndexPage = lazy(() => import('./components/TopicIndexPage').then(m => ({ default: m.TopicIndexPage })));
-const FormulaIndexPage = lazy(() => import('./components/FormulaIndexPage').then(m => ({ default: m.FormulaIndexPage })));
-const TkaPage = lazy(() => import('./components/TkaPage').then(m => ({ default: m.TkaPage })));
-const TeacherLoginView = lazy(() => import('./components/TeacherLoginView').then(m => ({ default: m.TeacherLoginView })));
+const TeacherDashboard = lazy(() => import('./components/TeacherDashboard').then((m) => ({ default: m.TeacherDashboard })));
+const StudentQuestView = lazy(() => import('./components/StudentQuestView').then((m) => ({ default: m.StudentQuestView })));
+const PrintableWorksheet = lazy(() => import('./components/PrintableWorksheet').then((m) => ({ default: m.PrintableWorksheet })));
+const ChapterSolutionView = lazy(() => import('./components/ChapterSolutionView').then((m) => ({ default: m.ChapterSolutionView })));
+const PublicHandbook = lazy(() => import('./components/PublicHandbook').then((m) => ({ default: m.PublicHandbook })));
+const AboutPage = lazy(() => import('./components/AboutPage').then((m) => ({ default: m.AboutPage })));
+const ProgramPage = lazy(() => import('./components/ProgramPage').then((m) => ({ default: m.ProgramPage })));
+const FounderPage = lazy(() => import('./components/FounderPage').then((m) => ({ default: m.FounderPage })));
+const PrestasiPage = lazy(() => import('./components/PrestasiPage').then((m) => ({ default: m.PrestasiPage })));
+const ContactPage = lazy(() => import('./components/ContactPage').then((m) => ({ default: m.ContactPage })));
+const PapersHubPage = lazy(() => import('./components/PapersHubPage').then((m) => ({ default: m.PapersHubPage })));
+const PaperDetailPage = lazy(() => import('./components/PaperDetailPage').then((m) => ({ default: m.PaperDetailPage })));
+const TopicIndexPage = lazy(() => import('./components/TopicIndexPage').then((m) => ({ default: m.TopicIndexPage })));
+const FormulaIndexPage = lazy(() => import('./components/FormulaIndexPage').then((m) => ({ default: m.FormulaIndexPage })));
+const TkaPage = lazy(() => import('./components/TkaPage').then((m) => ({ default: m.TkaPage })));
+const TeacherLoginView = lazy(() => import('./components/TeacherLoginView').then((m) => ({ default: m.TeacherLoginView })));
 
 function RouteFallback() {
   return (
@@ -35,7 +41,7 @@ function RouteFallback() {
       gap: '1rem',
       color: 'var(--text-muted)'
     }}>
-      <Loader2 size={36} className="spinner" style={{ color: 'var(--primary-blue)', animation: 'spin 1s linear infinite' }} />
+      <Loader2 size={36} className="spinner" style={{ color: 'var(--brand-navy)', animation: 'spin 1s linear infinite' }} />
       <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>Memuat halaman...</span>
     </div>
   );
@@ -74,7 +80,7 @@ function resolveQueryRedirect(searchParams, pathname = '/') {
   if (isSolution && grade && chapter) {
     return `/solution/${encodeURIComponent(grade)}/${encodeURIComponent(chapter)}`;
   }
-  // Link buku saku lama (?grade=... / ?mode=amc...) → alamat rapi
+  // Link buku saku lama (?grade=... / ?mode=amc...) -> alamat rapi
   if (mode === 'amc') {
     return handbookPath({ mode: 'amc', level: Number(level) || 8, chapter });
   }
@@ -106,8 +112,8 @@ export function App() {
   const { user, teacherName, isAuthenticated, logout } = useAuth();
 
   const isTeacherRoute = location.pathname.startsWith('/teacher');
-  const isFullScreenView = location.pathname.startsWith('/quest/') || 
-                           location.pathname.startsWith('/worksheet') || 
+  const isFullScreenView = location.pathname.startsWith('/quest/') ||
+                           location.pathname.startsWith('/worksheet') ||
                            location.pathname.startsWith('/solution/');
 
   const handleBackToHome = () => {
@@ -150,30 +156,35 @@ export function App() {
 
       {/* Top Navbar */}
       <header className="top-navbar no-print">
-        <div className="nav-container">
+        <div className="nav-container" style={{ gap: '0.75rem', flexWrap: 'wrap' }}>
           {/* Brand Logo */}
-          <div 
-            className="brand-logo" 
-            onClick={handleBackToHome} 
+          <div
+            className="brand-logo"
+            onClick={handleBackToHome}
             style={{ cursor: 'pointer' }}
           >
-            <div className="brand-icon-wrapper">
-              <GraduationCap size={22} color="#FFFFFF" />
-            </div>
+            <img
+              src="/brand/logo-monogram.svg"
+              alt="Logo Duta e-dukasi"
+              width={40}
+              height={40}
+              style={{ width: 40, height: 40, objectFit: 'contain', flexShrink: 0 }}
+            />
             <div className="brand-text-content">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
-                <span className="brand-name-title" style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--primary-navy)', letterSpacing: '-0.02em' }}>
-                  AwesomeMathJ
+                <span className="brand-wordmark" aria-label={ORGANIZATION.name}>
+                  <span className="brand-wordmark-duta">DUTA</span>
+                  <span className="brand-wordmark-edukasi">e-dukasi</span>
                 </span>
                 <span className="badge badge-sd" style={{ fontSize: '0.65rem', padding: '0.15rem 0.45rem' }}>
                   Kelas 4–12
                 </span>
               </div>
-              <div className="brand-subtitle" style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>
+              <div className="brand-subtitle" style={{ fontSize: '0.74rem', color: 'var(--text-muted)', fontWeight: 500 }}>
                 {isTeacherRoute ? (
-                  <>Studio Guru Matematika</>
+                  <>Studio Guru {ORGANIZATION.name}</>
                 ) : (
-                  <>Materi & Latihan Matematika dan IPA</>
+                  <>Bimbel, Materi &amp; Paket Soal Matematika dan Fisika</>
                 )}
               </div>
             </div>
@@ -194,16 +205,16 @@ export function App() {
             ) : isTeacherRoute ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                 {isAuthenticated && (
-                  <div 
-                    style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: '0.4rem', 
-                      backgroundColor: '#ECFDF5', 
-                      padding: '0.35rem 0.75rem', 
-                      borderRadius: 'var(--radius-sm)', 
-                      border: '1px solid #A7F3D0', 
-                      fontSize: '0.8rem' 
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.4rem',
+                      backgroundColor: '#ECFDF5',
+                      padding: '0.35rem 0.75rem',
+                      borderRadius: 'var(--radius-sm)',
+                      border: '1px solid #A7F3D0',
+                      fontSize: '0.8rem'
                     }}
                   >
                     <span style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: 'var(--status-emerald)', display: 'inline-block' }}></span>
@@ -236,15 +247,34 @@ export function App() {
                 )}
               </div>
             ) : (
-              <button
-                id="btn-nav-open-teacher-studio"
-                className="btn btn-royal"
-                style={{ fontSize: '0.825rem', padding: '0.4rem 0.9rem' }}
-                onClick={() => navigate('/teacher')}
-              >
-                {isAuthenticated ? <ShieldCheck size={15} /> : <Lock size={14} />}
-                Studio Guru
-              </button>
+              <>
+                <nav className="top-nav-links" aria-label="Menu Utama">
+                  <NavLink to="/paket-soal" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                    Paket Soal
+                  </NavLink>
+                  <NavLink to="/program" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                    Program
+                  </NavLink>
+                  <NavLink to="/prestasi" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                    Prestasi
+                  </NavLink>
+                  <NavLink to="/tentang" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                    Tentang
+                  </NavLink>
+                  <NavLink to="/kontak" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                    Kontak
+                  </NavLink>
+                </nav>
+                <button
+                  id="btn-nav-open-teacher-studio"
+                  className="btn btn-royal"
+                  style={{ fontSize: '0.825rem', padding: '0.4rem 0.9rem' }}
+                  onClick={() => navigate('/teacher')}
+                >
+                  {isAuthenticated ? <ShieldCheck size={15} /> : <Lock size={14} />}
+                  Studio Guru
+                </button>
+              </>
             )}
           </div>
         </div>
@@ -256,7 +286,7 @@ export function App() {
           <Routes>
             {/* 1. Public Handbook */}
             <Route path="/" element={
-              <PublicHandbook 
+              <PublicHandbook
                 onLaunchPractice={handleLaunchPracticeQuest}
                 onPrintQuest={handlePrintQuest}
               />
@@ -273,7 +303,16 @@ export function App() {
               <PublicHandbook onLaunchPractice={handleLaunchPracticeQuest} onPrintQuest={handlePrintQuest} />
             } />
 
+            {/* 1c. Halaman Profil Bimbel & Arsip Paket Soal */}
             <Route path="/tentang" element={<AboutPage />} />
+            <Route path="/program" element={<ProgramPage />} />
+            <Route path="/pendiri" element={<FounderPage />} />
+            <Route path="/prestasi" element={<PrestasiPage />} />
+            <Route path="/kontak" element={<ContactPage />} />
+            <Route path="/paket-soal" element={<PapersHubPage />} />
+            <Route path="/paket-soal/:subject" element={<PapersHubPage />} />
+            <Route path="/paket-soal/:subject/:slug" element={<PaperDetailPage />} />
+
             <Route path="/daftar-isi" element={<TopicIndexPage />} />
             <Route path="/rumus" element={<FormulaIndexPage />} />
             <Route path="/tka" element={<TkaPage onPrintQuest={handlePrintQuest} />} />
@@ -303,7 +342,7 @@ export function App() {
             {/* 5. Teacher Authentication */}
             <Route path="/teacher/login" element={
               isAuthenticated ? <Navigate to="/teacher" replace /> : (
-                <TeacherLoginView 
+                <TeacherLoginView
                   onBack={handleBackToHome}
                   onSuccess={() => navigate('/teacher')}
                 />
@@ -313,13 +352,13 @@ export function App() {
             {/* 6. Teacher Studio Workspace (Protected) */}
             <Route path="/teacher" element={
               isAuthenticated ? (
-                <TeacherDashboard 
+                <TeacherDashboard
                   onLaunchQuest={handleLaunchQuest}
                   onPrintQuest={handlePrintQuest}
                   currentTeacher={user}
                 />
               ) : (
-                <TeacherLoginView 
+                <TeacherLoginView
                   onBack={handleBackToHome}
                   onSuccess={() => navigate('/teacher')}
                 />
@@ -336,10 +375,25 @@ export function App() {
       </main>
 
       {!isTeacherRoute && !isFullScreenView && (
-        <footer className="site-footer no-print">
-          AwesomeMathJ — dibuat dan dikelola oleh <Link to="/tentang">{AUTHOR.name}</Link>, {AUTHOR.jobTitle}.
-          {' '}· <Link to="/daftar-isi">Daftar isi</Link> · <Link to="/rumus">Kumpulan rumus</Link> · <Link to="/tka">Latihan TKA</Link>
-        </footer>
+        <>
+          <FloatingWhatsappButton />
+          <footer className="site-footer no-print">
+            <div>
+              <strong>{ORGANIZATION.name}</strong> ({ORGANIZATION.legalName}) · {ORGANIZATION.shortAddress} ·{' '}
+              <a href={ORGANIZATION.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                WA {ORGANIZATION.whatsappDisplay}
+              </a>
+              {' '}· Disusun oleh <Link to="/tentang">{AUTHOR.name}</Link>
+            </div>
+            <div style={{ marginTop: '0.35rem', fontSize: '0.8rem' }}>
+              <Link to="/paket-soal">Paket Soal</Link> · <Link to="/program">Program</Link> ·{' '}
+              <Link to="/pendiri">Pendiri</Link> · <Link to="/prestasi">Prestasi</Link> ·{' '}
+              <Link to="/kontak">Kontak</Link> · <Link to="/daftar-isi">Daftar isi</Link> ·{' '}
+              <Link to="/rumus">Kumpulan rumus</Link> · <Link to="/tka">Latihan TKA</Link> · Lisensi{' '}
+              <a href={ORGANIZATION.licenseUrl} target="_blank" rel="noopener noreferrer">{ORGANIZATION.licenseName}</a>
+            </div>
+          </footer>
+        </>
       )}
     </div>
   );

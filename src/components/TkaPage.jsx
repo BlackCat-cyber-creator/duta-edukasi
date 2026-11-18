@@ -53,7 +53,7 @@ function TkaHome() {
       ))}
       <p className="tka-note">
         Muatan dan cakupan elemen mengacu pada kerangka TKA Pusat Asesmen Pendidikan (Pusmendik) Kemendikdasmen.
-        Paket ini adalah latihan dari AwesomeMathJ, bukan soal resmi.
+        Paket ini adalah latihan dari Duta e-dukasi, bukan soal resmi.
       </p>
     </div>
   );

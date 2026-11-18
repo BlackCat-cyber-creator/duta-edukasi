@@ -103,7 +103,7 @@ export function TeacherLoginView({ onBack, onSuccess }) {
             </span>
           </div>
           <h2 style={{ fontSize: '1.45rem', color: 'var(--primary-navy)', marginBottom: '0.35rem', fontWeight: 800 }}>
-            Studio Guru AwesomeMathJ
+            Studio Guru Duta e-dukasi
           </h2>
           <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>
             Area khusus pengajar untuk menyusun PR kurikulum, mengelola murid privat, dan memantau evaluasi belajar.

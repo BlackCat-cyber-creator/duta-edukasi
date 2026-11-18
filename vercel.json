@@ -27,8 +27,36 @@
       "destination": "/olimpiade/:level.html"
     },
     {
+      "source": "/paket-soal/:subject/:slug",
+      "destination": "/paket-soal/:subject/:slug.html"
+    },
+    {
+      "source": "/paket-soal/:subject",
+      "destination": "/paket-soal/:subject.html"
+    },
+    {
+      "source": "/paket-soal",
+      "destination": "/paket-soal.html"
+    },
+    {
       "source": "/tentang",
       "destination": "/tentang.html"
+    },
+    {
+      "source": "/program",
+      "destination": "/program.html"
+    },
+    {
+      "source": "/pendiri",
+      "destination": "/pendiri.html"
+    },
+    {
+      "source": "/prestasi",
+      "destination": "/prestasi.html"
+    },
+    {
+      "source": "/kontak",
+      "destination": "/kontak.html"
     },
     {
       "source": "/daftar-isi",

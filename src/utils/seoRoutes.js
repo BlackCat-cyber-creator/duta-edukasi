@@ -12,7 +12,7 @@
  */
 
 export const SITE_URL = 'https://awesomemathj.vercel.app';
-export const SITE_NAME = 'AwesomeMathJ';
+export const SITE_NAME = 'Duta e-dukasi';
 
 const GRADE_PREFIX = /^(sd|smp|sma|ipa)(\d+)-/;
 const AMC_PREFIX = /^amc(\d+)-/;
@@ -88,4 +88,12 @@ export function handbookPath({ mode, subject, grade, level, chapter }) {
   if (mode === 'amc') return amcChapterPath(level || 8, chapter);
   const subj = subject || subjectOfChapter(chapter);
   return chapterPath(grade || SUBJECT_GRADES[subj][0], chapter, subj);
+}
+
+export function packetHubPath(subject) {
+  return subject && subject !== 'all' ? `/paket-soal/${subject}` : '/paket-soal';
+}
+
+export function packetPath(subject, slug) {
+  return `/paket-soal/${subject}/${slug}`;
 }
