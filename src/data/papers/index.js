@@ -3,7 +3,15 @@
  * Semua berkas paket dengan `status === 'published'` otomatis tampil di hub `/paket-soal`,
  * diprerender ke HTML statis, dan dimasukkan ke `llms.txt` + `sitemap.xml`.
  */
+import fis10Kinematika2P1 from './fisika/kelas10/kinematika-2-paket-1.js';
 import fis10Kinematika2P2 from './fisika/kelas10/kinematika-2-paket-2.js';
+import fis10Kinematika1Ex1 from './fisika/kelas10/kinematika-1-latihan-1.js';
+import fis10Kinematika1Adv from './fisika/kelas10/kinematika-1-lanjutan.js';
+import fis10Kinematika2Adv from './fisika/kelas10/kinematika-2-lanjutan.js';
+import olimSdBilanganBasic1 from './olimpiade-mat/sd/bilangan-basic-1.js';
+import olimSdBilanganElite from './olimpiade-mat/sd/bilangan-elite.js';
+import olimSmpBilanganBasic1 from './olimpiade-mat/smp/bilangan-basic-1.js';
+import olimSmpBilanganElite from './olimpiade-mat/smp/bilangan-elite.js';
 
 export const PAPER_SUBJECT_META = {
   fisika: { id: 'fisika', label: 'Fisika', shortLabel: 'Fisika' },
@@ -13,7 +21,17 @@ export const PAPER_SUBJECT_META = {
   'olimpiade-fis': { id: 'olimpiade-fis', label: 'Olimpiade Fisika', shortLabel: 'Olimpiade Fis' }
 };
 
-export const ALL_PAPERS = [fis10Kinematika2P2];
+export const ALL_PAPERS = [
+  fis10Kinematika2P1,
+  fis10Kinematika2P2,
+  fis10Kinematika1Ex1,
+  fis10Kinematika1Adv,
+  fis10Kinematika2Adv,
+  olimSdBilanganBasic1,
+  olimSdBilanganElite,
+  olimSmpBilanganBasic1,
+  olimSmpBilanganElite
+];
 
 export const PUBLISHED_PAPERS = ALL_PAPERS.filter((p) => p.status === 'published');
 

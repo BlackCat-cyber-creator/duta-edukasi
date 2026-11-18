@@ -193,7 +193,11 @@ export function PaperDetailPage() {
                   {showSol && (
                     <div className="paper-reveal-box paper-reveal-solution">
                       <div className="paper-principle-box">
-                        <strong>{paper.lang === 'en' ? 'Physics Principle:' : 'Prinsip Utama:'}</strong>{' '}
+                        <strong>
+                          {paper.lang === 'en'
+                            ? (/fisika|physics/i.test(paper.subject) ? 'Physics Principle:' : 'Core Principle:')
+                            : 'Prinsip Utama:'}
+                        </strong>{' '}
                         <MathText text={pt.principle} />
                       </div>
                       <div style={{ marginBottom: '0.6rem' }}>
