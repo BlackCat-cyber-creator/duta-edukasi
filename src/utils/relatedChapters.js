@@ -17,7 +17,7 @@ const words = (title) => new Set(
 export function chapterEntry(id) {
   const c = INDEX.get(id);
   if (!c) return null;
-  const subjectLabel = c.subject === 'ipa' ? 'IPA' : 'Matematika';
+  const subjectLabel = c.subject === 'ipa' ? (c.grade >= 10 ? 'Fisika' : 'IPA') : 'Matematika';
   return { id, title: c.title, grade: c.grade, label: `${subjectLabel} Kelas ${c.grade}`, path: chapterPath(c.grade, id) };
 }
 

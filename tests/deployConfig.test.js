@@ -26,6 +26,7 @@ describe('Konfigurasi deploy Vercel', () => {
     expect(map['/olimpiade/:level']).toBe('/olimpiade/:level.html');
     expect(map['/tentang']).toBe('/tentang.html');
     expect(map['/daftar-isi']).toBe('/daftar-isi.html');
+    expect(map['/rumus']).toBe('/rumus.html');
     expect(map['/tka']).toBe('/tka.html');
     expect(map['/tka/:paket']).toBe('/tka/:paket.html');
     // Fallback SPA harus aturan terakhir

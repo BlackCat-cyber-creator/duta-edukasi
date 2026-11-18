@@ -5,9 +5,9 @@
  */
 import fs from 'fs';
 import path from 'path';
-import { pathToFileURL } from 'url';
+import { pathToFileURL, fileURLToPath } from 'url';
 
-export const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../..');
+export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 export const GRADES = [4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 export function gradeFile(grade) {

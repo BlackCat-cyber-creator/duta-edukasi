@@ -29,7 +29,7 @@ export function levelOfGrade(grade) {
 /** Mata pelajaran kurikulum beserta kelas yang tersedia (alamat: /<id>/kelas-N). */
 export const SUBJECT_GRADES = {
   matematika: [4, 5, 6, 7, 8, 9, 10, 11, 12],
-  ipa: [7, 8, 9]
+  ipa: [4, 5, 6, 7, 8, 9, 10, 11, 12]
 };
 
 /** Mata pelajaran dari ID bab: "ipa7-..." → ipa, selain itu matematika. */

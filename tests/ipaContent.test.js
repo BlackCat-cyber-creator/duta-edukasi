@@ -1,8 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { ipaGrade4Data } from '../src/data/ipa/grade4.js';
+import { ipaGrade5Data } from '../src/data/ipa/grade5.js';
+import { ipaGrade6Data } from '../src/data/ipa/grade6.js';
 import { ipaGrade7Data } from '../src/data/ipa/grade7.js';
 import { ipaGrade8Data } from '../src/data/ipa/grade8.js';
 import { ipaGrade9Data } from '../src/data/ipa/grade9.js';
+import { ipaGrade10Data } from '../src/data/ipa/grade10.js';
+import { ipaGrade11Data } from '../src/data/ipa/grade11.js';
+import { ipaGrade12Data } from '../src/data/ipa/grade12.js';
 import { ALL_IPA_CHAPTERS_INDEX, IPA_GRADE_METADATA } from '../src/data/ipa/chapterIndex.js';
 import { getVisualConfig } from '../src/components/visuals/registry/index.js';
 import { renderVisualEngine } from '../src/components/visuals/engines/index.jsx';
@@ -10,10 +16,20 @@ import { visibleTextFromMarkup, leaksAnswer, leaksAnswerWords } from '../src/uti
 import { auditQuestion } from './support/visualAuditRunner.jsx';
 
 /**
- * Penjaga kualitas IPA: bentuk bab dan soal, kunci jawaban konsisten dengan pembahasan,
- * gambar sesuai soal, dan indeks bab sinkron.
+ * Penjaga kualitas IPA & Fisika (Kelas 4–12): bentuk bab dan soal, kunci jawaban
+ * konsisten dengan pembahasan, gambar sesuai soal, dan indeks bab sinkron.
  */
-const GRADES = [ipaGrade7Data, ipaGrade8Data, ipaGrade9Data];
+const GRADES = [
+  ipaGrade4Data,
+  ipaGrade5Data,
+  ipaGrade6Data,
+  ipaGrade7Data,
+  ipaGrade8Data,
+  ipaGrade9Data,
+  ipaGrade10Data,
+  ipaGrade11Data,
+  ipaGrade12Data
+];
 const CHAPTERS = GRADES.flatMap((g) => g.chapters.map((ch) => ({ grade: g.grade, ch })));
 const QUESTIONS = CHAPTERS.flatMap(({ grade, ch }) => ch.questions.map((q) => ({ grade, ch, q })));
 // Jawaban berupa nama yang memang dibaca dari label gambar (mis. jaring makanan)

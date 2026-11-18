@@ -6,6 +6,7 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { pathToFileURL } from 'url';
 import { ROOT, GRADES, loadGrade } from './migrations/lib.mjs';
 import { GRADE_METADATA } from '../src/data/chapterIndex.js';
 
@@ -36,9 +37,15 @@ export async function buildChapterIndex() {
 
 export async function buildIpaChapterIndex() {
   const grades = [
+    (await import('../src/data/ipa/grade4.js')).ipaGrade4Data,
+    (await import('../src/data/ipa/grade5.js')).ipaGrade5Data,
+    (await import('../src/data/ipa/grade6.js')).ipaGrade6Data,
     (await import('../src/data/ipa/grade7.js')).ipaGrade7Data,
     (await import('../src/data/ipa/grade8.js')).ipaGrade8Data,
-    (await import('../src/data/ipa/grade9.js')).ipaGrade9Data
+    (await import('../src/data/ipa/grade9.js')).ipaGrade9Data,
+    (await import('../src/data/ipa/grade10.js')).ipaGrade10Data,
+    (await import('../src/data/ipa/grade11.js')).ipaGrade11Data,
+    (await import('../src/data/ipa/grade12.js')).ipaGrade12Data
   ];
   const meta = grades.map((g) => ({
     subject: 'ipa',
@@ -65,7 +72,7 @@ export async function buildIpaChapterIndex() {
   return { meta, entries };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
   const file = path.join(ROOT, 'src/data/chapterIndex.js');
   const src = fs.readFileSync(file, 'utf8');
   const marker = 'export const ALL_CHAPTERS_INDEX = ';

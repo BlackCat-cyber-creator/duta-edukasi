@@ -9,11 +9,12 @@ import { getDefaultDeadlineDate } from '../../utils/storage';
 
 const hasIpa = (student) => ALL_IPA_CHAPTERS_INDEX.some((c) => c.grade === Number(student.grade));
 
-/** Sumber materi: Matematika/IPA kelas murid atau salah satu level AMC. */
+/** Sumber materi: Matematika/IPA/Fisika kelas murid atau salah satu level AMC. */
 function sourceOptions(student) {
+  const ipaLabel = Number(student.grade) >= 10 ? `Fisika Kelas ${student.grade}` : `IPA Kelas ${student.grade}`;
   return [
     { value: 'merdeka', label: `Matematika Kelas ${student.grade}` },
-    ...(hasIpa(student) ? [{ value: 'ipa', label: `IPA Kelas ${student.grade}` }] : []),
+    ...(hasIpa(student) ? [{ value: 'ipa', label: ipaLabel }] : []),
     { value: 'amc8', label: 'Olimpiade AMC 8' },
     { value: 'amc10', label: 'Olimpiade AMC 10' },
     { value: 'amc12', label: 'Olimpiade AMC 12' }

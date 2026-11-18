@@ -2582,3 +2582,71 @@ img, svg {
 /* Tombol paket TKA: teks putih di atas biru (mengalahkan warna link .seo-page a) */
 .tka-packets .btn-royal,
 .tka-packets .btn-royal:visited { color: #fff; }
+
+/* ---------- Ensiklopedia Rumus (/rumus) ---------- */
+.formula-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.formula-search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+}
+
+.formula-search-box input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.formula-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formula-chapter-block {
+  padding: 1rem 1.15rem;
+}
+
+.formula-chapter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.formula-chapter-head h2 {
+  margin: 0.25rem 0 0;
+  font-size: 1.05rem;
+  color: var(--primary-navy);
+}
+
+.formula-chapter-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.formula-chapter-link:hover {
+  text-decoration: underline;
+}

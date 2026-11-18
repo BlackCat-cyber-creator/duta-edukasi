@@ -52,13 +52,14 @@ export function bab({ grade, number, slug, title, element, summary, questions })
   };
 }
 
-/** Data satu kelas IPA, bentuknya sama dengan src/data/grades/gradeX.js. */
-export function kelas({ grade, description, chapters }) {
+/** Data satu kelas IPA/Fisika, bentuknya sama dengan src/data/grades/gradeX.js. */
+export function kelas({ grade, level, phase, description, chapters }) {
+  const g = Number(grade);
   return {
     subject: 'ipa',
-    grade,
-    level: 'SMP',
-    phase: 'Fase D',
+    grade: g,
+    level: level || (g <= 6 ? 'SD' : g <= 9 ? 'SMP' : 'SMA'),
+    phase: phase || (g === 4 ? 'Fase B' : g <= 6 ? 'Fase C' : g <= 9 ? 'Fase D' : g === 10 ? 'Fase E' : 'Fase F'),
     description,
     chapters
   };

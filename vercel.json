@@ -35,6 +35,10 @@
       "destination": "/daftar-isi.html"
     },
     {
+      "source": "/rumus",
+      "destination": "/rumus.html"
+    },
+    {
       "source": "/tka/:paket",
       "destination": "/tka/:paket.html"
     },

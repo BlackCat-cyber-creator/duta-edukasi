@@ -26,10 +26,10 @@ function buildEntries() {
   const school = [...ALL_CHAPTERS_INDEX, ...ALL_IPA_CHAPTERS_INDEX].map((ch) => ({
     id: ch.id,
     title: ch.title,
-    label: `${ch.subject === 'ipa' ? 'IPA' : 'Matematika'} ${ch.grade}`,
+    label: `${ch.subject === 'ipa' ? (ch.grade >= 10 ? 'Fisika' : 'IPA') : 'Matematika'} ${ch.grade}`,
     path: chapterPath(ch.grade, ch.id),
     titleText: normalizeSearchText(ch.title),
-    labelText: normalizeSearchText(`${ch.subject === 'ipa' ? 'ipa sains' : 'matematika mtk'} kelas ${ch.grade} ${ch.level} ${ch.phase || ''}`),
+    labelText: normalizeSearchText(`${ch.subject === 'ipa' ? 'ipa sains fisika' : 'matematika mtk'} kelas ${ch.grade} ${ch.level} ${ch.phase || ''}`),
     bodyText: normalizeSearchText((ch.coreConcepts || []).join(' ')),
     conceptText: normalizeSearchText(conceptLabels(ch.coreConcepts).join(' '))
   }));

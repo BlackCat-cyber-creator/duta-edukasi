@@ -74,6 +74,86 @@ export const TKA_TESTS = [
         chapters: ['sd4-bab6-piktogram-diagram-batang', 'sd5-bab8-data']
       }
     ]
+  },
+  {
+    id: 'ipa-smp',
+    subject: 'ipa',
+    title: 'TKA IPA & Fisika SMP/MTs',
+    audience: 'Murid Kelas 9 SMP/MTs',
+    grades: [7, 8, 9],
+    intro: 'Latihan TKA IPA SMP/MTs mengukur pemahaman konsep fisika, kimia, biologi, serta bumi dan antariksa beserta penerapannya dalam kehidupan sehari-hari sesuai CP Fase D.',
+    elements: [
+      {
+        name: 'Energi, Gerak, dan Kelistrikan',
+        scope: 'Suhu dan kalor, gerak dan gaya, usaha–energi dan pesawat sederhana, getaran–gelombang–cahaya, tekanan, serta listrik dan magnet.',
+        quota: 10,
+        chapters: [
+          'ipa7-bab3-suhu-kalor-pemuaian', 'ipa7-bab4-gerak-dan-gaya', 'ipa8-bab3-usaha-energi-pesawat-sederhana',
+          'ipa8-bab4-getaran-gelombang-cahaya', 'ipa9-bab3-tekanan', 'ipa9-bab4-listrik-magnet-energi-alternatif'
+        ]
+      },
+      {
+        name: 'Zat, Pengukuran, dan Reaksi Kimia',
+        scope: 'Metode ilmiah dan pengukuran, wujud dan massa jenis zat, unsur–senyawa–campuran, asam–basa, dan reaksi kimia.',
+        quota: 6,
+        chapters: ['ipa7-bab1-hakikat-ilmu-sains', 'ipa7-bab2-zat-dan-perubahannya', 'ipa8-bab5-unsur-senyawa-campuran', 'ipa9-bab5-reaksi-kimia']
+      },
+      {
+        name: 'Makhluk Hidup dan Lingkungannya',
+        scope: 'Klasifikasi, ekologi, sel, sistem organ, pertumbuhan, koordinasi–reproduksi, pewarisan sifat, bioteknologi, dan isu lingkungan.',
+        quota: 8,
+        chapters: [
+          'ipa7-bab5-klasifikasi-makhluk-hidup', 'ipa7-bab6-ekologi-keanekaragaman-hayati', 'ipa8-bab1-sel',
+          'ipa8-bab2-struktur-fungsi-tubuh', 'ipa9-bab1-pertumbuhan-perkembangan', 'ipa9-bab2-koordinasi-reproduksi-homeostasis',
+          'ipa9-bab6-pewarisan-sifat-bioteknologi', 'ipa9-bab7-isu-lingkungan'
+        ]
+      },
+      {
+        name: 'Bumi dan Antariksa',
+        scope: 'Sistem tata surya, rotasi–revolusi, struktur bumi, gempa bumi, dan gunung berapi.',
+        quota: 6,
+        chapters: ['ipa7-bab7-bumi-dan-tata-surya', 'ipa8-bab6-struktur-bumi']
+      }
+    ]
+  },
+  {
+    id: 'fisika-sma',
+    subject: 'ipa',
+    title: 'TKA Fisika SMA/MA',
+    audience: 'Murid Kelas 12 SMA/MA',
+    grades: [10, 11, 12],
+    intro: 'Latihan TKA Fisika SMA/MA menguji penguasaan konsep, penalaran kuantitatif, dan analisis fenomena mekanika, fluida, gelombang–optika, termodinamika, listrik–magnet, hingga fisika modern sesuai CP Fase E dan F.',
+    elements: [
+      {
+        name: 'Pengukuran, Mekanika, dan Fluida',
+        scope: 'Pengukuran dan angka penting, vektor, kinematika 1D/2D, dinamika Newton, usaha–energi, momentum–tumbukan, dinamika rotasi, dan fluida statis–dinamis.',
+        quota: 12,
+        chapters: [
+          'ipa10-bab1-hakikat-fisika-dan-pengukuran', 'ipa10-bab2-vektor-dan-gerak-lurus', 'ipa10-bab3-gerak-parabola-dan-melingkar',
+          'ipa10-bab4-usaha-energi-dan-energi-terbarukan', 'ipa11-bab1-dinamika-gerak-dan-hukum-newton',
+          'ipa11-bab2-momentum-impuls-dan-tumbukan', 'ipa11-bab3-dinamika-rotasi-dan-kesetimbangan', 'ipa11-bab4-fluida-statis-dan-dinamis'
+        ]
+      },
+      {
+        name: 'Gelombang, Optika, dan Termodinamika',
+        scope: 'Getaran harmonik, gelombang mekanik dan bunyi, kalor dan radiasi iklim, teori kinetik gas, termodinamika, serta gelombang elektromagnetik dan optika.',
+        quota: 8,
+        chapters: [
+          'ipa10-bab5-pemanasan-global-dan-fisika-iklim', 'ipa11-bab5-getaran-gelombang-dan-bunyi',
+          'ipa11-bab6-kalor-dan-termodinamika', 'ipa12-bab5-gelombang-elektromagnetik-dan-optika'
+        ]
+      },
+      {
+        name: 'Listrik, Magnet, dan Fisika Modern',
+        scope: 'Listrik statis dan kapasitor, arus searah (Kirchhoff), medan magnet dan induksi elektromagnetik, rangkaian AC, serta fisika modern dan teknologi digital.',
+        quota: 10,
+        chapters: [
+          'ipa12-bab1-listrik-statis-dan-kapasitor', 'ipa12-bab2-listrik-arus-searah',
+          'ipa12-bab3-medan-magnet-dan-induksi-elektromagnetik', 'ipa12-bab4-rangkaian-arus-bolak-balik',
+          'ipa12-bab6-fisika-modern-radioaktivitas-dan-digital'
+        ]
+      }
+    ]
   }
 ];
 

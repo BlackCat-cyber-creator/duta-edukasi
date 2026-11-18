@@ -3,13 +3,16 @@ import { TKA_TESTS, parseTkaSlug, tkaPath } from '../src/data/tka.js';
 import { buildTkaPacket, chaptersMap } from '../src/utils/tkaBuilder.js';
 import { getGradeData } from '../src/data/curriculumData';
 import { ALL_CHAPTERS_INDEX } from '../src/data/chapterIndex.js';
+import { ALL_IPA_CHAPTERS_INDEX } from '../src/data/ipa/chapterIndex.js';
 
-const load = async (grades) => chaptersMap(await Promise.all(grades.map((g) => getGradeData(g))));
+const load = async (grades, subject = 'matematika') => chaptersMap(await Promise.all(grades.map((g) => getGradeData(g, subject))));
 
 describe('Latihan TKA', () => {
   it('semua bab di kerangka TKA ada dan sesuai jenjangnya', () => {
-    const ids = new Map(ALL_CHAPTERS_INDEX.map((c) => [c.id, c.grade]));
+    const mathIds = new Map(ALL_CHAPTERS_INDEX.map((c) => [c.id, c.grade]));
+    const ipaIds = new Map(ALL_IPA_CHAPTERS_INDEX.map((c) => [c.id, c.grade]));
     for (const t of TKA_TESTS) {
+      const ids = t.subject === 'ipa' ? ipaIds : mathIds;
       for (const el of t.elements) {
         for (const id of el.chapters) {
           expect(ids.has(id), id).toBe(true);
@@ -20,7 +23,7 @@ describe('Latihan TKA', () => {
   });
 
   it.each(TKA_TESTS.map((t) => [t.id, t]))('%s: paket A dan B masing-masing 30 soal, tanpa soal yang sama', async (_, test) => {
-    const chapters = await load(test.grades);
+    const chapters = await load(test.grades, test.subject || 'matematika');
     const a = buildTkaPacket(test, 'a', chapters);
     const b = buildTkaPacket(test, 'b', chapters);
     expect(a).toHaveLength(30);

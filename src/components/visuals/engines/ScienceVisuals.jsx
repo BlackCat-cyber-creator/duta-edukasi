@@ -505,3 +505,242 @@ export function PendulumVisual({ title = 'Ayunan Bandul', caption, labels = ['A'
     </SvgContainer>
   );
 }
+
+// ---------------------------------------------------------------------------
+// 10. Bidang miring (dinamika / pesawat sederhana)
+// ---------------------------------------------------------------------------
+export function InclinedPlaneVisual({
+  title = 'Bidang Miring',
+  caption,
+  angleLabel,
+  massLabel,
+  forceLabel,
+  frictionLabel
+}) {
+  const width = 340;
+  const height = 190;
+  const bx = 40;
+  const by = 158;
+  const base = 250;
+  const rise = 100;
+  const deg = (-Math.atan2(rise, base) * 180) / Math.PI;
+  const cx = bx + base * 0.48;
+  const cy = by - rise * 0.48;
+
+  return (
+    <SvgContainer width={width} height={height} title={title} caption={caption}>
+      <polygon
+        points={`${bx},${by} ${bx + base},${by} ${bx + base},${by - rise}`}
+        fill={T.primarySoft}
+        stroke={T.axisLine}
+        strokeWidth={1.8}
+      />
+      {angleLabel && (
+        <g>
+          <path d={`M${bx + 42},${by} A42,42 0 0,0 ${bx + 39},${by - 15.6}`} fill="none" stroke={T.accent} strokeWidth={1.6} />
+          <Label x={bx + 48} y={by - 7} anchor="start" size={10.5} color={T.accentDark}>{angleLabel}</Label>
+        </g>
+      )}
+      <g transform={`translate(${cx.toFixed(1)}, ${cy.toFixed(1)}) rotate(${deg.toFixed(2)})`}>
+        <rect x={-24} y={-34} width={48} height={34} rx={3} fill="#FFFFFF" stroke={T.primary} strokeWidth={1.8} />
+        {massLabel && <Label x={0} y={-13} size={10.5} color={T.primaryDark}>{massLabel}</Label>}
+        {forceLabel && (
+          <g>
+            <Arrow x1={24} y1={-17} x2={82} y2={-17} color={T.secondary} />
+            <Label x={54} y={-24} size={10.5} color={T.secondaryDark}>{forceLabel}</Label>
+          </g>
+        )}
+        {frictionLabel && (
+          <g>
+            <Arrow x1={-24} y1={-17} x2={-78} y2={-17} color={T.danger} />
+            <Label x={-52} y={-24} size={10.5} color={T.dangerDark}>{frictionLabel}</Label>
+          </g>
+        )}
+      </g>
+    </SvgContainer>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 11. Optika geometris (lensa cembung / cermin cekung)
+// ---------------------------------------------------------------------------
+export function OpticsVisual({
+  title = 'Optika Geometris',
+  caption,
+  kind = 'convex-lens',
+  focalLabel,
+  objectDistLabel,
+  objectHeightLabel,
+  imageDistLabel
+}) {
+  const width = 360;
+  const height = 200;
+  const axisY = 105;
+
+  if (kind === 'concave-mirror') {
+    const mx = 265;
+    const fx = 200;
+    const ox = 95;
+    return (
+      <SvgContainer width={width} height={height} title={title} caption={caption}>
+        <line x1={20} y1={axisY} x2={335} y2={axisY} stroke={T.axisLine} strokeWidth={1.3} strokeDasharray="4 3" />
+        <path d={`M${mx - 12},34 Q${mx + 14},${axisY} ${mx - 12},176`} fill="none" stroke={T.primaryDark} strokeWidth={2.8} />
+        <circle cx={fx} cy={axisY} r={3} fill={T.accent} />
+        <Label x={fx} y={axisY + 14} size={10} color={T.accentDark}>F</Label>
+        <Arrow x1={ox} y1={axisY} x2={ox} y2={56} color={T.secondary} width={2.4} />
+        {objectHeightLabel && <Label x={ox - 8} y={82} anchor="end" size={10.5} color={T.secondaryDark}>{objectHeightLabel}</Label>}
+        {focalLabel && <Dimension x0={fx} x1={mx} y={axisY + 30} label={focalLabel} />}
+        {objectDistLabel && <Dimension x0={ox} x1={mx} y={axisY + 54} label={objectDistLabel} />}
+        {imageDistLabel && (
+          <g>
+            <Arrow x1={152} y1={axisY} x2={152} y2={138} color={T.purple} width={2} />
+            <Dimension x0={152} x1={mx} y={axisY + 76} label={imageDistLabel} />
+          </g>
+        )}
+      </SvgContainer>
+    );
+  }
+
+  const lx = 180;
+  const fl = 125;
+  const fr = 235;
+  const ox = 65;
+  return (
+    <SvgContainer width={width} height={height} title={title} caption={caption}>
+      <line x1={20} y1={axisY} x2={340} y2={axisY} stroke={T.axisLine} strokeWidth={1.3} strokeDasharray="4 3" />
+      <line x1={lx} y1={24} x2={lx} y2={182} stroke={T.gridLine} strokeWidth={1} strokeDasharray="3 3" />
+      <path d={`M${lx},30 Q${lx + 16},${axisY} ${lx},178 Q${lx - 16},${axisY} ${lx},30 Z`} fill={T.primarySoft} stroke={T.primaryDark} strokeWidth={1.8} />
+      <circle cx={fl} cy={axisY} r={3} fill={T.accent} />
+      <Label x={fl} y={axisY + 14} size={10} color={T.accentDark}>F</Label>
+      <circle cx={fr} cy={axisY} r={3} fill={T.accent} />
+      <Label x={fr} y={axisY + 14} size={10} color={T.accentDark}>F</Label>
+      <Arrow x1={ox} y1={axisY} x2={ox} y2={54} color={T.secondary} width={2.4} />
+      {objectHeightLabel && <Label x={ox - 7} y={80} anchor="end" size={10.5} color={T.secondaryDark}>{objectHeightLabel}</Label>}
+      {focalLabel && <Dimension x0={lx} x1={fr} y={axisY + 28} label={focalLabel} />}
+      {objectDistLabel && <Dimension x0={ox} x1={lx} y={axisY + 54} label={objectDistLabel} />}
+      {imageDistLabel && (
+        <g>
+          <Arrow x1={288} y1={axisY} x2={288} y2={146} color={T.purple} width={2} />
+          <Dimension x0={lx} x1={288} y={axisY + 54} label={imageDistLabel} />
+        </g>
+      )}
+    </SvgContainer>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 12. Gerak parabola (proyektil)
+// ---------------------------------------------------------------------------
+export function ProjectileVisual({
+  title = 'Gerak Parabola',
+  caption,
+  v0Label,
+  angleLabel,
+  heightLabel,
+  rangeLabel
+}) {
+  const width = 340;
+  const height = 205;
+  const x0 = 42;
+  const xEnd = 298;
+  const groundY = 162;
+  const midX = (x0 + xEnd) / 2;
+  const peakY = 62;
+
+  return (
+    <SvgContainer width={width} height={height} title={title} caption={caption}>
+      <Arrow x1={x0} y1={groundY} x2={xEnd + 22} y2={groundY} color={T.axisLine} width={1.5} />
+      <Arrow x1={x0} y1={groundY} x2={x0} y2={24} color={T.axisLine} width={1.5} />
+      <path d={`M${x0},${groundY} Q${midX},-38 ${xEnd},${groundY}`} fill="none" stroke={T.primary} strokeWidth={2.5} strokeDasharray="6 3" />
+      <circle cx={x0} cy={groundY} r={4} fill={T.primary} />
+      {v0Label && (
+        <g>
+          <Arrow x1={x0} y1={groundY} x2={x0 + 52} y2={groundY - 68} color={T.secondary} width={2.4} />
+          <Label x={x0 + 56} y={groundY - 70} anchor="start" size={10.5} color={T.secondaryDark}>{v0Label}</Label>
+        </g>
+      )}
+      {angleLabel && (
+        <g>
+          <path d={`M${x0 + 34},${groundY} A34,34 0 0,0 ${x0 + 21},${groundY - 27}`} fill="none" stroke={T.accent} strokeWidth={1.6} />
+          <Label x={x0 + 38} y={groundY - 12} anchor="start" size={10.5} color={T.accentDark}>{angleLabel}</Label>
+        </g>
+      )}
+      {heightLabel && (
+        <g>
+          <line x1={midX} y1={peakY} x2={midX} y2={groundY} stroke={T.purple} strokeWidth={1.5} strokeDasharray="3 3" />
+          <circle cx={midX} cy={peakY} r={3.5} fill={T.purple} />
+          <Label x={midX + 6} y={(peakY + groundY) / 2 + 4} anchor="start" size={10.5} color={T.purpleDark}>{heightLabel}</Label>
+        </g>
+      )}
+      {rangeLabel && <Dimension x0={x0} x1={xEnd} y={groundY + 24} label={rangeLabel} />}
+    </SvgContainer>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 13. Diagram P–V Termodinamika
+// ---------------------------------------------------------------------------
+export function PvDiagramVisual({
+  title = 'Diagram P–V Termodinamika',
+  caption,
+  points = [],
+  pTicks = [],
+  vTicks = [],
+  pLabel = 'P',
+  vLabel = 'V',
+  processLabel,
+  closed = false
+}) {
+  const width = 340;
+  const height = 200;
+  const ox = 54;
+  const oy = 165;
+  const w = 248;
+  const h = 128;
+  const vMax = Math.max(...vTicks, ...points.map((p) => p[0]), 1);
+  const pMax = Math.max(...pTicks, ...points.map((p) => p[1]), 1);
+  const px = (v) => ox + (v / vMax) * w;
+  const py = (p) => oy - (p / pMax) * h;
+  const lineD = points.map((pt, i) => `${i === 0 ? 'M' : 'L'}${px(pt[0]).toFixed(1)},${py(pt[1]).toFixed(1)}`).join(' ') + (closed && points.length > 2 ? ' Z' : '');
+  const areaD = points.length >= 2
+    ? (closed
+      ? lineD
+      : `${lineD} L${px(points[points.length - 1][0]).toFixed(1)},${oy} L${px(points[0][0]).toFixed(1)},${oy} Z`)
+    : '';
+
+  return (
+    <SvgContainer width={width} height={height} title={title} caption={caption}>
+      {pTicks.map((p) => (
+        <g key={`p${p}`}>
+          <line x1={ox} y1={py(p)} x2={ox + w} y2={py(p)} stroke={T.gridLine} strokeWidth={1} strokeDasharray="3 3" />
+          <Label x={ox - 6} y={py(p) + 4} anchor="end" size={10} weight={600} color={T.textSecondary}>{p}</Label>
+        </g>
+      ))}
+      {vTicks.map((v) => (
+        <g key={`v${v}`}>
+          <line x1={px(v)} y1={oy} x2={px(v)} y2={oy - h} stroke={T.gridLine} strokeWidth={1} strokeDasharray="3 3" />
+          <Label x={px(v)} y={oy + 14} size={10} weight={600} color={T.textSecondary}>{v}</Label>
+        </g>
+      ))}
+      {areaD && <path d={areaD} fill={T.primarySoft} opacity={0.8} />}
+      <Arrow x1={ox} y1={oy} x2={ox + w + 14} y2={oy} color={T.axisLine} width={1.6} />
+      <Arrow x1={ox} y1={oy} x2={ox} y2={oy - h - 16} color={T.axisLine} width={1.6} />
+      <Label x={ox + w + 10} y={oy + 27} anchor="end" size={10.5} color={T.textSecondary}>{vLabel}</Label>
+      <Label x={ox + 6} y={oy - h - 18} anchor="start" size={10.5} color={T.textSecondary}>{pLabel}</Label>
+      {lineD && <path d={lineD} fill="none" stroke={T.primary} strokeWidth={2.5} strokeLinejoin="round" />}
+      {points.map((pt, i) => (
+        <circle key={i} cx={px(pt[0])} cy={py(pt[1])} r={3.5} fill={T.primaryDark} />
+      ))}
+      {processLabel && points.length >= 2 && (
+        <Label
+          x={(px(points[0][0]) + px(points[1][0])) / 2}
+          y={Math.min(py(points[0][1]), py(points[1][1])) - 10}
+          size={10.5}
+          color={T.accentDark}
+        >
+          {processLabel}
+        </Label>
+      )}
+    </SvgContainer>
+  );
+}

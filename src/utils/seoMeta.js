@@ -32,30 +32,41 @@ export function levelLabel(grade) {
   return g <= 6 ? 'SD' : g <= 9 ? 'SMP' : 'SMA';
 }
 
-export const SUBJECT_NAME = { matematika: 'Matematika', ipa: 'IPA' };
+export const SUBJECT_NAME = { matematika: 'Matematika', ipa: 'IPA & Fisika' };
+
+export function subjectDisplayName(subject, grade) {
+  if (subject !== 'ipa') return 'Matematika';
+  return Number(grade) >= 10 ? 'Fisika' : 'IPA';
+}
 
 export const HOME_META = {
-  title: `${SITE_NAME} oleh ${AUTHOR.name} • Materi & Latihan Matematika Kelas 4–12, IPA SMP, dan Olimpiade AMC`,
-  description: `Belajar gratis tanpa daftar bersama ${AUTHOR.name}: ringkasan materi, rumus, contoh soal, dan latihan Matematika Kurikulum Merdeka Kelas 4 SD sampai 12 SMA, IPA SMP Kelas 7–9, plus persiapan olimpiade AMC 8, 10, dan 12.`,
+  title: `${SITE_NAME} oleh ${AUTHOR.name} • Materi & Latihan Matematika, IPA & Fisika (Kelas 4–12), dan AMC`,
+  description: `Belajar gratis tanpa daftar bersama ${AUTHOR.name}: ringkasan materi, rumus, contoh soal, dan latihan Matematika, IPA SD–SMP, dan Fisika SMA Kurikulum Merdeka Kelas 4–12, plus persiapan olimpiade AMC 8, 10, dan 12.`,
   path: '/'
 };
 
 export const ABOUT_META = {
   title: `Tentang ${SITE_NAME} — ${AUTHOR.name}, ${AUTHOR.jobTitle}`,
-  description: `${SITE_NAME} dibuat dan dikelola oleh ${AUTHOR.name}, guru Kelas 4 SD sampai 12 SMA dan pembina olimpiade AMC. Materi Matematika dan IPA gratis, sesuai Capaian Pembelajaran Kurikulum Merdeka.`,
+  description: `${SITE_NAME} dibuat dan dikelola oleh ${AUTHOR.name}, guru Matematika & Fisika Kelas 4 SD sampai 12 SMA dan pembina olimpiade AMC. Materi Matematika, IPA, dan Fisika gratis sesuai Capaian Pembelajaran Kurikulum Merdeka.`,
   path: '/tentang'
 };
 
 export const TOPIC_INDEX_META = {
-  title: `Daftar Isi Materi Matematika, IPA, dan Olimpiade per Topik | ${SITE_NAME}`,
-  description: 'Daftar lengkap materi per topik: bilangan, aljabar, geometri, data dan peluang, kalkulus, fisika, kimia, biologi, bumi dan antariksa, serta olimpiade AMC. Gratis dengan contoh soal dan pembahasan.',
+  title: `Daftar Isi Materi Matematika, IPA, Fisika, dan Olimpiade per Topik | ${SITE_NAME}`,
+  description: 'Daftar lengkap materi per topik: bilangan, aljabar, geometri, data dan peluang, kalkulus, kerja ilmiah, fisika, kimia, biologi, bumi dan antariksa, serta olimpiade AMC. Gratis dengan contoh soal dan pembahasan.',
   path: '/daftar-isi'
+};
+
+export const FORMULA_INDEX_META = {
+  title: `Kumpulan Rumus Matematika, IPA & Fisika Lengkap (Kelas 4–12) | ${SITE_NAME}`,
+  description: 'Referensi cepat rumus kunci Matematika, IPA SD–SMP, Fisika SMA (Kelas 4–12), dan Olimpiade AMC beserta penjelasan konsep dan tautan latihan soal.',
+  path: '/rumus'
 };
 
 export function tkaHomeMeta() {
   return {
-    title: `Latihan Soal TKA Matematika SD dan SMP + Pembahasan | ${SITE_NAME}`,
-    description: 'Paket latihan TKA (Tes Kemampuan Akademik) Matematika SD/MI Kelas 6 dan SMP/MTs Kelas 9: 30 soal per paket sesuai elemen TKA, dengan kunci jawaban dan pembahasan. Gratis tanpa daftar.',
+    title: `Latihan Soal TKA Matematika, IPA & Fisika (SD, SMP, SMA) + Pembahasan | ${SITE_NAME}`,
+    description: 'Paket latihan TKA (Tes Kemampuan Akademik) Matematika SD/SMP, IPA SMP, dan Fisika SMA: 30 soal per paket sesuai elemen TKA, dengan kunci jawaban dan pembahasan. Gratis tanpa daftar.',
     path: '/tka'
   };
 }
@@ -71,7 +82,7 @@ export function tkaPacketMeta(test, packet) {
 
 export function gradeMeta(grade, subject = 'matematika') {
   const lvl = levelLabel(grade);
-  const name = SUBJECT_NAME[subject] || SUBJECT_NAME.matematika;
+  const name = subjectDisplayName(subject, grade);
   const extra = subject === 'ipa' ? 'ringkasan materi, rumus dan istilah penting' : 'ringkasan materi, rumus penting';
   return {
     title: `${name} Kelas ${grade} ${lvl} Kurikulum Merdeka — Materi & Latihan | ${SITE_NAME}`,
@@ -82,7 +93,7 @@ export function gradeMeta(grade, subject = 'matematika') {
 
 export function chapterMeta(grade, chapter) {
   const lvl = levelLabel(grade);
-  const name = SUBJECT_NAME[subjectOfChapter(chapter.id)];
+  const name = subjectDisplayName(subjectOfChapter(chapter.id), grade);
   const overview = chapter?.summary?.overview || '';
   return {
     title: `${chapter.title} — ${name} Kelas ${grade} ${lvl} | ${SITE_NAME}`,

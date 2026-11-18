@@ -1,10 +1,10 @@
-# Roadmap AwesomeMathJ → Math & Science untuk Semua
+# Roadmap AwesomeMathJ → Matematika & Fisika untuk Semua
 
 ## Tujuan
 
-Materi **Matematika dan IPA** yang bisa dibuka, dibaca, dan dipelajari siapa saja tanpa login, ringan di HP, dan tetap bisa dipakai offline.
+Materi **Matematika, IPA SD–SMP, dan Fisika SMA (Kelas 4–12)** serta **Olimpiade** yang bisa dibuka, dibaca, dan dipelajari siapa saja tanpa login, ringan di HP, bisa dipakai offline (PWA), serta terstruktur agar mudah dirujuk mesin pencari dan AI (`llms.txt`, `llms-full.txt`, MathML/LaTeX, dan JSON-LD `LearningResource`/`Quiz`).
 
-**Studio Guru** tetap menjadi alat pribadi untuk mengirim PR ke murid. Murid reguler mendapat materi kurikulum, sedangkan murid olimpiade mendapat AMC. Keduanya memakai bank soal yang sama.
+**Studio Guru** tetap menjadi alat pribadi untuk mengirim PR ke murid. Murid reguler mendapat materi kurikulum (Matematika maupun IPA/Fisika), sedangkan murid olimpiade mendapat AMC. Keduanya memakai bank soal yang sama.
 
 ## Kurikulum yang dicakup
 
@@ -113,24 +113,38 @@ Yang diterapkan di AwesomeMathJ:
 - Ganti sisa soal kembar dan mirip (daftar di laporan audit).
 - **Butuh:** akses ke PDF buku resmi (lihat "Kebutuhan dari Anda").
 
-### Tahap 3 — IPA Kurikulum Merdeka
+### Tahap 3 — IPA SD–SMP & Fisika SMA Kurikulum Merdeka ✅ (Oktober–November 2026)
 - ✅ **IPA SMP Kelas 7–9 (Oktober 2026):** 20 bab, dengan urutan bab mengikuti buku siswa IPA Kurikulum Merdeka.
   - Kelas 7: Metode Ilmiah, Zat, Suhu & Kalor, Gerak & Gaya, Klasifikasi, Ekologi, Tata Surya.
   - Kelas 8: Sel, Struktur & Fungsi Tubuh (termasuk zat aditif), Usaha & Pesawat Sederhana, Getaran–Gelombang–Cahaya, Unsur–Senyawa–Campuran, Struktur Bumi.
   - Kelas 9: Pertumbuhan, Koordinasi–Reproduksi–Homeostasis (termasuk zat adiktif), Tekanan, Listrik–Magnet–Energi Alternatif, Reaksi Kimia, Pewarisan Sifat & Bioteknologi, Isu Lingkungan.
   - Setiap bab berisi 6–7 subbab, rumus/istilah kunci, 3 contoh soal dengan pembahasan, kesalahan umum, tips, dan 15 soal (5 Dasar, 5 Sedang, 5 Tantangan).
-  - Gambar baru: termometer, tuas, rangkaian seri/paralel, gelombang, diagram gaya, grafik v–t, jaring makanan, dongkrak hidrolik, bandul.
-  - `tests/ipaContent.test.js` menjaga bentuk bab, kecocokan kunci dengan pembahasan, sebaran kunci jawaban, gambar, dan sinkronisasi indeks.
-- Berikutnya: IPAS SD (bagian IPA) Kelas 4–6, IPA Kelas 10, lalu Fisika/Kimia/Biologi Kelas 11–12.
-- Saat PDF buku resmi bisa diakses, cocokkan ulang subbab IPA dengan buku siswa edisi revisi (daftar bab disusun dari ringkasan pihak ketiga karena PDF diblokir).
+  - Gambar SVG: termometer, tuas, rangkaian seri/paralel, gelombang, diagram gaya, grafik v–t, jaring makanan, dongkrak hidrolik, bandul.
+- ✅ **IPA SD Kelas 4–6 (berbasis Fisika & IPAS CP 046/2025, November 2026):** 12 bab (4 bab per kelas, 180 soal).
+  - Kelas 4 (Fase B): Wujud Zat & Perubahannya, Gaya di Sekitar Kita, Sumber & Perubahan Energi, Pancaindra & Pengamatan Ilmiah.
+  - Kelas 5 (Fase C): Cahaya & Alat Optik Sederhana, Bunyi & Pendengaran, Listrik & Magnet, Ekosistem & Siklus Air.
+  - Kelas 6 (Fase C): Rangka & Mekanika Gerak Tubuh, Efisiensi & Energi Terbarukan, Sistem Tata Surya, Rotasi–Revolusi & Gerhana.
+- ✅ **Fisika SMA Kelas 10–12 (Fase E & F CP 046/2025, November 2026):** 17 bab (255 soal), plus 4 engine SVG baru (`inclined-plane`, `optics`, `projectile`, `pv-diagram`).
+  - Kelas 10 (Fase E, 5 bab): Hakikat Fisika & Pengukuran, Vektor & Gerak Lurus, Gerak Parabola & Melingkar, Usaha–Energi & Energi Terbarukan, Kalor–Radiasi & Perubahan Iklim.
+  - Kelas 11 (Fase F, 6 bab): Dinamika Partikel & Hukum Newton, Momentum–Impuls & Tumbukan, Dinamika Rotasi & Kesetimbangan, Fluida Statis & Dinamis, Getaran–Gelombang & Bunyi, Kalor & Termodinamika.
+  - Kelas 12 (Fase F, 6 bab): Listrik Statis & Kapasitor, Listrik Arus Searah & Kirchhoff, Medan Magnet & Induksi Elektromagnetik, Rangkaian AC, Gelombang Elektromagnetik & Optika, Fisika Modern–Radioaktivitas & Teknologi Digital.
+- ✅ **TKA IPA SMP & TKA Fisika SMA (`/tka`):** Paket A & B masing-masing 30 soal sesuai elemen kurikulum.
+- `tests/ipaContent.test.js` menjaga bentuk bab, kecocokan kunci dengan pembahasan, sebaran kunci jawaban, gambar, dan sinkronisasi indeks untuk seluruh 49 bab IPA & Fisika (Kelas 4–12).
+- Saat PDF buku resmi edisi revisi bisa diakses, cocokkan ulang subbab dengan buku siswa resmi.
 
-### Tahap 4 — Jalur Cambridge
-- Cambridge Lower Secondary Mathematics & Science (Stage 7–9), lalu Primary (Stage 4–6), lalu IGCSE.
+### Tahap 3b — Referensi Publik, Pencarian & AI Referenceability ✅ (November 2026)
+- **`/rumus` (Ensiklopedia Rumus):** Kumpulan seluruh rumus kunci Matematika (Kelas 4–12), IPA & Fisika (Kelas 4–12), dan AMC lengkap dengan pencarian langsung dan tautan ke bab terkait, ikut diprerender ke `dist/rumus.html`.
+- **KaTeX `htmlAndMathml` di HTML prerender:** Setiap rumus menyertakan `<math>` MathML dan `<annotation encoding="application/x-tex">` agar crawler pencarian, screen reader, dan LLM membaca notasi matematika secara presisi.
+- **JSON-LD `Quiz` + `LearningResource`:** Setiap halaman bab dan paket TKA menyertakan schema `Quiz` lengkap dengan `Question` dan `acceptedAnswer`.
+- **`/llms.txt` & `/llms-full.txt`:** Indeks ringkas dan korpus lengkap Markdown + LaTeX seluruh materi, rumus, contoh soal, dan bank soal latihan siap rujuk oleh AI.
+
+### Tahap 4 — Jalur Cambridge (Fokus Matematika & Fisika)
+- Cambridge Primary Mathematics 0096, Lower Secondary Mathematics 0862, IGCSE Mathematics 0580 & Physics 0625.
 - Konten dalam bahasa Inggris, dengan istilah kunci dwibahasa.
 
-### Tahap 5 — Olimpiade
-- Rapikan modul AMC (gambar yang belum terhubung, audit otomatis yang sama).
-- Tambah jalur OSN/KSN Matematika & IPA.
+### Tahap 5 — Olimpiade & Pendalaman Bank Soal (Matematika & Fisika)
+- Rapikan modul AMC (6 gambar di `amcRegistry.js` yang belum terhubung) dan tambah jalur **OSN/KSN Matematika & Fisika**.
+- Tambah paket soal UTBK/SNBT (Penalaran Matematika) dan perluas variasi soal per bab (modularisasi `src/data/grades/gradeX.js` menjadi satu file per bab seperti `src/data/ipa/`).
 
 ## Kebutuhan dari Anda
 

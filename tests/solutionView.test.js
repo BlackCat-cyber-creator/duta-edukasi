@@ -129,7 +129,7 @@ describe('ChapterSolutionView Polymorphic Resolution & Non-MCQ Resilience', () =
         }).not.toThrow();
       }
     }
-  });
+  }, 15000);
 
   it('should verify getChapterSolutionData gracefully delegates AMC chapters to getAmcChapterSolutionData', async () => {
     const res = await getChapterSolutionData(8, 'amc8-ch1-permutations');

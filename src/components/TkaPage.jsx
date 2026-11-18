@@ -32,9 +32,9 @@ function TkaHome() {
   useDocumentMeta(tkaHomeMeta());
   return (
     <div className="handbook-container seo-page tka-page">
-      <h1>Latihan TKA Matematika SD dan SMP</h1>
+      <h1>Latihan TKA Matematika, IPA &amp; Fisika (SD, SMP, SMA)</h1>
       <p>
-        Tes Kemampuan Akademik (TKA) mengukur pemahaman dan penerapan matematika murid Kelas 6 SD/MI dan Kelas 9 SMP/MTs.
+        Tes Kemampuan Akademik (TKA) mengukur pemahaman dan penerapan Matematika, IPA, dan Fisika bagi murid Kelas 6 SD/MI, Kelas 9 SMP/MTs, dan Kelas 12 SMA/MA.
         Setiap paket berisi 30 soal pilihan ganda tingkat sedang sampai tantangan yang dikelompokkan menurut elemen TKA,
         lengkap dengan kunci dan pembahasan.
       </p>
@@ -67,7 +67,7 @@ function TkaPacket({ test, packet, onPrintQuest }) {
 
   useEffect(() => {
     let active = true;
-    Promise.all(test.grades.map((g) => getGradeData(g)))
+    Promise.all(test.grades.map((g) => getGradeData(g, test.subject || 'matematika')))
       .then((datas) => { if (active) setQuestions(buildTkaPacket(test, packet, chaptersMap(datas))); })
       .catch(() => { if (active) setQuestions([]); });
     return () => { active = false; };

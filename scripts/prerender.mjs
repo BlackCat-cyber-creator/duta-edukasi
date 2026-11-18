@@ -1,34 +1,44 @@
 /**
- * Prerender halaman publik untuk mesin pencari (dijalankan setelah `vite build`).
+ * Prerender halaman publik untuk mesin pencari dan AI/LLM (dijalankan setelah `vite build`).
  *
  * Setiap bab mendapat file HTML sendiri berisi materi lengkap (ringkasan, konsep,
- * rumus, contoh soal, latihan) + judul/deskripsi unik + data terstruktur (JSON-LD),
- * sehingga Google bisa membaca isinya tanpa menjalankan JavaScript. Saat dibuka di
- * browser, aplikasi React mengambil alih halaman seperti biasa.
+ * rumus dalam HTML+MathML+LaTeX, contoh soal, latihan) + judul/deskripsi unik +
+ * data terstruktur (JSON-LD LearningResource, Quiz, BreadcrumbList), serta indeks
+ * `llms.txt` dan korpus lengkap `llms-full.txt` agar mudah dikutip mesin pencari dan AI.
  *
- * Keluaran (dengan "cleanUrls" Vercel, /matematika/kelas-4 → matematika/kelas-4.html):
+ * Keluaran:
  *   dist/index.html                       beranda
  *   dist/app.html                         kerangka SPA untuk rute lain (Studio Guru, PR)
- *   dist/matematika/kelas-N.html          daftar bab per kelas
- *   dist/matematika/kelas-N/<bab>.html    halaman bab
+ *   dist/rumus.html                       ensiklopedia kumpulan rumus
+ *   dist/daftar-isi.html                  daftar isi per topik
+ *   dist/tka.html & dist/tka/*.html       latihan TKA SD, SMP, SMA
+ *   dist/matematika/kelas-N[.html|/<bab>.html]
+ *   dist/ipa/kelas-N[.html|/<bab>.html]
  *   dist/olimpiade/amc-N[.html|/<bab>.html]
+ *   dist/llms.txt & dist/llms-full.txt    indeks & korpus Markdown/LaTeX untuk AI
  *   dist/sitemap.xml
  */
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import katex from 'katex';
 import { GRADE_METADATA } from '../src/data/chapterIndex.js';
-import { AMC_LEVELS_METADATA } from '../src/data/amc/amcMetadata.js';
+import { AMC_LEVELS_METADATA, ALL_AMC_CHAPTERS_INDEX } from '../src/data/amc/amcMetadata.js';
 import { questionAnchor } from '../src/utils/reports.js';
 import { splitSubbab, articleSections } from '../src/utils/chapterOutline.js';
-import { ipaGrade7Data } from '../src/data/ipa/grade7.js';
 import { TOPIC_GROUPS } from '../src/data/topics.js';
 import { topicChapters, relatedChapters } from '../src/utils/relatedChapters.js';
 import { TKA_TESTS, TKA_PACKETS, tkaPath } from '../src/data/tka.js';
 import { buildTkaPacket, chaptersMap } from '../src/utils/tkaBuilder.js';
-import { ALL_AMC_CHAPTERS_INDEX } from '../src/data/amc/amcMetadata.js';
+import { ipaGrade4Data } from '../src/data/ipa/grade4.js';
+import { ipaGrade5Data } from '../src/data/ipa/grade5.js';
+import { ipaGrade6Data } from '../src/data/ipa/grade6.js';
+import { ipaGrade7Data } from '../src/data/ipa/grade7.js';
 import { ipaGrade8Data } from '../src/data/ipa/grade8.js';
 import { ipaGrade9Data } from '../src/data/ipa/grade9.js';
+import { ipaGrade10Data } from '../src/data/ipa/grade10.js';
+import { ipaGrade11Data } from '../src/data/ipa/grade11.js';
+import { ipaGrade12Data } from '../src/data/ipa/grade12.js';
 import { grade4Data } from '../src/data/grades/grade4.js';
 import { grade5Data } from '../src/data/grades/grade5.js';
 import { grade6Data } from '../src/data/grades/grade6.js';
@@ -43,24 +53,39 @@ import { amc10Data } from '../src/data/amc/amc10Data.js';
 import { amc12Data } from '../src/data/amc/amc12Data.js';
 import { getCp2025Note } from '../src/data/cp2025Mapping.js';
 import { SITE_URL, SITE_NAME, gradePath, chapterPath, amcLevelPath, amcChapterPath } from '../src/utils/seoRoutes.js';
-import { HOME_META, ABOUT_META, TOPIC_INDEX_META, tkaHomeMeta, tkaPacketMeta, gradeMeta, chapterMeta, amcLevelMeta, amcChapterMeta, levelLabel, SUBJECT_NAME } from '../src/utils/seoMeta.js';
+import {
+  HOME_META,
+  ABOUT_META,
+  TOPIC_INDEX_META,
+  FORMULA_INDEX_META,
+  tkaHomeMeta,
+  tkaPacketMeta,
+  gradeMeta,
+  chapterMeta,
+  amcLevelMeta,
+  amcChapterMeta,
+  levelLabel,
+  subjectDisplayName,
+  plainText
+} from '../src/utils/seoMeta.js';
 import { AUTHOR, ABOUT } from '../src/data/siteInfo.js';
 
-const DIST = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../dist');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const DIST = path.resolve(__dirname, '../dist');
 const GRADES = [grade4Data, grade5Data, grade6Data, grade7Data, grade8Data, grade9Data, grade10Data, grade11Data, grade12Data];
-const IPA = [ipaGrade7Data, ipaGrade8Data, ipaGrade9Data].filter((g) => g.chapters.length > 0);
+const IPA = [ipaGrade4Data, ipaGrade5Data, ipaGrade6Data, ipaGrade7Data, ipaGrade8Data, ipaGrade9Data, ipaGrade10Data, ipaGrade11Data, ipaGrade12Data].filter((g) => g.chapters.length > 0);
 const AMC = [amc8Data, amc10Data, amc12Data];
 const PHASE = Object.fromEntries(GRADE_METADATA.map((g) => [g.grade, g.phase]));
 
 // ---------------------------------------------------------------------------
-// Teks → HTML (LaTeX dirender KaTeX, **tebal**, baris baru)
+// Teks → HTML (LaTeX dirender KaTeX htmlAndMathml, **tebal**, baris baru)
 // ---------------------------------------------------------------------------
 const escapeHtml = (s) => String(s ?? '')
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 function renderMath(tex, displayMode) {
   try {
-    return katex.renderToString(tex, { displayMode, throwOnError: false, strict: 'ignore', output: 'html' });
+    return katex.renderToString(tex, { displayMode, throwOnError: false, strict: 'ignore', output: 'htmlAndMathml' });
   } catch {
     return escapeHtml(tex);
   }
@@ -69,7 +94,6 @@ function renderMath(tex, displayMode) {
 function rich(text) {
   const src = String(text ?? '');
   const hasDelimiters = /\$/.test(src);
-  // Teks tanpa $ tetapi berisi perintah LaTeX (mis. opsi "\frac{1}{2}") dirender utuh sebagai rumus
   if (!hasDelimiters && /\\[a-zA-Z]+|\^\{?/.test(src)) return renderMath(src, false);
   return src
     .split(/(\$\$[\s\S]*?\$\$|\$[^$\n]+?\$)/g)
@@ -89,11 +113,11 @@ const paragraphs = (text) => String(text || '').split(/\n\s*\n/).map((p) => `<p>
 // Kerangka halaman
 // ---------------------------------------------------------------------------
 const shell = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
-// CSS KaTeX ada di chunk terpisah yang baru dimuat lewat JavaScript; tautkan langsung
-// agar rumus pada HTML statis tampil benar (pecahan bertingkat, akar, dll).
 const katexCss = fs.readdirSync(path.join(DIST, 'assets')).find((f) => /katex.*\.css$/.test(f));
 if (!shell.includes('<div id="root"></div>')) throw new Error('dist/index.html tidak berisi <div id="root"></div>');
 fs.writeFileSync(path.join(DIST, 'app.html'), shell);
+
+const FOOTER_HTML = `<footer class="seo-footer"><p>${SITE_NAME} — dibuat dan dikelola oleh <a href="/tentang">${escapeHtml(AUTHOR.name)}</a>, ${escapeHtml(AUTHOR.jobTitle)} · <a href="/daftar-isi">Daftar isi</a> · <a href="/rumus">Kumpulan rumus</a> · <a href="/tka">Latihan TKA</a>.</p></footer>`;
 
 function renderPage({ meta, body, jsonLd = [] }) {
   const url = `${SITE_URL}${meta.path === '/' ? '/' : meta.path}`;
@@ -119,9 +143,6 @@ function renderPage({ meta, body, jsonLd = [] }) {
     .replace('<div id="root"></div>', `<div id="root"><div class="handbook-container seo-page">${body}${FOOTER_HTML}</div></div>`);
 }
 
-const FOOTER_HTML = `<footer class="seo-footer"><p>${SITE_NAME} — dibuat dan dikelola oleh <a href="/tentang">${escapeHtml(AUTHOR.name)}</a>, ${escapeHtml(AUTHOR.jobTitle)}.</p></footer>`;
-
-// Data terstruktur pembuat situs (dipakai sebagai author/creator di setiap halaman)
 const PERSON_LD = {
   '@type': 'Person',
   name: AUTHOR.name,
@@ -155,11 +176,46 @@ const learningResourceLd = ({ meta, educationalLevel, subject = 'Matematika' }) 
   inLanguage: 'id',
   isAccessibleForFree: true,
   educationalLevel,
-  learningResourceType: ['Ringkasan materi', 'Contoh soal', 'Latihan soal'],
+  learningResourceType: ['Ringkasan materi', 'Rumus kunci', 'Contoh soal', 'Latihan soal'],
   about: { '@type': 'Thing', name: subject },
   provider: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
   author: PERSON_LD
 });
+
+function quizLd({ meta, questions = [], educationalLevel, subject = 'Matematika' }) {
+  if (!questions.length) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Quiz',
+    name: `Latihan Soal: ${meta.title.split(' | ')[0]}`,
+    description: meta.description,
+    url: `${SITE_URL}${meta.path}#latihan-soal`,
+    inLanguage: 'id',
+    isAccessibleForFree: true,
+    educationalLevel,
+    about: { '@type': 'Thing', name: subject },
+    author: PERSON_LD,
+    hasPart: questions.map((q, idx) => {
+      const key = q.correctAnswer || q.answer;
+      const ansText = q.correctAnswer
+        ? `${q.correctAnswer}. ${(q.options || []).find((o) => o.key === q.correctAnswer)?.text || ''}`
+        : String(key ?? '');
+      const sol = q.bestSolution || q.conceptualSolution || q.explanation || '';
+      return {
+        '@type': 'Question',
+        position: idx + 1,
+        name: `Soal ${idx + 1}`,
+        text: plainText(q.question || q.problem || ''),
+        eduQuestionType: (q.options || []).length ? 'Multiple choice' : 'Short answer',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: plainText(ansText)
+        },
+        ...(sol ? { comment: { '@type': 'Comment', text: plainText(sol) } } : {})
+      };
+    })
+  };
+}
 
 function questionList(questions) {
   return `<ol class="seo-questions">${questions.map((q) => {
@@ -174,11 +230,10 @@ function questionList(questions) {
     const details = key || solution
       ? `<details class="seo-solution"><summary>Pembahasan</summary>${key ? `<p><strong>Jawaban: ${answerText}</strong></p>` : ''}${solution ? `<div>${rich(solution)}</div>` : ''}</details>`
       : '';
-    return `<li id="${questionAnchor(q.id)}"><div>${rich(q.question)}</div>${options}${details}</li>`;
+    return `<li id="${questionAnchor(q.id)}"><div>${rich(q.question || q.problem)}</div>${options}${details}</li>`;
   }).join('\n')}</ol>`;
 }
 
-/** Isi bab dengan struktur yang sama seperti ChapterArticle (daftar isi, subbab bernomor, anchor). */
 function chapterBody(chapter) {
   const s = chapter.summary || {};
   const practiceCount = chapter.questions?.length || 0;
@@ -205,7 +260,6 @@ function chapterBody(chapter) {
   return parts.join('\n');
 }
 
-/** Daftar isi satu kelas: setiap bab beserta subbabnya (seperti halaman indeks materi). */
 function gradeToc(chapters, toPath) {
   return `<ol class="seo-grade-toc">${chapters.map((c) => {
     const subs = (c.summary?.coreConcepts || []).map(splitSubbab);
@@ -233,15 +287,15 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
 // ---------------------------------------------------------------------------
 {
   const gradeList = GRADES.map((g) => `<li><a href="${gradePath(g.grade)}"><strong>Matematika Kelas ${g.grade} ${levelLabel(g.grade)}</strong></a> — ${g.chapters.map((c) => `<a href="${chapterPath(g.grade, c.id)}">${escapeHtml(c.title)}</a>`).join(', ')}</li>`).join('\n');
-  const ipaList = IPA.map((g) => `<li><a href="${gradePath(g.grade, 'ipa')}"><strong>IPA Kelas ${g.grade} ${levelLabel(g.grade)}</strong></a> — ${g.chapters.map((c) => `<a href="${chapterPath(g.grade, c.id)}">${escapeHtml(c.title)}</a>`).join(', ')}</li>`).join('\n');
+  const ipaList = IPA.map((g) => `<li><a href="${gradePath(g.grade, 'ipa')}"><strong>${subjectDisplayName('ipa', g.grade)} Kelas ${g.grade} ${levelLabel(g.grade)}</strong></a> — ${g.chapters.map((c) => `<a href="${chapterPath(g.grade, c.id)}">${escapeHtml(c.title)}</a>`).join(', ')}</li>`).join('\n');
   const amcList = AMC.map((d) => `<li><a href="${amcLevelPath(d.level)}"><strong>AMC ${d.level}</strong></a> — ${d.chapters.map((c) => `<a href="${amcChapterPath(d.level, c.id)}">${escapeHtml(c.title)}</a>`).join(', ')}</li>`).join('\n');
   const body = `
-    <h1>Belajar Matematika Kelas 4–12, IPA SMP, dan Olimpiade AMC</h1>
+    <h1>Belajar Matematika, IPA &amp; Fisika Kelas 4–12, dan Olimpiade AMC</h1>
     <p>${escapeHtml(HOME_META.description)}</p>
     <p>Disusun oleh <a href="/tentang">${escapeHtml(AUTHOR.name)}</a>, ${escapeHtml(AUTHOR.jobTitle)}.</p>
-    <p><a href="/daftar-isi">Daftar isi semua materi per topik</a> · <a href="/tka">Latihan TKA Matematika SD &amp; SMP</a></p>
-    <section><h2>Matematika Kurikulum Merdeka</h2><ul>${gradeList}</ul></section>
-    ${ipaList ? `<section><h2>IPA Kurikulum Merdeka</h2><ul>${ipaList}</ul></section>` : ''}
+    <p><a href="/daftar-isi">Daftar isi semua materi per topik</a> · <a href="/rumus">Kumpulan Rumus Matematika &amp; Fisika</a> · <a href="/tka">Latihan TKA SD, SMP &amp; SMA</a></p>
+    <section><h2>Matematika Kurikulum Merdeka (Kelas 4–12)</h2><ul>${gradeList}</ul></section>
+    ${ipaList ? `<section><h2>IPA &amp; Fisika Kurikulum Merdeka (Kelas 4–12)</h2><ul>${ipaList}</ul></section>` : ''}
     <section><h2>Olimpiade Matematika AMC</h2><ul>${amcList}</ul></section>`;
   const ld = [{
     '@context': 'https://schema.org',
@@ -268,7 +322,7 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
     <h2>Pembuat</h2>
     <p>${escapeHtml(AUTHOR.name)} — ${escapeHtml(AUTHOR.jobTitle)}</p>
     <h2>Mulai Belajar</h2>
-    <ul>${GRADES.map((g) => `<li><a href="${gradePath(g.grade)}">Matematika Kelas ${g.grade}</a></li>`).join('')}${IPA.map((g) => `<li><a href="${gradePath(g.grade, 'ipa')}">IPA Kelas ${g.grade}</a></li>`).join('')}${AMC.map((d) => `<li><a href="${amcLevelPath(d.level)}">Olimpiade AMC ${d.level}</a></li>`).join('')}</ul>`;
+    <ul>${GRADES.map((g) => `<li><a href="${gradePath(g.grade)}">Matematika Kelas ${g.grade}</a></li>`).join('')}${IPA.map((g) => `<li><a href="${gradePath(g.grade, 'ipa')}">${subjectDisplayName('ipa', g.grade)} Kelas ${g.grade}</a></li>`).join('')}${AMC.map((d) => `<li><a href="${amcLevelPath(d.level)}">Olimpiade AMC ${d.level}</a></li>`).join('')}<li><a href="/rumus">Kumpulan Rumus</a></li><li><a href="/daftar-isi">Daftar Isi per Topik</a></li><li><a href="/tka">Latihan TKA</a></li></ul>`;
   const ld = [{
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
@@ -281,11 +335,11 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
 }
 
 // ---------------------------------------------------------------------------
-// Kurikulum Merdeka: Matematika dan IPA
+// Kurikulum Merdeka: Matematika, IPA & Fisika
 // ---------------------------------------------------------------------------
 function renderCurriculum(subject, grades) {
-  const name = SUBJECT_NAME[subject];
   for (const g of grades) {
+    const name = subjectDisplayName(subject, g.grade);
     const lvl = levelLabel(g.grade);
     const phase = g.phase || PHASE[g.grade] || '';
     const crumbsBase = [['Beranda', '/'], [`${name} Kelas ${g.grade}`, gradePath(g.grade, subject)]];
@@ -316,7 +370,12 @@ function renderCurriculum(subject, grades) {
         </section>
         ${relatedHtml(ch.id)}
         ${siblingLinks(g.chapters, ch.id, (c) => chapterPath(g.grade, c.id))}`;
-      const ld = [learningResourceLd({ meta, educationalLevel: `Kelas ${g.grade} ${lvl} (${phase})`, subject: name }), breadcrumbLd(crumbs)];
+      const qLd = quizLd({ meta, questions: ch.questions || [], educationalLevel: `Kelas ${g.grade} ${lvl} (${phase})`, subject: name });
+      const ld = [
+        learningResourceLd({ meta, educationalLevel: `Kelas ${g.grade} ${lvl} (${phase})`, subject: name }),
+        ...(qLd ? [qLd] : []),
+        breadcrumbLd(crumbs)
+      ];
       writePage(meta.path, renderPage({ meta, body, jsonLd: ld }));
       addToSitemap(meta.path, '0.7');
     }
@@ -351,7 +410,12 @@ for (const d of AMC) {
       ${chapterBody(ch)}
       <section id="latihan-soal"><h2>Soal Latihan Kompetisi (${ch.questions?.length || 0} soal)</h2>${questionList(ch.questions || [])}</section>
       ${siblingLinks(d.chapters, ch.id, (c) => amcChapterPath(d.level, c.id))}`;
-    const ld = [learningResourceLd({ meta, educationalLevel: `Olimpiade AMC ${d.level}` }), breadcrumbLd(crumbs)];
+    const qLd = quizLd({ meta, questions: ch.questions || [], educationalLevel: `Olimpiade AMC ${d.level}`, subject: 'Matematika Olimpiade' });
+    const ld = [
+      learningResourceLd({ meta, educationalLevel: `Olimpiade AMC ${d.level}` }),
+      ...(qLd ? [qLd] : []),
+      breadcrumbLd(crumbs)
+    ];
     writePage(meta.path, renderPage({ meta, body, jsonLd: ld }));
     addToSitemap(meta.path, '0.5');
   }
@@ -369,21 +433,83 @@ for (const d of AMC) {
     .filter((c) => c.level === lvl.level).map((c) => `<li><a href="${amcChapterPath(lvl.level, c.id)}">${strip(c.title)}</a> — ${escapeHtml(c.domain)}</li>`).join('')}</ul>`).join('')}</section>`;
   const crumbs = [['Beranda', '/'], ['Daftar Isi', TOPIC_INDEX_META.path]];
   const body = `${breadcrumbHtml(crumbs)}<h1>Daftar Isi Materi</h1>
-    <p>Semua bab Matematika (Kelas 4–12), IPA (Kelas 7–9), dan Olimpiade AMC, dikelompokkan per topik.</p>
-    <p><a href="/tka">Latihan TKA Matematika SD dan SMP</a></p>${groups}${amc}`;
+    <p>Semua bab Matematika (Kelas 4–12), IPA &amp; Fisika (Kelas 4–12), dan Olimpiade AMC, dikelompokkan per topik.</p>
+    <p><a href="/rumus">Kumpulan Rumus Matematika &amp; Fisika</a> · <a href="/tka">Latihan TKA SD, SMP &amp; SMA</a></p>${groups}${amc}`;
   writePage(TOPIC_INDEX_META.path, renderPage({ meta: TOPIC_INDEX_META, body, jsonLd: [breadcrumbLd(crumbs)] }));
   addToSitemap(TOPIC_INDEX_META.path, '0.9');
 }
 
 // ---------------------------------------------------------------------------
+// Ensiklopedia Rumus (/rumus)
+// ---------------------------------------------------------------------------
+{
+  const crumbs = [['Beranda', '/'], ['Kumpulan Rumus', FORMULA_INDEX_META.path]];
+  const renderFormulaGroup = (heading, items) => `
+    <section>
+      <h2>${escapeHtml(heading)}</h2>
+      ${items.map(({ label, ch, path: chPath }) => `
+        <article id="rumus-${ch.id}">
+          <h3><a href="${chPath}">${escapeHtml(ch.title)}</a> <span class="topic-meta">(${escapeHtml(label)})</span></h3>
+          <ul>${(ch.summary?.keyFormulas || []).map((f) => `<li><strong>${rich(f.label)}</strong>: ${renderMath(f.formula, false)}</li>`).join('')}</ul>
+        </article>`).join('\n')}
+    </section>`;
+
+  const mathItems = GRADES.flatMap((g) =>
+    g.chapters.filter((ch) => ch.summary?.keyFormulas?.length).map((ch) => ({
+      label: `Matematika Kelas ${g.grade} ${levelLabel(g.grade)}`,
+      ch,
+      path: chapterPath(g.grade, ch.id)
+    }))
+  );
+  const ipaItems = IPA.flatMap((g) =>
+    g.chapters.filter((ch) => ch.summary?.keyFormulas?.length).map((ch) => ({
+      label: `${subjectDisplayName('ipa', g.grade)} Kelas ${g.grade} ${levelLabel(g.grade)}`,
+      ch,
+      path: chapterPath(g.grade, ch.id)
+    }))
+  );
+  const amcItems = AMC.flatMap((d) =>
+    d.chapters.filter((ch) => ch.summary?.keyFormulas?.length).map((ch) => ({
+      label: `Olimpiade AMC ${d.level}`,
+      ch,
+      path: amcChapterPath(d.level, ch.id)
+    }))
+  );
+
+  const body = `
+    ${breadcrumbHtml(crumbs)}
+    <h1>Kumpulan Rumus Matematika, IPA &amp; Fisika (Kelas 4–12)</h1>
+    <p>${escapeHtml(FORMULA_INDEX_META.description)}</p>
+    ${renderFormulaGroup('Matematika Kurikulum Merdeka (Kelas 4–12)', mathItems)}
+    ${renderFormulaGroup('IPA & Fisika Kurikulum Merdeka (Kelas 4–12)', ipaItems)}
+    ${renderFormulaGroup('Olimpiade Matematika AMC', amcItems)}`;
+  const ld = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: FORMULA_INDEX_META.title.split(' | ')[0],
+      description: FORMULA_INDEX_META.description,
+      url: `${SITE_URL}${FORMULA_INDEX_META.path}`,
+      inLanguage: 'id',
+      isAccessibleForFree: true,
+      author: PERSON_LD
+    },
+    breadcrumbLd(crumbs)
+  ];
+  writePage(FORMULA_INDEX_META.path, renderPage({ meta: FORMULA_INDEX_META, body, jsonLd: ld }));
+  addToSitemap(FORMULA_INDEX_META.path, '0.9');
+}
+
+// ---------------------------------------------------------------------------
 // Latihan TKA
 // ---------------------------------------------------------------------------
+const tkaGeneratedPackets = [];
 {
   const elementTable = (test) => `<table><thead><tr><th>Elemen</th><th>Cakupan</th><th>Soal</th></tr></thead><tbody>${test.elements
     .map((el) => `<tr><td><strong>${escapeHtml(el.name)}</strong></td><td>${escapeHtml(el.scope)}</td><td>${el.quota}</td></tr>`).join('')}</tbody></table>`;
   const homeMeta = tkaHomeMeta();
   const homeCrumbs = [['Beranda', '/'], ['Latihan TKA', '/tka']];
-  const homeBody = `${breadcrumbHtml(homeCrumbs)}<h1>Latihan TKA Matematika SD dan SMP</h1>
+  const homeBody = `${breadcrumbHtml(homeCrumbs)}<h1>Latihan TKA Matematika, IPA &amp; Fisika (SD, SMP, SMA)</h1>
     <p>${escapeHtml(homeMeta.description)}</p>
     ${TKA_TESTS.map((test) => `<section><h2>${escapeHtml(test.title)}</h2><p>${escapeHtml(test.audience)}</p><p>${escapeHtml(test.intro)}</p>${elementTable(test)}
       <ul>${TKA_PACKETS.map((p) => `<li><a href="${tkaPath(test.id, p)}">${escapeHtml(test.title)} Paket ${p.toUpperCase()}</a></li>`).join('')}</ul></section>`).join('')}
@@ -391,22 +517,172 @@ for (const d of AMC) {
   writePage('/tka', renderPage({ meta: homeMeta, body: homeBody, jsonLd: [breadcrumbLd(homeCrumbs)] }));
   addToSitemap('/tka', '0.9');
 
-  const chapters = chaptersMap(GRADES);
+  const mathChapters = chaptersMap(GRADES);
+  const ipaChapters = chaptersMap(IPA);
   for (const test of TKA_TESTS) {
+    const chapters = test.subject === 'ipa' ? ipaChapters : mathChapters;
+    const subjName = test.subject === 'ipa' ? 'IPA & Fisika' : 'Matematika';
     for (const packet of TKA_PACKETS) {
       const meta = tkaPacketMeta(test, packet);
       const crumbs = [...homeCrumbs, [`${test.title} Paket ${packet.toUpperCase()}`, meta.path]];
       const questions = buildTkaPacket(test, packet, chapters);
+      tkaGeneratedPackets.push({ test, packet, meta, questions });
       const body = `${breadcrumbHtml(crumbs)}<h1>Latihan ${escapeHtml(test.title)} — Paket ${packet.toUpperCase()}</h1>
         <p>${escapeHtml(test.audience)} · ${questions.length} soal dengan kunci jawaban dan pembahasan.</p>
         <section><h2>Muatan dan Elemen TKA</h2><p>${escapeHtml(test.intro)}</p>${elementTable(test)}</section>
         <section id="latihan-soal"><h2>Soal Latihan</h2>${questionList(questions)}</section>
         <p><a href="${tkaPath(test.id, packet === 'a' ? 'b' : 'a')}">Paket ${packet === 'a' ? 'B' : 'A'}</a> · <a href="/tka">Semua latihan TKA</a></p>`;
-      const ld = [learningResourceLd({ meta, educationalLevel: test.audience }), breadcrumbLd(crumbs)];
+      const qLd = quizLd({ meta, questions, educationalLevel: test.audience, subject: subjName });
+      const ld = [
+        learningResourceLd({ meta, educationalLevel: test.audience, subject: subjName }),
+        ...(qLd ? [qLd] : []),
+        breadcrumbLd(crumbs)
+      ];
       writePage(meta.path, renderPage({ meta, body, jsonLd: ld }));
       addToSitemap(meta.path, '0.8');
     }
   }
+}
+
+// ---------------------------------------------------------------------------
+// llms.txt & llms-full.txt (Referensi AI/LLM terstruktur dalam Markdown + LaTeX)
+// ---------------------------------------------------------------------------
+{
+  const llmsLines = [
+    `# ${SITE_NAME}`,
+    '',
+    `> Platform belajar gratis Matematika (Kelas 4–12), IPA SD–SMP (Kelas 4–9), Fisika SMA (Kelas 10–12), dan Olimpiade Matematika AMC (8, 10, 12) berbahasa Indonesia, selaras Capaian Pembelajaran Kurikulum Merdeka (Keputusan Kepala BSKAP 046/H/KR/2025). Disusun oleh ${AUTHOR.name}.`,
+    '',
+    '## Halaman Utama & Indeks',
+    `- [Beranda ${SITE_NAME}](${SITE_URL}/): Portal utama materi, pencarian lintas kelas, dan kuis interaktif.`,
+    `- [Daftar Isi per Topik](${SITE_URL}/daftar-isi): Seluruh bab Matematika, IPA, Fisika, dan AMC dikelompokkan berdasarkan topik.`,
+    `- [Kumpulan Rumus](${SITE_URL}/rumus): Ensiklopedia rumus kunci Matematika, IPA, Fisika, dan AMC dengan notasi LaTeX.`,
+    `- [Latihan TKA](${SITE_URL}/tka): Paket latihan Tes Kemampuan Akademik SD, SMP, dan SMA (30 soal per paket dengan pembahasan).`,
+    `- [Korpus Lengkap Markdown + LaTeX](${SITE_URL}/llms-full.txt): Seluruh materi, rumus, contoh soal, dan bank soal latihan lengkap dalam satu berkas Markdown.`,
+    `- [Tentang](${SITE_URL}/tentang): Profil pembuat dan ruang lingkup kurikulum.`,
+    '',
+    '## Matematika Kurikulum Merdeka (Kelas 4–12)'
+  ];
+
+  for (const g of GRADES) {
+    llmsLines.push(`### Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || PHASE[g.grade] || ''}) — ${SITE_URL}${gradePath(g.grade)}`);
+    for (const ch of g.chapters) {
+      llmsLines.push(`- [${ch.title}](${SITE_URL}${chapterPath(g.grade, ch.id)}): ${plainText(ch.summary?.overview || '').slice(0, 180)} (${ch.questions?.length || 0} soal)`);
+    }
+    llmsLines.push('');
+  }
+
+  llmsLines.push('## IPA & Fisika Kurikulum Merdeka (Kelas 4–12)');
+  for (const g of IPA) {
+    const subjName = subjectDisplayName('ipa', g.grade);
+    llmsLines.push(`### ${subjName} Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || ''}) — ${SITE_URL}${gradePath(g.grade, 'ipa')}`);
+    for (const ch of g.chapters) {
+      llmsLines.push(`- [${ch.title}](${SITE_URL}${chapterPath(g.grade, ch.id)}): ${plainText(ch.summary?.overview || '').slice(0, 180)} (${ch.questions?.length || 0} soal)`);
+    }
+    llmsLines.push('');
+  }
+
+  llmsLines.push('## Olimpiade Matematika AMC (AMC 8, 10, 12)');
+  for (const d of AMC) {
+    llmsLines.push(`### AMC ${d.level} — ${SITE_URL}${amcLevelPath(d.level)}`);
+    for (const ch of d.chapters) {
+      llmsLines.push(`- [${ch.title}](${SITE_URL}${amcChapterPath(d.level, ch.id)}): ${plainText(ch.summary?.overview || '').slice(0, 180)} (${ch.questions?.length || 0} soal)`);
+    }
+    llmsLines.push('');
+  }
+
+  llmsLines.push('## Paket Latihan TKA');
+  for (const { test, packet, meta, questions } of tkaGeneratedPackets) {
+    llmsLines.push(`- [${test.title} Paket ${packet.toUpperCase()}](${SITE_URL}${meta.path}): ${test.audience}, ${questions.length} soal.`);
+  }
+
+  fs.writeFileSync(path.join(DIST, 'llms.txt'), `${llmsLines.join('\n')}\n`);
+
+  const mdChapter = (title, metaLabel, url, ch) => {
+    const s = ch.summary || {};
+    const out = [`# ${title}`, `URL: ${url}`, `Kategori: ${metaLabel}`, ''];
+    if (s.overview) out.push('## Pengantar', s.overview, '');
+    if (s.coreConcepts?.length) {
+      out.push('## Konsep Inti');
+      s.coreConcepts.forEach((c, i) => out.push(`${i + 1}. ${c}`));
+      out.push('');
+    }
+    if (s.keyFormulas?.length) {
+      out.push('## Rumus Kunci');
+      for (const f of s.keyFormulas) out.push(`- **${f.label}**: $$${f.formula}$$`);
+      out.push('');
+    }
+    if (s.workedExamples?.length) {
+      out.push('## Contoh Soal dan Pembahasan');
+      s.workedExamples.forEach((ex, i) => {
+        out.push(`### Contoh ${i + 1}${ex.title ? `: ${ex.title}` : ''}`, ex.problem, `**Pembahasan:** ${ex.solution}`, '');
+      });
+    }
+    if (s.misconceptions?.length) {
+      out.push('## Kesalahan yang Sering Terjadi');
+      for (const m of s.misconceptions) out.push(`- ${m}`);
+      out.push('');
+    }
+    if (s.tutorTip) out.push('## Tips', s.tutorTip, '');
+    if (ch.questions?.length) {
+      out.push(`## Latihan Soal (${ch.questions.length} Soal)`);
+      ch.questions.forEach((q, i) => {
+        out.push(`### Soal ${i + 1} (${q.difficulty || 'Latihan'}) — ${url}#${questionAnchor(q.id)}`);
+        out.push(q.question || q.problem || '');
+        if ((q.options || []).length) {
+          for (const o of q.options) out.push(`- **${o.key}.** ${o.text}`);
+        }
+        const key = q.correctAnswer || q.answer;
+        const sol = q.bestSolution || q.conceptualSolution || q.explanation;
+        if (key) out.push(`**Jawaban:** ${key}`);
+        if (sol) out.push(`**Pembahasan:** ${sol}`);
+        out.push('');
+      });
+    }
+    out.push('---', '');
+    return out.join('\n');
+  };
+
+  const fullParts = [
+    `# ${SITE_NAME} — Korpus Materi, Rumus, & Bank Soal Matematika, IPA, Fisika, dan Olimpiade`,
+    `Sumber: ${SITE_URL}`,
+    `Pembuat: ${AUTHOR.name} (${AUTHOR.jobTitle})`,
+    ''
+  ];
+
+  for (const g of GRADES) {
+    for (const ch of g.chapters) {
+      fullParts.push(mdChapter(
+        ch.title,
+        `Matematika Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || PHASE[g.grade] || ''})`,
+        `${SITE_URL}${chapterPath(g.grade, ch.id)}`,
+        ch
+      ));
+    }
+  }
+  for (const g of IPA) {
+    const subjName = subjectDisplayName('ipa', g.grade);
+    for (const ch of g.chapters) {
+      fullParts.push(mdChapter(
+        ch.title,
+        `${subjName} Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || ''})`,
+        `${SITE_URL}${chapterPath(g.grade, ch.id)}`,
+        ch
+      ));
+    }
+  }
+  for (const d of AMC) {
+    for (const ch of d.chapters) {
+      fullParts.push(mdChapter(
+        ch.title,
+        `Olimpiade AMC ${d.level}${ch.domain ? ` — ${ch.domain}` : ''}`,
+        `${SITE_URL}${amcChapterPath(d.level, ch.id)}`,
+        ch
+      ));
+    }
+  }
+
+  fs.writeFileSync(path.join(DIST, 'llms-full.txt'), fullParts.join('\n'));
 }
 
 // ---------------------------------------------------------------------------
@@ -419,4 +695,4 @@ ${sitemap.map((u) => `  <url><loc>${u.loc}</loc><lastmod>${today}</lastmod><prio
 </urlset>
 `);
 
-console.log(`Prerender selesai: ${sitemap.length} halaman + sitemap.xml`);
+console.log(`Prerender selesai: ${sitemap.length} halaman + rumus.html + llms.txt + llms-full.txt + sitemap.xml`);

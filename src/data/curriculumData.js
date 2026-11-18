@@ -1,5 +1,5 @@
 /**
- * Database kurikulum Kurikulum Merdeka: Matematika (Kelas 4–12) dan IPA (Kelas 7–9).
+ * Database kurikulum Kurikulum Merdeka: Matematika (Kelas 4–12) dan IPA & Fisika (Kelas 4–12).
  *
  * Optimized with Code-Splitting:
  * - Lightweight metadata and chapter index are loaded immediately
@@ -12,7 +12,7 @@ import { IPA_GRADE_METADATA, ALL_IPA_CHAPTERS_INDEX } from "./ipa/chapterIndex.j
 
 export { GRADE_METADATA, ALL_CHAPTERS_INDEX, IPA_GRADE_METADATA, ALL_IPA_CHAPTERS_INDEX };
 
-export const SUBJECT_LABELS = { matematika: 'Matematika', ipa: 'IPA' };
+export const SUBJECT_LABELS = { matematika: 'Matematika', ipa: 'IPA & Fisika' };
 
 /** Mata pelajaran dari ID bab ("ipa7-..." → ipa). */
 export function subjectOf(chapterId) {
@@ -36,9 +36,15 @@ export const gradeLoaders = {
 };
 
 export const ipaGradeLoaders = {
+  4: () => import("./ipa/grade4.js").then((m) => m.ipaGrade4Data),
+  5: () => import("./ipa/grade5.js").then((m) => m.ipaGrade5Data),
+  6: () => import("./ipa/grade6.js").then((m) => m.ipaGrade6Data),
   7: () => import("./ipa/grade7.js").then((m) => m.ipaGrade7Data),
   8: () => import("./ipa/grade8.js").then((m) => m.ipaGrade8Data),
   9: () => import("./ipa/grade9.js").then((m) => m.ipaGrade9Data),
+  10: () => import("./ipa/grade10.js").then((m) => m.ipaGrade10Data),
+  11: () => import("./ipa/grade11.js").then((m) => m.ipaGrade11Data),
+  12: () => import("./ipa/grade12.js").then((m) => m.ipaGrade12Data),
 };
 
 const LOADERS = { matematika: gradeLoaders, ipa: ipaGradeLoaders };

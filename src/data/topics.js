@@ -62,29 +62,49 @@ export const IPA_TOPICS = [
   {
     id: 'kerja-ilmiah',
     name: 'Kerja Ilmiah dan Pengukuran',
-    description: 'Metode ilmiah, variabel percobaan, keselamatan laboratorium, besaran, satuan, dan alat ukur.',
-    chapters: ['ipa7-bab1-hakikat-ilmu-sains']
+    description: 'Pancaindra dan pengamatan ilmiah, metode ilmiah, variabel percobaan, keselamatan laboratorium, besaran, satuan, dimensi, angka penting, dan alat ukur.',
+    chapters: [
+      'ipa4-bab4-pancaindra-dan-pengamatan-ilmiah',
+      'ipa7-bab1-hakikat-ilmu-sains',
+      'ipa10-bab1-hakikat-fisika-dan-pengukuran'
+    ]
   },
   {
     id: 'fisika',
-    name: 'Fisika: Energi, Gerak, Gelombang, dan Listrik',
-    description: 'Suhu dan kalor, gerak dan gaya, usaha dan pesawat sederhana, getaran–gelombang–cahaya, tekanan, listrik dan magnet.',
+    name: 'Fisika: Mekanika, Fluida, Kalor, Gelombang, Optika, Listrik–Magnet & Modern',
+    description: 'Gaya, energi, cahaya, bunyi, pesawat sederhana, mekanika gerak dan rotasi, fluida, termodinamika, listrik-magnet, optika, serta fisika modern dan teknologi digital.',
     chapters: [
-      'ipa7-bab3-suhu-kalor-pemuaian', 'ipa7-bab4-gerak-dan-gaya', 'ipa8-bab3-usaha-energi-pesawat-sederhana',
-      'ipa8-bab4-getaran-gelombang-cahaya', 'ipa9-bab3-tekanan', 'ipa9-bab4-listrik-magnet-energi-alternatif'
+      'ipa4-bab2-gaya-di-sekitar-kita', 'ipa4-bab3-energi-dan-perubahannya',
+      'ipa5-bab1-cahaya-dan-sifatnya', 'ipa5-bab2-bunyi-dan-pendengaran', 'ipa5-bab3-listrik-dan-magnet-sederhana',
+      'ipa6-bab2-penghematan-dan-energi-alternatif',
+      'ipa7-bab3-suhu-kalor-pemuaian', 'ipa7-bab4-gerak-dan-gaya',
+      'ipa8-bab3-usaha-energi-pesawat-sederhana', 'ipa8-bab4-getaran-gelombang-cahaya',
+      'ipa9-bab3-tekanan', 'ipa9-bab4-listrik-magnet-energi-alternatif',
+      'ipa10-bab2-vektor-dan-gerak-lurus', 'ipa10-bab3-gerak-parabola-dan-melingkar',
+      'ipa10-bab4-usaha-energi-dan-energi-terbarukan', 'ipa10-bab5-pemanasan-global-dan-fisika-iklim',
+      'ipa11-bab1-dinamika-gerak-dan-hukum-newton', 'ipa11-bab2-momentum-impuls-dan-tumbukan',
+      'ipa11-bab3-dinamika-rotasi-dan-kesetimbangan', 'ipa11-bab4-fluida-statis-dan-dinamis',
+      'ipa11-bab5-getaran-gelombang-dan-bunyi', 'ipa11-bab6-kalor-dan-termodinamika',
+      'ipa12-bab1-listrik-statis-dan-kapasitor', 'ipa12-bab2-listrik-arus-searah',
+      'ipa12-bab3-medan-magnet-dan-induksi-elektromagnetik', 'ipa12-bab4-rangkaian-arus-bolak-balik',
+      'ipa12-bab5-gelombang-elektromagnetik-dan-optika', 'ipa12-bab6-fisika-modern-radioaktivitas-dan-digital'
     ]
   },
   {
     id: 'kimia',
     name: 'Kimia: Zat dan Perubahannya',
     description: 'Wujud dan massa jenis zat, unsur–senyawa–campuran, asam–basa, dan reaksi kimia.',
-    chapters: ['ipa7-bab2-zat-dan-perubahannya', 'ipa8-bab5-unsur-senyawa-campuran', 'ipa9-bab5-reaksi-kimia']
+    chapters: [
+      'ipa4-bab1-wujud-zat-dan-perubahannya',
+      'ipa7-bab2-zat-dan-perubahannya', 'ipa8-bab5-unsur-senyawa-campuran', 'ipa9-bab5-reaksi-kimia'
+    ]
   },
   {
     id: 'biologi',
     name: 'Biologi: Makhluk Hidup dan Lingkungannya',
-    description: 'Klasifikasi, ekologi, sel, sistem organ, pertumbuhan, reproduksi, pewarisan sifat, bioteknologi, dan isu lingkungan.',
+    description: 'Ekosistem, rangka dan gerak tubuh, klasifikasi, sel, sistem organ, pertumbuhan, reproduksi, pewarisan sifat, bioteknologi, dan isu lingkungan.',
     chapters: [
+      'ipa5-bab4-ekosistem-dan-siklus-air', 'ipa6-bab1-rangka-dan-mekanika-gerak-tubuh',
       'ipa7-bab5-klasifikasi-makhluk-hidup', 'ipa7-bab6-ekologi-keanekaragaman-hayati', 'ipa8-bab1-sel',
       'ipa8-bab2-struktur-fungsi-tubuh', 'ipa9-bab1-pertumbuhan-perkembangan', 'ipa9-bab2-koordinasi-reproduksi-homeostasis',
       'ipa9-bab6-pewarisan-sifat-bioteknologi', 'ipa9-bab7-isu-lingkungan'
@@ -94,7 +114,10 @@ export const IPA_TOPICS = [
     id: 'bumi',
     name: 'Bumi dan Antariksa',
     description: 'Tata surya, rotasi–revolusi, gerhana, struktur bumi, gempa, gunung api, dan batuan.',
-    chapters: ['ipa7-bab7-bumi-dan-tata-surya', 'ipa8-bab6-struktur-bumi']
+    chapters: [
+      'ipa6-bab3-sistem-tata-surya', 'ipa6-bab4-rotasi-revolusi-bumi-dan-gerhana',
+      'ipa7-bab7-bumi-dan-tata-surya', 'ipa8-bab6-struktur-bumi'
+    ]
   }
 ];
 

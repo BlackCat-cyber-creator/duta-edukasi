@@ -22,7 +22,11 @@ import {
   MotionGraphVisual,
   FoodWebVisual,
   HydraulicVisual,
-  PendulumVisual
+  PendulumVisual,
+  InclinedPlaneVisual,
+  OpticsVisual,
+  ProjectileVisual,
+  PvDiagramVisual
 } from './ScienceVisuals.jsx';
 
 /**
@@ -112,6 +116,14 @@ export function renderVisualEngine(config, question) {
       return <HydraulicVisual {...props} />;
     case 'pendulum':
       return <PendulumVisual {...props} />;
+    case 'inclined-plane':
+      return <InclinedPlaneVisual {...props} />;
+    case 'optics':
+      return <OpticsVisual {...props} />;
+    case 'projectile':
+      return <ProjectileVisual {...props} />;
+    case 'pv-diagram':
+      return <PvDiagramVisual {...props} />;
 
     // Kustom JSX / Spesifik
     case 'custom':

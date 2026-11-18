@@ -255,7 +255,6 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
   const handleSwitchToAmcMode = () => {
     const firstAmcCh = ALL_AMC_CHAPTERS_INDEX.find(c => c.level === selectedAmcLevel)?.id || 'amc8-ch1-permutations';
     goTo({ mode: 'amc', level: selectedAmcLevel, chapter: firstAmcCh });
-    setSelectedAmcDomainFilter("ALL");
     setSearchQuery("");
     setIsMobileChaptersOpen(false);
   };
@@ -272,7 +271,6 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
   const handleSelectAmcLevel = (lvl) => {
     const firstCh = ALL_AMC_CHAPTERS_INDEX.find(c => c.level === lvl)?.id || '';
     goTo({ mode: 'amc', level: lvl, chapter: firstCh });
-    setSelectedAmcDomainFilter("ALL");
     setSearchQuery("");
     setIsMobileChaptersOpen(false);
   };
@@ -334,13 +332,13 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
         <h1 className="handbook-hero-title">
           {isAmcMode
             ? 'Buku Panduan & Latihan Soal Olimpiade AMC'
-            : subject === 'ipa' ? 'Materi & Latihan IPA SMP' : 'Buku Saku & Portal Mandiri Matematika'}
+            : subject === 'ipa' ? 'Materi & Latihan IPA dan Fisika' : 'Buku Saku & Portal Mandiri Matematika'}
         </h1>
         <p className="handbook-hero-desc">
           {isAmcMode
             ? 'Materi konsep, pembuktian bertahap, dan bank soal isian singkat untuk persiapan kompetisi AMC 8, AMC 10, dan AMC 12.'
             : subject === 'ipa'
-              ? 'Ringkasan materi per subbab, istilah dan rumus penting, contoh soal dengan pembahasan, serta latihan IPA Kelas 7–9 sesuai buku siswa Kurikulum Merdeka.'
+              ? 'Ringkasan materi per subbab, istilah dan rumus penting, contoh soal dengan pembahasan, serta latihan IPA SD (Kelas 4–6), IPA SMP (Kelas 7–9), dan Fisika SMA (Kelas 10–12) sesuai CP 046/2025.'
               : 'Ringkasan materi per subbab, rumus penting, contoh soal dengan pembahasan, kesalahan yang sering terjadi, dan latihan untuk Kelas 4 SD sampai 12 SMA.'}
         </p>
       </div>
@@ -349,7 +347,9 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
       <p className="handbook-quicklinks">
         <Link to="/daftar-isi">Daftar isi semua materi per topik</Link>
         <span aria-hidden="true">·</span>
-        <Link to="/tka">Latihan TKA SD &amp; SMP</Link>
+        <Link to="/rumus">Kumpulan Rumus</Link>
+        <span aria-hidden="true">·</span>
+        <Link to="/tka">Latihan TKA SD, SMP &amp; SMA</Link>
       </p>
 
       {/* Pilihan mata pelajaran: Matematika, IPA, Olimpiade AMC */}
@@ -375,7 +375,7 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
             onClick={() => handleSwitchToSchoolMode('ipa')}
           >
             <FlaskConical size={16} />
-            <span>IPA (Kelas 7–9)</span>
+            <span>IPA &amp; Fisika (Kelas 4–12)</span>
           </button>
           <button
             id="btn-mode-amc"

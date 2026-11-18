@@ -31,9 +31,12 @@ function axisNumbers(config) {
   if (config.type === 'clock-angle') {
     for (let v = 1; v <= 12; v++) out.push(v);
   }
-  // Grafik gerak: angka sumbu adalah data yang dibaca dari grafik
+  // Grafik gerak & P-V: angka sumbu adalah data yang dibaca dari grafik
   if (config.type === 'motion-graph') {
     out.push(...(p.xTicks || []), ...(p.yTicks || []));
+  }
+  if (config.type === 'pv-diagram') {
+    out.push(...(p.vTicks || []), ...(p.pTicks || []));
   }
   // Termometer: titik tetap skala (0/100 °C, 32/212 °F, 0/80 °R, 273/373 K) adalah fakta umum
   if (config.type === 'thermometer') {
