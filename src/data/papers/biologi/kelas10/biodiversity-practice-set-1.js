@@ -11,11 +11,10 @@ export default {
   track: 'cambridge-style',
   accessTier: 'free',
   topic: 'Biodiversity, Ecosystems & Classification (Practice Set 1)',
-  relatedChapterIds: [
-    'ipa7-bab5-klasifikasi-makhluk-hidup',
-    'ipa7-bab6-ekologi-keanekaragaman-hayati'
-  ],
+  relatedChapterIds: ['biologi10-bab1-keanekaragaman-hayati-dan-klasifikasi', 'biologi10-bab4-ekosistem-dan-perubahan-lingkungan'],
   lang: 'en',
+  langDisplay: 'EN',
+  competition: 'Biologi SMA',
   title: 'Biology Grade 10 – Biodiversity & Classification (Practice Set 1)',
   totalMarks: 30,
   instructions:

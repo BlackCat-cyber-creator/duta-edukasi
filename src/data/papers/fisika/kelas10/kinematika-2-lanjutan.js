@@ -12,6 +12,8 @@ export default {
   topic: 'Kinematika Lanjutan – Gerak Lurus, Reaksi & Grafik',
   relatedChapterIds: ['ipa10-bab2-vektor-dan-gerak-lurus'],
   lang: 'en',
+  langDisplay: 'EN',
+  competition: 'Fisika SMA',
   title: 'Physics Grade 10 – Kinematics II (Advanced Exercise)',
   totalMarks: 41,
   instructions:

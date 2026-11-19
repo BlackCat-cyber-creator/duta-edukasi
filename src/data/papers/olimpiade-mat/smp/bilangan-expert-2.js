@@ -13,6 +13,8 @@ export default {
   topic: 'Bilangan Olimpiade SMP Kelas 7–8 (Expert 2)',
   relatedChapterIds: ['smp7-bab1-bilangan-bulat', 'smp8-bab1-bilangan-berpangkat'],
   lang: 'id',
+  langDisplay: 'ID / EN',
+  competition: 'Seri Pembinaan OSN',
   title: 'Bilangan Olimpiade Matematika SMP Kelas 7–8 – Expert 2',
   totalMarks: 30,
   instructions:

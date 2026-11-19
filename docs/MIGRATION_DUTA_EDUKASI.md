@@ -48,3 +48,17 @@ Dokumen ini mencatat status lengkap pembaruan identitas merek, paket soal, repos
 
 - **Monetisasi Masa Depan:** Setiap modul di `src/data/papers/` membawa metadata `accessTier: 'free' | 'olympiad-pro'` (`'free'` untuk materi sekolah & dasar, `'olympiad-pro'` untuk olimpiade menengah/lanjutan & OSK). Seluruh paket tetap terbuka gratis pada rilis saat ini; kait *paywall*/iklan dapat diaktifkan kemudian tanpa migrasi skema data.
 - **Google Search Console (`https://dutaedukasi.vercel.app/`):** Pengiriman ulang `sitemap.xml` (`211` URL setelah rilis 4-Pilar + `/fisika/*` + Batch 2).
+
+---
+
+## 3. Phase P5: Kimia & Biologi SMA, Pusat Olimpiade, Penyeragaman UI
+
+- **Kimia SMA Kelas 10-12 (13 bab) dan Biologi SMA Kelas 10-12 (13 bab):** masing-masing 15 soal pilihan ganda per bab (5 Dasar, 5 Sedang, 5 Tantangan), kunci seimbang 3-4 per huruf, rumus KaTeX tanpa `mhchem`. Rute `/kimia/kelas-N[/babX]` dan `/biologi/kelas-N[/babX]` (rewrite Vercel + prerender). Dijaga oleh `tests/kimiaBiologiContent.test.js` (struktur, KaTeX, escape backslash, sebaran kunci) dan `tests/kimiaBiologiRouting.test.js`.
+- **Kunci cache kurikulum:** `cacheKey` di `curriculumData.js` kini memuat mata pelajaran (`kimia:10` tidak lagi bertabrakan dengan `matematika:10`).
+- **Lima mapel sekolah seragam:** tab buku saku dan baris beranda memakai pola yang sama (Matematika `Sigma`, IPA `Microscope`, Fisika `Atom`, Kimia `FlaskConical`, Biologi `Dna`); label mapel mengarah ke buku saku, chip "Paket Soal (n)" muncul untuk mapel yang punya paket.
+- **`/olimpiade`:** pusat kompetisi setara (OSN/OSK, SASMO, AMC 8/10/12, HKIMO, TIMO, SIMOC, Seri Pembinaan OSN) dengan filter kompetisi dan jenjang. AMC dikeluarkan dari tab sekolah; halaman `/olimpiade/amc-N` memakai breadcrumb kembali ke `/olimpiade`.
+- **Kartu paket soal:** jumlah soal dihitung dari `parts` ("40 Soal"), slug jalur diganti label ramah (`TRACK_LABELS`), "Marks" hanya untuk gaya Cambridge/IGCSE, label bahasa kini pil netral `ID` / `EN` / `ID / EN`.
+- **Logotipe & tema:** wordmark memakai skrip tebal miring (Lobster Two, subset huruf logotipe) agar selaras dengan banner resmi; aksen kartu memakai garis dalam (inset) menggantikan `border-top` melengkung; header buku saku berbingkai penuh.
+- **Mobile:** menu utama menjadi baris yang dapat digeser, tombol Studio Guru sejajar logotipe, tab mapel dapat digeser.
+- **Info Duta e-dukasi:** tautan "Tentang" di menu utama, ringkasan + alamat di beranda, alamat dan WhatsApp di footer (kelas dan promosi tetap hanya di `/program` dan `/kontak`).
+- **Batch 3 (11 paket kompetisi bernama):** lihat `docs/research/audit-paket-soal.md`. Total `38` paket `published`.

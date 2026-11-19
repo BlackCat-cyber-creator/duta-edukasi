@@ -12,6 +12,8 @@ export default {
   topic: 'Kinematika I – Gerak Lurus & Grafik',
   relatedChapterIds: ['ipa10-bab2-vektor-dan-gerak-lurus'],
   lang: 'en',
+  langDisplay: 'EN',
+  competition: 'Fisika SMA',
   title: 'Physics Grade 10 – Kinematics I Exercise',
   totalMarks: 42,
   instructions:

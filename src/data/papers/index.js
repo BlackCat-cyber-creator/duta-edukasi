@@ -30,6 +30,17 @@ import olimSmpBilanganAdv2 from './olimpiade-mat/smp/bilangan-advanced-2.js';
 import olimSmpBilanganExp1 from './olimpiade-mat/smp/bilangan-expert-1.js';
 import olimSmpBilanganExp2 from './olimpiade-mat/smp/bilangan-expert-2.js';
 import olimSmpBilanganElite from './olimpiade-mat/smp/bilangan-elite.js';
+import olimTimo2223HeatS2 from './olimpiade-mat/smp/timo-2022-2023-heat-secondary-2.js';
+import kim11AsasXi from './kimia/kelas11/asas-kimia-xi-semester-1.js';
+import kim11TermokimiaLatihan from './kimia/kelas11/termokimia-xi-latihan.js';
+import bio10BlokTest from './biologi/kelas10/blok-test-biologi-x-keanekaragaman-virus.js';
+import olimSasmo2015G8 from './olimpiade-mat/smp/sasmo-2015-grade-8.js';
+import olimSasmo2016Sec2 from './olimpiade-mat/smp/sasmo-2016-secondary-2.js';
+import olimSimoc2017G4 from './olimpiade-mat/sd/simoc-2017-grade-4.js';
+import olimOsnkMatSd2026 from './olimpiade-mat/sd/osnk-matematika-sd-2026.js';
+import olimHkimoSec2Prep from './olimpiade-mat/smp/hkimo-secondary-2-prep.js';
+import olimOsnkMatSmp2026 from './olimpiade-mat/smp/osnk-matematika-smp-2026.js';
+import olimToOsnkMatSma from './olimpiade-mat/sma/to-osnk-matematika-sma.js';
 
 export const PAPER_SUBJECT_META = {
   fisika: { id: 'fisika', label: 'Fisika', shortLabel: 'Fisika', color: '#0369A1' },
@@ -69,7 +80,18 @@ export const ALL_PAPERS = [
   olimSmpBilanganAdv2,
   olimSmpBilanganExp1,
   olimSmpBilanganExp2,
-  olimSmpBilanganElite
+  olimSmpBilanganElite,
+  kim11AsasXi,
+  kim11TermokimiaLatihan,
+  bio10BlokTest,
+  olimSasmo2015G8,
+  olimSasmo2016Sec2,
+  olimSimoc2017G4,
+  olimOsnkMatSd2026,
+  olimTimo2223HeatS2,
+  olimHkimoSec2Prep,
+  olimOsnkMatSmp2026,
+  olimToOsnkMatSma
 ];
 
 export const PUBLISHED_PAPERS = ALL_PAPERS.filter((p) => p.status === 'published');
@@ -95,3 +117,72 @@ export function getRelatedPapersForChapter(chapterId) {
   if (!chapterId) return [];
   return PUBLISHED_PAPERS.filter((p) => Array.isArray(p.relatedChapterIds) && p.relatedChapterIds.includes(chapterId));
 }
+
+/* ------------------------------------------------------------------ */
+/* Salinan kartu: hitung soal sebenarnya, label jalur, dan tag lomba   */
+/* ------------------------------------------------------------------ */
+
+/** Nama ramah untuk slug jalur paket (jangan tampilkan slug mentah seperti "olimpiade-sd" ke pengguna). */
+export const TRACK_LABELS = {
+  'olimpiade-sd': 'Olimpiade SD',
+  'olimpiade-smp': 'Olimpiade SMP',
+  'olimpiade-sma': 'Olimpiade SMA',
+  'kurikulum-merdeka': 'Kurikulum Merdeka',
+  'cambridge-style': 'Gaya Cambridge / IGCSE'
+};
+
+/** Hanya paket bergaya mark scheme (Cambridge/Edexcel/IGCSE) yang memakai istilah "Marks". */
+const MARK_SCHEME_TRACKS = new Set(['cambridge-style']);
+
+/**
+ * Jumlah soal sebenarnya. Paket pilihan ganda menyimpan "Bagian A" dan "Bagian B" sebagai
+ * dua kelompok, sedangkan soalnya ada di dalam `parts`; maka hitung `parts`, bukan `questions`.
+ */
+export function countPaperItems(paper) {
+  return (paper.questions || []).reduce((sum, q) => sum + (q.parts?.length || 1), 0);
+}
+
+export function trackLabel(paper) {
+  return TRACK_LABELS[paper.track] || 'Latihan';
+}
+
+export function levelNameOfGrade(grade) {
+  const g = Number(grade);
+  if (g <= 6) return 'SD';
+  if (g <= 9) return 'SMP';
+  return 'SMA';
+}
+
+/** Label bahasa yang tenang: ID, EN, atau ID / EN. */
+export function paperLangLabel(paper) {
+  return paper.langDisplay || (paper.lang === 'en' ? 'EN' : 'ID');
+}
+
+/** Tag kompetisi/seri, mis. "SASMO · Kelas 8" atau "Seri Pembinaan OSN · SD". */
+export function paperTag(paper) {
+  const comp = paper.competition || (PAPER_SUBJECT_META[paper.subject]?.label ?? paper.subject);
+  if (/^Seri Pembinaan/i.test(comp)) return `${comp} · ${levelNameOfGrade(paper.grade)}`;
+  return `${comp} · Kelas ${paper.grade}`;
+}
+
+/** Ringkasan angka untuk kartu: "40 Soal", plus "35 poin" atau "35 Marks" bila relevan. */
+export function formatPaperMeta(paper) {
+  const items = countPaperItems(paper);
+  const usesMarks = MARK_SCHEME_TRACKS.has(paper.track);
+  let score = null;
+  if (usesMarks) score = `${paper.totalMarks} Marks`;
+  else if (paper.totalMarks !== items) score = `${paper.totalMarks} poin`;
+  return { items, itemsLabel: `${items} Soal`, score, usesMarks, track: trackLabel(paper), lang: paperLangLabel(paper), tag: paperTag(paper) };
+}
+
+/** Kompetisi untuk pusat Olimpiade (/olimpiade). Nama sesuai field `competition` pada paket. */
+export const OLYMPIAD_COMPETITIONS = [
+  { id: 'osn', label: 'OSN / OSK', competitions: ['OSN-K'], blurb: 'Olimpiade Sains Nasional jenjang Kabupaten/Kota: latihan soal Matematika dan sains berbahasa Indonesia.' },
+  { id: 'sasmo', label: 'SASMO', competitions: ['SASMO'], blurb: 'Soal kompetisi matematika SASMO (berbahasa Inggris) dengan pembahasan langkah demi langkah.' },
+  { id: 'amc', label: 'AMC 8 / 10 / 12', competitions: [], amc: true, blurb: 'Modul interaktif American Mathematics Competitions: 36 bab konsep dan latihan untuk AMC 8, AMC 10, dan AMC 12.' },
+  { id: 'hkimo', label: 'HKIMO', competitions: ['HKIMO'], blurb: 'Latihan persiapan HKIMO (berbahasa Inggris) dengan pembahasan lengkap.' },
+  { id: 'timo', label: 'TIMO', competitions: ['TIMO'], blurb: 'Soal babak penyisihan TIMO (berbahasa Inggris) beserta pembahasan.' },
+  { id: 'simoc', label: 'SIMOC', competitions: ['SIMOC'], blurb: 'Soal kompetisi SIMOC (berbahasa Inggris) untuk jenjang sekolah dasar.' },
+  { id: 'pembinaan', label: 'Seri Pembinaan OSN', competitions: ['Seri Pembinaan OSN'], blurb: 'Seri latihan Bilangan berjenjang (Basic sampai Elite) untuk pembinaan OSN SD dan SMP.' }
+];
+

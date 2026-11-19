@@ -11,7 +11,7 @@ import { MathText } from './MathRenderer';
 const AMC_LEVELS = [8, 10, 12];
 
 /**
- * Halaman /rumus: Ensiklopedia Kumpulan Rumus Matematika, IPA, Fisika (Kelas 4–12), dan AMC.
+ * Halaman /rumus: Ensiklopedia Kumpulan Rumus Matematika, IPA, Fisika, Kimia, Biologi (Kelas 4–12), dan AMC.
  */
 export function FormulaIndexPage() {
   useDocumentMeta(FORMULA_INDEX_META);
@@ -28,11 +28,17 @@ export function FormulaIndexPage() {
       const ipaTasks = SUBJECT_GRADES.ipa.map((g) =>
         getGradeData(g, 'ipa').then((data) => ({ subject: 'ipa', grade: g, data }))
       );
+      const kimiaTasks = SUBJECT_GRADES.kimia.map((g) =>
+        getGradeData(g, 'kimia').then((data) => ({ subject: 'kimia', grade: g, data }))
+      );
+      const biologiTasks = SUBJECT_GRADES.biologi.map((g) =>
+        getGradeData(g, 'biologi').then((data) => ({ subject: 'biologi', grade: g, data }))
+      );
       const amcTasks = AMC_LEVELS.map((lvl) =>
         getAmcModuleData(lvl).then((data) => ({ subject: 'amc', level: lvl, data }))
       );
 
-      const loaded = await Promise.all([...mathTasks, ...ipaTasks, ...amcTasks]);
+      const loaded = await Promise.all([...mathTasks, ...ipaTasks, ...kimiaTasks, ...biologiTasks, ...amcTasks]);
       if (!active) return;
 
       const entries = [];
@@ -100,9 +106,9 @@ export function FormulaIndexPage() {
       <nav className="seo-breadcrumb" aria-label="Navigasi">
         <Link to="/">Beranda</Link> › <span>Kumpulan Rumus</span>
       </nav>
-      <h1>Kumpulan Rumus Matematika, IPA &amp; Fisika (Kelas 4–12)</h1>
+      <h1>Kumpulan Rumus Matematika, IPA, Fisika, Kimia &amp; Biologi (Kelas 4–12)</h1>
       <p>
-        Referensi rumus kunci per bab untuk Matematika (Kelas 4–12), IPA (Kelas 4–9), Fisika (Kelas 10–12),
+        Referensi rumus kunci per bab untuk Matematika (Kelas 4–12), IPA (Kelas 4–9), Fisika, Kimia, dan Biologi (Kelas 10–12),
         dan Olimpiade AMC. Klik tautan bab untuk membaca penjelasan konsep, contoh soal, dan latihan interaktif.
       </p>
       <p className="topic-meta">
@@ -117,6 +123,8 @@ export function FormulaIndexPage() {
             { id: 'matematika', label: 'Matematika' },
             { id: 'ipa', label: 'IPA (SD–SMP)' },
             { id: 'fisika', label: 'Fisika (SMA)' },
+            { id: 'kimia', label: 'Kimia (SMA)' },
+            { id: 'biologi', label: 'Biologi (SMA)' },
             { id: 'amc', label: 'Olimpiade AMC' }
           ].map((tab) => (
             <button

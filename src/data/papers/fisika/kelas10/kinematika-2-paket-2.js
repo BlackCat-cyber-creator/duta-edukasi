@@ -12,6 +12,8 @@ export default {
   topic: 'Kinematika II – Gerak Parabola',
   relatedChapterIds: ['ipa10-bab3-gerak-parabola-dan-melingkar'],
   lang: 'en',
+  langDisplay: 'EN',
+  competition: 'Fisika SMA',
   title: 'Physics Grade 10 – Kinematics II (Projectile Motion) – Paket 2',
   totalMarks: 50,
   instructions:

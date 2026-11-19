@@ -6,13 +6,13 @@ import {
   CheckCircle2,
   BookOpen,
   Printer,
-  Globe,
   RotateCcw
 } from 'lucide-react';
 import {
   getPaperBySlug,
   PAPER_SUBJECT_META,
-  subjectHubPath
+  subjectHubPath,
+  formatPaperMeta
 } from '../data/papers/index';
 import { findChapterIndex } from '../data/curriculumData';
 import { ORGANIZATION } from '../data/siteInfo';
@@ -77,6 +77,8 @@ export function PaperDetailPage() {
   }
 
   const subjectLabel = PAPER_SUBJECT_META[paper.subject]?.label || paper.subject;
+  const info = formatPaperMeta(paper);
+  const markWord = info.usesMarks ? (paper.lang === 'en' ? 'marks' : 'poin') : (paper.lang === 'en' ? 'points' : 'poin');
   const relatedChapters = (paper.relatedChapterIds || [])
     .map((id) => findChapterIndex(id))
     .filter(Boolean);
@@ -89,12 +91,10 @@ export function PaperDetailPage() {
       </nav>
 
       <section className="info-hero">
-        <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
-          <span className="badge badge-smp">{subjectLabel} · Kelas {paper.grade}</span>
-          <span className={`badge ${paper.lang === 'en' ? 'badge-lang-en' : 'badge-lang-id'}`}>
-            <Globe size={11} /> {paper.lang === 'en' ? 'Original Source: English' : 'Bahasa Indonesia'}
-          </span>
-          <span className="badge badge-cat-uh">Total: {paper.totalMarks} Marks</span>
+        <div className="paper-card-badges" style={{ marginBottom: '0.5rem' }}>
+          <span className="badge badge-smp" title={subjectLabel}>{info.tag}</span>
+          <span className="lang-pill" title="Bahasa soal" aria-label={`Bahasa soal: ${info.lang}`}>{info.lang}</span>
+          <span className="badge badge-subtle">{info.itemsLabel}{info.score ? ` · ${info.score}` : ''}</span>
           <span className="badge badge-subtle">{paper.source?.license || ORGANIZATION.licenseName}</span>
         </div>
 
@@ -135,7 +135,7 @@ export function PaperDetailPage() {
             <h2 style={{ margin: 0, fontSize: '1.15rem', color: 'var(--brand-navy)' }}>
               {q.no}. {q.title}
             </h2>
-            <span className="badge badge-cat-pas">[Total: {q.marks} Marks]</span>
+            <span className="badge badge-cat-pas">[{q.marks} {markWord}]</span>
           </div>
 
           <p style={{ fontSize: '0.96rem', lineHeight: 1.65 }}>
@@ -211,7 +211,7 @@ export function PaperDetailPage() {
                       </div>
                       <div style={{ borderTop: '1px solid #CBD5E1', paddingTop: '0.5rem' }}>
                         <strong style={{ fontSize: '0.84rem', color: 'var(--brand-navy)' }}>
-                          {paper.lang === 'en' ? `Marking Rubric [${pt.marks} marks]` : `Rubrik Penilaian Mandiri [${pt.marks} poin]`}
+                          {paper.lang === 'en' ? `Marking Rubric [${pt.marks} ${markWord}]` : `Rubrik Penilaian Mandiri [${pt.marks} poin]`}
                         </strong>
                         <ul className="paper-rubric-list">
                           {(pt.rubric || []).map((r, idx) => {

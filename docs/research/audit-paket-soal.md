@@ -55,3 +55,25 @@ Seluruh **27 paket soal** di bawah ini melewati pipeline verifikasi terpisah:
 | `olim-smp-bilangan-exp1` | Bilangan Olimpiade SMP Kelas 7–8 – Expert 1 | `PASS` (`30/30`, `0` mismatch, `0` flag) | `/paket-soal/olimpiade-mat/bilangan-smp-expert-1` |
 | `olim-smp-bilangan-exp2` | Bilangan Olimpiade SMP Kelas 7–8 – Expert 2 | Q1(1) diperbaiki opsi `C. $11$` menjadi `C. $8$` sesuai nilai eksak $3^{2026} \equiv 8 \pmod{17}$; Q2(2) diperbaiki premis tak-mungkin $\gcd(n,15)=4$ menjadi $\gcd(n,20)=4,\ \operatorname{lcm}(n,20)=60 \implies n=12$ | `/paket-soal/olimpiade-mat/bilangan-smp-expert-2` |
 | `olim-smp-bilangan-elite` | Bilangan Olimpiade SMP Kelas 7–8 – Elite Olympiad | Q1(17) diperbaiki kongruensi ke $4 \pmod 5,\ 6 \pmod 7$ (menghasilkan $x=209$); Q2(5) tetap `$7$` terverifikasi; Q2(7) diperjelas `"smallest positive integer"` (`$8$`) | `/paket-soal/olimpiade-mat/bilangan-smp-elite` |
+
+---
+
+## Batch 3: Paket Soal Kompetisi Bernama (11 Paket Baru, Total 38 `published`)
+
+Sumber: arsip Google Drive (`content-inbox/drive/batch3/`, tidak di-commit). Setiap paket memakai nama kompetisi nyata pada field `competition`, label bahasa `langDisplay` (`ID` / `EN` / `ID / EN`), dan `relatedChapterIds` ke bab buku saku. Butir yang bergantung pada gambar yang tidak dapat dinyatakan penuh dalam teks **dibuang atau ditulis ulang secara teks**; tidak ada butir dengan angka yang dikarang. Seluruh kunci diselesaikan ulang secara mandiri (beberapa dengan brute force) dan divalidasi `scratch/verify_paper.mjs` + `tests/papers.test.js` (jumlah poin, rubrik, KaTeX).
+
+| ID Paket | Kompetisi | Butir dipakai | Catatan audit |
+| :--- | :--- | :--- | :--- |
+| `kim11-asas-xi-p1` | ASAS SMA (Kimia XI) | 29 soal (32 bagian) | 1 butir dibuang (gambar tabung Zn/HCl); butir grafik orde-1 ditulis ulang; kunci cocok dengan sumber |
+| `kim11-termokimia-latihan` | Kimia SMA | 20 soal | semua hasil entalpi dihitung ulang; catatan angka penting pada 2 butir |
+| `bio10-blok-test-keanekaragaman-virus` | Biologi SMA | 54 bagian | sumber tanpa kunci; 4 butir dibuang (ambigu / bergantung gambar) |
+| `sasmo-2015-g8` | SASMO | 25 soal | semua butir dipertahankan, gambar dinyatakan dalam teks |
+| `sasmo-2016-sec2` | SASMO | 22 dari 25 | 3 butir dibuang (diagram); Q1 kunci cetak 43200 tidak ada di opsi A-D, jawaban E |
+| `hkimo-sec2-prep` | HKIMO | 141 dari 150 | 9 butir dibuang (ambigu/ data kurang); sumber tanpa kunci; interpretasi dicatat pada soal |
+| `timo-2022-2023-heat-sec2` | TIMO | 24 dari 25 | 1 butir dibuang (data tidak konsisten); sumber tanpa kunci |
+| `simoc-2017-g4` | SIMOC | 23 dari 25 | 1 butir gambar, 1 butir keliru dibuang; Q23 aturan pola disimpulkan dari dua diagram lengkap |
+| `osnk-mat-sd-2026` | OSN-K | 26 dari 29 | rekonstruksi soal latihan; 3 butir dibuang (tidak terdefinisi / data rusak) |
+| `osnk-mat-smp-2026` | OSN-K | 25 soal | asumsi tambahan dicatat pada butir 7, 14, 24 |
+| `to-osnk-mat-sma` | OSN-K (try out) | 20 soal | butir Lanjut 7 dinyatakan ulang sebagai pilihan acak 50/50 (catatan di pembahasan) |
+
+Metadata 27 paket lama ikut dinaikkan: seri Bilangan menjadi `Seri Pembinaan OSN` (`ID / EN`), simulasi OSK menjadi `OSN-K`, paket sains SMA memakai nama mapel.

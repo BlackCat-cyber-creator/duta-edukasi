@@ -18,6 +18,7 @@ const StudentQuestView = lazy(() => import('./components/StudentQuestView').then
 const PrintableWorksheet = lazy(() => import('./components/PrintableWorksheet').then((m) => ({ default: m.PrintableWorksheet })));
 const ChapterSolutionView = lazy(() => import('./components/ChapterSolutionView').then((m) => ({ default: m.ChapterSolutionView })));
 const PublicHandbook = lazy(() => import('./components/PublicHandbook').then((m) => ({ default: m.PublicHandbook })));
+const OlimpiadeHubPage = lazy(() => import('./components/OlimpiadeHubPage').then((m) => ({ default: m.OlimpiadeHubPage })));
 const AboutPage = lazy(() => import('./components/AboutPage').then((m) => ({ default: m.AboutPage })));
 const ProgramPage = lazy(() => import('./components/ProgramPage').then((m) => ({ default: m.ProgramPage })));
 const FounderPage = lazy(() => import('./components/FounderPage').then((m) => ({ default: m.FounderPage })));
@@ -247,7 +248,7 @@ export function App() {
                   <NavLink to="/" end className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
                     Materi
                   </NavLink>
-                  <NavLink to="/paket-soal/olimpiade-mat" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                  <NavLink to="/olimpiade" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
                     Olimpiade
                   </NavLink>
                   <NavLink to="/paket-soal" end className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
@@ -261,6 +262,9 @@ export function App() {
                   </NavLink>
                   <NavLink to="/rumus" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
                     Rumus
+                  </NavLink>
+                  <NavLink to="/tentang" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                    Tentang
                   </NavLink>
                 </nav>
                 <button
@@ -301,6 +305,7 @@ export function App() {
             <Route path="/biologi/*" element={
               <PublicHandbook onLaunchPractice={handleLaunchPracticeQuest} onPrintQuest={handlePrintQuest} />
             } />
+            <Route path="/olimpiade" element={<OlimpiadeHubPage />} />
             <Route path="/olimpiade/*" element={
               <PublicHandbook onLaunchPractice={handleLaunchPracticeQuest} onPrintQuest={handlePrintQuest} />
             } />
@@ -381,6 +386,10 @@ export function App() {
           <div>
             <strong>{ORGANIZATION.name}</strong> · Platform Belajar Matematika &amp; Sains Terbuka · Disusun oleh{' '}
             <Link to="/tentang">{AUTHOR.name}</Link>
+          </div>
+          <div className="footer-contact">
+            {ORGANIZATION.shortAddress} ·{' '}
+            <a href={ORGANIZATION.whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp {ORGANIZATION.whatsappDisplay}</a>
           </div>
           <div style={{ marginTop: '0.35rem', fontSize: '0.8rem' }}>
             <Link to="/tentang">Tentang</Link> · <Link to="/pendiri">Pendiri</Link> ·{' '}

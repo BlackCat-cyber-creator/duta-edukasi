@@ -16,6 +16,8 @@ export default {
     'sd5-bab3-bilangan-pecahan'
   ],
   lang: 'id',
+  langDisplay: 'ID / EN',
+  competition: 'Seri Pembinaan OSN',
   title: 'Bilangan Olimpiade Matematika SD Kelas 4–5 – Basic 2',
   totalMarks: 40,
   instructions:

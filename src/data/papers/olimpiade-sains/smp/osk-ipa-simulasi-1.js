@@ -16,6 +16,8 @@ export default {
     'ipa8-bab1-pengenalan-sel'
   ],
   lang: 'id',
+  langDisplay: 'ID',
+  competition: 'OSN-K',
   title: 'Simulasi Olimpiade Sains Kabupaten (OSK) IPA SMP – Paket 1',
   totalMarks: 60,
   instructions:

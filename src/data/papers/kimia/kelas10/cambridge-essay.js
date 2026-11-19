@@ -10,8 +10,10 @@ export default {
   grade: 10,
   track: 'cambridge-style',
   topic: 'Periodicity & Periodic Trends (Essay Assessment)',
-  relatedChapterIds: [],
+  relatedChapterIds: ['kimia10-bab2-sistem-periodik-unsur'],
   lang: 'en',
+  langDisplay: 'EN',
+  competition: 'Kimia SMA',
   title: 'Chemistry Grade 10 – Periodicity & Periodic Trends (Essay)',
   totalMarks: 45,
   instructions:

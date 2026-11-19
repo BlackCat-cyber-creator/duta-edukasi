@@ -12,6 +12,8 @@ export default {
   topic: 'Bilangan Olimpiade SD Kelas 4–5 (Elite Olympiad)',
   relatedChapterIds: ['sd5-bab2-kpk-fpb', 'sd5-bab3-bilangan-pecahan'],
   lang: 'id',
+  langDisplay: 'ID / EN',
+  competition: 'Seri Pembinaan OSN',
   title: 'Bilangan Olimpiade Matematika SD Kelas 4–5 – Elite Olympiad',
   totalMarks: 40,
   instructions:

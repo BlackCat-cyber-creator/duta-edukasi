@@ -12,6 +12,8 @@ export default {
   topic: 'Kinematika I Lanjutan – GLBB & Gerak Vertikal',
   relatedChapterIds: ['ipa10-bab2-vektor-dan-gerak-lurus'],
   lang: 'en',
+  langDisplay: 'EN',
+  competition: 'Fisika SMA',
   title: 'Physics Grade 10 – Kinematics I (Advanced Exercise)',
   totalMarks: 40,
   instructions:

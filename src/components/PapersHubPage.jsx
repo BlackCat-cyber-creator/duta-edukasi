@@ -1,12 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { FileText, ArrowRight, Globe, Search } from 'lucide-react';
+import { FileCheck2, ArrowRight, Search } from 'lucide-react';
 import {
   PUBLISHED_PAPERS,
   PAPER_SUBJECT_META,
   getPapersBySubject,
   paperPath,
-  subjectHubPath
+  subjectHubPath,
+  formatPaperMeta
 } from '../data/papers/index';
 import { ORGANIZATION } from '../data/siteInfo';
 import { papersHubMeta } from '../utils/seoMeta';
@@ -39,9 +40,9 @@ export function PapersHubPage() {
     const q = searchQuery.trim().toLowerCase();
     return papersForSubject.filter((p) => {
       if (gradeFilter !== 'ALL' && p.grade !== Number(gradeFilter)) return false;
-      if (langFilter !== 'all' && (p.lang || 'id') !== langFilter) return false;
+      if (langFilter !== 'all' && !(p.langDisplay || (p.lang === 'en' ? 'EN' : 'ID')).toLowerCase().includes(langFilter)) return false;
       if (q) {
-        const hay = `${p.title} ${p.topic} ${p.subject} kelas ${p.grade}`.toLowerCase();
+        const hay = `${p.title} ${p.topic} ${p.subject} ${p.competition || ''} kelas ${p.grade}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
@@ -156,29 +157,23 @@ export function PapersHubPage() {
             const meta = PAPER_SUBJECT_META[paper.subject] || {};
             const subjectLabel = meta.shortLabel || paper.subject;
             const accent = meta.color || '#12337A';
+            const info = formatPaperMeta(paper);
             return (
-              <article key={paper.id} className="info-card" style={{ borderTop: `3px solid ${accent}` }}>
-                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
-                  <span className="badge badge-smp">{subjectLabel} Kelas {paper.grade}</span>
-                  <span className={`badge ${paper.lang === 'en' ? 'badge-lang-en' : 'badge-lang-id'}`}>
-                    <Globe size={11} /> {paper.lang === 'en' ? 'English' : 'Bahasa Indonesia'}
-                  </span>
-                  <span className="badge badge-subtle">{paper.totalMarks} Marks</span>
+              <article key={paper.id} className="info-card paper-card" style={{ '--card-accent': accent }}>
+                <div className="paper-card-badges">
+                  <span className="badge badge-smp" title={subjectLabel}>{info.tag}</span>
+                  <span className="lang-pill" title="Bahasa soal" aria-label={`Bahasa soal: ${info.lang}`}>{info.lang}</span>
                 </div>
-                <h2 style={{ fontSize: '1.05rem', marginBottom: '0.35rem' }}>
-                  <Link to={paperPath(paper)} style={{ color: 'var(--brand-navy)', textDecoration: 'none' }}>
-                    {paper.title}
-                  </Link>
+                <h2 className="paper-card-title">
+                  <Link to={paperPath(paper)}>{paper.title}</Link>
                 </h2>
-                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>
-                  Topik: {paper.topic} · {paper.questions.length} soal ({paper.track}).
+                <p className="paper-card-meta">
+                  <strong>{info.itemsLabel}</strong>
+                  {info.score ? ` · ${info.score}` : ''} · {info.track}
                 </p>
-                <Link
-                  to={paperPath(paper)}
-                  className="btn btn-royal"
-                  style={{ fontSize: '0.84rem', textDecoration: 'none', color: '#fff' }}
-                >
-                  <FileText size={15} /> Buka Paket &amp; Rubrik <ArrowRight size={14} />
+                <p className="paper-card-topic">{paper.topic}</p>
+                <Link to={paperPath(paper)} className="btn btn-royal paper-card-cta">
+                  <FileCheck2 size={15} /> Buka Paket &amp; Rubrik <ArrowRight size={14} />
                 </Link>
               </article>
             );

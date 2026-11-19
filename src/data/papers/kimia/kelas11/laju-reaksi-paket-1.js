@@ -10,8 +10,10 @@ export default {
   grade: 11,
   track: 'kurikulum-merdeka',
   topic: 'Laju Reaksi Kimia Kelas XI (Paket 1)',
-  relatedChapterIds: [],
+  relatedChapterIds: ['kimia11-bab3-laju-reaksi'],
   lang: 'id',
+  langDisplay: 'ID',
+  competition: 'Kimia SMA',
   title: 'Laju Reaksi Kimia Kelas XI – Paket 1',
   totalMarks: 35,
   instructions:

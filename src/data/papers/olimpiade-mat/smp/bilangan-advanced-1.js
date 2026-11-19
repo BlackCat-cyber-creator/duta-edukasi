@@ -16,6 +16,8 @@ export default {
     'smp8-bab1-bilangan-berpangkat'
   ],
   lang: 'id',
+  langDisplay: 'ID / EN',
+  competition: 'Seri Pembinaan OSN',
   title: 'Bilangan Olimpiade Matematika SMP Kelas 7–8 – Advanced 1',
   totalMarks: 30,
   instructions:
