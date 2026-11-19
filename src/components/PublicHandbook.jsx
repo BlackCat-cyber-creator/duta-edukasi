@@ -22,16 +22,36 @@ import {
   Check, 
   X,
   Compass,
-  Trophy,
   Loader2,
   FlaskConical,
-  Atom
+  Atom,
+  Sigma,
+  Microscope,
+  Dna,
+  ChevronLeft
 } from 'lucide-react';
 import { getProgress, PROGRESS_EVENT } from '../utils/progress';
 import { getCp2025Note } from '../data/cp2025Mapping';
 import { handbookPath, parseHandbookPath } from '../utils/seoRoutes';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { amcChapterMeta, amcLevelMeta, chapterMeta, gradeMeta } from '../utils/seoMeta';
+
+/** Lima mata pelajaran sekolah: urutan tab, ikon spesifik, dan id tombol (id lama tetap dipertahankan). */
+const SCHOOL_SUBJECT_TABS = [
+  { id: 'matematika', buttonId: 'btn-mode-school', label: 'Matematika', Icon: Sigma },
+  { id: 'ipa', buttonId: 'btn-mode-ipa', label: 'IPA (SD–SMP)', Icon: Microscope },
+  { id: 'fisika', buttonId: 'btn-mode-fisika', label: 'Fisika (SMA)', Icon: Atom },
+  { id: 'kimia', buttonId: 'btn-mode-kimia', label: 'Kimia (SMA)', Icon: FlaskConical },
+  { id: 'biologi', buttonId: 'btn-mode-biologi', label: 'Biologi (SMA)', Icon: Dna }
+];
+
+const SUBJECT_HERO = {
+  matematika: { title: 'Matematika Sekolah', desc: 'Ringkasan materi per subbab, rumus penting, contoh soal, dan latihan interaktif Kelas 4–12.' },
+  ipa: { title: 'IPA Terpadu (SD & SMP)', desc: 'Ringkasan konsep, istilah penting, contoh soal, dan latihan interaktif IPA Kelas 4–9.' },
+  fisika: { title: 'Fisika SMA', desc: 'Ringkasan konsep, rumus kunci KaTeX, contoh soal, dan latihan interaktif Fisika Kelas 10–12.' },
+  kimia: { title: 'Kimia SMA', desc: 'Ringkasan konsep, rumus dan persamaan reaksi, contoh soal, dan latihan interaktif Kimia Kelas 10–12.' },
+  biologi: { title: 'Biologi SMA', desc: 'Ringkasan konsep, istilah penting, contoh soal, dan latihan interaktif Biologi Kelas 10–12.' }
+};
 
 /**
  * Pure helper to parse handbook search parameters with backward compatibility.
@@ -251,18 +271,11 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
       ? index.filter((g) => g.grade >= 10)
       : nextSubject === 'ipa'
         ? index.filter((g) => g.grade <= 9)
-        : index;
+        : index; // Matematika 4–12, Kimia dan Biologi 10–12
     const gradeObj = pool.find((g) => g.grade === selectedGrade) || pool[0];
     const firstCh = gradeObj?.chapters?.[0]?.id || '';
     goTo({ mode: 'school', subject: nextSubject, grade: gradeObj.grade, chapter: firstCh });
     setSelectedTrackFilter("ALL");
-    setSearchQuery("");
-    setIsMobileChaptersOpen(false);
-  };
-
-  const handleSwitchToAmcMode = () => {
-    const firstAmcCh = ALL_AMC_CHAPTERS_INDEX.find(c => c.level === selectedAmcLevel)?.id || 'amc8-ch1-permutations';
-    goTo({ mode: 'amc', level: selectedAmcLevel, chapter: firstAmcCh });
     setSearchQuery("");
     setIsMobileChaptersOpen(false);
   };
@@ -328,22 +341,12 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
       {/* Top Hero Banner */}
       <div className="handbook-hero">
         <h1 className="handbook-hero-title">
-          {isAmcMode
-            ? 'Olimpiade Matematika AMC'
-            : displaySubject === 'fisika'
-              ? 'Fisika SMA'
-              : displaySubject === 'ipa'
-                ? 'IPA Terpadu (SD & SMP)'
-                : 'Matematika Sekolah'}
+          {isAmcMode ? 'Olimpiade Matematika AMC' : (SUBJECT_HERO[displaySubject] || SUBJECT_HERO.matematika).title}
         </h1>
         <p className="handbook-hero-desc">
           {isAmcMode
             ? 'Materi konsep, pembuktian bertahap, dan latihan isian singkat untuk persiapan AMC 8, AMC 10, dan AMC 12.'
-            : displaySubject === 'fisika'
-              ? 'Ringkasan konsep, rumus kunci KaTeX, contoh soal, dan latihan interaktif Fisika Kelas 10–12.'
-              : displaySubject === 'ipa'
-                ? 'Ringkasan konsep, istilah penting, contoh soal, dan latihan interaktif IPA Kelas 4–9.'
-                : 'Ringkasan materi per subbab, rumus penting, contoh soal, dan latihan interaktif Kelas 4–12.'}
+            : (SUBJECT_HERO[displaySubject] || SUBJECT_HERO.matematika).desc}
         </p>
       </div>
 
@@ -356,55 +359,39 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
         <Link to="/tka">Latihan TKA SD, SMP &amp; SMA</Link>
       </p>
 
-      {/* Pilihan mata pelajaran: Matematika, IPA (SD–SMP), Fisika (SMA), Olimpiade AMC */}
-      <div className="handbook-mode-selector">
-        <div role="tablist" aria-label="Mata pelajaran" className="handbook-mode-tabs">
-          <button
-            id="btn-mode-school"
-            type="button"
-            role="tab"
-            aria-selected={!isAmcMode && displaySubject === 'matematika'}
-            className={`btn ${!isAmcMode && displaySubject === 'matematika' ? 'btn-royal' : 'btn-ghost'}`}
-            onClick={() => handleSwitchToSchoolMode('matematika')}
-          >
-            <BookOpen size={16} />
-            <span>Matematika</span>
-          </button>
-          <button
-            id="btn-mode-ipa"
-            type="button"
-            role="tab"
-            aria-selected={!isAmcMode && displaySubject === 'ipa'}
-            className={`btn ${!isAmcMode && displaySubject === 'ipa' ? 'btn-royal' : 'btn-ghost'}`}
-            onClick={() => handleSwitchToSchoolMode('ipa')}
-          >
-            <FlaskConical size={16} />
-            <span>IPA (SD–SMP)</span>
-          </button>
-          <button
-            id="btn-mode-fisika"
-            type="button"
-            role="tab"
-            aria-selected={!isAmcMode && displaySubject === 'fisika'}
-            className={`btn ${!isAmcMode && displaySubject === 'fisika' ? 'btn-royal' : 'btn-ghost'}`}
-            onClick={() => handleSwitchToSchoolMode('fisika')}
-          >
-            <Atom size={16} />
-            <span>Fisika (SMA)</span>
-          </button>
-          <button
-            id="btn-mode-amc"
-            type="button"
-            role="tab"
-            aria-selected={isAmcMode}
-            className={`btn ${isAmcMode ? 'btn-royal' : 'btn-ghost'}`}
-            onClick={handleSwitchToAmcMode}
-          >
-            <Trophy size={16} />
-            <span>Olimpiade AMC</span>
-          </button>
+      {isAmcMode ? (
+        /* Jalur Olimpiade: kembali ke pusat Olimpiade, bukan bagian dari tab mata pelajaran sekolah */
+        <nav className="handbook-breadcrumb" aria-label="Navigasi Olimpiade">
+          <Link to="/olimpiade" className="handbook-breadcrumb-back">
+            <ChevronLeft size={15} /> Semua Olimpiade
+          </Link>
+          <span aria-hidden="true">/</span>
+          <span>AMC {selectedAmcLevel}</span>
+        </nav>
+      ) : (
+        /* Lima mata pelajaran sekolah dengan ikon masing-masing */
+        <div className="handbook-mode-selector">
+          <div role="tablist" aria-label="Mata pelajaran" className="handbook-mode-tabs">
+            {SCHOOL_SUBJECT_TABS.map(({ id, buttonId, label, Icon }) => {
+              const active = displaySubject === id;
+              return (
+                <button
+                  key={id}
+                  id={buttonId}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  className={`btn ${active ? 'btn-royal' : 'btn-ghost'}`}
+                  onClick={() => handleSwitchToSchoolMode(id)}
+                >
+                  <Icon size={16} />
+                  <span>{label}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Grade / Level Selector Tabs */}
       <div className="handbook-grade-tabs-wrapper">

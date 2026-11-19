@@ -35,10 +35,11 @@ describe('Empirical Challenger M3: Mode Switching Permutations & Navigation', ()
     );
     const html = cleanHtml(rawHtml);
 
-    // Verify mode selector reflects AMC mode
-    expect(html).toContain('id="btn-mode-amc"');
-    expect(html).toContain('aria-selected="true"');
-    expect(html).toContain('Olimpiade AMC');
+    // Verify AMC mode: breadcrumb ke /olimpiade, tanpa tab mata pelajaran sekolah
+    expect(html).toContain('href="/olimpiade"');
+    expect(html).toContain('Semua Olimpiade');
+    expect(html).not.toContain('id="btn-mode-amc"');
+    expect(html).toContain('Olimpiade Matematika AMC');
 
     // Verify AMC Level selector tabs
     expect(html).toContain('id="btn-public-amc-8"');

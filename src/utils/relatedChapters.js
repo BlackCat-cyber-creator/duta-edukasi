@@ -1,5 +1,7 @@
 import { ALL_CHAPTERS_INDEX } from '../data/chapterIndex.js';
 import { ALL_IPA_CHAPTERS_INDEX } from '../data/ipa/chapterIndex.js';
+import { ALL_KIMIA_CHAPTERS_INDEX } from '../data/kimia/chapterIndex.js';
+import { ALL_BIOLOGI_CHAPTERS_INDEX } from '../data/biologi/chapterIndex.js';
 import { topicOfChapter } from '../data/topics.js';
 import { chapterPath } from './seoRoutes.js';
 
@@ -7,7 +9,7 @@ import { chapterPath } from './seoRoutes.js';
  * "Materi terkait" (seperti "Baca Juga"): bab lain dalam topik yang sama, diutamakan
  * yang judulnya berkata kunci sama (pecahan, peluang, ...) lalu yang kelasnya terdekat.
  */
-const INDEX = new Map([...ALL_CHAPTERS_INDEX, ...ALL_IPA_CHAPTERS_INDEX].map((c) => [c.id, c]));
+const INDEX = new Map([...ALL_CHAPTERS_INDEX, ...ALL_IPA_CHAPTERS_INDEX, ...ALL_KIMIA_CHAPTERS_INDEX, ...ALL_BIOLOGI_CHAPTERS_INDEX].map((c) => [c.id, c]));
 const STOP = new Set(['bab', 'dan', 'serta', 'sampai', 'dengan', 'pada', 'satu', 'dua', 'tiga', 'operasinya', 'aplikasinya']);
 
 const words = (title) => new Set(
@@ -17,7 +19,7 @@ const words = (title) => new Set(
 export function chapterEntry(id) {
   const c = INDEX.get(id);
   if (!c) return null;
-  const subjectLabel = c.subject === 'ipa' ? (c.grade >= 10 ? 'Fisika' : 'IPA') : 'Matematika';
+  const subjectLabel = c.subject === 'kimia' ? 'Kimia' : c.subject === 'biologi' ? 'Biologi' : c.subject === 'ipa' ? (c.grade >= 10 ? 'Fisika' : 'IPA') : 'Matematika';
   return { id, title: c.title, grade: c.grade, label: `${subjectLabel} Kelas ${c.grade}`, path: chapterPath(c.grade, id) };
 }
 

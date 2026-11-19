@@ -14,7 +14,7 @@
 export const SITE_URL = 'https://dutaedukasi.vercel.app';
 export const SITE_NAME = 'Duta e-dukasi';
 
-const GRADE_PREFIX = /^(sd|smp|sma|ipa)(\d+)-/;
+const GRADE_PREFIX = /^(sd|smp|sma|ipa|kimia|biologi)(\d+)-/;
 const AMC_PREFIX = /^amc(\d+)-/;
 
 export function chapterSlug(chapterId) {
@@ -30,12 +30,17 @@ export function levelOfGrade(grade) {
 export const SUBJECT_GRADES = {
   matematika: [4, 5, 6, 7, 8, 9, 10, 11, 12],
   ipa: [4, 5, 6, 7, 8, 9, 10, 11, 12],
-  fisika: [10, 11, 12]
+  fisika: [10, 11, 12],
+  kimia: [10, 11, 12],
+  biologi: [10, 11, 12]
 };
 
-/** Mata pelajaran dari ID bab: "ipa7-..." → ipa (4-9) atau fisika (10-12), selain itu matematika. */
+/** Mata pelajaran dari ID bab: "ipa7-..." -> ipa (4-9) / fisika (10-12); kimia/biologi -> kimia/biologi. */
 export function subjectOfChapter(chapterId) {
-  const m = String(chapterId || '').match(/^ipa(\d+)-/);
+  const id = String(chapterId || '');
+  if (/^kimia\d+-/.test(id)) return 'kimia';
+  if (/^biologi\d+-/.test(id)) return 'biologi';
+  const m = id.match(/^ipa(\d+)-/);
   if (!m) return 'matematika';
   return Number(m[1]) >= 10 ? 'fisika' : 'ipa';
 }
@@ -43,7 +48,11 @@ export function subjectOfChapter(chapterId) {
 /** Kebalikan dari chapterSlug untuk bab kurikulum. */
 export function chapterIdFromSlug(grade, slug, subject = 'matematika') {
   if (!slug) return null;
-  const prefix = subject === 'ipa' || subject === 'fisika' ? 'ipa' : levelOfGrade(grade);
+  let prefix;
+  if (subject === 'ipa' || subject === 'fisika') prefix = 'ipa';
+  else if (subject === 'kimia') prefix = 'kimia';
+  else if (subject === 'biologi') prefix = 'biologi';
+  else prefix = levelOfGrade(grade);
   return `${prefix}${Number(grade)}-${slug}`;
 }
 
@@ -52,7 +61,10 @@ export function gradePath(grade, subject = 'matematika') {
   if (subject === 'fisika' || (subject === 'ipa' && g >= 10)) {
     return `/fisika/kelas-${g}`;
   }
-  return `/${subject === 'ipa' ? 'ipa' : 'matematika'}/kelas-${g}`;
+  if (subject === 'kimia' || subject === 'biologi' || subject === 'ipa') {
+    return `/${subject}/kelas-${g}`;
+  }
+  return `/matematika/kelas-${g}`;
 }
 
 /** Mata pelajaran ditentukan dari ID bab, jadi pemanggil lama tidak perlu berubah. */
@@ -74,11 +86,11 @@ export function amcChapterPath(level, chapterId) {
  * Mengembalikan null bila pathname bukan alamat buku saku.
  */
 export function parseHandbookPath(pathname) {
-  const school = String(pathname || '').match(/^\/(matematika|ipa|fisika)\/kelas-(\d+)(?:\/([^/]+))?\/?$/);
+  const school = String(pathname || '').match(/^\/(matematika|ipa|fisika|kimia|biologi)\/kelas-(\d+)(?:\/([^/]+))?\/?$/);
   if (school) {
     const rawSubject = school[1];
     const grade = Number(school[2]);
-    if (rawSubject === 'fisika' && !SUBJECT_GRADES.fisika.includes(grade)) return null;
+    if (['fisika', 'kimia', 'biologi'].includes(rawSubject) && !SUBJECT_GRADES[rawSubject].includes(grade)) return null;
     const dataSubject = rawSubject === 'fisika' ? 'ipa' : rawSubject;
     if (!SUBJECT_GRADES[dataSubject].includes(grade)) return null;
     const displaySubject = rawSubject === 'fisika' || (rawSubject === 'ipa' && grade >= 10) ? 'fisika' : dataSubject;
@@ -104,7 +116,7 @@ export function parseHandbookPath(pathname) {
 export function handbookPath({ mode, subject, grade, level, chapter }) {
   if (mode === 'amc') return amcChapterPath(level || 8, chapter);
   const subj = subject || subjectOfChapter(chapter);
-  const fallbackGrade = subj === 'fisika' ? 10 : SUBJECT_GRADES[subj]?.[0] || 4;
+  const fallbackGrade = ['fisika', 'kimia', 'biologi'].includes(subj) ? 10 : SUBJECT_GRADES[subj]?.[0] || 4;
   return chapterPath(grade || fallbackGrade, chapter, subj);
 }
 

@@ -1,10 +1,12 @@
 import { ALL_CHAPTERS_INDEX } from '../data/chapterIndex';
 import { ALL_IPA_CHAPTERS_INDEX } from '../data/ipa/chapterIndex';
+import { ALL_KIMIA_CHAPTERS_INDEX } from '../data/kimia/chapterIndex';
+import { ALL_BIOLOGI_CHAPTERS_INDEX } from '../data/biologi/chapterIndex';
 import { ALL_AMC_CHAPTERS_INDEX } from '../data/amc/amcMetadata';
 import { chapterPath, amcChapterPath } from './seoRoutes';
 
 /**
- * Pencarian materi di semua kelas: Matematika Kelas 4–12, IPA Kelas 7–9, dan AMC, tanpa memuat bank soal.
+ * Pencarian materi di semua kelas: Matematika, IPA, Fisika, Kimia, Biologi, dan AMC, tanpa memuat bank soal.
  * Setiap kata kunci harus muncul; kecocokan di judul bab diberi skor lebih tinggi.
  */
 
@@ -23,13 +25,15 @@ function conceptLabels(concepts = []) {
 }
 
 function buildEntries() {
-  const school = [...ALL_CHAPTERS_INDEX, ...ALL_IPA_CHAPTERS_INDEX].map((ch) => ({
+  const subjectName = (ch) => (ch.subject === 'kimia' ? 'Kimia' : ch.subject === 'biologi' ? 'Biologi' : ch.subject === 'ipa' ? (ch.grade >= 10 ? 'Fisika' : 'IPA') : 'Matematika');
+  const subjectWords = (ch) => (ch.subject === 'kimia' ? 'kimia sains' : ch.subject === 'biologi' ? 'biologi sains' : ch.subject === 'ipa' ? (ch.grade >= 10 ? 'fisika sains' : 'ipa sains') : 'matematika mtk');
+  const school = [...ALL_CHAPTERS_INDEX, ...ALL_IPA_CHAPTERS_INDEX, ...ALL_KIMIA_CHAPTERS_INDEX, ...ALL_BIOLOGI_CHAPTERS_INDEX].map((ch) => ({
     id: ch.id,
     title: ch.title,
-    label: `${ch.subject === 'ipa' ? (ch.grade >= 10 ? 'Fisika' : 'IPA') : 'Matematika'} ${ch.grade}`,
+    label: `${subjectName(ch)} ${ch.grade}`,
     path: chapterPath(ch.grade, ch.id),
     titleText: normalizeSearchText(ch.title),
-    labelText: normalizeSearchText(`${ch.subject === 'ipa' ? (ch.grade >= 10 ? 'fisika sains' : 'ipa sains') : 'matematika mtk'} kelas ${ch.grade} ${ch.level} ${ch.phase || ''}`),
+    labelText: normalizeSearchText(`${subjectWords(ch)} kelas ${ch.grade} ${ch.level} ${ch.phase || ''}`),
     bodyText: normalizeSearchText((ch.coreConcepts || []).join(' ')),
     conceptText: normalizeSearchText(conceptLabels(ch.coreConcepts).join(' '))
   }));

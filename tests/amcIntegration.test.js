@@ -266,14 +266,18 @@ describe('UI Component Integration & Rendering', () => {
       )
     );
 
-    // Mode Switchers (4 clean subject tabs)
+    // Mode Switchers: tepat lima mata pelajaran sekolah, tanpa tab Olimpiade AMC
     expect(html).toContain('id="btn-mode-school"');
     expect(html).toContain('id="btn-mode-ipa"');
     expect(html).toContain('id="btn-mode-fisika"');
-    expect(html).toContain('id="btn-mode-amc"');
+    expect(html).toContain('id="btn-mode-kimia"');
+    expect(html).toContain('id="btn-mode-biologi"');
+    expect(html).not.toContain('id="btn-mode-amc"');
     expect(html).toContain('IPA (SD–SMP)');
     expect(html).toContain('Fisika (SMA)');
-    expect(html).toContain('Olimpiade AMC');
+    expect(html).toContain('Kimia (SMA)');
+    expect(html).toContain('Biologi (SMA)');
+    expect(html).not.toContain('Olimpiade AMC');
 
     // School Grade Tabs
     expect(html).toContain('id="btn-public-grade-4"');
@@ -334,8 +338,10 @@ describe('UI Component Integration & Rendering', () => {
       )
     );
 
-    // Mode Switcher active state
-    expect(html).toContain('id="btn-mode-amc"');
+    // Jalur AMC memakai breadcrumb kembali ke pusat Olimpiade, bukan tab mata pelajaran sekolah
+    expect(html).toContain('href="/olimpiade"');
+    expect(html).toContain('Semua Olimpiade');
+    expect(html).not.toContain('id="btn-mode-school"');
 
     // AMC Level Selector Tabs
     expect(html).toContain('id="btn-public-amc-8"');

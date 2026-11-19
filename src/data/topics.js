@@ -92,22 +92,36 @@ export const IPA_TOPICS = [
   },
   {
     id: 'kimia',
-    name: 'Kimia: Zat dan Perubahannya',
-    description: 'Wujud dan massa jenis zat, unsur–senyawa–campuran, asam–basa, dan reaksi kimia.',
+    name: 'Kimia: Zat, Reaksi, dan Perubahannya (SD sampai SMA)',
+    description: 'Wujud dan massa jenis zat, unsur–senyawa–campuran, reaksi kimia, lalu Kimia SMA: struktur atom, ikatan, stoikiometri, hidrokarbon, termokimia, laju reaksi, kesetimbangan, asam–basa, koligatif, elektrokimia, kimia unsur, dan senyawa karbon.',
     chapters: [
       'ipa4-bab1-wujud-zat-dan-perubahannya',
-      'ipa7-bab2-zat-dan-perubahannya', 'ipa8-bab5-unsur-senyawa-campuran', 'ipa9-bab5-reaksi-kimia'
+      'ipa7-bab2-zat-dan-perubahannya', 'ipa8-bab5-unsur-senyawa-campuran', 'ipa9-bab5-reaksi-kimia',
+      'kimia10-bab1-hakikat-kimia-dan-struktur-atom', 'kimia10-bab2-sistem-periodik-unsur',
+      'kimia10-bab3-ikatan-kimia-dan-bentuk-molekul', 'kimia10-bab4-hukum-dasar-dan-stoikiometri',
+      'kimia11-bab1-hidrokarbon-dan-minyak-bumi', 'kimia11-bab2-termokimia',
+      'kimia11-bab3-laju-reaksi', 'kimia11-bab4-kesetimbangan-kimia',
+      'kimia11-bab5-asam-basa-buffer-dan-hidrolisis', 'kimia12-bab1-sifat-koligatif-larutan',
+      'kimia12-bab2-redoks-dan-elektrokimia', 'kimia12-bab3-kimia-unsur',
+      'kimia12-bab4-senyawa-karbon-dan-makromolekul'
     ]
   },
   {
     id: 'biologi',
-    name: 'Biologi: Makhluk Hidup dan Lingkungannya',
-    description: 'Ekosistem, rangka dan gerak tubuh, klasifikasi, sel, sistem organ, pertumbuhan, reproduksi, pewarisan sifat, bioteknologi, dan isu lingkungan.',
+    name: 'Biologi: Makhluk Hidup dan Lingkungannya (SD sampai SMA)',
+    description: 'Ekosistem, rangka dan gerak tubuh, klasifikasi, sel, sistem organ, pertumbuhan, reproduksi, pewarisan sifat, bioteknologi, dan isu lingkungan; di SMA mencakup virus–bakteri–protista, jaringan, sistem organ, imunitas, metabolisme, genetika, evolusi, dan bioteknologi modern.',
     chapters: [
       'ipa5-bab4-ekosistem-dan-siklus-air', 'ipa6-bab1-rangka-dan-mekanika-gerak-tubuh',
       'ipa7-bab5-klasifikasi-makhluk-hidup', 'ipa7-bab6-ekologi-keanekaragaman-hayati', 'ipa8-bab1-sel',
       'ipa8-bab2-struktur-fungsi-tubuh', 'ipa9-bab1-pertumbuhan-perkembangan', 'ipa9-bab2-koordinasi-reproduksi-homeostasis',
-      'ipa9-bab6-pewarisan-sifat-bioteknologi', 'ipa9-bab7-isu-lingkungan'
+      'ipa9-bab6-pewarisan-sifat-bioteknologi', 'ipa9-bab7-isu-lingkungan',
+      'biologi10-bab1-keanekaragaman-hayati-dan-klasifikasi', 'biologi10-bab2-virus-bakteri-dan-protista',
+      'biologi10-bab3-fungi-plantae-dan-animalia', 'biologi10-bab4-ekosistem-dan-perubahan-lingkungan',
+      'biologi11-bab1-sel-dan-bioproses-membran', 'biologi11-bab2-jaringan-tumbuhan-dan-hewan',
+      'biologi11-bab3-sistem-gerak-sirkulasi-dan-pencernaan', 'biologi11-bab4-sistem-respirasi-ekskresi-dan-koordinasi',
+      'biologi11-bab5-sistem-imun-dan-reproduksi', 'biologi12-bab1-pertumbuhan-perkembangan-dan-metabolisme',
+      'biologi12-bab2-substansi-genetik-dan-pembelahan-sel', 'biologi12-bab3-hukum-mendel-dan-hereditas-manusia',
+      'biologi12-bab4-evolusi-dan-bioteknologi'
     ]
   },
   {
@@ -123,7 +137,7 @@ export const IPA_TOPICS = [
 
 export const TOPIC_GROUPS = [
   { subject: 'matematika', name: 'Matematika', topics: MATH_TOPICS },
-  { subject: 'ipa', name: 'IPA', topics: IPA_TOPICS }
+  { subject: 'ipa', name: 'IPA, Fisika, Kimia, dan Biologi', topics: IPA_TOPICS }
 ];
 
 const TOPIC_OF = new Map(

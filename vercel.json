@@ -27,12 +27,32 @@
       "destination": "/fisika/:kelas.html"
     },
     {
+      "source": "/kimia/:kelas/:bab",
+      "destination": "/kimia/:kelas/:bab.html"
+    },
+    {
+      "source": "/kimia/:kelas",
+      "destination": "/kimia/:kelas.html"
+    },
+    {
+      "source": "/biologi/:kelas/:bab",
+      "destination": "/biologi/:kelas/:bab.html"
+    },
+    {
+      "source": "/biologi/:kelas",
+      "destination": "/biologi/:kelas.html"
+    },
+    {
       "source": "/olimpiade/:level/:bab",
       "destination": "/olimpiade/:level/:bab.html"
     },
     {
       "source": "/olimpiade/:level",
       "destination": "/olimpiade/:level.html"
+    },
+    {
+      "source": "/olimpiade",
+      "destination": "/olimpiade.html"
     },
     {
       "source": "/paket-soal/:subject/:slug",

@@ -41,10 +41,17 @@ export function levelLabel(grade) {
   return g <= 6 ? 'SD' : g <= 9 ? 'SMP' : 'SMA';
 }
 
-export const SUBJECT_NAME = { matematika: 'Matematika', ipa: 'IPA', fisika: 'Fisika' };
+export const SUBJECT_NAME = {
+  matematika: 'Matematika',
+  ipa: 'IPA',
+  fisika: 'Fisika',
+  kimia: 'Kimia',
+  biologi: 'Biologi'
+};
 
 export function subjectDisplayName(subject, grade) {
-  if (subject === 'matematika') return 'Matematika';
+  if (subject === 'kimia') return 'Kimia';
+  if (subject === 'biologi') return 'Biologi';
   if (subject === 'fisika') return 'Fisika';
   if (subject === 'ipa') return Number(grade) >= 10 ? 'Fisika' : 'IPA';
   return 'Matematika';
@@ -52,8 +59,14 @@ export function subjectDisplayName(subject, grade) {
 
 export const HOME_META = {
   title: `${SITE_NAME} • Platform Belajar Matematika & Sains, Olimpiade, dan Paket Soal`,
-  description: `Portal belajar terbuka ${SITE_NAME}: materi Matematika, IPA SD–SMP, Fisika, Kimia & Biologi SMA, jalur Cambridge/Bilingual, persiapan Olimpiade Matematika & Sains (OSN/AMC), TKA, dan Paket Soal interaktif lengkap kunci & rubrik.`,
+  description: `Portal belajar terbuka ${SITE_NAME}: materi Matematika, IPA (SD–SMP), Fisika, Kimia & Biologi (SMA), jalur Internasional/Bilingual, Olimpiade Matematika & Sains (OSN, SASMO, AMC, HKIMO, TIMO, SIMOC), TKA, dan Paket Soal interaktif lengkap kunci & pembahasan.`,
   path: '/'
+};
+
+export const OLIMPIADE_HUB_META = {
+  title: `Olimpiade Matematika & Sains (OSN, SASMO, AMC, HKIMO, TIMO, SIMOC) | ${SITE_NAME}`,
+  description: `Pusat persiapan Olimpiade Matematika & Sains SD, SMP, dan SMA di ${SITE_NAME}: soal & pembahasan OSN/OSK Nasional, SASMO, AMC 8/10/12, HKIMO, TIMO, SIMOC/SMO, dan Seri Pembinaan berjenjang.`,
+  path: '/olimpiade'
 };
 
 export const ABOUT_META = {
@@ -122,14 +135,14 @@ export function paperDetailMeta(paper) {
 }
 
 export const TOPIC_INDEX_META = {
-  title: `Daftar Isi Materi Matematika, IPA, Fisika, dan Olimpiade per Topik | ${SITE_NAME}`,
-  description: 'Daftar lengkap materi per topik: bilangan, aljabar, geometri, data dan peluang, kalkulus, kerja ilmiah, fisika, kimia, biologi, bumi dan antariksa, serta olimpiade AMC. Gratis dengan contoh soal dan pembahasan.',
+  title: `Daftar Isi Materi Matematika, IPA, Fisika, Kimia, Biologi & Olimpiade | ${SITE_NAME}`,
+  description: 'Daftar lengkap materi per topik: bilangan, aljabar, geometri, data dan peluang, kalkulus, kerja ilmiah, fisika, kimia, biologi, bumi dan antariksa, serta olimpiade matematika dan sains.',
   path: '/daftar-isi'
 };
 
 export const FORMULA_INDEX_META = {
-  title: `Kumpulan Rumus Matematika, IPA & Fisika Lengkap (Kelas 4–12) | ${SITE_NAME}`,
-  description: 'Referensi cepat rumus kunci Matematika, IPA SD–SMP, Fisika SMA (Kelas 4–12), dan Olimpiade AMC beserta penjelasan konsep dan tautan latihan soal.',
+  title: `Kumpulan Rumus Matematika, IPA, Fisika & Kimia Lengkap (Kelas 4–12) | ${SITE_NAME}`,
+  description: 'Referensi cepat rumus & konsep kunci Matematika, IPA (SD–SMP), Fisika, Kimia & Biologi (SMA Kelas 10–12), dan Olimpiade beserta contoh dan latihan soal.',
   path: '/rumus'
 };
 
@@ -153,10 +166,10 @@ export function tkaPacketMeta(test, packet) {
 export function gradeMeta(grade, subject = 'matematika') {
   const lvl = levelLabel(grade);
   const name = subjectDisplayName(subject, grade);
-  const extra = subject === 'ipa' ? 'ringkasan materi, rumus dan istilah penting' : 'ringkasan materi, rumus penting';
+  const extra = subject === 'matematika' ? 'ringkasan materi, rumus penting' : 'ringkasan materi, konsep kunci, dan rumus penting';
   return {
-    title: `${name} Kelas ${grade} ${lvl} Kurikulum Merdeka — Materi & Latihan | ${SITE_NAME}`,
-    description: `Daftar bab ${name} Kelas ${grade} ${lvl} Kurikulum Merdeka lengkap dengan ${extra}, contoh soal, dan latihan soal pilihan ganda beserta pembahasan.`,
+    title: `${name} Kelas ${grade} ${lvl} — Materi & Latihan | ${SITE_NAME}`,
+    description: `Daftar bab ${name} Kelas ${grade} ${lvl} lengkap dengan ${extra}, contoh soal, dan latihan soal pilihan ganda beserta pembahasan.`,
     path: gradePath(grade, subject)
   };
 }
