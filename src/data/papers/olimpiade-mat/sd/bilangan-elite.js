@@ -24,6 +24,7 @@ export default {
     license: 'CC BY 4.0'
   },
   status: 'published',
+  accessTier: 'olympiad-pro',
   questions: [
     {
       no: 1,

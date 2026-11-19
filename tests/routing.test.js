@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { parseHandbookPath, gradePath, chapterPath } from '../src/utils/seoRoutes.js';
 
 /**
  * Helper recreating QueryRedirectHandler logic in App.jsx
@@ -69,5 +70,31 @@ describe('Declarative Routing & Legacy QR Redirects', () => {
     const chapterId = 'smp9-bab2-brsl';
     const solutionUrl = `${origin}/solution/${grade}/${chapterId}`;
     expect(solutionUrl).toBe('https://awesomemathj.web.app/solution/9/smp9-bab2-brsl');
+  });
+
+  it('should parse /fisika/kelas-10..12 and keep backward compatibility with /ipa/kelas-10..12', () => {
+    const fis10 = parseHandbookPath('/fisika/kelas-10');
+    expect(fis10).toEqual({
+      mode: 'school',
+      subject: 'ipa',
+      displaySubject: 'fisika',
+      grade: 10,
+      level: 8,
+      chapter: null
+    });
+
+    const ipaLegacy10 = parseHandbookPath('/ipa/kelas-10');
+    expect(ipaLegacy10?.displaySubject).toBe('fisika');
+    expect(ipaLegacy10?.subject).toBe('ipa');
+
+    const ipa7 = parseHandbookPath('/ipa/kelas-7/bab2-zat');
+    expect(ipa7?.displaySubject).toBe('ipa');
+    expect(ipa7?.chapter).toBe('ipa7-bab2-zat');
+
+    expect(parseHandbookPath('/fisika/kelas-7')).toBeNull();
+    expect(gradePath(10, 'ipa')).toBe('/fisika/kelas-10');
+    expect(gradePath(10, 'fisika')).toBe('/fisika/kelas-10');
+    expect(gradePath(7, 'ipa')).toBe('/ipa/kelas-7');
+    expect(chapterPath(10, 'ipa10-bab1-pengukuran')).toBe('/fisika/kelas-10/bab1-pengukuran');
   });
 });

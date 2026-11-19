@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { FileText, ArrowRight, Globe } from 'lucide-react';
+import { FileText, ArrowRight, Globe, Search } from 'lucide-react';
 import {
   PUBLISHED_PAPERS,
   PAPER_SUBJECT_META,
@@ -11,12 +11,13 @@ import {
 import { ORGANIZATION } from '../data/siteInfo';
 import { papersHubMeta } from '../utils/seoMeta';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import { WhatsappBanner } from './WhatsappCta';
 
 export function PapersHubPage() {
   const { subject } = useParams();
   const activeSubject = subject && PAPER_SUBJECT_META[subject] ? subject : 'all';
   const [gradeFilter, setGradeFilter] = useState('ALL');
+  const [langFilter, setLangFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
   useDocumentMeta(papersHubMeta(activeSubject));
 
   const subjectCounts = useMemo(() => {
@@ -34,10 +35,18 @@ export function PapersHubPage() {
     [papersForSubject]
   );
 
-  const visiblePapers = useMemo(
-    () => (gradeFilter === 'ALL' ? papersForSubject : papersForSubject.filter((p) => p.grade === Number(gradeFilter))),
-    [papersForSubject, gradeFilter]
-  );
+  const visiblePapers = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    return papersForSubject.filter((p) => {
+      if (gradeFilter !== 'ALL' && p.grade !== Number(gradeFilter)) return false;
+      if (langFilter !== 'all' && (p.lang || 'id') !== langFilter) return false;
+      if (q) {
+        const hay = `${p.title} ${p.topic} ${p.subject} kelas ${p.grade}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [papersForSubject, gradeFilter, langFilter, searchQuery]);
 
   return (
     <div className="handbook-container seo-page">
@@ -47,11 +56,10 @@ export function PapersHubPage() {
       </nav>
 
       <section className="info-hero">
-        <h1>Paket Soal Terstruktur {ORGANIZATION.name}</h1>
+        <h1>Paket Soal {ORGANIZATION.name}</h1>
         <p style={{ margin: 0 }}>
-          Kumpulan soal latihan terstruktur &amp; berjenjang beserta gambar diagram, kunci jawaban exact &amp; desimal SI,
-          prinsip fisis/matematis, pembahasan langkah demi langkah, serta rubrik penilaian mandiri (B1/M1/A1). Setiap paket
-          disajikan dalam bahasa asli sumbernya.
+          Kumpulan soal terstruktur Matematika, Sains (IPA, Fisika, Kimia, Biologi), dan Olimpiade lengkap dengan kunci
+          jawaban exact/SI, langkah penyelesaian bertahap, serta rubrik B1/M1/A1 dalam bahasa asli sumbernya.
         </p>
       </section>
 
@@ -80,7 +88,39 @@ export function PapersHubPage() {
         ))}
       </div>
 
-      {/* Filter Kelas */}
+      {/* Pencarian, Bahasa & Filter Kelas */}
+      <div className="formula-controls" style={{ marginBottom: '1rem' }}>
+        <div className="nav-pill-group" role="tablist" aria-label="Filter bahasa paket">
+          {[
+            { id: 'all', label: 'Semua Bahasa' },
+            { id: 'id', label: 'Indonesia' },
+            { id: 'en', label: 'English' }
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={langFilter === tab.id}
+              className={`nav-pill ${langFilter === tab.id ? 'active' : ''}`}
+              onClick={() => setLangFilter(tab.id)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="formula-search-box">
+          <Search size={15} />
+          <input
+            type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Cari judul atau topik paket soal..."
+            aria-label="Cari paket soal"
+          />
+        </div>
+      </div>
+
       {gradesAvailable.length > 1 && (
         <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
           <button
@@ -106,39 +146,45 @@ export function PapersHubPage() {
       )}
 
       {/* Daftar Paket Soal */}
-      <div className="info-grid">
-        {visiblePapers.map((paper) => {
-          const subjectLabel = PAPER_SUBJECT_META[paper.subject]?.shortLabel || paper.subject;
-          return (
-            <article key={paper.id} className="info-card">
-              <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
-                <span className="badge badge-smp">{subjectLabel} Kelas {paper.grade}</span>
-                <span className={`badge ${paper.lang === 'en' ? 'badge-lang-en' : 'badge-lang-id'}`}>
-                  <Globe size={11} /> {paper.lang === 'en' ? 'English' : 'Bahasa Indonesia'}
-                </span>
-                <span className="badge badge-subtle">{paper.totalMarks} Marks</span>
-              </div>
-              <h2 style={{ fontSize: '1.05rem', marginBottom: '0.35rem' }}>
-                <Link to={paperPath(paper)} style={{ color: 'var(--brand-navy)', textDecoration: 'none' }}>
-                  {paper.title}
+      {visiblePapers.length === 0 ? (
+        <div className="editorial-card" style={{ padding: '1.5rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+          Belum ada paket soal yang cocok dengan filter ini.
+        </div>
+      ) : (
+        <div className="info-grid">
+          {visiblePapers.map((paper) => {
+            const meta = PAPER_SUBJECT_META[paper.subject] || {};
+            const subjectLabel = meta.shortLabel || paper.subject;
+            const accent = meta.color || '#12337A';
+            return (
+              <article key={paper.id} className="info-card" style={{ borderTop: `3px solid ${accent}` }}>
+                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
+                  <span className="badge badge-smp">{subjectLabel} Kelas {paper.grade}</span>
+                  <span className={`badge ${paper.lang === 'en' ? 'badge-lang-en' : 'badge-lang-id'}`}>
+                    <Globe size={11} /> {paper.lang === 'en' ? 'English' : 'Bahasa Indonesia'}
+                  </span>
+                  <span className="badge badge-subtle">{paper.totalMarks} Marks</span>
+                </div>
+                <h2 style={{ fontSize: '1.05rem', marginBottom: '0.35rem' }}>
+                  <Link to={paperPath(paper)} style={{ color: 'var(--brand-navy)', textDecoration: 'none' }}>
+                    {paper.title}
+                  </Link>
+                </h2>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>
+                  Topik: {paper.topic} · {paper.questions.length} soal ({paper.track}).
+                </p>
+                <Link
+                  to={paperPath(paper)}
+                  className="btn btn-royal"
+                  style={{ fontSize: '0.84rem', textDecoration: 'none', color: '#fff' }}
+                >
+                  <FileText size={15} /> Buka Paket &amp; Rubrik <ArrowRight size={14} />
                 </Link>
-              </h2>
-              <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginBottom: '0.75rem' }}>
-                Topik: {paper.topic} · {paper.questions.length} soal terstruktur ({paper.track}).
-              </p>
-              <Link
-                to={paperPath(paper)}
-                className="btn btn-royal"
-                style={{ fontSize: '0.84rem', textDecoration: 'none', color: '#fff' }}
-              >
-                <FileText size={15} /> Buka Paket &amp; Rubrik <ArrowRight size={14} />
-              </Link>
-            </article>
-          );
-        })}
-      </div>
-
-      <WhatsappBanner />
+              </article>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

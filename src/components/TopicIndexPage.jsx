@@ -13,7 +13,7 @@ export function TopicIndexPage() {
   return (
     <div className="handbook-container seo-page topic-index">
       <h1>Daftar Isi Materi</h1>
-      <p>Semua bab Matematika (Kelas 4–12), IPA &amp; Fisika (Kelas 4–12), dan Olimpiade AMC, dikelompokkan per topik. Pilih bab untuk membaca materi, contoh soal, dan latihan beserta pembahasannya.</p>
+      <p>Semua bab Matematika (Kelas 4–12), IPA (Kelas 4–9), Fisika (Kelas 10–12), dan Olimpiade AMC, dikelompokkan per topik. Pilih bab untuk membaca materi, contoh soal, dan latihan beserta pembahasannya.</p>
       <p>
         <Link to="/rumus">Kumpulan Rumus Matematika &amp; Fisika →</Link>
         {' · '}

@@ -26,26 +26,33 @@ export function levelOfGrade(grade) {
   return g <= 6 ? 'sd' : g <= 9 ? 'smp' : 'sma';
 }
 
-/** Mata pelajaran kurikulum beserta kelas yang tersedia (alamat: /<id>/kelas-N). */
+/** Mata pelajaran kurikulum beserta kelas yang tersedia. */
 export const SUBJECT_GRADES = {
   matematika: [4, 5, 6, 7, 8, 9, 10, 11, 12],
-  ipa: [4, 5, 6, 7, 8, 9, 10, 11, 12]
+  ipa: [4, 5, 6, 7, 8, 9, 10, 11, 12],
+  fisika: [10, 11, 12]
 };
 
-/** Mata pelajaran dari ID bab: "ipa7-..." → ipa, selain itu matematika. */
+/** Mata pelajaran dari ID bab: "ipa7-..." → ipa (4-9) atau fisika (10-12), selain itu matematika. */
 export function subjectOfChapter(chapterId) {
-  return /^ipa\d+-/.test(String(chapterId || '')) ? 'ipa' : 'matematika';
+  const m = String(chapterId || '').match(/^ipa(\d+)-/);
+  if (!m) return 'matematika';
+  return Number(m[1]) >= 10 ? 'fisika' : 'ipa';
 }
 
 /** Kebalikan dari chapterSlug untuk bab kurikulum. */
 export function chapterIdFromSlug(grade, slug, subject = 'matematika') {
   if (!slug) return null;
-  const prefix = subject === 'ipa' ? 'ipa' : levelOfGrade(grade);
+  const prefix = subject === 'ipa' || subject === 'fisika' ? 'ipa' : levelOfGrade(grade);
   return `${prefix}${Number(grade)}-${slug}`;
 }
 
 export function gradePath(grade, subject = 'matematika') {
-  return `/${subject === 'ipa' ? 'ipa' : 'matematika'}/kelas-${Number(grade)}`;
+  const g = Number(grade);
+  if (subject === 'fisika' || (subject === 'ipa' && g >= 10)) {
+    return `/fisika/kelas-${g}`;
+  }
+  return `/${subject === 'ipa' ? 'ipa' : 'matematika'}/kelas-${g}`;
 }
 
 /** Mata pelajaran ditentukan dari ID bab, jadi pemanggil lama tidak perlu berubah. */
@@ -67,12 +74,22 @@ export function amcChapterPath(level, chapterId) {
  * Mengembalikan null bila pathname bukan alamat buku saku.
  */
 export function parseHandbookPath(pathname) {
-  const school = String(pathname || '').match(/^\/(matematika|ipa)\/kelas-(\d+)(?:\/([^/]+))?\/?$/);
+  const school = String(pathname || '').match(/^\/(matematika|ipa|fisika)\/kelas-(\d+)(?:\/([^/]+))?\/?$/);
   if (school) {
-    const subject = school[1];
+    const rawSubject = school[1];
     const grade = Number(school[2]);
-    if (!SUBJECT_GRADES[subject].includes(grade)) return null;
-    return { mode: 'school', subject, grade, level: 8, chapter: chapterIdFromSlug(grade, school[3], subject) };
+    if (rawSubject === 'fisika' && !SUBJECT_GRADES.fisika.includes(grade)) return null;
+    const dataSubject = rawSubject === 'fisika' ? 'ipa' : rawSubject;
+    if (!SUBJECT_GRADES[dataSubject].includes(grade)) return null;
+    const displaySubject = rawSubject === 'fisika' || (rawSubject === 'ipa' && grade >= 10) ? 'fisika' : dataSubject;
+    return {
+      mode: 'school',
+      subject: dataSubject,
+      displaySubject,
+      grade,
+      level: 8,
+      chapter: chapterIdFromSlug(grade, school[3], dataSubject)
+    };
   }
   const amc = String(pathname || '').match(/^\/olimpiade\/amc-(\d+)(?:\/([^/]+))?\/?$/);
   if (amc) {
@@ -87,7 +104,8 @@ export function parseHandbookPath(pathname) {
 export function handbookPath({ mode, subject, grade, level, chapter }) {
   if (mode === 'amc') return amcChapterPath(level || 8, chapter);
   const subj = subject || subjectOfChapter(chapter);
-  return chapterPath(grade || SUBJECT_GRADES[subj][0], chapter, subj);
+  const fallbackGrade = subj === 'fisika' ? 10 : SUBJECT_GRADES[subj]?.[0] || 4;
+  return chapterPath(grade || fallbackGrade, chapter, subj);
 }
 
 export function packetHubPath(subject) {

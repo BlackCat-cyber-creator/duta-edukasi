@@ -19,6 +19,14 @@
       "destination": "/ipa/:kelas.html"
     },
     {
+      "source": "/fisika/:kelas/:bab",
+      "destination": "/fisika/:kelas/:bab.html"
+    },
+    {
+      "source": "/fisika/:kelas",
+      "destination": "/fisika/:kelas.html"
+    },
+    {
       "source": "/olimpiade/:level/:bab",
       "destination": "/olimpiade/:level/:bab.html"
     },

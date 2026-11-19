@@ -27,6 +27,7 @@ export default {
     license: 'CC BY 4.0'
   },
   status: 'published',
+  accessTier: 'free',
   questions: [
     {
       no: 1,

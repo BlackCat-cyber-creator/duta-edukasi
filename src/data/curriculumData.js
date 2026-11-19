@@ -12,7 +12,7 @@ import { IPA_GRADE_METADATA, ALL_IPA_CHAPTERS_INDEX } from "./ipa/chapterIndex.j
 
 export { GRADE_METADATA, ALL_CHAPTERS_INDEX, IPA_GRADE_METADATA, ALL_IPA_CHAPTERS_INDEX };
 
-export const SUBJECT_LABELS = { matematika: 'Matematika', ipa: 'IPA & Fisika' };
+export const SUBJECT_LABELS = { matematika: 'Matematika', ipa: 'IPA', fisika: 'Fisika' };
 
 /** Mata pelajaran dari ID bab ("ipa7-..." → ipa). */
 export function subjectOf(chapterId) {

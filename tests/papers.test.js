@@ -77,7 +77,11 @@ describe('Paket Soal Terstruktur (papers schema & integrity)', () => {
         const numericItems = (q.parts || [])
           .flatMap((pt) => pt.answerNumeric || [])
           .filter((item) => item && item.value !== undefined && item.value !== null);
-        for (const fig of q.figures || []) {
+        const allFigs = [
+          ...(q.figures || []),
+          ...(q.parts || []).flatMap((pt) => pt.figures || [])
+        ];
+        for (const fig of allFigs) {
           expect(fig.src).toMatch(/^\/papers\/.+\.webp$/);
           const diskPath = path.join(PUBLIC_DIR, fig.src.replace(/^\//, ''));
           expect(fs.existsSync(diskPath), `Missing figure file: ${diskPath}`).toBe(true);

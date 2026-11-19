@@ -4,7 +4,6 @@ import { Trophy, ExternalLink } from 'lucide-react';
 import { PRESTASI_DATA, ORGANIZATION } from '../data/siteInfo';
 import { PRESTASI_META } from '../utils/seoMeta';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import { WhatsappBanner } from './WhatsappCta';
 
 function medalClass(award) {
   const s = String(award || '').toLowerCase();
@@ -50,11 +49,6 @@ export function PrestasiPage() {
           </article>
         ))}
       </div>
-
-      <WhatsappBanner
-        title="Ingin Mempersiapkan Diri Menuju OSN atau Kompetisi Matematika?"
-        subtitle={`Pelajari Paket Soal & Modul Olimpiade gratis di portal ini, atau konsultasi program pembinaan bersama ${ORGANIZATION.name}.`}
-      />
     </div>
   );
 }

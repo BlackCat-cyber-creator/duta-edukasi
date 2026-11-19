@@ -16,7 +16,7 @@ describe('Daftar isi per topik', () => {
   it('materi terkait mengutamakan kata kunci yang sama', () => {
     const rel = relatedChapters('sd4-bab2-pecahan').map((c) => c.id);
     expect(rel.slice(0, 2)).toEqual(expect.arrayContaining(['sd5-bab3-bilangan-pecahan', 'sd6-bab1-pecahan-desimal']));
-    expect(relatedChapters('ipa8-bab4-getaran-gelombang-cahaya').every((c) => c.path.startsWith('/ipa/'))).toBe(true);
+    expect(relatedChapters('ipa8-bab4-getaran-gelombang-cahaya').every((c) => /^\/(ipa|fisika)\//.test(c.path))).toBe(true);
   });
 
   it('bab dalam topik diurutkan per kelas', () => {

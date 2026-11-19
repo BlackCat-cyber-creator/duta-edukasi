@@ -149,8 +149,9 @@ describe('Empirical Challenger M3: Mode Switching Permutations & Navigation', ()
     // School mode active
     expect(html).toContain('id="btn-mode-school"');
     expect(html).toContain('aria-selected="true"');
-    expect(html).toContain('Matematika (Kelas 4–12)');
+    expect(html).toContain('Matematika');
     expect(html).toContain('id="btn-mode-ipa"');
+    expect(html).toContain('id="btn-mode-fisika"');
 
     // School Grade 8 tab rendered
     expect(html).toContain('id="btn-public-grade-8"');

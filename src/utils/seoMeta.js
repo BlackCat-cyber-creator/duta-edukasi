@@ -41,22 +41,24 @@ export function levelLabel(grade) {
   return g <= 6 ? 'SD' : g <= 9 ? 'SMP' : 'SMA';
 }
 
-export const SUBJECT_NAME = { matematika: 'Matematika', ipa: 'IPA & Fisika' };
+export const SUBJECT_NAME = { matematika: 'Matematika', ipa: 'IPA', fisika: 'Fisika' };
 
 export function subjectDisplayName(subject, grade) {
-  if (subject !== 'ipa') return 'Matematika';
-  return Number(grade) >= 10 ? 'Fisika' : 'IPA';
+  if (subject === 'matematika') return 'Matematika';
+  if (subject === 'fisika') return 'Fisika';
+  if (subject === 'ipa') return Number(grade) >= 10 ? 'Fisika' : 'IPA';
+  return 'Matematika';
 }
 
 export const HOME_META = {
-  title: `${SITE_NAME} • Materi, Kuis & Paket Soal Matematika & Fisika (Kelas 4–12), dan Olimpiade`,
-  description: `Belajar gratis tanpa daftar di ${SITE_NAME} (${ORGANIZATION.legalName} Pontianak): materi, rumus, kuis interaktif, dan Paket Soal terstruktur Matematika, IPA SD–SMP, Fisika SMA (Kelas 4–12), serta persiapan Olimpiade AMC & OSN.`,
+  title: `${SITE_NAME} • Platform Belajar Matematika & Sains, Olimpiade, dan Paket Soal`,
+  description: `Portal belajar terbuka ${SITE_NAME}: materi Matematika, IPA SD–SMP, Fisika, Kimia & Biologi SMA, jalur Cambridge/Bilingual, persiapan Olimpiade Matematika & Sains (OSN/AMC), TKA, dan Paket Soal interaktif lengkap kunci & rubrik.`,
   path: '/'
 };
 
 export const ABOUT_META = {
-  title: `Tentang ${SITE_NAME} — ${ORGANIZATION.legalName} Pontianak`,
-  description: `Tentang ${SITE_NAME} yang didirikan oleh ${FOUNDER.name} di ${ORGANIZATION.shortAddress}. Platform belajar Matematika, IPA & Fisika Kelas 4–12 gratis berlisensi CC BY 4.0 bersama ${AUTHOR.name}.`,
+  title: `Tentang ${SITE_NAME} — Platform Belajar Matematika & Sains Terbuka`,
+  description: `Tentang ${SITE_NAME}, portal belajar Matematika & Sains gratis berlisensi CC BY 4.0 bersama pendiri ${FOUNDER.name} dan Lead Developer ${AUTHOR.name}.`,
   path: '/tentang'
 };
 
@@ -86,23 +88,26 @@ export const CONTACT_META = {
 
 export function papersHubMeta(subject = 'all') {
   const labelMap = {
-    fisika: 'Fisika',
     matematika: 'Matematika',
     ipa: 'IPA',
+    fisika: 'Fisika',
+    kimia: 'Kimia',
+    biologi: 'Biologi',
     'olimpiade-mat': 'Olimpiade Matematika',
+    'olimpiade-sains': 'Olimpiade Sains',
     'olimpiade-fis': 'Olimpiade Fisika'
   };
   const subLabel = labelMap[subject];
   if (subLabel) {
     return {
-      title: `Paket Soal ${subLabel} Terstruktur + Kunci & Rubrik | ${SITE_NAME}`,
-      description: `Kumpulan Paket Soal terstruktur ${subLabel} ${SITE_NAME} lengkap dengan gambar diagram, kunci jawaban eksak & desimal SI, pembahasan prinsip, dan rubrik penilaian B1/M1/A1.`,
+      title: `Paket Soal ${subLabel} Interaktif + Kunci & Pembahasan | ${SITE_NAME}`,
+      description: `Kumpulan Paket Soal ${subLabel} ${SITE_NAME} lengkap dengan kunci jawaban, prinsip konsep, pembahasan bertahap, dan rubrik penilaian.`,
       path: packetHubPath(subject)
     };
   }
   return {
-    title: `Paket Soal Matematika, Fisika & Olimpiade + Kunci & Rubrik | ${SITE_NAME}`,
-    description: `Arsip Paket Soal terstruktur ${SITE_NAME} (Matematika, Fisika, dan Olimpiade) dalam bahasa sumber asli lengkap dengan kunci jawaban, langkah pembahasan, dan rubrik penilaian.`,
+    title: `Paket Soal Matematika, Sains & Olimpiade + Pembahasan | ${SITE_NAME}`,
+    description: `Arsip Paket Soal interaktif ${SITE_NAME} (Matematika, IPA, Fisika, Kimia, Biologi, dan Olimpiade Matematika & Sains) lengkap dengan kunci jawaban, langkah pembahasan, dan rubrik penilaian.`,
     path: '/paket-soal'
   };
 }

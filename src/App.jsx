@@ -3,7 +3,6 @@ import { Routes, Route, Navigate, Link, NavLink, useNavigate, useLocation, useSe
 import { useAuth } from './hooks/useAuth';
 import { handbookPath } from './utils/seoRoutes';
 import { AUTHOR, ORGANIZATION } from './data/siteInfo';
-import { FloatingWhatsappButton } from './components/WhatsappCta';
 import {
   Lock,
   ShieldCheck,
@@ -13,6 +12,7 @@ import {
 } from 'lucide-react';
 
 // Lazy-loaded Views for maximal code-splitting
+const HomeHubPage = lazy(() => import('./components/HomeHubPage').then((m) => ({ default: m.HomeHubPage })));
 const TeacherDashboard = lazy(() => import('./components/TeacherDashboard').then((m) => ({ default: m.TeacherDashboard })));
 const StudentQuestView = lazy(() => import('./components/StudentQuestView').then((m) => ({ default: m.StudentQuestView })));
 const PrintableWorksheet = lazy(() => import('./components/PrintableWorksheet').then((m) => ({ default: m.PrintableWorksheet })));
@@ -176,17 +176,12 @@ export function App() {
                   <span className="brand-wordmark-duta">DUTA</span>
                   <span className="brand-wordmark-edukasi">e-dukasi</span>
                 </span>
-                <span className="badge badge-sd" style={{ fontSize: '0.65rem', padding: '0.15rem 0.45rem' }}>
-                  Kelas 4–12
-                </span>
               </div>
-              <div className="brand-subtitle" style={{ fontSize: '0.74rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-                {isTeacherRoute ? (
-                  <>Studio Guru {ORGANIZATION.name}</>
-                ) : (
-                  <>Bimbel, Materi &amp; Paket Soal Matematika dan Fisika</>
-                )}
-              </div>
+              {isTeacherRoute && (
+                <div className="brand-subtitle" style={{ fontSize: '0.74rem', color: 'var(--text-muted)', fontWeight: 500 }}>
+                  Studio Guru {ORGANIZATION.name}
+                </div>
+              )}
             </div>
           </div>
 
@@ -249,20 +244,23 @@ export function App() {
             ) : (
               <>
                 <nav className="top-nav-links" aria-label="Menu Utama">
-                  <NavLink to="/paket-soal" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
-                    Paket Soal
+                  <NavLink to="/" end className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                    Materi
                   </NavLink>
-                  <NavLink to="/program" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
-                    Program
+                  <NavLink to="/paket-soal/olimpiade-mat" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                    Olimpiade
+                  </NavLink>
+                  <NavLink to="/paket-soal" end className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                    Paket Soal
                   </NavLink>
                   <NavLink to="/prestasi" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
                     Prestasi
                   </NavLink>
-                  <NavLink to="/tentang" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
-                    Tentang
+                  <NavLink to="/tka" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                    TKA
                   </NavLink>
-                  <NavLink to="/kontak" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
-                    Kontak
+                  <NavLink to="/rumus" className={({ isActive }) => `top-nav-link ${isActive ? 'active' : ''}`}>
+                    Rumus
                   </NavLink>
                 </nav>
                 <button
@@ -284,19 +282,17 @@ export function App() {
       <main>
         <Suspense fallback={<RouteFallback />}>
           <Routes>
-            {/* 1. Public Handbook */}
-            <Route path="/" element={
-              <PublicHandbook
-                onLaunchPractice={handleLaunchPracticeQuest}
-                onPrintQuest={handlePrintQuest}
-              />
-            } />
+            {/* 1. Public Portal Hub */}
+            <Route path="/" element={<HomeHubPage />} />
 
             {/* 1b. Buku saku dengan alamat rapi (diindeks mesin pencari) */}
             <Route path="/matematika/*" element={
               <PublicHandbook onLaunchPractice={handleLaunchPracticeQuest} onPrintQuest={handlePrintQuest} />
             } />
             <Route path="/ipa/*" element={
+              <PublicHandbook onLaunchPractice={handleLaunchPracticeQuest} onPrintQuest={handlePrintQuest} />
+            } />
+            <Route path="/fisika/*" element={
               <PublicHandbook onLaunchPractice={handleLaunchPracticeQuest} onPrintQuest={handlePrintQuest} />
             } />
             <Route path="/olimpiade/*" element={
@@ -375,25 +371,19 @@ export function App() {
       </main>
 
       {!isTeacherRoute && !isFullScreenView && (
-        <>
-          <FloatingWhatsappButton />
-          <footer className="site-footer no-print">
-            <div>
-              <strong>{ORGANIZATION.name}</strong> ({ORGANIZATION.legalName}) · {ORGANIZATION.shortAddress} ·{' '}
-              <a href={ORGANIZATION.whatsappUrl} target="_blank" rel="noopener noreferrer">
-                WA {ORGANIZATION.whatsappDisplay}
-              </a>
-              {' '}· Disusun oleh <Link to="/tentang">{AUTHOR.name}</Link>
-            </div>
-            <div style={{ marginTop: '0.35rem', fontSize: '0.8rem' }}>
-              <Link to="/paket-soal">Paket Soal</Link> · <Link to="/program">Program</Link> ·{' '}
-              <Link to="/pendiri">Pendiri</Link> · <Link to="/prestasi">Prestasi</Link> ·{' '}
-              <Link to="/kontak">Kontak</Link> · <Link to="/daftar-isi">Daftar isi</Link> ·{' '}
-              <Link to="/rumus">Kumpulan rumus</Link> · <Link to="/tka">Latihan TKA</Link> · Lisensi{' '}
-              <a href={ORGANIZATION.licenseUrl} target="_blank" rel="noopener noreferrer">{ORGANIZATION.licenseName}</a>
-            </div>
-          </footer>
-        </>
+        <footer className="site-footer no-print">
+          <div>
+            <strong>{ORGANIZATION.name}</strong> · Platform Belajar Matematika &amp; Sains Terbuka · Disusun oleh{' '}
+            <Link to="/tentang">{AUTHOR.name}</Link>
+          </div>
+          <div style={{ marginTop: '0.35rem', fontSize: '0.8rem' }}>
+            <Link to="/tentang">Tentang</Link> · <Link to="/pendiri">Pendiri</Link> ·{' '}
+            <Link to="/prestasi">Prestasi</Link> · <Link to="/paket-soal">Paket Soal</Link> ·{' '}
+            <Link to="/daftar-isi">Daftar isi</Link> · <Link to="/rumus">Kumpulan rumus</Link> ·{' '}
+            <Link to="/tka">Latihan TKA</Link> · <Link to="/kontak">Kontak</Link> · Lisensi{' '}
+            <a href={ORGANIZATION.licenseUrl} target="_blank" rel="noopener noreferrer">{ORGANIZATION.licenseName}</a>
+          </div>
+        </footer>
       )}
     </div>
   );

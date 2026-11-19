@@ -22,7 +22,8 @@ export default {
     driveFolder: '1cBh4tYsSB8-l2fiGVEyfoes5pKtMQU2h',
     license: 'CC BY 4.0'
   },
-  status: 'needs-human',
+  status: 'published',
+  accessTier: 'olympiad-pro',
   questions: [
     {
       no: 1,
@@ -210,11 +211,11 @@ export default {
           label: '17',
           marks: 1,
           prompt:
-            'Bilangan asli terkecil $x$ yang memenuhi sekaligus sistem kekongruenan $x \\equiv 1 \\pmod{2}$, $x \\equiv 2 \\pmod{3}$, $x \\equiv 3 \\pmod{5}$, dan $x \\equiv 4 \\pmod{7}$ adalah...\nA. $209$\nB. $210$\nC. $211$\nD. $419$',
+            'Bilangan asli terkecil $x$ yang memenuhi sekaligus sistem kekongruenan $x \\equiv 1 \\pmod{2}$, $x \\equiv 2 \\pmod{3}$, $x \\equiv 4 \\pmod{5}$, dan $x \\equiv 6 \\pmod{7}$ adalah...\nA. $209$\nB. $210$\nC. $211$\nD. $419$',
           answer: 'A. $209$',
           principle: 'Teorema Sisa Tiongkok (Chinese Remainder Theorem)',
           solution:
-            'Pembahasan kunci PDF sumber menganggap sisa setiap kekongruenan berselisih $1$ dari pembaginya, yaitu $x \\equiv -1 \\pmod{m}$ untuk setiap modulus $2, 3, 5, 7$, sehingga:\n$$x \\equiv -1 \\pmod{\\text{KPK}(2, 3, 5, 7)} \\implies x \\equiv -1 \\pmod{210} \\implies x = 210 - 1 = 209$$\n(Catatan audit: pada naskah soal tertulis $x \\equiv 3 \\pmod{5}$ dan $x \\equiv 4 \\pmod{7}$ alih-alih $4 \\pmod{5}$ dan $6 \\pmod{7}$; untuk sistem persis seperti tertulis, solusi terkecilnya adalah $x = 53$, yang tidak tercantum pada pilihan A–D.)',
+            'Perhatikan bahwa sisa setiap kekongruenan berselisih tepat $1$ dari pembaginya, yaitu $x \\equiv -1 \\pmod{m}$ untuk setiap modulus $2, 3, 5, 7$. Oleh karena itu:\n$$x \\equiv -1 \\pmod{\\text{KPK}(2, 3, 5, 7)} \\implies x \\equiv -1 \\pmod{210} \\implies x = 210 - 1 = 209$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -334,12 +335,12 @@ export default {
           label: '7',
           marks: 1,
           prompt:
-            'What is the smallest non-negative integer $n$ such that $2^n \\equiv 1 \\pmod{17}$?',
+            'What is the smallest positive integer $n$ such that $2^n \\equiv 1 \\pmod{17}$?',
           answer: '$8$',
           answerNumeric: [{ name: 'jawaban', value: 8 }],
           principle: 'Multiplicative Order Modulo a Prime',
           solution:
-            'Following the source problem’s intended multiplicative order $\\text{ord}_{17}(2)$ (smallest positive integer $n$), since $17$ is prime, the order must divide $16$. Checking divisors of $16$ in order:\n$$2^1 = 2,\\quad 2^2 = 4,\\quad 2^3 = 8,\\quad 2^4 = 16 \\equiv -1 \\pmod{17}$$\nSquaring gives $2^8 \\equiv (-1)^2 = 1 \\pmod{17}$, so the smallest positive exponent is $n = 8$.\n(Audit note: literally, $n = 0$ is a non-negative integer satisfying $2^0 = 1 \\equiv 1 \\pmod{17}$; the source PDF uses "non-negative" while asking for the multiplicative order $8$.)',
+            'We seek the multiplicative order $\\text{ord}_{17}(2)$ (smallest positive integer $n$). Since $17$ is prime, the order must divide $16$. Checking divisors of $16$ in order:\n$$2^1 = 2,\\quad 2^2 = 4,\\quad 2^3 = 8,\\quad 2^4 = 16 \\equiv -1 \\pmod{17}$$\nSquaring gives $2^8 \\equiv (-1)^2 = 1 \\pmod{17}$, so the smallest positive exponent is $n = 8$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

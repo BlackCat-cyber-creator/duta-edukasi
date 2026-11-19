@@ -20,7 +20,6 @@ import { chapterPath } from '../utils/seoRoutes';
 import { paperDetailMeta } from '../utils/seoMeta';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { MathText } from './MathRenderer';
-import { WhatsappBanner } from './WhatsappCta';
 
 function parseRubricMarks(code) {
   const m = String(code || '').match(/^[BMA](\d+)$/i);
@@ -164,6 +163,13 @@ export function PaperDetailPage() {
                     <span className="badge badge-subtle" style={{ flexShrink: 0 }}>[{pt.marks}]</span>
                   </div>
 
+                  {(pt.figures || []).map((fig) => (
+                    <figure key={fig.src} className="paper-figure" style={{ marginTop: '0.6rem', marginBottom: '0.6rem' }}>
+                      <img src={fig.src} alt={fig.alt} loading="lazy" />
+                      <figcaption>{fig.caption}</figcaption>
+                    </figure>
+                  ))}
+
                   <div className="paper-part-actions no-print">
                     <button
                       type="button"
@@ -287,11 +293,6 @@ export function PaperDetailPage() {
         </a>{' '}
         — boleh digunakan dan dibagikan kembali dengan mencantumkan kredit <strong>{ORGANIZATION.name}</strong>.
       </div>
-
-      <WhatsappBanner
-        title={`Ingin Dibimbing Menguasai ${paper.topic}?`}
-        subtitle={`Bergabung di kelas reguler atau privat Matematika & Fisika bersama ${ORGANIZATION.name} Pontianak atau daring.`}
-      />
     </div>
   );
 }

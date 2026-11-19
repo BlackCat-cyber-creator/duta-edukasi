@@ -29,10 +29,22 @@ Dokumen ini mencatat status lengkap pembaruan identitas merek, paket soal, repos
   - Properti URL-prefix **`https://dutaedukasi.vercel.app/`** ditambahkan & terverifikasi otomatis via **File HTML**.
   - `https://dutaedukasi.vercel.app/sitemap.xml` dikirim dan berstatus **`Sukses`** (`19 Nov 2026`, `188` halaman ditemukan).
 
+- **Desain Ulang Portal Belajar Matematika & Sains 4-Pilar + Pemisahan IPA / Fisika (`Phase P4`):**
+  - **Beranda 4-Pilar (`/` — `HomeHubPage.jsx`)**: Struktur portal publik Matematika & Sains dengan filter jenjang (`Semua`, `SD 4–6`, `SMP 7–9`, `SMA 10–12`, `Olimpiade`, `Internasional EN`) dan pencarian lintas materi, menonjolkan 4 pilar:
+    1. *Materi Sekolah*: Matematika (`4–12`), IPA (`SD–SMP 4–9`), Fisika (`SMA 10–12`), Kimia (`/paket-soal/kimia`), Biologi (`/paket-soal/biologi`).
+    2. *Olimpiade & Kompetisi*: Olimpiade Matematika (`/paket-soal/olimpiade-mat`), Olimpiade Sains / OSN (`/paket-soal/olimpiade-sains`), AMC 8/10/12, Arsip `/prestasi`.
+    3. *Jalur Internasional / Bilingual (EN)*: Paket Cambridge/IGCSE Physics, Chemistry & Biology berbahasa Inggris.
+    4. *Paket Soal, Ujian & Referensi*: `/paket-soal`, `/tka`, `/rumus`, `/daftar-isi`.
+  - **Pemisahan Taksonomi IPA vs Fisika:** Tab `IPA (SD–SMP)` merujuk `/ipa/kelas-4..9` dan tab `Fisika (SMA)` merujuk kanonik `/fisika/kelas-10..12` (`vercel.json` rewrite + stub `<meta http-equiv="refresh">` + `<link rel="canonical">` untuk rute lama `/ipa/kelas-10..12`).
+  - **UI Portal Publik Bersih:** Menghapus tombol WhatsApp mengambang, `<WhatsappBanner />` dari halaman belajar/beranda (hanya tersisa pada `/program` dan `/kontak`), serta lencana dekoratif yang bising (`Kurikulum Merdeka · CP 046/2025`, pil `Kelas 4–12`).
+  - **Batch 2 Paket Soal (`27` Paket `published`, `accessTier: 'free' | 'olympiad-pro'`):**
+    - Penambahan `Kimia XI & X`, `Biologi X`, `Simulasi OSK IPA SMP` (dilengkapi diagram sel terpotong bersih `/papers/olim-smp-ipa-osk/fig-2.webp`), serta seluruh `14` paket `Bilangan Olimpiade Matematika SD & SMP` tersisa ditambah publikasi `2` paket SMP Batch 1 yang telah direvisi -> total **`27` paket aktif** dengan `211` halaman statis terindeks di `sitemap.xml` (lengkap dicatat di [`docs/research/audit-paket-soal.md`](research/audit-paket-soal.md)).
+- **Google Analytics (GA4) — Properti `awesomemathj` (`G-G2BZYXCEFM`):**
+  - Setelah akses diberikan ke akun Google pengelola (`378128144` / Property `553551452`), Web Stream **`15751926191`** selesai diperbarui via UI Analytics menjadi Stream Name **`Duta e-dukasi`** dan Stream URL **`https://dutaedukasi.vercel.app`**.
+
 ---
 
-## 2. Satu Langkah Tertunda karena Izin Akun (`BLOCKED / GA4_PERMISSION_REQUIRED`)
+## 2. Catatan Operasi Berkelanjutan
 
-- **Google Analytics (GA4) — Properti `awesomemathj` (`G-G2BZYXCEFM`):**
-  - Saat `b162d480` membuka tautan stream langsung dari integrasi Firebase (`https://analytics.google.com/analytics/web/#/a378128144p553551452/admin/streams/table/15751926191`), akun Google aktif (`jevon.naldo@gmail.com`) hanya memiliki akses ke akun GA4 lain dan mendapat pesan **`Izin tidak ada`** (HTTP `403`) pada Account **`378128144`** / Property **`553551452`** / Stream **`15751926191`**.
-  - **Tindakan untuk Pemilik:** Buka URL stream GA4 tersebut memakai akun Google pemilik properti `G-G2BZYXCEFM` (atau berikan akses *Editor/Admin* ke `jevon.naldo@gmail.com`), lalu ubah **Stream URL** menjadi **`https://dutaedukasi.vercel.app`** dan **Stream Name** menjadi **`Duta e-dukasi`**.
+- **Monetisasi Masa Depan:** Setiap modul di `src/data/papers/` membawa metadata `accessTier: 'free' | 'olympiad-pro'` (`'free'` untuk materi sekolah & dasar, `'olympiad-pro'` untuk olimpiade menengah/lanjutan & OSK). Seluruh paket tetap terbuka gratis pada rilis saat ini; kait *paywall*/iklan dapat diaktifkan kemudian tanpa migrasi skema data.
+- **Google Search Console (`https://dutaedukasi.vercel.app/`):** Pengiriman ulang `sitemap.xml` (`211` URL setelah rilis 4-Pilar + `/fisika/*` + Batch 2).

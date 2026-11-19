@@ -52,9 +52,10 @@ export function FormulaIndexPage() {
             });
           } else {
             const subjName = subjectDisplayName(item.subject, item.grade);
+            const subjKey = item.subject === 'ipa' && item.grade >= 10 ? 'fisika' : item.subject;
             entries.push({
               id: ch.id,
-              subjectKey: item.subject,
+              subjectKey: subjKey,
               groupLabel: `${subjName} Kelas ${item.grade} ${levelLabel(item.grade)}`,
               chapterTitle: ch.title,
               path: chapterPath(item.grade, ch.id),
@@ -101,7 +102,7 @@ export function FormulaIndexPage() {
       </nav>
       <h1>Kumpulan Rumus Matematika, IPA &amp; Fisika (Kelas 4–12)</h1>
       <p>
-        Referensi rumus kunci per bab untuk Matematika (Kelas 4–12), IPA SD–SMP (Kelas 4–9), Fisika SMA (Kelas 10–12),
+        Referensi rumus kunci per bab untuk Matematika (Kelas 4–12), IPA (Kelas 4–9), Fisika (Kelas 10–12),
         dan Olimpiade AMC. Klik tautan bab untuk membaca penjelasan konsep, contoh soal, dan latihan interaktif.
       </p>
       <p className="topic-meta">
@@ -114,7 +115,8 @@ export function FormulaIndexPage() {
           {[
             { id: 'all', label: 'Semua' },
             { id: 'matematika', label: 'Matematika' },
-            { id: 'ipa', label: 'IPA & Fisika' },
+            { id: 'ipa', label: 'IPA (SD–SMP)' },
+            { id: 'fisika', label: 'Fisika (SMA)' },
             { id: 'amc', label: 'Olimpiade AMC' }
           ].map((tab) => (
             <button

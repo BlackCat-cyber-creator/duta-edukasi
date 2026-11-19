@@ -4,7 +4,6 @@ import { Award, ExternalLink } from 'lucide-react';
 import { AUTHOR, FOUNDER, ORGANIZATION, PRESTASI_DATA } from '../data/siteInfo';
 import { FOUNDER_META } from '../utils/seoMeta';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import { WhatsappBanner } from './WhatsappCta';
 
 export function FounderPage() {
   useDocumentMeta(FOUNDER_META);
@@ -92,8 +91,6 @@ export function FounderPage() {
           {' '}· <Link to="/tentang">Tentang Platform Duta e-dukasi</Link>
         </p>
       </div>
-
-      <WhatsappBanner />
     </div>
   );
 }

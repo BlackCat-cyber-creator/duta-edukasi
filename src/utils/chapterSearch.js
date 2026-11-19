@@ -29,7 +29,7 @@ function buildEntries() {
     label: `${ch.subject === 'ipa' ? (ch.grade >= 10 ? 'Fisika' : 'IPA') : 'Matematika'} ${ch.grade}`,
     path: chapterPath(ch.grade, ch.id),
     titleText: normalizeSearchText(ch.title),
-    labelText: normalizeSearchText(`${ch.subject === 'ipa' ? 'ipa sains fisika' : 'matematika mtk'} kelas ${ch.grade} ${ch.level} ${ch.phase || ''}`),
+    labelText: normalizeSearchText(`${ch.subject === 'ipa' ? (ch.grade >= 10 ? 'fisika sains' : 'ipa sains') : 'matematika mtk'} kelas ${ch.grade} ${ch.level} ${ch.phase || ''}`),
     bodyText: normalizeSearchText((ch.coreConcepts || []).join(' ')),
     conceptText: normalizeSearchText(conceptLabels(ch.coreConcepts).join(' '))
   }));

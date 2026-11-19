@@ -22,7 +22,8 @@ export default {
     driveFolder: '1cBh4tYsSB8-l2fiGVEyfoes5pKtMQU2h',
     license: 'CC BY 4.0'
   },
-  status: 'needs-human',
+  status: 'published',
+  accessTier: 'olympiad-pro',
   questions: [
     {
       no: 1,
@@ -243,11 +244,11 @@ export default {
           label: '20',
           marks: 1,
           prompt:
-            'A positive integer leaves a remainder of $2$ when divided by $5$, and a remainder of $1$ when divided by $3$. Which of the following could be the number?\n\nA. $7$\nB. $12$\nC. $17$\nD. $22$',
+            'A positive integer leaves a remainder of $2$ when divided by $5$, and a remainder of $1$ when divided by $3$. Which of the following could be the number?\n\nA. $7$\nB. $12$\nC. $17$\nD. $23$',
           answer: 'A. $7$',
           principle: 'Testing modular congruences / remainder conditions.',
           solution:
-            'Test option A ($7$):\n- Divided by $5$: $7 = 1 \\times 5 + 2$ (remainder $2$).\n- Divided by $3$: $7 = 2 \\times 3 + 1$ (remainder $1$).\nBoth remainder conditions are satisfied by $7$.',
+            'Test option A ($7$):\n- Divided by $5$: $7 = 1 \\times 5 + 2$ (remainder $2$).\n- Divided by $3$: $7 = 2 \\times 3 + 1$ (remainder $1$).\nMeanwhile, $12 \\equiv 2 \\pmod 5$ fails modulo $3$, $17 \\equiv 2 \\pmod 3$ fails, and $23 \\equiv 3 \\pmod 5$ fails. Both remainder conditions are uniquely satisfied by $7$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         }
       ]

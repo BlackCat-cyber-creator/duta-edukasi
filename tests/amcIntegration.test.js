@@ -3,6 +3,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
 import { PublicHandbook } from '../src/components/PublicHandbook.jsx';
+import { HomeHubPage } from '../src/components/HomeHubPage.jsx';
 import { AmcChapterView } from '../src/components/handbook/AmcChapterView.jsx';
 import { AuthContext } from '../src/context/AuthContext.jsx';
 import { getVisualConfig } from '../src/components/visuals/registry/index.js';
@@ -265,16 +266,58 @@ describe('UI Component Integration & Rendering', () => {
       )
     );
 
-    // Mode Switchers
+    // Mode Switchers (4 clean subject tabs)
     expect(html).toContain('id="btn-mode-school"');
-    expect(html).toContain('id="btn-mode-amc"');
-    expect(html).toContain('Matematika (Kelas 4–12)');
     expect(html).toContain('id="btn-mode-ipa"');
+    expect(html).toContain('id="btn-mode-fisika"');
+    expect(html).toContain('id="btn-mode-amc"');
+    expect(html).toContain('IPA (SD–SMP)');
+    expect(html).toContain('Fisika (SMA)');
     expect(html).toContain('Olimpiade AMC');
 
     // School Grade Tabs
     expect(html).toContain('id="btn-public-grade-4"');
     expect(html).toContain('id="btn-public-grade-12"');
+  });
+
+  it('should render PublicHandbook on /fisika/kelas-10 with Fisika (SMA) tab and SMA grades only', () => {
+    const html = renderToString(
+      React.createElement(
+        MemoryRouter,
+        { initialEntries: ['/fisika/kelas-10'] },
+        React.createElement(AuthContext.Provider, { value: { isAuthenticated: false, studentId: null } },
+          React.createElement(PublicHandbook, {
+            onLaunchPractice: () => {},
+            onPrintQuest: () => {}
+          })
+        )
+      )
+    );
+
+    expect(html).toContain('Fisika SMA');
+    expect(html).toContain('id="btn-public-grade-10"');
+    expect(html).toContain('id="btn-public-grade-12"');
+    expect(html).not.toContain('id="btn-public-grade-4"');
+    expect(html).not.toContain('CP 046/2025');
+  });
+
+  it('should render HomeHubPage with 4 structural pillars and level filter pills', () => {
+    const html = renderToString(
+      React.createElement(
+        MemoryRouter,
+        { initialEntries: ['/'] },
+        React.createElement(HomeHubPage)
+      )
+    );
+
+    expect(html).toContain('Matematika &amp; Sains');
+    expect(html).toContain('id="btn-hub-level-all"');
+    expect(html).toContain('id="btn-hub-level-en"');
+    expect(html).toContain('/fisika/kelas-10');
+    expect(html).toContain('/paket-soal/kimia');
+    expect(html).toContain('/paket-soal/biologi');
+    expect(html).toContain('/paket-soal/olimpiade-sains');
+    expect(html).not.toContain('wa.me');
   });
 
   it('should render PublicHandbook in AMC mode with level buttons and AMC chapters in sidebar', () => {

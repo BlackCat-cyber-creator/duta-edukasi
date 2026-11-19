@@ -4,7 +4,6 @@ import { ABOUT, AUTHOR, FOUNDER, ORGANIZATION } from '../data/siteInfo';
 import { ABOUT_META } from '../utils/seoMeta';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { gradePath, amcLevelPath } from '../utils/seoRoutes';
-import { WhatsappBanner } from './WhatsappCta';
 
 /** Halaman /tentang: profil Duta e-dukasi, pendiri, pembuat, dan lisensi. */
 export function AboutPage() {
@@ -100,12 +99,10 @@ export function AboutPage() {
         {[8, 10, 12].map((l) => (
           <li key={`amc${l}`}><Link to={amcLevelPath(l)}>Olimpiade AMC {l}</Link></li>
         ))}
-        <li><Link to="/rumus">Kumpulan Rumus Matematika &amp; Fisika</Link></li>
+        <li><Link to="/rumus">Kumpulan Rumus Matematika &amp; Sains</Link></li>
         <li><Link to="/daftar-isi">Daftar Isi per Topik</Link></li>
         <li><Link to="/tka">Latihan TKA</Link></li>
       </ul>
-
-      <WhatsappBanner />
     </div>
   );
 }

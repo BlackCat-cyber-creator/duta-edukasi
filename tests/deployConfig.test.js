@@ -22,6 +22,8 @@ describe('Konfigurasi deploy Vercel', () => {
     expect(map['/matematika/:kelas']).toBe('/matematika/:kelas.html');
     expect(map['/ipa/:kelas/:bab']).toBe('/ipa/:kelas/:bab.html');
     expect(map['/ipa/:kelas']).toBe('/ipa/:kelas.html');
+    expect(map['/fisika/:kelas/:bab']).toBe('/fisika/:kelas/:bab.html');
+    expect(map['/fisika/:kelas']).toBe('/fisika/:kelas.html');
     expect(map['/olimpiade/:level/:bab']).toBe('/olimpiade/:level/:bab.html');
     expect(map['/olimpiade/:level']).toBe('/olimpiade/:level.html');
     expect(map['/paket-soal/:subject/:slug']).toBe('/paket-soal/:subject/:slug.html');
