@@ -1,6 +1,13 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/prestasi",
+      "destination": "/tentang#prestasi",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/matematika/:kelas/:bab",
@@ -77,10 +84,6 @@
     {
       "source": "/pendiri",
       "destination": "/pendiri.html"
-    },
-    {
-      "source": "/prestasi",
-      "destination": "/prestasi.html"
     },
     {
       "source": "/kontak",

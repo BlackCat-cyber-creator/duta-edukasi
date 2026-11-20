@@ -155,7 +155,7 @@ export function OlimpiadeHubPage() {
       <p className="handbook-quicklinks">
         <Link to="/paket-soal">Semua paket soal</Link>
         <span aria-hidden="true">·</span>
-        <Link to="/prestasi">Arsip prestasi siswa</Link>
+        <Link to="/tentang#prestasi">Arsip prestasi siswa</Link>
       </p>
     </div>
   );

@@ -1,13 +1,13 @@
 import { describe, it, expect } from 'vitest';
-import { grade4Data } from '../src/data/grades/grade4';
-import { grade5Data } from '../src/data/grades/grade5';
-import { grade6Data } from '../src/data/grades/grade6';
-import { grade7Data } from '../src/data/grades/grade7';
-import { grade8Data } from '../src/data/grades/grade8';
-import { grade9Data } from '../src/data/grades/grade9';
-import { grade10Data } from '../src/data/grades/grade10';
-import { grade11Data } from '../src/data/grades/grade11';
-import { grade12Data } from '../src/data/grades/grade12';
+import { grade4Data } from '../src/data/matematika/grade4';
+import { grade5Data } from '../src/data/matematika/grade5';
+import { grade6Data } from '../src/data/matematika/grade6';
+import { grade7Data } from '../src/data/matematika/grade7';
+import { grade8Data } from '../src/data/matematika/grade8';
+import { grade9Data } from '../src/data/matematika/grade9';
+import { grade10Data } from '../src/data/matematika/grade10';
+import { grade11Data } from '../src/data/matematika/grade11';
+import { grade12Data } from '../src/data/matematika/grade12';
 
 describe('Answer Distribution and Mathematical Integrity Tests', () => {
   const allGradeData = [

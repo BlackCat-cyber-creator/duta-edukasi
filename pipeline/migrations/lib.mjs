@@ -1,5 +1,5 @@
 /**
- * Utilitas baca/tulis data kelas (src/data/grades/gradeX.js).
+ * Utilitas baca/tulis data kelas (src/data/matematika/gradeX.js).
  * File data adalah JSON murni di balik `export const gradeXData = ...;`,
  * sehingga bisa diubah secara terprogram tanpa merusak format.
  */
@@ -11,7 +11,7 @@ export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 export const GRADES = [4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 export function gradeFile(grade) {
-  return path.join(ROOT, `src/data/grades/grade${grade}.js`);
+  return path.join(ROOT, `src/data/matematika/grade${grade}.js`);
 }
 
 export async function loadGrade(grade) {

@@ -1,0 +1,201 @@
+/* ==========================================================================
+   MOBILE & TABLET BREAKPOINTS (< 960px and < 768px)
+   ========================================================================== */
+@media (max-width: 960px) {
+  .handbook-explorer-grid {
+    grid-template-columns: 100%;
+    gap: 1rem;
+  }
+
+  .mobile-chapter-bar {
+    display: block;
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .mobile-chapter-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 0.85rem;
+    background: #FFFFFF;
+    border: 2px solid var(--primary-blue);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.15s ease;
+    box-sizing: border-box;
+  }
+
+  .chapter-sidebar-wrapper {
+    display: none;
+  }
+
+  .chapter-sidebar-wrapper.mobile-open {
+    display: block;
+    margin-bottom: 1.25rem;
+    animation: fadeInDown 0.2s ease-out;
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (max-width: 768px) {
+  .top-navbar {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .nav-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .brand-logo {
+    gap: 0.5rem;
+  }
+
+  .brand-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  .brand-name-title {
+    font-size: 1.05rem !important;
+  }
+
+  .brand-logo .brand-subtitle {
+    display: none !important; /* Only hide subtitle to keep header compact on mobile, title & badge stay visible! */
+  }
+
+  .handbook-container {
+    padding: 0.75rem 0.65rem 3rem;
+  }
+
+  .editorial-card {
+    padding: 1rem 0.85rem !important;
+  }
+
+  .handbook-hero {
+    padding: 1.15rem 0.85rem !important;
+    margin-bottom: 1rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .handbook-hero-title {
+    font-size: 1.3rem !important;
+  }
+
+  .handbook-hero-desc {
+    font-size: 0.85rem !important;
+    line-height: 1.5;
+  }
+
+  .handbook-search-card {
+    padding: 0.85rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .chapter-header-card {
+    padding: 1rem 0.85rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .chapter-header-title {
+    font-size: 1.2rem !important;
+  }
+
+  .chapter-header-actions {
+    width: 100%;
+  }
+
+  .chapter-header-actions button {
+    flex: 1 1 calc(50% - 0.3rem);
+    min-width: 120px;
+    font-size: 0.75rem !important;
+    padding: 0.45rem 0.5rem !important;
+    justify-content: center;
+  }
+
+  .chapter-header-banner {
+    padding: 1.15rem 0.85rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .chapter-banner-title {
+    font-size: 1.2rem !important;
+  }
+
+  .question-card {
+    padding: 1rem 0.85rem !important;
+  }
+
+  .question-options-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem;
+  }
+
+  .quiz-bottom-panel {
+    padding: 1.15rem 0.85rem !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .quiz-bottom-panel > div:last-child {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .quiz-bottom-panel button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .quiz-result-card {
+    padding: 1.15rem 0.85rem !important;
+  }
+
+  .quiz-result-card > div {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .quiz-result-card > div > div:last-child {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .quiz-result-card button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .teacher-generator-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+}
+
+/* Teacher Dashboard Layout Styles */
+.teacher-generator-grid {
+  display: grid;
+  grid-template-columns: minmax(340px, 440px) 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.teacher-students-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}

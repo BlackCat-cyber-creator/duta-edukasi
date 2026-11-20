@@ -52,7 +52,7 @@ export function bab({ grade, number, slug, title, element, summary, questions })
   };
 }
 
-/** Data satu kelas IPA/Fisika, bentuknya sama dengan src/data/grades/gradeX.js. */
+/** Data satu kelas IPA/Fisika, bentuknya sama dengan src/data/matematika/gradeX.js. */
 export function kelas({ grade, level, phase, description, chapters }) {
   const g = Number(grade);
   return {

@@ -3,15 +3,16 @@
  * Dipakai bersama oleh UI React dan skrip prerender (`scripts/prerender.mjs`)
  * agar HTML statis, meta tags, JSON-LD, dan UI selalu seragam.
  *
- * Catatan fakta: seluruh data di `FOUNDER` dan `PRESTASI_DATA` bersumber terverifikasi
- * dan disinkronkan dengan `docs/research/prestasi.md`.
+ * Catatan fakta: data di `FOUNDER` dan `PRESTASI_DATA` disinkronkan dengan `docs/research/prestasi.md`.
+ * Semua tautan unggahan @jonoyang78 di PRESTASI_DATA sudah dicek cocok (20 November 2026).
+ * Foto prestasi (`photo`) disimpan di public/prestasi/<id>.jpg, diambil dari unggahan sumbernya.
  */
 
 export const ORGANIZATION = {
   name: 'Duta e-dukasi',
   legalName: 'Bimbingan Belajar Duta Edukasi',
   alternateName: 'Bimbingan Belajar Duta Edukasi Pontianak',
-  tagline: 'Materi, Kuis & Paket Soal Matematika & Fisika — Reguler, Privat & Olimpiade',
+  tagline: 'Materi, Kuis & Paket Soal Matematika & Sains — Reguler, Privat & Olimpiade',
   address: {
     streetAddress: 'Jl. Siam No. 37, Benua Melayu Darat',
     addressLocality: 'Pontianak Selatan, Kota Pontianak',
@@ -38,11 +39,36 @@ export const ORGANIZATION = {
   ]
 };
 
+/**
+ * Akun Instagram yang dikunci (privat). Unggahan dari akun ini tidak dapat dibuka atau
+ * disematkan oleh pengunjung yang belum mengikuti akunnya, jadi situs menampilkannya sebagai
+ * teks, bukan tautan mati. Hapus nama akun dari daftar ini begitu akunnya dibuat publik:
+ * tautan sumber dan foto unggahan di halaman Tentang akan langsung aktif.
+ */
+export const PRIVATE_INSTAGRAM_ACCOUNTS = ['jonoyang78'];
+
+/** "https://www.instagram.com/jonoyang78/p/ABC/" -> { account: 'jonoyang78', shortcode: 'ABC' } */
+export function parseInstagramPost(url) {
+  const m = String(url || '').match(/instagram\.com\/(?:([A-Za-z0-9._]+)\/)?(?:p|reel)\/([A-Za-z0-9_-]+)/);
+  if (!m) return null;
+  return { account: m[1] || null, shortcode: m[2] };
+}
+
+/** Benar bila tautan menuju unggahan/profil Instagram yang dapat dibuka publik. */
+export function isPublicInstagramUrl(url) {
+  const m = String(url || '').match(/instagram\.com\/([A-Za-z0-9._]+)/);
+  if (!m) return true; // bukan Instagram: anggap publik
+  return !PRIVATE_INSTAGRAM_ACCOUNTS.includes(m[1].toLowerCase());
+}
+
 export const AUTHOR = {
   name: 'Jevon Naldo Yoshield',
   jobTitle: 'Lead Developer Platform Duta e-dukasi, Pengajar Matematika & Fisika, serta Pembina Olimpiade',
   instagramHandle: '@jevon.n.shield',
   instagramUrl: 'https://www.instagram.com/jevon.n.shield/',
+  whatsappDisplay: '+62 856-9162-0000',
+  whatsappUrl: 'https://wa.me/6285691620000',
+  family: 'Putra Jono Yang (pendiri Duta e-dukasi) dan kakak dari Jenover Viano Yoshield.',
   githubUrl: 'https://github.com/BlackCat-cyber-creator',
   websiteUrl: 'https://jevon-one.vercel.app',
   sameAs: [
@@ -61,6 +87,8 @@ export const FOUNDER = {
   name: 'Jono Yang',
   formalName: 'Jono, S.T.',
   role: 'Pendiri & Pembina Utama Olimpiade Matematika Duta e-dukasi',
+  photo: '/people/jono-yang.jpg',
+  family: 'Ayah sekaligus mentor pertama Jevon Naldo Yoshield (Lead Developer platform ini) dan Jenover Viano Yoshield (peraih 6 medali OSN Matematika).',
   instagramHandle: '@jonoyang78',
   instagramUrl: 'https://www.instagram.com/jonoyang78/',
   youtubeUrl: 'https://www.youtube.com/watch?v=Idcuund-w0Y&t=620s',
@@ -89,10 +117,10 @@ export const FOUNDER = {
 
 export const ABOUT = {
   title: 'Tentang Duta e-dukasi',
-  intro: `Duta e-dukasi (Bimbingan Belajar Duta Edukasi Pontianak) didirikan oleh ${FOUNDER.name} di Jl. Siam No. 37, Pontianak, dan menyediakan portal belajar terbuka Matematika & Fisika bersama ${AUTHOR.name}.`,
+  intro: `Duta e-dukasi (Bimbingan Belajar Duta Edukasi Pontianak) didirikan oleh ${FOUNDER.name} di Jl. Siam No. 37, Pontianak. Portal belajar terbuka Matematika & Sains ini disusun oleh putranya, ${AUTHOR.name}.`,
   paragraphs: [
     'Platform belajar digital Duta e-dukasi hadir untuk membantu siswa Indonesia — baik murid bimbel maupun pelajar umum di mana saja — mengakses materi terstruktur, rumus kunci, contoh soal, kuis diagnostik, serta Paket Soal berstandar kompetisi beserta kunci jawaban dan rubrik penilaiannya secara gratis tanpa login.',
-    'Seluruh materi Kurikulum Merdeka (Matematika Kelas 4–12, IPA SD Kelas 4–6, IPA SMP Kelas 7–9, serta Fisika SMA Kelas 10–12) diselaraskan dengan Capaian Pembelajaran resmi (Keputusan Kepala BSKAP Nomor 046/H/KR/2025), dilengkapi jalur Cambridge-style, latihan TKA SD/SMP/SMA, dan modul persiapan Olimpiade AMC 8, 10, dan 12.',
+    'Seluruh materi Kurikulum Merdeka (Matematika Kelas 4–12, IPA SD Kelas 4–6, IPA SMP Kelas 7–9, serta Fisika, Kimia, dan Biologi SMA Kelas 10–12) diselaraskan dengan Capaian Pembelajaran resmi (Keputusan Kepala BSKAP Nomor 046/H/KR/2025), dilengkapi jalur Cambridge-style, latihan TKA SD/SMP/SMA, dan modul persiapan Olimpiade AMC 8, 10, dan 12.',
     'Selain sumber belajar terbuka berlisensi CC BY 4.0, Bimbingan Belajar Duta Edukasi menyelenggarakan kelas tatap muka (reguler dan privat) untuk mata pelajaran sekolah dan pembinaan intensif Olimpiade Matematika & Fisika di Pontianak maupun daring.'
   ]
 };
@@ -162,6 +190,7 @@ export const FAQS = [
 export const PRESTASI_DATA = [
   {
     id: 'bruce-mikhail-imso-2026',
+    photo: '/prestasi/bruce-mikhail-imso-2026.jpg',
     studentName: 'Bruce Abner Wiriyanto & Mikhail Godwin Yap',
     school: 'SD Plus Gembala Baik & SD Kinderfield Pontianak',
     year: 2026,
@@ -174,19 +203,23 @@ export const PRESTASI_DATA = [
   },
   {
     id: 'jenover-osn-2026',
+    photo: '/prestasi/jenover-osn-2026.jpg',
     studentName: 'Jenover Viano Yoshield',
+    relation: 'Putra pendiri',
     school: 'SMA Pelita Cemerlang Pontianak',
     year: 2026,
     competition: 'Olimpiade Sains Nasional (OSN DIKMEN) Bidang Matematika SMA — Tingkat Nasional',
     award: 'Medali Emas (Gold Medal)',
     level: 'Nasional',
     notes: 'Medali OSN ke-6 (total 2 Emas, 2 Perak, 2 Perunggu). Diumumkan di Universitas Muhammadiyah Malang (UMM), September 2026.',
-    sourceLabel: '@jonoyang78 / @jenovervy',
-    sourceUrl: 'https://www.instagram.com/jonoyang78/p/DdehVp-n-7y/'
+    sourceLabel: '@jenovervy (IG Post)',
+    sourceUrl: 'https://www.instagram.com/jenovervy/p/DdijuQmn7o2/'
   },
   {
     id: 'jenover-tuymaada-apmo-2026',
+    photo: '/prestasi/jenover-tuymaada-apmo-2026.jpg',
     studentName: 'Jenover Viano Yoshield',
+    relation: 'Putra pendiri',
     school: 'SMA Pelita Cemerlang Pontianak',
     year: 2026,
     competition: 'International Tuymaada Olympiad 2026 & Asian Pacific Mathematical Olympiad (APMO) 2026',
@@ -198,7 +231,9 @@ export const PRESTASI_DATA = [
   },
   {
     id: 'jenover-osn-2025',
+    photo: '/prestasi/jenover-osn-2025.jpg',
     studentName: 'Jenover Viano Yoshield',
+    relation: 'Putra pendiri',
     school: 'SMA Pelita Cemerlang Pontianak',
     year: 2025,
     competition: 'OSN Matematika SMA 2025 (Malang) & KOMET ke-21 FMIPA UNTAN Kalbar',
@@ -210,6 +245,7 @@ export const PRESTASI_DATA = [
   },
   {
     id: 'jill-mc-limas-2025',
+    photo: '/prestasi/jill-mc-limas-2025.jpg',
     studentName: 'Jill Anella Lawrence',
     school: 'SMP Katolik Santu Petrus / SD Karya Yosef Pontianak',
     year: 2025,
@@ -222,6 +258,7 @@ export const PRESTASI_DATA = [
   },
   {
     id: 'tobias-omn-simoc-2025',
+    photo: '/prestasi/tobias-omn-simoc-2025.jpg',
     studentName: 'Tobias Angelo Yuriel',
     school: 'Siswa Binaan Duta e-dukasi Pontianak',
     year: 2025,
@@ -234,6 +271,7 @@ export const PRESTASI_DATA = [
   },
   {
     id: 'bryan-osn-sd-2024',
+    photo: '/prestasi/bryan-osn-sd-2024.jpg',
     studentName: 'Bryan Destin Mulyadi',
     school: 'SD Pelita Cemerlang Pontianak',
     year: 2024,
@@ -246,7 +284,9 @@ export const PRESTASI_DATA = [
   },
   {
     id: 'jenover-osn-2024',
+    photo: '/prestasi/jenover-osn-2024.jpg',
     studentName: 'Jenover Viano Yoshield',
+    relation: 'Putra pendiri',
     school: 'SMA Pelita Cemerlang Pontianak',
     year: 2024,
     competition: 'OSN Matematika SMA Tingkat Nasional 2024 & OMITS ke-17 ITS Surabaya',
@@ -258,6 +298,7 @@ export const PRESTASI_DATA = [
   },
   {
     id: 'enrique-mission-2024',
+    photo: '/prestasi/enrique-mission-2024.jpg',
     studentName: 'Enrique Alexis Joskamianto',
     school: 'SMA Katolik Santu Petrus Pontianak / UGM',
     year: 2024,
@@ -270,7 +311,9 @@ export const PRESTASI_DATA = [
   },
   {
     id: 'jevon-onmipa-2024',
+    photo: '/prestasi/jevon-onmipa-2024.jpg',
     studentName: 'Jevon Naldo Yoshield',
+    relation: 'Putra pendiri',
     school: 'SMA Katolik Santu Petrus Pontianak / Mahasiswa Matematika',
     year: 2024,
     competition: 'ONMIPA-PT 2024 Bidang Matematika & MC LIMAS ke-10 FKIP UNTAN (2022)',
@@ -283,6 +326,7 @@ export const PRESTASI_DATA = [
   {
     id: 'jenover-osn-2023',
     studentName: 'Jenover Viano Yoshield',
+    relation: 'Putra pendiri',
     school: 'SMP Katolik Santu Petrus Pontianak',
     year: 2023,
     competition: 'OSN Matematika SMA Tingkat Nasional 2023 (Bogor) & OSP Kalbar 2023',
@@ -294,6 +338,7 @@ export const PRESTASI_DATA = [
   },
   {
     id: 'stephanie-komet-2023',
+    photo: '/prestasi/stephanie-komet-2023.jpg',
     studentName: 'Stephanie Jesslyn',
     school: 'SMA Katolik Santu Petrus Pontianak',
     year: 2023,
@@ -319,6 +364,7 @@ export const PRESTASI_DATA = [
   {
     id: 'jenover-osn-2022',
     studentName: 'Jenover Viano Yoshield',
+    relation: 'Putra pendiri',
     school: 'SMP Katolik Santu Petrus Pontianak',
     year: 2022,
     competition: 'OSN Matematika SMP Nasional 2022 & KSR Matematika 2022 / Academy of Champions S1',

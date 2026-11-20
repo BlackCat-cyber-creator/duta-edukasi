@@ -2,7 +2,7 @@
 
 > **Instruksi untuk AI Pelaksana:**
 > Anda berperan sebagai **Lead Math Curriculum Specialist, EdTech Learning Architect & Automated QA Engineer**. 
-> Tugas utama Anda adalah menjalankan pipeline kurikulum, mengaudit dataset (`src/data/grades/grade4.js` s.d. `grade12.js`), serta memastikan bahwa setiap bab memiliki konten yang **MANTAP, KOMPREHENSIF, MASUK AKAL, dan MEMILIKI BANYAK LATIHAN SOAL BERKUALITAS TINGGI** sesuai buku siswa resmi Kurikulum Merdeka.
+> Tugas utama Anda adalah menjalankan pipeline kurikulum, mengaudit dataset (`src/data/matematika/grade4.js` s.d. `grade12.js`), serta memastikan bahwa setiap bab memiliki konten yang **MANTAP, KOMPREHENSIF, MASUK AKAL, dan MEMILIKI BANYAK LATIHAN SOAL BERKUALITAS TINGGI** sesuai buku siswa resmi Kurikulum Merdeka.
 
 ---
 
@@ -19,10 +19,10 @@ Proyek ini menggunakan arsitektur otomasi kurikulum di folder `pipeline/`:
 2. **Jalankan Validasi Otomatis Skema, KaTeX & Kebijakan Sanitasi:**
    ```bash
    # Validasi jenjang tertentu:
-   node pipeline/validator.cjs src/data/grades/grade4.js
+   node pipeline/validator.cjs src/data/matematika/grade4.js
 
    # Validasi seluruh jenjang secara batch:
-   node -e "for(let g=4; g<=12; g++) console.log('Grade '+g+':', require('child_process').execSync('node pipeline/validator.cjs src/data/grades/grade'+g+'.js').toString().trim())"
+   node -e "for(let g=4; g<=12; g++) console.log('Grade '+g+':', require('child_process').execSync('node pipeline/validator.cjs src/data/matematika/grade'+g+'.js').toString().trim())"
    ```
 
 3. **Ekstraksi Teks Asli dari Buku Siswa PDF Resmi:**
@@ -41,7 +41,7 @@ Proyek ini menggunakan arsitektur otomasi kurikulum di folder `pipeline/`:
 
 ## II. STANDAR EMAS KONTEN: APAKAH SUDAH "MANTAP & KOMPREHENSIF"?
 
-Setiap bab di `src/data/grades/grade<N>.js` tidak boleh hanya berupa rangkuman dangkal atau sekadar *placeholder*. Setiap materi harus memenuhi **6 Pilar Pedagogi Inti**:
+Setiap bab di `src/data/matematika/grade<N>.js` tidak boleh hanya berupa rangkuman dangkal atau sekadar *placeholder*. Setiap materi harus memenuhi **6 Pilar Pedagogi Inti**:
 
 ### 1. Pengantar & Konteks Konsep (`summary.overview`) — *Otentik & Bermakna*
 - **Konteks Nyata Otentik:** Buka bab dengan studi kasus atau fenomena dunia nyata yang langsung menyentuh imajinasi siswa (contoh: pertumbuhan tinggi tanaman teratur, lintasan pantulan bola, pembagian kue tar/pizza, rute perjalanan antarkota Kudus-Surabaya-Malang, perhitungan angsuran modal usaha UMKM).
@@ -116,7 +116,7 @@ Jika Anda ditugaskan mengaudit jenjang tertentu (misalnya Kelas 4, Kelas 8, atau
    python pipeline/status.py
    ```
 2. **Buka & Baca File Data:**
-   Buka `src/data/grades/grade<N>.js`. Evaluasi apakah:
+   Buka `src/data/matematika/grade<N>.js`. Evaluasi apakah:
    - Pengantar konsepnya menggugah rasa ingin tahu dan bermakna?
    - Teori dan rumus intinya sudah mengupas seluruh subbab resmi?
    - Latihan soalnya sudah banyak, bervariasi tingkatannya, dan angkanya masuk akal?
@@ -126,11 +126,11 @@ Jika Anda ditugaskan mengaudit jenjang tertentu (misalnya Kelas 4, Kelas 8, atau
      ```bash
      python pipeline/extract_chapter.py --grade <N> --chapter <C>
      ```
-   - Perkaya materi dan tambah latihan soal di builder `pipeline/builders/build_grade<N>.py` atau langsung di `src/data/grades/grade<N>.js`.
-   - Jalankan buildernya: `python pipeline/builders/build_grade<N>.py`.
+   - Perkaya materi dan tambah latihan soal langsung di `src/data/matematika/grade<N>.js`.
+   - Jangan menjalankan skrip lama di `pipeline/archive/builders/`: skrip itu menimpa perbaikan yang sudah masuk lewat migrasi.
 4. **Validasi Skema & Sanitasi:**
    ```bash
-   node pipeline/validator.cjs src/data/grades/grade<N>.js
+   node pipeline/validator.cjs src/data/matematika/grade<N>.js
    ```
    Pastikan menghasilkan `✅ VALIDATION PASSED!`.
 5. **Verifikasi Akhir:**

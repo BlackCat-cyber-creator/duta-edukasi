@@ -34,15 +34,15 @@ export const EXAM_CATEGORIES = [
 ];
 
 export const gradeLoaders = {
-  4: () => import("./grades/grade4.js").then((m) => m.grade4Data),
-  5: () => import("./grades/grade5.js").then((m) => m.grade5Data),
-  6: () => import("./grades/grade6.js").then((m) => m.grade6Data),
-  7: () => import("./grades/grade7.js").then((m) => m.grade7Data),
-  8: () => import("./grades/grade8.js").then((m) => m.grade8Data),
-  9: () => import("./grades/grade9.js").then((m) => m.grade9Data),
-  10: () => import("./grades/grade10.js").then((m) => m.grade10Data),
-  11: () => import("./grades/grade11.js").then((m) => m.grade11Data),
-  12: () => import("./grades/grade12.js").then((m) => m.grade12Data),
+  4: () => import("./matematika/grade4.js").then((m) => m.grade4Data),
+  5: () => import("./matematika/grade5.js").then((m) => m.grade5Data),
+  6: () => import("./matematika/grade6.js").then((m) => m.grade6Data),
+  7: () => import("./matematika/grade7.js").then((m) => m.grade7Data),
+  8: () => import("./matematika/grade8.js").then((m) => m.grade8Data),
+  9: () => import("./matematika/grade9.js").then((m) => m.grade9Data),
+  10: () => import("./matematika/grade10.js").then((m) => m.grade10Data),
+  11: () => import("./matematika/grade11.js").then((m) => m.grade11Data),
+  12: () => import("./matematika/grade12.js").then((m) => m.grade12Data),
 };
 
 export const ipaGradeLoaders = {
@@ -52,9 +52,9 @@ export const ipaGradeLoaders = {
   7: () => import("./ipa/grade7.js").then((m) => m.ipaGrade7Data),
   8: () => import("./ipa/grade8.js").then((m) => m.ipaGrade8Data),
   9: () => import("./ipa/grade9.js").then((m) => m.ipaGrade9Data),
-  10: () => import("./ipa/grade10.js").then((m) => m.ipaGrade10Data),
-  11: () => import("./ipa/grade11.js").then((m) => m.ipaGrade11Data),
-  12: () => import("./ipa/grade12.js").then((m) => m.ipaGrade12Data),
+  10: () => import("./fisika/grade10.js").then((m) => m.fisikaGrade10Data),
+  11: () => import("./fisika/grade11.js").then((m) => m.fisikaGrade11Data),
+  12: () => import("./fisika/grade12.js").then((m) => m.fisikaGrade12Data),
 };
 
 export const kimiaGradeLoaders = {

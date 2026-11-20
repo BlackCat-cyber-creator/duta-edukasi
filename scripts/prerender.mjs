@@ -7,7 +7,7 @@
  *
  * Keluaran utama:
  *   dist/index.html, dist/app.html
- *   dist/tentang.html, dist/program.html, dist/pendiri.html, dist/prestasi.html, dist/kontak.html
+ *   dist/tentang.html (termasuk prestasi siswa), dist/program.html, dist/pendiri.html, dist/kontak.html
  *   dist/paket-soal.html, dist/paket-soal/<mapel>.html, dist/paket-soal/<mapel>/<slug>.html
  *   dist/rumus.html, dist/daftar-isi.html, dist/tka.html, dist/tka/<paket>.html
  *   dist/matematika/kelas-N[.html|/<bab>.html], dist/ipa/kelas-N[.html|/<bab>.html] (IPA SD–SMP; Kelas 10–12 = stub ke /fisika)
@@ -50,18 +50,18 @@ import { ipaGrade6Data } from '../src/data/ipa/grade6.js';
 import { ipaGrade7Data } from '../src/data/ipa/grade7.js';
 import { ipaGrade8Data } from '../src/data/ipa/grade8.js';
 import { ipaGrade9Data } from '../src/data/ipa/grade9.js';
-import { ipaGrade10Data } from '../src/data/ipa/grade10.js';
-import { ipaGrade11Data } from '../src/data/ipa/grade11.js';
-import { ipaGrade12Data } from '../src/data/ipa/grade12.js';
-import { grade4Data } from '../src/data/grades/grade4.js';
-import { grade5Data } from '../src/data/grades/grade5.js';
-import { grade6Data } from '../src/data/grades/grade6.js';
-import { grade7Data } from '../src/data/grades/grade7.js';
-import { grade8Data } from '../src/data/grades/grade8.js';
-import { grade9Data } from '../src/data/grades/grade9.js';
-import { grade10Data } from '../src/data/grades/grade10.js';
-import { grade11Data } from '../src/data/grades/grade11.js';
-import { grade12Data } from '../src/data/grades/grade12.js';
+import { fisikaGrade10Data } from '../src/data/fisika/grade10.js';
+import { fisikaGrade11Data } from '../src/data/fisika/grade11.js';
+import { fisikaGrade12Data } from '../src/data/fisika/grade12.js';
+import { grade4Data } from '../src/data/matematika/grade4.js';
+import { grade5Data } from '../src/data/matematika/grade5.js';
+import { grade6Data } from '../src/data/matematika/grade6.js';
+import { grade7Data } from '../src/data/matematika/grade7.js';
+import { grade8Data } from '../src/data/matematika/grade8.js';
+import { grade9Data } from '../src/data/matematika/grade9.js';
+import { grade10Data } from '../src/data/matematika/grade10.js';
+import { grade11Data } from '../src/data/matematika/grade11.js';
+import { grade12Data } from '../src/data/matematika/grade12.js';
 import { amc8Data } from '../src/data/amc/amc8Data.js';
 import { amc10Data } from '../src/data/amc/amc10Data.js';
 import { amc12Data } from '../src/data/amc/amc12Data.js';
@@ -71,7 +71,6 @@ import {
   ABOUT_META,
   PROGRAM_META,
   FOUNDER_META,
-  PRESTASI_META,
   CONTACT_META,
   TOPIC_INDEX_META,
   FORMULA_INDEX_META,
@@ -88,12 +87,12 @@ import {
   subjectDisplayName,
   plainText
 } from '../src/utils/seoMeta.js';
-import { AUTHOR, ABOUT, FOUNDER, ORGANIZATION, PROGRAMS, FAQS, PRESTASI_DATA } from '../src/data/siteInfo.js';
+import { AUTHOR, ABOUT, FOUNDER, ORGANIZATION, PROGRAMS, FAQS, PRESTASI_DATA, isPublicInstagramUrl, parseInstagramPost } from '../src/data/siteInfo.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.resolve(__dirname, '../dist');
 const GRADES = [grade4Data, grade5Data, grade6Data, grade7Data, grade8Data, grade9Data, grade10Data, grade11Data, grade12Data];
-const IPA = [ipaGrade4Data, ipaGrade5Data, ipaGrade6Data, ipaGrade7Data, ipaGrade8Data, ipaGrade9Data, ipaGrade10Data, ipaGrade11Data, ipaGrade12Data].filter((g) => g.chapters.length > 0);
+const IPA = [ipaGrade4Data, ipaGrade5Data, ipaGrade6Data, ipaGrade7Data, ipaGrade8Data, ipaGrade9Data, fisikaGrade10Data, fisikaGrade11Data, fisikaGrade12Data].filter((g) => g.chapters.length > 0);
 const KIMIA = [kimiaGrade10Data, kimiaGrade11Data, kimiaGrade12Data].filter((g) => g.chapters.length > 0);
 const BIOLOGI = [biologiGrade10Data, biologiGrade11Data, biologiGrade12Data].filter((g) => g.chapters.length > 0);
 const AMC = [amc8Data, amc10Data, amc12Data];
@@ -141,7 +140,8 @@ fs.writeFileSync(path.join(DIST, 'app.html'), shell);
 
 const FOOTER_HTML = `<footer class="seo-footer">
   <p><strong>${escapeHtml(ORGANIZATION.name)}</strong> — Platform Belajar Terbuka Matematika &amp; Sains · Disusun oleh <a href="/tentang">${escapeHtml(AUTHOR.name)}</a>.</p>
-  <p><a href="/">Materi</a> · <a href="/olimpiade">Olimpiade</a> · <a href="/paket-soal">Paket Soal</a> · <a href="/prestasi">Prestasi</a> · <a href="/daftar-isi">Daftar isi</a> · <a href="/rumus">Kumpulan rumus</a> · <a href="/tka">Latihan TKA</a> · <a href="/pendiri">Pendiri</a> · <a href="/tentang">Tentang</a> · Lisensi <a href="${escapeHtml(ORGANIZATION.licenseUrl)}">${escapeHtml(ORGANIZATION.licenseName)}</a></p>
+  <p>Belajar: <a href="/">Materi</a> · <a href="/daftar-isi">Daftar isi</a> · <a href="/rumus">Kumpulan rumus</a> · <a href="/tka">Latihan TKA</a> · <a href="/olimpiade">Olimpiade</a> · <a href="/paket-soal">Paket Soal</a></p>
+  <p>Tentang kami: <a href="/tentang">Tentang</a> · <a href="/tentang#prestasi">Prestasi siswa</a> · <a href="/pendiri">Pendiri</a> · <a href="/program">Program</a> · <a href="/kontak">Kontak</a> · Lisensi <a href="${escapeHtml(ORGANIZATION.licenseUrl)}">${escapeHtml(ORGANIZATION.licenseName)}</a></p>
 </footer>`;
 
 function renderPage({ meta, body, jsonLd = [] }) {
@@ -366,7 +366,7 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
   const body = `
     <h1>Matematika &amp; Sains — ${escapeHtml(ORGANIZATION.name)}</h1>
     <p>${escapeHtml(HOME_META.description)}</p>
-    <p><a href="/paket-soal">Paket Soal</a> · <a href="/olimpiade">Olimpiade &amp; Kompetisi</a> · <a href="/prestasi">Prestasi Siswa</a> · <a href="/daftar-isi">Daftar Isi</a> · <a href="/rumus">Kumpulan Rumus</a> · <a href="/tka">Latihan TKA</a> · <a href="/tentang">Tentang</a></p>
+    <p><a href="/paket-soal">Paket Soal</a> · <a href="/olimpiade">Olimpiade &amp; Kompetisi</a> · <a href="/tentang#prestasi">Prestasi Siswa</a> · <a href="/daftar-isi">Daftar Isi</a> · <a href="/rumus">Kumpulan Rumus</a> · <a href="/tka">Latihan TKA</a> · <a href="/tentang">Tentang</a></p>
     <section><h2>1. Materi Sekolah — Matematika &amp; Sains</h2>
       <h3>Matematika (Kelas 4–12)</h3><ul>${gradeList}</ul>
       ${ipaSchoolList ? `<h3>IPA (SD &amp; SMP, Kelas 4–9)</h3><ul>${ipaSchoolList}</ul>` : ''}
@@ -380,7 +380,7 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
         <li><a href="/olimpiade"><strong>Pusat Olimpiade: OSN, SASMO, AMC, HKIMO, TIMO, SIMOC &amp; Seri Pembinaan</strong></a></li>
         <li><a href="/paket-soal/olimpiade-mat">Paket Soal Olimpiade Matematika (SD &amp; SMP)</a></li>
         <li><a href="/paket-soal/olimpiade-sains">Paket Soal Olimpiade Sains / OSN IPA</a></li>
-        <li><a href="/prestasi">Arsip Prestasi Siswa</a></li>
+        <li><a href="/tentang#prestasi">Arsip Prestasi Siswa</a></li>
       </ul>
       <ul>${amcList}</ul>
     </section>
@@ -417,7 +417,7 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
 }
 
 // ---------------------------------------------------------------------------
-// Halaman Informasi Bimbel (/tentang, /program, /pendiri, /prestasi, /kontak)
+// Halaman Informasi Bimbel (/tentang + prestasi, /program, /pendiri, /kontak)
 // ---------------------------------------------------------------------------
 {
   const body = `
@@ -425,17 +425,29 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
     <h1>${escapeHtml(ABOUT.title)}</h1>
     <p><strong>${escapeHtml(ABOUT.intro)}</strong></p>
     ${ABOUT.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join('\n')}
-    <h2>Pendiri &amp; Penyusun Portal</h2>
+    <h2 id="tim">Pendiri &amp; Tim</h2>
     <ul>
-      <li>Pendiri Bimbel: <a href="/pendiri">${escapeHtml(FOUNDER.name)} (${escapeHtml(FOUNDER.formalName)})</a> — ${escapeHtml(FOUNDER.role)}</li>
-      <li>Lead Developer &amp; Penyusun Portal: ${escapeHtml(AUTHOR.name)} — ${escapeHtml(AUTHOR.jobTitle)} (${AUTHOR.instagramUrl ? `<a href="${escapeHtml(AUTHOR.instagramUrl)}">${escapeHtml(AUTHOR.instagramHandle)}</a> · ` : ''}${AUTHOR.githubUrl ? `<a href="${escapeHtml(AUTHOR.githubUrl)}">GitHub</a>` : ''})</li>
+      <li>Pendiri Bimbel: <a href="/pendiri">${escapeHtml(FOUNDER.name)} (${escapeHtml(FOUNDER.formalName)})</a> — ${escapeHtml(FOUNDER.role)}. ${escapeHtml(FOUNDER.family || '')}</li>
+      <li>Lead Developer &amp; Penyusun Portal: ${escapeHtml(AUTHOR.name)} — ${escapeHtml(AUTHOR.jobTitle)}. ${escapeHtml(AUTHOR.family || '')} (${AUTHOR.instagramUrl ? `<a href="${escapeHtml(AUTHOR.instagramUrl)}">${escapeHtml(AUTHOR.instagramHandle)}</a> · ` : ''}${AUTHOR.githubUrl ? `<a href="${escapeHtml(AUTHOR.githubUrl)}">GitHub</a>` : ''}${AUTHOR.whatsappUrl ? ` · <a href="${escapeHtml(AUTHOR.whatsappUrl)}">WhatsApp ${escapeHtml(AUTHOR.whatsappDisplay)}</a>` : ''})</li>
       <li>Lokasi &amp; Kontak: ${escapeHtml(ORGANIZATION.fullAddress)} · WhatsApp ${escapeHtml(ORGANIZATION.whatsappDisplay)}</li>
     </ul>
-    ${(AUTHOR.bioHighlights || []).length ? `<h2>Tentang Lead Developer Portal (${escapeHtml(AUTHOR.name)})</h2><ul>${AUTHOR.bioHighlights.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>` : ''}
+    ${(AUTHOR.bioHighlights || []).length ? `<h3>Tentang Lead Developer Portal (${escapeHtml(AUTHOR.name)})</h3><ul>${AUTHOR.bioHighlights.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>` : ''}
+    <h2 id="prestasi">Prestasi Siswa &amp; Alumni</h2>
+    <ul>${PRESTASI_DATA.map((p) => {
+      const source = !p.sourceUrl ? '' : isPublicInstagramUrl(p.sourceUrl)
+        ? ` (<a href="${escapeHtml(p.sourceUrl)}">${escapeHtml(p.sourceLabel)}</a>)`
+        : ` (Dokumentasi: @${escapeHtml(parseInstagramPost(p.sourceUrl)?.account || 'instagram')}, akun Instagram privat)`;
+      return `
+      <li>
+        <strong>${escapeHtml(p.year)} — ${escapeHtml(p.award)}</strong>: ${escapeHtml(p.studentName)}${p.relation ? ` (${escapeHtml(p.relation)})` : ''}, ${escapeHtml(p.school)} — ${escapeHtml(p.competition)}.
+        ${p.notes ? escapeHtml(p.notes) : ''}${source}
+      </li>`;
+    }).join('\n')}
+    </ul>
     <h2>Lisensi Terbuka</h2>
     <p>Seluruh materi berlisensi <a href="${escapeHtml(ORGANIZATION.licenseUrl)}">${escapeHtml(ORGANIZATION.licenseName)}</a> dengan atribusi kepada ${escapeHtml(ORGANIZATION.name)}.</p>
     <h2>Mulai Belajar</h2>
-    <ul><li><a href="/paket-soal">Paket Soal Terstruktur</a></li>${GRADES.map((g) => `<li><a href="${gradePath(g.grade)}">Matematika Kelas ${g.grade}</a></li>`).join('')}${IPA.map((g) => `<li><a href="${gradePath(g.grade, 'ipa')}">${subjectDisplayName('ipa', g.grade)} Kelas ${g.grade}</a></li>`).join('')}${KIMIA.map((g) => `<li><a href="${gradePath(g.grade, 'kimia')}">Kimia Kelas ${g.grade}</a></li>`).join('')}${BIOLOGI.map((g) => `<li><a href="${gradePath(g.grade, 'biologi')}">Biologi Kelas ${g.grade}</a></li>`).join('')}<li><a href="/olimpiade">Olimpiade &amp; Kompetisi</a></li>${AMC.map((d) => `<li><a href="${amcLevelPath(d.level)}">Olimpiade AMC ${d.level}</a></li>`).join('')}<li><a href="/rumus">Kumpulan Rumus</a></li><li><a href="/daftar-isi">Daftar Isi per Topik</a></li><li><a href="/tka">Latihan TKA</a></li></ul>`;
+    <ul><li><a href="/">Materi per kelas (Matematika, IPA, Fisika, Kimia, Biologi)</a></li><li><a href="/daftar-isi">Daftar Isi per Topik</a></li><li><a href="/rumus">Kumpulan Rumus</a></li><li><a href="/tka">Latihan TKA</a></li><li><a href="/olimpiade">Olimpiade &amp; Kompetisi</a></li><li><a href="/paket-soal">Paket Soal Terstruktur</a></li></ul>`;
   const ld = [
     ORGANIZATION_LD,
     {
@@ -489,10 +501,12 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
   const body = `
     ${breadcrumbHtml([['Beranda', '/'], ['Pendiri', FOUNDER_META.path]])}
     <h1>${escapeHtml(FOUNDER.name)} (${escapeHtml(FOUNDER.formalName)}) — ${escapeHtml(FOUNDER.role)}</h1>
+    ${FOUNDER.photo ? `<img src="${escapeHtml(FOUNDER.photo)}" alt="Foto ${escapeHtml(FOUNDER.name)}" width="112" height="112">` : ''}
+    ${FOUNDER.family ? `<p>${escapeHtml(FOUNDER.family)}</p>` : ''}
     <ul>${FOUNDER.bioHighlights.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>
     <h2>Rekam Jejak Terverifikasi</h2>
     <ul>${FOUNDER.credentials.map((c) => `<li><strong>${escapeHtml(c.year)} — ${escapeHtml(c.title)}</strong>: ${escapeHtml(c.detail)} (<a href="${escapeHtml(c.sourceUrl)}">Sumber</a>)</li>`).join('')}</ul>
-    <p>Instagram: <a href="${escapeHtml(FOUNDER.instagramUrl)}">${escapeHtml(FOUNDER.instagramHandle)}</a> · <a href="/prestasi">Prestasi Siswa Binaan</a></p>
+    <p>Instagram: <a href="${escapeHtml(FOUNDER.instagramUrl)}">${escapeHtml(FOUNDER.instagramHandle)}</a> · <a href="/tentang#prestasi">Prestasi Siswa Binaan</a></p>
     <h2>Tim Pengajar &amp; Lead Developer Portal Digital</h2>
     <p><strong>${escapeHtml(AUTHOR.name)}</strong> — ${escapeHtml(AUTHOR.jobTitle)}.</p>
     <ul>${(AUTHOR.bioHighlights || []).map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>
@@ -511,24 +525,7 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
   addToSitemap(FOUNDER_META.path, '0.7');
 }
 
-{
-  const body = `
-    ${breadcrumbHtml([['Beranda', '/'], ['Prestasi Siswa', PRESTASI_META.path]])}
-    <h1>Prestasi Siswa &amp; Alumni ${escapeHtml(ORGANIZATION.name)}</h1>
-    <p>${escapeHtml(PRESTASI_META.description)}</p>
-    <ul>${PRESTASI_DATA.map((p) => `
-      <li>
-        <strong>${escapeHtml(p.year)} — ${escapeHtml(p.award)}</strong>: ${escapeHtml(p.studentName)} (${escapeHtml(p.school)}) — ${escapeHtml(p.competition)}.
-        ${p.notes ? escapeHtml(p.notes) : ''} (<a href="${escapeHtml(p.sourceUrl)}">${escapeHtml(p.sourceLabel)}</a>)
-      </li>`).join('\n')}
-    </ul>`;
-  writePage(PRESTASI_META.path, renderPage({
-    meta: PRESTASI_META,
-    body,
-    jsonLd: [ORGANIZATION_LD, breadcrumbLd([['Beranda', '/'], ['Prestasi Siswa', PRESTASI_META.path]])]
-  }));
-  addToSitemap(PRESTASI_META.path, '0.8');
-}
+// /prestasi kini bagian dari /tentang (#prestasi); Vercel mengalihkan alamat lama secara permanen.
 
 {
   const body = `
@@ -736,7 +733,7 @@ renderCurriculum('biologi', BIOLOGI);
     <h1>Olimpiade &amp; Kompetisi</h1>
     <p>${escapeHtml(OLIMPIADE_HUB_META.description)}</p>
     ${blocks}
-    <p><a href="/paket-soal">Semua paket soal</a> · <a href="/prestasi">Arsip prestasi siswa</a></p>`;
+    <p><a href="/paket-soal">Semua paket soal</a> · <a href="/tentang#prestasi">Arsip prestasi siswa</a></p>`;
   writePage(OLIMPIADE_HUB_META.path, renderPage({ meta: OLIMPIADE_HUB_META, body, jsonLd: [breadcrumbLd(crumbs)] }));
   addToSitemap(OLIMPIADE_HUB_META.path, '0.9');
 }
@@ -942,7 +939,7 @@ const tkaGeneratedPackets = [];
     `- [Paket Soal Terstruktur](${SITE_URL}/paket-soal): Arsip paket soal Matematika, Fisika, Kimia, Biologi & Olimpiade ber-rubrik dalam bahasa asli.`,
     `- [Program Bimbel](${SITE_URL}/program): Kelas reguler, privat, dan pembinaan olimpiade di Pontianak & daring.`,
     `- [Profil Pendiri (${FOUNDER.name})](${SITE_URL}/pendiri): Rekam jejak pendiri & pembina utama.`,
-    `- [Prestasi Siswa](${SITE_URL}/prestasi): Catatan prestasi siswa terverifikasi.`,
+    `- [Prestasi Siswa](${SITE_URL}/tentang#prestasi): Catatan prestasi siswa terverifikasi (bagian dari halaman Tentang).`,
     `- [Kontak & Lokasi](${SITE_URL}/kontak): Alamat Pontianak, peta, dan WhatsApp.`,
     `- [Daftar Isi per Topik](${SITE_URL}/daftar-isi): Seluruh bab Matematika, IPA, Fisika, Kimia, Biologi, dan AMC per topik.`,
     `- [Kumpulan Rumus](${SITE_URL}/rumus): Ensiklopedia rumus kunci dengan notasi LaTeX.`,

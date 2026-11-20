@@ -1,6 +1,8 @@
 # Curriculum Alignment Pipeline
 
-Pipeline terstruktur untuk melakukan ekstraksi, pemodelan, dan penyelarasan materi matematika dari buku teks resmi ke dalam platform web **AwesomeMathJ**.
+Pipeline terstruktur untuk melakukan ekstraksi, pemodelan, dan penyelarasan materi matematika dari buku teks resmi ke dalam platform web **Duta e-dukasi**.
+
+> Skrip pembuat data lama ada di `pipeline/archive/` dan tidak boleh dijalankan lagi (lihat README di sana).
 
 ---
 
@@ -11,8 +13,8 @@ graph TD
     A[Buku Teks Resmi PDF di scratch/] --> B[pipeline/catalog_manifest.json]
     B --> C[python pipeline/extract_chapter.py --grade X --chapter Y]
     C --> D[pipeline/extracted/gradeX_babY.txt]
-    D --> E[Generator / Adaptor JS Module di src/data/grades/gradeX.js]
-    E --> F[node pipeline/validator.cjs src/data/grades/gradeX.js]
+    D --> E[Generator / Adaptor JS Module di src/data/matematika/gradeX.js]
+    E --> F[node pipeline/validator.cjs src/data/matematika/gradeX.js]
     F --> G[npm run build & browser verification]
     G --> H[python pipeline/status.py]
 ```
@@ -41,7 +43,7 @@ graph TD
      * ❌ Tidak ada tag gimik ujian (`[UH]`, `[PAS]`, `[HOTS]`).
    * Perintah:
      ```bash
-     node pipeline/validator.cjs src/data/grades/grade5.js
+     node pipeline/validator.cjs src/data/matematika/grade5.js
      ```
 
 4. **Monitor Status Pipeline Real-Time (`pipeline/status.py`)**
@@ -56,7 +58,7 @@ graph TD
 ## 3. Langkah Kerja Bertahap (Step-by-Step)
 Untuk setiap kelas berikutnya:
 1. Jalankan `python pipeline/extract_chapter.py --grade X --chapter Y` untuk bab yang akan digarap.
-2. Tulis data modul terstruktur ke `src/data/grades/gradeX.js` mengadaptasi konteks nyata dan soal dari buku teks.
-3. Jalankan `node pipeline/validator.cjs src/data/grades/gradeX.js`.
+2. Tulis data modul terstruktur ke `src/data/matematika/gradeX.js` mengadaptasi konteks nyata dan soal dari buku teks.
+3. Jalankan `node pipeline/validator.cjs src/data/matematika/gradeX.js`.
 4. Jalankan `npm run build` untuk memvalidasi bundle Vite.
 5. Jalankan `python pipeline/status.py` untuk memeriksa progres keseluruhan.

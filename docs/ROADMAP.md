@@ -144,7 +144,7 @@ Yang diterapkan di AwesomeMathJ:
 
 ### Tahap 5 — Olimpiade & Pendalaman Bank Soal (Matematika & Fisika)
 - Rapikan modul AMC (6 gambar di `amcRegistry.js` yang belum terhubung) dan tambah jalur **OSN/KSN Matematika & Fisika**.
-- Tambah paket soal UTBK/SNBT (Penalaran Matematika) dan perluas variasi soal per bab (modularisasi `src/data/grades/gradeX.js` menjadi satu file per bab seperti `src/data/ipa/`).
+- Tambah paket soal UTBK/SNBT (Penalaran Matematika) dan perluas variasi soal per bab (modularisasi `src/data/matematika/gradeX.js` menjadi satu file per bab seperti `src/data/ipa/`).
 
 ## Kebutuhan dari Anda
 

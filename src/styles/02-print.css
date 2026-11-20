@@ -1,0 +1,60 @@
+/* ==========================================================================
+   PRINT STYLESHEET: LEMBAR KERJA UJIAN RESMI CETAK A4
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 10mm 12mm 10mm;
+  }
+
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #111827 !important;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  .top-navbar,
+  .no-print,
+  button:not(.allow-print),
+  .nav-pill-group,
+  .brand-logo,
+  .floating-scratchpad-btn {
+    display: none !important;
+  }
+
+  .printable-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #FFFFFF !important;
+  }
+
+  .editorial-card {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .print-header {
+    border-bottom: 2px solid #111827 !important;
+    padding-bottom: 12pt;
+    margin-bottom: 14pt;
+  }
+
+  .worksheet-question-item {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+}

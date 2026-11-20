@@ -71,7 +71,7 @@ export const OLIMPIADE_HUB_META = {
 
 export const ABOUT_META = {
   title: `Tentang ${SITE_NAME} — Platform Belajar Matematika & Sains Terbuka`,
-  description: `Tentang ${SITE_NAME}, portal belajar Matematika & Sains gratis berlisensi CC BY 4.0 bersama pendiri ${FOUNDER.name} dan Lead Developer ${AUTHOR.name}.`,
+  description: `Tentang ${SITE_NAME}: portal belajar Matematika & Sains gratis berlisensi CC BY 4.0 dari pendiri ${FOUNDER.name} dan putranya, Lead Developer ${AUTHOR.name}, beserta prestasi siswa binaan.`,
   path: '/tentang'
 };
 
@@ -85,12 +85,6 @@ export const FOUNDER_META = {
   title: `Profil Pendiri: ${FOUNDER.name} (${FOUNDER.formalName}) | ${SITE_NAME}`,
   description: `Mengenal ${FOUNDER.name} (${FOUNDER.formalName}), pendiri ${ORGANIZATION.legalName} Pontianak dan pembina Olimpiade Matematika (OSN-Guru 2013 Matematika SMP, Bandung).`,
   path: '/pendiri'
-};
-
-export const PRESTASI_META = {
-  title: `Prestasi Siswa & Peraih Medali Olimpiade | ${SITE_NAME}`,
-  description: `Catatan prestasi terverifikasi siswa binaan ${SITE_NAME} di ajang Olimpiade Sains Nasional (OSN Matematika) dan kompetisi sains nasional/internasional.`,
-  path: '/prestasi'
 };
 
 export const CONTACT_META = {

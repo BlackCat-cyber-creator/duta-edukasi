@@ -20,7 +20,7 @@
       "grade": 4,
       "level": "SD",
       "phase": "Fase B",
-      "dataFile": "src/data/grades/grade4.js",
+      "dataFile": "src/data/matematika/grade4.js",
       "pdfFile": "scratch/Matematika-BS-KLS-IV.pdf",
       "status": "COMPLETED",
       "chapters": [
@@ -66,7 +66,7 @@
       "grade": 5,
       "level": "SD",
       "phase": "Fase C",
-      "dataFile": "src/data/grades/grade5.js",
+      "dataFile": "src/data/matematika/grade5.js",
       "pdfFile": "scratch/Matematika-BS-KLS-V.pdf",
       "status": "COMPLETED",
       "chapters": [
@@ -130,7 +130,7 @@
       "grade": 6,
       "level": "SD",
       "phase": "Fase C",
-      "dataFile": "src/data/grades/grade6.js",
+      "dataFile": "src/data/matematika/grade6.js",
       "pdfFile": "scratch/Matematika-BS-KLS-VI.pdf",
       "status": "COMPLETED",
       "chapters": [
@@ -164,7 +164,7 @@
       "grade": 7,
       "level": "SMP",
       "phase": "Fase D",
-      "dataFile": "src/data/grades/grade7.js",
+      "dataFile": "src/data/matematika/grade7.js",
       "pdfFile": "scratch/Matematika-BS-KLS-VII.pdf",
       "status": "COMPLETED",
       "chapters": [
@@ -210,7 +210,7 @@
       "grade": 8,
       "level": "SMP",
       "phase": "Fase D",
-      "dataFile": "src/data/grades/grade8.js",
+      "dataFile": "src/data/matematika/grade8.js",
       "pdfFile": "scratch/Matematika-BS-KLS-VIII.pdf",
       "status": "COMPLETED",
       "chapters": [
@@ -256,7 +256,7 @@
       "grade": 9,
       "level": "SMP",
       "phase": "Fase D",
-      "dataFile": "src/data/grades/grade9.js",
+      "dataFile": "src/data/matematika/grade9.js",
       "pdfFile": "scratch/Matematika-BS-KLS-IX.pdf",
       "status": "COMPLETED",
       "chapters": [
@@ -290,7 +290,7 @@
       "grade": 10,
       "level": "SMA",
       "phase": "Fase E",
-      "dataFile": "src/data/grades/grade10.js",
+      "dataFile": "src/data/matematika/grade10.js",
       "pdfFile": "scratch/Matematika-BS-KLS-X.pdf",
       "status": "COMPLETED",
       "chapters": [
@@ -348,7 +348,7 @@
       "grade": 11,
       "level": "SMA",
       "phase": "Fase F",
-      "dataFile": "src/data/grades/grade11.js",
+      "dataFile": "src/data/matematika/grade11.js",
       "pdfFile": "scratch/Matematika-BS-KLS-XI.pdf",
       "status": "COMPLETED",
       "chapters": [
@@ -376,7 +376,7 @@
       "grade": 12,
       "level": "SMA",
       "phase": "Fase F",
-      "dataFile": "src/data/grades/grade12.js",
+      "dataFile": "src/data/matematika/grade12.js",
       "pdfFile": "scratch/Matematika-BS-KLS-XII-Rev.pdf",
       "status": "COMPLETED",
       "chapters": [

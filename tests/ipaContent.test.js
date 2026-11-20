@@ -6,9 +6,9 @@ import { ipaGrade6Data } from '../src/data/ipa/grade6.js';
 import { ipaGrade7Data } from '../src/data/ipa/grade7.js';
 import { ipaGrade8Data } from '../src/data/ipa/grade8.js';
 import { ipaGrade9Data } from '../src/data/ipa/grade9.js';
-import { ipaGrade10Data } from '../src/data/ipa/grade10.js';
-import { ipaGrade11Data } from '../src/data/ipa/grade11.js';
-import { ipaGrade12Data } from '../src/data/ipa/grade12.js';
+import { fisikaGrade10Data } from '../src/data/fisika/grade10.js';
+import { fisikaGrade11Data } from '../src/data/fisika/grade11.js';
+import { fisikaGrade12Data } from '../src/data/fisika/grade12.js';
 import { ALL_IPA_CHAPTERS_INDEX, IPA_GRADE_METADATA } from '../src/data/ipa/chapterIndex.js';
 import { getVisualConfig } from '../src/components/visuals/registry/index.js';
 import { renderVisualEngine } from '../src/components/visuals/engines/index.jsx';
@@ -26,9 +26,9 @@ const GRADES = [
   ipaGrade7Data,
   ipaGrade8Data,
   ipaGrade9Data,
-  ipaGrade10Data,
-  ipaGrade11Data,
-  ipaGrade12Data
+  fisikaGrade10Data,
+  fisikaGrade11Data,
+  fisikaGrade12Data
 ];
 const CHAPTERS = GRADES.flatMap((g) => g.chapters.map((ch) => ({ grade: g.grade, ch })));
 const QUESTIONS = CHAPTERS.flatMap(({ grade, ch }) => ch.questions.map((q) => ({ grade, ch, q })));

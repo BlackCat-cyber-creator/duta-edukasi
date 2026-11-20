@@ -175,7 +175,7 @@ export function HomeHubPage() {
                   </Link>
                 );
               })}
-              <Link to="/prestasi" className="hub-grade-chip hub-chip-accent">Arsip Prestasi</Link>
+              <Link to="/tentang#prestasi" className="hub-grade-chip hub-chip-accent">Arsip Prestasi</Link>
             </div>
           </article>
 
@@ -296,7 +296,7 @@ export function HomeHubPage() {
         <div className="home-about-links">
           <Link to="/tentang" className="hub-grade-chip hub-chip-accent">Tentang kami <ArrowRight size={12} /></Link>
           <Link to="/pendiri" className="hub-grade-chip">Pendiri</Link>
-          <Link to="/prestasi" className="hub-grade-chip">Prestasi</Link>
+          <Link to="/tentang#prestasi" className="hub-grade-chip">Prestasi</Link>
           <Link to="/kontak" className="hub-grade-chip">Kontak &amp; lokasi</Link>
         </div>
       </section>

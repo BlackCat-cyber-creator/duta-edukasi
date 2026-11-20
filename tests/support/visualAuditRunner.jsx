@@ -2,15 +2,15 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { getVisualConfig } from '../../src/components/visuals/registry/index.js';
 import { renderVisualEngine } from '../../src/components/visuals/engines/index.jsx';
 import { visibleTextFromMarkup, numbersOnlyInVisual, findOutOfScope, leaksAnswer, leaksAnswerWords } from '../../src/utils/contentAudit.js';
-import { grade4Data } from '../../src/data/grades/grade4.js';
-import { grade5Data } from '../../src/data/grades/grade5.js';
-import { grade6Data } from '../../src/data/grades/grade6.js';
-import { grade7Data } from '../../src/data/grades/grade7.js';
-import { grade8Data } from '../../src/data/grades/grade8.js';
-import { grade9Data } from '../../src/data/grades/grade9.js';
-import { grade10Data } from '../../src/data/grades/grade10.js';
-import { grade11Data } from '../../src/data/grades/grade11.js';
-import { grade12Data } from '../../src/data/grades/grade12.js';
+import { grade4Data } from '../../src/data/matematika/grade4.js';
+import { grade5Data } from '../../src/data/matematika/grade5.js';
+import { grade6Data } from '../../src/data/matematika/grade6.js';
+import { grade7Data } from '../../src/data/matematika/grade7.js';
+import { grade8Data } from '../../src/data/matematika/grade8.js';
+import { grade9Data } from '../../src/data/matematika/grade9.js';
+import { grade10Data } from '../../src/data/matematika/grade10.js';
+import { grade11Data } from '../../src/data/matematika/grade11.js';
+import { grade12Data } from '../../src/data/matematika/grade12.js';
 
 export const ALL_GRADES = [grade4Data, grade5Data, grade6Data, grade7Data, grade8Data, grade9Data, grade10Data, grade11Data, grade12Data];
 

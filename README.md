@@ -1,232 +1,122 @@
-# Duta e-dukasi (`dutaedukasi.vercel.app`) • Portal Belajar & Studio Guru Matematika & Fisika
+# Duta e-dukasi — Portal Belajar Matematika & Sains
 
-> **Platform Pembelajaran Digital & Sumber Terbuka Bimbingan Belajar Duta Edukasi Pontianak (`Jl. Siam No. 37`)**  
-> Menggabungkan buku saku digital Matematika & IPA/Fisika Kelas 4–12, modul Olimpiade (AMC & OSN), arsip Paket Soal Terstruktur lengkap kunci + rubrik, Studio Guru (*Duta e-dukasi* / *Sir Jevon*), lembar kerja cetak A4 ber-QR code, dan player penugasan interaktif.
+Portal belajar terbuka dari **Bimbingan Belajar Duta Edukasi Pontianak** (Jl. Siam No. 37): materi per bab, contoh soal, kuis dengan pembahasan, paket soal ber-rubrik, latihan TKA, dan pembinaan olimpiade. Semua materi bisa dibuka **gratis tanpa login**, ringan di HP, dan tetap bisa dipakai offline (PWA).
 
-Live URL: **https://dutaedukasi.vercel.app** (`awesomemathj.vercel.app` dialihkan permanen 308 ke domain utama ini).
-
----
-
-## 🌟 Gambaran Utama (Overview)
-
-**Duta e-dukasi** dirancang untuk menghubungkan pembelajaran di kelas, latihan mandiri di rumah, dan bimbingan guru secara efisien tanpa latensi server backend. Seluruh status aplikasi, data siswa, penugasan PR, dan riwayat pengerjaan dikelola secara instan melalui client-side architecture berbasis **React 19**, **Vite 8**, dan **KaTeX**.
-
-### 🎯 Fitur Unggulan
-
-1. **📖 Buku Saku & Portal Publik (`/`)**
-   - Menjangkau seluruh jenjang: **SD (Kelas 4–6)**, **SMP (Kelas 7–9)**, hingga **SMA (Kelas 10–12)**.
-   - Pembedaan tegas pada jenjang SMA Kelas 11 & 12 antara **Matematika Utama (Wajib)** dan **Matematika Tingkat Lanjut**.
-   - Setiap bab terstruktur rapi dalam **6 Pilar Pedagogis**:
-     - *Ringkasan Materi & Konteks Nyata*
-     - *Konsep & Teorema Kunci*
-     - *Contoh Soal & Pembahasan Bertahap*
-     - *Rumus Penting (KaTeX)*
-     - *Miskonsepsi Umum & Jebakan Konsep*
-     - *Tips Guru & Solusi Cepat*
-   - Dilengkapi kuis diagnostik interaktif dengan evaluasi nilai terpusat (*deferred checking*).
-   - Progres latihan pengunjung tersimpan otomatis di perangkat mereka, tanpa perlu akun.
-
-2. **👨‍🏫 Studio Guru (`/teacher`)** — satu halaman berbasis murid
-   - **Data murid**: nama, kelas, jalur (Reguler / Olimpiade AMC 8·10·12), sekolah, WhatsApp orang tua, catatan perkembangan.
-   - **Kirim PR**: 1 bab = 1 PR berisi seluruh soal bab, diurutkan dari mudah ke sulit. Materi bisa dari Kurikulum Merdeka kelas murid atau modul AMC.
-   - **WhatsApp & cetak**: kirim link PR ke orang tua dalam 1 klik, atau cetak LKPD A4 ber-QR.
-   - **Riwayat PR**: status (belum / sedang / selesai), nilai, dan jawaban murid per soal beserta kuncinya.
-   - Data guru disimpan di Firestore; tombol "Buka" dari Studio membuka PR dalam mode pratinjau (jawaban guru tidak tercatat).
-
-3. **📝 Pemutar PR Murid (`/quest/:questId`)** — tanpa login
-   - Ramah HP: satu soal per layar dengan nomor soal untuk lompat; jawaban sementara tersimpan di perangkat.
-   - Mendukung pilihan ganda, isian singkat (AMC, setara numerik seperti `0,75` = `3/4`), dan uraian.
-   - Gambar soal SVG, petunjuk, dan **papan coret digital**.
-   - Setelah **Kumpulkan**: nilai, kunci, dan pembahasan per soal; jawaban otomatis terkirim ke guru. Link yang sudah dikumpulkan menampilkan hasil (tidak bisa dikerjakan ulang).
-
-4. **📄 Lembar Kerja Cetak A4 & Pembahasan QR (`PrintableWorksheet.jsx`)**
-   - Hasilkan **Lembar Kerja Peserta Didik (LKPD)** siap cetak format A4 standar sekolah.
-   - Layout tipografi monokrom berdaya kontras tinggi lengkap dengan identitas siswa, nama guru, kotak skor penilaian, dan kolom tanda tangan.
-   - **Integrasi Kode QR**: Dilengkapi QR code scannable di pojok LKPD yang mengarahkan siswa langsung ke halaman pembahasan online langkah demi langkah (`ChapterSolutionView.jsx`) melalui ponsel cerdas mereka.
+Situs: **https://dutaedukasi.vercel.app** (domain lama `awesomemathj.vercel.app` dialihkan permanen ke sini).
 
 ---
 
-## 📊 Cakupan Kurikulum & Data Statistik
+## Isi untuk pelajar
 
-Semua materi diselaraskan langsung dari buku teks resmi Kemendikbudristek:
-
-| Jenjang | Fase | Kelas | Jumlah Bab | Soal Latihan (Paket A-D) | Status Penyelarasan |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Sekolah Dasar (SD)** | Fase B & C | Kelas 4 | 6 Bab | 120 Soal | ✅ 100% Aligned |
-| | Fase C | Kelas 5 | 9 Bab | 180 Soal | ✅ 100% Aligned |
-| | Fase C | Kelas 6 | 4 Bab | 80 Soal | ✅ 100% Aligned |
-| **SMP** | Fase D | Kelas 7 | 6 Bab | 120 Soal | ✅ 100% Aligned |
-| | Fase D | Kelas 8 | 6 Bab | 120 Soal | ✅ 100% Aligned |
-| | Fase D | Kelas 9 | 4 Bab | 80 Soal | ✅ 100% Aligned |
-| **SMA** | Fase E | Kelas 10 | 8 Bab | 160 Soal | ✅ 100% Aligned |
-| | Fase F | Kelas 11 (Wajib & Lanjut) | 6 Bab | 120 Soal | ✅ 100% Aligned |
-| | Fase F | Kelas 12 (Wajib & Lanjut) | 6 Bab | 120 Soal | ✅ 100% Aligned |
-| **TOTAL** | | **9 Kelas** | **55 Bab** | **1.100 Soal** | **100% Validated** |
-
----
-
-## 🧭 Arsitektur Routing Deklaratif & Deep Linking
-
-Aplikasi mengadopsi **React Router v7** dengan skema rute kanonik dan dukungan penuh mundur (*backward compatibility*) untuk QR code fisik yang sudah tercetak:
-
-| Rute Kanonik | Komponen | Deskripsi |
+| Bagian | Jenjang | Isi |
 | :--- | :--- | :--- |
-| `/` | `PublicHandbook` | Portal buku saku digital 55 bab dengan 6 pilar pedagogis dan kuis mandiri |
-| `/matematika/kelas-:n/:bab` | `PublicHandbook` | Halaman bab Kurikulum Merdeka (alamat rapi, diprerender untuk mesin pencari) |
-| `/olimpiade/amc-:n/:bab` | `PublicHandbook` | Halaman bab olimpiade AMC (alamat rapi, diprerender) |
-| `/quest/:questId` | `StudentQuestView` | Player pengerjaan tugas/PR interaktif siswa dengan scratchpad kanvas |
-| `/worksheet/:questId` | `PrintableWorksheet` | Lembar Kerja Peserta Didik (LKPD) cetak A4 siap print dengan QR code |
-| `/solution/:grade/:chapterId` | `ChapterSolutionView` | Kunci jawaban & pembahasan bertahap resmi (target scan QR dari LKPD) |
-| `/teacher/login` | `TeacherLoginView` | Gerbang autentikasi guru (Login & Registrasi akun baru) |
-| `/teacher/*` | `TeacherDashboard` | Studio Guru: data murid, kirim PR per bab (Kurikulum/AMC), riwayat & jawaban |
+| Matematika | Kelas 4–12 (SD–SMA) | 55 bab · 1.100 soal latihan + pembahasan |
+| IPA | Kelas 4–9 (SD–SMP) | 32 bab · 480 soal |
+| Fisika | Kelas 10–12 (SMA) | 17 bab · 255 soal |
+| Kimia | Kelas 10–12 (SMA) | 13 bab · 195 soal |
+| Biologi | Kelas 10–12 (SMA) | 13 bab · 195 soal |
+| Olimpiade AMC 8 / 10 / 12 | SMP–SMA | 36 bab konsep + latihan isian singkat |
+| Paket Soal | SD–SMA & olimpiade | 38 paket (Fisika 5, Kimia 4, Biologi 2, Olimpiade Matematika 26, Olimpiade Sains 1) dengan kunci & rubrik |
+| Latihan TKA | Kelas 6, 9, 12 | 4 mata uji × Paket A/B (30 soal per paket) |
 
-> **Kompatibilitas QR Code Fisik**: Permintaan lawas seperti `/?pembahasan=1&grade=8&chapter=smp8-b2` atau `/?questId=...` secara otomatis diarahkan ke URL kanonik melalui `QueryRedirectHandler` tanpa memutus link cetak yang sudah tersebar.
+Setiap bab kurikulum berisi: pengantar, materi per subbab, rumus kunci, contoh soal bertahap, kesalahan yang sering terjadi, tips, dan latihan soal (mudah → sulit) yang bisa dicetak sebagai LKPD A4 ber-QR. Materi diselaraskan dengan Capaian Pembelajaran Kurikulum Merdeka (Keputusan Kepala BSKAP No. 046/H/KR/2025).
 
----
+## Alamat utama
 
-## 🏗️ Struktur Direktori Proyek
+Menu atas hanya berisi tujuan belajar: **Materi · Olimpiade · Paket Soal · TKA · Rumus**. Halaman profil (Tentang, Prestasi, Pendiri, Program, Kontak) ada di footer.
 
-```
-duta-edukasi/
-├── public/                    # Aset statis & favicon
-├── scratch/                   # Skrip utilitas & pipeline
-├── pipeline/                  # Pipeline kurikulum otomatis
-│   ├── catalog_manifest.json  # Katalog silabus dan sumber resmi
-│   ├── validator.cjs          # Validator integritas 6 pilar & sanitasi data
-│   └── audit.cjs              # Audit konsistensi 20 soal per bab
-├── src/
-│   ├── assets/                # Gambar vektor & ikon pendukung
-│   ├── components/            # Komponen antarmuka React modular
-│   │   ├── handbook/          # Subkomponen Buku Saku Publik
-│   │   │   ├── ChapterQuiz.jsx       # Mesin kuis mandiri & filter paket A-D
-│   │   │   └── PillarsAccordion.jsx  # 6 pilar pedagogis materi dengan KaTeX
-│   │   ├── teacher/           # Subkomponen Studio Guru
-│   │   │   ├── QuestGeneratorTab.jsx # Pembuat paket tugas & kartu WhatsApp
-│   │   │   ├── QuestMonitorTab.jsx   # Monitoring status pengerjaan & modal inspeksi
-│   │   │   ├── StudentCrmTab.jsx     # Manajemen profil siswa & multi-tenant roster
-│   │   │   ├── TeacherHeader.jsx     # Header navigasi guru & status cloud
-│   │   │   └── teacherConstants.js   # Definisi paket PR & konstanta guru
-│   │   ├── visuals/           # Engine stimulus visual SVG murni
-│   │   │   ├── common/        # Elemen geometri dasar & kontainer SVG
-│   │   │   ├── engines/       # Engine Aljabar, Geometri, Koordinat, Aritmetika
-│   │   │   └── registry/      # Lookup gambar (gambar Kelas 4–12 kini tersimpan di dalam soal: `visual`)
-│   │   ├── AcademicTimeline.jsx      # Peta jadwal kalender pendidikan
-│   │   ├── ChapterSolutionView.jsx   # Tampilan kunci pembahasan via scan QR
-│   │   ├── MathRenderer.jsx          # Render formula matematika KaTeX polimorfik
-│   │   ├── PrintableWorksheet.jsx    # Generator LKPD cetak A4 + QR code
-│   │   ├── PublicHandbook.jsx        # Koordinator portal publik buku saku siswa
-│   │   ├── QuestionVisual.jsx        # Registry dispatcher diagram stimulus SVG
-│   │   ├── ScratchpadModal.jsx       # Kanvas papan cakar digital siswa
-│   │   ├── StudentQuestView.jsx      # Player latihan PR siswa interaktif
-│   │   ├── TeacherDashboard.jsx      # Koordinator studio guru
-│   │   └── TeacherLoginView.jsx      # Form login & registrasi guru baru
-│   ├── context/
-│   │   └── AuthContext.jsx           # Provider autentikasi guru multi-tenant
-│   ├── data/
-│   │   ├── curriculumData.js         # Master kurikulum loader & code-splitting
-│   │   └── grades/                   # Modul silabus per kelas (grade4.js - grade12.js)
-│   ├── firebase/
-│   │   ├── auth.js                   # SDK Autentikasi Firebase
-│   │   ├── config.js                 # Inisialisasi Firebase aman berbasis .env
-│   │   └── firestore.js              # Sinkronisasi cloud Firestore & atomic increment
-│   ├── hooks/
-│   │   ├── useAuth.js                # Custom hook akses konteks auth
-│   │   └── useCurriculum.js          # Custom hook data kurikulum ter-cache
-│   ├── utils/
-│   │   ├── idGenerator.js            # Generator ID unik std-, quest-, sub-
-│   │   └── storage.js                # LocalStorage fallback manager
-│   ├── App.jsx                       # Top-level declarative routing & redirects
-│   ├── index.css                     # Design system (Notion-editorial, print A4 CSS)
-│   └── main.jsx                      # Vite React entrypoint
-├── tests/                            # Vitest test suite, termasuk contentAudit (gambar sesuai soal & cakupan kelas)
-│   ├── academicCalendar.test.js
-│   ├── answerDistribution.test.js
-│   ├── authAndSync.test.js
-│   ├── curriculum.test.js
-│   ├── idGenerator.test.js
-│   ├── routing.test.js
-│   └── visualAccuracy.test.js
-├── firestore.rules                   # Aturan keamanan Firestore tersanitasi
-├── index.html                        # HTML template tanpa KaTeX CDN ganda
-├── package.json
-├── vercel.json                      # Konfigurasi SPA routing Vercel
-└── vite.config.js                    # Vite configuration & chunk-splitting rules
-```
-
----
-
-## 🚀 Panduan Memulai Cepat (Quick Start)
-
-### 1. Prasyarat
-- [Node.js](https://nodejs.org/) versi 18.0 atau lebih baru.
-- npm atau pnpm.
-- (Opsional untuk pipeline kurikulum) Python 3.9+ dengan `pypdf`.
-
-### 2. Instalasi Dependensi
-```bash
-git clone https://github.com/BlackCat-cyber-creator/duta-edukasi.git
-cd duta-edukasi
-npm install
-```
-
-### 3. Menjalankan Server Pengembangan Lokal
-```bash
-npm run dev
-```
-Buka peramban Anda di `http://localhost:5173`.
-
-### 4. Build untuk Produksi
-```bash
-npm run build
-```
-Hasil build produksi siap saji akan dibuat di folder `dist/`.
-
-### 5. Pengecekan Kualitas Kode (Linting)
-```bash
-npm run lint
-```
-
----
-
-## 🗺️ Roadmap & Audit
-
-- Rencana pengembangan Matematika + IPA (Kurikulum Merdeka CP 046/2025, Cambridge, Olimpiade): [`docs/ROADMAP.md`](docs/ROADMAP.md)
-- Laporan audit konten Oktober 2026 (gambar vs soal, cakupan kelas): [`docs/audit/AUDIT_2026-10.md`](docs/audit/AUDIT_2026-10.md)
-
----
-
-## 🛠️ Perintah Pipeline Kurikulum
-
-Duta e-dukasi menyertakan rangkaian alat untuk menjaga konsistensi konten kurikulum:
-
-* **Periksa Status Kurikulum & Soal:**
-  ```bash
-  python pipeline/status.py
-  ```
-* **Validasi Integritas Data Modul (6 Pilar & Sanitasi):**
-  ```bash
-  node pipeline/validator.cjs src/data/grades/grade4.js
-  ```
-* **Ekstraksi Bab dari PDF Buku Teks:**
-  ```bash
-  python pipeline/extract_chapter.py --grade 5 --chapter 1
-  ```
-
----
-
-## 🌐 Panduan Navigasi & Routing
-
-| URL / Query Parameter | Tampilan / Fungsi |
+| Alamat | Isi |
 | :--- | :--- |
-| `/` | **Portal Buku Panduan Publik**: Eksplorasi materi, kuis mandiri, cetak lembar kerja. |
-| `/teacher` | **Studio Guru**: data murid, kirim PR per bab via WhatsApp, cetak LKPD, riwayat nilai & jawaban. |
-| `/?questId=<ID>` | **Latihan PR Murid**: Akses langsung penugasan PR interaktif untuk siswa. |
-| `/?pembahasan=1&grade=<G>&chapter=<C>` | **Pembahasan Online**: Dibuka melalui scan QR code pada LKPD cetak. |
+| `/` | Beranda: pilih mata pelajaran & kelas, cari materi |
+| `/matematika/kelas-N/<bab>` | Bab Matematika (N = 4–12) |
+| `/ipa/kelas-N/<bab>` | Bab IPA (N = 4–9) |
+| `/fisika/kelas-N/<bab>`, `/kimia/…`, `/biologi/…` | Bab SMA (N = 10–12) |
+| `/olimpiade` | Pusat olimpiade (OSN, SASMO, AMC, HKIMO, TIMO, SIMOC) |
+| `/olimpiade/amc-N/<bab>` | Bab AMC 8 / 10 / 12 |
+| `/paket-soal`, `/paket-soal/<mapel>/<slug>` | Arsip paket soal + rubrik |
+| `/tka`, `/tka/<paket>` | Latihan TKA |
+| `/rumus`, `/daftar-isi` | Kumpulan rumus, daftar isi per topik |
+| `/tentang` | Profil, pendiri & tim, **prestasi siswa** (`/tentang#prestasi`), lisensi |
+| `/pendiri`, `/program`, `/kontak` | Profil pendiri, program bimbel, kontak & lokasi |
+| `/quest/:id`, `/worksheet/:id`, `/solution/…` | PR murid, LKPD cetak, pembahasan dari QR |
+| `/teacher` | Studio Guru (login guru) |
+
+Alamat lama tetap berfungsi: `/prestasi` → `/tentang#prestasi` (pengalihan permanen di `vercel.json`), dan tautan `/?questId=…` / `/?pembahasan=1&grade=…` dari QR lama diarahkan oleh `QueryRedirectHandler` di `src/App.jsx`.
 
 ---
 
-## 📄 Lisensi & Hak Cipta
+## Menjalankan proyek
 
-- Platform web, kode sumber, dan antarmuka dikembangkan oleh **Jevon Naldo Yoshield** (`@jevon.n.shield`) untuk ekosistem **Duta e-dukasi** (didirikan oleh **Jono Yang** / `@jonoyang78`).
-- Konten pembelajaran publik dibagikan di bawah lisensi **CC BY 4.0** dengan atribusi kepada **Duta e-dukasi**.
-- Materi silabus diselaraskan dengan Capaian Pembelajaran Kurikulum Merdeka Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia.
+Butuh Node.js 18+.
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm test         # Vitest (konten, rute, konfigurasi deploy)
+npm run lint     # oxlint
+npm run build    # vite build + scripts/prerender.mjs → dist/
+```
+
+`npm run build` juga membuat HTML statis untuk setiap bab (untuk mesin pencari), `sitemap.xml`, `llms.txt`, dan `llms-full.txt`.
+
+## Struktur folder
+
+```
+src/
+├── App.jsx                 # rute, menu atas, footer
+├── components/             # halaman (HomeHubPage, PublicHandbook, AboutPage, …)
+│   ├── about/              # kartu tim, prestasi, embed Instagram
+│   ├── handbook/           # artikel bab, kuis, navigasi bab
+│   ├── teacher/            # Studio Guru
+│   └── visuals/            # gambar soal SVG
+├── data/
+│   ├── matematika/         # gradeN.js — Matematika Kelas 4–12 (satu file per kelas)
+│   ├── ipa/                # IPA Kelas 4–9 (kelasN/babM-*.js, satu file per bab)
+│   ├── fisika/             # Fisika Kelas 10–12 (kelasN/babM-*.js)
+│   ├── kimia/, biologi/    # Kimia & Biologi Kelas 10–12
+│   ├── amc/                # AMC 8 / 10 / 12
+│   ├── papers/             # Paket Soal
+│   ├── siteInfo.js         # organisasi, pendiri, tim, prestasi, program, FAQ
+│   └── chapterIndex.js …   # indeks ringan (dibuat oleh pipeline/build_chapter_index.mjs)
+├── styles/                 # CSS per bagian, dimuat berurutan oleh src/index.css
+├── utils/, hooks/, firebase/
+public/                     # logo, foto (public/people/), file verifikasi Google
+scripts/prerender.mjs       # HTML statis, sitemap, llms.txt
+pipeline/                   # alat konten (validator, audit, indeks bab, migrasi)
+│   └── archive/            # skrip lama yang sudah tidak dipakai (jangan dijalankan)
+docs/                       # roadmap, audit, CP 046/2025, prompt AI, riwayat
+tests/                      # Vitest
+```
+
+`scratch/` dan `content-inbox/` hanya ada di komputer lokal (diabaikan git): PDF buku, hasil render, dan skrip sekali pakai.
+
+## Mengedit konten
+
+| Yang diubah | File |
+| :--- | :--- |
+| Bab & soal Matematika | `src/data/matematika/gradeN.js` |
+| Bab IPA / Fisika / Kimia / Biologi | `src/data/<mapel>/kelasN/babM-*.js` |
+| Paket soal | `src/data/papers/<mapel>/…` lalu daftarkan di `src/data/papers/index.js` |
+| Profil, kontak, prestasi | `src/data/siteInfo.js` |
+| Foto pendiri / tim | `public/people/` (dirujuk dari `siteInfo.js`) |
+
+Setelah menambah atau mengganti judul bab, jalankan `node pipeline/build_chapter_index.mjs` agar indeks pencarian ikut diperbarui, lalu `npm test`.
+
+**Prestasi & Instagram.** Akun `@jonoyang78` saat ini privat, jadi tautan unggahannya tidak bisa dibuka pengunjung umum. Akun yang privat dicatat di `PRIVATE_INSTAGRAM_ACCOUNTS` (`src/data/siteInfo.js`): sumbernya ditampilkan sebagai keterangan, bukan tautan mati. Bila akun dibuat publik, hapus namanya dari daftar itu dan foto unggahan otomatis tampil di kartu prestasi. Foto juga bisa disimpan langsung di `public/` dan dirujuk lewat kolom `photo` pada entri prestasi.
+
+**Jangan diubah** (tercetak di LKPD, tersimpan di Firestore, atau sudah diindeks Google): ID bab (`smp8-bab1-…`, `ipa10-…`, `kimia11-…`), alamat publik di atas, rute `/solution/…`, dan kunci `localStorage` `mathquest_*`. Memindahkan file data boleh, asalkan ID di dalamnya tetap.
+
+## Dokumen lain
+
+- Rencana pengembangan: [`docs/ROADMAP.md`](docs/ROADMAP.md)
+- Capaian Pembelajaran per mapel: [`docs/kurikulum/`](docs/kurikulum/README.md)
+- Standar kualitas paket soal: [`docs/reference/QUALITY_BAR.md`](docs/reference/QUALITY_BAR.md)
+- Audit konten: [`docs/audit/AUDIT_2026-10.md`](docs/audit/AUDIT_2026-10.md), [`docs/research/audit-paket-soal.md`](docs/research/audit-paket-soal.md)
+- Sumber data prestasi: [`docs/research/prestasi.md`](docs/research/prestasi.md)
+- Prompt AI untuk ekstraksi materi, gambar soal, dan Studio Guru: [`docs/prompts/`](docs/prompts/)
+- Alat konten: [`pipeline/README.md`](pipeline/README.md)
+
+## Lisensi & kredit
+
+- Konten pembelajaran: **CC BY 4.0** dengan atribusi kepada **Duta e-dukasi**.
+- Duta e-dukasi didirikan oleh **Jono Yang** (`@jonoyang78`). Platform web disusun oleh putranya, **Jevon Naldo Yoshield** (`@jevon.n.shield`), kakak dari **Jenover Viano Yoshield** (`@jenovervy`).

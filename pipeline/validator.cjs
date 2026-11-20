@@ -128,7 +128,7 @@ function validateGradeFile(filePath) {
 }
 
 if (require.main === module) {
-  const target = process.argv[2] || 'src/data/grades/grade4.js';
+  const target = process.argv[2] || 'src/data/matematika/grade4.js';
   console.log(`\nValidating: ${target}...`);
   const result = validateGradeFile(target);
   if (result.ok) {

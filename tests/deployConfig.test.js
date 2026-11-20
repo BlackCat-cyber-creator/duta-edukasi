@@ -37,7 +37,7 @@ describe('Konfigurasi deploy Vercel', () => {
     expect(map['/tentang']).toBe('/tentang.html');
     expect(map['/program']).toBe('/program.html');
     expect(map['/pendiri']).toBe('/pendiri.html');
-    expect(map['/prestasi']).toBe('/prestasi.html');
+    expect(map['/prestasi']).toBeUndefined();
     expect(map['/kontak']).toBe('/kontak.html');
     expect(map['/daftar-isi']).toBe('/daftar-isi.html');
     expect(map['/rumus']).toBe('/rumus.html');
@@ -45,5 +45,10 @@ describe('Konfigurasi deploy Vercel', () => {
     expect(map['/tka/:paket']).toBe('/tka/:paket.html');
     // Fallback SPA harus aturan terakhir
     expect(vercel.rewrites[vercel.rewrites.length - 1]).toEqual({ source: '/(.*)', destination: '/app.html' });
+  });
+
+  it('alamat lama /prestasi dialihkan permanen ke bagian Prestasi di halaman Tentang', () => {
+    const redirect = (vercel.redirects || []).find((r) => r.source === '/prestasi');
+    expect(redirect).toEqual({ source: '/prestasi', destination: '/tentang#prestasi', permanent: true });
   });
 });

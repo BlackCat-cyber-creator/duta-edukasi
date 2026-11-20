@@ -10,7 +10,7 @@ console.log('Grade\t| Chapters\t| Questions\t| Status');
 console.log('----------------------------------------------------------------');
 
 for (const g of grades) {
-  const filePath = path.join(__dirname, `../src/data/grades/grade${g}.js`);
+  const filePath = path.join(__dirname, `../src/data/matematika/grade${g}.js`);
   if (!fs.existsSync(filePath)) {
     console.log(`Kelas ${g}\t| 0\t\t| 0\t\t| File Not Found`);
     continue;

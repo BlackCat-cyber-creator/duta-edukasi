@@ -44,9 +44,9 @@ export async function buildIpaChapterIndex() {
     (await import('../src/data/ipa/grade7.js')).ipaGrade7Data,
     (await import('../src/data/ipa/grade8.js')).ipaGrade8Data,
     (await import('../src/data/ipa/grade9.js')).ipaGrade9Data,
-    (await import('../src/data/ipa/grade10.js')).ipaGrade10Data,
-    (await import('../src/data/ipa/grade11.js')).ipaGrade11Data,
-    (await import('../src/data/ipa/grade12.js')).ipaGrade12Data
+    (await import('../src/data/fisika/grade10.js')).fisikaGrade10Data,
+    (await import('../src/data/fisika/grade11.js')).fisikaGrade11Data,
+    (await import('../src/data/fisika/grade12.js')).fisikaGrade12Data
   ];
   const meta = grades.map((g) => ({
     subject: 'ipa',

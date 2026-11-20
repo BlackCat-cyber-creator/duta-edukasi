@@ -12,7 +12,7 @@
 Aplikasi **AwesomeMathJ** menggunakan dua lapis data yang berbeda sifatnya:
 
 1. **Data Kurikulum & Bank Soal (Static Code di Git):**
-   - Lokasi: `src/data/grades/grade4.js` s.d. `grade12.js`, dikompilasi melalui `src/data/curriculumData.js`.
+   - Lokasi: `src/data/matematika/grade4.js` s.d. `grade12.js`, dikompilasi melalui `src/data/curriculumData.js`.
    - Sifat: Menempel langsung pada kode program (*source code*). Setiap kali diubah dan di-push ke Git, Vercel akan otomatis melakukan *build* baru dan memperbarui konten materi di web.
 2. **Data Operasional Guru (CRM Murid & Riwayat PR di LocalStorage):**
    - Lokasi: `src/utils/storage.js`.

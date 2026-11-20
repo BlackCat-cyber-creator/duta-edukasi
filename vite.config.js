@@ -41,7 +41,7 @@ export default defineConfig({
       manifest: {
         name: 'Duta e-dukasi',
         short_name: 'Duta e-dukasi',
-        description: 'Portal Belajar & Paket Soal Matematika, IPA & Fisika (Kelas 4–12) serta Olimpiade',
+        description: 'Portal Belajar & Paket Soal Matematika, IPA, Fisika, Kimia & Biologi (Kelas 4–12) serta Olimpiade',
         theme_color: '#12337A',
         icons: [
           {
