@@ -68,7 +68,6 @@ export const AUTHOR = {
   instagramUrl: 'https://www.instagram.com/jevon.n.shield/',
   whatsappDisplay: '+62 856-9162-0000',
   whatsappUrl: 'https://wa.me/6285691620000',
-  family: 'Putra Jono Yang (pendiri Duta e-dukasi) dan kakak dari Jenover Viano Yoshield.',
   githubUrl: 'https://github.com/BlackCat-cyber-creator',
   websiteUrl: 'https://jevon-one.vercel.app',
   sameAs: [
@@ -88,7 +87,6 @@ export const FOUNDER = {
   formalName: 'Jono, S.T.',
   role: 'Pendiri & Pembina Utama Olimpiade Matematika Duta e-dukasi',
   photo: '/people/jono-yang.jpg',
-  family: 'Ayah sekaligus mentor pertama Jevon Naldo Yoshield (Lead Developer platform ini) dan Jenover Viano Yoshield (peraih 6 medali OSN Matematika).',
   instagramHandle: '@jonoyang78',
   instagramUrl: 'https://www.instagram.com/jonoyang78/',
   youtubeUrl: 'https://www.youtube.com/watch?v=Idcuund-w0Y&t=620s',
@@ -117,7 +115,7 @@ export const FOUNDER = {
 
 export const ABOUT = {
   title: 'Tentang Duta e-dukasi',
-  intro: `Duta e-dukasi (Bimbingan Belajar Duta Edukasi Pontianak) didirikan oleh ${FOUNDER.name} di Jl. Siam No. 37, Pontianak. Portal belajar terbuka Matematika & Sains ini disusun oleh putranya, ${AUTHOR.name}.`,
+  intro: `Duta e-dukasi (Bimbingan Belajar Duta Edukasi Pontianak) didirikan oleh ${FOUNDER.name} di Jl. Siam No. 37, Pontianak. Portal belajar terbuka Matematika & Sains ini disusun oleh ${AUTHOR.name}.`,
   paragraphs: [
     'Platform belajar digital Duta e-dukasi hadir untuk membantu siswa Indonesia — baik murid bimbel maupun pelajar umum di mana saja — mengakses materi terstruktur, rumus kunci, contoh soal, kuis diagnostik, serta Paket Soal berstandar kompetisi beserta kunci jawaban dan rubrik penilaiannya secara gratis tanpa login.',
     'Seluruh materi Kurikulum Merdeka (Matematika Kelas 4–12, IPA SD Kelas 4–6, IPA SMP Kelas 7–9, serta Fisika, Kimia, dan Biologi SMA Kelas 10–12) diselaraskan dengan Capaian Pembelajaran resmi (Keputusan Kepala BSKAP Nomor 046/H/KR/2025), dilengkapi jalur Cambridge-style, latihan TKA SD/SMP/SMA, dan modul persiapan Olimpiade AMC 8, 10, dan 12.',
@@ -205,7 +203,6 @@ export const PRESTASI_DATA = [
     id: 'jenover-osn-2026',
     photo: '/prestasi/jenover-osn-2026.jpg',
     studentName: 'Jenover Viano Yoshield',
-    relation: 'Putra pendiri',
     school: 'SMA Pelita Cemerlang Pontianak',
     year: 2026,
     competition: 'Olimpiade Sains Nasional (OSN DIKMEN) Bidang Matematika SMA — Tingkat Nasional',
@@ -219,7 +216,6 @@ export const PRESTASI_DATA = [
     id: 'jenover-tuymaada-apmo-2026',
     photo: '/prestasi/jenover-tuymaada-apmo-2026.jpg',
     studentName: 'Jenover Viano Yoshield',
-    relation: 'Putra pendiri',
     school: 'SMA Pelita Cemerlang Pontianak',
     year: 2026,
     competition: 'International Tuymaada Olympiad 2026 & Asian Pacific Mathematical Olympiad (APMO) 2026',
@@ -233,7 +229,6 @@ export const PRESTASI_DATA = [
     id: 'jenover-osn-2025',
     photo: '/prestasi/jenover-osn-2025.jpg',
     studentName: 'Jenover Viano Yoshield',
-    relation: 'Putra pendiri',
     school: 'SMA Pelita Cemerlang Pontianak',
     year: 2025,
     competition: 'OSN Matematika SMA 2025 (Malang) & KOMET ke-21 FMIPA UNTAN Kalbar',
@@ -286,7 +281,6 @@ export const PRESTASI_DATA = [
     id: 'jenover-osn-2024',
     photo: '/prestasi/jenover-osn-2024.jpg',
     studentName: 'Jenover Viano Yoshield',
-    relation: 'Putra pendiri',
     school: 'SMA Pelita Cemerlang Pontianak',
     year: 2024,
     competition: 'OSN Matematika SMA Tingkat Nasional 2024 & OMITS ke-17 ITS Surabaya',
@@ -313,7 +307,6 @@ export const PRESTASI_DATA = [
     id: 'jevon-onmipa-2024',
     photo: '/prestasi/jevon-onmipa-2024.jpg',
     studentName: 'Jevon Naldo Yoshield',
-    relation: 'Putra pendiri',
     school: 'SMA Katolik Santu Petrus Pontianak / Mahasiswa Matematika',
     year: 2024,
     competition: 'ONMIPA-PT 2024 Bidang Matematika & MC LIMAS ke-10 FKIP UNTAN (2022)',
@@ -326,7 +319,6 @@ export const PRESTASI_DATA = [
   {
     id: 'jenover-osn-2023',
     studentName: 'Jenover Viano Yoshield',
-    relation: 'Putra pendiri',
     school: 'SMP Katolik Santu Petrus Pontianak',
     year: 2023,
     competition: 'OSN Matematika SMA Tingkat Nasional 2023 (Bogor) & OSP Kalbar 2023',
@@ -364,7 +356,6 @@ export const PRESTASI_DATA = [
   {
     id: 'jenover-osn-2022',
     studentName: 'Jenover Viano Yoshield',
-    relation: 'Putra pendiri',
     school: 'SMP Katolik Santu Petrus Pontianak',
     year: 2022,
     competition: 'OSN Matematika SMP Nasional 2022 & KSR Matematika 2022 / Academy of Champions S1',

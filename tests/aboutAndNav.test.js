@@ -80,13 +80,13 @@ describe('Profil pendiri dan tim', () => {
     expect(fs.existsSync(path.resolve(__dirname, '../public', FOUNDER.photo.slice(1)))).toBe(true);
   });
 
-  it('hubungan keluarga dan WhatsApp Lead Developer tercatat', () => {
-    expect(FOUNDER.family).toMatch(/Jevon Naldo Yoshield/);
-    expect(FOUNDER.family).toMatch(/Jenover Viano Yoshield/);
-    expect(AUTHOR.family).toMatch(/Jono Yang/);
+  it('WhatsApp Lead Developer tercatat di kartunya sendiri', () => {
     expect(AUTHOR.whatsappUrl).toBe('https://wa.me/6285691620000');
-    const jenover = PRESTASI_DATA.filter((i) => i.studentName === 'Jenover Viano Yoshield');
-    expect(jenover.length).toBeGreaterThan(0);
-    expect(jenover.every((i) => i.relation === 'Putra pendiri')).toBe(true);
+  });
+
+  it('tidak ada label hubungan keluarga di profil maupun kartu prestasi', () => {
+    expect(FOUNDER.family).toBeUndefined();
+    expect(AUTHOR.family).toBeUndefined();
+    expect(PRESTASI_DATA.every((i) => !('relation' in i))).toBe(true);
   });
 });

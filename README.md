@@ -119,4 +119,4 @@ Setelah menambah atau mengganti judul bab, jalankan `node pipeline/build_chapter
 ## Lisensi & kredit
 
 - Konten pembelajaran: **CC BY 4.0** dengan atribusi kepada **Duta e-dukasi**.
-- Duta e-dukasi didirikan oleh **Jono Yang** (`@jonoyang78`). Platform web disusun oleh putranya, **Jevon Naldo Yoshield** (`@jevon.n.shield`), kakak dari **Jenover Viano Yoshield** (`@jenovervy`).
+- Duta e-dukasi didirikan oleh **Jono Yang** (`@jonoyang78`). Platform web disusun oleh **Jevon Naldo Yoshield** (`@jevon.n.shield`).

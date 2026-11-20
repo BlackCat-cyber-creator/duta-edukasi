@@ -59,10 +59,7 @@ export function PrestasiCard({ item }) {
         </span>
         <span className="badge badge-subtle">{item.year} · {item.level}</span>
       </div>
-      <h3 className="prestasi-name">
-        {item.studentName}
-        {item.relation && <span className="prestasi-relation">{item.relation}</span>}
-      </h3>
+      <h3 className="prestasi-name">{item.studentName}</h3>
       <p className="prestasi-school">{item.school}</p>
       <p className="prestasi-competition">{item.competition}</p>
       {item.notes && <p className="prestasi-notes">{item.notes}</p>}

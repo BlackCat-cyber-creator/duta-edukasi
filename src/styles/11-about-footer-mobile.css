@@ -57,12 +57,6 @@
   font-size: 1.6rem;
 }
 .person-role { font-size: 0.88rem; margin-bottom: 0.4rem; }
-.person-family {
-  font-size: 0.86rem;
-  color: var(--brand-crimson);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
 .person-highlights { font-size: 0.86rem; padding-left: 1.15rem; margin-bottom: 0.6rem; }
 .person-highlights li { margin-bottom: 0.3rem; }
 .person-links { font-size: 0.86rem; margin: 0; }
@@ -83,14 +77,6 @@
   background: var(--bg-surface-elevated);
 }
 .prestasi-name { font-size: 1.05rem; margin: 0 0 0.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
-.prestasi-relation {
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 0.12rem 0.45rem;
-  border-radius: 999px;
-  background: var(--brand-crimson-light);
-  color: var(--brand-crimson);
-}
 .prestasi-school { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.45rem; }
 .prestasi-competition { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--text-primary); }
 .prestasi-notes { font-size: 0.85rem; margin-bottom: 0.5rem; }

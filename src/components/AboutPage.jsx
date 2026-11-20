@@ -59,7 +59,6 @@ export function AboutPage() {
             subtitle={FOUNDER.formalName}
             role={FOUNDER.role}
             photo={FOUNDER.photo}
-            family={FOUNDER.family}
             links={[
               { href: '/pendiri', internal: true, node: <Link to="/pendiri">Profil lengkap pendiri</Link> },
               { href: FOUNDER.instagramUrl, label: `Instagram ${FOUNDER.instagramHandle}` }
@@ -70,7 +69,6 @@ export function AboutPage() {
             subtitle="Lead Developer & penyusun portal"
             role={AUTHOR.jobTitle}
             photo={AUTHOR.photo}
-            family={AUTHOR.family}
             links={[
               AUTHOR.instagramUrl && { href: AUTHOR.instagramUrl, label: `Instagram ${AUTHOR.instagramHandle}` },
               AUTHOR.githubUrl && { href: AUTHOR.githubUrl, label: 'GitHub' },

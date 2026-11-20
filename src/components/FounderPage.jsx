@@ -21,7 +21,6 @@ export function FounderPage() {
           <span className="badge badge-cat-uh" style={{ marginBottom: '0.45rem' }}>Pendiri {ORGANIZATION.name}</span>
           <h1>{FOUNDER.name} ({FOUNDER.formalName})</h1>
           <p style={{ margin: 0 }}>{FOUNDER.role}</p>
-          {FOUNDER.family && <p className="person-family" style={{ margin: '0.4rem 0 0' }}>{FOUNDER.family}</p>}
         </div>
       </section>
 
@@ -70,7 +69,6 @@ export function FounderPage() {
       <div className="info-card" style={{ marginBottom: '1.25rem' }}>
         <h3 style={{ fontSize: '1.05rem', marginBottom: '0.25rem' }}>{AUTHOR.name}</h3>
         <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>{AUTHOR.jobTitle}</p>
-        {AUTHOR.family && <p className="person-family">{AUTHOR.family}</p>}
         <ul style={{ fontSize: '0.9rem', marginBottom: '0.55rem' }}>
           {(AUTHOR.bioHighlights || []).map((item) => (
             <li key={item} style={{ marginBottom: '0.35rem' }}>{item}</li>

@@ -427,8 +427,8 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
     ${ABOUT.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join('\n')}
     <h2 id="tim">Pendiri &amp; Tim</h2>
     <ul>
-      <li>Pendiri Bimbel: <a href="/pendiri">${escapeHtml(FOUNDER.name)} (${escapeHtml(FOUNDER.formalName)})</a> — ${escapeHtml(FOUNDER.role)}. ${escapeHtml(FOUNDER.family || '')}</li>
-      <li>Lead Developer &amp; Penyusun Portal: ${escapeHtml(AUTHOR.name)} — ${escapeHtml(AUTHOR.jobTitle)}. ${escapeHtml(AUTHOR.family || '')} (${AUTHOR.instagramUrl ? `<a href="${escapeHtml(AUTHOR.instagramUrl)}">${escapeHtml(AUTHOR.instagramHandle)}</a> · ` : ''}${AUTHOR.githubUrl ? `<a href="${escapeHtml(AUTHOR.githubUrl)}">GitHub</a>` : ''}${AUTHOR.whatsappUrl ? ` · <a href="${escapeHtml(AUTHOR.whatsappUrl)}">WhatsApp ${escapeHtml(AUTHOR.whatsappDisplay)}</a>` : ''})</li>
+      <li>Pendiri Bimbel: <a href="/pendiri">${escapeHtml(FOUNDER.name)} (${escapeHtml(FOUNDER.formalName)})</a> — ${escapeHtml(FOUNDER.role)}.</li>
+      <li>Lead Developer &amp; Penyusun Portal: ${escapeHtml(AUTHOR.name)} — ${escapeHtml(AUTHOR.jobTitle)} (${AUTHOR.instagramUrl ? `<a href="${escapeHtml(AUTHOR.instagramUrl)}">${escapeHtml(AUTHOR.instagramHandle)}</a> · ` : ''}${AUTHOR.githubUrl ? `<a href="${escapeHtml(AUTHOR.githubUrl)}">GitHub</a>` : ''}${AUTHOR.whatsappUrl ? ` · <a href="${escapeHtml(AUTHOR.whatsappUrl)}">WhatsApp ${escapeHtml(AUTHOR.whatsappDisplay)}</a>` : ''})</li>
       <li>Lokasi &amp; Kontak: ${escapeHtml(ORGANIZATION.fullAddress)} · WhatsApp ${escapeHtml(ORGANIZATION.whatsappDisplay)}</li>
     </ul>
     ${(AUTHOR.bioHighlights || []).length ? `<h3>Tentang Lead Developer Portal (${escapeHtml(AUTHOR.name)})</h3><ul>${AUTHOR.bioHighlights.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>` : ''}
@@ -439,7 +439,7 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
         : ` (Dokumentasi: @${escapeHtml(parseInstagramPost(p.sourceUrl)?.account || 'instagram')}, akun Instagram privat)`;
       return `
       <li>
-        <strong>${escapeHtml(p.year)} — ${escapeHtml(p.award)}</strong>: ${escapeHtml(p.studentName)}${p.relation ? ` (${escapeHtml(p.relation)})` : ''}, ${escapeHtml(p.school)} — ${escapeHtml(p.competition)}.
+        <strong>${escapeHtml(p.year)} — ${escapeHtml(p.award)}</strong>: ${escapeHtml(p.studentName)}, ${escapeHtml(p.school)} — ${escapeHtml(p.competition)}.
         ${p.notes ? escapeHtml(p.notes) : ''}${source}
       </li>`;
     }).join('\n')}
@@ -502,7 +502,6 @@ const addToSitemap = (p, priority) => sitemap.push({ loc: `${SITE_URL}${p === '/
     ${breadcrumbHtml([['Beranda', '/'], ['Pendiri', FOUNDER_META.path]])}
     <h1>${escapeHtml(FOUNDER.name)} (${escapeHtml(FOUNDER.formalName)}) — ${escapeHtml(FOUNDER.role)}</h1>
     ${FOUNDER.photo ? `<img src="${escapeHtml(FOUNDER.photo)}" alt="Foto ${escapeHtml(FOUNDER.name)}" width="112" height="112">` : ''}
-    ${FOUNDER.family ? `<p>${escapeHtml(FOUNDER.family)}</p>` : ''}
     <ul>${FOUNDER.bioHighlights.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>
     <h2>Rekam Jejak Terverifikasi</h2>
     <ul>${FOUNDER.credentials.map((c) => `<li><strong>${escapeHtml(c.year)} — ${escapeHtml(c.title)}</strong>: ${escapeHtml(c.detail)} (<a href="${escapeHtml(c.sourceUrl)}">Sumber</a>)</li>`).join('')}</ul>

@@ -8,8 +8,8 @@ const initialsOf = (name) =>
     .map((w) => w[0].toUpperCase())
     .join('');
 
-/** Kartu profil singkat: foto (atau inisial), nama, peran, hubungan keluarga, dan tautan. */
-export function PersonCard({ name, subtitle, role, photo, family, children, links = [] }) {
+/** Kartu profil singkat: foto (atau inisial), nama, peran, dan tautan. */
+export function PersonCard({ name, subtitle, role, photo, children, links = [] }) {
   return (
     <article className="info-card person-card">
       <div className="person-card-head">
@@ -24,7 +24,6 @@ export function PersonCard({ name, subtitle, role, photo, family, children, link
         </div>
       </div>
       {role && <p className="person-role">{role}</p>}
-      {family && <p className="person-family">{family}</p>}
       {children}
       {links.length > 0 && (
         <p className="person-links">
