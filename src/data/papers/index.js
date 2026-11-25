@@ -95,6 +95,14 @@ import olimSasmoPractice2 from './olimpiade-mat/sd/sasmo-practice-2.js';
 import olimOskMatSdBilanganP1 from './olimpiade-mat/sd/osk-bilangan-paket-1.js';
 import olimOskMatSdAritmatikaP1 from './olimpiade-mat/sd/osk-aritmatika-paket-1.js';
 import olimOskMatSdGeometriP1 from './olimpiade-mat/sd/osk-geometri-paket-1.js';
+import mat10PersamaanKuadrat from './matematika/kelas10/persamaan-kuadrat.js';
+import mat10BarisanDeretAritmetika from './matematika/kelas10/barisan-deret-aritmetika.js';
+import mat10BarisanDeretGeometri from './matematika/kelas10/barisan-deret-geometri.js';
+import mat12StatistikaLatihan1 from './matematika/kelas12/statistika-latihan-1.js';
+import mat12PeluangKaidahPencacahan from './matematika/kelas12/peluang-kaidah-pencacahan.js';
+import kim11ChemicalEquilibrium from './kimia/kelas11/chemical-equilibrium-practice.js';
+import ipa9EdexcelBioGenetics from './ipa/kelas9/edexcel-biology-genetics-inheritance.js';
+import ipa8BioHomeostasis from './ipa/kelas8/biology-grade-8-homeostasis-excretion.js';
 
 import {
   PAPER_SUBJECT_META,
@@ -226,7 +234,15 @@ export const ALL_PAPERS = [
   olimSasmoPractice2,
   olimOskMatSdBilanganP1,
   olimOskMatSdAritmatikaP1,
-  olimOskMatSdGeometriP1
+  olimOskMatSdGeometriP1,
+  mat10PersamaanKuadrat,
+  mat10BarisanDeretAritmetika,
+  mat10BarisanDeretGeometri,
+  mat12StatistikaLatihan1,
+  mat12PeluangKaidahPencacahan,
+  kim11ChemicalEquilibrium,
+  ipa9EdexcelBioGenetics,
+  ipa8BioHomeostasis
 ];
 
 export const PUBLISHED_PAPERS = ALL_PAPERS.filter((p) => p.status === 'published');

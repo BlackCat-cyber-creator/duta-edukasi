@@ -21,7 +21,7 @@
 | Batch 1–5 | Baseline published archive | 82 | `done` | Committed at `4da0326` |
 | Phase 1 | Foundation (SEO, search, `/akun`, AI chat) | — | `done` | Committed before Phase 2 |
 | **Batch 6** | 10 Olympiad & Competition Inbox Sets (Text PDFs) | 10 | `done` | 82 → 92 published |
-| **Batch 7** | 8 School Math, IPA SMP, Chem & IGCSE Bio Sets | 8 | `pending` | `scratch/workflow_batch7.py` |
+| **Batch 7** | 8 School Math, IPA SMP, Chem & IGCSE Bio Sets | 8 | `done` | 92 → 100 published |
 | **Batch 8** | 4 Scanned/Visual Olympiad PDFs (Edge PNG + Vision) | 4 | `pending` | `scratch/workflow_batch8.py` |
 | **Batch 9** | Next Up: SVG diagrams on Batch 4/5 + fresh open-archive Olympiads (OSN-P/Nasional, AMC/AIME, SASMO/SMO, UTBK/SNBT, OSN Inf/Astro/Kebumian/Eko) | TBD | `queued` | Starts after Batch 8 |
 
@@ -48,14 +48,14 @@
 
 | ID | Source PDF | Target File | Status |
 | :--- | :--- | :--- | :--- |
-| `mat10-persamaan-kuadrat` | `batch1/[6] Persamaan Kuadrat.pdf` | `src/data/papers/matematika/kelas10/persamaan-kuadrat.js` | `pending` |
-| `mat10-barisan-deret-aritmetika` | `batch1/[12] Barisan dan Deret Aritmetika.pdf` | `src/data/papers/matematika/kelas10/barisan-deret-aritmetika.js` | `pending` |
-| `mat10-barisan-deret-geometri` | `batch1/[13] Barisan dan Deret Geometri.pdf` | `src/data/papers/matematika/kelas10/barisan-deret-geometri.js` | `pending` |
-| `mat12-statistika-latihan-1` | `batch1/9 LATIHAN SOAL 1 STATISTIKA.pdf` | `src/data/papers/matematika/kelas12/statistika-latihan-1.js` | `pending` |
-| `mat12-peluang-kaidah-pencacahan` | `batch1/10 LATIHAN SOAL 1+2 PELUANG.pdf` | `src/data/papers/matematika/kelas12/peluang-kaidah-pencacahan.js` | `pending` |
-| `kim11-chemical-equilibrium` | `batch3/chem_equilibrium_ch5.pdf` | `src/data/papers/kimia/kelas11/chemical-equilibrium-practice.js` | `pending` |
-| `ipa9-edexcel-bio-genetics` | `batch3/edexcel_bio_genetics.pdf` | `src/data/papers/ipa/kelas9/edexcel-biology-genetics-inheritance.js` | `pending` |
-| `ipa8-bio-homeostasis` | `batch2_science/3. DAILY TEST BIOLOGY Y8...pdf` | `src/data/papers/ipa/kelas8/biology-grade-8-homeostasis-excretion.js` | `pending` |
+| `mat10-persamaan-kuadrat` | `batch1/[6] Persamaan Kuadrat.pdf` | `src/data/papers/matematika/kelas10/persamaan-kuadrat.js` | `done` (8 soal, 21 poin) |
+| `mat10-barisan-deret-aritmetika` | `batch1/[12] Barisan dan Deret Aritmetika.pdf` | `src/data/papers/matematika/kelas10/barisan-deret-aritmetika.js` | `done` (5 soal, 14 poin) |
+| `mat10-barisan-deret-geometri` | `batch1/[13] Barisan dan Deret Geometri.pdf` | `src/data/papers/matematika/kelas10/barisan-deret-geometri.js` | `done` (3 soal, 10 poin) |
+| `mat12-statistika-latihan-1` | `batch1/9 LATIHAN SOAL 1 STATISTIKA.pdf` | `src/data/papers/matematika/kelas12/statistika-latihan-1.js` | `done` (20 soal) |
+| `mat12-peluang-kaidah-pencacahan` | `batch1/10 LATIHAN SOAL 1+2 PELUANG.pdf` | `src/data/papers/matematika/kelas12/peluang-kaidah-pencacahan.js` | `done` (19 soal, 48 bagian) |
+| `kim11-chemical-equilibrium` | `batch3/chem_equilibrium_ch5.pdf` | `src/data/papers/kimia/kelas11/chemical-equilibrium-practice.js` | `done` (12 soal, 30 bagian) |
+| `ipa9-edexcel-bio-genetics` | `batch3/edexcel_bio_genetics.pdf` | `src/data/papers/ipa/kelas9/edexcel-biology-genetics-inheritance.js` | `done` (28 soal, 92 Marks) |
+| `ipa8-bio-homeostasis` | `batch2_science/3. DAILY TEST BIOLOGY Y8...pdf` | `src/data/papers/ipa/kelas8/biology-grade-8-homeostasis-excretion.js` | `done` (16 bagian, 24 Marks) |
 
 ---
 

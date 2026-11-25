@@ -164,3 +164,18 @@ Seluruh naskah bersumber dari arsip terbuka (Po-Shen Loh / MAA AMC, M3Kang, math
 | `osk-mat-sd-bilangan-p1` | OSN-K | 14 soal (28 skor) | OSN-K SD Bilangan Paket 1 + 2 diagram SVG |
 | `osk-mat-sd-aritmatika-p1` | OSN-K | 15 soal | OSN-K SD Aritmatika Paket 1 + 1 diagram SVG |
 | `osk-mat-sd-geometri-p1` | OSN-K | 16 bagian (32 skor) | OSN-K SD Geometri Paket 1 + 13 diagram SVG |
+
+---
+
+## Batch 7 — 8 Paket Matematika Sekolah, IPA SMP, Kimia & Biologi IGCSE (100 Paket Terpublikasi)
+
+| ID Paket | Kompetisi / Mapel | Cakupan | Catatan |
+| :--- | :--- | :--- | :--- |
+| `mat10-persamaan-kuadrat` | Matematika SMA | 8 soal (21 poin) | Persamaan Kuadrat Kelas X |
+| `mat10-barisan-deret-aritmetika` | Matematika SMA | 5 soal (14 poin) | Barisan & Deret Aritmetika Kelas X |
+| `mat10-barisan-deret-geometri` | Matematika SMA | 3 soal (10 poin) | Barisan & Deret Geometri Kelas X |
+| `mat12-statistika-latihan-1` | Matematika SMA | 20 soal | Statistika SMA Paket 1 |
+| `mat12-peluang-kaidah-pencacahan` | Matematika SMA | 19 soal (48 bagian, 84 poin) | Kaidah Pencacahan & Peluang Paket 1 & 2 |
+| `kim11-chemical-equilibrium` | Kimia SMA | 12 soal (30 bagian, 61 Marks) | Kesetimbangan Kimia (`EN`, bebas `\ce`/`\pu`) |
+| `ipa9-edexcel-bio-genetics` | IGCSE Biology | 28 soal (92 Marks) | Genetics & Inheritance (`EN`, Q18–19 diagram dilewati) |
+| `ipa8-bio-homeostasis` | IPA SMP | 16 bagian (24 Marks) | Homeostasis & Excretion (`EN`, identitas sekolah sumber dihapus) |

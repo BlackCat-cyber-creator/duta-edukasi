@@ -2338,6 +2338,176 @@ export const PAPER_MANIFEST = [
     "itemCount": 16,
     "questionCount": 2,
     "status": "published"
+  },
+  {
+    "id": "mat10-persamaan-kuadrat",
+    "slug": "persamaan-kuadrat",
+    "subject": "matematika",
+    "grade": 10,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "Persamaan Kuadrat",
+    "relatedChapterIds": [
+      "sma10-bab6-fungsi-kuadrat"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Matematika SMA",
+    "year": null,
+    "title": "Latihan Persamaan Kuadrat — Kelas X",
+    "totalMarks": 21,
+    "itemCount": 8,
+    "questionCount": 8,
+    "status": "published"
+  },
+  {
+    "id": "mat10-barisan-deret-aritmetika",
+    "slug": "barisan-deret-aritmetika",
+    "subject": "matematika",
+    "grade": 10,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "Barisan dan Deret Aritmetika",
+    "relatedChapterIds": [
+      "sma10-bab2-barisan-deret"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Matematika SMA",
+    "year": null,
+    "title": "Latihan Barisan dan Deret Aritmetika — Kelas X",
+    "totalMarks": 14,
+    "itemCount": 5,
+    "questionCount": 5,
+    "status": "published"
+  },
+  {
+    "id": "mat10-barisan-deret-geometri",
+    "slug": "barisan-deret-geometri",
+    "subject": "matematika",
+    "grade": 10,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "Barisan dan Deret Geometri",
+    "relatedChapterIds": [
+      "sma10-bab2-barisan-deret"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Matematika SMA",
+    "year": null,
+    "title": "Latihan Barisan dan Deret Geometri — Kelas X",
+    "totalMarks": 10,
+    "itemCount": 3,
+    "questionCount": 3,
+    "status": "published"
+  },
+  {
+    "id": "mat12-statistika-latihan-1",
+    "slug": "statistika-latihan-1",
+    "subject": "matematika",
+    "grade": 12,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "Statistika Deskriptif: Ukuran Pemusatan, Letak, dan Penyebaran Data",
+    "relatedChapterIds": [
+      "sma10-bab7-statistika"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Matematika SMA",
+    "year": null,
+    "title": "Latihan Soal Statistika SMA — Paket 1",
+    "totalMarks": 20,
+    "itemCount": 20,
+    "questionCount": 20,
+    "status": "published"
+  },
+  {
+    "id": "mat12-peluang-kaidah-pencacahan",
+    "slug": "peluang-kaidah-pencacahan",
+    "subject": "matematika",
+    "grade": 12,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "Kaidah Pencacahan, Faktorial, dan Permutasi",
+    "relatedChapterIds": [
+      "sma12-bab3-kaidah-pencacahan",
+      "sma12-bab4-peluang"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Matematika SMA",
+    "year": null,
+    "title": "Latihan Kaidah Pencacahan & Peluang SMA — Paket 1 & 2",
+    "totalMarks": 84,
+    "itemCount": 48,
+    "questionCount": 19,
+    "status": "published"
+  },
+  {
+    "id": "kim11-chemical-equilibrium",
+    "slug": "chemical-equilibrium-practice",
+    "subject": "kimia",
+    "grade": 11,
+    "track": "cambridge-style",
+    "accessTier": "free",
+    "topic": "Chemical Equilibrium",
+    "relatedChapterIds": [
+      "kimia11-bab4-kesetimbangan-kimia"
+    ],
+    "lang": "en",
+    "langDisplay": "EN",
+    "competition": "Kimia SMA",
+    "year": null,
+    "title": "Chemistry Grade 11 – Chemical Equilibrium Practice",
+    "totalMarks": 61,
+    "itemCount": 30,
+    "questionCount": 12,
+    "status": "published"
+  },
+  {
+    "id": "ipa9-edexcel-bio-genetics",
+    "slug": "edexcel-biology-genetics-inheritance",
+    "subject": "ipa",
+    "grade": 9,
+    "track": "cambridge-style",
+    "accessTier": "free",
+    "topic": "Unit 18: Genetics & Inheritance (Heredity, Crosses & Pedigrees)",
+    "relatedChapterIds": [
+      "ipa9-bab6-pewarisan-sifat-bioteknologi"
+    ],
+    "lang": "en",
+    "langDisplay": "EN",
+    "competition": "IGCSE Biology",
+    "year": null,
+    "title": "Biology Grade 9 – Genetics & Inheritance (IGCSE Practice)",
+    "totalMarks": 92,
+    "itemCount": 28,
+    "questionCount": 28,
+    "status": "published"
+  },
+  {
+    "id": "ipa8-bio-homeostasis",
+    "slug": "biology-grade-8-homeostasis-excretion",
+    "subject": "ipa",
+    "grade": 8,
+    "track": "cambridge-style",
+    "accessTier": "free",
+    "topic": "Homeostasis & Excretion",
+    "relatedChapterIds": [
+      "ipa8-bab2-struktur-fungsi-tubuh",
+      "ipa9-bab2-koordinasi-reproduksi-homeostasis"
+    ],
+    "lang": "en",
+    "langDisplay": "EN",
+    "competition": "IPA SMP",
+    "year": null,
+    "title": "Biology Grade 8 – Homeostasis & Excretion Practice",
+    "totalMarks": 24,
+    "itemCount": 16,
+    "questionCount": 6,
+    "status": "published"
   }
 ];
 
@@ -2444,7 +2614,15 @@ export const PAPER_LOADERS = {
   'olimpiade-mat/sasmo-practice-2': () => import('./olimpiade-mat/sd/sasmo-practice-2.js'),
   'olimpiade-mat/osk-bilangan-paket-1': () => import('./olimpiade-mat/sd/osk-bilangan-paket-1.js'),
   'olimpiade-mat/osk-aritmatika-paket-1': () => import('./olimpiade-mat/sd/osk-aritmatika-paket-1.js'),
-  'olimpiade-mat/osk-geometri-paket-1': () => import('./olimpiade-mat/sd/osk-geometri-paket-1.js')
+  'olimpiade-mat/osk-geometri-paket-1': () => import('./olimpiade-mat/sd/osk-geometri-paket-1.js'),
+  'matematika/persamaan-kuadrat': () => import('./matematika/kelas10/persamaan-kuadrat.js'),
+  'matematika/barisan-deret-aritmetika': () => import('./matematika/kelas10/barisan-deret-aritmetika.js'),
+  'matematika/barisan-deret-geometri': () => import('./matematika/kelas10/barisan-deret-geometri.js'),
+  'matematika/statistika-latihan-1': () => import('./matematika/kelas12/statistika-latihan-1.js'),
+  'matematika/peluang-kaidah-pencacahan': () => import('./matematika/kelas12/peluang-kaidah-pencacahan.js'),
+  'kimia/chemical-equilibrium-practice': () => import('./kimia/kelas11/chemical-equilibrium-practice.js'),
+  'ipa/edexcel-biology-genetics-inheritance': () => import('./ipa/kelas9/edexcel-biology-genetics-inheritance.js'),
+  'ipa/biology-grade-8-homeostasis-excretion': () => import('./ipa/kelas8/biology-grade-8-homeostasis-excretion.js')
 };
 
 const paperCache = new Map();
