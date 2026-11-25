@@ -133,25 +133,20 @@ export function AiAssistantPanel({ embedded = false, onClose }) {
         .filter(([, v]) => v?.completed)
         .map(([id]) => id);
 
-      const res = await fetch('/api/ai-chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {})
+      const { sendFirebaseAiChat } = await import('../firebase/aiChat');
+      const data = await sendFirebaseAiChat({
+        messages: nextHistory.map((m) => ({ role: m.role, text: m.text })),
+        userContext: {
+          currentPath: location.pathname,
+          targetLevel: study.profile?.targetLevel || '',
+          targetCompetitions: study.profile?.targetCompetitions || [],
+          completedPaperIds
         },
-        body: JSON.stringify({
-          messages: nextHistory.map((m) => ({ role: m.role, text: m.text })),
-          userContext: {
-            currentPath: location.pathname,
-            targetLevel: study.profile?.targetLevel || '',
-            targetCompetitions: study.profile?.targetCompetitions || [],
-            completedPaperIds
-          }
-        })
+        displayName,
+        idToken: token || ''
       });
 
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
+      if (!data.ok) {
         setError(data?.error || 'Asisten AI sedang sibuk. Coba sesaat lagi.');
       } else {
         setMessages((prev) => [

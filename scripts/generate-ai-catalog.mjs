@@ -17,6 +17,7 @@ import { chapterPath, amcChapterPath } from '../src/utils/seoRoutes.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const OUT_PATH = path.join(ROOT, 'api/_catalog.json');
+const OUT_PUBLIC_PATH = path.join(ROOT, 'public/ai-catalog.json');
 
 const items = [];
 
@@ -148,4 +149,6 @@ const catalog = {
 
 fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
 fs.writeFileSync(OUT_PATH, JSON.stringify(catalog));
-console.log(`Generated AI catalog: ${items.length} items -> api/_catalog.json`);
+fs.mkdirSync(path.dirname(OUT_PUBLIC_PATH), { recursive: true });
+fs.writeFileSync(OUT_PUBLIC_PATH, JSON.stringify(catalog));
+console.log(`Generated AI catalog: ${items.length} items -> api/_catalog.json & public/ai-catalog.json`);
