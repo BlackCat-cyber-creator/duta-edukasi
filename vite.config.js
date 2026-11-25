@@ -13,9 +13,8 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
-        // Hanya kerangka aplikasi yang diunduh di awal (bukan 3,7 MB bank soal semua kelas).
+        // Hanya kerangka aset inti yang diunduh di awal; HTML halaman dan paket soal dimuat sesuai rute.
         globPatterns: [
-          'app.html',
           'assets/index-*.{js,css}',
           'assets/rolldown-runtime-*.js',
           'assets/vendor-react-*.js',

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 275" width="380" height="275" role="img">
+  <rect width="380" height="275" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <path d="M 220.45 238.00 L 267.56 238.00 A 81.60 81.60 0 0 1 196.89 197.20 Z" fill="#93C5FD" fill-opacity="0.55"/>
+  <line x1="16" y1="238" x2="364" y2="238" stroke="#0F172A" stroke-width="2"/>
+  <text x="352" y="230" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-style="italic" font-weight="700" fill="#0F172A">ℓ</text>
+  <polygon points="32.00,238.00 220.45,238.00 126.22,74.80" fill="#F8FAFC" stroke="#0F172A" stroke-width="2.2"/>
+  <line x1="126.22" y1="238.00" x2="126.22" y2="74.80" stroke="#0369A1" stroke-width="1.6" stroke-dasharray="5 3"/>
+  <text x="140.2" y="156.4" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0369A1">24</text>
+  <circle cx="267.56" cy="156.40" r="81.60" fill="#FFFFFF" fill-opacity="0.7" stroke="#9F1239" stroke-width="2.2"/>
+  <line x1="267.56" y1="156.40" x2="267.56" y2="238.00" stroke="#9F1239" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <text x="281.6" y="197.2" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#9F1239">12</text>
+  <circle cx="267.56" cy="156.40" r="3.5" fill="#9F1239"/>
+  <circle cx="196.89" cy="197.20" r="3.5" fill="#0F172A"/>
+  <circle cx="267.56" cy="238.00" r="3.5" fill="#0F172A"/>
+  <text x="220.4" y="256" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">V</text>
+  <text x="267.6" y="256" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">T</text>
+  <text x="182.9" y="193.2" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">P</text>
+</svg>

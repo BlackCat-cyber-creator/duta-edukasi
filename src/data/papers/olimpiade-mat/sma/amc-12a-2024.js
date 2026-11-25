@@ -1,7 +1,7 @@
 /**
- * Paket Soal Terstruktur: AMC 12A (2024) — 23 of 25 multiple-choice problems included.
+ * Paket Soal Terstruktur: AMC 12A (2024) — 24 of 25 multiple-choice problems included.
  * Source: scraped_raw/amc-12a-2024.md (MAA AMC 12A 2024).
- * Skipped 2 diagram-dependent problems whose figures are missing from the archive: Q18 and Q22.
+ * Q18 is restored with a curated SVG diagram; Q22 is skipped because its source diagram is omitted.
  */
 const OK = [{ code: 'A1', text: 'Correct option selected with valid supporting reasoning.' }];
 
@@ -28,9 +28,9 @@ export default {
   langDisplay: 'EN',
   competition: 'AMC 12',
   title: 'AMC 12A — 2024',
-  totalMarks: 23,
+  totalMarks: 24,
   instructions:
-    'This set contains 23 multiple-choice problems from the 25-problem 2024 AMC 12A paper (included: Q1-Q17, Q19-Q21, Q23-Q25; skipped: 2 problems requiring missing diagrams, namely Q18 and Q22). Original problem numbers are preserved. In the official AMC 12 contest, a correct answer scores 6 points, an unanswered problem scores 1.5 points, and an incorrect answer scores 0 points; in this practice set, each included problem is worth 1 point (23 points total). Calculators are not allowed.',
+    'This set contains 24 multiple-choice problems from the 25-problem 2024 AMC 12A paper (included: Q1-Q21, Q23-Q25, with Q18 restored alongside a curated SVG diagram; skipped: Q22 requiring a missing grid figure). Original problem numbers are preserved. In the official AMC 12 contest, a correct answer scores 6 points, an unanswered problem scores 1.5 points, and an incorrect answer scores 0 points; in this practice set, each included problem is worth 1 point (24 points total). Calculators are not allowed.',
   source: {
     org: 'MAA (Mathematical Association of America) — AMC 12A',
     file: 'scraped_raw/amc-12a-2024.md',
@@ -41,8 +41,8 @@ export default {
     {
       no: 1,
       title: 'Multiple Choice',
-      marks: 23,
-      stem: 'Choose the best answer (A, B, C, D, or E) for each of the 23 included problems (original AMC 12A numbering; 1 point each).',
+      marks: 24,
+      stem: 'Choose the best answer (A, B, C, D, or E) for each of the 24 included problems (original AMC 12A numbering; 1 point each).',
       parts: [
         {
           label: '1',
@@ -229,6 +229,24 @@ export default {
           principle: 'Subtract two equations to factor $(a - c)(b - 1) = 13$ and test the integer factor pairs of $13$.',
           solution:
             'Subtracting $bc + a = 87$ from $ab + c = 100$ gives\n$$ab - bc - (a - c) = 13 \\implies (a - c)(b - 1) = 13.$$\nSince $13$ is prime and $a, b, c \\in \\mathbb{Z}$, the pair $(a - c, b - 1)$ must be one of $(1, 13)$, $(13, 1)$, $(-1, -13)$, or $(-13, -1)$. Substitute each into $bc + a = 87$:\n- $(a - c, b - 1) = (1, 13)$: $b = 14$, $a = c + 1 \\implies 14c + c + 1 = 87 \\implies 15c = 86$ (no integer solution).\n- $(a - c, b - 1) = (13, 1)$: $b = 2$, $a = c + 13 \\implies 2c + c + 13 = 87 \\implies 3c = 74$ (no integer solution).\n- $(a - c, b - 1) = (-1, -13)$: $b = -12$, $a = c - 1 \\implies -12c + c - 1 = 87 \\implies -11c = 88 \\implies c = -8$, giving $(a, b, c) = (-9, -12, -8)$.\n- $(a - c, b - 1) = (-13, -1)$: $b = 0$, $a = c - 13 \\implies a = 87, c = 100$, which fails $ca + b = 60$.\nChecking $(-9, -12, -8)$ confirms all three equations ($108 - 8 = 100$, $96 - 9 = 87$, $72 - 12 = 60$). Therefore,\n$$ab + bc + ca = (-9)(-12) + (-12)(-8) + (-8)(-9) = 108 + 96 + 72 = 276.$$',
+          rubric: OK
+        },
+        {
+          label: '18',
+          marks: 1,
+          prompt:
+            'On top of a rectangular card with sides of length $1$ and $2 + \\sqrt{3}$, an identical card is placed so that two of their diagonals line up ($AC$ in this case). Continue in the same way: at each step, rotate a new card clockwise by the same angle as before and place it so that it shares the previous card\'s unused diagonal. In total, how many cards must be used until a vertex of a new card lands exactly on the vertex labeled $B$ in the figure?\n\nA. $6$\nB. $8$\nC. $10$\nD. $12$\nE. No new vertex will land on $B$.',
+          figures: [
+            {
+              src: '/papers/amc-12a-2024/fig-18.svg',
+              alt: 'Two congruent rectangular cards of dimensions 1 by 2 plus root 3 sharing diagonal AC, with the second card rotated clockwise relative to the first and vertex B labeled.',
+              caption: 'Identical rectangular cards sharing diagonal AC with the second rotated clockwise.'
+            }
+          ],
+          answer: 'A. $6$',
+          principle: 'Find the angle between the diagonals via $\\tan 15^\\circ = 2 - \\sqrt{3}$ and track the rotation modulo $180^\\circ$ for the unoriented diagonal line.',
+          solution:
+            'In a $1 \\times (2 + \\sqrt{3})$ rectangle, let $\\theta$ be the angle a diagonal makes with a long side. Then\n$$\\tan\\theta = \\frac{1}{2 + \\sqrt{3}} = 2 - \\sqrt{3} = \\tan 15^\\circ \\implies \\theta = 15^\\circ.$$\n(Verify algebraically: $\\tan 15^\\circ = \\frac{1 - \\cos 30^\\circ}{\\sin 30^\\circ} = \\frac{1 - \\sqrt{3}/2}{1/2} = 2 - \\sqrt{3}$.) Thus the acute angle between the two diagonals of a rectangle is $2\\theta = 30^\\circ$.\n\nAll cards share the common center of their diagonals and have the same diagonal length, so every vertex lies on one circle. Starting from shared diagonal $AC$, the second card\'s unused diagonal is obtained by rotating $AC$ by $30^\\circ$ clockwise. Each additional card shares the previous card\'s unused diagonal and turns the next unused diagonal $30^\\circ$ further clockwise.\n\nNotice that the original card\'s unused diagonal (which contains vertex $B$) lies $30^\\circ$ counterclockwise from $AC$, which as an unoriented line through the center is $180^\\circ - 30^\\circ = 150^\\circ$ clockwise from $AC$. After placing the $2$nd card ($30^\\circ$ CW), $3$rd ($60^\\circ$), $4$th ($90^\\circ$), $5$th ($120^\\circ$), and **$6$th** card ($5 \\cdot 30^\\circ = 150^\\circ$ clockwise), the $6$th card\'s unused diagonal coincides with the diagonal through $B$, placing a vertex directly on $B$. Thus $6$ cards are needed in total.',
           rubric: OK
         },
         {

@@ -2,13 +2,13 @@ import React, { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Trophy, Award, ArrowRight, FileCheck2 } from 'lucide-react';
 import {
-  PUBLISHED_PAPERS,
+  PUBLISHED_PAPER_MANIFEST as PUBLISHED_PAPERS,
   PAPER_SUBJECT_META,
   OLYMPIAD_COMPETITIONS,
   paperPath,
   formatPaperMeta,
   levelNameOfGrade
-} from '../data/papers/index';
+} from '../data/papers/manifest';
 import { AMC_LEVELS_METADATA, ALL_AMC_CHAPTERS_INDEX } from '../data/amc';
 import { amcLevelPath } from '../utils/seoRoutes';
 import { OLIMPIADE_HUB_META } from '../utils/seoMeta';

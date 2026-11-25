@@ -2,13 +2,13 @@ import React, { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { FileCheck2, ArrowRight, Search } from 'lucide-react';
 import {
-  PUBLISHED_PAPERS,
+  PUBLISHED_PAPER_MANIFEST as PUBLISHED_PAPERS,
   PAPER_SUBJECT_META,
-  getPapersBySubject,
+  getManifestBySubject as getPapersBySubject,
   paperPath,
   subjectHubPath,
   formatPaperMeta
-} from '../data/papers/index';
+} from '../data/papers/manifest';
 import { ORGANIZATION } from '../data/siteInfo';
 import { papersHubMeta } from '../utils/seoMeta';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';

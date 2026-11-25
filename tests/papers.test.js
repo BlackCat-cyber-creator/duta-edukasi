@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import katex from 'katex';
 import { ALL_PAPERS, PUBLISHED_PAPERS } from '../src/data/papers/index.js';
+import { PAPER_MANIFEST, PAPER_LOADERS } from '../src/data/papers/manifest.js';
 
 const PUBLIC_DIR = path.resolve(__dirname, '../public');
 
@@ -82,9 +83,14 @@ describe('Paket Soal Terstruktur (papers schema & integrity)', { timeout: 30000 
           ...(q.parts || []).flatMap((pt) => pt.figures || [])
         ];
         for (const fig of allFigs) {
-          expect(fig.src).toMatch(/^\/papers\/.+\.webp$/);
+          expect(fig.src).toMatch(/^\/papers\/.+\.(webp|svg)$/);
           const diskPath = path.join(PUBLIC_DIR, fig.src.replace(/^\//, ''));
           expect(fs.existsSync(diskPath), `Missing figure file: ${diskPath}`).toBe(true);
+          if (fig.src.endsWith('.svg')) {
+            const svgText = fs.readFileSync(diskPath, 'utf8');
+            expect(svgText, `Invalid SVG in ${diskPath}`).toMatch(/<svg[\s>]/i);
+            expect(svgText, `Unsafe script tag in ${diskPath}`).not.toMatch(/<script/i);
+          }
           expect(fig.alt && fig.alt.trim().length > 15, `Missing alt on ${p.id} Q${q.no}`).toBe(true);
           expect(fig.caption).toBeTruthy();
           const combined = `${fig.alt} ${fig.caption}`;
@@ -120,6 +126,23 @@ describe('Paket Soal Terstruktur (papers schema & integrity)', { timeout: 30000 
           }
         }
       }
+    }
+  });
+
+  it('manifest lazy-loading sinkron dengan ALL_PAPERS dan memiliki loader tiap paket', () => {
+    expect(PAPER_MANIFEST).toHaveLength(ALL_PAPERS.length);
+    for (let i = 0; i < ALL_PAPERS.length; i += 1) {
+      const full = ALL_PAPERS[i];
+      const meta = PAPER_MANIFEST[i];
+      expect(meta.id).toBe(full.id);
+      expect(meta.slug).toBe(full.slug);
+      expect(meta.subject).toBe(full.subject);
+      expect(meta.competition).toBe(full.competition);
+      expect(meta.status).toBe(full.status);
+      expect(meta.totalMarks).toBe(full.totalMarks);
+      const partCount = full.questions.reduce((sum, q) => sum + q.parts.length, 0);
+      expect(meta.itemCount).toBe(partCount);
+      expect(typeof PAPER_LOADERS[`${full.subject}/${full.slug}`]).toBe('function');
     }
   });
 });

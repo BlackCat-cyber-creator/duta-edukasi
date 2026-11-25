@@ -1,6 +1,6 @@
 /**
- * Paket Soal Terstruktur: OSN-K Fisika SMA 2024 (27 soal isian numerik)
- * Sumber: scraped_raw/osnk-fisika-sma-2024.md (27 dari 40 soal disertakan; 13 soal yang bergantung pada gambar dilewati).
+ * Paket Soal Terstruktur: OSN-K Fisika SMA 2024 (29 soal isian numerik)
+ * Sumber: scraped_raw/osnk-fisika-sma-2024.md (29 dari 40 soal disertakan; 11 soal bergantung gambar hilang dilewati, No. 20 & 22 dipulihkan bersama No. 25 & 27 dengan diagram SVG terkurasi).
  */
 const OK = [
   {
@@ -29,9 +29,9 @@ export default {
   langDisplay: 'ID',
   competition: 'OSN-K',
   title: 'OSN-K Fisika SMA 2024',
-  totalMarks: 27,
+  totalMarks: 29,
   instructions:
-    'Paket ini memuat 27 soal isian numerik dari total 40 soal asli OSN-K Fisika SMA 2024. Sebanyak 13 soal dilewati karena memerlukan gambar yang tidak tersedia pada berkas arsip (nomor 2, 5, 13, 20, 22, 26, 32, 34, 36, 37, 38, 39, dan 40). Pada soal nomor 14, penyebutan sudut kedua pada naskah asli tertulis $60^\\circ$ dan telah dikoreksi menjadi $30^\\circ$ sesuai naskah pembahasan. Gunakan percepatan gravitasi $g = 9.8\\ \\text{m/s}^2$ kecuali dinyatakan lain pada soal. Tuliskan jawaban numerik dalam satu angka di belakang koma. Setiap jawaban benar bernilai 1 poin (total 27 poin).',
+    'Paket ini memuat 29 soal isian numerik dari total 40 soal asli OSN-K Fisika SMA 2024 (termasuk soal nomor 20 dan 22 yang dipulihkan bersama nomor 25 dan 27 dengan ilustrasi diagram SVG). Sebanyak 11 soal dilewati karena memerlukan gambar asli yang belum lengkap pada berkas arsip (nomor 2, 5, 13, 26, 32, 34, 36, 37, 38, 39, dan 40). Pada soal nomor 14, penyebutan sudut kedua pada naskah asli tertulis $60^\\circ$ dan telah dikoreksi menjadi $30^\\circ$ sesuai naskah pembahasan. Gunakan percepatan gravitasi $g = 9.8\\ \\text{m/s}^2$ kecuali dinyatakan lain pada soal. Tuliskan jawaban numerik dalam satu angka di belakang koma. Setiap jawaban benar bernilai 1 poin (total 29 poin).',
   source: {
     org: 'OSN-K (Olimpiade Sains Nasional tingkat Kabupaten/Kota)',
     file: 'scraped_raw/osnk-fisika-sma-2024.md',
@@ -42,8 +42,8 @@ export default {
     {
       no: 1,
       title: 'Soal Isian Numerik',
-      marks: 27,
-      stem: 'Selesaikan ke-27 soal berikut dengan menuliskan nilai numerik desimal hingga satu angka di belakang koma (soal disertakan: nomor 1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 21, 23, 24, 25, 27, 28, 29, 30, 31, 33, dan 35; masing-masing bernilai 1 poin).',
+      marks: 29,
+      stem: 'Selesaikan ke-29 soal berikut dengan menuliskan nilai numerik desimal hingga satu angka di belakang koma (soal disertakan: nomor 1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31, 33, dan 35; masing-masing bernilai 1 poin).',
       parts: [
         {
           label: '1',
@@ -238,6 +238,25 @@ export default {
           rubric: OK
         },
         {
+          label: '20',
+          marks: 1,
+          prompt:
+            'Sebuah partikel bermassa $m = 100\\ \\text{g}$ dilontarkan secara horizontal oleh sebuah pegas berkonstanta $k = 100\\ \\text{N/m}$ dari pinggir sebuah tebing yang memiliki ketinggian $h = 5\\ \\text{m}$ dari permukaan laut. Benda mulanya ditekan ke arah pegas sejauh $x = 20\\ \\text{cm}$, kemudian dilepaskan. Terdapat tebing lain dengan ketinggian yang sama berjarak $d = 3\\ \\text{m}$ dari tebing pertama. Jika tiap tumbukan dianggap elastis sempurna ($g = 9.8\\ \\text{m/s}^2$), partikel akan memantul sebanyak $\\cdots$ kali sebelum sampai ke permukaan laut.',
+          figures: [
+            {
+              src: '/papers/osnk-fis-sma-2024/fig-20.svg',
+              alt: 'Skema pegas horizontal berkonstanta k melontarkan massa m secara mendatar dari tepi tebing setinggi 5 meter menghadap tebing seberang berjarak 3 meter di atas permukaan laut.',
+              caption: 'Ilustrasi pegas pelontar massa m di antara dua tebing setinggi h = 5 m terpisah d = 3 m.'
+            }
+          ],
+          answer: '$2.0$',
+          principle:
+            'Kekekalan energi potensial pegas menjadi energi kinetik peluncuran horizontal, dipadukan dengan gerak parabola berpantulan elastis di antara dua dinding sejajar.',
+          solution:
+            'Dari kekekalan energi mekanik saat pegas dilepas, kelajuan mendatar awal partikel adalah:\n$$\\frac{1}{2}kx^2 = \\frac{1}{2}mv_0^2 \\implies v_0 = x\\sqrt{\\frac{k}{m}}.$$\nSubstitusi $x = 0.20\\ \\text{m}$, $k = 100\\ \\text{N/m}$, dan $m = 0.1\\ \\text{kg}$:\n$$v_0 = 0.20\\sqrt{\\frac{100}{0.1}} = 0.20\\sqrt{1000} = 2\\sqrt{10}\\ \\text{m/s}.$$\nPada arah vertikal, pantulan elastis terhadap dinding vertikal hanya membalikkan arah kecepatan horizontal ($v_x \\to -v_x$) dan tidak mengubah gerak jatuh bebas vertikal. Waktu tempuh menuju permukaan laut adalah:\n$$t = \\sqrt{\\frac{2h}{g}} = \\sqrt{\\frac{2(5)}{9.8}} = \\frac{1}{\\sqrt{0.98}}\\ \\text{s}.$$\nTotal jarak tempuh mendatar (tanpa memedulikan arah bolak-baliknya) selama jatuh adalah:\n$$D = v_0 t = x\\sqrt{\\frac{2kh}{mg}} = 2\\sqrt{\\frac{10}{0.98}} = 2\\sqrt{10.204\\dots} \\approx 6.39\\ \\text{m}.$$\nPartikel menumbuk dinding pertama kali pada jarak mendatar $d = 3\\ \\text{m}$, kedua kali pada $2d = 6\\ \\text{m}$, dan belum mencapai $3d = 9\\ \\text{m}$ saat menyentuh laut. Jadi banyak pantulan adalah:\n$$n = \\left\\lfloor \\frac{D}{d} \\right\\rfloor = \\left\\lfloor \\frac{6.39}{3} \\right\\rfloor = 2.0\\ \\text{kali}.$$',
+          rubric: OK
+        },
+        {
           label: '21',
           marks: 1,
           prompt:
@@ -247,6 +266,25 @@ export default {
             'Pada kecepatan maksimum (terminal) di lintasan datar, gaya penggerak tepat mengimbangi gaya hambat dan daya memenuhi $P = F_{\\text{penggerak}} V$.',
           solution:
             'Saat pengendara mencapai kelajuan maksimum $V_{\\text{maks}}$ pada jalan datar tanpa angin, percepatannya nol sehingga besar gaya penggerak sama dengan gaya hambat:\n$$F_{\\text{penggerak}} = F = \\alpha V_{\\text{maks}}.$$\n\nDaya penggerak maksimum yang dikerahkan adalah:\n$$P = F_{\\text{penggerak}} V_{\\text{maks}} = \\alpha V_{\\text{maks}}^2 \\implies V_{\\text{maks}} = \\sqrt{\\frac{P}{\\alpha}}.$$\n\nSubstitusi $P = 600\\ \\text{W}$ dan $\\alpha = 3\\ \\text{Ns/m}$:\n$$V_{\\text{maks}} = \\sqrt{\\frac{600}{3}} = \\sqrt{200} = 10\\sqrt{2} \\approx 14.1\\ \\text{m/s}.$$',
+          rubric: OK
+        },
+        {
+          label: '22',
+          marks: 1,
+          prompt:
+            'Tinjau suatu sistem silinder pejal bermassa $M$ dan berjari-jari $R$ yang terhubung pada pusatnya oleh dua pegas ke dinding tetap di kiri dan kanannya sehingga dapat berosilasi horizontal secara rotasi tanpa slip di atas lantai datar. Untuk mengetahui konstanta pegas pertama ($k_1$), dilakukan pengukuran terpisah dengan menggantungkan silinder pada pegas $k_1$ secara bebas tanpa rotasi sehingga diperoleh perioda osilasi sederhana $T_1 = \\sqrt{2}\\ \\text{detik}$. Jika diketahui $k_2 = 2k_1$, maka perioda osilasi sistem pada lantai tersebut adalah $\\cdots\\ \\text{detik}$.',
+          figures: [
+            {
+              src: '/papers/osnk-fis-sma-2024/fig-22.svg',
+              alt: 'Silinder pejal bermassa M dan jari-jari R di atas lantai datar dihubungkan pada pusatnya oleh pegas kiri dan pegas kanan ke dua dinding tetap.',
+              caption: 'Sistem silinder pejal menggelinding tanpa slip antara dua pegas k1 dan k2.'
+            }
+          ],
+          answer: '$1.0$',
+          principle:
+            'Kekekalan energi osilasi harmonik sistem benda tegar menggelinding tanpa slip ($E = \\frac{1}{2}(M + I/R^2)\\dot{x}^2 + \\frac{1}{2}k_{\\text{ef}}x^2$) untuk menentukan massa efektif.',
+          solution:
+            'Pada pengukuran gantung vertikal menggunakan pegas $k_1$ saja, perioda osilasinya memenuhi:\n$$T_1 = 2\\pi\\sqrt{\\frac{M}{k_1}}.$$\nKetika silinder pejal ($I = \\frac{1}{2}MR^2$) diletakkan horizontal di antara kedua pegas dan menggelinding tanpa slip ($\\dot{\\theta} = \\frac{\\dot{x}}{R}$), jika pusat massa bergeser sebesar $x$, salah satu pegas tertekan sejauh $x$ dan pegas lainnya teregang sejauh $x$, sehingga keduanya menghasilkan gaya pemulih searah ($k_{\\text{ef}} = k_1 + k_2$).\nEnergi mekanik total sistem saat berosilasi adalah:\n$$E = \\frac{1}{2}M\\dot{x}^2 + \\frac{1}{2}I\\left(\\frac{\\dot{x}}{R}\\right)^2 + \\frac{1}{2}(k_1 + k_2)x^2 = \\frac{1}{2}\\left(M + \\frac{1}{2}M\\right)\\dot{x}^2 + \\frac{1}{2}(k_1 + 2k_1)x^2 = \\frac{3}{4}M\\dot{x}^2 + \\frac{3}{2}k_1 x^2.$$\nDengan demikian $M_{\\text{ef}} = \\frac{3}{2}M$ dan $k_{\\text{ef}} = 3k_1$, sehingga frekuensi sudut osilasinya adalah:\n$$\\omega = \\sqrt{\\frac{k_{\\text{ef}}}{M_{\\text{ef}}}} = \\sqrt{\\frac{3k_1}{\\frac{3}{2}M}} = \\sqrt{\\frac{2k_1}{M}}.$$\nPerioda osilasi sistem horizontal menjadi:\n$$T_2 = \\frac{2\\pi}{\\omega} = 2\\pi\\sqrt{\\frac{M}{2k_1}} = \\frac{T_1}{\\sqrt{2}} = \\frac{\\sqrt{2}}{\\sqrt{2}} = 1.0\\ \\text{s}.$$',
           rubric: OK
         },
         {
@@ -278,6 +316,13 @@ export default {
           marks: 1,
           prompt:
             'Sebuah batu jatuh bebas dari ketinggian $H$ dan menumbuk bidang miring bersudut $45^\\circ$ pada titik yang tingginya $h$. Akibat tumbukan ini batu bergerak dengan kecepatan mendatar. Agar total waktu yang diperlukan batu untuk mencapai tanah bersifat maksimum, maka nilai $\\frac{H}{h}$ sama dengan $\\cdots$',
+          figures: [
+            {
+              src: '/papers/osnk-fis-sma-2024/fig-25.svg',
+              alt: 'Ilustrasi batu jatuh vertikal dari ketinggian H menumbuk bidang miring bersudut 45 derajat pada ketinggian h lalu memantul mendatar ke tanah.',
+              caption: 'Lintasan batu jatuh dari ketinggian H dan memantul mendatar pada bidang miring 45 derajat.'
+            }
+          ],
           answer: '$2.0$',
           principle:
             'Kinematika gerak jatuh bebas dua tahap dan optimasi fungsi menggunakan turunan pertama.',
@@ -290,6 +335,13 @@ export default {
           marks: 1,
           prompt:
             'Sebuah pesawat sedang melakukan manuver dengan berputar pada trek lingkaran vertikal berjari-jari $R = 500\\ \\text{m}$ dengan kecepatan konstan $v = 360\\ \\text{km/jam}$. Jika massa pilot $m = 70\\ \\text{kg}$, maka berat pilot minimum yang akan terukur adalah $\\cdots\\ \\text{N}$.',
+          figures: [
+            {
+              src: '/papers/osnk-fis-sma-2024/fig-27.svg',
+              alt: 'Pesawat bergerak pada lintasan lingkaran vertikal berjari-jari 500 meter pada kelajuan konstan dengan gaya berat dan gaya normal kursi di puncak lintasan.',
+              caption: 'Gerak melingkar vertikal pesawat pada puncak lintasan.'
+            }
+          ],
           answer: '$714.0$',
           principle:
             'Dinamika gerak melingkar vertikal: berat terukur (berat semu) sama dengan gaya normal $N$ yang diberikan kursi terhadap pilot.',

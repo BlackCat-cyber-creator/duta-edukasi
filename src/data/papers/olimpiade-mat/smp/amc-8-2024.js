@@ -1,8 +1,8 @@
 /**
- * Paket Soal Terstruktur: AMC 8 — 2024 (22 of 25 multiple-choice questions included)
+ * Paket Soal Terstruktur: AMC 8 — 2024 (23 of 25 multiple-choice questions included)
  * Source: scraped_raw/amc-8-2024.md (original 25-question contest).
- * Editing note: Original question numbering is preserved (1, 2, 4, 5, 7-13, 15-25).
- * Questions 3, 6, and 14 are omitted because they depend on missing diagrams not completely described in text.
+ * Editing note: Original question numbering is preserved (1-5, 7-13, 15-25; Q3 restored with curated SVG diagram; Q11, Q18, Q20 include curated SVG diagrams).
+ * Questions 6 and 14 are omitted because they depend on missing diagrams not completely described in text.
  */
 const OK = [{ code: 'A1', text: 'Correct answer supported by the derivation.' }];
 
@@ -28,9 +28,9 @@ export default {
   langDisplay: 'EN',
   competition: 'AMC 8',
   title: 'AMC 8 — 2024',
-  totalMarks: 22,
+  totalMarks: 23,
   instructions:
-    'The original AMC 8 (2024) paper consists of 25 multiple-choice questions (1 point each). This set includes 22 self-contained questions using their original numbering (Questions 1, 2, 4, 5, 7-13, and 15-25) and skips 3 questions (Questions 3, 6, and 14) that depend on missing diagrams not completely described in text. No calculators are allowed.',
+    'The original AMC 8 (2024) paper consists of 25 multiple-choice questions (1 point each). This set includes 23 self-contained questions using their original numbering (Questions 1-5, 7-13, and 15-25, with Q3 restored alongside Q11, Q18, and Q20 illustrated by vector SVG diagrams) and skips 2 questions (Questions 6 and 14) whose source diagrams are not uniquely specified in text. No calculators are allowed.',
   source: {
     org: 'MAA (Mathematical Association of America) — AMC 8',
     file: 'scraped_raw/amc-8-2024.md',
@@ -41,8 +41,8 @@ export default {
     {
       no: 1,
       title: 'Multiple Choice Questions',
-      marks: 22,
-      stem: 'Choose the best answer for each question (22 included questions from the 25-question contest; 1 point each).',
+      marks: 23,
+      stem: 'Choose the best answer for each question (23 included questions from the 25-question contest; 1 point each).',
       parts: [
         {
           label: '1',
@@ -64,6 +64,24 @@ export default {
           principle: 'Cancel common factors in each fraction before converting to terminating decimals.',
           solution:
             'Factor out $11$ from the numerator and denominator of each fraction:\n- $\\dfrac{44}{11} = 4$\n- $\\dfrac{110}{44} = \\dfrac{10}{4} = \\dfrac{5}{2} = 2.5$\n- $\\dfrac{44}{1100} = \\dfrac{4}{100} = 0.04$\n\nAdding these values together gives:\n$$4 + 2.5 + 0.04 = 6.54.$$',
+          rubric: OK
+        },
+        {
+          label: '3',
+          marks: 1,
+          prompt:
+            'Four squares of side length $4,$ $7,$ $9,$ and $10$ units are arranged in increasing size order so that their left edges and bottom edges align. The squares alternate shaded and unshaded, as shown in the figure. What is the area of the visible shaded region in square units?\n\nA. $42$\nB. $45$\nC. $49$\nD. $50$\nE. $52$',
+          figures: [
+            {
+              src: '/papers/amc-8-2024/fig-3.svg',
+              alt: 'Four nested squares of side lengths 4, 7, 9, and 10 aligned at their bottom-left corner with alternating shaded and unshaded bands.',
+              caption: 'Four nested squares (sides 4, 7, 9, and 10) sharing a bottom-left corner.'
+            }
+          ],
+          answer: 'E. $52$',
+          principle: 'Compute concentric band areas by subtracting each inner square area from its immediately enclosing square (using difference of squares).',
+          solution:
+            'Moving outward from the smallest $4 \\times 4$ square (unshaded):\n- The inner shaded L-shaped band lies inside the $7 \\times 7$ square and outside the $4 \\times 4$ square, so its area is $7^2 - 4^2 = (7 - 4)(7 + 4) = 3 \\cdot 11 = 33$.\n- Next comes the unshaded $9 \\times 9$ square.\n- The outer shaded L-shaped band lies inside the $10 \\times 10$ square and outside the $9 \\times 9$ square, so its area is $10^2 - 9^2 = (10 - 9)(10 + 9) = 19$.\n\nAdding the two visible shaded regions gives:\n$$33 + 19 = 52.$$',
           rubric: OK
         },
         {
@@ -137,6 +155,13 @@ export default {
           marks: 1,
           prompt:
             'The coordinates of $\\triangle ABC$ are $A(5, 7),$ $B(11, 7),$ and $C(3, y),$ with $y > 7.$ The area of $\\triangle ABC$ is $12.$ What is the value of $y?$\n\nA. $8$\nB. $9$\nC. $10$\nD. $11$\nE. $12$',
+          figures: [
+            {
+              src: '/papers/amc-8-2024/fig-11.svg',
+              alt: 'Coordinate diagram showing triangle ABC with horizontal base AB and vertex C above the base.',
+              caption: 'Triangle ABC on the coordinate plane with base AB along y = 7.'
+            }
+          ],
           answer: 'D. $11$',
           principle: 'Use a horizontal segment as the base of the triangle so its length and perpendicular height are found directly from coordinates.',
           solution:
@@ -203,6 +228,13 @@ export default {
           marks: 1,
           prompt:
             'Three concentric circles centered at $O$ have radii of $1,$ $2,$ and $3.$ Points $B$ and $C$ lie on the largest circle. The region between the two smaller circles is shaded, as is the portion of the region between the two larger circles bounded by central angle $BOC.$ Suppose the shaded and unshaded regions are equal in area. What is the measure of $\\angle BOC$ in degrees?\n\nA. $108$\nB. $120$\nC. $135$\nD. $144$\nE. $150$',
+          figures: [
+            {
+              src: '/papers/amc-8-2024/fig-18.svg',
+              alt: 'Three concentric circles centered at O with radii 1, 2, and 3, inner ring shaded and a sector between the outer two circles shaded from B to C.',
+              caption: 'Concentric circles centered at O of radii 1, 2, and 3 with central angle BOC.'
+            }
+          ],
           answer: 'A. $108$',
           principle: 'Subtract the shaded inner annulus area from half the largest circle\'s area to find the fraction of the outer annulus covered by $\\angle BOC$.',
           solution:
@@ -225,6 +257,13 @@ export default {
           marks: 1,
           prompt:
             'Any three vertices of the cube $PQRSTUVW$ can be connected to form a triangle. (For example, vertices $P,$ $Q,$ and $R$ can be connected to form isosceles $\\triangle PQR.$) How many of these triangles are equilateral and contain $P$ as a vertex?\n\nA. $0$\nB. $1$\nC. $2$\nD. $3$\nE. $6$',
+          figures: [
+            {
+              src: '/papers/amc-8-2024/fig-20.svg',
+              alt: 'Wireframe cube labeled with bottom vertices P, Q, R, S and top vertices T, U, V, W above them respectively.',
+              caption: 'Cube PQRSTUVW highlighting reference vertex P.'
+            }
+          ],
           answer: 'D. $3$',
           principle: 'Classify all vertex-to-vertex segments on a cube by their three possible lengths (edge, face diagonal, space diagonal).',
           solution:

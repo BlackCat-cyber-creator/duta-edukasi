@@ -124,3 +124,26 @@ Seluruh naskah bersumber dari arsip terbuka (Po-Shen Loh / MAA AMC, M3Kang, math
 | `kmnr-kelas-9-2016` | KMNR | 20 soal | arsip mathcyber1997; 5 soal bergambar dilewati |
 | `omvn-sma-2022` | OMVN | 2 nomor (16 sub-bagian) | PDF Penyisihan OMVN SMA 2022; dipecahkan ulang secara eksak (butir PDF rusak dilewati) |
 | `ksm-mat-ma-2018` | KSM | 18 soal | arsip mathcyber1997; No. 2–25 diselesaikan & diverifikasi ulang, butir gambar/ambigu dilewati |
+
+## Peningkatan Arsitektur, Diagram SVG, & Batch 5 (82 Paket Terpublikasi)
+
+1. **Lazy-loading manifest per paket soal (Item 1)**: Metadata ringan dipisah ke `src/data/papers/meta.js`, dan `scripts/generate-paper-manifest.mjs` menghasilkan `src/data/papers/manifest.js` berisi `PAPER_MANIFEST`, `PUBLISHED_PAPER_MANIFEST`, `PAPER_LOADERS`, dan `loadPaperBySlug`. Halaman hub (`HomeHubPage`, `OlimpiadeHubPage`, `PapersHubPage`) serta `PaperDetailPage` kini hanya mengimpor manifest sehingga tiap paket soal dimuat dinamis per rute.
+2. **Konfigurasi PWA bersih (Item 2)**: Menghapus pola `'app.html'` yang tidak ada saat tahap build Vite dari `workbox.globPatterns` di `vite.config.js` agar `vite build` tidak memunculkan peringatan Workbox.
+3. **Tombol Koreksi / Solusi Alternatif (Item 3)**: Setiap sub-soal pada `PaperDetailPage.jsx` dilengkapi tautan `Koreksi / Solusi Alternatif` menuju issue GitHub pra-isi via `buildCorrectionIssueUrl` (`ORGANIZATION.repoUrl` di `src/data/siteInfo.js`).
+4. **Diagram SVG Kurasi & Dukungan `.svg` Aman (Item 7a)**: Validator di `tests/papers.test.js` dan `scratch/verify_paper.mjs` mendukung `/papers/.../*.svg` bebas `<script>`. Sebanyak 10 diagram SVG presisi ditambahkan di `public/papers/` untuk memulihkan butir bergambar serta memperkaya visualisasi pada `amc-8-2024` (4 SVG, memulihkan No. 3 -> 23 soal), `amc-10a-2024` (1 SVG), `amc-12a-2024` (1 SVG, memulihkan No. 18 -> 24 soal), dan `osnk-fis-sma-2024` (4 SVG, memulihkan No. 20 & 22 -> 29 soal).
+5. **Batch 5 — 12 Paket Baru (Item 7b)**: Menambahkan cakupan **SMO (Singapore)**, **AMC 8 2025**, **AMC 10B/12B 2024**, serta **OSN-K / KSM** (total `82` paket terpublikasi):
+
+| ID Paket | Kompetisi | Cakupan | Catatan |
+| :--- | :--- | :--- | :--- |
+| `smo-junior-2012` | SMO | 29 butir (29 skor) | SMO Junior 2012 (arsip terbuka `yuhesui-archive/SMO`) |
+| `smo-senior-2012` | SMO | 28 butir (28 skor) | SMO Senior 2012 (arsip terbuka `yuhesui-archive/SMO`) |
+| `smo-senior-2010` | SMO | 25 butir (25 skor) | SMO Senior 2010 (arsip terbuka `yuhesui-archive/SMO`) |
+| `smo-open-2012` | SMO | 21 butir (21 skor) | SMO Open 2012 (arsip terbuka `yuhesui-archive/SMO`) |
+| `amc-8-2025` | AMC 8 | 18 butir (18 skor) | AMC 8 2025; pembahasan langkah-demi-langkah |
+| `amc-10b-2024` | AMC 10 | 21 butir (21 skor) | AMC 10B 2024; pembahasan langkah-demi-langkah |
+| `amc-12b-2024` | AMC 12 | 23 butir (23 skor) | AMC 12B 2024; pembahasan langkah-demi-langkah |
+| `osnk-ipa-smp-2024` | OSN-K | 35 butir (35 skor) | OSN-K IPA SMP 2024 |
+| `osnk-mat-smp-2019` | OSN-K | 20 butir (20 skor) | OSK Matematika SMP 2019 |
+| `osnk-mat-sd-2023` | OSN-K | 19 butir (19 skor) | OSN-K Matematika SD 2023 |
+| `osnk-kim-sma-2025` | OSN-K | 30 butir (30 skor) | OSN-K Kimia SMA 2025 |
+| `ksm-kim-ma-2022` | KSM | 3 butir (3 skor) | KSM Kimia MA 2022 (uraian/kontekstual mendalam) |

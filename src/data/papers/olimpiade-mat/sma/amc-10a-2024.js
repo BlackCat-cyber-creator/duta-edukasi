@@ -179,6 +179,13 @@ export default {
           marks: 1,
           prompt:
             'One side of an equilateral triangle of height $24$ lies on line $\\ell$. A circle of radius $12$ is tangent to $\\ell$ and is externally tangent to the triangle. The area of the region exterior to the triangle and the circle and bounded by the triangle, the circle, and line $\\ell$ can be written as $a\\sqrt{b} - c\\pi$, where $a$, $b$, and $c$ are positive integers and $b$ is not divisible by the square of any prime. What is $a + b + c$?\n\nA. $72$\nB. $73$\nC. $74$\nD. $75$\nE. $76$',
+          figures: [
+            {
+              src: '/papers/amc-10a-2024/fig-14.svg',
+              alt: 'Equilateral triangle of height 24 resting on horizontal line l beside an externally tangent circle of radius 12 touching l at T and the slanted side at P.',
+              caption: 'Equilateral triangle (height 24) and tangent circle (radius 12) on line l.'
+            }
+          ],
           answer: 'D. $75$',
           principle: 'Decompose the bounded region by subtracting a circular sector from the right-angled kite formed by the two tangents and two radii.',
           solution:

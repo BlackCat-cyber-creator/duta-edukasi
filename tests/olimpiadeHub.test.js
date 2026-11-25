@@ -12,6 +12,7 @@ import {
   formatPaperMeta,
   paperTag
 } from '../src/data/papers/index.js';
+import { buildCorrectionIssueUrl, loadPaperBySlug } from '../src/data/papers/manifest.js';
 
 const clean = (s) => s.replace(/<!--[\s\S]*?-->/g, '');
 const renderAt = (path, element) =>
@@ -96,5 +97,22 @@ describe('Beranda dan hub paket soal', () => {
     expect(html).not.toMatch(/\(olimpiade-/);
     expect(html).not.toContain('BAHASA INDONESIA');
     expect(html).toContain('40 Soal');
+  });
+
+  it('menampilkan SMO (Singapore), tautan koreksi GitHub terisi, dan lazy-load paket Batch 5', async () => {
+    const html = renderAt('/olimpiade', React.createElement(OlimpiadeHubPage));
+    expect(html).toContain('SMO (Singapore)');
+    const sasmo = PUBLISHED_PAPERS.find((p) => p.competition === 'SASMO');
+    expect(sasmo).toBeTruthy();
+    const issueUrl = buildCorrectionIssueUrl(sasmo, { no: 1 }, { label: '1' });
+    const parsed = new URL(issueUrl);
+    expect(parsed.origin).toBe('https://github.com');
+    expect(parsed.searchParams.get('labels')).toBe('koreksi-soal');
+    expect(parsed.searchParams.get('title')).toContain(sasmo.id);
+    expect(parsed.searchParams.get('title')).toContain('Q1(1)');
+    expect(parsed.searchParams.get('body')).toContain('Q1(1)');
+    const amc8_2025 = await loadPaperBySlug('olimpiade-mat', 'amc-8-2025');
+    expect(amc8_2025).toBeTruthy();
+    expect(amc8_2025.questions.length).toBeGreaterThan(0);
   });
 });

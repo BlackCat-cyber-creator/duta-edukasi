@@ -73,18 +73,45 @@ import olimIkmcKadett2224 from './olimpiade-mat/smp/ikmc-kangaroo-kadett-2022-20
 import olimKmnrKelas9_2016 from './olimpiade-mat/smp/kmnr-kelas-9-2016.js';
 import olimOmvnSma2022 from './olimpiade-mat/sma/omvn-sma-2022.js';
 import olimKsmMatMa2018 from './olimpiade-mat/sma/ksm-matematika-2018.js';
+import olimSmoJunior2012 from './olimpiade-mat/smp/smo-junior-2012.js';
+import olimSmoSenior2012 from './olimpiade-mat/sma/smo-senior-2012.js';
+import olimSmoSenior2010 from './olimpiade-mat/sma/smo-senior-2010.js';
+import olimSmoOpen2012 from './olimpiade-mat/sma/smo-open-2012.js';
+import olimAmc8_2025 from './olimpiade-mat/smp/amc-8-2025.js';
+import olimAmc10b2024 from './olimpiade-mat/sma/amc-10b-2024.js';
+import olimAmc12b2024 from './olimpiade-mat/sma/amc-12b-2024.js';
+import olimOsnkIpaSmp2024 from './olimpiade-sains/smp/osnk-ipa-smp-2024.js';
+import olimOsnkMatSmp2019 from './olimpiade-mat/smp/osnk-matematika-smp-2019.js';
+import olimOsnkMatSd2023 from './olimpiade-mat/sd/osnk-matematika-sd-2023.js';
+import olimOsnkKimSma2025 from './olimpiade-kim/sma/osnk-kimia-sma-2025.js';
+import olimKsmKimMa2022 from './olimpiade-kim/sma/ksm-kimia-ma-2022.js';
 
-export const PAPER_SUBJECT_META = {
-  fisika: { id: 'fisika', label: 'Fisika', shortLabel: 'Fisika', color: '#0369A1' },
-  kimia: { id: 'kimia', label: 'Kimia', shortLabel: 'Kimia', color: '#6D28D9' },
-  biologi: { id: 'biologi', label: 'Biologi', shortLabel: 'Biologi', color: '#047857' },
-  matematika: { id: 'matematika', label: 'Matematika', shortLabel: 'Matematika', color: '#12337A' },
-  ipa: { id: 'ipa', label: 'IPA', shortLabel: 'IPA', color: '#0F766E' },
-  'olimpiade-mat': { id: 'olimpiade-mat', label: 'Olimpiade Matematika', shortLabel: 'Olimpiade Mat', color: '#9F1239' },
-  'olimpiade-sains': { id: 'olimpiade-sains', label: 'Olimpiade Sains (OSN)', shortLabel: 'Olimpiade Sains', color: '#0D9488' },
-  'olimpiade-fis': { id: 'olimpiade-fis', label: 'Olimpiade Fisika', shortLabel: 'Olimpiade Fis', color: '#1D4ED8' },
-  'olimpiade-kim': { id: 'olimpiade-kim', label: 'Olimpiade Kimia', shortLabel: 'Olimpiade Kim', color: '#7C3AED' },
-  'olimpiade-bio': { id: 'olimpiade-bio', label: 'Olimpiade Biologi', shortLabel: 'Olimpiade Bio', color: '#059669' }
+import {
+  PAPER_SUBJECT_META,
+  TRACK_LABELS,
+  OLYMPIAD_COMPETITIONS,
+  paperPath,
+  subjectHubPath,
+  countPaperItems,
+  trackLabel,
+  levelNameOfGrade,
+  paperLangLabel,
+  paperTag,
+  formatPaperMeta
+} from './meta.js';
+
+export {
+  PAPER_SUBJECT_META,
+  TRACK_LABELS,
+  OLYMPIAD_COMPETITIONS,
+  paperPath,
+  subjectHubPath,
+  countPaperItems,
+  trackLabel,
+  levelNameOfGrade,
+  paperLangLabel,
+  paperTag,
+  formatPaperMeta
 };
 
 export const ALL_PAPERS = [
@@ -157,18 +184,22 @@ export const ALL_PAPERS = [
   olimIkmcKadett2224,
   olimKmnrKelas9_2016,
   olimOmvnSma2022,
-  olimKsmMatMa2018
+  olimKsmMatMa2018,
+  olimSmoJunior2012,
+  olimSmoSenior2012,
+  olimSmoSenior2010,
+  olimSmoOpen2012,
+  olimAmc8_2025,
+  olimAmc10b2024,
+  olimAmc12b2024,
+  olimOsnkIpaSmp2024,
+  olimOsnkMatSmp2019,
+  olimOsnkMatSd2023,
+  olimOsnkKimSma2025,
+  olimKsmKimMa2022
 ];
 
 export const PUBLISHED_PAPERS = ALL_PAPERS.filter((p) => p.status === 'published');
-
-export function paperPath(paper) {
-  return `/paket-soal/${paper.subject}/${paper.slug}`;
-}
-
-export function subjectHubPath(subject) {
-  return subject && subject !== 'all' ? `/paket-soal/${subject}` : '/paket-soal';
-}
 
 export function getPapersBySubject(subject) {
   if (!subject || subject === 'all') return PUBLISHED_PAPERS;
@@ -183,77 +214,4 @@ export function getRelatedPapersForChapter(chapterId) {
   if (!chapterId) return [];
   return PUBLISHED_PAPERS.filter((p) => Array.isArray(p.relatedChapterIds) && p.relatedChapterIds.includes(chapterId));
 }
-
-/* ------------------------------------------------------------------ */
-/* Salinan kartu: hitung soal sebenarnya, label jalur, dan tag lomba   */
-/* ------------------------------------------------------------------ */
-
-/** Nama ramah untuk slug jalur paket (jangan tampilkan slug mentah seperti "olimpiade-sd" ke pengguna). */
-export const TRACK_LABELS = {
-  'olimpiade-sd': 'Olimpiade SD',
-  'olimpiade-smp': 'Olimpiade SMP',
-  'olimpiade-sma': 'Olimpiade SMA',
-  'kurikulum-merdeka': 'Kurikulum Merdeka',
-  'cambridge-style': 'Gaya Cambridge / IGCSE'
-};
-
-/** Hanya paket bergaya mark scheme (Cambridge/Edexcel/IGCSE) yang memakai istilah "Marks". */
-const MARK_SCHEME_TRACKS = new Set(['cambridge-style']);
-
-/**
- * Jumlah soal sebenarnya. Paket pilihan ganda menyimpan "Bagian A" dan "Bagian B" sebagai
- * dua kelompok, sedangkan soalnya ada di dalam `parts`; maka hitung `parts`, bukan `questions`.
- */
-export function countPaperItems(paper) {
-  return (paper.questions || []).reduce((sum, q) => sum + (q.parts?.length || 1), 0);
-}
-
-export function trackLabel(paper) {
-  return TRACK_LABELS[paper.track] || 'Latihan';
-}
-
-export function levelNameOfGrade(grade) {
-  const g = Number(grade);
-  if (g <= 6) return 'SD';
-  if (g <= 9) return 'SMP';
-  return 'SMA';
-}
-
-/** Label bahasa yang tenang: ID, EN, atau ID / EN. */
-export function paperLangLabel(paper) {
-  return paper.langDisplay || (paper.lang === 'en' ? 'EN' : 'ID');
-}
-
-/** Tag kompetisi/seri, mis. "SASMO · Kelas 8" atau "Seri Pembinaan OSN · SD". */
-export function paperTag(paper) {
-  const comp = paper.competition || (PAPER_SUBJECT_META[paper.subject]?.label ?? paper.subject);
-  if (/^Seri Pembinaan/i.test(comp)) return `${comp} · ${levelNameOfGrade(paper.grade)}`;
-  return `${comp} · Kelas ${paper.grade}`;
-}
-
-/** Ringkasan angka untuk kartu: "40 Soal", plus "35 poin" atau "35 Marks" bila relevan. */
-export function formatPaperMeta(paper) {
-  const items = countPaperItems(paper);
-  const usesMarks = MARK_SCHEME_TRACKS.has(paper.track);
-  let score = null;
-  if (usesMarks) score = `${paper.totalMarks} Marks`;
-  else if (paper.totalMarks !== items) score = `${paper.totalMarks} poin`;
-  return { items, itemsLabel: `${items} Soal`, score, usesMarks, track: trackLabel(paper), lang: paperLangLabel(paper), tag: paperTag(paper) };
-}
-
-/** Kompetisi untuk pusat Olimpiade (/olimpiade). Nama sesuai field `competition` pada paket. */
-export const OLYMPIAD_COMPETITIONS = [
-  { id: 'osn', label: 'OSN / OSK', competitions: ['OSN-K', 'OSN-P', 'OSN'], blurb: 'Olimpiade Sains Nasional jenjang Kabupaten/Kota hingga Nasional: latihan soal Matematika dan sains berbahasa Indonesia.' },
-  { id: 'sasmo', label: 'SASMO', competitions: ['SASMO'], blurb: 'Soal kompetisi matematika SASMO (berbahasa Inggris) dengan pembahasan langkah demi langkah.' },
-  { id: 'amc', label: 'AMC 8 / 10 / 12', competitions: ['AMC 8', 'AMC 10', 'AMC 12'], amc: true, blurb: 'Modul interaktif American Mathematics Competitions (36 bab konsep) serta paket soal resmi AMC 8, AMC 10, dan AMC 12.' },
-  { id: 'hkimo', label: 'HKIMO', competitions: ['HKIMO'], blurb: 'Latihan persiapan HKIMO (berbahasa Inggris) dengan pembahasan lengkap.' },
-  { id: 'timo', label: 'TIMO', competitions: ['TIMO'], blurb: 'Soal babak penyisihan TIMO (berbahasa Inggris) beserta pembahasan.' },
-  { id: 'simoc', label: 'SIMOC', competitions: ['SIMOC'], blurb: 'Soal kompetisi SIMOC (berbahasa Inggris) beserta pembahasan konseptual.' },
-  { id: 'smo', label: 'SMO (Singapore)', competitions: ['SMO'], blurb: 'Singapore Mathematical Olympiad (Junior & Senior) berbahasa Inggris dengan pembahasan konseptual.' },
-  { id: 'ikmc', label: 'IKMC / Kangaroo', competitions: ['IKMC', 'Kangaroo'], blurb: 'International Kangaroo Mathematics Contest (IKMC / Math Kangaroo) untuk SD, SMP, dan SMA.' },
-  { id: 'ksm', label: 'KSM', competitions: ['KSM'], blurb: 'Kompetisi Sains Madrasah (Matematika & IPA) dengan pembahasan bertahap.' },
-  { id: 'kmnr', label: 'KMNR', competitions: ['KMNR'], blurb: 'Kompetisi Matematika Nalaria Realistik untuk SD, SMP, dan SMA.' },
-  { id: 'kompetisi-nasional', label: 'Kompetisi Nasional Lainnya', competitions: ['OMVN', 'KOM', 'OMITS', 'OPTIKA'], blurb: 'Soal kompetisi matematika dan sains nasional universitas/lembaga (OMVN, KOM, OMITS, dll.).' },
-  { id: 'pembinaan', label: 'Seri Pembinaan OSN', competitions: ['Seri Pembinaan OSN'], blurb: 'Seri latihan Bilangan berjenjang (Basic sampai Elite) untuk pembinaan OSN SD dan SMP.' }
-];
 

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   Eye,
@@ -6,14 +6,18 @@ import {
   CheckCircle2,
   BookOpen,
   Printer,
-  RotateCcw
+  RotateCcw,
+  Flag,
+  Loader2
 } from 'lucide-react';
 import {
-  getPaperBySlug,
+  getManifestBySlug,
+  loadPaperBySlug,
+  buildCorrectionIssueUrl,
   PAPER_SUBJECT_META,
   subjectHubPath,
   formatPaperMeta
-} from '../data/papers/index';
+} from '../data/papers/manifest';
 import { findChapterIndex } from '../data/curriculumData';
 import { ORGANIZATION } from '../data/siteInfo';
 import { chapterPath } from '../utils/seoRoutes';
@@ -28,18 +32,39 @@ function parseRubricMarks(code) {
 
 export function PaperDetailPage() {
   const { subject, slug } = useParams();
-  const paper = useMemo(() => getPaperBySlug(subject, slug), [subject, slug]);
+  const manifestEntry = useMemo(() => getManifestBySlug(subject, slug), [subject, slug]);
   useDocumentMeta(
-    paper
-      ? paperDetailMeta(paper)
+    manifestEntry
+      ? paperDetailMeta(manifestEntry)
       : { title: `Paket Soal Tidak Ditemukan | ${ORGANIZATION.name}`, description: '', path: '/paket-soal' }
   );
 
+  const [loadedState, setLoadedState] = useState({ key: '', paper: null, error: false });
   const [revealedKeys, setRevealedKeys] = useState({});
   const [revealedSolutions, setRevealedSolutions] = useState({});
   const [checkedRubrics, setCheckedRubrics] = useState({});
+  const [retryCount, setRetryCount] = useState(0);
 
-  if (!paper) {
+  const routeKey = manifestEntry ? `${manifestEntry.subject}/${manifestEntry.slug}` : '';
+
+  useEffect(() => {
+    if (!manifestEntry) return undefined;
+    let active = true;
+    loadPaperBySlug(manifestEntry.subject, manifestEntry.slug)
+      .then((loaded) => {
+        if (!active) return;
+        setLoadedState({ key: routeKey, paper: loaded, error: !loaded });
+      })
+      .catch(() => {
+        if (!active) return;
+        setLoadedState({ key: routeKey, paper: null, error: true });
+      });
+    return () => {
+      active = false;
+    };
+  }, [manifestEntry, routeKey, retryCount]);
+
+  if (!manifestEntry) {
     return (
       <div className="handbook-container seo-page">
         <h1>Paket Soal Tidak Ditemukan</h1>
@@ -51,26 +76,68 @@ export function PaperDetailPage() {
     );
   }
 
+  const isCurrent = loadedState.key === routeKey;
+  const paper = isCurrent ? loadedState.paper : null;
+
+  if (!isCurrent) {
+    return (
+      <div className="handbook-container seo-page" lang={manifestEntry.lang || 'id'}>
+        <nav className="seo-breadcrumb no-print" aria-label="Navigasi">
+          <Link to="/">Beranda</Link> › <Link to="/paket-soal">Paket Soal</Link> ›{' '}
+          <Link to={subjectHubPath(manifestEntry.subject)}>{PAPER_SUBJECT_META[manifestEntry.subject]?.label || manifestEntry.subject}</Link> ›{' '}
+          <span>{manifestEntry.title}</span>
+        </nav>
+        <div className="route-fallback" role="status" style={{ minHeight: '35vh' }}>
+          <Loader2 size={30} className="spinner route-fallback-icon" />
+          <span>{manifestEntry.lang === 'en' ? 'Loading problem set...' : 'Memuat paket soal...'}</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (loadedState.error || !paper) {
+    return (
+      <div className="handbook-container seo-page">
+        <h1>Gagal Memuat Paket Soal</h1>
+        <p>Terjadi kendala saat mengunduh naskah soal. Periksa koneksi lalu coba lagi.</p>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <button type="button" className="btn btn-royal" onClick={() => { setLoadedState({ key: '', paper: null, error: false }); setRetryCount((c) => c + 1); }}>
+            Muat Ulang Paket
+          </button>
+          <Link className="btn btn-outline" to="/paket-soal" style={{ textDecoration: 'none' }}>
+            Kembali ke Daftar Paket Soal
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   const togglePartKey = (k) => setRevealedKeys((prev) => ({ ...prev, [k]: !prev[k] }));
   const togglePartSolution = (k) => setRevealedSolutions((prev) => ({ ...prev, [k]: !prev[k] }));
   const toggleRubricCheck = (rKey) => setCheckedRubrics((prev) => ({ ...prev, [rKey]: !prev[rKey] }));
 
   const revealAll = (open) => {
-    const next = {};
-    for (const q of paper.questions) {
-      for (const pt of q.parts) {
-        next[`${q.no}-${pt.label}`] = open;
+    setRevealedKeys((prev) => {
+      const next = { ...prev };
+      for (const q of paper.questions) {
+        for (const pt of q.parts) next[`${routeKey}::${q.no}-${pt.label}`] = open;
       }
-    }
-    setRevealedKeys(next);
-    setRevealedSolutions(next);
+      return next;
+    });
+    setRevealedSolutions((prev) => {
+      const next = { ...prev };
+      for (const q of paper.questions) {
+        for (const pt of q.parts) next[`${routeKey}::${q.no}-${pt.label}`] = open;
+      }
+      return next;
+    });
   };
 
   let earnedMarks = 0;
   for (const q of paper.questions) {
     for (const pt of q.parts) {
       (pt.rubric || []).forEach((r, idx) => {
-        const rKey = `${q.no}-${pt.label}-${idx}`;
+        const rKey = `${routeKey}::${q.no}-${pt.label}-${idx}`;
         if (checkedRubrics[rKey]) earnedMarks += parseRubricMarks(r.code);
       });
     }
@@ -151,7 +218,7 @@ export function PaperDetailPage() {
 
           <div>
             {q.parts.map((pt) => {
-              const partKey = `${q.no}-${pt.label}`;
+              const partKey = `${routeKey}::${q.no}-${pt.label}`;
               const showKey = Boolean(revealedKeys[partKey]);
               const showSol = Boolean(revealedSolutions[partKey]);
               return (
@@ -187,6 +254,16 @@ export function PaperDetailPage() {
                     >
                       <BookOpen size={13} /> {showSol ? 'Tutup Pembahasan + Rubrik' : 'Lihat Pembahasan + Rubrik'}
                     </button>
+                    <a
+                      href={buildCorrectionIssueUrl(paper, q, pt, ORGANIZATION.repoUrl)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-subtle"
+                      style={{ fontSize: '0.78rem', padding: '0.28rem 0.65rem', textDecoration: 'none' }}
+                      title={paper.lang === 'en' ? 'Report an error or suggest an alternative solution on GitHub' : 'Laporkan koreksi kunci atau kirim solusi alternatif di GitHub'}
+                    >
+                      <Flag size={13} /> {paper.lang === 'en' ? 'Report Issue / Alt. Solution' : 'Laporkan Koreksi'}
+                    </a>
                   </div>
 
                   {showKey && (
@@ -215,19 +292,19 @@ export function PaperDetailPage() {
                         </strong>
                         <ul className="paper-rubric-list">
                           {(pt.rubric || []).map((r, idx) => {
-                            const rKey = `${q.no}-${pt.label}-${idx}`;
+                            const rKey = `${routeKey}::${q.no}-${pt.label}-${idx}`;
                             const checked = Boolean(checkedRubrics[rKey]);
                             return (
                               <li key={rKey} className="paper-rubric-item">
                                 <input
                                   type="checkbox"
-                                  id={`rub-${rKey}`}
+                                  id={`rub-${q.no}-${pt.label}-${idx}`}
                                   className="no-print"
                                   checked={checked}
                                   onChange={() => toggleRubricCheck(rKey)}
                                   style={{ marginTop: '0.22rem', cursor: 'pointer' }}
                                 />
-                                <label htmlFor={`rub-${rKey}`} style={{ cursor: 'pointer', display: 'flex', gap: '0.45rem', alignItems: 'flex-start' }}>
+                                <label htmlFor={`rub-${q.no}-${pt.label}-${idx}`} style={{ cursor: 'pointer', display: 'flex', gap: '0.45rem', alignItems: 'flex-start' }}>
                                   <span className="paper-rubric-code">{r.code}</span>
                                   <span><MathText text={r.text} /></span>
                                 </label>

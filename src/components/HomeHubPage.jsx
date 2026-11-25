@@ -14,7 +14,7 @@ import {
   FileCheck2,
   ClipboardCheck
 } from 'lucide-react';
-import { PUBLISHED_PAPERS, PAPER_SUBJECT_META, paperPath, formatPaperMeta, OLYMPIAD_COMPETITIONS } from '../data/papers/index';
+import { PUBLISHED_PAPER_MANIFEST as PUBLISHED_PAPERS, PAPER_SUBJECT_META, paperPath, formatPaperMeta, OLYMPIAD_COMPETITIONS } from '../data/papers/manifest';
 import { HOME_META } from '../utils/seoMeta';
 import { gradePath } from '../utils/seoRoutes';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';

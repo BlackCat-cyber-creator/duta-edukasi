@@ -31,6 +31,7 @@ export const ORGANIZATION = {
   mapsEmbedQuery: 'Bimbingan+Belajar+Duta+Edukasi+Jl+Siam+No+37+Pontianak',
   licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
   licenseName: 'CC BY 4.0',
+  repoUrl: 'https://github.com/BlackCat-cyber-creator/duta-edukasi',
   sameAs: [
     'https://www.instagram.com/jonoyang78/',
     'https://www.instagram.com/jenovervy/',
