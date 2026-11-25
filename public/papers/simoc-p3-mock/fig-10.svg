@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 210" width="280" height="210" role="img">
+  <rect width="280" height="210" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g transform="translate(46, 24)">
+    <!-- 4x3 unit grid (each cell 50x50); diagonal from (0,150) to (200,0) passes through 6 shaded squares -->
+    <!-- Row 0 (top, y=0) -->
+    <rect x="0" y="0" width="50" height="50" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5"/>
+    <rect x="50" y="0" width="50" height="50" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5"/>
+    <rect x="100" y="0" width="50" height="50" fill="#DBEAFE" stroke="#0F172A" stroke-width="1.5"/>
+    <rect x="150" y="0" width="50" height="50" fill="#DBEAFE" stroke="#0F172A" stroke-width="1.5"/>
+    <!-- Row 1 (middle, y=50) -->
+    <rect x="0" y="50" width="50" height="50" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5"/>
+    <rect x="50" y="50" width="50" height="50" fill="#DBEAFE" stroke="#0F172A" stroke-width="1.5"/>
+    <rect x="100" y="50" width="50" height="50" fill="#DBEAFE" stroke="#0F172A" stroke-width="1.5"/>
+    <rect x="150" y="50" width="50" height="50" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5"/>
+    <!-- Row 2 (bottom, y=100) -->
+    <rect x="0" y="100" width="50" height="50" fill="#DBEAFE" stroke="#0F172A" stroke-width="1.5"/>
+    <rect x="50" y="100" width="50" height="50" fill="#DBEAFE" stroke="#0F172A" stroke-width="1.5"/>
+    <rect x="100" y="100" width="50" height="50" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5"/>
+    <rect x="150" y="100" width="50" height="50" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5"/>
+    <!-- Outer border & diagonal -->
+    <rect x="0" y="0" width="200" height="150" fill="none" stroke="#0F172A" stroke-width="2"/>
+    <line x1="0" y1="150" x2="200" y2="0" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Dimension labels -->
+    <text x="100" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#334155">4</text>
+    <text x="-16" y="80" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#334155">3</text>
+  </g>
+</svg>

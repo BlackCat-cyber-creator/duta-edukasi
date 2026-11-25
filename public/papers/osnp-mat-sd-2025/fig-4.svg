@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 250" width="320" height="250" role="img">
+  <rect width="320" height="250" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- L-shaped rectilinear polygon: width 8 (60..276), height 6 (48..210) -->
+  <polygon points="60,48 276,48 276,120 140,120 140,210 60,210" fill="#EFF6FF" stroke="#0F172A" stroke-width="2.2" stroke-linejoin="miter"/>
+  <!-- Right-angle markers at the 6 vertices -->
+  <polyline points="60,60 72,60 72,48" fill="none" stroke="#334155" stroke-width="1.3"/>
+  <polyline points="264,48 264,60 276,60" fill="none" stroke="#334155" stroke-width="1.3"/>
+  <polyline points="264,120 264,108 276,108" fill="none" stroke="#334155" stroke-width="1.3"/>
+  <polyline points="140,132 152,132 152,120" fill="none" stroke="#334155" stroke-width="1.3"/>
+  <polyline points="128,210 128,198 140,198" fill="none" stroke="#334155" stroke-width="1.3"/>
+  <polyline points="60,198 72,198 72,210" fill="none" stroke="#334155" stroke-width="1.3"/>
+  <!-- Dimension labels -->
+  <text x="168" y="36" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">8</text>
+  <text x="42" y="135" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">6</text>
+</svg>

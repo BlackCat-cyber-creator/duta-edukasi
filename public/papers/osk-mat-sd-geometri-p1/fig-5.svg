@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 255" width="320" height="255" role="img">
+  <rect width="320" height="255" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Shaded overlap region -->
+  <polygon points="96,96 156,74.16 156,156 117.84,156" fill="#CBD5E1"/>
+  <!-- Square ABCD (side 120) -->
+  <rect x="36" y="36" width="120" height="120" fill="none" stroke="#0F172A" stroke-width="2"/>
+  <!-- Square EFGH (side 150, rotated -20 deg around E=(96,96)) -->
+  <polygon points="96,96 236.95,44.70 288.25,185.65 147.30,236.95" fill="none" stroke="#0F172A" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Center dot E -->
+  <circle cx="96" cy="96" r="3" fill="#0F172A"/>
+  <!-- Side labels -->
+  <text x="96" y="27" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#1E3A8A">8 cm</text>
+  <text x="275" y="112" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#1E3A8A">10 cm</text>
+  <!-- Vertex labels -->
+  <text x="24" y="34" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">A</text>
+  <text x="164" y="34" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">B</text>
+  <text x="165" y="168" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">C</text>
+  <text x="24" y="168" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">D</text>
+  <text x="86" y="92" text-anchor="end" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">E</text>
+  <text x="246" y="40" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">F</text>
+  <text x="298" y="192" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">G</text>
+  <text x="138" y="246" text-anchor="end" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">H</text>
+</svg>

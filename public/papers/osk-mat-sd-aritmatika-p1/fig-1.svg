@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 465 130" width="100%" role="img">
+  <rect width="465" height="130" fill="#ffffff" rx="8" />
+  <style>
+    .hex { fill: #f1f5f9; stroke: #334155; stroke-width: 1.8; stroke-linejoin: round; }
+    .chair { fill: #ffffff; stroke: #0f766e; stroke-width: 1.8; }
+    .lbl { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #334155; text-anchor: middle; font-weight: 600; }
+  </style>
+
+  <!-- 1 meja (cx = 60, cy = 54) -->
+  <g transform="translate(60, 54)">
+    <polygon class="hex" points="0,-24 20.8,-12 20.8,12 0,24 -20.8,12 -20.8,-12" />
+    <circle class="chair" cx="-14.25" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="14.25" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="28.5" cy="0" r="4.2" />
+    <circle class="chair" cx="14.25" cy="24.68" r="4.2" />
+    <circle class="chair" cx="-14.25" cy="24.68" r="4.2" />
+    <circle class="chair" cx="-28.5" cy="0" r="4.2" />
+  </g>
+  <text class="lbl" x="60" y="112">1 meja (6 kursi)</text>
+
+  <!-- 2 meja dirapatkan (cx = 165, 206.6, cy = 54) -->
+  <g transform="translate(165, 54)">
+    <polygon class="hex" points="0,-24 20.8,-12 20.8,12 0,24 -20.8,12 -20.8,-12" />
+    <polygon class="hex" transform="translate(41.6, 0)" points="0,-24 20.8,-12 20.8,12 0,24 -20.8,12 -20.8,-12" />
+    <circle class="chair" cx="-14.25" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="14.25" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="27.35" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="55.85" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="70.1" cy="0" r="4.2" />
+    <circle class="chair" cx="55.85" cy="24.68" r="4.2" />
+    <circle class="chair" cx="27.35" cy="24.68" r="4.2" />
+    <circle class="chair" cx="14.25" cy="24.68" r="4.2" />
+    <circle class="chair" cx="-14.25" cy="24.68" r="4.2" />
+    <circle class="chair" cx="-28.5" cy="0" r="4.2" />
+  </g>
+  <text class="lbl" x="185.8" y="112">2 meja (10 kursi)</text>
+
+  <!-- 3 meja dirapatkan (cx = 315, 356.6, 398.2, cy = 54) -->
+  <g transform="translate(315, 54)">
+    <polygon class="hex" points="0,-24 20.8,-12 20.8,12 0,24 -20.8,12 -20.8,-12" />
+    <polygon class="hex" transform="translate(41.6, 0)" points="0,-24 20.8,-12 20.8,12 0,24 -20.8,12 -20.8,-12" />
+    <polygon class="hex" transform="translate(83.2, 0)" points="0,-24 20.8,-12 20.8,12 0,24 -20.8,12 -20.8,-12" />
+    <circle class="chair" cx="-14.25" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="14.25" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="27.35" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="55.85" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="68.95" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="97.45" cy="-24.68" r="4.2" />
+    <circle class="chair" cx="111.7" cy="0" r="4.2" />
+    <circle class="chair" cx="97.45" cy="24.68" r="4.2" />
+    <circle class="chair" cx="68.95" cy="24.68" r="4.2" />
+    <circle class="chair" cx="55.85" cy="24.68" r="4.2" />
+    <circle class="chair" cx="27.35" cy="24.68" r="4.2" />
+    <circle class="chair" cx="14.25" cy="24.68" r="4.2" />
+    <circle class="chair" cx="-14.25" cy="24.68" r="4.2" />
+    <circle class="chair" cx="-28.5" cy="0" r="4.2" />
+  </g>
+  <text class="lbl" x="356.6" y="112">3 meja (14 kursi)</text>
+</svg>

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 250" width="460" height="250" role="img">
+  <rect width="460" height="250" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Left: Cube net (cell size 38, sub-square 19) -->
+  <!-- (1,0) at (58,42): [W,B / B,W] -->
+  <g stroke="#0F172A" stroke-width="1.1">
+    <rect x="58" y="42" width="19" height="19" fill="#FFFFFF"/><rect x="77" y="42" width="19" height="19" fill="#0F172A"/>
+    <rect x="58" y="61" width="19" height="19" fill="#0F172A"/><rect x="77" y="61" width="19" height="19" fill="#FFFFFF"/>
+    <!-- (0,1) at (20,80): [B,W / W,B] -->
+    <rect x="20" y="80" width="19" height="19" fill="#0F172A"/><rect x="39" y="80" width="19" height="19" fill="#FFFFFF"/>
+    <rect x="20" y="99" width="19" height="19" fill="#FFFFFF"/><rect x="39" y="99" width="19" height="19" fill="#0F172A"/>
+    <!-- (1,1) at (58,80): [W,B / B,W] -->
+    <rect x="58" y="80" width="19" height="19" fill="#FFFFFF"/><rect x="77" y="80" width="19" height="19" fill="#0F172A"/>
+    <rect x="58" y="99" width="19" height="19" fill="#0F172A"/><rect x="77" y="99" width="19" height="19" fill="#FFFFFF"/>
+    <!-- (2,1) at (96,80): [B,W / W,B] -->
+    <rect x="96" y="80" width="19" height="19" fill="#0F172A"/><rect x="115" y="80" width="19" height="19" fill="#FFFFFF"/>
+    <rect x="96" y="99" width="19" height="19" fill="#FFFFFF"/><rect x="115" y="99" width="19" height="19" fill="#0F172A"/>
+    <!-- (3,1) at (134,80): [B,W / W,B] -->
+    <rect x="134" y="80" width="19" height="19" fill="#0F172A"/><rect x="153" y="80" width="19" height="19" fill="#FFFFFF"/>
+    <rect x="134" y="99" width="19" height="19" fill="#FFFFFF"/><rect x="153" y="99" width="19" height="19" fill="#0F172A"/>
+    <!-- (2,2) at (96,118): [B,W / W,B] -->
+    <rect x="96" y="118" width="19" height="19" fill="#0F172A"/><rect x="115" y="118" width="19" height="19" fill="#FFFFFF"/>
+    <rect x="96" y="137" width="19" height="19" fill="#FFFFFF"/><rect x="115" y="137" width="19" height="19" fill="#0F172A"/>
+  </g>
+  <line x1="196" y1="24" x2="196" y2="226" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Option A at (242,48): Front [W,B/B,W], Top [W,B/B,W], Right [W,B/W,B] -->
+  <text x="218" y="45" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#0F172A">A.</text>
+  <g stroke="#0F172A" stroke-width="1.1" stroke-linejoin="round">
+    <rect x="242" y="48" width="20" height="20" fill="#FFFFFF"/><rect x="262" y="48" width="20" height="20" fill="#0F172A"/>
+    <rect x="242" y="68" width="20" height="20" fill="#0F172A"/><rect x="262" y="68" width="20" height="20" fill="#FFFFFF"/>
+    <!-- Top -->
+    <polygon points="251,41 271,41 262,48 242,48" fill="#0F172A"/>
+    <polygon points="271,41 291,41 282,48 262,48" fill="#FFFFFF"/>
+    <polygon points="260,34 280,34 271,41 251,41" fill="#FFFFFF"/>
+    <polygon points="280,34 300,34 291,41 271,41" fill="#0F172A"/>
+    <!-- Right -->
+    <polygon points="282,48 291,41 291,61 282,68" fill="#FFFFFF"/>
+    <polygon points="291,41 300,34 300,54 291,61" fill="#0F172A"/>
+    <polygon points="282,68 291,61 291,81 282,88" fill="#FFFFFF"/>
+    <polygon points="291,61 300,54 300,74 291,81" fill="#0F172A"/>
+  </g>
+
+  <!-- Option C at (358,48): Front [W,B/B,W], Top [B,W/W,B], Right [B,W/W,B] -->
+  <text x="334" y="45" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#0F172A">C.</text>
+  <g stroke="#0F172A" stroke-width="1.1" stroke-linejoin="round">
+    <rect x="358" y="48" width="20" height="20" fill="#FFFFFF"/><rect x="378" y="48" width="20" height="20" fill="#0F172A"/>
+    <rect x="358" y="68" width="20" height="20" fill="#0F172A"/><rect x="378" y="68" width="20" height="20" fill="#FFFFFF"/>
+    <!-- Top [B,W/W,B] -->
+    <polygon points="367,41 387,41 378,48 358,48" fill="#FFFFFF"/>
+    <polygon points="387,41 407,41 398,48 378,48" fill="#0F172A"/>
+    <polygon points="376,34 396,34 387,41 367,41" fill="#0F172A"/>
+    <polygon points="396,34 416,34 407,41 387,41" fill="#FFFFFF"/>
+    <!-- Right [B,W/W,B] -->
+    <polygon points="398,48 407,41 407,61 398,68" fill="#0F172A"/>
+    <polygon points="407,41 416,34 416,54 407,61" fill="#FFFFFF"/>
+    <polygon points="398,68 407,61 407,81 398,88" fill="#FFFFFF"/>
+    <polygon points="407,61 416,54 416,74 407,81" fill="#0F172A"/>
+  </g>
+
+  <!-- Option B at (242,155): Front [W,W/W,B], Top [W,B/B,W], Right [W,B/W,W] -->
+  <text x="218" y="152" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#0F172A">B.</text>
+  <g stroke="#0F172A" stroke-width="1.1" stroke-linejoin="round">
+    <rect x="242" y="155" width="20" height="20" fill="#FFFFFF"/><rect x="262" y="155" width="20" height="20" fill="#FFFFFF"/>
+    <rect x="242" y="175" width="20" height="20" fill="#FFFFFF"/><rect x="262" y="175" width="20" height="20" fill="#0F172A"/>
+    <!-- Top [W,B/B,W] -->
+    <polygon points="251,148 271,148 262,155 242,155" fill="#0F172A"/>
+    <polygon points="271,148 291,148 282,155 262,155" fill="#FFFFFF"/>
+    <polygon points="260,141 280,141 271,148 251,148" fill="#FFFFFF"/>
+    <polygon points="280,141 300,141 291,148 271,148" fill="#0F172A"/>
+    <!-- Right [W,B/W,W] -->
+    <polygon points="282,155 291,148 291,168 282,175" fill="#FFFFFF"/>
+    <polygon points="291,148 300,141 300,161 291,168" fill="#0F172A"/>
+    <polygon points="282,175 291,168 291,188 282,195" fill="#FFFFFF"/>
+    <polygon points="291,168 300,161 300,181 291,188" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Option D at (358,155): Front [B,W/W,B], Top [B,W/W,B], Right [B,W/W,B] -->
+  <text x="334" y="152" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#0F172A">D.</text>
+  <g stroke="#0F172A" stroke-width="1.1" stroke-linejoin="round">
+    <rect x="358" y="155" width="20" height="20" fill="#0F172A"/><rect x="378" y="155" width="20" height="20" fill="#FFFFFF"/>
+    <rect x="358" y="175" width="20" height="20" fill="#FFFFFF"/><rect x="378" y="175" width="20" height="20" fill="#0F172A"/>
+    <!-- Top [B,W/W,B] -->
+    <polygon points="367,148 387,148 378,155 358,155" fill="#FFFFFF"/>
+    <polygon points="387,148 407,148 398,155 378,155" fill="#0F172A"/>
+    <polygon points="376,141 396,141 387,148 367,148" fill="#0F172A"/>
+    <polygon points="396,141 416,141 407,148 387,148" fill="#FFFFFF"/>
+    <!-- Right [B,W/W,B] -->
+    <polygon points="398,155 407,148 407,168 398,175" fill="#0F172A"/>
+    <polygon points="407,148 416,141 416,161 407,168" fill="#FFFFFF"/>
+    <polygon points="398,175 407,168 407,188 398,195" fill="#FFFFFF"/>
+    <polygon points="407,168 416,161 416,181 407,188" fill="#0F172A"/>
+  </g>
+</svg>

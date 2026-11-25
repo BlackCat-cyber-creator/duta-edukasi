@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" width="360" height="240" role="img">
+  <defs>
+    <pattern id="hatch4" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-25)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#64748B" stroke-width="1.4"/>
+    </pattern>
+  </defs>
+  <rect width="360" height="240" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Shaded triangles ABC and CDE -->
+  <polygon points="90,175 45,78 151.7,134" fill="#E2E8F0"/>
+  <polygon points="90,175 45,78 151.7,134" fill="url(#hatch4)"/>
+  <polygon points="151.7,134 305,32 230,175" fill="#E2E8F0"/>
+  <polygon points="151.7,134 305,32 230,175" fill="url(#hatch4)"/>
+  <!-- Baseline F-A-H-E-G -->
+  <line x1="35" y1="175" x2="320" y2="175" stroke="#0F172A" stroke-width="1.8"/>
+  <!-- Triangle edges -->
+  <polyline points="90,175 45,78 230,175" fill="none" stroke="#0F172A" stroke-width="1.8" stroke-linejoin="round"/>
+  <polyline points="90,175 305,32 230,175" fill="none" stroke="#0F172A" stroke-width="1.8" stroke-linejoin="round"/>
+  <!-- Vertical altitudes BF, CH, DG -->
+  <line x1="45" y1="78" x2="45" y2="175" stroke="#334155" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <line x1="151.7" y1="134" x2="151.7" y2="175" stroke="#0F172A" stroke-width="1.6"/>
+  <line x1="305" y1="32" x2="305" y2="175" stroke="#334155" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <!-- Right angle markers at F, H, G -->
+  <polyline points="45,165 55,165 55,175" fill="none" stroke="#334155" stroke-width="1.2"/>
+  <polyline points="151.7,165 161.7,165 161.7,175" fill="none" stroke="#334155" stroke-width="1.2"/>
+  <polyline points="295,175 295,165 305,165" fill="none" stroke="#334155" stroke-width="1.2"/>
+  <!-- Dimension arrow AE = 18 cm -->
+  <line x1="94" y1="204" x2="226" y2="204" stroke="#0F172A" stroke-width="1.4"/>
+  <polygon points="90,204 98,200 98,208" fill="#0F172A"/>
+  <polygon points="230,204 222,200 222,208" fill="#0F172A"/>
+  <text x="160" y="222" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#1E3A8A">18 cm</text>
+  <!-- Height labels -->
+  <text x="38" y="130" text-anchor="end" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#1E3A8A">15 cm</text>
+  <text x="158" y="160" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#1E3A8A">6 cm</text>
+  <text x="312" y="108" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#1E3A8A">24 cm</text>
+  <!-- Vertex labels -->
+  <text x="45" y="191" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">F</text>
+  <text x="90" y="191" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">A</text>
+  <text x="151.7" y="191" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">H</text>
+  <text x="230" y="191" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">E</text>
+  <text x="305" y="191" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">G</text>
+  <text x="45" y="70" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">B</text>
+  <text x="151.7" y="124" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">C</text>
+  <text x="305" y="24" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">D</text>
+</svg>

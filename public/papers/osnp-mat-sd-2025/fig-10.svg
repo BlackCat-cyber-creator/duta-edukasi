@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 280" width="580" height="280" role="img">
+  <rect width="580" height="280" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Table container -->
+  <rect x="20" y="20" width="540" height="240" fill="#FFFFFF" stroke="#475569" stroke-width="1.5"/>
+  <!-- Header background -->
+  <rect x="20" y="20" width="540" height="30" fill="#CBD5E1"/>
+  <!-- Alternating row backgrounds -->
+  <rect x="20" y="80" width="540" height="30" fill="#F8FAFC"/>
+  <rect x="20" y="140" width="540" height="30" fill="#F8FAFC"/>
+  <rect x="20" y="200" width="540" height="30" fill="#F8FAFC"/>
+  <!-- Horizontal lines -->
+  <line x1="20" y1="50" x2="560" y2="50" stroke="#475569" stroke-width="1.5"/>
+  <line x1="20" y1="80" x2="560" y2="80" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="20" y1="110" x2="560" y2="110" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="20" y1="140" x2="560" y2="140" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="20" y1="170" x2="560" y2="170" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="20" y1="200" x2="560" y2="200" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="20" y1="230" x2="560" y2="230" stroke="#CBD5E1" stroke-width="1"/>
+  <!-- Vertical lines -->
+  <line x1="65" y1="20" x2="65" y2="260" stroke="#94A3B8" stroke-width="1"/>
+  <line x1="215" y1="20" x2="215" y2="260" stroke="#94A3B8" stroke-width="1"/>
+  <line x1="365" y1="20" x2="365" y2="260" stroke="#94A3B8" stroke-width="1"/>
+  <!-- Header labels -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">
+    <text x="42" y="40" text-anchor="middle">No</text>
+    <text x="140" y="40" text-anchor="middle">Kelurahan</text>
+    <text x="290" y="40" text-anchor="middle">Jumlah Penduduk</text>
+    <text x="462" y="40" text-anchor="middle">Keterangan</text>
+  </g>
+  <!-- Table rows -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" fill="#1E293B">
+    <text x="42" y="70" text-anchor="middle">1</text>
+    <text x="77" y="70">Bunga Tanjung</text>
+    <text x="290" y="70" text-anchor="middle">34.592</text>
+    <text x="462" y="70" text-anchor="middle">50% laki-laki</text>
+
+    <text x="42" y="100" text-anchor="middle">2</text>
+    <text x="77" y="100">Pondok Tanjung</text>
+    <text x="290" y="100" text-anchor="middle">18.468</text>
+    <text x="462" y="100" text-anchor="middle">L : P = 1 : 2</text>
+
+    <text x="42" y="130" text-anchor="middle">3</text>
+    <text x="77" y="130">Tanjung Cinta</text>
+    <text x="290" y="130" text-anchor="middle">14.836</text>
+    <text x="462" y="130" text-anchor="middle">0,75 bagian perempuan</text>
+
+    <text x="42" y="160" text-anchor="middle">4</text>
+    <text x="77" y="160">Tanjung Sari</text>
+    <text x="290" y="160" text-anchor="middle">13.434</text>
+    <text x="462" y="160" text-anchor="middle">1/2 bagian perempuan</text>
+
+    <text x="42" y="190" text-anchor="middle">5</text>
+    <text x="77" y="190">Tanjung Malaka</text>
+    <text x="290" y="190" text-anchor="middle">55.760</text>
+    <text x="462" y="190" text-anchor="middle">L : P = 2 : 3</text>
+
+    <text x="42" y="220" text-anchor="middle">6</text>
+    <text x="77" y="220">Tanjung Jaya</text>
+    <text x="290" y="220" text-anchor="middle">15.063</text>
+    <text x="462" y="220" text-anchor="middle">L : P = 2 : 1</text>
+
+    <text x="42" y="250" text-anchor="middle">7</text>
+    <text x="77" y="250">Sabana Tanjung</text>
+    <text x="290" y="250" text-anchor="middle">34.045</text>
+    <text x="462" y="250" text-anchor="middle">0,4 bagian laki-laki</text>
+  </g>
+</svg>

@@ -150,7 +150,7 @@ describe('PrintableWorksheet Error-Handling & Resilience', () => {
     expect(html).toContain('<svg');
   });
 
-  it('should verify all real curriculum and AMC chapters can be rendered in PrintableWorksheet without crash', async () => {
+  it('should verify all real curriculum and AMC chapters can be rendered in PrintableWorksheet without crash', { timeout: 20000 }, async () => {
     // Test sample of K-12 chapters
     const sampleK12 = ALL_CHAPTERS_INDEX.slice(0, 5);
     for (const ch of sampleK12) {

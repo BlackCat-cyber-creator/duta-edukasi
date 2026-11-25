@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 250" width="260" height="250" role="img">
+  <rect width="260" height="250" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Shaded quadrilateral DHJK: D(50,200), H(130,40), J(130,120), K(210,120) -->
+  <polygon points="50,200 130,40 130,120 210,120" fill="#2563EB" fill-opacity="0.88" stroke="#0F172A" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Outer square ABCD -->
+  <rect x="50" y="40" width="160" height="160" fill="none" stroke="#0F172A" stroke-width="2"/>
+  <!-- 2x2 midlines -->
+  <line x1="130" y1="40" x2="130" y2="200" stroke="#0F172A" stroke-width="1.5"/>
+  <line x1="50" y1="120" x2="210" y2="120" stroke="#0F172A" stroke-width="1.5"/>
+  <!-- Vertex dots -->
+  <circle cx="50" cy="40" r="3" fill="#0F172A"/>
+  <circle cx="130" cy="40" r="3" fill="#0F172A"/>
+  <circle cx="210" cy="40" r="3" fill="#0F172A"/>
+  <circle cx="130" cy="120" r="3" fill="#0F172A"/>
+  <circle cx="210" cy="120" r="3" fill="#0F172A"/>
+  <circle cx="50" cy="200" r="3" fill="#0F172A"/>
+  <circle cx="210" cy="200" r="3" fill="#0F172A"/>
+  <!-- Labels -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#0F172A">
+    <text x="42" y="34" text-anchor="end">A</text>
+    <text x="130" y="30" text-anchor="middle">H</text>
+    <text x="218" y="34" text-anchor="start">B</text>
+    <text x="140" y="114" text-anchor="start">J</text>
+    <text x="220" y="125" text-anchor="start">K</text>
+    <text x="42" y="216" text-anchor="end">D</text>
+    <text x="218" y="216" text-anchor="start">C</text>
+  </g>
+</svg>

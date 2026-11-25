@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280" width="280" height="280" role="img">
+  <defs>
+    <pattern id="hatch7" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#334155" stroke-width="1.8"/>
+    </pattern>
+  </defs>
+  <rect width="280" height="280" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Central shaded square D0(173.82,150.29) D1(129.71,173.82) D2(106.18,129.71) D3(150.29,106.18) -->
+  <polygon points="173.82,150.29 129.71,173.82 106.18,129.71 150.29,106.18" fill="#CBD5E1"/>
+  <polygon points="173.82,150.29 129.71,173.82 106.18,129.71 150.29,106.18" fill="url(#hatch7)"/>
+  <!-- Outer square [40,240] x [40,240] -->
+  <rect x="40" y="40" width="200" height="200" fill="none" stroke="#0F172A" stroke-width="2.2"/>
+  <!-- 4 lines separating the 4 congruent kites and central square -->
+  <line x1="115" y1="40" x2="173.82" y2="150.29" stroke="#0F172A" stroke-width="2"/>
+  <line x1="240" y1="115" x2="129.71" y2="173.82" stroke="#0F172A" stroke-width="2"/>
+  <line x1="165" y1="240" x2="106.18" y2="129.71" stroke="#0F172A" stroke-width="2"/>
+  <line x1="40" y1="165" x2="150.29" y2="106.18" stroke="#0F172A" stroke-width="2"/>
+  <!-- Right angle markers at the 4 inner corners (outside shaded square) -->
+  <!-- At D3(150.29,106.18): between D3->(115,40) and D3->(40,165) -->
+  <polyline points="145.6,97.4 136.8,102.1 141.5,110.9" fill="none" stroke="#0F172A" stroke-width="1.3"/>
+  <!-- At D0(173.82,150.29): between D0->(115,40) and D0->(240,115) -->
+  <polyline points="169.1,141.5 177.9,136.8 182.6,145.6" fill="none" stroke="#0F172A" stroke-width="1.3"/>
+  <!-- At D1(129.71,173.82): between D1->(240,115) and D1->(165,240) -->
+  <polyline points="138.5,169.1 143.2,177.9 134.4,182.6" fill="none" stroke="#0F172A" stroke-width="1.3"/>
+  <!-- At D2(106.18,129.71): between D2->(165,240) and D2->(40,165) -->
+  <polyline points="110.9,138.5 102.1,143.2 97.4,134.4" fill="none" stroke="#0F172A" stroke-width="1.3"/>
+  <!-- Labels p and q -->
+  <text x="77" y="28" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-style="italic" font-weight="700" fill="#1E3A8A">p</text>
+  <text x="177" y="28" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-style="italic" font-weight="700" fill="#1E3A8A">q</text>
+  <text x="255" y="80" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-style="italic" font-weight="700" fill="#1E3A8A">p</text>
+  <text x="255" y="180" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-style="italic" font-weight="700" fill="#1E3A8A">q</text>
+</svg>

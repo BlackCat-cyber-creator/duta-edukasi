@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 220" width="240" height="220" role="img">
+  <rect width="240" height="220" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Hidden back edges from D=(90,137) -->
+  <g stroke="#64748B" stroke-width="1.4" stroke-dasharray="4 3">
+    <line x1="90" y1="137" x2="90" y2="47"/>
+    <line x1="90" y1="137" x2="180" y2="137"/>
+    <line x1="90" y1="137" x2="55" y2="165"/>
+  </g>
+  <!-- Visible edges of cube ABCDEFGH -->
+  <g stroke="#0F172A" stroke-width="1.8" stroke-linejoin="round" fill="none">
+    <rect x="55" y="75" width="90" height="90"/>
+    <polyline points="55,75 90,47 180,47 180,137 145,165"/>
+    <line x1="145" y1="75" x2="180" y2="47"/>
+  </g>
+  <!-- Vertex labels -->
+  <text x="45" y="176" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">A</text>
+  <text x="150" y="180" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">B</text>
+  <text x="190" y="143" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">C</text>
+  <text x="80" y="133" text-anchor="end" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#64748B">D</text>
+  <text x="45" y="75" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">E</text>
+  <text x="155" y="83" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">F</text>
+  <text x="190" y="45" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">G</text>
+  <text x="88" y="38" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">H</text>
+</svg>

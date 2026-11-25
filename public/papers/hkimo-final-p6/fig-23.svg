@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="320" height="220" role="img">
+  <rect width="320" height="220" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g transform="translate(40, 30)" stroke="#0F172A" stroke-width="1.5" fill="#FFFFFF">
+    <!-- Row 1: cols 3-4 -->
+    <rect x="80" y="0" width="40" height="40"/>
+    <rect x="120" y="0" width="40" height="40"/>
+    <!-- Row 2: cols 1-6 -->
+    <rect x="0" y="40" width="40" height="40"/>
+    <rect x="40" y="40" width="40" height="40"/>
+    <rect x="80" y="40" width="40" height="40"/>
+    <rect x="120" y="40" width="40" height="40"/>
+    <rect x="160" y="40" width="40" height="40"/>
+    <rect x="200" y="40" width="40" height="40"/>
+    <!-- Row 3: cols 1-6 -->
+    <rect x="0" y="80" width="40" height="40"/>
+    <rect x="40" y="80" width="40" height="40"/>
+    <rect x="80" y="80" width="40" height="40"/>
+    <rect x="120" y="80" width="40" height="40"/>
+    <rect x="160" y="80" width="40" height="40"/>
+    <rect x="200" y="80" width="40" height="40"/>
+    <!-- Row 4: cols 1-2 and col 6 -->
+    <rect x="0" y="120" width="40" height="40"/>
+    <rect x="40" y="120" width="40" height="40"/>
+    <rect x="200" y="120" width="40" height="40"/>
+  </g>
+</svg>

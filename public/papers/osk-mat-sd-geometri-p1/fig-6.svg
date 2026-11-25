@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 240" width="340" height="240" role="img">
+  <rect width="340" height="240" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- 9x6 dashed unit grid: origin (35,30), cell 30 -->
+  <g stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="4 3">
+    <line x1="35" y1="30" x2="35" y2="210"/>
+    <line x1="65" y1="30" x2="65" y2="210"/>
+    <line x1="95" y1="30" x2="95" y2="210"/>
+    <line x1="125" y1="30" x2="125" y2="210"/>
+    <line x1="155" y1="30" x2="155" y2="210"/>
+    <line x1="185" y1="30" x2="185" y2="210"/>
+    <line x1="215" y1="30" x2="215" y2="210"/>
+    <line x1="245" y1="30" x2="245" y2="210"/>
+    <line x1="275" y1="30" x2="275" y2="210"/>
+    <line x1="305" y1="30" x2="305" y2="210"/>
+    <line x1="35" y1="30" x2="305" y2="30"/>
+    <line x1="35" y1="60" x2="305" y2="60"/>
+    <line x1="35" y1="90" x2="305" y2="90"/>
+    <line x1="35" y1="120" x2="305" y2="120"/>
+    <line x1="35" y1="150" x2="305" y2="150"/>
+    <line x1="35" y1="180" x2="305" y2="180"/>
+    <line x1="35" y1="210" x2="305" y2="210"/>
+  </g>
+  <!-- Closed curve made of 20 unit-radius quarter-circle arcs (r = 30) -->
+  <path d="M 65 30 A 30 30 0 0 1 95 60 A 30 30 0 0 0 125 90 A 30 30 0 0 1 155 120 A 30 30 0 0 1 185 90 A 30 30 0 0 0 215 60 A 30 30 0 0 1 245 30 A 30 30 0 0 1 275 60 A 30 30 0 0 0 305 90 A 30 30 0 0 0 275 120 A 30 30 0 0 1 245 150 A 30 30 0 0 0 215 180 A 30 30 0 0 0 185 150 A 30 30 0 0 0 155 180 A 30 30 0 0 1 125 210 A 30 30 0 0 1 95 180 A 30 30 0 0 0 65 150 A 30 30 0 0 1 35 120 A 30 30 0 0 1 65 90 A 30 30 0 0 1 35 60 A 30 30 0 0 1 65 30 Z" fill="#EFF6FF" fill-opacity="0.7" stroke="#0F172A" stroke-width="2.2" stroke-linejoin="round"/>
+</svg>

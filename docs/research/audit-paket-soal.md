@@ -147,3 +147,20 @@ Seluruh naskah bersumber dari arsip terbuka (Po-Shen Loh / MAA AMC, M3Kang, math
 | `osnk-mat-sd-2023` | OSN-K | 19 butir (19 skor) | OSN-K Matematika SD 2023 |
 | `osnk-kim-sma-2025` | OSN-K | 30 butir (30 skor) | OSN-K Kimia SMA 2025 |
 | `ksm-kim-ma-2022` | KSM | 3 butir (3 skor) | KSM Kimia MA 2022 (uraian/kontekstual mendalam) |
+
+---
+
+## Batch 6 — 10 Paket Olimpiade Arsip Lokal (92 Paket Terpublikasi)
+
+| ID Paket | Kompetisi | Cakupan | Catatan |
+| :--- | :--- | :--- | :--- |
+| `osnp-mat-sd-2025` | OSN-P | 20 soal (40 skor) | OSN-P Matematika SD 2025 + 7 diagram SVG |
+| `osn-ipa-smp-fisika-2023` | OSN-K | 25 butir (29 skor) | OSN IPA SMP Fisika 2023 (5 butir gambar dilewati) |
+| `osn-ipa-smp-biologi-2023` | OSN-K | 23 butir (24 skor) | OSN IPA SMP Biologi 2023 (7 butir gambar/cacat dilewati) |
+| `hkimo-final-p6` | HKIMO | 28 soal | HKIMO Final Round Primary 6 + 3 diagram SVG |
+| `timo-2021-2022-final-p6` | TIMO | 30 soal (150 skor) | TIMO 2021–2022 Final Round Primary 6 + 3 diagram SVG |
+| `simoc-p3-mock` | SIMOC | 15 butir (46 skor) | SIMOC Primary 3 Mock Test + 1 diagram SVG |
+| `sasmo-practice-2` | SASMO | 24 soal (96 skor) | SASMO Practice Set II + 7 diagram SVG |
+| `osk-mat-sd-bilangan-p1` | OSN-K | 14 soal (28 skor) | OSN-K SD Bilangan Paket 1 + 2 diagram SVG |
+| `osk-mat-sd-aritmatika-p1` | OSN-K | 15 soal | OSN-K SD Aritmatika Paket 1 + 1 diagram SVG |
+| `osk-mat-sd-geometri-p1` | OSN-K | 16 bagian (32 skor) | OSN-K SD Geometri Paket 1 + 13 diagram SVG |

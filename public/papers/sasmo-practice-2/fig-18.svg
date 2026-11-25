@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 140" width="560" height="140" role="img">
+  <rect width="560" height="140" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Locomotive -->
+  <g transform="translate(20, 22)">
+    <circle cx="24" cy="6" r="4" fill="#94A3B8"/>
+    <circle cx="35" cy="2" r="5" fill="#CBD5E1"/>
+    <rect x="18" y="14" width="12" height="22" fill="#0F172A"/>
+    <rect x="6" y="34" width="52" height="36" rx="4" fill="#2563EB" stroke="#0F172A" stroke-width="1.8"/>
+    <rect x="52" y="16" width="46" height="54" rx="3" fill="#DC2626" stroke="#0F172A" stroke-width="1.8"/>
+    <rect x="60" y="24" width="13" height="16" fill="#E0F2FE" stroke="#0F172A" stroke-width="1.2"/>
+    <rect x="78" y="24" width="13" height="16" fill="#E0F2FE" stroke="#0F172A" stroke-width="1.2"/>
+    <rect x="4" y="70" width="96" height="8" rx="2" fill="#1E293B"/>
+    <circle cx="22" cy="84" r="9" fill="#FACC15" stroke="#0F172A" stroke-width="1.8"/>
+    <circle cx="48" cy="84" r="9" fill="#FACC15" stroke="#0F172A" stroke-width="1.8"/>
+    <circle cx="80" cy="84" r="11" fill="#FACC15" stroke="#0F172A" stroke-width="1.8"/>
+    <line x1="100" y1="74" x2="112" y2="74" stroke="#0F172A" stroke-width="3"/>
+  </g>
+  <!-- Car 1: BLUE -->
+  <g transform="translate(132, 54)">
+    <rect x="0" y="0" width="76" height="38" rx="4" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+    <text x="38" y="19" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#1E3A8A" text-anchor="middle" dominant-baseline="central">BLUE</text>
+    <rect x="-2" y="38" width="80" height="6" fill="#1E293B"/>
+    <circle cx="18" cy="52" r="8" fill="#FACC15" stroke="#0F172A" stroke-width="1.6"/>
+    <circle cx="58" cy="52" r="8" fill="#FACC15" stroke="#0F172A" stroke-width="1.6"/>
+    <line x1="78" y1="41" x2="86" y2="41" stroke="#0F172A" stroke-width="3"/>
+  </g>
+  <!-- Car 2: YELLOW -->
+  <g transform="translate(218, 54)">
+    <rect x="0" y="0" width="76" height="38" rx="4" fill="#FEF9C3" stroke="#CA8A04" stroke-width="2"/>
+    <text x="38" y="19" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#854D0E" text-anchor="middle" dominant-baseline="central">YELLOW</text>
+    <rect x="-2" y="38" width="80" height="6" fill="#1E293B"/>
+    <circle cx="18" cy="52" r="8" fill="#FACC15" stroke="#0F172A" stroke-width="1.6"/>
+    <circle cx="58" cy="52" r="8" fill="#FACC15" stroke="#0F172A" stroke-width="1.6"/>
+    <line x1="78" y1="41" x2="86" y2="41" stroke="#0F172A" stroke-width="3"/>
+  </g>
+  <!-- Car 3: YELLOW -->
+  <g transform="translate(304, 54)">
+    <rect x="0" y="0" width="76" height="38" rx="4" fill="#FEF9C3" stroke="#CA8A04" stroke-width="2"/>
+    <text x="38" y="19" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#854D0E" text-anchor="middle" dominant-baseline="central">YELLOW</text>
+    <rect x="-2" y="38" width="80" height="6" fill="#1E293B"/>
+    <circle cx="18" cy="52" r="8" fill="#FACC15" stroke="#0F172A" stroke-width="1.6"/>
+    <circle cx="58" cy="52" r="8" fill="#FACC15" stroke="#0F172A" stroke-width="1.6"/>
+    <line x1="78" y1="41" x2="86" y2="41" stroke="#0F172A" stroke-width="3"/>
+  </g>
+  <!-- Car 4: RED -->
+  <g transform="translate(390, 54)">
+    <rect x="0" y="0" width="76" height="38" rx="4" fill="#FEE2E2" stroke="#DC2626" stroke-width="2"/>
+    <text x="38" y="19" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#991B1B" text-anchor="middle" dominant-baseline="central">RED</text>
+    <rect x="-2" y="38" width="80" height="6" fill="#1E293B"/>
+    <circle cx="18" cy="52" r="8" fill="#FACC15" stroke="#0F172A" stroke-width="1.6"/>
+    <circle cx="58" cy="52" r="8" fill="#FACC15" stroke="#0F172A" stroke-width="1.6"/>
+    <line x1="78" y1="41" x2="86" y2="41" stroke="#0F172A" stroke-width="3"/>
+  </g>
+  <!-- Car 5: BLUE -->
+  <g transform="translate(476, 54)">
+    <rect x="0" y="0" width="66" height="38" rx="4" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+    <text x="33" y="19" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#1E3A8A" text-anchor="middle" dominant-baseline="central">BLUE</text>
+    <rect x="-2" y="38" width="70" height="6" fill="#1E293B"/>
+    <circle cx="15" cy="52" r="8" fill="#FACC15" stroke="#0F172A" stroke-width="1.6"/>
+    <circle cx="51" cy="52" r="8" fill="#FACC15" stroke="#0F172A" stroke-width="1.6"/>
+  </g>
+</svg>

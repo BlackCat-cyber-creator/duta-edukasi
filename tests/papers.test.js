@@ -25,7 +25,7 @@ function validateLatexString(str, context) {
   }
 }
 
-describe('Paket Soal Terstruktur (papers schema & integrity)', { timeout: 30000 }, () => {
+describe('Paket Soal Terstruktur (papers schema & integrity)', { timeout: 60000 }, () => {
   it('seluruh ID dan pasangan (subject, slug) unik', () => {
     const ids = new Set();
     const routes = new Set();

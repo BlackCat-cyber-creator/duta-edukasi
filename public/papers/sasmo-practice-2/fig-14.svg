@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 160" width="340" height="160" role="img">
+  <defs>
+    <pattern id="ringDots" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#DBEAFE"/>
+      <circle cx="4" cy="4" r="1.4" fill="#2563EB" opacity="0.55"/>
+    </pattern>
+  </defs>
+  <rect width="340" height="160" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g transform="translate(90, 80)">
+    <circle cx="0" cy="0" r="56" fill="url(#ringDots)" stroke="#0F172A" stroke-width="2.2"/>
+    <circle cx="0" cy="0" r="38" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.2"/>
+  </g>
+  <g transform="translate(245, 80)" fill="none" stroke="#0F172A" stroke-width="2">
+    <circle cx="0" cy="0" r="56"/>
+    <circle cx="0" cy="0" r="45"/>
+    <circle cx="0" cy="0" r="34"/>
+    <circle cx="0" cy="0" r="23"/>
+    <circle cx="0" cy="0" r="12"/>
+  </g>
+</svg>

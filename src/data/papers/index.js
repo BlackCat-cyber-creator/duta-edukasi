@@ -85,6 +85,16 @@ import olimOsnkMatSmp2019 from './olimpiade-mat/smp/osnk-matematika-smp-2019.js'
 import olimOsnkMatSd2023 from './olimpiade-mat/sd/osnk-matematika-sd-2023.js';
 import olimOsnkKimSma2025 from './olimpiade-kim/sma/osnk-kimia-sma-2025.js';
 import olimKsmKimMa2022 from './olimpiade-kim/sma/ksm-kimia-ma-2022.js';
+import olimOsnpMatSd2025 from './olimpiade-mat/sd/osnp-matematika-sd-2025.js';
+import olimOsnIpaSmpFisika2023 from './olimpiade-sains/smp/osn-ipa-smp-fisika-2023.js';
+import olimOsnIpaSmpBiologi2023 from './olimpiade-sains/smp/osn-ipa-smp-biologi-2023.js';
+import olimHkimoFinalP6 from './olimpiade-mat/sd/hkimo-final-primary-6.js';
+import olimTimo2122FinalP6 from './olimpiade-mat/sd/timo-2021-2022-final-primary-6.js';
+import olimSimocP3Mock from './olimpiade-mat/sd/simoc-primary-3-mock.js';
+import olimSasmoPractice2 from './olimpiade-mat/sd/sasmo-practice-2.js';
+import olimOskMatSdBilanganP1 from './olimpiade-mat/sd/osk-bilangan-paket-1.js';
+import olimOskMatSdAritmatikaP1 from './olimpiade-mat/sd/osk-aritmatika-paket-1.js';
+import olimOskMatSdGeometriP1 from './olimpiade-mat/sd/osk-geometri-paket-1.js';
 
 import {
   PAPER_SUBJECT_META,
@@ -206,7 +216,17 @@ export const ALL_PAPERS = [
   olimOsnkMatSmp2019,
   olimOsnkMatSd2023,
   olimOsnkKimSma2025,
-  olimKsmKimMa2022
+  olimKsmKimMa2022,
+  olimOsnpMatSd2025,
+  olimOsnIpaSmpFisika2023,
+  olimOsnIpaSmpBiologi2023,
+  olimHkimoFinalP6,
+  olimTimo2122FinalP6,
+  olimSimocP3Mock,
+  olimSasmoPractice2,
+  olimOskMatSdBilanganP1,
+  olimOskMatSdAritmatikaP1,
+  olimOskMatSdGeometriP1
 ];
 
 export const PUBLISHED_PAPERS = ALL_PAPERS.filter((p) => p.status === 'published');
