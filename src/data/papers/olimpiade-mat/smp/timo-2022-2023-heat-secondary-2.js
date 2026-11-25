@@ -88,7 +88,7 @@ export default {
           answer: '$19$',
           principle: 'Every coin shows either a head or a tail, so the remaining coins in a hand must be tails.',
           solution:
-            'The left hand holds only $5 + 5 = 10$ coins, so the right hand holds $39 - 10 = 29$ coins. On the right hand, $15$ coins show heads, so the other $29 - 15 = 14$ coins show tails.\nTotal coins with tails up $= 5 + 14 = 19$.',
+            'The left hand holds only $5 + 5 = 10$ coins, so the right hand holds $39 - 10 = 29$ coins. On the right hand, at least $15$ coins show heads, so at most $29 - 15 = 14$ coins show tails.\nThus the maximum total number of coins with tails up is $5 + 14 = 19$.',
           rubric: [
             { code: 'M2', text: 'Finds 10 coins on the left hand and 29 on the right.' },
             { code: 'A2', text: '19.' }
@@ -149,7 +149,7 @@ export default {
           answer: '$15$',
           principle: 'Completing the square: a square is never negative.',
           solution:
-            '$$9x^2 + 6x + 16 = (3x + 1)^2 + 15.$$\nSince $(3x+1)^2 \\ge 0$ with equality when $x = -\\tfrac13$, the minimum value is $15$.',
+            'Split $16 = 1 + 15$ to complete the square:\n$$9x^2 + 6x + 16 = (9x^2 + 6x + 1) + 15 = (3x + 1)^2 + 15.$$\nSince the square $(3x + 1)^2 \\ge 0$ for all real $x$, with equality when $x = -\\tfrac13$, the minimum value is $0 + 15 = 15$.',
           rubric: [
             { code: 'M2', text: 'Completes the square: (3x + 1)^2 + 15.' },
             { code: 'A2', text: '15.' }
@@ -162,7 +162,7 @@ export default {
           answer: '$9$',
           principle: 'Solve the compound linear inequality, then count the integers in the solution interval.',
           solution:
-            'Add $4$: $-17 \\le 6x \\le 53$. Divide by $6$: $-\\tfrac{17}{6} \\le x \\le \\tfrac{53}{6}$, that is $-2.83\\ldots \\le x \\le 8.83\\ldots$.\nThe non-negative integers in this range are $0, 1, 2, \\dots, 8$, which is $9$ values.',
+            'Add $4$ to each part of the inequality:\n$$-21 + 4 \\le 6x \\le 49 + 4 \\implies -17 \\le 6x \\le 53.$$\nDividing by $6$ gives exact mixed-number bounds $-2\\tfrac{5}{6} \\le x \\le 8\\tfrac{5}{6}$.\nSince $x$ must be a non-negative integer, $x \\ge 0$ and $x \\le 8$ (as $8 < 8\\tfrac{5}{6} < 9$). Thus the solutions are $0, 1, 2, \\dots, 8$, which is $9$ values.',
           rubric: [
             { code: 'M2', text: 'Solves the inequality to -17/6 <= x <= 53/6.' },
             { code: 'A2', text: '9.' }
@@ -224,7 +224,7 @@ export default {
           answer: '$-216$',
           principle: 'Factor theorem: $(x - r)$ is a factor of $p(x)$ if and only if $p(r) = 0$.',
           solution:
-            'Since $x + 3$ is a factor, $x = -3$ is a root: $59(-3)^2 + 105(-3) + c = 0$.\n$$531 - 315 + c = 0 \\implies c = -216.$$',
+            'Write the polynomial as $p(x) = 59x^2 + 105x + c$. Since $(x + 3)$ is a factor, $p(x) = (x + 3)q(x)$ for some polynomial $q(x)$, so setting $x = -3$ gives $p(-3) = 0$:\n$$59(-3)^2 + 105(-3) + c = 0 \\implies 59(9) - 315 + c = 0 \\implies 531 - 315 + c = 0.$$\nHence $216 + c = 0$, so $c = -216$.',
           rubric: [
             { code: 'M2', text: 'Substitutes x = -3 into the polynomial and sets it to zero.' },
             { code: 'A2', text: '-216.' }
@@ -250,7 +250,7 @@ export default {
           answer: '$2160$',
           principle: 'If $n = p^a q^b r^c$, the sum of the positive divisors is $\\sigma(n) = \\frac{p^{a+1}-1}{p-1}\\cdot\\frac{q^{b+1}-1}{q-1}\\cdot\\frac{r^{c+1}-1}{r-1}$.',
           solution:
-            '$952 = 8 \\times 119 = 2^3 \\times 7 \\times 17$. The sum of divisors is multiplicative over the prime powers:\n$$(1 + 2 + 4 + 8)(1 + 7)(1 + 17) = 15 \\times 8 \\times 18 = 2160.$$',
+            'Factorise $952$ into primes: $952 = 8 \\times 119 = 2^3 \\times 7 \\times 17$. Every positive factor of $952$ has the form $2^a \\cdot 7^b \\cdot 17^c$ with $0 \\le a \\le 3$, $0 \\le b \\le 1$, and $0 \\le c \\le 1$.\nExpanding the product of the prime-power sums produces each factor $2^a \\cdot 7^b \\cdot 17^c$ exactly once, so the sum of positive factors is\n$$(1 + 2 + 4 + 8)(1 + 7)(1 + 17) = 15 \\times 8 \\times 18 = 2160.$$',
           rubric: [
             { code: 'M2', text: 'Prime factorisation 2^3 x 7 x 17 and the divisor-sum product.' },
             { code: 'A2', text: '2160.' }
@@ -271,7 +271,7 @@ export default {
           answer: '$45$',
           principle: 'Point-slope form of a line: $y - y_1 = m(x - x_1)$.',
           solution:
-            '$$y - 13 = 8(x + 4) \\implies y = 8x + 45.$$\nSetting $x = 0$ gives $y = 45$, so the $y$-intercept is $45$.',
+            'Using the point-slope form $y - y_1 = m(x - x_1)$ with slope $m = 8$ and point $B(-4, 13)$:\n$$y - 13 = 8\\big(x - (-4)\\big) = 8(x + 4) = 8x + 32 \\implies y = 8x + 45.$$\nThe $y$-intercept occurs where $L$ crosses the $y$-axis ($x = 0$), giving $y = 8(0) + 45 = 45$.',
           rubric: [
             { code: 'M2', text: 'Writes the line as y - 13 = 8(x + 4).' },
             { code: 'A2', text: '45.' }
@@ -311,7 +311,7 @@ export default {
           answer: '$1144 \\text{ cm}^2$',
           principle: 'For a fixed volume, the surface area of a cuboid is smallest when its dimensions are as close to equal as possible; with integer sides, check the factorisations.',
           solution:
-            'The four cuboids are identical and use all $1260$ cubes, so each cuboid is made of $1260 \\div 4 = 315 = 3^2 \\times 5 \\times 7$ unit cubes, and its dimensions are whole numbers of cm with product $315$.\nThe possible dimension triples (smallest first) and surface areas $2(ab + bc + ca)$ are: $(1,1,315)$ very large; $(1,15,21)$: $702$; $(3,3,35)$: $438$; $(3,5,21)$: $366$; $(3,7,15)$: $342$; $(5,7,9)$: $2(35 + 63 + 45) = 286$. The triple closest to a cube, $5 \\times 7 \\times 9$, gives the minimum $286 \\text{ cm}^2$ (the other triples with a side $1$ are even larger).\nTotal minimum surface area $= 4 \\times 286 = 1144 \\text{ cm}^2$.',
+            'The four cuboids are identical and use all $1260$ unit cubes, so each cuboid has volume $1260 \\div 4 = 315 = 3^2 \\times 5 \\times 7\\text{ cm}^3$. Let its integer side lengths be $a \\le b \\le c$ with $abc = 315$. Since $a^3 \\le abc = 315 < 7^3 = 343$, the smallest side $a$ can only be $1$, $3$, or $5$.\nFor each value of $a$, compare the surface area $S = 2(ab + bc + ca)$:\n- If $a = 1$, then $bc = 315$, so $S = 2(315 + b + c) = 630 + 2(b + c)$. This is smallest when $b$ and $c$ are as close as possible, namely $(1, 15, 21)$, giving $S \\ge 630 + 2(15 + 21) = 702$.\n- If $a = 3$, then $bc = 105$ with $b \\ge 3$: $(3, 3, 35)$ gives $2(9 + 105 + 105) = 438$; $(3, 5, 21)$ gives $2(15 + 105 + 63) = 366$; $(3, 7, 15)$ gives $2(21 + 105 + 45) = 342$.\n- If $a = 5$, then $bc = 63$ with $b \\ge 5$, leaving only $(5, 7, 9)$, which gives $2(35 + 63 + 45) = 286$.\nThus each cuboid has minimum surface area $286 \\text{ cm}^2$, and the minimum total surface area of the four cuboids is $4 \\times 286 = 1144 \\text{ cm}^2$.',
           rubric: [
             { code: 'M2', text: 'Each cuboid has 315 cubes and its best dimensions are 5 x 7 x 9.' },
             { code: 'A2', text: '1144 cm^2.' }

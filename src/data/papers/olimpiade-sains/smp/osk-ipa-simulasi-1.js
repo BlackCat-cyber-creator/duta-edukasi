@@ -412,7 +412,7 @@ export default {
           principle:
             'Pada lintasan licin tanpa gesekan, hukum kekekalan energi mekanik berlaku sehingga energi potensial di puncak seluruhnya berubah menjadi energi kinetik di dasar.',
           solution:
-            '$$E_k = E_p = mgh = 4 \\times 10 \\times 5 = 200\\ \\text{Joule}.$$',
+            'Pada lintasan licin, energi mekanik kekal ($E_{m,\\text{puncak}} = E_{m,\\text{dasar}}$). Balok dilepas dari keadaan diam ($E_{k,\\text{puncak}} = 0$) dan mencapai dasar pada $h = 0$ ($E_{p,\\text{dasar}} = 0$), sehingga:\n$$E_{k,\\text{dasar}} = E_{p,\\text{puncak}} = mgh = 4 \\times 10 \\times 5 = 200\\ \\text{Joule}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -484,7 +484,7 @@ export default {
           principle:
             'Hukum Pascal menyatakan tekanan pada fluida tertutup diteruskan sama besar ke segala arah: $\\frac{F_1}{A_1} = \\frac{F_2}{A_2}$, dengan luas lingkaran sebanding kuadrat diameter.',
           solution:
-            '$$F_2 = F_1 \\left(\\frac{d_2}{d_1}\\right)^2 = 50 \\times \\left(\\frac{10}{2}\\right)^2 = 50 \\times 25 = 1250\\ \\text{N}.$$',
+            'Berdasarkan Hukum Pascal ($\\frac{F_1}{A_1} = \\frac{F_2}{A_2}$) dengan luas penampang lingkaran $A = \\frac{1}{4}\\pi d^2$:\n$$F_2 = F_1 \\frac{A_2}{A_1} = F_1 \\left(\\frac{d_2}{d_1}\\right)^2 = 50 \\times \\left(\\frac{10}{2}\\right)^2 = 50 \\times 25 = 1250\\ \\text{N}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -532,7 +532,7 @@ export default {
           principle:
             'Gelombang sonar menempuh lintasan bolak-balik (dari kapal ke dasar laut lalu kembali ke kapal), sehingga kedalaman $s = \\frac{v \\cdot t}{2}$.',
           solution:
-            '$$s = \\frac{v \\times t}{2} = \\frac{1500 \\times 4}{2} = 3000\\ \\text{meter}.$$',
+            'Waktu $t = 4\\ \\text{sekon}$ adalah waktu tempuh gelombang sonar bolak-balik sejauh $2s$ (ke dasar laut lalu kembali ke kapal), sehingga waktu satu arah adalah $\\frac{t}{2} = 2\\ \\text{sekon}$:\n$$2s = v \\times t \\implies s = \\frac{v \\times t}{2} = \\frac{1500 \\times 4}{2} = 3000\\ \\text{meter}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -774,7 +774,7 @@ export default {
           principle:
             'Pada bidang miring licin, energi potensial di ketinggian $h$ berubah seluruhnya menjadi energi kinetik di dasar: $mgh = \\frac{1}{2}mv^2 \\implies v = \\sqrt{2gh}$.',
           solution:
-            '$$v = \\sqrt{2gh} = \\sqrt{2 \\times 10 \\times 3{,}2} = \\sqrt{64} = 8\\ \\text{m/s}.$$',
+            'Berdasarkan hukum kekekalan energi mekanik pada bidang licin, energi potensial awal berubah seluruhnya menjadi energi kinetik di dasar:\n$$mgh = \\frac{1}{2}mv^2 \\implies v = \\sqrt{2gh}$$\nSubstitusi $g = 10\\ \\text{m/s}^2$ dan $h = 3{,}2\\ \\text{m}$:\n$$v = \\sqrt{2 \\times 10 \\times 3{,}2} = \\sqrt{64} = 8\\ \\text{m/s}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         }
       ]

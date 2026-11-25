@@ -111,7 +111,8 @@ export default {
           answerNumeric: [{ name: 'R', value: 37.412, unit: 'm' }],
           principle:
             'With zero horizontal acceleration ($a_x = 0$), the ball travels horizontally at constant speed $v_{0x}$ throughout the entire flight duration $T$.',
-          solution: '$$R = v_{0x}T = (6\\sqrt{3})(3.6) = 21.6\\sqrt{3}\\ \\text{m}\\ (\\approx 37.4\\ \\text{m})$$',
+          solution:
+            'Since horizontal acceleration is zero ($a_x = 0$), the horizontal range over the total flight time $T = 3.6\\ \\text{s}$ is given by uniform horizontal motion:\n$$R = v_{0x}T = (6\\sqrt{3})(3.6) = 21.6\\sqrt{3}\\ \\text{m}\\ (\\approx 37.4\\ \\text{m})$$',
           rubric: [
             { code: 'M1', text: 'Applying $R = v_{0x}T$' },
             { code: 'A1', text: 'Correct substitution $(6\\sqrt{3})(3.6)$' },
@@ -196,8 +197,9 @@ export default {
           answer: '$x = 20\\ \\text{m}$',
           answerNumeric: [{ name: 'x', value: 20, unit: 'm' }],
           principle:
-            'Horizontal velocity remains constant at $v_{0x} = 10\\ \\text{m s}^{-1}$ during the $2.0\\ \\text{s}$ fall.',
-          solution: '$$x = v_{0x}t = 10 \\times 2.0 = 20\\ \\text{m}$$',
+            'Because gravity acts purely vertically, the horizontal acceleration is zero ($a_x = 0$), so Liam travels horizontally at constant velocity $v_{0x}$ throughout the flight duration $t$.',
+          solution:
+            'With $a_x = 0$, the horizontal displacement over the flight duration $t = 2.0\\ \\text{s}$ follows uniform horizontal motion:\n$$x = v_{0x}t = 10 \\times 2.0 = 20\\ \\text{m}$$',
           rubric: [
             { code: 'M1', text: 'Applying $x = v_{0x}t$' },
             { code: 'A1', text: 'Substituting $10 \\times 2.0$' },

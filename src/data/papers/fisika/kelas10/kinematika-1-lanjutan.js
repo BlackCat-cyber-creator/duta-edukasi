@@ -43,7 +43,8 @@ export default {
           answerNumeric: [{ name: 'position', value: 2300, unit: 'm' }],
           principle:
             'Position along a one-dimensional track measured from the starting line equals the total track length minus the remaining distance to the finish line.',
-          solution: '$$\\text{Position} = 2{,}500\\ \\text{m} - 200\\ \\text{m} = 2{,}300\\ \\text{m}$$',
+          solution:
+            'Take the starting line as the reference position $x_0 = 0\\ \\text{m}$, so the finish line is at $L = 2{,}500\\ \\text{m}$. Subtracting the remaining distance $d_{\\text{rem}} = 200\\ \\text{m}$ gives:\n$$x = L - d_{\\text{rem}} = 2{,}500\\ \\text{m} - 200\\ \\text{m} = 2{,}300\\ \\text{m}\\ \\text{from the starting line}$$',
           rubric: [{ code: 'A1', text: '$2{,}300\\ \\text{m}$ from the starting line ($2{,}500 - 200 = 2{,}300\\ \\text{m}$)' }]
         },
         {

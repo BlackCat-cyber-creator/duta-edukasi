@@ -72,9 +72,9 @@ export default {
           prompt:
             'The number $341_b$ in base $b$ is a perfect square when converted to base $10$. What is the smallest possible integer value of the base $b > 4$?\n\nA. $6$\nB. $7$\nC. $8$\nD. $9$',
           answer: 'C. $8$',
-          principle: 'Expand the base-$b$ numeral into a quadratic polynomial in $b$ and factor it to test perfect square values.',
+          principle: 'Factor $341_b = (3b + 1)(b + 1)$ and use $\\gcd(3b + 1, b + 1) \\mid 2$ to constrain when the product is a perfect square.',
           solution:
-            'Convert $341_b$ to base $10$:\n$$341_b = 3b^2 + 4b + 1 = (3b + 1)(b + 1)$$\nTest integer values of $b > 4$:\n- $b = 5$: $(16)(6) = 96$ (not a square)\n- $b = 6$: $(19)(7) = 133$ (not a square)\n- $b = 7$: $(22)(8) = 176$ (not a square)\n- $b = 8$: $(25)(9) = 225 = 15^2$ (a perfect square)\nThus, the smallest valid base is $8$.',
+            'Convert $341_b$ to base $10$ and factor:\n$$341_b = 3b^2 + 4b + 1 = (3b + 1)(b + 1)$$\nBy the Euclidean algorithm, $\\gcd(3b + 1, b + 1) = \\gcd((3b + 1) - 3(b + 1), b + 1) = \\gcd(-2, b + 1)$, which is $1$ if $b$ is even and $2$ if $b$ is odd.\n- **Case 1 ($b$ even, $b > 4$):** Here $\\gcd(3b + 1, b + 1) = 1$, so $(3b + 1)(b + 1)$ is a perfect square if and only if both $b + 1$ and $3b + 1$ are odd perfect squares. For $b > 4$, we need $b + 1 > 5$, and the smallest odd square greater than $5$ is $9 = 3^2$, giving $b = 8$. Checking $b = 8$ gives $3b + 1 = 25 = 5^2$, so $341_8 = 25 \\times 9 = 225 = 15^2$.\n- **Case 2 ($b$ odd, $4 < b < 8$):** Here $\\gcd(3b + 1, b + 1) = 2$, so both $b + 1$ and $3b + 1$ must be twice a square ($2k^2$). For $b = 5$, $b + 1 = 6$ is not of the form $2k^2$; for $b = 7$, $3b + 1 = 22 = 2 \\times 11$ is not of the form $2k^2$.\nThus, the smallest valid integer base is $8$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -83,9 +83,9 @@ export default {
           prompt:
             'Tentukan nilai maksimum dari $x + y$ yang memenuhi persamaan $3^x - 2^y = 1$ untuk bilangan bulat positif $x$ dan $y$.\n\nA. $2$\nB. $3$\nC. $5$\nD. $7$',
           answer: 'C. $5$',
-          principle: 'Analisis persamaan Diophantine eksponensial $3^x - 2^y = 1$ (kasus khusus Konjektur Catalan / Teorema Mihăilescu).',
+          principle: 'Analisis kasus $y \\le 2$ dan $y \\ge 3$ pada $3^x - 2^y = 1$ menggunakan modulo $8$ serta pemfaktoran selisih kuadrat.',
           solution:
-            'Uji nilai bilangan bulat positif $x$ dan $y$:\n- Jika $x = 1$: $3^1 - 2^y = 1 \\implies 2^y = 2 \\implies y = 1$, sehingga $x + y = 2$.\n- Jika $x = 2$: $3^2 - 2^y = 1 \\implies 2^y = 8 \\implies y = 3$, sehingga $x + y = 5$.\nUntuk $x \\ge 3$, perhatikan modulo $8$: jika $y \\ge 3$, maka $3^x \\equiv 1 \\pmod{8}$ menuntut $x$ genap ($x = 2k$), sehingga $(3^k - 1)(3^k + 1) = 2^y$. Dua bilangan genap berjarak $2$ yang keduanya merupakan pangkat $2$ hanyalah $2$ dan $4$ ($3^k = 3 \\implies k = 1, x = 2$).\nJadi tidak ada solusi bulat positif lain, dan nilai maksimum $x + y$ adalah $5$.',
+            'Tinjau dua kasus berdasarkan nilai bilangan bulat positif $y$:\n- **Kasus 1 ($y \\le 2$):** Jika $y = 1$, maka $3^x = 2^1 + 1 = 3 \\implies x = 1$, sehingga $x + y = 2$. Jika $y = 2$, maka $3^x = 2^2 + 1 = 5$, yang tidak memiliki solusi bulat $x$.\n- **Kasus 2 ($y \\ge 3$):** Karena $2^y$ habis dibagi $8$, persamaan menjadi:\n$$3^x \\equiv 1 \\pmod{8}$$\nKarena $3^1 \\equiv 3 \\pmod{8}$ dan $3^2 \\equiv 1 \\pmod{8}$, eksponen $x$ haruslah genap. Misalkan $x = 2k$ dengan $k \\ge 1$, lalu faktorkan:\n$$2^y = 3^{2k} - 1 = (3^k - 1)(3^k + 1)$$\nKarena $(3^k - 1)$ dan $(3^k + 1)$ adalah dua bilangan bulat positif genap berjarak $2$ yang hasil kalinya merupakan pangkat $2$, keduanya haruslah pangkat $2$. Satu-satunya pasangan pangkat $2$ yang berselisih $2$ adalah $2$ dan $4$, sehingga $3^k - 1 = 2 \\implies k = 1$. Akibatnya $x = 2$ dan $2^y = 3^2 - 1 = 8 \\implies y = 3$, yang memberikan $x + y = 5$.\nDengan membandingkan kedua kasus, satu-satunya solusi adalah $(1, 1)$ dan $(2, 3)$, sehingga nilai maksimum $x + y$ adalah $5$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -317,7 +317,7 @@ export default {
           answerNumeric: [{ name: 'eksponen', value: 164, unit: '' }],
           principle: 'Rumus Legendre untuk pangkat prima $p$ pada $n!$: $v_p(n!) = \\sum_{k \\ge 1} \\left\\lfloor \\frac{n}{p^k} \\right\\rfloor$.',
           solution:
-            'Gunakan rumus Legendre dengan pembagian berulang oleh $7$:\n$$\\left\\lfloor \\frac{1000}{7} \\right\\rfloor = 142$$\n$$\\left\\lfloor \\frac{142}{7} \\right\\rfloor = 20$$\n$$\\left\\lfloor \\frac{20}{7} \\right\\rfloor = 2$$\nJumlahkan seluruh hasil bagi bulat tersebut:\n$$142 + 20 + 2 = 164$$\nJadi, eksponen pangkat tertinggi $7$ yang membagi habis $1000!$ adalah $164$.',
+            'Gunakan rumus Legendre untuk menghitung banyak faktor prima $7$ pada $1000!$. Karena $7^4 = 2401 > 1000$, suku yang tak nol hanya sampai $7^3$:\n$$v_7(1000!) = \\left\\lfloor \\frac{1000}{7} \\right\\rfloor + \\left\\lfloor \\frac{1000}{7^2} \\right\\rfloor + \\left\\lfloor \\frac{1000}{7^3} \\right\\rfloor$$\nKarena $\\left\\lfloor \\frac{n}{7^{k+1}} \\right\\rfloor = \\left\\lfloor \\frac{\\lfloor n/7^k \\rfloor}{7} \\right\\rfloor$, tiap suku dapat dihitung dengan pembagian berulang oleh $7$:\n$$\\left\\lfloor \\frac{1000}{7} \\right\\rfloor = 142, \\qquad \\left\\lfloor \\frac{142}{7} \\right\\rfloor = 20, \\qquad \\left\\lfloor \\frac{20}{7} \\right\\rfloor = 2$$\nJumlahkan seluruh hasil bagi bulat tersebut:\n$$142 + 20 + 2 = 164$$\nJadi, eksponen pangkat tertinggi $7$ yang membagi habis $1000!$ adalah $164$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

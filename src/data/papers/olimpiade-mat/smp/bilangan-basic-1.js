@@ -52,7 +52,7 @@ export default {
           answer: 'B. $48$',
           principle: 'Fundamental identity relating product, GCD, and LCM: $a \\times b = \\gcd(a, b) \\times \\operatorname{lcm}(a, b)$.',
           solution:
-            'Using the property $a \\times b = \\gcd(a, b) \\times \\operatorname{lcm}(a, b)$:\n$$36 \\times b = 12 \\times 144$$\n$$b = \\frac{1728}{36} = 48$$',
+            'Using the identity $a \\times b = \\gcd(a, b) \\times \\operatorname{lcm}(a, b)$ with $a = 36$:\n$$36 \\times b = 12 \\times 144$$\nDivide both sides by $36$ and simplify before multiplying:\n$$b = \\frac{12 \\times 144}{36} = \\frac{144}{3} = 48$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -118,7 +118,7 @@ export default {
           answer: 'B. $12$',
           principle: 'Divisor counting formula $\\tau(n) = \\prod (e_i + 1)$ from prime factorization.',
           solution:
-            'Find the prime factorization of $72$:\n$$72 = 2^3 \\times 3^2$$\nAdd $1$ to each exponent and multiply:\n$$(3 + 1)(2 + 1) = 4 \\times 3 = 12$$',
+            'Find the prime factorization of $72$:\n$$72 = 2^3 \\times 3^2$$\nEvery positive divisor of $72$ has the form $2^a \\times 3^b$, where $a \\in \\{0, 1, 2, 3\\}$ ($3 + 1 = 4$ choices) and $b \\in \\{0, 1, 2\\}$ ($2 + 1 = 3$ choices). By the multiplication principle, the total number of divisors is:\n$$(3 + 1)(2 + 1) = 4 \\times 3 = 12$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -217,7 +217,7 @@ export default {
           answer: 'C. $12$',
           principle: 'Aplikasi Faktor Persekutuan Terbesar (FPB) dalam pembagian sama rata.',
           solution:
-            'Jumlah maksimal keranjang adalah FPB dari $48$ dan $60$:\n$$48 = 2^4 \\times 3, \\quad 60 = 2^2 \\times 3 \\times 5$$\n$$\\text{FPB}(48, 60) = 2^2 \\times 3 = 12\\text{ keranjang}$$',
+            'Agar $48$ apel dan $60$ jeruk terbagi sama rata ke setiap keranjang tanpa sisa, banyak keranjang harus membagi habis $48$ sekaligus $60$ (faktor persekutuan). Untuk memperoleh jumlah keranjang maksimal, kita cari FPB dari $48$ dan $60$:\n$$48 = 2^4 \\times 3, \\qquad 60 = 2^2 \\times 3 \\times 5$$\nAmbil faktor prima yang sama dengan pangkat terkecil:\n$$\\text{FPB}(48, 60) = 2^2 \\times 3 = 12\\text{ keranjang}$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -248,9 +248,9 @@ export default {
           prompt:
             'A positive integer leaves a remainder of $2$ when divided by $5$, and a remainder of $1$ when divided by $3$. Which of the following could be the number?\n\nA. $7$\nB. $12$\nC. $17$\nD. $23$',
           answer: 'A. $7$',
-          principle: 'Testing modular congruences / remainder conditions.',
+          principle: 'Solving a system of linear congruences.',
           solution:
-            'Test option A ($7$):\n- Divided by $5$: $7 = 1 \\times 5 + 2$ (remainder $2$).\n- Divided by $3$: $7 = 2 \\times 3 + 1$ (remainder $1$).\nMeanwhile, $12 \\equiv 2 \\pmod 5$ fails modulo $3$, $17 \\equiv 2 \\pmod 3$ fails, and $23 \\equiv 3 \\pmod 5$ fails. Both remainder conditions are uniquely satisfied by $7$.',
+            'Let the positive integer be $n$. The first condition gives $n \\equiv 2 \\pmod{5}$, so we can write $n = 5k + 2$ for some integer $k \\ge 0$. Substitute into the second condition $n \\equiv 1 \\pmod{3}$:\n$$5k + 2 \\equiv 1 \\pmod{3} \\implies 2k \\equiv -1 \\equiv 2 \\pmod{3}$$\nSince $\\gcd(2, 3) = 1$, dividing both sides by $2$ yields $k \\equiv 1 \\pmod{3}$, so $k = 3m + 1$ for an integer $m \\ge 0$. Hence:\n$$n = 5(3m + 1) + 2 = 15m + 7$$\nThus, valid integers are $7, 22, 37, \\dots$ Among the given choices, only $7$ (option A) satisfies $n \\equiv 7 \\pmod{15}$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         }
       ]
@@ -290,9 +290,9 @@ export default {
             'Diketahui bilangan kelipatan $5$ yang lebih besar dari $0$ dan kurang dari $50$. Berapa banyak dari bilangan-bilangan tersebut yang bersisa $1$ jika dibagi $3$?',
           answer: '$3$ bilangan',
           answerNumeric: [{ name: 'banyakBilangan', value: 3, unit: 'bilangan' }],
-          principle: 'Enumerasi kelipatan dan pemeriksaan sisa pembagian modulo $3$.',
+          principle: 'Kongruensi linear modulo $3$ untuk kelipatan suatu bilangan.',
           solution:
-            'Kelipatan $5$ antara $0$ dan $50$ adalah $5, 10, 15, 20, 25, 30, 35, 40, 45$.\nUji sisa pembagian oleh $3$:\n- $5 \\equiv 2$, $10 \\equiv 1$, $15 \\equiv 0$, $20 \\equiv 2$, $25 \\equiv 1$, $30 \\equiv 0$, $35 \\equiv 2$, $40 \\equiv 1$, $45 \\equiv 0 \\pmod{3}$.\nBilangan yang bersisa $1$ adalah $10, 25,$ dan $40$, jadi terdapat $3$ bilangan.',
+            'Setiap bilangan kelipatan $5$ antara $0$ dan $50$ berbentuk $n = 5k$ dengan bilangan bulat $1 \\le k \\le 9$ (karena $0 < 5k < 50$). Syarat bersisa $1$ saat dibagi $3$ berarti:\n$$5k \\equiv 1 \\pmod{3}$$\nKarena $5 \\equiv 2 \\pmod{3}$, kongruensi ini menjadi:\n$$2k \\equiv 1 \\equiv 4 \\pmod{3}$$\nDengan $\\gcd(2, 3) = 1$, bagi kedua ruas dengan $2$ sehingga diperoleh $k \\equiv 2 \\pmod{3}$. Untuk $1 \\le k \\le 9$, nilai $k$ yang memenuhi adalah $k = 2, 5, 8$ (menghasilkan $10, 25,$ dan $40$). Jadi, terdapat $3$ bilangan.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -313,9 +313,9 @@ export default {
             'Jumlah dua bilangan bulat positif adalah $36$ dan Kelipatan Persekutuan Terkecil (KPK) keduanya adalah $105$. Tentukan hasil kali kedua bilangan tersebut.',
           answer: '$315$',
           answerNumeric: [{ name: 'hasilKali', value: 315, unit: '' }],
-          principle: 'Sifat faktor pembagi dari KPK dan pasangan bilangan yang memenuhi jumlah tertentu.',
+          principle: 'Hubungan $\\text{FPB}(a + b, \\text{KPK}(a, b)) = \\text{FPB}(a, b)$ serta identitas $a \\times b = \\text{FPB}(a, b) \\times \\text{KPK}(a, b)$.',
           solution:
-            'Misalkan kedua bilangan adalah $a$ dan $b$ dengan $a + b = 36$ dan $\\text{KPK}(a, b) = 105$. Keduanya harus merupakan faktor dari $105$: $\\{1, 3, 5, 7, 15, 21, 35, 105\\}$.\nPasangan faktor yang berjumlah $36$ dan memiliki $\\text{KPK} = 105$ adalah $15$ dan $21$ ($15 + 21 = 36$, $\\text{KPK}(15, 21) = 105$).\nHasil kali keduanya adalah:\n$$15 \\times 21 = 315$$',
+            'Misalkan $d = \\text{FPB}(a, b)$, sehingga dapat ditulis $a = dx$ dan $b = dy$ dengan $x, y$ bilangan bulat positif dan $\\text{FPB}(x, y) = 1$. Maka:\n$$a + b = d(x + y) = 36 \\qquad \\text{dan} \\qquad \\text{KPK}(a, b) = dxy = 105$$\nKarena $\\text{FPB}(x, y) = 1$, tidak ada bilangan prima yang membagi sekaligus $x + y$ dan $xy$ (jika prima $p \\mid xy$, maka $p \\mid x$ atau $p \\mid y$, sehingga $p$ tidak dapat membagi $x + y$). Akibatnya $\\text{FPB}(x + y, xy) = 1$, sehingga:\n$$d = \\text{FPB}(d(x + y), dxy) = \\text{FPB}(36, 105) = 3$$\n(karena $36 = 2^2 \\times 3^2$ dan $105 = 3 \\times 5 \\times 7$). Dengan identitas $a \\times b = \\text{FPB}(a, b) \\times \\text{KPK}(a, b)$, langsung diperoleh:\n$$a \\times b = 3 \\times 105 = 315$$\n(Sebagai verifikasi, $x + y = 12$ dan $xy = 35$ memberikan $\\{x, y\\} = \\{5, 7\\}$, yakni kedua bilangan adalah $15$ dan $21$.)',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -327,7 +327,7 @@ export default {
           answerNumeric: [{ name: 'n', value: 61, unit: '' }],
           principle: 'Common remainder condition: $n - 1$ is divisible by $\\operatorname{LCM}(2, 3, 4, 5, 6)$.',
           solution:
-            'Since $n$ leaves a remainder of $1$ when divided by $2, 3, 4, 5,$ and $6$, $n - 1$ is a common multiple of $2, 3, 4, 5,$ and $6$.\n$$\\operatorname{LCM}(2, 3, 4, 5, 6) = 60$$\nFor the smallest $n > 1$:\n$$n - 1 = 60 \\implies n = 61$$',
+            'Since $n$ leaves a remainder of $1$ when divided by $2, 3, 4, 5,$ and $6$, the number $n - 1$ must be divisible by each of $2, 3, 4, 5,$ and $6$, i.e., $n - 1$ is a common multiple of them. Using prime factorization ($4 = 2^2$ and $6 = 2 \\times 3$):\n$$\\operatorname{LCM}(2, 3, 4, 5, 6) = 2^2 \\times 3 \\times 5 = 60$$\nBecause $n > 1$, we require $n - 1 > 0$ (excluding $n - 1 = 0$, which would give $n = 1$). Thus, the smallest positive multiple is $n - 1 = 60$, yielding:\n$$n = 61$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -339,7 +339,7 @@ export default {
           answerNumeric: [{ name: 'nilai', value: 1, unit: '' }],
           principle: 'Konversi desimal berulang menjadi pecahan rasional eksak.',
           solution:
-            'Ubah desimal berulang ke bentuk pecahan biasa:\n$$x = 0{,}333\\dots = \\frac{1}{3}, \\qquad y = 0{,}666\\dots = \\frac{2}{3}$$\nMaka:\n$$x + y = \\frac{1}{3} + \\frac{2}{3} = 1 \\implies (x + y)^2 = 1^2 = 1$$',
+            'Ubah desimal berulang ke bentuk pecahan rasional eksak. Untuk $x = 0{,}333\\dots$, kalikan dengan $10$ lalu kurangkan:\n$$10x - x = 3{,}333\\dots - 0{,}333\\dots \\implies 9x = 3 \\implies x = \\frac{3}{9} = \\frac{1}{3}$$\nDengan cara serupa, $y = 0{,}666\\dots = 2x = \\frac{2}{3}$ (atau $9y = 6 \\implies y = \\frac{2}{3}$). Maka:\n$$x + y = \\frac{1}{3} + \\frac{2}{3} = 1 \\implies (x + y)^2 = 1^2 = 1$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

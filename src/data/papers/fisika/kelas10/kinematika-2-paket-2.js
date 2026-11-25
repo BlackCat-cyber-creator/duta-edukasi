@@ -111,7 +111,8 @@ export default {
           answerNumeric: [{ name: 'R', value: 138.564, unit: 'm' }],
           principle:
             'Since horizontal acceleration is zero ($a_x = 0$), the arrow moves horizontally with uniform velocity $v_{0x}$ throughout the $4.0\\ \\text{s}$ flight.',
-          solution: '$$R = v_{0x}T = (20\\sqrt{3})(4.0) = 80\\sqrt{3}\\ \\text{m}\\ (\\approx 139\\ \\text{m})$$',
+          solution:
+            'With zero horizontal acceleration ($a_x = 0$), the arrow undergoes uniform horizontal motion throughout the flight of $T = 4.0\\ \\text{s}$:\n$$R = v_{0x}T = (20\\sqrt{3})(4.0) = 80\\sqrt{3}\\ \\text{m}\\ (\\approx 139\\ \\text{m})$$',
           rubric: [
             { code: 'M1', text: 'Applying $R = v_{0x}T$' },
             { code: 'A1', text: 'Correct substitution $(20\\sqrt{3})(4.0)$' },
@@ -196,8 +197,9 @@ export default {
           answer: '$x = 31.2\\ \\text{m}$',
           answerNumeric: [{ name: 'x', value: 31.2, unit: 'm' }],
           principle:
-            'Horizontal velocity remains constant at $v_{0x} = 12\\ \\text{m s}^{-1}$ throughout the $2.6\\ \\text{s}$ descent.',
-          solution: '$$x = v_{0x}t = 12 \\times 2.6 = 31.2\\ \\text{m}$$',
+            'With zero horizontal acceleration ($a_x = 0$), Noah’s horizontal velocity remains constant at $v_{0x} = 12\\ \\text{m s}^{-1}$ throughout the $2.6\\ \\text{s}$ descent.',
+          solution:
+            'Since $a_x = 0$, horizontal displacement increases uniformly at constant velocity $v_{0x} = 12\\ \\text{m s}^{-1}$ over $t = 2.6\\ \\text{s}$:\n$$x = v_{0x}t = 12 \\times 2.6 = 31.2\\ \\text{m}$$',
           rubric: [
             { code: 'M1', text: 'Applying $x = v_{0x}t$' },
             { code: 'A1', text: 'Substituting $12 \\times 2.6$' },

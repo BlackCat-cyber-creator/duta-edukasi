@@ -96,7 +96,7 @@ export default {
           answer: 'A. $6$',
           principle: 'Modular Multiplicative Inverse',
           solution:
-            'Notice that $101 = 17 \\times 5 + 16$, or directly $17 \\times 6 = 102 = 101 + 1 \\equiv 1 \\pmod{101}$.\nTherefore, the smallest positive integer solution is $x = 6$.',
+            'Apply the Extended Euclidean Algorithm to $101$ and $17$:\n$$101 = 17 \\times 5 + 16 \\implies 16 = 101 - 17 \\times 5$$\n$$17 = 16 \\times 1 + 1 \\implies 1 = 17 - 16$$\nSubstituting $16 = 101 - 17 \\times 5$ gives:\n$$1 = 17 - (101 - 17 \\times 5) = 17 \\times 6 - 101$$\nReducing modulo $101$ yields $17 \\times 6 \\equiv 1 \\pmod{101}$. Since $\\gcd(17, 101) = 1$, the inverse modulo $101$ is unique in $\\{1, 2, \\dots, 100\\}$, so the smallest positive integer solution is $x = 6$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -129,7 +129,7 @@ export default {
           answer: 'A. $6$',
           principle: 'Konversi Basis Biner ke Desimal',
           solution:
-            'Bilangan biner yang terdiri dari sepuluh angka $1$ berturut-turut bernilai:\n$$x = 2^{10} - 1 = 1024 - 1 = 1023$$\nJumlah seluruh digit $1023$ dalam basis $10$ adalah $1 + 0 + 2 + 3 = 6$.',
+            'Setiap posisi digit biner bernilai pangkat $2$, sehingga bilangan biner dengan sepuluh angka $1$ bernilai jumlah deret geometri:\n$$x = 2^9 + 2^8 + \\cdots + 2^1 + 2^0 = \\frac{2^{10} - 1}{2 - 1} = 2^{10} - 1$$\n(Secara intuitif, jika ditambah $1_2$, bilangan $1111111111_2$ menjadi $10000000000_2 = 2^{10}$.)\nKarena $2^{10} = 1024$, maka $x = 1024 - 1 = 1023$. Jumlah seluruh digit $1023$ dalam basis $10$ adalah $1 + 0 + 2 + 3 = 6$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -140,7 +140,7 @@ export default {
           answer: 'C. $7$',
           principle: 'Digit Sum Congruence Modulo 9 and Upper Bound Estimation',
           solution:
-            'Every positive integer is congruent to its digit sum modulo $9$: $N \\equiv S(N) \\pmod{9}$.\nSince $4444 \\equiv 4 + 4 + 4 + 4 = 16 \\equiv 7 \\pmod{9}$, and $7^1 \\equiv 7, 7^2 \\equiv 4, 7^3 \\equiv 1 \\pmod{9}$, with $4444 = 3 \\times 1481 + 1$, we get:\n$$4444^{4444} \\equiv 7^{4444} \\equiv 7^1 = 7 \\pmod{9}$$\nNext, bound the size: $4444^{4444} < 10000^{5000} = 10^{20000}$, so it has at most $20000$ digits. Hence $S(4444^{4444}) \\le 20000 \\times 9 = 180000$.\nAmong positive integers $\\le 180000$, the maximum digit sum is $S(99999) = 45$ (or $S(39999) = 39$), so $S(S(4444^{4444})) \\le 45$, and thus $S(S(S(4444^{4444}))) \\le S(39) = 12$.\nThe only positive integer $\\le 12$ congruent to $7 \\pmod{9}$ is $7$.',
+            'Every positive integer is congruent to its digit sum modulo $9$: $N \\equiv S(N) \\pmod{9}$.\nSince $4444 \\equiv 4 + 4 + 4 + 4 = 16 \\equiv 7 \\pmod{9}$, and $7^1 \\equiv 7, 7^2 \\equiv 4, 7^3 \\equiv 1 \\pmod{9}$, with $4444 = 3 \\times 1481 + 1$, we get:\n$$4444^{4444} \\equiv 7^{4444} \\equiv 7^1 = 7 \\pmod{9}$$\nNext, bound the size: $4444^{4444} < 10000^{5000} = 10^{20000}$, so it has at most $20000$ digits. Hence $S(4444^{4444}) \\le 20000 \\times 9 = 180000$.\nAmong positive integers $\\le 180000$, the maximum digit sum is $S(99999) = 45$ (since $S(179999) = 44$), so $S(S(4444^{4444})) \\le 45$. Among positive integers $\\le 45$, the maximum digit sum is $S(39) = 3 + 9 = 12$, and thus $S(S(S(4444^{4444}))) \\le 12$.\nThe only positive integer $\\le 12$ congruent to $7 \\pmod{9}$ is $7$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -151,7 +151,7 @@ export default {
           answer: 'B. $2^{20} - 1$',
           principle: 'Sifat FPB Bentuk $a^m - 1$ dan $a^n - 1$',
           solution:
-            'Gunakan identitas $\\gcd(x^A - 1, x^B - 1) = x^{\\gcd(A, B)} - 1$.\nKarena $\\gcd(100, 120) = 20$, maka:\n$$\\gcd(2^{100} - 1, 2^{120} - 1) = 2^{20} - 1$$',
+            'Terapkan Algoritma Euclid secara langsung pada $2^{120} - 1$ dan $2^{100} - 1$:\n$$2^{120} - 1 = 2^{20}(2^{100} - 1) + (2^{20} - 1)$$\nBerdasarkan sifat $\\gcd(a, b) = \\gcd(b, a - qb)$, diperoleh:\n$$\\gcd(2^{120} - 1, 2^{100} - 1) = \\gcd(2^{100} - 1, 2^{20} - 1)$$\nPerhatikan bahwa $2^{100} - 1 = (2^{20})^5 - 1$. Karena $t - 1$ selalu membagi habis $t^5 - 1 = (t - 1)(t^4 + t^3 + t^2 + t + 1)$, maka $(2^{20} - 1)$ membagi habis $(2^{100} - 1)$.\nDengan demikian, $\\gcd(2^{100} - 1, 2^{120} - 1) = 2^{20} - 1$. (Identitas umumnya: $\\gcd(x^A - 1, x^B - 1) = x^{\\gcd(A, B)} - 1$.)',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -173,7 +173,7 @@ export default {
           answer: 'B. $(p^2 + p + 1)(q + 1)$',
           principle: 'Fungsi Jumlah Pembagi Positif $\\sigma(N)$',
           solution:
-            'Dari faktorisasi prima $N = p^2 \\times q^1$, jumlah seluruh pembagi bulat positif $\\sigma(N)$ merupakan hasil kali deret geometri pangkat tiap faktor prima:\n$$\\sigma(p^2 q) = (p^0 + p^1 + p^2)(q^0 + q^1) = (p^2 + p + 1)(q + 1)$$',
+            'Setiap pembagi bulat positif dari $N = p^2 q$ berbentuk $p^a q^b$ dengan $a \\in \\{0, 1, 2\\}$ dan $b \\in \\{0, 1\\}$ (terdapat $3 \\times 2 = 6$ pembagi: $1, p, p^2, q, pq, p^2 q$).\nJika kita menjabarkan hasil kali deret geometri pangkat faktor prima dengan sifat distributif, setiap suku pada hasil jabaran berkorespondensi tepat satu-satu dengan seluruh pembagi $N$:\n$$(1 + p + p^2)(1 + q) = 1 + p + p^2 + q + pq + p^2 q$$\nJadi, jumlah seluruh pembagi bulat positif $\\sigma(N)$ adalah $(p^2 + p + 1)(q + 1)$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -184,7 +184,7 @@ export default {
           answer: 'C. $498$',
           principle: "Legendre's Formula",
           solution:
-            "Apply Legendre's Formula for the prime $3$ dividing $1000!$:\n$$k = \\left\\lfloor \\frac{1000}{3} \\right\\rfloor + \\left\\lfloor \\frac{1000}{9} \\right\\rfloor + \\left\\lfloor \\frac{1000}{27} \\right\\rfloor + \\left\\lfloor \\frac{1000}{81} \\right\\rfloor + \\left\\lfloor \\frac{1000}{243} \\right\\rfloor + \\left\\lfloor \\frac{1000}{729} \\right\\rfloor$$\n$$k = 333 + 111 + 37 + 12 + 4 + 1 = 498$$",
+            "In the product $1000! = 1 \\times 2 \\times \\cdots \\times 1000$, each multiple of $3$ contributes at least one factor of $3$ ($\\lfloor 1000/3 \\rfloor$ integers), each multiple of $3^2 = 9$ contributes an additional second factor of $3$ ($\\lfloor 1000/9 \\rfloor$ integers), each multiple of $27$ contributes a third factor, and so on up to $3^6 = 729$ ($3^7 = 2187 > 1000$). Summing these counts gives Legendre's Formula:\n$$k = \\left\\lfloor \\frac{1000}{3} \\right\\rfloor + \\left\\lfloor \\frac{1000}{9} \\right\\rfloor + \\left\\lfloor \\frac{1000}{27} \\right\\rfloor + \\left\\lfloor \\frac{1000}{81} \\right\\rfloor + \\left\\lfloor \\frac{1000}{243} \\right\\rfloor + \\left\\lfloor \\frac{1000}{729} \\right\\rfloor$$\n$$k = 333 + 111 + 37 + 12 + 4 + 1 = 498$$",
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -306,7 +306,7 @@ export default {
           answerNumeric: [{ name: 'jawaban', value: 6666 }],
           principle: 'Representasi Aljabar Bilangan Repdigit Basis 10',
           solution:
-            'Nyatakan bilangan repdigit dalam bentuk pangkat $10$ (dengan $n = 4$):\n$$44444444 = \\frac{4}{9}(10^8 - 1), \\qquad 8888 = \\frac{8}{9}(10^4 - 1)$$\nMaka:\n$$\\sqrt{44444444 - 8888} = \\sqrt{\\frac{4}{9}(10^8 - 1) - \\frac{8}{9}(10^4 - 1)} = \\sqrt{\\frac{4}{9}(10^8 - 2 \\cdot 10^4 + 1)} = \\frac{2}{3}(10^4 - 1) = \\frac{2}{3}(9999) = 6666$$',
+            'Karena $99999999 = 10^8 - 1$ dan $9999 = 10^4 - 1$, nyatakan kedua bilangan repdigit dalam bentuk pangkat $10$:\n$$44444444 = \\frac{4}{9}(10^8 - 1), \\qquad 8888 = \\frac{8}{9}(10^4 - 1)$$\nHitung selisihnya lalu faktorkan menjadi bentuk kuadrat sempurna:\n$$44444444 - 8888 = \\frac{4}{9}(10^8 - 1) - \\frac{8}{9}(10^4 - 1) = \\frac{4}{9}(10^8 - 2 \\cdot 10^4 + 1) = \\frac{4}{9}(10^4 - 1)^2$$\nTarik akarnya:\n$$\\sqrt{44444444 - 8888} = \\frac{2}{3}(10^4 - 1) = \\frac{2}{3}(9999) = 2 \\times 3333 = 6666$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -318,7 +318,7 @@ export default {
           answerNumeric: [{ name: 'jawaban', value: 7 }],
           principle: 'Units Digit Cycles Modulo 10',
           solution:
-            'Evaluate each term modulo $10$ (units digit):\n$$1^1 \\equiv 1,\\ 2^2 \\equiv 4,\\ 3^3 \\equiv 7,\\ 4^4 \\equiv 6,\\ 5^5 \\equiv 5,\\ 6^6 \\equiv 6,\\ 7^7 \\equiv 3,\\ 8^8 \\equiv 6,\\ 9^9 \\equiv 9,\\ 10^{10} \\equiv 0 \\pmod{10}$$\nSumming the units digits gives $1 + 4 + 7 + 6 + 5 + 6 + 3 + 6 + 9 + 0 = 47 \\equiv 7 \\pmod{10}$.\n(Audit note: the source PDF answer key lists $5$ due to miscomputing $8^8 \\equiv 4 \\pmod{10}$ instead of $8^8 = (8^4)^2 \\equiv 6^2 \\equiv 6 \\pmod{10}$.)',
+            'Evaluate each term modulo $10$ (units digit), using $7^4 = 2401 \\equiv 1$, $8^4 = 4096 \\equiv 6$, and $9^2 = 81 \\equiv 1 \\pmod{10}$:\n- $1^1 = 1 \\equiv 1$, $2^2 = 4 \\equiv 4$, $3^3 = 27 \\equiv 7$, $4^4 = 256 \\equiv 6$\n- $5^5 \\equiv 5$, $6^6 \\equiv 6$, $10^{10} \\equiv 0$\n- $7^7 = 7^4 \\cdot 7^3 \\equiv 1 \\cdot 343 \\equiv 3$\n- $8^8 = (8^4)^2 \\equiv 6^2 = 36 \\equiv 6$\n- $9^9 = (9^2)^4 \\cdot 9 \\equiv 1^4 \\cdot 9 = 9$\n\nSumming the units digits gives $1 + 4 + 7 + 6 + 5 + 6 + 3 + 6 + 9 + 0 = 47 \\equiv 7 \\pmod{10}$.\n(Audit note: the source PDF answer key lists $5$ due to miscomputing $8^8 \\equiv 4 \\pmod{10}$ instead of $8^8 = (8^4)^2 \\equiv 6^2 \\equiv 6 \\pmod{10}$.)',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -330,7 +330,7 @@ export default {
           answerNumeric: [{ name: 'jawaban', value: 2026 }],
           principle: 'Identitas $\\text{FPB}(a, b) \\times \\text{KPK}(a, b) = ab$',
           solution:
-            'Diketahui $\\text{KPK}(a, b) = 2024$ dan $\\text{FPB}(a, b) = 2$, sehingga $ab = 2 \\times 2024 = 4048$.\nMisalkan $a = 2x$ dan $b = 2y$ dengan $\\gcd(x, y) = 1$, maka $xy = 1012$.\nUntuk memaksimumkan $a + b = 2(x + y)$, pilih pasangan faktor saling prima $(x, y)$ dengan selisih terbesar, yaitu $x = 1$ dan $y = 1012$:\n$$a + b = 2(1 + 1012) = 2026$$',
+            'Diketahui $\\text{KPK}(a, b) = 2024$ dan $\\text{FPB}(a, b) = 2$, sehingga $ab = 2 \\times 2024 = 4048$.\nMisalkan $a = 2x$ dan $b = 2y$ dengan $x, y$ bilangan bulat positif dan $\\gcd(x, y) = 1$, maka $4xy = 4048 \\implies xy = 1012$.\nKarena $x \\ge 1$ dan $y \\ge 1$, berlaku:\n$$(x - 1)(y - 1) \\ge 0 \\implies xy - (x + y) + 1 \\ge 0 \\implies x + y \\le xy + 1 = 1013$$\nKesamaan tercapai saat salah satunya bernilai $1$, yaitu $x = 1$ dan $y = 1012$ (dan keduanya saling prima karena $\\gcd(1, 1012) = 1$). Jadi, jumlah maksimumnya adalah:\n$$a + b = 2(x + y) = 2(1 + 1012) = 2026$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -342,7 +342,7 @@ export default {
           answerNumeric: [{ name: 'jawaban', value: 8 }],
           principle: 'Multiplicative Order Modulo a Prime',
           solution:
-            'We seek the multiplicative order $\\text{ord}_{17}(2)$ (smallest positive integer $n$). Since $17$ is prime, the order must divide $16$. Checking divisors of $16$ in order:\n$$2^1 = 2,\\quad 2^2 = 4,\\quad 2^3 = 8,\\quad 2^4 = 16 \\equiv -1 \\pmod{17}$$\nSquaring gives $2^8 \\equiv (-1)^2 = 1 \\pmod{17}$, so the smallest positive exponent is $n = 8$.',
+            "We seek the multiplicative order $\\text{ord}_{17}(2)$ (the smallest positive integer $n$ with $2^n \\equiv 1 \\pmod{17}$). By Fermat's Little Theorem, $2^{16} \\equiv 1 \\pmod{17}$, so the smallest such $n$ must divide $16$ (if $16 = qn + r$ with $0 \\le r < n$, then $2^r \\equiv 1 \\pmod{17}$, forcing $r = 0$).\nChecking the divisors of $16$ ($1, 2, 4, 8$) in order:\n$$2^1 = 2, \\quad 2^2 = 4, \\quad 2^4 = 16 \\equiv -1 \\pmod{17}$$\nSquaring gives $2^8 \\equiv (-1)^2 = 1 \\pmod{17}$. Thus, the smallest positive exponent is $n = 8$.",
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

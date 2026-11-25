@@ -82,7 +82,7 @@ export default {
           principle:
             'Digit paling kanan (satuan) suatu bilangan bulat dalam basis $b$ sama dengan sisa pembagian bilangan tersebut terhadap $b$.',
           solution:
-            'Digit satuan dalam basis $7$ adalah sisa pembagian $2024$ oleh $7$:\n$$2024 = 7 \\times 289 + 1.$$\nKarena sisa pembagiannya $1$, angka satuan pada basis $7$ adalah $1$.',
+            'Dalam basis $7$, suatu bilangan ditulis sebagai $a_k 7^k + \\dots + a_1 \\cdot 7 + a_0$ dengan $0 \\le a_0 < 7$. Semua suku kecuali $a_0$ habis dibagi $7$, sehingga digit satuan $a_0$ tepat sama dengan sisa pembagian $2024$ oleh $7$:\n$$2024 = 7 \\times 289 + 1.$$\nKarena sisa pembagiannya $1$, angka satuan pada basis $7$ adalah $1$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -130,7 +130,7 @@ export default {
           principle:
             'Bilangan komposit adalah bilangan asli lebih dari $1$ yang bukan bilangan prima (memiliki lebih dari dua faktor positif).',
           solution:
-            'Daftar bilangan ganjil antara $1$ dan $30$ yang bukan bilangan prima:\n$$9 = 3^2, \\quad 15 = 3 \\times 5, \\quad 21 = 3 \\times 7, \\quad 25 = 5^2, \\quad 27 = 3^3.$$\nTerdapat $5$ bilangan komposit ganjil yang kurang dari $30$.',
+            'Bilangan $1$ hanya memiliki satu faktor sehingga bukan bilangan prima maupun komposit. Karena $7^2 = 49 > 30$, setiap bilangan komposit ganjil kurang dari $30$ pasti memiliki faktor prima ganjil $\\le 5$, yaitu $3$ atau $5$:\n- Kelipatan ganjil $3$ yang lebih dari $3$ dan kurang dari $30$: $9 = 3^2$, $15 = 3 \\times 5$, $21 = 3 \\times 7$, $27 = 3^3$.\n- Kelipatan ganjil $5$ lainnya yang lebih dari $5$ dan kurang dari $30$: $25 = 5^2$.\nJadi terdapat $5$ bilangan komposit ganjil yang kurang dari $30$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -202,7 +202,7 @@ export default {
           principle:
             'Uraikan bilangan menjadi faktorisasi prima, lalu jumlahkan setiap faktor prima berbeda yang bernilai ganjil.',
           solution:
-            'Faktorisasi prima dari $9.240$:\n$$9.240 = 10 \\times 924 = (2 \\times 5) \\times (4 \\times 231) = 2^3 \\times 3 \\times 5 \\times 7 \\times 11.$$\nFaktor-faktor prima ganjilnya adalah $3, 5, 7,$ dan $11$, sehingga jumlahnya:\n$$3 + 5 + 7 + 11 = 26.$$',
+            'Faktorisasi prima dari $9.240$:\n$$9.240 = 10 \\times 924 = (2 \\times 5) \\times (4 \\times 231) = 2^3 \\times 5 \\times (3 \\times 77) = 2^3 \\times 3 \\times 5 \\times 7 \\times 11.$$\nFaktor-faktor prima ganjilnya adalah $3, 5, 7,$ dan $11$, sehingga jumlahnya:\n$$3 + 5 + 7 + 11 = 26.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -250,7 +250,7 @@ export default {
           principle:
             'Samakan penyebut pecahan untuk memperoleh persamaan Diophantine linear, lalu uji bilangan bulat positif yang memenuhi.',
           solution:
-            'Samakan penyebut menjadi $33$:\n$$\\frac{3a + 11b}{33} = \\frac{31}{33} \\implies 3a + 11b = 31.$$\nKarena $a, b$ bulat positif:\n- Jika $b = 1$, maka $3a = 20$ (bukan bilangan bulat).\n- Jika $b = 2$, maka $3a = 9 \\implies a = 3$.\nDiperoleh $a = 3$ dan $b = 2$, sehingga $a \\times b = 3 \\times 2 = 6$.',
+            'Samakan penyebut menjadi $33$:\n$$\\frac{3a + 11b}{33} = \\frac{31}{33} \\implies 3a + 11b = 31.$$\nKarena $a \\ge 1$, maka $3a \\ge 3$, sehingga $11b = 31 - 3a \\le 28$. Akibatnya, satu-satunya nilai bulat positif $b$ yang mungkin hanyalah $b = 1$ atau $b = 2$:\n- Jika $b = 1$, maka $3a = 20$ (bukan bilangan bulat).\n- Jika $b = 2$, maka $3a = 9 \\implies a = 3$.\nDiperoleh $a = 3$ dan $b = 2$, sehingga $a \\times b = 3 \\times 2 = 6$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -310,7 +310,7 @@ export default {
           principle:
             'Minimizing the number of identical square tiles requires maximizing the tile side length, which equals the GCF of the rectangle dimensions.',
           solution:
-            'Find the GCF of $120$ and $168$:\n$$\\gcd(120, 168) = 24\\text{ cm}.$$\nNumber of tiles along each side: $\\frac{120}{24} = 5$ and $\\frac{168}{24} = 7$.\nMinimum number of tiles $= 5 \\times 7 = 35$.',
+            'To cover the floor with no gaps or overlaps, the square tile side length $s$ must divide both $120$ and $168$. Using prime factorizations:\n$$120 = 2^3 \\times 3 \\times 5, \\qquad 168 = 2^3 \\times 3 \\times 7 \\implies s_{\\max} = \\gcd(120, 168) = 2^3 \\times 3 = 24\\text{ cm}.$$\nNumber of tiles along each side: $\\frac{120}{24} = 5$ and $\\frac{168}{24} = 7$.\nMinimum number of tiles $= 5 \\times 7 = 35$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -380,7 +380,7 @@ export default {
           principle:
             'List all positive integers below $100$ ending in $3$ and filter out those divisible by smaller primes such as $3$ or $7$.',
           solution:
-            'The numbers less than $100$ ending in $3$ are $3, 13, 23, 33, 43, 53, 63, 73, 83, 93$.\nExcluding $33 = 3 \\times 11$, $63 = 7 \\times 9$, and $93 = 3 \\times 31$, the prime numbers are $3, 13, 23, 43, 53, 73,$ and $83$.\nThere are $7$ such primes.',
+            'The integers less than $100$ ending in $3$ are $3, 13, 23, 33, 43, 53, 63, 73, 83, 93$.\nSince $\\sqrt{100} = 10$, any composite number below $100$ has a prime factor $\\le 7$. Numbers ending in $3$ are never divisible by $2$ or $5$, so we only need to remove multiples of $3$ and $7$:\n- Multiples of $3$: $33 = 3 \\times 11$, $63 = 3^2 \\times 7$, $93 = 3 \\times 31$.\n- Multiples of $7$: $63$ (already removed).\nThe remaining $7$ numbers—$3, 13, 23, 43, 53, 73,$ and $83$—are all prime.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -493,7 +493,7 @@ export default {
           principle:
             'Hitung banyak faktor positif $d(n) = (e_1 + 1)(e_2 + 1)\\cdots$ dan cari bilangan terkecil $n > 12$ yang melebihi rekor sebelumnya $d(12) = 6$.',
           solution:
-            'Diketahui $12 = 2^2 \\times 3$ memiliki $d(12) = (2 + 1)(1 + 1) = 6$ faktor.\nUntuk $13 \\le n \\le 23$, bilangan dengan faktor terbanyak hanya memiliki $6$ faktor ($d(18) = 6$ dan $d(20) = 6$).\nUntuk $n = 24 = 2^3 \\times 3$, banyak faktornya adalah $d(24) = (3 + 1)(1 + 1) = 8 > 6$.\nJadi bilangan sangat komposit pertama setelah $12$ adalah $24$.',
+            'Diketahui $12 = 2^2 \\times 3$ memiliki $d(12) = (2 + 1)(1 + 1) = 6$ faktor.\nAgar suatu bilangan $n$ memiliki lebih dari $6$ faktor positif ($d(n) \\ge 7$), faktorisasi primanya harus berbentuk salah satu dari:\n- $p^{e_1}$ dengan $e_1 \\ge 6 \\implies n \\ge 2^6 = 64$.\n- $p^{e_1} q^{e_2}$ dengan $(e_1 + 1)(e_2 + 1) \\ge 7$. Karena tidak ada perkalian dua bilangan $\\ge 2$ yang bernilai $7$, maka minimal $(e_1 + 1)(e_2 + 1) = 4 \\times 2 = 8$ (bentuk $p^3 q$) atau $3 \\times 3 = 9$ (bentuk $p^2 q^2$), sehingga $n \\ge \\min(2^3 \\times 3, \\, 2^2 \\times 3^2) = \\min(24, 36) = 24$.\n- Tiga atau lebih faktor prima berbeda ($p q r$) $\\implies n \\ge 2 \\times 3 \\times 5 = 30$.\nOleh karena itu, tidak ada bilangan $13 \\le n \\le 23$ yang memiliki lebih dari $6$ faktor, sedangkan $n = 24 = 2^3 \\times 3$ memiliki $d(24) = (3 + 1)(1 + 1) = 8 > 6$ faktor.\nJadi bilangan sangat komposit pertama setelah $12$ adalah $24$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -531,7 +531,7 @@ export default {
           principle:
             'The maximum possible cube side length dividing all three block dimensions evenly is their GCF.',
           solution:
-            'Find the GCF of the three dimensions:\n$$\\gcd(24, 36, 60) = 12\\text{ cm}.$$\nThe number of $12\\text{ cm}$ cubes along each edge is $\\frac{24}{12} = 2$, $\\frac{36}{12} = 3$, and $\\frac{60}{12} = 5$.\nTotal cubes $= 2 \\times 3 \\times 5 = 30$.',
+            'To cut the block with no wood left over, the cube edge length $s$ must divide $24$, $36$, and $60$. Using prime factorizations:\n$$24 = 2^3 \\times 3, \\qquad 36 = 2^2 \\times 3^2, \\qquad 60 = 2^2 \\times 3 \\times 5 \\implies s_{\\max} = \\gcd(24, 36, 60) = 2^2 \\times 3 = 12\\text{ cm}.$$\nThe number of $12\\text{ cm}$ cubes along each edge is $\\frac{24}{12} = 2$, $\\frac{36}{12} = 3$, and $\\frac{60}{12} = 5$.\nTotal cubes $= 2 \\times 3 \\times 5 = 30$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         }
       ]

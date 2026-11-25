@@ -46,7 +46,7 @@ export default {
           principle:
             'Sifat distributif perkalian terhadap pengurangan: $a \\times b - a \\times c = a \\times (b - c)$.',
           solution:
-            'Gunakan sifat distributif:\n$$25 \\times 18 - 25 \\times 8 = 25 \\times (18 - 8) = 25 \\times 10 = 250.$$',
+            'Keluarkan faktor yang sama ($25$) menggunakan sifat distributif agar perhitungan lebih sederhana tanpa mengalikan satu per satu:\n$$25 \\times 18 - 25 \\times 8 = 25 \\times (18 - 8) = 25 \\times 10 = 250.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -70,7 +70,7 @@ export default {
           principle:
             'Bilangan prima adalah bilangan asli lebih dari $1$ yang hanya memiliki dua faktor pembagi, yaitu $1$ dan dirinya sendiri.',
           solution:
-            '$51 = 3 \\times 17$ (habis dibagi $3$), $57 = 3 \\times 19$ (habis dibagi $3$), dan $87 = 3 \\times 29$ (habis dibagi $3$) adalah bilangan komposit.\n$97$ hanya bisa dibagi $1$ dan $97$, sehingga $97$ merupakan bilangan prima.',
+            'Periksa keterbagian masing-masing pilihan:\n- $51$ ($5 + 1 = 6$, habis dibagi $3$): $51 = 3 \\times 17$ (komposit).\n- $57$ ($5 + 7 = 12$, habis dibagi $3$): $57 = 3 \\times 19$ (komposit).\n- $87$ ($8 + 7 = 15$, habis dibagi $3$): $87 = 3 \\times 29$ (komposit).\n- $97$: untuk menguji keprimaannya, cukup periksa bilangan prima $\\le \\sqrt{97}$ (karena $9^2 < 97 < 10^2$), yaitu $2, 3, 5,$ dan $7$. Bilangan $97$ ganjil (tidak habis dibagi $2$), $9 + 7 = 16$ (tidak habis dibagi $3$), tidak berakhiran $0$ atau $5$ (tidak habis dibagi $5$), dan $97 = 7 \\times 13 + 6$ (tidak habis dibagi $7$).\nJadi, $97$ merupakan bilangan prima.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -94,7 +94,7 @@ export default {
           principle:
             'Nilai angka ditentukan oleh nilai tempatnya pada sistem bilangan desimal.',
           solution:
-            'Angka $4$ pada bilangan $34.567$ menempati nilai tempat ribuan, sehingga bernilai $4.000$.',
+            'Uraikan bilangan $34.567$ berdasarkan nilai tempatnya:\n$$34.567 = 30.000 + 4.000 + 500 + 60 + 7.$$\nDari kiri ke kanan, angka $3$ menempati puluh ribuan, angka $4$ menempati ribuan, $5$ ratusan, $6$ puluhan, dan $7$ satuan. Jadi, angka $4$ bernilai $4.000$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -106,7 +106,7 @@ export default {
           principle:
             'An arithmetic sequence with first term $a_1$ and common difference $d$ has $n$-th term $a_n = a_1 + (n - 1)d$.',
           solution:
-            'The sequence adds $4$ each time ($3, 7, 11, \\dots$). The $n$-th term formula is $4n - 1$.\nFor the 10th term: $4(10) - 1 = 39$.',
+            'The first term is $a_1 = 3$ and the common difference is $d = 7 - 3 = 4$.\nUsing $a_n = a_1 + (n - 1)d$, the $10$th term requires adding $4$ a total of $10 - 1 = 9$ times:\n$$a_{10} = 3 + (10 - 1) \\times 4 = 3 + 36 = 39.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -117,7 +117,8 @@ export default {
           answer: 'A. $7^\\circ\\text{C}$',
           principle:
             'Kenaikan suhu berarti menambahkan bilangan positif pada nilai suhu awal.',
-          solution: 'Suhu siang hari $= -5^\\circ\\text{C} + 12^\\circ\\text{C} = 7^\\circ\\text{C}$.',
+          solution:
+            'Suhu awal pada malam hari adalah $-5^\\circ\\text{C}$ ($5^\\circ\\text{C}$ di bawah nol). Karena suhu naik $12^\\circ\\text{C}$, kenaikan sebesar $5^\\circ\\text{C}$ pertama membawanya ke $0^\\circ\\text{C}$, lalu tersisa kenaikan $12 - 5 = 7^\\circ\\text{C}$ di atas nol:\n$$\\text{Suhu siang hari} = -5^\\circ\\text{C} + 12^\\circ\\text{C} = 7^\\circ\\text{C}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -165,7 +166,7 @@ export default {
           principle:
             'Konversi basis $2$ ke basis $10$ dilakukan dengan menjumlahkan hasil kali setiap digit dengan pangkat $2$ sesuai nilai tempatnya.',
           solution:
-            '$$1011_2 = (1 \\times 2^3) + (0 \\times 2^2) + (1 \\times 2^1) + (1 \\times 2^0) = 8 + 0 + 2 + 1 = 11.$$',
+            'Nilai tempat dalam basis $2$ dari kanan ke kiri berturut-turut adalah $2^0, 2^1, 2^2, 2^3$:\n$$1011_2 = (1 \\times 2^3) + (0 \\times 2^2) + (1 \\times 2^1) + (1 \\times 2^0) = 8 + 0 + 2 + 1 = 11.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -177,7 +178,7 @@ export default {
           principle:
             'Identify the sequence of perfect squares $n^2$ for consecutive positive integers $n$.',
           solution:
-            'These are perfect squares: $1^2, 2^2, 3^2, 4^2, \\dots, 6^2$.\nThe missing number is $5^2 = 25$.',
+            'Each term is the square of its position number: $1 = 1^2$, $4 = 2^2$, $9 = 3^2$, $16 = 4^2$, and $36 = 6^2$.\nTherefore, the $5$th term is $5^2 = 25$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -189,7 +190,7 @@ export default {
           principle:
             'Dua kejadian periodik terjadi bersamaan kembali setelah selang waktu sebesar KPK dari kedua periodenya.',
           solution:
-            'KPK dari $4$ dan $6$ adalah $12$. Lampu akan berkedip bersamaan lagi setiap $12$ detik.',
+            'Cari KPK dari $4$ dan $6$ menggunakan faktorisasi prima ($4 = 2^2$ dan $6 = 2 \\times 3$, sehingga $\\text{KPK} = 2^2 \\times 3 = 12$) atau daftar kelipatan:\n- Kelipatan $4$: $4, 8, 12, 16, \\dots$\n- Kelipatan $6$: $6, 12, 18, \\dots$\nKelipatan persekutuan terkecilnya adalah $12$, sehingga kedua lampu akan berkedip bersamaan lagi setelah $12$ detik.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -225,7 +226,7 @@ export default {
           principle:
             'A prime number is an integer greater than $1$ having only two positive divisors: $1$ and itself.',
           solution:
-            'The first four prime numbers are $2, 3, 5,$ and $7$.\n$$\\text{Sum} = 2 + 3 + 5 + 7 = 17.$$',
+            'Note that $1$ is not prime (it has only one divisor), and $4 = 2^2$ and $6 = 2 \\times 3$ are composite. Thus the first four prime numbers are $2, 3, 5,$ and $7$.\n$$\\text{Sum} = 2 + 3 + 5 + 7 = 17.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -237,7 +238,7 @@ export default {
           principle:
             'Amati pola selisih antar suku berurutan untuk menentukan suku berikutnya.',
           solution:
-            'Selisih antar bilangan bertambah ganjil: $+3, +5, +7, +9$. Selisih berikutnya adalah $+11$.\nJadi, $26 + 11 = 37$.',
+            'Hitung selisih antarsuku berurutan:\n$$5 - 2 = 3, \\quad 10 - 5 = 5, \\quad 17 - 10 = 7, \\quad 26 - 17 = 9.$$\nSelisihnya membentuk barisan bilangan ganjil berurutan ($+3, +5, +7, +9$), sehingga selisih berikutnya adalah $+11$ (sesuai pola suku ke-$n$: $n^2 + 1$).\nJadi, bilangan selanjutnya adalah $26 + 11 = 37$ (yaitu $6^2 + 1 = 37$).',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -273,7 +274,7 @@ export default {
           principle:
             'Pembagian benda ke dalam wadah terbanyak dengan komposisi sama rata diselesaikan dengan FPB (Faktor Persekutuan Terbesar).',
           solution:
-            'Ini adalah persoalan FPB (Faktor Persekutuan Terbesar). FPB dari $20$ dan $30$ adalah $10$.',
+            'Banyaknya kantong paling banyak adalah FPB dari $20$ dan $30$. Gunakan faktorisasi prima:\n$$20 = 2^2 \\times 5, \\qquad 30 = 2 \\times 3 \\times 5.$$\nAmbil faktor prima persekutuan dengan pangkat terkecil: $\\text{FPB}(20, 30) = 2 \\times 5 = 10$.\nJadi, paling banyak dibutuhkan $10$ kantong plastik (masing-masing berisi $20 \\div 10 = 2$ apel dan $30 \\div 10 = 3$ jeruk).',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -295,9 +296,9 @@ export default {
             'Manakah dari pecahan berikut yang memiliki nilai paling besar?\nA. $\\frac{1}{2}$\nB. $\\frac{5}{9}$\nC. $\\frac{4}{7}$\nD. $\\frac{3}{5}$',
           answer: 'D. $\\frac{3}{5}$',
           principle:
-            'Nilai pecahan dapat dibandingkan dengan mengubahnya ke bentuk desimal atau menyamakan penyebutnya.',
+            'Nilai pecahan positif dapat dibandingkan secara eksak dengan menyamakan pembilang (untuk pembilang sama, penyebut terkecil bernilai terbesar), menyamakan penyebut, atau perkalian silang.',
           solution:
-            'Ubah menjadi desimal:\n$\\frac{1}{2} = 0.50$; $\\frac{5}{9} \\approx 0.55$; $\\frac{4}{7} \\approx 0.57$; $\\frac{3}{5} = 0.60$.\nNilai terbesar adalah $\\frac{3}{5}$.',
+            'Samakan pembilang keempat pecahan menjadi $\\text{KPK}(1, 5, 4, 3) = 60$ secara eksak:\n$$\\frac{1}{2} = \\frac{60}{120}, \\quad \\frac{5}{9} = \\frac{60}{108}, \\quad \\frac{4}{7} = \\frac{60}{105}, \\quad \\frac{3}{5} = \\frac{60}{100}.$$\nUntuk pembilang positif yang sama ($60$), pecahan dengan penyebut terkecil ($100$) memiliki nilai terbesar.\n(Pemeriksaan perkalian silang: $\\frac{4}{7} < \\frac{3}{5}$ karena $4 \\times 5 = 20 < 21 = 3 \\times 7$, dan $\\frac{5}{9} < \\frac{3}{5}$ karena $5 \\times 5 = 25 < 27 = 3 \\times 9$.)\nJadi, nilai terbesar adalah $\\frac{3}{5}$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -309,7 +310,7 @@ export default {
           principle:
             'Barisan geometri pangkat $2$ memiliki suku ke-$n$ sebesar $2^{n-1}$.',
           solution:
-            'Ini adalah barisan pangkat $2$: $2^0, 2^1, 2^2, \\dots$\nBilangan ke-7 adalah $2^6 = 64$.',
+            'Setiap suku diperoleh dengan mengalikan suku sebelumnya oleh $2$, membentuk barisan pangkat $2$:\n$$a_1 = 1 = 2^0, \\quad a_2 = 2 = 2^1, \\quad a_3 = 4 = 2^2, \\quad a_4 = 8 = 2^3, \\quad a_5 = 16 = 2^4.$$\nPola suku ke-$n$ adalah $2^{n - 1}$, sehingga bilangan ke-$7$ adalah $a_7 = 2^{7 - 1} = 2^6 = 64$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -321,7 +322,7 @@ export default {
           principle:
             'Express a base-10 integer as a sum of powers of $2$ ($2^k$) to obtain its binary digits.',
           solution:
-            '$9$ in base $2$ is calculated as $8 + 1 = 2^3 + 2^0$, which gives $1001$.',
+            'Decompose $9$ into powers of $2$ ($2^3 = 8, 2^2 = 4, 2^1 = 2, 2^0 = 1$):\n$$9 = 8 + 1 = (1 \\times 2^3) + (0 \\times 2^2) + (0 \\times 2^1) + (1 \\times 2^0).$$\nReading the coefficients of each power from left to right gives $1001_2$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -353,7 +354,7 @@ export default {
           principle:
             'Operasi di dalam tanda kurung diselesaikan terlebih dahulu sebelum perkalian.',
           solution:
-            '$$(15 + 9) = 24, \\qquad (20 - 12) = 8$$\n$$24 \\times 8 = 192.$$',
+            'Kerjakan operasi di dalam masing-masing tanda kurung terlebih dahulu:\n$$(15 + 9) = 24 \\quad \\text{dan} \\quad (20 - 12) = 8.$$\nLalu kalikan kedua hasilnya (gunakan sifat distributif $24 = 20 + 4$):\n$$24 \\times 8 = (20 + 4) \\times 8 = 160 + 32 = 192.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -366,7 +367,7 @@ export default {
           principle:
             'The least positive integer divisible by $6$, $8$, and $12$ is their Least Common Multiple (LCM).',
           solution:
-            'We need the Least Common Multiple (LCM) of $6, 8,$ and $12$, which is $24$.',
+            'We need $\\text{LCM}(6, 8, 12)$. Factor each number into primes:\n$$6 = 2 \\times 3, \\qquad 8 = 2^3, \\qquad 12 = 2^2 \\times 3.$$\nTake the highest power of each prime factor present:\n$$\\text{LCM}(6, 8, 12) = 2^3 \\times 3 = 8 \\times 3 = 24.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -377,7 +378,7 @@ export default {
           principle:
             'Faktorisasi prima menguraikan bilangan menjadi perkalian faktor-faktor prima berpangkat.',
           solution:
-            '$$120 = 12 \\times 10 = (2^2 \\times 3) \\times (2 \\times 5) = 2^3 \\times 3 \\times 5.$$',
+            'Pecah $120$ secara bertahap menjadi faktor-faktor prima, lalu gabungkan faktor prima yang sama:\n$$120 = 12 \\times 10 = (4 \\times 3) \\times (2 \\times 5) = (2^2 \\times 3) \\times (2 \\times 5) = 2^3 \\times 3 \\times 5.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -388,7 +389,7 @@ export default {
           principle:
             'Rewrite a terminating decimal over a power of $10$ and simplify by dividing numerator and denominator by their GCF.',
           solution:
-            '$$0.85 = \\frac{85}{100} = \\frac{85 \\div 5}{100 \\div 5} = \\frac{17}{20}.$$',
+            'Since $0.85$ has two decimal places, write it over $100$, then divide numerator and denominator by $\\text{GCF}(85, 100) = 5$:\n$$0.85 = \\frac{85}{100} = \\frac{85 \\div 5}{100 \\div 5} = \\frac{17}{20}.$$\nBecause $17$ is prime and does not divide $20$, $\\frac{17}{20}$ is in simplest form.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -412,7 +413,7 @@ export default {
           principle:
             'The sum of the first $n$ odd positive integers equals $n^2$.',
           solution:
-            'The sum of the first $n$ odd integers is exactly $n^2$.\nFor $n = 50$, $50^2 = 2500$.',
+            'The $k$-th odd positive integer is $2k - 1$, so the $50$th odd integer is $2(50) - 1 = 99$. Pair the $50$ terms from the outside in (Gauss pairing):\n$$S = (1 + 99) + (3 + 97) + \\dots + (49 + 51).$$\nThere are $\\frac{50}{2} = 25$ pairs, each summing to $100$ (which explains why $n$ odd integers always sum to $\\frac{n}{2} \\times (1 + 2n - 1) = n^2$):\n$$S = 25 \\times 100 = 2500.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -424,7 +425,7 @@ export default {
           principle:
             'Waktu keberangkatan bersamaan berikutnya diperoleh dengan menambahkan KPK kedua periode keberangkatan pada waktu awal.',
           solution:
-            'KPK dari $15$ dan $20$ adalah $60$ menit ($1$ jam).\nMereka akan berangkat bersama $1$ jam setelah 07:00, yaitu pukul 08:00.',
+            'Cari KPK dari $15$ dan $20$ dengan faktorisasi prima:\n$$15 = 3 \\times 5, \\qquad 20 = 2^2 \\times 5 \\implies \\text{KPK}(15, 20) = 2^2 \\times 3 \\times 5 = 60\\text{ menit} = 1\\text{ jam}.$$\nMereka akan berangkat bersamaan lagi $1$ jam setelah pukul 07:00, yaitu pukul 08:00.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -462,7 +463,7 @@ export default {
           principle:
             'Test the largest two-digit integers in descending order for primality.',
           solution:
-            'The numbers $98$ and $99$ are composite. $97$ is only divisible by $1$ and $97$.',
+            'Test two-digit numbers from $99$ downward:\n- $99 = 9 \\times 11$ (composite) and $98 = 2 \\times 49$ (composite).\n- For $97$, check prime divisors $\\le \\sqrt{97}$ (since $9^2 < 97 < 10^2$), namely $2, 3, 5,$ and $7$: $97$ is odd (not divisible by $2$), $9 + 7 = 16$ (not divisible by $3$), does not end in $0$ or $5$ (not divisible by $5$), and $97 = 7 \\times 13 + 6$ (not divisible by $7$).\nTherefore, the largest two-digit prime number is $97$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -474,7 +475,7 @@ export default {
           principle:
             'Faktor Persekutuan Terbesar (FPB) adalah bilangan bulat positif terbesar yang membagi habis kedua bilangan.',
           solution:
-            '$60 = 12 \\times 5$ dan $84 = 12 \\times 7$. Faktor persekutuan terbesarnya adalah $12$.',
+            'Uraikan kedua bilangan menjadi faktorisasi prima:\n$$60 = 2^2 \\times 3 \\times 5, \\qquad 84 = 2^2 \\times 3 \\times 7.$$\nAmbil faktor prima persekutuan dengan pangkat terkecil:\n$$\\text{FPB}(60, 84) = 2^2 \\times 3 = 4 \\times 3 = 12.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -486,7 +487,7 @@ export default {
           principle:
             'Decompose a base-10 integer into a sum of powers of $2$ ($2^k$) to write it in binary.',
           solution:
-            '$$7 = 4 + 2 + 1 = 2^2 + 2^1 + 2^0.$$\nIn binary, this is written as $111$.',
+            'Write $7$ as a sum of powers of $2$ ($2^2 = 4, 2^1 = 2, 2^0 = 1$):\n$$7 = 4 + 2 + 1 = (1 \\times 2^2) + (1 \\times 2^1) + (1 \\times 2^0).$$\nReading the coefficients from left to right gives $111$ in binary.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -499,7 +500,7 @@ export default {
           principle:
             'Bilangan segitiga ke-$n$ memenuhi rumus $T_n = \\frac{n(n + 1)}{2}$.',
           solution:
-            'Rumus bilangan segitiga ke-$n$ adalah $\\frac{n(n + 1)}{2}$.\nUntuk $n = 8$, hasilnya adalah $\\frac{8(9)}{2} = 36$.',
+            'Bilangan segitiga ke-$n$ adalah jumlah $n$ bilangan asli pertama: $T_n = 1 + 2 + \\dots + n$.\nUntuk $n = 8$, pasangkan suku awal dan akhir secara simetris (metode Gauss):\n$$T_8 = (1 + 8) + (2 + 7) + (3 + 6) + (4 + 5) = 4 \\times 9 = 36.$$\n(Inilah alasan rumus umumnya adalah $T_n = \\frac{n(n + 1)}{2}$, yang untuk $n = 8$ memberi $\\frac{8 \\times 9}{2} = 36$.)',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -511,7 +512,7 @@ export default {
           principle:
             'Rewrite fractions with a common denominator before adding their numerators.',
           solution:
-            'Make a common denominator of $6$:\n$$\\frac{3}{6} + \\frac{4}{6} + \\frac{5}{6} = \\frac{12}{6} = 2.$$',
+            'Find $\\text{LCM}(2, 3, 6) = 6$ and rewrite each fraction with denominator $6$:\n$$\\frac{1}{2} + \\frac{2}{3} + \\frac{5}{6} = \\frac{1 \\times 3}{2 \\times 3} + \\frac{2 \\times 2}{3 \\times 2} + \\frac{5}{6} = \\frac{3}{6} + \\frac{4}{6} + \\frac{5}{6} = \\frac{12}{6} = 2.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -524,7 +525,7 @@ export default {
           principle:
             'Expand a base-3 number using place values $3^2, 3^1, 3^0$ to obtain its base-10 value.',
           solution:
-            '$$102_3 = (1 \\times 3^2) + (0 \\times 3^1) + (2 \\times 3^0) = 9 + 0 + 2 = 11.$$',
+            'In base $3$, the place values from left to right for a three-digit number are $3^2, 3^1,$ and $3^0$:\n$$102_3 = (1 \\times 3^2) + (0 \\times 3^1) + (2 \\times 3^0) = 9 + 0 + 2 = 11.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         }
       ]

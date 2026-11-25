@@ -57,7 +57,7 @@ export default {
           principle:
             'If the prime factorization of a positive integer is $p_1^{a_1} p_2^{a_2} \\cdots p_k^{a_k}$, the number of positive divisors is $(a_1 + 1)(a_2 + 1) \\cdots (a_k + 1)$.',
           solution:
-            'The prime factorization of $100{,}000$ is:\n$$10^5 = (2 \\times 5)^5 = 2^5 \\times 5^5.$$\nThe number of positive divisors is found by adding $1$ to each exponent and multiplying:\n$$(5 + 1)(5 + 1) = 6 \\times 6 = 36.$$',
+            'The prime factorization of $100{,}000$ is:\n$$10^5 = (2 \\times 5)^5 = 2^5 \\times 5^5.$$\nEvery positive divisor of $2^5 \\times 5^5$ has the form $2^a \\times 5^b$ where $0 \\le a \\le 5$ ($6$ choices) and $0 \\le b \\le 5$ ($6$ choices).\nBy the multiplication principle, the total number of positive divisors is:\n$$(5 + 1)(5 + 1) = 6 \\times 6 = 36.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -151,9 +151,9 @@ export default {
             'Which of the following fractions lies strictly between $\\frac{1}{3}$ and $\\frac{1}{2}$ and has the smallest positive denominator?\nA. $\\frac{3}{8}$\nB. $\\frac{2}{5}$\nC. $\\frac{4}{9}$\nD. $\\frac{3}{7}$',
           answer: 'B. $\\frac{2}{5}$',
           principle:
-            'To find a fraction between $\\frac{1}{3}$ and $\\frac{1}{2}$ with the smallest positive denominator, test integer denominators $q$ in increasing order starting from $1$ to see if an integer $p$ satisfies $\\frac{q}{3} < p < \\frac{q}{2}$.',
+            'To find a fraction between $\\frac{1}{3}$ and $\\frac{1}{2}$ with the smallest positive denominator, multiply $\\frac{1}{3} < \\frac{p}{q} < \\frac{1}{2}$ by $6q > 0$ to obtain the exact integer inequality $2q < 6p < 3q$, then test positive integers $q$ in increasing order.',
           solution:
-            'Test small positive denominators $q$ for $\\frac{1}{3} < \\frac{p}{q} < \\frac{1}{2}$:\n- For $q = 1, 2, 3$: no integer $p$ lies strictly between $\\frac{q}{3}$ and $\\frac{q}{2}$.\n- For $q = 4$: $\\frac{1}{4} = 0.25 < \\frac{1}{3}$ and $\\frac{2}{4} = \\frac{1}{2}$ (not strictly between).\n- For $q = 5$: $\\frac{2}{5} = 0.4$, which satisfies $\\frac{1}{3} \\approx 0.333 < 0.4 < 0.5 = \\frac{1}{2}$.\nThus, $\\frac{2}{5}$ has the smallest positive denominator.',
+            'We want positive integers $p$ and $q$ with $\\frac{1}{3} < \\frac{p}{q} < \\frac{1}{2}$ and $q$ as small as possible. Multiplying through by $6q > 0$ gives the equivalent integer condition:\n$$2q < 6p < 3q.$$\nTest small positive denominators $q$ in increasing order to see whether a multiple of $6$ lies strictly between $2q$ and $3q$:\n- $q = 1$: $2 < 6p < 3$ (no multiple of $6$).\n- $q = 2$: $4 < 6p < 6$ (no multiple of $6$).\n- $q = 3$: $6 < 6p < 9$ (no multiple of $6$).\n- $q = 4$: $8 < 6p < 12$ (no multiple of $6$ strictly between $8$ and $12$).\n- $q = 5$: $10 < 6p < 15$, which is satisfied by $6p = 12 \\implies p = 2$, giving $\\frac{2}{5}$.\nIndeed, using the common denominator $30$, $\\frac{1}{3} = \\frac{10}{30} < \\frac{12}{30} = \\frac{2}{5} < \\frac{15}{30} = \\frac{1}{2}$ (and the other options have larger denominators $7, 8, 9$). Thus, $\\frac{2}{5}$ has the smallest positive denominator.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -201,7 +201,7 @@ export default {
           principle:
             'The sum of all positive divisors of $n = p_1^{a_1} p_2^{a_2} \\cdots p_k^{a_k}$ is given by $\\sigma(n) = \\prod_{i=1}^k \\frac{p_i^{a_i + 1} - 1}{p_i - 1}$.',
           solution:
-            'The positive integer divisors of $24$ are $1, 2, 3, 4, 6, 8, 12, 24$.\nTheir sum is $1 + 2 + 3 + 4 + 6 + 8 + 12 + 24 = 60$.\nAlternatively, using prime factorization $24 = 2^3 \\times 3^1$:\n$$\\sigma(24) = \\frac{2^4 - 1}{2 - 1} \\times \\frac{3^2 - 1}{3 - 1} = 15 \\times 4 = 60.$$',
+            'Using the prime factorization $24 = 2^3 \\times 3^1$, every positive divisor of $24$ has the form $2^a \\times 3^b$ with $0 \\le a \\le 3$ and $0 \\le b \\le 1$.\nBy distributing the product of the prime-power sums:\n$$(1 + 2 + 2^2 + 2^3)(1 + 3) = (1 + 2 + 4 + 8)(1 + 3) = 15 \\times 4 = 60,$$\nevery divisor $2^a \\times 3^b$ ($1, 2, 4, 8, 3, 6, 12, 24$) appears in the expansion exactly once.\nEquivalently, using the geometric-series formula:\n$$\\sigma(24) = \\frac{2^4 - 1}{2 - 1} \\times \\frac{3^2 - 1}{3 - 1} = 15 \\times 4 = 60.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -331,7 +331,7 @@ export default {
           principle:
             'Write two integers with $\\gcd(x, y) = d$ as $da$ and $db$ with $\\gcd(a, b) = 1$, then test all coprime factor pairs $(a, b)$ of $\\frac{xy}{d^2}$.',
           solution:
-            'Let the numbers be $3a$ and $3b$ with $\\gcd(a, b) = 1$.\nTheir product is $3a \\times 3b = 9ab = 108 \\implies ab = 12$.\nThe coprime pairs $(a, b)$ are $(1, 12)$ and $(3, 4)$:\n- For $(1, 12)$: the numbers are $3$ and $36$, with sum $3 + 36 = 39$.\n- For $(3, 4)$: the numbers are $9$ and $12$, with sum $9 + 12 = 21$.\nThe maximum possible sum is $39$.',
+            'Let the two positive integers be $3a$ and $3b$ with $\\gcd(a, b) = 1$.\nTheir product is $3a \\times 3b = 9ab = 108 \\implies ab = 12$.\nThe factor pairs $(a, b)$ of $12$ (with $a \\le b$) are $(1, 12)$, $(2, 6)$, and $(3, 4)$. Since $\\gcd(2, 6) = 2 \\neq 1$ (which would give a GCD of $6$), only $(1, 12)$ and $(3, 4)$ are valid coprime pairs:\n- For $(1, 12)$: the numbers are $3$ and $36$, with sum $3 + 36 = 39$.\n- For $(3, 4)$: the numbers are $9$ and $12$, with sum $9 + 12 = 21$.\nThe maximum possible sum is $39$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -369,7 +369,7 @@ export default {
           principle:
             'Jika faktorisasi prima suatu bilangan adalah $p_1^{a_1} p_2^{a_2} \\cdots p_k^{a_k}$, maka banyaknya faktor pembagi positif adalah $(a_1 + 1)(a_2 + 1) \\cdots (a_k + 1)$.',
           solution:
-            'Faktorisasi prima dari $2000$:\n$$2000 = 2 \\times 1000 = 2 \\times (2^3 \\times 5^3) = 2^4 \\times 5^3.$$\nBanyaknya faktor pembagi positif adalah $(4 + 1) \\times (3 + 1) = 5 \\times 4 = 20$.',
+            'Faktorisasi prima dari $2000$:\n$$2000 = 2 \\times 1000 = 2 \\times (2^3 \\times 5^3) = 2^4 \\times 5^3.$$\nSetiap faktor pembagi positif dari $2000$ berbentuk $2^a \\times 5^b$ dengan $0 \\le a \\le 4$ ($5$ pilihan untuk $a$) dan $0 \\le b \\le 3$ ($4$ pilihan untuk $b$).\nDengan aturan perkalian, banyaknya faktor pembagi positif adalah:\n$$(4 + 1) \\times (3 + 1) = 5 \\times 4 = 20.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

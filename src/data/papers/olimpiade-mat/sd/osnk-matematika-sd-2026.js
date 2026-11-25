@@ -292,7 +292,7 @@ export default {
           answer: '$21.960$ jam',
           principle: 'Waktu = banyak pekerjaan $\\div$ laju kerja.',
           solution:
-            '$$\\text{Waktu} = \\frac{241.560}{11} = 21.960 \\text{ jam}.$$\nPemeriksaan: $11 \\times 21.960 = 241.560$.',
+            'Waktu pengerjaan adalah total produksi dibagi kecepatan mesin:\n$$\\text{Waktu} = \\frac{241.560}{11}.$$\nUntuk membagi $241.560$ dengan $11$ secara bertahap (menguraikan ke kelipatan $11$ yang mudah):\n$$241.560 = 220.000 + 11.000 + 9.900 + 660,$$\nsehingga\n$$\\frac{241.560}{11} = 20.000 + 1.000 + 900 + 60 = 21.960 \\text{ jam}.$$\nPemeriksaan: $11 \\times 21.960 = 219.600 + 21.960 = 241.560$.',
           rubric: OK
         },
         {
@@ -311,9 +311,9 @@ export default {
           prompt:
             'Berapa banyak bilangan asli $n$ di bawah $2.500$ yang jika dipangkatkan tiga ($n^3$) akan memiliki dua digit terakhir $44$? Dengan kata lain, $n^3$ bersisa $44$ jika dibagi $100$.',
           answer: '$50$',
-          principle: 'Kongruensi modulo $4$ dan modulo $25$ digabung dengan Teorema Sisa Cina.',
+          principle: 'Analisis angka satuan dan dua angka terakhir (aritmetika modular modulo $100$).',
           solution:
-            'Kita perlu $n^3 \\equiv 44 \\pmod{100}$, yaitu $n^3 \\equiv 0 \\pmod 4$ dan $n^3 \\equiv 19 \\pmod{25}$.\n- Modulo $4$: $n^3 \\equiv 0$ hanya jika $n$ genap.\n- Modulo $25$: pemangkatan tiga adalah korespondensi satu-satu pada sisa yang relatif prima dengan $25$ (karena $\\gcd(3,20)=1$), jadi ada tepat satu sisa. Dicoba $14^3 = 2744 = 25 \\times 109 + 19$, sehingga $n \\equiv 14 \\pmod{25}$.\nGabungkan: $n \\equiv 14 \\pmod{25}$ dan $n$ genap memberi $n \\equiv 14 \\pmod{50}$ (karena $14$ genap).\nBilangan $n = 14 + 50j < 2500$ dengan $j = 0, 1, \\ldots, 49$ ($14+50 \\times 49 = 2464$), yaitu $50$ bilangan.',
+            'Agar $n^3$ berakhiran $44$, langkah pertama adalah menentukan angka satuan $n$. Karena $n^3$ genap (berakhiran $4$), maka $n$ harus genap sehingga angka satuannya salah satu dari $0, 2, 4, 6, 8$.\nPeriksa angka satuan $n^3$ untuk tiap kemungkinan satuan $n$:\n- $0^3 \\to 0$, $2^3 = 8$, $4^3 = 64 \\to 4$, $6^3 = 216 \\to 6$, $8^3 = 512 \\to 2$.\nHanya angka satuan $4$ yang menghasilkan satuan $4$, sehingga $n$ dapat ditulis sebagai $n = 10k + 4$ untuk suatu bilangan cacah $k$.\n\nSelanjutnya, cari dua angka terakhir (sisa dibagi $100$) dari $(10k + 4)^3$:\n$$(10k + 4)^2 = 100k^2 + 80k + 16 \\equiv 80k + 16 \\pmod{100}.$$\nKalikan lagi dengan $(10k + 4)$:\n$$(10k + 4)^3 \\equiv (80k + 16)(10k + 4) = 800k^2 + 480k + 64 \\equiv 80k + 64 \\pmod{100}.$$\nSyarat dua digit terakhir $44$ berarti $80k + 64 \\equiv 44 \\pmod{100}$, yaitu $80k \\equiv -20 \\equiv 80 \\pmod{100}$. Artinya $100 \\mid 80(k - 1)$, atau setelah disederhanakan dengan membagi $20$, diperoleh $5 \\mid 4(k - 1)$. Karena $\\gcd(4, 5) = 1$, haruslah $5 \\mid (k - 1)$, sehingga $k = 5j + 1$ ($j \\ge 0$).\n\nSubstitusi kembali memberi $n = 10(5j + 1) + 4 = 50j + 14$. Karena $n < 2.500$:\n$$50j + 14 < 2500 \\implies 50j < 2486 \\implies j \\le 49$$\n(untuk $j = 49$, $n = 2464$; untuk $j = 50$, $n = 2514$). Dari $j = 0$ sampai $j = 49$ terdapat $49 - 0 + 1 = 50$ bilangan.',
           rubric: OK
         },
         {
@@ -324,7 +324,7 @@ export default {
           answer: '$354$',
           principle: 'Perkalian dan pembagian sebagai operasi invers.',
           solution:
-            '$$\\square\\square\\square = \\frac{3186}{9} = 354.$$\nPemeriksaan: $354 \\times 9 = 3186$.',
+            'Karena perkalian dan pembagian saling invers, bilangan tiga angka tersebut adalah:\n$$\\square\\square\\square = \\frac{3186}{9}.$$\nKita dapat menguraikan $3186$ menjadi kelipatan $9$ secara bertahap:\n$$3186 = 2700 + 450 + 36,$$\nsehingga\n$$\\frac{3186}{9} = \\frac{2700}{9} + \\frac{450}{9} + \\frac{36}{9} = 300 + 50 + 4 = 354.$$\nBilangan $354$ tepat terdiri atas tiga angka. Pemeriksaan: $354 \\times 9 = 3186$.',
           rubric: OK
         }
       ]

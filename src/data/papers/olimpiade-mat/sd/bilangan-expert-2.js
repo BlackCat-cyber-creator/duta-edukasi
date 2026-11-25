@@ -260,9 +260,9 @@ export default {
             'Diketahui $x$ dan $y$ adalah dua buah bilangan bulat negatif. Jika hasil kali $x \\times y = 36$ dan selisih $x - y = -5$, berapakah nilai dari penjumlahan $x + y$?\nA. $-13$\nB. $-12$\nC. $13$\nD. $12$',
           answer: 'A. $-13$',
           principle:
-            'Daftarkan pasangan faktor negatif dari hasil kali yang diketahui dan pilih pasangan yang memenuhi selisih yang diberikan.',
+            'Gunakan identitas aljabar $(x + y)^2 = (x - y)^2 + 4xy$ dan sifat tanda bilangan negatif untuk menentukan nilai $x + y$ secara langsung.',
           solution:
-            'Karena $x$ dan $y$ bilangan bulat negatif dengan $x \\times y = 36$, pasangan faktor negatif dari $36$ adalah $(-1, -36)$, $(-2, -18)$, $(-3, -12)$, $(-4, -9)$, dan $(-6, -6)$.\nPersamaan $x - y = -5$ berarti $x = y - 5$, sehingga $x < y$.\nPasangan yang memenuhi adalah $x = -9$ dan $y = -4$ (karena $-9 - (-4) = -5$).\nJadi, $x + y = -9 + (-4) = -13$.',
+            'Gunakan identitas kuadrat jumlah dan selisih:\n$$(x + y)^2 = (x - y)^2 + 4xy.$$\nSubstitusikan $x - y = -5$ dan $xy = 36$:\n$$(x + y)^2 = (-5)^2 + 4(36) = 25 + 144 = 169.$$\nKarena $x$ dan $y$ keduanya bilangan bulat negatif, maka jumlahnya pasti negatif ($x + y < 0$), sehingga:\n$$x + y = -\\sqrt{169} = -13.$$\n(Sebagai pengecekan, kedua bilangan tersebut adalah $x = -9$ dan $y = -4$, yang memenuhi $(-9)(-4) = 36$ dan $-9 - (-4) = -5$.)',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -433,7 +433,7 @@ export default {
           principle:
             'To minimize the number of identical square tiles covering a rectangle with no cuts, the tile side length must equal the GCF of the rectangle\'s dimensions.',
           solution:
-            'The side length of the largest possible square tile is $\\text{GCF}(420, 546) = 42\\text{ cm}$.\nThe number of tiles along the width is $\\frac{420}{42} = 10$, and along the length is $\\frac{546}{42} = 13$.\nTotal tiles required $= 10 \\times 13 = 130$.',
+            'For square tiles of side $s$ to cover the $420\\text{ cm} \\times 546\\text{ cm}$ floor without cutting, $s$ must divide both $420$ and $546$. To minimize the number of tiles, we maximize $s$ by finding $\\text{GCF}(420, 546)$ via prime factorization:\n$$420 = 2^2 \\times 3 \\times 5 \\times 7, \\qquad 546 = 2 \\times 3 \\times 7 \\times 13.$$\nTaking the common prime factors gives $\\text{GCF}(420, 546) = 2 \\times 3 \\times 7 = 42\\text{ cm}$.\nThe number of tiles along the width is $\\frac{420}{42} = 10$, and along the length is $\\frac{546}{42} = 13$.\nTotal tiles required $= 10 \\times 13 = 130$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -456,9 +456,9 @@ export default {
             'A positive rational number $x$ satisfies the equation $x + \\frac{1}{x} = \\frac{34}{15}$. If it is known that $x < 1$, find the fraction $x$ in its simplest form.',
           answer: '$\\frac{3}{5}$',
           principle:
-            'Match a sum of reciprocals $\\frac{a}{b} + \\frac{b}{a} = \\frac{a^2 + b^2}{ab}$ or clear denominators to solve the quadratic equation.',
+            'Clear denominators to form a quadratic equation, factor it to find all possible roots, and apply the given inequality condition to select the valid solution.',
           solution:
-            'Notice that $\\frac{34}{15}$ can be rewritten as:\n$$\\frac{9 + 25}{15} = \\frac{9}{15} + \\frac{25}{15} = \\frac{3}{5} + \\frac{5}{3}.$$\nThis matches $x + \\frac{1}{x}$. Since $x < 1$, we obtain $x = \\frac{3}{5}$.',
+            'Multiply both sides of $x + \\frac{1}{x} = \\frac{34}{15}$ by $15x$ (note $x > 0$):\n$$15x^2 + 15 = 34x \\implies 15x^2 - 34x + 15 = 0.$$\nFactor the quadratic expression (splitting $-34x = -25x - 9x$):\n$$15x^2 - 25x - 9x + 15 = 5x(3x - 5) - 3(3x - 5) = (5x - 3)(3x - 5) = 0.$$\nThis yields $x = \\frac{3}{5}$ or $x = \\frac{5}{3}$.\nSince it is given that $x < 1$, we reject $x = \\frac{5}{3}$ and obtain $x = \\frac{3}{5}$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -471,7 +471,7 @@ export default {
           principle:
             'Banyaknya angka nol di akhir $n!$ ditentukan oleh pangkat faktor prima $5$ pada $n!$ menurut Teorema Legendre: $\\sum_{k \\ge 1} \\left\\lfloor \\frac{n}{5^k} \\right\\rfloor$.',
           solution:
-            'Gunakan Teorema Legendre untuk mencari banyak faktor $5$ dalam $200!$:\n$$\\left\\lfloor \\frac{200}{5} \\right\\rfloor + \\left\\lfloor \\frac{200}{25} \\right\\rfloor + \\left\\lfloor \\frac{200}{125} \\right\\rfloor = 40 + 8 + 1 = 49.$$\nKarena faktor $2$ lebih banyak daripada faktor $5$, terdapat $49$ pasangan $2 \\times 5$, sehingga $200!$ berakhir dengan $49$ angka nol.',
+            'Setiap angka nol di akhir bilangan berasal dari satu pasangan faktor $2 \\times 5 = 10$. Pada $200! = 1 \\times 2 \\times \\dots \\times 200$, setiap bilangan genap menyumbang faktor $2$ sehingga faktor $2$ jauh lebih banyak daripada faktor $5$; akibatnya banyak angka nol ditentukan oleh pangkat faktor prima $5$.\nDengan Teorema Legendre, kita hitung sumbangan faktor $5$ secara bertingkat:\n- Kelipatan $5$ menyumbang sedikitnya satu faktor $5$: $\\left\\lfloor \\frac{200}{5} \\right\\rfloor = 40$.\n- Kelipatan $25 = 5^2$ menyumbang satu faktor $5$ tambahan: $\\left\\lfloor \\frac{200}{25} \\right\\rfloor = 8$.\n- Kelipatan $125 = 5^3$ menyumbang satu faktor $5$ tambahan lagi: $\\left\\lfloor \\frac{200}{125} \\right\\rfloor = 1$.\n(Karena $5^4 = 625 > 200$, tidak ada sumbangan lagi.) Total faktor $5$ adalah $40 + 8 + 1 = 49$, sehingga $200!$ berakhir dengan $49$ angka nol.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -508,9 +508,9 @@ export default {
           answer: '12',
           answerNumeric: [{ name: 'difference', value: 12 }],
           principle:
-            'Write $a = dx$ and $b = dy$ with $d = \\text{GCF}(a, b)$ and $\\gcd(x, y) = 1$, then use both $x + y$ and $xy$ to determine $x$ and $y$.',
+            'Write $a = dx$ and $b = dy$ with $d = \\text{GCF}(a, b)$ and $\\gcd(x, y) = 1$, then apply $(x - y)^2 = (x + y)^2 - 4xy$ to find $|x - y|$ directly.',
           solution:
-            'Let $a = 12x$ and $b = 12y$, where $x$ and $y$ are coprime positive integers.\nFrom $a + b = 132$, we get $12(x + y) = 132 \\implies x + y = 11$.\nFrom $\\text{LCM} = 12xy = 360$, we get $xy = 30$.\nThe two integers whose sum is $11$ and product is $30$ are $5$ and $6$ (coprime).\nThus the original numbers are $12(5) = 60$ and $12(6) = 72$, and their absolute difference is $|60 - 72| = 12$.',
+            'Let $a = 12x$ and $b = 12y$, where $x$ and $y$ are coprime positive integers.\nFrom $a + b = 132$, we get $12(x + y) = 132 \\implies x + y = 11$.\nFrom $\\text{LCM} = 12xy = 360$, we get $xy = 30$.\nUsing the algebraic identity $(x - y)^2 = (x + y)^2 - 4xy$:\n$$(x - y)^2 = 11^2 - 4(30) = 121 - 120 = 1 \\implies |x - y| = 1.$$\n(Solving gives $\\{x, y\\} = \\{5, 6\\}$, which are indeed coprime, corresponding to $60$ and $72$.)\nTherefore, the absolute difference is:\n$$|a - b| = 12|x - y| = 12 \\times 1 = 12.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

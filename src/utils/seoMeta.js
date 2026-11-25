@@ -102,7 +102,9 @@ export function papersHubMeta(subject = 'all') {
     biologi: 'Biologi',
     'olimpiade-mat': 'Olimpiade Matematika',
     'olimpiade-sains': 'Olimpiade Sains',
-    'olimpiade-fis': 'Olimpiade Fisika'
+    'olimpiade-fis': 'Olimpiade Fisika',
+    'olimpiade-kim': 'Olimpiade Kimia',
+    'olimpiade-bio': 'Olimpiade Biologi'
   };
   const subLabel = labelMap[subject];
   if (subLabel) {

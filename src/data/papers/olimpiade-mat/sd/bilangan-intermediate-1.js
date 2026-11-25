@@ -118,7 +118,7 @@ export default {
           principle:
             'The distance between two numbers $a$ and $b$ on the number line is $|a - b|$.',
           solution:
-            'Compute the absolute difference:\n$$|27 - (-15)| = |27 + 15| = 42.$$',
+            'On the number line, $-15$ is $15$ units to the left of $0$, and $27$ is $27$ units to the right of $0$.\nTherefore, the total distance between them is:\n$$|27 - (-15)| = |27 + 15| = 42.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -140,9 +140,9 @@ export default {
             'The sum of two distinct prime numbers is $50$. What is the maximum possible product of these two prime numbers?\nA. 141\nB. 481\nC. 589\nD. 621',
           answer: 'C. 589',
           principle:
-            'For two numbers with a fixed sum, their product is maximized when the two numbers are as close to each other as possible.',
+            'For two numbers with a fixed sum $S$, writing them as $\\frac{S}{2} - d$ and $\\frac{S}{2} + d$ gives a product of $\\left(\\frac{S}{2}\\right)^2 - d^2$, which is maximized when $d$ is as small as possible (the numbers are closest).',
           solution:
-            'List the prime pairs that sum to $50$: $(3, 47)$, $(7, 43)$, $(13, 37)$, and $(19, 31)$.\nThe closest pair gives the maximum product:\n$$19 \\times 31 = 589.$$',
+            'Since $50$ is even and $50 - 2 = 48$ is composite, both primes must be odd. Testing each odd prime $p < 25$ gives:\n- $p = 3 \\implies 50 - 3 = 47$ (prime)\n- $p = 7 \\implies 50 - 7 = 43$ (prime)\n- $p = 13 \\implies 50 - 13 = 37$ (prime)\n- $p = 19 \\implies 50 - 19 = 31$ (prime)\n(For $p = 5, 11, 17, 23$, the differences $45, 39, 33, 27$ are all divisible by $3$.)\nSince $(25 - d)(25 + d) = 625 - d^2$ is largest when the pair is closest to $25$, the maximum product comes from $(19, 31)$:\n$$19 \\times 31 = 589.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -178,7 +178,7 @@ export default {
           principle:
             'Barisan bilangan kuadrat memiliki rumus suku ke-$n$ yaitu $U_n = n^2$.',
           solution:
-            'Suku ke-$n$ pada barisan bilangan kuadrat adalah $n^2$.\nUntuk $n = 10$, suku ke-10 adalah $10^2 = 100$.',
+            'Amati hubungan posisi suku dengan nilainya:\n$$U_1 = 1^2 = 1, \\quad U_2 = 2^2 = 4, \\quad U_3 = 3^2 = 9, \\quad U_4 = 4^2 = 16.$$\nJadi, suku ke-$n$ adalah $U_n = n^2$. Untuk $n = 10$, diperoleh:\n$$U_{10} = 10^2 = 100.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -224,9 +224,9 @@ export default {
             'Manakah dari pecahan berikut yang memiliki nilai paling besar?\nA. $\\frac{1}{2}$\nB. $\\frac{3}{5}$\nC. $\\frac{5}{8}$\nD. $\\frac{7}{12}$',
           answer: 'C. $\\frac{5}{8}$',
           principle:
-            'Untuk membandingkan beberapa pecahan, ubah semuanya ke bentuk desimal atau samakan penyebutnya.',
+            'Untuk membandingkan beberapa pecahan secara eksak tanpa pembulatan, samakan penyebutnya menggunakan KPK dari semua penyebut lalu bandingkan pembilangnya.',
           solution:
-            'Ubah setiap pecahan menjadi bentuk desimal:\n- $\\frac{1}{2} = 0{,}5$\n- $\\frac{3}{5} = 0{,}6$\n- $\\frac{5}{8} = 0{,}625$\n- $\\frac{7}{12} \\approx 0{,}583$\nNilai yang paling besar adalah $\\frac{5}{8}$.',
+            'Tentukan KPK dari penyebut $2, 5, 8,$ dan $12$:\n$$\\text{KPK}(2, 5, 8, 12) = 2^3 \\times 3 \\times 5 = 120.$$\nUbah setiap pecahan ke penyebut $120$:\n- $\\frac{1}{2} = \\frac{1 \\times 60}{2 \\times 60} = \\frac{60}{120}$\n- $\\frac{3}{5} = \\frac{3 \\times 24}{5 \\times 24} = \\frac{72}{120}$\n- $\\frac{5}{8} = \\frac{5 \\times 15}{8 \\times 15} = \\frac{75}{120}$\n- $\\frac{7}{12} = \\frac{7 \\times 10}{12 \\times 10} = \\frac{70}{120}$\nKarena $75 > 72 > 70 > 60$, pecahan yang nilainya paling besar adalah $\\frac{5}{8}$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -310,7 +310,7 @@ export default {
           principle:
             'Expand a base-$x$ two-digit number $ab_x$ in base $10$ as $a \\cdot x + b$, and solve for $x$ (with $x > \\max(a, b)$).',
           solution:
-            'Convert $32_x$ to base $10$:\n$$3x + 2 = 17 \\implies 3x = 15 \\implies x = 5.$$',
+            'In base $x$, the digits of $32_x$ have place values $x^1$ and $x^0$:\n$$32_x = 3 \\cdot x^1 + 2 \\cdot x^0 = 3x + 2.$$\nSet this equal to $17$ and solve for $x$:\n$$3x + 2 = 17 \\implies 3x = 15 \\implies x = 5.$$\nSince $5 > 3$ (all digits in $32_5$ are less than the base $5$), $x = 5$ is valid.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -414,9 +414,9 @@ export default {
           answer: '36',
           answerNumeric: [{ name: 'term8', value: 36 }],
           principle:
-            'The $n$-th triangular number is given by $T_n = \\frac{n(n + 1)}{2}$.',
+            'The $n$-th triangular number equals the sum of the first $n$ positive integers, $T_n = 1 + 2 + \\dots + n = \\frac{n(n + 1)}{2}$.',
           solution:
-            'Substitute $n = 8$ into the triangular number formula:\n$$T_8 = \\frac{8(8 + 1)}{2} = \\frac{8 \\times 9}{2} = 36.$$',
+            'Observe that each term adds the next counting number ($1$, $1+2=3$, $1+2+3=6$, $\\dots$), so the $n$-th triangular number is $T_n = 1 + 2 + \\dots + n$.\nPairing terms from the ends gives $n$ copies of $(n + 1)$ divided by $2$, hence $T_n = \\frac{n(n + 1)}{2}$.\nSubstitute $n = 8$:\n$$T_8 = \\frac{8(8 + 1)}{2} = \\frac{8 \\times 9}{2} = 36.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -492,7 +492,7 @@ export default {
           principle:
             'Terapkan aturan rekursif $U_{n+1} = 2U_n + 1$ pada suku terakhir yang diketahui.',
           solution:
-            'Suku terakhir adalah $23$. Kalikan $2$ lalu tambah $1$:\n$$(23 \\times 2) + 1 = 46 + 1 = 47.$$',
+            'Periksa aturan $U_{n+1} = 2U_n + 1$ pada suku-suku awal:\n- $U_2 = (2 \\times 2) + 1 = 5$\n- $U_3 = (5 \\times 2) + 1 = 11$\n- $U_4 = (11 \\times 2) + 1 = 23$\nMaka suku ke-5 diperoleh dari suku ke-4 ($23$):\n$$U_5 = (23 \\times 2) + 1 = 46 + 1 = 47.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -504,7 +504,7 @@ export default {
           principle:
             'Follow order of operations: evaluate parentheses first, then multiplication, and finally addition.',
           solution:
-            'Evaluate inside the parentheses first:\n$$(12 - 4) \\times (-3) + 10 = 8 \\times (-3) + 10 = -24 + 10 = -14.$$',
+            'Step 1: Evaluate inside the parentheses:\n$$12 - 4 = 8.$$\nStep 2: Multiply by $-3$:\n$$8 \\times (-3) = -24.$$\nStep 3: Add $10$:\n$$-24 + 10 = -14.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -515,9 +515,9 @@ export default {
           answer: '20',
           answerNumeric: [{ name: 'largerNumber', value: 20 }],
           principle:
-            'For two positive integers $A$ and $B$, $A \\times B = \\text{GCF}(A, B) \\times \\text{LCM}(A, B)$.',
+            'Write two positive integers with $\\text{GCF}(A, B) = d$ as $A = da$ and $B = db$ where $\\gcd(a, b) = 1$; then $A + B = d(a + b)$ and $\\text{LCM}(A, B) = dab$.',
           solution:
-            'Let the two numbers be $A$ and $B$.\n$$A \\times B = \\text{GCF} \\times \\text{LCM} = 5 \\times 60 = 300.$$\nFind a factor pair of $300$ (both multiples of $5$) whose sum is $35$: $15 + 20 = 35$ and $15 \\times 20 = 300$.\nThe larger number is $20$.',
+            'Since $\\text{GCF}(A, B) = 5$, let $A = 5a$ and $B = 5b$ where $a$ and $b$ are coprime positive integers ($\\gcd(a, b) = 1$).\nFrom the given sum and LCM:\n$$5a + 5b = 35 \\implies a + b = 7,$$\n$$\\text{LCM}(5a, 5b) = 5ab = 60 \\implies ab = 12.$$\nThe factor pairs of $12$ are $(1, 12)$, $(2, 6)$, and $(3, 4)$. The unique coprime pair with sum $7$ is $\\{a, b\\} = \\{3, 4\\}$.\nThus the two numbers are $5 \\times 3 = 15$ and $5 \\times 4 = 20$, so the larger number is $20$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

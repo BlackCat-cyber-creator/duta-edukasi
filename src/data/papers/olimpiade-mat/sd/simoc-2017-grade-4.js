@@ -117,7 +117,7 @@ export default {
           answer: 'C. $180$',
           principle: 'Area by subtraction of cut-outs; perimeter of a rectilinear shape: a notch adds twice its depth, a corner cut-out leaves it unchanged.',
           solution:
-            'Area: $A = 16 \\times 10 - 4 \\times 2 - 2 \\times 6 - 6 \\times 4 = 160 - 8 - 12 - 24 = 116$.\nPerimeter: the full rectangle has perimeter $2(16+10) = 52$. Cutting out a corner rectangle does not change the perimeter. The top notch of depth $2$ adds $2 \\times 2 = 4$, and the bottom notch of depth $4$ adds $2 \\times 4 = 8$. So $P = 52 + 4 + 8 = 64$.\nTherefore $A + P = 116 + 64 = 180$.',
+            'Area: $A = 16 \\times 10 - 4 \\times 2 - 2 \\times 6 - 6 \\times 4 = 160 - 8 - 12 - 24 = 116$.\nPerimeter: the full rectangle has perimeter $2(16+10) = 52$.\n- Cutting out the top-right corner replaces a horizontal outer piece of length $2$ and a vertical outer piece of length $6$ with two inner edges of the exact same lengths ($2$ and $6$), so the perimeter does not change.\n- For the top notch of depth $2$, the inner horizontal edge matches the removed top piece of length $4$ (no net change), while two new vertical edges of length $2$ are added, increasing the perimeter by $2 \\times 2 = 4$.\n- Similarly, the bottom notch of depth $4$ adds two vertical edges of length $4$, increasing the perimeter by $2 \\times 4 = 8$.\nSo $P = 52 + 4 + 8 = 64$, and therefore $A + P = 116 + 64 = 180$.',
           rubric: [{ code: 'A2', text: 'Correct answer C with valid working.' }]
         },
         {
@@ -172,7 +172,7 @@ export default {
           answer: 'D. $12$',
           principle: 'Counting orderings with one precedence constraint: divide the total number of orders by the number of orders of the constrained pair.',
           solution:
-            'Without any restriction the four different beads could be removed in $4! = 24$ orders. The only restriction is that, on the middle rod, the upper bead comes out before the lower bead. For every order, swapping the positions of these two beads gives a different order with the opposite relation, so exactly half of the $24$ orders obey the restriction.\nNumber of ways $= 24 \\div 2 = 12$.',
+            'Label the four beads by their starting positions (left, middle-top, middle-bottom, right). Without any restriction, the four beads could be removed in $4 \\times 3 \\times 2 \\times 1 = 24$ different orders.\nThe only restriction is that on the middle rod, middle-top must be removed before middle-bottom. For every order where middle-top comes before middle-bottom, swapping those two beads in the sequence gives a unique order where middle-bottom comes before middle-top. Thus, exactly half of the $24$ orders obey the restriction.\nNumber of ways $= 24 \\div 2 = 12$.',
           rubric: [{ code: 'A2', text: 'Correct answer D with valid working.' }]
         }
       ]
@@ -231,7 +231,7 @@ export default {
           answer: '$58$',
           principle: 'Additions should be applied before multiplications so that they get multiplied; subtraction should be applied as late as possible.',
           solution:
-            'Take the three multiplying operations $\\times 2$, $\\times 3$, $\\div 2$. Together they multiply the starting number $10$ by $3$ whatever the order, giving $30$. An addition or subtraction placed in some gap is multiplied by the product $m$ of the multiplying operations that come after it, so the final value is $30 + 3m_1 + 2m_2 - 2m_3$.\nThe largest possible $m$ is $6$ (both $\\times 2$ and $\\times 3$ after the gap, so $\\div 2$ must come first). Otherwise every $m \\le 3$ and the value is at most $30 + 9 + 6 - 2 \\cdot \\tfrac12 = 44$.\nWith $\\div 2$ first, $m_3 \\ge 1$, so the value is at most $30 + 3\\cdot 6 + 2\\cdot 6 - 2 \\cdot 1 = 58$.\nThis is reached by $10 \\xrightarrow{\\div 2} 5 \\xrightarrow{+3} 8 \\xrightarrow{+2} 10 \\xrightarrow{\\times 2} 20 \\xrightarrow{\\times 3} 60 \\xrightarrow{-2} 58$.\nThe largest number is $58$.',
+            'Regardless of where the additions and subtraction are placed, the three scaling operations ($\\times 2$, $\\times 3$, $\\div 2$) multiply the starting number $10$ by $2 \\times 3 \\div 2 = 3$, contributing $10 \\times 3 = 30$.\nEach addition or subtraction is multiplied by the combined effect of all scaling operations that occur after it. Let $m_1, m_2, m_3$ be the products of the scaling operations that come after $+3$, $+2$, and $-2$ respectively; then the final result is\n$$30 + 3m_1 + 2m_2 - 2m_3.$$\nTo make $m_1$ and $m_2$ as large as possible, both $\\times 2$ and $\\times 3$ must come after $+3$ and $+2$, and $\\div 2$ must come before them, giving $m_1 = m_2 = 2 \\times 3 = 6$. If $\\div 2$ does not come first among the scaling operations, then every multiplier is at most $3$ (and at least $\\tfrac12$), so the result is at most $30 + 3\\cdot 3 + 2\\cdot 3 - 2\\cdot \\tfrac12 = 44$.\nWith $\\div 2$ first, every operation after $\\times 2$ and $\\times 3$ has multiplier $1$, so $m_3 \\ge 1$. Hence the largest possible value is at most\n$$30 + 3\\cdot 6 + 2\\cdot 6 - 2\\cdot 1 = 58.$$\nThis maximum is achieved by $10 \\xrightarrow{\\div 2} 5 \\xrightarrow{+3} 8 \\xrightarrow{+2} 10 \\xrightarrow{\\times 2} 20 \\xrightarrow{\\times 3} 60 \\xrightarrow{-2} 58$.',
           rubric: [
             { code: 'M2', text: 'Realises the order (divide first, add before multiplying, subtract last).' },
             { code: 'A2', text: 'Obtains 58.' }
@@ -273,7 +273,7 @@ export default {
           answer: '$625$',
           principle: 'If $n^2$ ends in the digits of $n$, then $n(n-1)$ is a multiple of 100.',
           solution:
-            'Let $n = \\overline{HE}$. Then $n^2 = 100S + n$, so $n(n-1) = 100S$. Since $n^2$ has three digits, $10 \\le n \\le 31$.\nThe numbers $n$ and $n-1$ have no common factor, so one of them is a multiple of $25$ and the other of $4$. In the range $10$ to $31$: $n = 25$ gives $25 \\times 24 = 600 = 100 \\times 6$; $n - 1 = 25$ gives $26 \\times 25 = 650$, not a multiple of $100$. So $n = 25$, $S = 6$.\n$25^2 = 625$, so $S = 6$, $H = 2$, $E = 5$ are different digits, and $\\overline{SHE} = 625$.',
+            'Let $n = \\overline{HE}$. Then $n^2 = 100S + n$, so $n(n-1) = 100S = 4 \\times 25 \\times S$. Since $\\overline{SHE}$ is a 3-digit number ($10^2 = 100$ and $32^2 = 1024$), we have $10 \\le n \\le 31$.\nThe consecutive integers $n$ and $n-1$ share no common factor greater than $1$, and neither can be $0$ or a multiple of $100$ since $9 \\le n-1 < n \\le 31$. Therefore, one of them must be a multiple of $25$ and the other a multiple of $4$.\nIn the range $9$ to $31$, the only multiple of $25$ is $25$ itself:\n- If $n = 25$, then $n - 1 = 24$ is a multiple of $4$, giving $25 \\times 24 = 600 = 100 \\times 6$, so $S = 6$.\n- If $n - 1 = 25$, then $n = 26$, which is not a multiple of $4$ ($26 \\times 25 = 650$, not a multiple of $100$).\nThus $n = 25$ and $25^2 = 625$. Here $S = 6$, $H = 2$, and $E = 5$ are all different digits, so $\\overline{SHE} = 625$.',
           rubric: [
             { code: 'M2', text: 'Sets up n(n-1) = 100S (or tests candidates ending in 5/6/0/1) with n at most 31.' },
             { code: 'A2', text: 'Finds 625.' }
@@ -314,7 +314,7 @@ export default {
           answer: '$16 \\text{ cm}$',
           principle: 'A square with diagonal $d$ has area $\\tfrac12 d^2$ (it is made of two right triangles with legs equal to the side).',
           solution:
-            'The diagonal $AC$ splits the square into two congruent triangles $ABC$ and $ACD$, so the area of triangle $ABC$ is $64$. By the Pythagorean theorem $AC^2 = AB^2 + BC^2 = 2 \\times AB^2 = 2 \\times 128 = 256$.\nTherefore $AC = \\sqrt{256} = 16 \\text{ cm}$.',
+            'The diagonal $AC$ splits square $ABCD$ into two congruent right triangles $ABC$ and $ACD$, each with area $128 \\div 2 = 64 \\text{ cm}^2$.\nBecause the two diagonals of a square are equal and perpendicular, the height of $\\triangle ABC$ to base $AC$ is half of the other diagonal, namely $\\tfrac12 AC$. Thus\n$$\\text{Area}(\\triangle ABC) = \\frac{1}{2} \\times AC \\times \\frac{1}{2}AC = \\frac{1}{4}AC^2 = 64 \\implies AC^2 = 256.$$\n(Equivalently, four copies of $\\triangle ABC$ fit together to form a larger square of side $AC$ and area $4 \\times 64 = 256 \\text{ cm}^2$; or by the Pythagorean theorem, $AC^2 = AB^2 + BC^2 = 2 \\times 128 = 256$.)\nSince $16 \\times 16 = 256$, we obtain $AC = 16 \\text{ cm}$.',
           rubric: [
             { code: 'M2', text: 'Uses AC squared equals 2 times the area (Pythagoras).' },
             { code: 'A2', text: 'Obtains 16 cm.' }

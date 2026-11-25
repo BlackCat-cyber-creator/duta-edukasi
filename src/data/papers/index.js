@@ -41,6 +41,38 @@ import olimOsnkMatSd2026 from './olimpiade-mat/sd/osnk-matematika-sd-2026.js';
 import olimHkimoSec2Prep from './olimpiade-mat/smp/hkimo-secondary-2-prep.js';
 import olimOsnkMatSmp2026 from './olimpiade-mat/smp/osnk-matematika-smp-2026.js';
 import olimToOsnkMatSma from './olimpiade-mat/sma/to-osnk-matematika-sma.js';
+import olimOsnkMatSma2026 from './olimpiade-mat/sma/osnk-matematika-sma-2026.js';
+import olimOsnkMatSma2025 from './olimpiade-mat/sma/osnk-matematika-sma-2025.js';
+import olimOsnkMatSma2024 from './olimpiade-mat/sma/osnk-matematika-sma-2024.js';
+import olimOsnkMatSma2023 from './olimpiade-mat/sma/osnk-matematika-sma-2023.js';
+import olimOsnkMatSma2022 from './olimpiade-mat/sma/osnk-matematika-sma-2022.js';
+import olimOsnkMatSmp2024 from './olimpiade-mat/smp/osnk-matematika-smp-2024.js';
+import olimOsnkMatSmp2020 from './olimpiade-mat/smp/osnk-matematika-smp-2020.js';
+import olimOsnpMatSmp2019 from './olimpiade-mat/smp/osnp-matematika-smp-2019.js';
+import olimOsnkMatSd2025 from './olimpiade-mat/sd/osnk-matematika-sd-2025.js';
+import olimOsnkMatSd2024 from './olimpiade-mat/sd/osnk-matematika-sd-2024.js';
+import olimOsnkIpaSd2024 from './olimpiade-sains/sd/osnk-ipa-sd-2024.js';
+import olimOsnkIpaSd2023 from './olimpiade-sains/sd/osnk-ipa-sd-2023.js';
+import olimOsnkIpaSmp2025 from './olimpiade-sains/smp/osnk-ipa-smp-2025.js';
+import olimOsnpIpaSmp2024 from './olimpiade-sains/smp/osnp-ipa-smp-2024.js';
+import olimOsnkFisSma2024 from './olimpiade-fis/sma/osnk-fisika-sma-2024.js';
+import olimOsnkFisSma2023 from './olimpiade-fis/sma/osnk-fisika-sma-2023.js';
+import olimOsnpFisSma2024 from './olimpiade-fis/sma/osnp-fisika-sma-2024.js';
+import olimOsnkKimSma2024 from './olimpiade-kim/sma/osnk-kimia-sma-2024.js';
+import olimOsnkKimSma2023 from './olimpiade-kim/sma/osnk-kimia-sma-2023.js';
+import olimOsnkBioSma2024 from './olimpiade-bio/sma/osnk-biologi-sma-2024.js';
+import olimOsnkBioSma2023 from './olimpiade-bio/sma/osnk-biologi-sma-2023.js';
+import olimAmc8_2024 from './olimpiade-mat/smp/amc-8-2024.js';
+import olimAmc8_2023 from './olimpiade-mat/smp/amc-8-2023.js';
+import olimAmc10a2024 from './olimpiade-mat/sma/amc-10a-2024.js';
+import olimAmc10a2023 from './olimpiade-mat/sma/amc-10a-2023.js';
+import olimAmc12a2024 from './olimpiade-mat/sma/amc-12a-2024.js';
+import olimAmc12a2023 from './olimpiade-mat/sma/amc-12a-2023.js';
+import olimKangarooSg2015Student from './olimpiade-mat/sma/singapore-math-kangaroo-2015-student.js';
+import olimIkmcKadett2224 from './olimpiade-mat/smp/ikmc-kangaroo-kadett-2022-2024.js';
+import olimKmnrKelas9_2016 from './olimpiade-mat/smp/kmnr-kelas-9-2016.js';
+import olimOmvnSma2022 from './olimpiade-mat/sma/omvn-sma-2022.js';
+import olimKsmMatMa2018 from './olimpiade-mat/sma/ksm-matematika-2018.js';
 
 export const PAPER_SUBJECT_META = {
   fisika: { id: 'fisika', label: 'Fisika', shortLabel: 'Fisika', color: '#0369A1' },
@@ -50,7 +82,9 @@ export const PAPER_SUBJECT_META = {
   ipa: { id: 'ipa', label: 'IPA', shortLabel: 'IPA', color: '#0F766E' },
   'olimpiade-mat': { id: 'olimpiade-mat', label: 'Olimpiade Matematika', shortLabel: 'Olimpiade Mat', color: '#9F1239' },
   'olimpiade-sains': { id: 'olimpiade-sains', label: 'Olimpiade Sains (OSN)', shortLabel: 'Olimpiade Sains', color: '#0D9488' },
-  'olimpiade-fis': { id: 'olimpiade-fis', label: 'Olimpiade Fisika', shortLabel: 'Olimpiade Fis', color: '#1D4ED8' }
+  'olimpiade-fis': { id: 'olimpiade-fis', label: 'Olimpiade Fisika', shortLabel: 'Olimpiade Fis', color: '#1D4ED8' },
+  'olimpiade-kim': { id: 'olimpiade-kim', label: 'Olimpiade Kimia', shortLabel: 'Olimpiade Kim', color: '#7C3AED' },
+  'olimpiade-bio': { id: 'olimpiade-bio', label: 'Olimpiade Biologi', shortLabel: 'Olimpiade Bio', color: '#059669' }
 };
 
 export const ALL_PAPERS = [
@@ -91,7 +125,39 @@ export const ALL_PAPERS = [
   olimTimo2223HeatS2,
   olimHkimoSec2Prep,
   olimOsnkMatSmp2026,
-  olimToOsnkMatSma
+  olimToOsnkMatSma,
+  olimOsnkMatSma2026,
+  olimOsnkMatSma2025,
+  olimOsnkMatSma2024,
+  olimOsnkMatSma2023,
+  olimOsnkMatSma2022,
+  olimOsnkMatSmp2024,
+  olimOsnkMatSmp2020,
+  olimOsnpMatSmp2019,
+  olimOsnkMatSd2025,
+  olimOsnkMatSd2024,
+  olimOsnkIpaSd2024,
+  olimOsnkIpaSd2023,
+  olimOsnkIpaSmp2025,
+  olimOsnpIpaSmp2024,
+  olimOsnkFisSma2024,
+  olimOsnkFisSma2023,
+  olimOsnpFisSma2024,
+  olimOsnkKimSma2024,
+  olimOsnkKimSma2023,
+  olimOsnkBioSma2024,
+  olimOsnkBioSma2023,
+  olimAmc8_2024,
+  olimAmc8_2023,
+  olimAmc10a2024,
+  olimAmc10a2023,
+  olimAmc12a2024,
+  olimAmc12a2023,
+  olimKangarooSg2015Student,
+  olimIkmcKadett2224,
+  olimKmnrKelas9_2016,
+  olimOmvnSma2022,
+  olimKsmMatMa2018
 ];
 
 export const PUBLISHED_PAPERS = ALL_PAPERS.filter((p) => p.status === 'published');
@@ -177,12 +243,17 @@ export function formatPaperMeta(paper) {
 
 /** Kompetisi untuk pusat Olimpiade (/olimpiade). Nama sesuai field `competition` pada paket. */
 export const OLYMPIAD_COMPETITIONS = [
-  { id: 'osn', label: 'OSN / OSK', competitions: ['OSN-K'], blurb: 'Olimpiade Sains Nasional jenjang Kabupaten/Kota: latihan soal Matematika dan sains berbahasa Indonesia.' },
+  { id: 'osn', label: 'OSN / OSK', competitions: ['OSN-K', 'OSN-P', 'OSN'], blurb: 'Olimpiade Sains Nasional jenjang Kabupaten/Kota hingga Nasional: latihan soal Matematika dan sains berbahasa Indonesia.' },
   { id: 'sasmo', label: 'SASMO', competitions: ['SASMO'], blurb: 'Soal kompetisi matematika SASMO (berbahasa Inggris) dengan pembahasan langkah demi langkah.' },
-  { id: 'amc', label: 'AMC 8 / 10 / 12', competitions: [], amc: true, blurb: 'Modul interaktif American Mathematics Competitions: 36 bab konsep dan latihan untuk AMC 8, AMC 10, dan AMC 12.' },
+  { id: 'amc', label: 'AMC 8 / 10 / 12', competitions: ['AMC 8', 'AMC 10', 'AMC 12'], amc: true, blurb: 'Modul interaktif American Mathematics Competitions (36 bab konsep) serta paket soal resmi AMC 8, AMC 10, dan AMC 12.' },
   { id: 'hkimo', label: 'HKIMO', competitions: ['HKIMO'], blurb: 'Latihan persiapan HKIMO (berbahasa Inggris) dengan pembahasan lengkap.' },
   { id: 'timo', label: 'TIMO', competitions: ['TIMO'], blurb: 'Soal babak penyisihan TIMO (berbahasa Inggris) beserta pembahasan.' },
-  { id: 'simoc', label: 'SIMOC', competitions: ['SIMOC'], blurb: 'Soal kompetisi SIMOC (berbahasa Inggris) untuk jenjang sekolah dasar.' },
+  { id: 'simoc', label: 'SIMOC', competitions: ['SIMOC'], blurb: 'Soal kompetisi SIMOC (berbahasa Inggris) beserta pembahasan konseptual.' },
+  { id: 'smo', label: 'SMO (Singapore)', competitions: ['SMO'], blurb: 'Singapore Mathematical Olympiad (Junior & Senior) berbahasa Inggris dengan pembahasan konseptual.' },
+  { id: 'ikmc', label: 'IKMC / Kangaroo', competitions: ['IKMC', 'Kangaroo'], blurb: 'International Kangaroo Mathematics Contest (IKMC / Math Kangaroo) untuk SD, SMP, dan SMA.' },
+  { id: 'ksm', label: 'KSM', competitions: ['KSM'], blurb: 'Kompetisi Sains Madrasah (Matematika & IPA) dengan pembahasan bertahap.' },
+  { id: 'kmnr', label: 'KMNR', competitions: ['KMNR'], blurb: 'Kompetisi Matematika Nalaria Realistik untuk SD, SMP, dan SMA.' },
+  { id: 'kompetisi-nasional', label: 'Kompetisi Nasional Lainnya', competitions: ['OMVN', 'KOM', 'OMITS', 'OPTIKA'], blurb: 'Soal kompetisi matematika dan sains nasional universitas/lembaga (OMVN, KOM, OMITS, dll.).' },
   { id: 'pembinaan', label: 'Seri Pembinaan OSN', competitions: ['Seri Pembinaan OSN'], blurb: 'Seri latihan Bilangan berjenjang (Basic sampai Elite) untuk pembinaan OSN SD dan SMP.' }
 ];
 

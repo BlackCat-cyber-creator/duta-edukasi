@@ -43,7 +43,8 @@ export default {
           answerNumeric: [{ name: 'position', value: 1350, unit: 'm' }],
           principle:
             'Position along a one-dimensional track of total length $L = 1,500\\ \\text{m}$ equals the total track distance minus the remaining distance to the finish line.',
-          solution: '$$\\text{Position} = 1,500 - 150 = 1,350\\ \\text{m}$$',
+          solution:
+            'The total length of the circuit is $L = 1,500\\ \\text{m}$. When Hoverbike A has $d_{\\text{rem}} = 150\\ \\text{m}$ remaining to the finish line, its position $x$ relative to the starting line is:\n$$x = L - d_{\\text{rem}} = 1,500 - 150 = 1,350\\ \\text{m}$$',
           rubric: [{ code: 'A1', text: 'Position $= 1,350\\ \\text{m}$ (from $1,500 - 150$)' }]
         },
         {
@@ -246,7 +247,8 @@ export default {
           answerNumeric: [{ name: 'v_top', value: 0, unit: 'm/s' }],
           principle:
             'At the turning point of vertical free-fall motion, the ball momentarily stops rising before reversing direction downward, so its instantaneous velocity is zero.',
-          solution: 'At maximum height, the instantaneous velocity is:\n$$v = 0\\ \\text{m s}^{-1}$$',
+          solution:
+            'Under uniform downward gravitational acceleration ($a = -g$), the upward velocity of the ball continuously decreases until it momentarily comes to rest at the turning point before reversing direction downward. Therefore, at its highest position:\n$$v = 0\\ \\text{m s}^{-1}$$',
           rubric: [{ code: 'B1', text: '$0\\ \\text{m s}^{-1}$' }]
         },
         {

@@ -715,16 +715,17 @@ renderCurriculum('biologi', BIOLOGI);
 {
   const crumbs = [['Beranda', '/'], ['Olimpiade', OLIMPIADE_HUB_META.path]];
   const blocks = OLYMPIAD_COMPETITIONS.map((c) => {
-    if (c.amc) {
-      const levels = AMC_LEVELS_METADATA.map((lvl) => `<li><a href="${amcLevelPath(lvl.level)}"><strong>${escapeHtml(lvl.title)}</strong></a> (${escapeHtml(lvl.targetGrades)}) — ${ALL_AMC_CHAPTERS_INDEX.filter((ch) => ch.level === lvl.level).length} bab interaktif</li>`).join('');
-      return `<section id="kompetisi-${c.id}"><h2>${escapeHtml(c.label)}</h2><p>${escapeHtml(c.blurb)}</p><ul>${levels}</ul></section>`;
-    }
     const papers = PUBLISHED_PAPERS.filter((p) => c.competitions.includes(p.competition));
-    if (!papers.length) return '';
     const items = papers.map((p) => {
       const info = formatPaperMeta(p);
       return `<li><a href="${paperPath(p)}"><strong>${escapeHtml(p.title)}</strong></a> — ${escapeHtml(info.tag)}${info.tag.endsWith(levelNameOfGrade(p.grade)) ? '' : ` · ${escapeHtml(levelNameOfGrade(p.grade))}`} · ${escapeHtml(info.itemsLabel)} · ${escapeHtml(info.track)} · ${escapeHtml(info.lang)}</li>`;
     }).join('\n');
+    if (c.amc) {
+      const levels = AMC_LEVELS_METADATA.map((lvl) => `<li><a href="${amcLevelPath(lvl.level)}"><strong>${escapeHtml(lvl.title)}</strong></a> (${escapeHtml(lvl.targetGrades)}) — ${ALL_AMC_CHAPTERS_INDEX.filter((ch) => ch.level === lvl.level).length} bab interaktif</li>`).join('');
+      const papersHtml = items ? `<ul>${items}</ul>` : '';
+      return `<section id="kompetisi-${c.id}"><h2>${escapeHtml(c.label)}</h2><p>${escapeHtml(c.blurb)}</p><ul>${levels}</ul>${papersHtml}</section>`;
+    }
+    if (!papers.length) return '';
     return `<section id="kompetisi-${c.id}"><h2>${escapeHtml(c.label)}</h2><p>${escapeHtml(c.blurb)}</p><ul>${items}</ul></section>`;
   }).filter(Boolean).join('\n');
   const body = `
@@ -998,9 +999,9 @@ const tkaGeneratedPackets = [];
     llmsLines.push('');
   }
 
-  llmsLines.push('## Olimpiade & Kompetisi (OSN, SASMO, AMC, HKIMO, TIMO, SIMOC)');
+  llmsLines.push('## Olimpiade & Kompetisi (OSN, AMC, IKMC / Kangaroo, SASMO, HKIMO, TIMO, SIMOC, KSM, KMNR, OMVN)');
   llmsLines.push(`- [Pusat Olimpiade](${SITE_URL}${OLIMPIADE_HUB_META.path}): ${OLIMPIADE_HUB_META.description}`);
-  for (const c of OLYMPIAD_COMPETITIONS.filter((x) => !x.amc)) {
+  for (const c of OLYMPIAD_COMPETITIONS) {
     const n = PUBLISHED_PAPERS.filter((p) => c.competitions.includes(p.competition)).length;
     if (n) llmsLines.push(`- ${c.label} (${n} paket soal): ${c.blurb}`);
   }

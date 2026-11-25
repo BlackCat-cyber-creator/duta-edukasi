@@ -115,9 +115,9 @@ export default {
             'Hasil kali tiga bilangan bulat berurutan adalah $336$. Berapakah jumlah dari ketiga bilangan bulat tersebut?\nA. 18\nB. 21\nC. 24\nD. 27',
           answer: 'B. 21',
           principle:
-            'Taksiran akar pangkat tiga membantu menentukan lokasi tiga bilangan berurutan di sekitar $\\sqrt[3]{P}$.',
+            'Nyatakan tiga bilangan berurutan secara simetris sebagai $m - 1$, $m$, dan $m + 1$ sehingga hasil kalinya adalah $m^3 - m$, lalu apit di antara dua pangkat tiga bilangan bulat yang eksak.',
           solution:
-            'Misalkan ketiga bilangan bulat berurutan tersebut adalah $n$, $n + 1$, dan $n + 2$.\nHampiran nilai: $(n + 1)^3 \\approx 336$. Karena $6^3 = 216$ dan $7^3 = 343$, bilangan tengah berada di sekitar $7$.\nUji $n = 6$: $6 \\times 7 \\times 8 = 336$ (memenuhi).\nJumlah ketiga bilangan tersebut adalah $6 + 7 + 8 = 21$.',
+            'Misalkan ketiga bilangan bulat berurutan tersebut adalah $m - 1$, $m$, dan $m + 1$, sehingga:\n$$(m - 1)m(m + 1) = m(m^2 - 1) = m^3 - m = 336.$$\nJika $m \\le 1$, maka $(m - 1)m(m + 1) \\le 0$, padahal hasil kalinya positif; jadi $m \\ge 2$.\nGunakan ketaksamaan eksak bilangan pangkat tiga:\n- Karena $m^3 > m^3 - m = 336 > 216 = 6^3$, diperoleh $m > 6$, sehingga $m \\ge 7$.\n- Karena fungsi $(m - 1)m(m + 1)$ naik untuk $m \\ge 2$, untuk $m \\ge 8$ berlaku $(m - 1)m(m + 1) \\ge 7 \\times 8 \\times 9 = 504 > 336$, sehingga haruslah $m \\le 7$.\nDari $7 \\le m \\le 7$, nilai $m$ tunggal yang memenuhi adalah $m = 7$ (terbukti $6 \\times 7 \\times 8 = 336$, konsisten dengan faktorisasi prima $336 = 2^4 \\times 3 \\times 7$).\nJumlah ketiga bilangan tersebut adalah $(m - 1) + m + (m + 1) = 3m = 3 \\times 7 = 21$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -177,7 +177,7 @@ export default {
           principle:
             'The number of trailing zeros of $N$ in base $b = p^k$ equals $\\lfloor v_p(N) / k \\rfloor$, where $v_p(n!)$ is found via Legendre\'s formula.',
           solution:
-            'Trailing zeros in base $8 = 2^3$ depend on the highest power of $8$ that divides $100!$, which equals $\\lfloor v_2(100!) / 3 \\rfloor$.\nBy Legendre\'s formula, the exponent of $2$ in $100!$ is:\n$$v_2(100!) = \\left\\lfloor \\frac{100}{2} \\right\\rfloor + \\left\\lfloor \\frac{100}{4} \\right\\rfloor + \\left\\lfloor \\frac{100}{8} \\right\\rfloor + \\left\\lfloor \\frac{100}{16} \\right\\rfloor + \\left\\lfloor \\frac{100}{32} \\right\\rfloor + \\left\\lfloor \\frac{100}{64} \\right\\rfloor = 50 + 25 + 12 + 6 + 3 + 1 = 97.$$\nSince $8 = 2^3$, the number of trailing zeros in base $8$ is $\\lfloor 97 / 3 \\rfloor = 32$.',
+            'Trailing zeros in base $8 = 2^3$ depend on the highest power of $8$ that divides $100!$, which equals $\\lfloor v_2(100!) / 3 \\rfloor$.\nIn $100! = 1 \\times 2 \\times \\dots \\times 100$, each multiple of $2$ contributes at least one factor of $2$, each multiple of $4$ contributes a second factor of $2$, and so on up to $2^6 = 64$ (since $2^7 = 128 > 100$). By Legendre\'s formula, the exponent of $2$ in $100!$ is:\n$$v_2(100!) = \\left\\lfloor \\frac{100}{2} \\right\\rfloor + \\left\\lfloor \\frac{100}{4} \\right\\rfloor + \\left\\lfloor \\frac{100}{8} \\right\\rfloor + \\left\\lfloor \\frac{100}{16} \\right\\rfloor + \\left\\lfloor \\frac{100}{32} \\right\\rfloor + \\left\\lfloor \\frac{100}{64} \\right\\rfloor = 50 + 25 + 12 + 6 + 3 + 1 = 97.$$\nSince $8 = 2^3$, the number of trailing zeros in base $8$ is $\\lfloor 97 / 3 \\rfloor = 32$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -372,7 +372,7 @@ export default {
           principle:
             'Pangkat tertinggi bilangan prima $p$ yang membagi $N!$ dihitung dengan rumus Legendre: $v_p(N!) = \\sum_{k \\ge 1} \\lfloor N / p^k \\rfloor$.',
           solution:
-            'Pangkat maksimum $n$ dari faktor prima $3$ dalam $100!$ dicari menggunakan formula Legendre:\n$$n = \\left\\lfloor \\frac{100}{3} \\right\\rfloor + \\left\\lfloor \\frac{100}{9} \\right\\rfloor + \\left\\lfloor \\frac{100}{27} \\right\\rfloor + \\left\\lfloor \\frac{100}{81} \\right\\rfloor = 33 + 11 + 3 + 1 = 48.$$',
+            'Dalam perkalian $100! = 1 \\times 2 \\times \\dots \\times 100$, setiap kelipatan $3$ menyumbang sedikitnya satu faktor $3$, setiap kelipatan $9$ menyumbang satu faktor $3$ tambahan, setiap kelipatan $27$ menyumbang faktor ketiga, dan setiap kelipatan $81$ menyumbang faktor keempat (berhenti di $81$ karena $3^5 = 243 > 100$).\nDengan rumus Legendre, pangkat maksimum $n$ dari $3$ dalam $100!$ adalah:\n$$n = \\left\\lfloor \\frac{100}{3} \\right\\rfloor + \\left\\lfloor \\frac{100}{9} \\right\\rfloor + \\left\\lfloor \\frac{100}{27} \\right\\rfloor + \\left\\lfloor \\frac{100}{81} \\right\\rfloor = 33 + 11 + 3 + 1 = 48.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

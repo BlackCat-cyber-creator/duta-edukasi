@@ -46,7 +46,7 @@ export default {
           principle:
             'Pada operasi hitung campuran, perkalian dan pembagian dikerjakan terlebih dahulu dari kiri ke kanan sebelum penjumlahan dan pengurangan.',
           solution:
-            'Gunakan urutan operasi (PEMDAS/KuKaBaTaKu):\n$$50 - (10 \\times 2) + (8 \\div 4) = 50 - 20 + 2 = 32.$$',
+            'Gunakan urutan operasi (perkalian dan pembagian dikerjakan lebih dahulu dari kiri ke kanan sebelum penjumlahan dan pengurangan):\n1. Hitung perkalian dan pembagian: $10 \\times 2 = 20$ dan $8 \\div 4 = 2$.\n2. Substitusi hasilnya, lalu kerjakan dari kiri ke kanan:\n$$50 - 20 + 2 = 30 + 2 = 32.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -94,7 +94,7 @@ export default {
           principle:
             'Jumlah wadah terbanyak untuk pembagian sama rata dua jenis benda sama dengan Faktor Persekutuan Terbesar (FPB) dari kedua jumlah benda tersebut.',
           solution:
-            'Cari Faktor Persekutuan Terbesar (FPB) dari $42$ dan $70$ untuk menentukan jumlah kantong maksimal, yaitu $14$ kantong.\nJumlah buku per kantong $= 42 \\div 14 = 3$ buku.',
+            'Cari Faktor Persekutuan Terbesar (FPB) dari $42$ dan $70$ untuk menentukan jumlah kantong maksimal:\n$$42 = 2 \\times 3 \\times 7 \\quad \\text{dan} \\quad 70 = 2 \\times 5 \\times 7.$$\nFaktor prima persekutuan dengan pangkat terkecil adalah $2$ dan $7$, sehingga $\\text{FPB}(42, 70) = 2 \\times 7 = 14$ kantong.\nJumlah buku per kantong $= 42 \\div 14 = 3$ buku.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -118,7 +118,7 @@ export default {
           principle:
             'Dua bilangan dengan $\\text{FPB} = 1$ bersifat saling prima (koprima), sehingga $\\text{KPK}(a, b) = a \\times b$.',
           solution:
-            '$\\text{KPK} = 72$ dan $\\text{FPB} = 1$ berarti $a$ dan $b$ saling prima dengan $a \\times b = 72$.\nPasangan faktor dari $72$ yang saling prima dan lebih dari $1$ adalah $8$ dan $9$.\nMaka $a + b = 8 + 9 = 17$.',
+            '$\\text{KPK}(a, b) = 72$ dan $\\text{FPB}(a, b) = 1$ berarti $a$ dan $b$ saling prima dengan $a \\times b = 72$.\nFaktorisasi prima dari $72$ adalah $2^3 \\times 3^2$. Karena $a$ dan $b$ tidak boleh memiliki faktor prima persekutuan dan keduanya lebih dari $1$, seluruh faktor $2^3 = 8$ harus masuk ke salah satu bilangan dan seluruh faktor $3^2 = 9$ ke bilangan lainnya.\nDengan demikian, kedua bilangan tersebut adalah $8$ dan $9$, sehingga $a + b = 8 + 9 = 17$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -166,7 +166,7 @@ export default {
           principle:
             'Faktorkan bilangan komposit menjadi perkalian bilangan-bilangan prima untuk menemukan tiga bilangan prima berurutan yang dimaksud.',
           solution:
-            'Coba perkalian tiga bilangan prima kecil berurutan: $2 \\times 3 \\times 5 = 30$.\nCoba selanjutnya: $3 \\times 5 \\times 7 = 105$ (sesuai).\nJumlahnya $= 3 + 5 + 7 = 15$.',
+            'Gunakan faktorisasi prima pada $105$. Karena berakhiran $5$, maka $105$ habis dibagi $5$:\n$$105 = 5 \\times 21 = 5 \\times 3 \\times 7 = 3 \\times 5 \\times 7.$$\nKetiganya ($3, 5, 7$) tepat merupakan tiga bilangan prima yang berurutan.\nJumlah ketiga bilangan tersebut adalah $3 + 5 + 7 = 15$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -176,9 +176,9 @@ export default {
             'Which of the following fractions lies strictly between $\\frac{1}{3}$ and $\\frac{1}{2}$?\nA. $\\frac{2}{7}$\nB. $\\frac{1}{4}$\nC. $\\frac{2}{5}$\nD. $\\frac{5}{9}$',
           answer: 'C. $\\frac{2}{5}$',
           principle:
-            'Convert fractions to decimals or a common denominator to compare their relative order.',
+            'Compare fractions exactly by rewriting pairs with a common denominator or using cross-multiplication.',
           solution:
-            'Convert to decimals: $\\frac{1}{3} \\approx 0.333$ and $\\frac{1}{2} = 0.50$.\nOption A ($\\frac{2}{7} \\approx 0.286$), Option B ($\\frac{1}{4} = 0.25$), Option C ($\\frac{2}{5} = 0.40$), Option D ($\\frac{5}{9} \\approx 0.556$).\nOnly $\\frac{2}{5}$ lies strictly between $\\frac{1}{3}$ and $\\frac{1}{2}$.',
+            'Compare each option directly against $\\frac{1}{3}$ and $\\frac{1}{2}$ using common denominators:\n- Option A ($\\frac{2}{7}$): With denominator $21$, $\\frac{2}{7} = \\frac{6}{21} < \\frac{7}{21} = \\frac{1}{3}$ (too small).\n- Option B ($\\frac{1}{4}$): Since $4 > 3$, $\\frac{1}{4} < \\frac{1}{3}$ (too small).\n- Option C ($\\frac{2}{5}$): With denominator $15$, $\\frac{1}{3} = \\frac{5}{15} < \\frac{6}{15} = \\frac{2}{5}$. With denominator $10$, $\\frac{2}{5} = \\frac{4}{10} < \\frac{5}{10} = \\frac{1}{2}$. Thus $\\frac{1}{3} < \\frac{2}{5} < \\frac{1}{2}$.\n- Option D ($\\frac{5}{9}$): With denominator $18$, $\\frac{5}{9} = \\frac{10}{18} > \\frac{9}{18} = \\frac{1}{2}$ (too large).\nTherefore, only $\\frac{2}{5}$ lies strictly between $\\frac{1}{3}$ and $\\frac{1}{2}$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -202,7 +202,7 @@ export default {
           principle:
             'A repeating decimal of the form $0.ddd\\dots$ with a single repeating digit $d$ equals $\\frac{d}{9}$.',
           solution:
-            'Let $x = 0.444\\dots$, so $10x = 4.444\\dots$\nSubtracting gives $9x = 4$, therefore $x = \\frac{4}{9}$.',
+            'Let $x = 0.444\\dots$. Because only $1$ digit repeats, multiply both sides by $10$ to shift the decimal point one place to the right:\n$$10x = 4.444\\dots$$\nSubtracting $x = 0.444\\dots$ cancels out the infinite repeating tail:\n$$10x - x = 4.444\\dots - 0.444\\dots \\implies 9x = 4 \\implies x = \\frac{4}{9}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -298,7 +298,7 @@ export default {
           principle:
             'The sum of the first $n$ even positive integers is $2(1 + 2 + \\dots + n) = n(n + 1)$.',
           solution:
-            'The sequence is $2, 4, 6, 8, \\dots, 20$.\n$$\\text{Sum} = 2 \\times (1 + 2 + 3 + \\dots + 10) = 2 \\times 55 = 110.$$',
+            'The first $10$ even positive integers are $2 \\times 1, 2 \\times 2, \\dots, 2 \\times 10$, forming the sequence $2, 4, 6, \\dots, 20$.\nFactor out $2$ from every term:\n$$\\text{Sum} = 2 \\times (1 + 2 + 3 + \\dots + 10).$$\nUsing Gauss pairing $(1 + 10) + (2 + 9) + \\dots + (5 + 6)$, there are $5$ pairs summing to $11$, so $1 + 2 + \\dots + 10 = \\frac{10 \\times 11}{2} = 55$.\nTherefore, $\\text{Sum} = 2 \\times 55 = 110$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -334,7 +334,7 @@ export default {
           principle:
             'Jika faktorisasi prima suatu bilangan adalah $p_1^{e_1} \\times p_2^{e_2} \\times \\dots$, maka banyaknya faktor positif adalah $(e_1 + 1)(e_2 + 1)\\dots$',
           solution:
-            'Faktorisasi prima dari $72$ adalah $2^3 \\times 3^2$.\nJumlah faktor pembaginya adalah hasil kali $(\\text{pangkat} + 1)$:\n$$(3 + 1)(2 + 1) = 4 \\times 3 = 12\\text{ faktor}.$$',
+            'Faktorisasi prima dari $72$ adalah $2^3 \\times 3^2$.\nSetiap faktor pembagi positif dari $72$ harus berbentuk $2^a \\times 3^b$, dengan $a \\in \\{0, 1, 2, 3\\}$ ($4$ pilihan) dan $b \\in \\{0, 1, 2\\}$ ($3$ pilihan).\nDengan aturan perkalian, banyaknya faktor positif adalah:\n$$(3 + 1)(2 + 1) = 4 \\times 3 = 12\\text{ faktor}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         }
       ]
@@ -355,7 +355,7 @@ export default {
           principle:
             'List all triples of distinct positive integer factors of $36$ and choose the triple with the minimum sum (factors closest together yield the smallest sum).',
           solution:
-            'The distinct positive integers that multiply to $36$ are $(1, 2, 18)$, $(1, 3, 12)$, $(1, 4, 9)$, or $(2, 3, 6)$.\nTheir sums are $21, 16, 14,$ and $11$.\nThe smallest sum comes from $2 + 3 + 6 = 11$.',
+            'Order the three distinct positive integers as $a < b < c$ with $abc = 36$. Note that $a$ cannot be $3$ or greater, because the smallest product with $a \\ge 3$ is $3 \\times 4 \\times 5 = 60 > 36$. Thus $a \\in \\{1, 2\\}$:\n- If $a = 1$, then $bc = 36$ with $1 < b < c$, giving $(1, 2, 18)$, $(1, 3, 12)$, and $(1, 4, 9)$ (sums $21, 16, 14$).\n- If $a = 2$, then $bc = 18$ with $2 < b < c$, giving only $(2, 3, 6)$ (sum $11$).\nTherefore, the smallest possible sum is $2 + 3 + 6 = 11$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -368,7 +368,7 @@ export default {
           principle:
             'Pembulatan ke puluhan terdekat menjadi $400$ mencakup bilangan mulai dari $395$ sampai $404$.',
           solution:
-            'Rentang bilangan asli yang dibulatkan menjadi $400$ (ke puluhan terdekat) adalah $395$ hingga $404$.\nSelisih terbesar dan terkecil $= 404 - 395 = 9$.',
+            'Pada pembulatan ke puluhan terdekat, bilangan dengan angka satuan $\\ge 5$ dibulatkan ke atas (sehingga $395$ sampai $399$ dibulatkan menjadi $400$), sedangkan satuan $< 5$ dibulatkan ke bawah (sehingga $400$ sampai $404$ dibulatkan menjadi $400$).\nJadi, rentangnya adalah $395$ hingga $404$, dan selisih bilangan terbesar dan terkecilnya adalah $404 - 395 = 9$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -394,7 +394,7 @@ export default {
           principle:
             'Kedua lampu berkedip bersamaan setiap kelipatan dari $\\text{KPK}$ kedua periodenya.',
           solution:
-            'Cari KPK dari $18$ dan $24$, yaitu $72$ detik. Mereka berkedip bersama setiap $72$ detik.\n$5$ menit $= 300$ detik.\nBanyak kedipan bersamaan setelah start awal $= 300 \\div 72 = 4$ (sisa $12$ detik), yakni pada detik ke-$72, 144, 216,$ dan $288$. Jadi $4$ kali.',
+            'Faktorisasi prima: $18 = 2 \\times 3^2$ dan $24 = 2^3 \\times 3$, sehingga $\\text{KPK}(18, 24) = 2^3 \\times 3^2 = 72$ detik. Artinya, kedua lampu berkedip bersamaan setiap $72$ detik.\nDalam $5$ menit $= 5 \\times 60 = 300$ detik, banyaknya kedipan bersamaan setelah start awal adalah hasil bagi $300 \\div 72 = 4$ (sisa $12$ detik), yakni pada detik ke-$72, 144, 216,$ dan $288$. Jadi, sebanyak $4$ kali.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -481,7 +481,7 @@ export default {
           principle:
             'Expand a base-$b$ numeral by place values $b^1$ and $b^0$ and solve the resulting equation in base $10$.',
           solution:
-            'Translate $25_b$ to base $10$: $2b + 5 = 17$.\nSolve for $b$: $2b = 12$, so $b = 6$ (valid since $b > 5$).',
+            'Expand $25_b$ into base $10$ using place values $b^1$ and $b^0$:\n$$(2 \\times b^1) + (5 \\times b^0) = 2b + 5.$$\nSetting this equal to $17$ gives $2b + 5 = 17 \\implies 2b = 12 \\implies b = 6$.\nSince the digit $5$ appears in $25_b$, the base must satisfy $b > 5$, so $b = 6$ is valid.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -520,7 +520,7 @@ export default {
           principle:
             'Amati hubungan antara banyaknya digit pengali (atau bilangan penambah terakhir) dengan banyaknya angka $1$ pada hasil.',
           solution:
-            'Pola menunjukkan bahwa jumlah angka $1$ pada hasil akhir sama dengan angka penjumlah terakhir.\nKarena ditambahkan $6$, hasilnya terdiri dari enam angka $1$, yaitu $111111$.',
+            'Pada setiap baris, bilangan yang tersusun dari angka $1$ sampai $n$ dikalikan $9$ lalu ditambah $(n + 1)$, menghasilkan bilangan yang terdiri dari $(n + 1)$ buah angka $1$:\n- $1234 \\times 9 + 5 = 11111$ (lima angka $1$)\n- $12345 \\times 9 + 6 = 111111$ (enam angka $1$)\nDapat diperiksa pula secara langsung: $12345 \\times 9 + 6 = 111105 + 6 = 111111$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

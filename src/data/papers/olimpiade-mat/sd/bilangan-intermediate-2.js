@@ -286,7 +286,7 @@ export default {
           principle:
             'Uraikan bilangan komposit hingga seluruh faktornya berupa bilangan prima dalam bentuk pangkat.',
           solution:
-            'Faktorkan $999$ secara bertahap:\n$$999 = 9 \\times 111 = 3^2 \\times (3 \\times 37) = 3^3 \\times 37.$$',
+            'Faktorkan $999$ secara bertahap hingga semua faktornya prima:\n$$999 = 9 \\times 111 = 3^2 \\times 111.$$\nKarena jumlah digit $111$ adalah $1 + 1 + 1 = 3$ (habis dibagi $3$), maka $111 = 3 \\times 37$. Periksa bahwa $37$ tidak habis dibagi oleh bilangan prima $\\le \\sqrt{37}$ ($2, 3, 5$), sehingga $37$ adalah bilangan prima.\nDengan demikian:\n$$999 = 3^2 \\times 3 \\times 37 = 3^3 \\times 37.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -298,7 +298,7 @@ export default {
           principle:
             'A pure repeating decimal with a $2$-digit repeating block $\\overline{ab}$ equals $\\frac{\\overline{ab}}{99}$, which is then reduced to lowest terms.',
           solution:
-            'The repeating decimal $0.3636\\dots$ with two repeating digits can be written as $\\frac{36}{99}$.\nSimplify the fraction by dividing numerator and denominator by $9$:\n$$\\frac{36}{99} = \\frac{4}{11}.$$',
+            'Let $x = 0.363636\\dots$. Since the repeating block "$36$" has $2$ digits, multiply by $10^2 = 100$ to shift one full block to the left of the decimal point:\n$$100x = 36.363636\\dots$$\nSubtract the original equation to cancel the repeating tail:\n$$100x - x = 36.363636\\dots - 0.363636\\dots \\implies 99x = 36 \\implies x = \\frac{36}{99}.$$\nDivide numerator and denominator by $\\gcd(36, 99) = 9$:\n$$\\frac{36}{99} = \\frac{4}{11}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -310,7 +310,7 @@ export default {
           principle:
             'Dalam sistem bilangan heksadesimal, huruf A–F berturut-turut merepresentasikan nilai desimal $10$ hingga $15$.',
           solution:
-            'Sistem heksadesimal: $A = 10, B = 11, C = 12, D = 13, E = 14, F = 15$.\nJadi, digit huruf "D" bernilai $13$.',
+            'Sistem heksadesimal (basis $16$) membutuhkan $16$ lambang satu digit untuk nilai $0$ hingga $15$. Sepuluh nilai pertama memakai angka $0$–$9$, lalu enam nilai berikutnya dilambangkan dengan huruf secara berurutan:\n$$A = 10, \\quad B = 11, \\quad C = 12, \\quad D = 13, \\quad E = 14, \\quad F = 15.$$\nJadi, digit huruf "D" bernilai $13$ dalam basis $10$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -322,7 +322,7 @@ export default {
           principle:
             'The $n$-th term in the sequence of positive perfect squares is $n^2$.',
           solution:
-            'The sequence of perfect squares is given by $n^2$.\nFor the 12th term, $n = 12$, so:\n$$12^2 = 144.$$',
+            'Verify the pattern for the given terms:\n$$a_1 = 1^2 = 1, \\quad a_2 = 2^2 = 4, \\quad a_3 = 3^2 = 9, \\quad a_4 = 4^2 = 16, \\quad a_5 = 5^2 = 25.$$\nIn general, the $n$-th term is $n^2$. Substituting $n = 12$ gives the 12th term:\n$$a_{12} = 12^2 = 12 \\times 12 = 144.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -334,7 +334,7 @@ export default {
           principle:
             'Selesaikan persamaan linear satu variabel dengan melakukan operasi invers yang sama pada kedua ruas.',
           solution:
-            'Selesaikan persamaannya: bagi kedua ruas dengan $5$, sehingga $x - 4 = 9$.\nTambahkan $4$ ke kedua ruas, didapat $x = 13$.',
+            'Bagi kedua ruas persamaan dengan $5$ untuk mengisolasi $(x - 4)$:\n$$\\frac{5 \\times (x - 4)}{5} = \\frac{45}{5} \\implies x - 4 = 9.$$\nKemudian tambahkan $4$ pada kedua ruas untuk memperoleh $x$:\n$$x - 4 + 4 = 9 + 4 \\implies x = 13.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         }
       ]
@@ -481,7 +481,7 @@ export default {
           principle:
             'Expand a base-5 number using powers of $5$ ($5^1$ and $5^0$) to compute its decimal value.',
           solution:
-            'Evaluate $32_5$ in base-10:\n$$x = (3 \\times 5^1) + (2 \\times 5^0) = 15 + 2 = 17.$$',
+            'In base-5, place values from right to left are powers of $5$: the units place has value $5^0 = 1$ and the next place has value $5^1 = 5$.\nExpanding $32_5$ into base-10 gives:\n$$x = (3 \\times 5^1) + (2 \\times 5^0) = (3 \\times 5) + (2 \\times 1) = 15 + 2 = 17.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -502,12 +502,12 @@ export default {
           marks: 1,
           prompt:
             'A custom mathematical operation $\\Delta$ is defined as $a \\Delta b = \\frac{a + b}{a - b}$. Find the exact value of $7 \\Delta 3$.',
-          answer: '$2.5$ (atau $\\frac{5}{2}$)',
+          answer: '$2.5$ (or $\\frac{5}{2}$)',
           answerNumeric: [{ name: 'value', value: 2.5 }],
           principle:
             'Substitute the given operands directly into the defined formula $a \\Delta b = \\frac{a + b}{a - b}$ and simplify.',
           solution:
-            'Substitute $a = 7$ and $b = 3$ into the definition:\n$$7 \\Delta 3 = \\frac{7 + 3}{7 - 3} = \\frac{10}{4}.$$\nSimplifying gives $\\frac{5}{2}$ or $2.5$.',
+            'Substitute $a = 7$ and $b = 3$ into the definition:\n$$7 \\Delta 3 = \\frac{7 + 3}{7 - 3} = \\frac{10}{4}.$$\nDivide numerator and denominator by $2$ to get the exact simplified fraction $\\frac{5}{2}$, which equals $2.5$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

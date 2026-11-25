@@ -94,12 +94,12 @@ export function OlimpiadeHubPage() {
 
       <section className="hub-section" aria-label="Daftar kompetisi">
         {shownCompetitions.map((c) => {
-          const papers = c.amc ? [] : papersOf(c).filter(matchesLevel);
+          const papers = papersOf(c).filter(matchesLevel);
           const amcLevels = c.amc
             ? AMC_LEVELS_METADATA.filter((lvl) => level === 'all' || (level === 'SMP' && lvl.level === 8) || (level === 'SMA' && lvl.level !== 8))
             : [];
           if (!c.amc && papers.length === 0) return null;
-          if (c.amc && amcLevels.length === 0) return null;
+          if (c.amc && amcLevels.length === 0 && papers.length === 0) return null;
           return (
             <article key={c.id} className="olim-block" id={`kompetisi-${c.id}`}>
               <header className="olim-block-head">
@@ -110,7 +110,7 @@ export function OlimpiadeHubPage() {
                 </div>
               </header>
 
-              {c.amc ? (
+              {c.amc && amcLevels.length > 0 && (
                 <div className="olim-amc-grid">
                   {amcLevels.map((lvl) => (
                     <Link key={lvl.level} to={amcLevelPath(lvl.level)} className="olim-amc-card">
@@ -122,8 +122,10 @@ export function OlimpiadeHubPage() {
                   ))}
                   <p className="olim-amc-note">Total {amcTotal} bab konsep dan latihan untuk AMC 8, 10, dan 12.</p>
                 </div>
-              ) : (
-                <div className="info-grid">
+              )}
+
+              {papers.length > 0 && (
+                <div className="info-grid" style={c.amc && amcLevels.length > 0 ? { marginTop: '0.85rem' } : undefined}>
                   {papers.map((paper) => {
                     const meta = PAPER_SUBJECT_META[paper.subject] || {};
                     const info = formatPaperMeta(paper);
@@ -147,7 +149,13 @@ export function OlimpiadeHubPage() {
             </article>
           );
         })}
-        {shownCompetitions.every((c) => (c.amc ? false : papersOf(c).filter(matchesLevel).length === 0)) && active !== 'amc' && (
+        {shownCompetitions.every((c) => {
+          const papersCount = papersOf(c).filter(matchesLevel).length;
+          const amcLevelsCount = c.amc
+            ? AMC_LEVELS_METADATA.filter((lvl) => level === 'all' || (level === 'SMP' && lvl.level === 8) || (level === 'SMA' && lvl.level !== 8)).length
+            : 0;
+          return papersCount === 0 && amcLevelsCount === 0;
+        }) && (
           <p className="olim-empty">Belum ada paket untuk kombinasi kompetisi dan jenjang ini.</p>
         )}
       </section>

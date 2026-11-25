@@ -60,6 +60,8 @@ describe('Pusat Olimpiade /olimpiade', () => {
     }
     expect(html).toContain('href="/olimpiade/amc-8"');
     expect(html).toContain('href="/olimpiade/amc-12"');
+    expect(html).toContain('href="/paket-soal/olimpiade-mat/amc-8-2024"');
+    expect(html).toContain('IKMC / Kangaroo');
     expect(OLYMPIAD_COMPETITIONS.filter((c) => c.amc)).toHaveLength(1);
   });
 

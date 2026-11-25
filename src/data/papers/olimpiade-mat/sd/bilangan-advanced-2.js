@@ -56,9 +56,9 @@ export default {
             'A math test has $40$ questions. A student scores $5$ points for each correct answer, loses $2$ points for each incorrect answer, and gets $0$ points for omitted questions. If John scored exactly $131$ points, what is the maximum number of questions he could have answered correctly?\nA. 25\nB. 27\nC. 29\nD. 31',
           answer: 'C. 29',
           principle:
-            'Formulate the linear Diophantine equation $5C - 2I = 131$ subject to the total question constraint $C + I \\le 40$.',
+            'Formulate the linear Diophantine equation $5C - 2I = 131$ with $C + I \\le 40$, then use parity and the boundary inequality to find the largest valid integer $C$.',
           solution:
-            'Let $C$ be the number of correct answers and $I$ be the number of incorrect answers. Then $5C - 2I = 131$ and $C + I \\le 40$.\nTesting options: if $C = 29$, then $145 - 2I = 131 \\implies I = 7$, giving $C + I = 36 \\le 40$ (valid).\nIf $C = 31$, then $155 - 2I = 131 \\implies I = 12$, giving $C + I = 43 > 40$ (exceeds total questions).\nThus, the maximum number of correct answers is $29$.',
+            'Let $C$ be the number of correct answers and $I$ be the number of incorrect answers ($C, I \\ge 0$). Then:\n$$5C - 2I = 131 \\implies I = \\frac{5C - 131}{2}.$$\nFor $I$ to be a non-negative integer, $5C - 131$ must be an even non-negative number, so $C$ must be odd and $C \\ge 27$.\nSubstituting $I$ into the total question limit $C + I \\le 40$ gives:\n$$C + \\frac{5C - 131}{2} \\le 40 \\implies 2C + 5C - 131 \\le 80 \\implies 7C \\le 211 \\implies C \\le 30\\frac{1}{7}.$$\nSince $C$ is an odd integer with $C \\le 30$, the maximum possible value is $C = 29$ (which gives $I = \\frac{5(29) - 131}{2} = 7$ and $C + I = 36 \\le 40$).',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -70,7 +70,7 @@ export default {
           principle:
             'Suatu bilangan prima $2$-angka yang tetap prima saat digitnya dibalik hanya dapat tersusun dari digit-digit ganjil selain $5$, yaitu $1, 3, 7,$ dan $9$.',
           solution:
-            'Bilangan prima $2$-angka yang jika dibalik juga prima adalah:\n$11, 13 \\text{ (menjadi } 31\\text{)}, 17 \\text{ (menjadi } 71\\text{)}, 31 \\text{ (menjadi } 13\\text{)}, 37 \\text{ (menjadi } 73\\text{)}, 71 \\text{ (menjadi } 17\\text{)}, 73 \\text{ (menjadi } 37\\text{)}, 79 \\text{ (menjadi } 97\\text{)},$ dan $97 \\text{ (menjadi } 79\\text{)}$.\nTotal ada $9$ bilangan.',
+            'Misalkan bilangan prima $2$-angka tersebut adalah $\\overline{ab}$ dan kebalikannya $\\overline{ba}$ juga prima. Karena keduanya lebih besar dari $5$, digit satuannya ($b$ maupun $a$) tidak boleh genap atau $5$, sehingga $a, b \\in \\{1, 3, 7, 9\\}$.\nPeriksa seluruh $4 \\times 4 = 16$ kemungkinan berdasarkan digit puluhan:\n- Puluhan $1$: $11 \\to 11$ (prima), $13 \\to 31$ (prima), $17 \\to 71$ (prima), sedangkan $19 \\to 91 = 7 \\times 13$ (bukan prima).\n- Puluhan $3$: $31 \\to 13$ (prima), $33 = 3 \\times 11$ (bukan prima), $37 \\to 73$ (prima), $39 = 3 \\times 13$ (bukan prima).\n- Puluhan $7$: $71 \\to 17$ (prima), $73 \\to 37$ (prima), $77 = 7 \\times 11$ (bukan prima), $79 \\to 97$ (prima).\n- Puluhan $9$: $91 = 7 \\times 13$, $93 = 3 \\times 31$, $99 = 9 \\times 11$ (ketiganya bukan prima), hanya $97 \\to 79$ (prima).\nJadi seluruhnya ada $9$ bilangan: $11, 13, 17, 31, 37, 71, 73, 79,$ dan $97$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -140,9 +140,9 @@ export default {
             'Hasil kali dari tiga bilangan prima yang berurutan adalah $2.431$. Berapakah jumlah dari ketiga bilangan prima tersebut?\nA. 39\nB. 41\nC. 45\nD. 49',
           answer: 'B. 41',
           principle:
-            'Perkirakan nilai tengah ketiga bilangan prima menggunakan akar pangkat tiga dari hasil kalinya, lalu verifikasi dengan perkalian.',
+            'Faktorkan $2.431$ secara langsung menggunakan uji keterbagian prima berurutan dan identitas selisih kuadrat.',
           solution:
-            'Akar pangkat tiga dari $2.431$ mendekati $13$. Uji tiga bilangan prima berurutan di sekitar $13$, yaitu $11, 13,$ dan $17$:\n$$11 \\times 13 \\times 17 = 143 \\times 17 = 2.431.$$\nJadi ketiga bilangan prima tersebut adalah $11, 13,$ dan $17$, dengan jumlah $11 + 13 + 17 = 41$.',
+            'Faktorkan $2.431$ ke dalam faktor-faktor primanya:\n- Bilangan $2.431$ ganjil (tidak habis dibagi $2$), jumlah digitnya $2+4+3+1 = 10$ (tidak habis dibagi $3$), dan satuannya $1$ (tidak habis dibagi $5$).\n- Bagi dengan $7$: $2.431 = 7 \\times 347 + 2$ (tidak habis dibagi $7$).\n- Uji keterbagian $11$: selisih selang-seling digitnya $(1 + 4) - (3 + 2) = 0$, sehingga $2.431$ habis dibagi $11$: $2.431 = 11 \\times 221$.\n- Faktorkan $221$ dengan selisih kuadrat: $221 = 225 - 4 = 15^2 - 2^2 = (15 - 2)(15 + 2) = 13 \\times 17$.\nDiperoleh $2.431 = 11 \\times 13 \\times 17$, yang merupakan tiga bilangan prima berurutan. Jumlah ketiganya adalah $11 + 13 + 17 = 41$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -190,7 +190,7 @@ export default {
           principle:
             'Banyaknya pasangan unik dari $n$ peserta tanpa pengulangan adalah $\\frac{n(n - 1)}{2}$.',
           solution:
-            'Gunakan rumus kombinasi pasangan untuk $n = 20$:\n$$\\frac{20 \\times 19}{2} = \\frac{380}{2} = 190\\text{ pertandingan}.$$',
+            'Setiap dari $20$ tim harus bertanding melawan $19$ tim lainnya, sehingga terdapat $20 \\times 19 = 380$ pasangan berurutan.\nNamun, pertandingan antara tim $A$ dan tim $B$ sama dengan pertandingan antara tim $B$ dan tim $A$, sehingga setiap pertandingan terhitung dua kali.\nOleh karena itu, total pertandingan unik adalah:\n$$\\frac{20 \\times 19}{2} = \\frac{380}{2} = 190\\text{ pertandingan}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -202,7 +202,7 @@ export default {
           principle:
             'Write $n = 2^x \\times 3^y$ and match the divisibility conditions on the exponents $x$ and $y$ for squares (even exponents) and cubes (multiples of $3$).',
           solution:
-            'Let $n = 2^x \\times 3^y$.\nFor $\\frac{n}{2} = 2^{x-1} \\times 3^y$ to be a square, $x - 1$ must be even ($x$ is odd) and $y$ must be even.\nFor $\\frac{n}{3} = 2^x \\times 3^{y-1}$ to be a cube, $x$ must be a multiple of $3$ and $y - 1$ must be a multiple of $3$.\nThe smallest odd multiple of $3$ is $x = 3$, and the smallest even $y$ with $y - 1$ divisible by $3$ is $y = 4$.\nThus, $n = 2^3 \\times 3^4 = 8 \\times 81 = 648$.',
+            'To minimize $n$, any prime factor other than $2$ and $3$ should have exponent $0$, so write $n = 2^x \\times 3^y$.\nFor $\\frac{n}{2} = 2^{x-1} \\times 3^y$ to be a square, $x - 1$ must be even ($x$ is odd) and $y$ must be even.\nFor $\\frac{n}{3} = 2^x \\times 3^{y-1}$ to be a cube, $x$ must be a multiple of $3$ and $y - 1$ must be a multiple of $3$.\nThe smallest odd multiple of $3$ is $x = 3$, and the smallest even $y$ with $y - 1$ divisible by $3$ is $y = 4$.\nThus, $n = 2^3 \\times 3^4 = 8 \\times 81 = 648$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -236,9 +236,9 @@ export default {
             'Diketahui persamaan basis $1000_x = 216_{10}$. Nilai dari basis $x$ adalah...\nA. 5\nB. 6\nC. 7\nD. 8',
           answer: 'B. 6',
           principle:
-            'Nilai bilangan $1000_x$ dalam basis $10$ adalah $1 \\times x^3$.',
+            'Uraikan $1000_x$ menurut nilai tempat pangkat basis $x$, lalu gunakan faktorisasi prima pada ruas kanan untuk menentukan nilai $x$ secara eksak.',
           solution:
-            'Persamaan menjadi $1 \\times x^3 = 216$, sehingga $x^3 = 216$.\nKarena $6 \\times 6 \\times 6 = 216$, maka $x = 6$.',
+            'Berdasarkan nilai tempat dalam basis $x$:\n$$1000_x = 1 \\times x^3 + 0 \\times x^2 + 0 \\times x^1 + 0 \\times x^0 = x^3.$$\nFaktorkan $216$ ke dalam faktor-faktor primanya: $216 = 8 \\times 27 = 2^3 \\times 3^3 = (2 \\times 3)^3 = 6^3$.\nSehingga $x^3 = 6^3$, yang menghasilkan $x = 6$ (memenuhi syarat basis $x > 1$).',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -274,7 +274,7 @@ export default {
           principle:
             'If an integer leaves the same remainder when dividing $a$, $b$, and $c$, it must divide their pairwise differences $|b - a|$ and $|c - b|$; the greatest such divisor is their GCD.',
           solution:
-            'Compute the differences: $220 - 135 = 85$ and $305 - 220 = 85$.\nThe greatest common divisor of $85$ and $85$ is $85$.',
+            'Suppose the divisor is $d$ and the common remainder is $r$, so $135 = q_1 d + r$, $220 = q_2 d + r$, and $305 = q_3 d + r$.\nSubtracting pairs cancels the remainder $r$, meaning $d$ must divide both differences:\n$$220 - 135 = 85 = (q_2 - q_1)d \\quad \\text{and} \\quad 305 - 220 = 85 = (q_3 - q_2)d.$$\nThe greatest integer dividing both differences is $\\gcd(85, 85) = 85$ (checking: $135 = 1 \\times 85 + 50$, $220 = 2 \\times 85 + 50$, and $305 = 3 \\times 85 + 50$, each leaving remainder $50$).',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -284,9 +284,9 @@ export default {
             'Sebuah bilangan genap $n$ diketahui memiliki tepat $6$ faktor pembagi positif. Jika nilai $n$ tidak lebih dari $30$ ($n \\le 30$), berapakah nilai $n$ terbesar yang mungkin?\nA. 20\nB. 24\nC. 28\nD. 30',
           answer: 'C. 28',
           principle:
-            'Bilangan dengan tepat $6$ faktor positif memiliki bentuk faktorisasi prima $p^5$ atau $p^1 q^2$ dengan $p, q$ bilangan prima berbeda.',
+            'Bilangan dengan tepat $6$ faktor positif memiliki bentuk faktorisasi prima $p^5$ (karena $5+1=6$) atau $p^1 q^2$ (karena $(1+1)(2+1)=6$) dengan $p, q$ prima berbeda.',
           solution:
-            'Karena $n$ genap, salah satu faktor primanya harus $2$.\nUntuk bentuk $2^5$: $2^5 = 32 > 30$ (tidak memenuhi).\nUntuk bentuk $p \\times q^2$: $2 \\times 3^2 = 18$, $3 \\times 2^2 = 12$, $5 \\times 2^2 = 20$, $7 \\times 2^2 = 28$, dan $11 \\times 2^2 = 44 > 30$.\nNilai genap terbesar yang memenuhi adalah $28$.',
+            'Karena banyaknya faktor positif adalah $(a_1 + 1)(a_2 + 1)\\dots = 6$, dan $6$ hanya dapat difaktorkan menjadi $6$ atau $2 \\times 3$, maka bentuk prima $n$ adalah $p^5$ atau $p^1 q^2$.\nKarena $n$ genap, salah satu faktor primanya harus $2$:\n- Bentuk $p^5$: $2^5 = 32 > 30$ (tidak memenuhi).\n- Bentuk $2 \\times q^2$ (dengan $q$ prima ganjil): $2 \\times 3^2 = 18$, sedangkan $2 \\times 5^2 = 50 > 30$.\n- Bentuk $p \\times 2^2 = 4p$ (dengan $p$ prima ganjil): $3 \\times 4 = 12$, $5 \\times 4 = 20$, $7 \\times 4 = 28$, sedangkan $11 \\times 4 = 44 > 30$.\nJadi nilai genap $n \\le 30$ terbesar yang memenuhi adalah $28$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -322,7 +322,7 @@ export default {
           principle:
             'Determine the unit digit of each power using its modulo-$4$ cycle length, then multiply the resulting unit digits modulo $10$.',
           solution:
-            'Powers of $7$ and $3$ both cycle in unit digits every $4$ steps.\nFor $7^{2025}$: $2025 \\bmod 4 = 1$, so the unit digit matches $7^1 = 7$.\nFor $3^{2026}$: $2026 \\bmod 4 = 2$, so the unit digit matches $3^2 = 9$.\nMultiplying the unit digits gives $7 \\times 9 = 63$, so the final unit digit is $3$.',
+            'The unit digits of powers of $7$ repeat in a cycle of length $4$: $(7, 9, 3, 1)$, and powers of $3$ also cycle every $4$ steps: $(3, 9, 7, 1)$.\nFor $7^{2025}$: $2025 = 4 \\times 506 + 1$, so the unit digit matches $7^1 = 7$.\nFor $3^{2026}$: $2026 = 4 \\times 506 + 2$, so the unit digit matches $3^2 = 9$.\nMultiplying the unit digits gives $7 \\times 9 = 63$, so the final unit digit is $3$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -432,7 +432,7 @@ export default {
           principle:
             'The number of unique pairs among $n$ people is given by $\\frac{n(n - 1)}{2}$.',
           solution:
-            'Using the handshake formula for $n = 30$:\n$$\\frac{30 \\times 29}{2} = 15 \\times 29 = 435\\text{ handshakes}.$$',
+            'Each of the $30$ students shakes hands with the other $29$ students, producing $30 \\times 29 = 870$ directed greetings.\nBecause every handshake involves $2$ people (so student $A$ shaking hands with student $B$ is the same handshake as $B$ with $A$), each handshake is counted twice.\nDividing by $2$ gives the total number of handshakes:\n$$\\frac{30 \\times 29}{2} = 15 \\times 29 = 435\\text{ handshakes}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -456,9 +456,9 @@ export default {
           answer: '60',
           answerNumeric: [{ name: 'difference', value: 60 }],
           principle:
-            'Subtract the known prime from the total sum, then pair the smallest prime summand with its prime complement to maximize the difference.',
+            'Subtract the known prime from $100$ to find the sum of the remaining two odd primes $p < q$, then minimize $p$ to maximize $q - p = 98 - 2p$.',
           solution:
-            'With one prime equal to $2$, the other two distinct odd primes sum to $100 - 2 = 98$.\nThe prime pairs summing to $98$ are $(19, 79)$, $(31, 67)$, and $(37, 61)$.\nThe pair with the greatest difference is $(19, 79)$, giving $79 - 19 = 60$.',
+            'With one prime equal to $2$, let the other two distinct odd primes be $p$ and $q$ ($p < q$), so $p + q = 100 - 2 = 98$.\nTheir difference is $q - p = (98 - p) - p = 98 - 2p$, which is maximized when $p$ is as small as possible.\nTesting odd primes $p$ in increasing order:\n- $p = 3 \\implies q = 95 = 5 \\times 19$ (composite)\n- $p = 5 \\implies q = 93 = 3 \\times 31$ (composite)\n- $p = 7 \\implies q = 91 = 7 \\times 13$ (composite)\n- $p = 11 \\implies q = 87 = 3 \\times 29$ (composite)\n- $p = 13 \\implies q = 85 = 5 \\times 17$ (composite)\n- $p = 17 \\implies q = 81 = 9^2$ (composite)\n- $p = 19 \\implies q = 79$ (both $19$ and $79$ are prime).\nThus, the maximum possible difference is $79 - 19 = 60$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -481,9 +481,9 @@ export default {
           answer: '8',
           answerNumeric: [{ name: 'base', value: 8 }],
           principle:
-            'Expand the base-$b$ representation into a linear equation in base $10$.',
+            'Expand the base-$b$ representation by place value into a linear equation in base $10$, and verify that $b$ exceeds every digit in the numeral.',
           solution:
-            'Convert $65_b$ to base $10$:\n$$6b + 5 = 53 \\implies 6b = 48 \\implies b = 8.$$',
+            'Using place values in base $b$, expand $65_b$ into base $10$:\n$$6 \\times b^1 + 5 \\times b^0 = 53 \\implies 6b + 5 = 53 \\implies 6b = 48 \\implies b = 8.$$\nSince the largest digit in $65_b$ is $6$ and $b = 8 > 6$, base $8$ is valid.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -494,9 +494,9 @@ export default {
           answer: '20',
           answerNumeric: [{ name: 'n', value: 20 }],
           principle:
-            'Jumlah $n$ bilangan ganjil positif pertama ($1 + 3 + 5 + \\dots$) selalu sama dengan $n^2$.',
+            'Jumlah $n$ bilangan ganjil positif pertama adalah $n^2$ karena rata-rata suku pertama ($1$) dan suku ke-$n$ ($2n - 1$) adalah $n$, dikalikan $n$ suku.',
           solution:
-            'Karena jumlah $n$ bilangan ganjil positif pertama adalah $n^2$, diperoleh:\n$$n^2 = 400 \\implies n = 20.$$',
+            'Bilangan ganjil positif ke-$n$ adalah $2n - 1$. Dengan memasangkan suku pertama dan terakhir secara berurutan:\n$$1 + 3 + 5 + \\dots + (2n - 1) = \\frac{n \\times (1 + (2n - 1))}{2} = \\frac{n \\times 2n}{2} = n^2.$$\nDiketahui jumlahnya $400$, sehingga:\n$$n^2 = 400 = 20^2.$$\nKarena $n > 0$, diperoleh $n = 20$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -522,7 +522,7 @@ export default {
           principle:
             'Faktorkan selisih dua kuadrat $p^2 - q^2 = (p - q)(p + q)$ untuk menyederhanakan persamaan.',
           solution:
-            'Faktorkan ruas kiri: $(p - q)(p + q) = p + q$.\nKarena $p + q > 0$, bagi kedua ruas dengan $(p + q)$ sehingga diperoleh $p - q = 1$.\nSatu-satunya pasangan bilangan prima yang berselisih $1$ adalah $p = 3$ dan $q = 2$.\nMaka $p \\times q = 3 \\times 2 = 6$.',
+            'Faktorkan ruas kiri: $(p - q)(p + q) = p + q$.\nKarena $p$ dan $q$ bilangan prima sehingga $p + q > 0$, bagi kedua ruas dengan $(p + q)$ untuk memperoleh $p - q = 1$, artinya $p = q + 1$.\nDari dua bilangan bulat berurutan $q$ dan $q + 1$, salah satunya pasti genap; padahal satu-satunya bilangan prima genap adalah $2$.\nKarena $q < p$, haruslah $q = 2$ dan $p = 3$.\nJadi $p \\times q = 3 \\times 2 = 6$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -534,7 +534,7 @@ export default {
           principle:
             'Multiply by powers of $10$ to align the repeating decimal part, subtract to obtain a linear equation, and reduce the fraction to lowest terms.',
           solution:
-            'Let $x = 3.1666\\dots$, so $10x = 31.666\\dots$\nSubtracting $x$ from $10x$ gives $9x = 28.5$.\nMultiplying by $2$ gives $18x = 57$, so:\n$$x = \\frac{57}{18} = \\frac{57 \\div 3}{18 \\div 3} = \\frac{19}{6}.$$',
+            'Let $x = 3.1666\\dots$, so $10x = 31.666\\dots$ and $100x = 316.666\\dots$\nSubtracting $10x$ from $100x$ cancels the repeating decimal tail:\n$$90x = 285 \\implies x = \\frac{285}{90} = \\frac{285 \\div 15}{90 \\div 15} = \\frac{19}{6}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         }
       ]

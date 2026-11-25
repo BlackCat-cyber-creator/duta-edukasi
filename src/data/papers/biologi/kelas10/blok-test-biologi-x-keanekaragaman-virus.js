@@ -386,8 +386,9 @@ export default {
           marks: 1,
           prompt: 'The protein coat that surrounds and protects the viral genetic material is called the __________.',
           answer: 'capsid',
-          principle: 'The capsid is the protein coat of a virus, built from capsomeres.',
-          solution: 'The protein coat enclosing the viral DNA or RNA is the capsid.',
+          principle: 'The capsid is the protective protein shell of a virus, assembled from protein subunits called capsomeres.',
+          solution:
+            'Every virus consists of genetic material (DNA or RNA) enclosed in a protective protein shell called the capsid. Built from repeating protein subunits (capsomeres), the capsid shields the viral genome from enzymatic breakdown and environmental damage, and in non-enveloped viruses it also helps recognise and attach to host cells.',
           rubric: [{ code: 'A1', text: 'Correct term: capsid.' }]
         },
         {
@@ -395,8 +396,9 @@ export default {
           marks: 2,
           prompt: 'The genetic material of a virus may consist of either __________ or __________, depending on the type of virus.',
           answer: 'DNA and RNA (either order)',
-          principle: 'A virus contains one kind of nucleic acid, either DNA or RNA.',
-          solution: 'Any given virus has either DNA or RNA as its genome, so the two blanks are DNA and RNA.',
+          principle: 'Unlike cellular organisms that have both DNA and RNA, each virus carries only one type of nucleic acid—either DNA or RNA—as its genome.',
+          solution:
+            'Cellular organisms always contain both DNA (for genetic storage) and RNA (for gene expression), whereas a virus is acellular and packages only a single type of nucleic acid as its genome. Depending on the viral family, this genetic material is either DNA (DNA viruses, such as bacteriophages) or RNA (RNA viruses, such as TMV and influenza), so the two blanks are DNA and RNA.',
           rubric: [
             { code: 'A1', text: 'One correct nucleic acid (DNA or RNA).' },
             { code: 'A1', text: 'The other nucleic acid given.' }
@@ -407,8 +409,9 @@ export default {
           marks: 1,
           prompt: 'A virus that infects bacterial cells is specifically known as a __________.',
           answer: 'bacteriophage (phage)',
-          principle: 'Bacteriophages are viruses whose hosts are bacteria.',
-          solution: 'Viruses that infect bacteria are called bacteriophages, or phages.',
+          principle: 'Viruses are classified by host range; bacteriophages (phages) are viruses whose specific hosts are bacteria.',
+          solution:
+            'Because viral surface proteins bind only to matching host cell receptors, viruses have specific host ranges (such as animals, plants, or bacteria). A virus that specifically infects bacterial cells is called a bacteriophage (literally "bacteria-eater", often shortened to phage), which typically attaches via tail fibers and injects its genome through the bacterial cell wall.',
           rubric: [{ code: 'A1', text: 'Correct term: bacteriophage.' }]
         },
         {
@@ -416,8 +419,9 @@ export default {
           marks: 1,
           prompt: 'The outer membrane-like structure found in some viruses is called the viral __________.',
           answer: 'envelope',
-          principle: 'Some viruses are enclosed in a lipid envelope outside the capsid.',
-          solution: 'The membrane-like outer layer of enveloped viruses is the viral envelope.',
+          principle: 'Enveloped viruses possess an outer lipid bilayer membrane called an envelope outside the protein capsid.',
+          solution:
+            'While all viruses have a protein capsid around their nucleic acid, some viruses (called enveloped viruses, such as influenza) also possess an outer membrane-like lipid bilayer known as the viral envelope. This envelope is acquired from the host cell’s membrane during viral budding and carries projecting viral glycoproteins (spikes) used to bind new host receptors.',
           rubric: [{ code: 'A1', text: 'Correct term: envelope.' }]
         },
         {
@@ -624,8 +628,9 @@ export default {
           prompt:
             'The individual protein subunits that make up the protective capsid surrounding a virus’s genetic material are called __________ .',
           answer: 'capsomeres',
-          principle: 'A capsid is assembled from many protein subunits called capsomeres.',
-          solution: 'The repeating protein subunits that build the capsid are capsomeres.',
+          principle: 'A viral capsid is a geometric protein shell assembled from repeating protein subunits called capsomeres.',
+          solution:
+            'Rather than being a single continuous molecule, the protective viral capsid is constructed from many repeating individual protein subunits called capsomeres. These capsomeres self-assemble in specific patterns (such as helical spirals or polyhedral faces) around the viral nucleic acid to protect the genome and give the virus its characteristic shape.',
           rubric: [{ code: 'A1', text: 'Correct term: capsomeres.' }]
         },
         {

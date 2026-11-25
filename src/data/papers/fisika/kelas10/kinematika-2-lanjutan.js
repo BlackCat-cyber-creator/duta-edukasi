@@ -43,7 +43,8 @@ export default {
           answerNumeric: [{ name: 'd', value: 2300, unit: 'm' }],
           principle:
             'The position relative to the starting line equals the total track length minus the remaining distance to the finish line.',
-          solution: '$$x = 2,500 - 200 = 2,300\\ \\text{m}$$',
+          solution:
+            'Let $L = 2,500\\ \\text{m}$ be the total track length and $d_{\\text{rem}} = 200\\ \\text{m}$ be the remaining distance to the finish line. The position from the starting line is:\n$$x = L - d_{\\text{rem}} = 2,500 - 200 = 2,300\\ \\text{m}$$',
           rubric: [{ code: 'A1', text: 'Position from starting line $= 2,300\\ \\text{m}$' }]
         },
         {
@@ -89,7 +90,7 @@ export default {
           principle:
             'Reaching the $1,250\\ \\text{m}$ mark along a $2,500\\ \\text{m}$ circular circumference means completing exactly half a revolution, so the straight-line displacement equals the circle’s diameter $D = C/\\pi$.',
           solution:
-            '$$C = \\pi D \\implies 2500 = \\pi D \\implies D = \\frac{2500}{\\pi}\\ \\text{m} \\approx 795.8\\ \\text{m}$$',
+            'A distance of $1,250\\ \\text{m}$ along a $2,500\\ \\text{m}$ circular track is $\\frac{1,250}{2,500} = \\frac{1}{2}$ of the circumference $C$, so Rover $\\text{X}$ is diametrically opposite the starting point and its displacement magnitude equals the diameter $D$:\n$$C = \\pi D \\implies D = \\frac{C}{\\pi} = \\frac{2500}{\\pi}\\ \\text{m} \\approx 795.8\\ \\text{m}$$',
           rubric: [
             { code: 'M1', text: 'Recognizing half-circle path gives displacement equal to diameter $D = C/\\pi$' },
             { code: 'A1', text: '$\\dfrac{2500}{\\pi}\\ \\text{m}$ (or $\\approx 795.8\\ \\text{m}$)' }
@@ -225,7 +226,8 @@ export default {
           answerNumeric: [{ name: 'v', value: 0, unit: 'm/s' }],
           principle:
             'At the apex of vertical free-fall motion, the ball momentarily stops rising before reversing direction, so its instantaneous velocity is zero.',
-          solution: '$$v_{\\text{peak}} = 0\\ \\text{m s}^{-1}$$',
+          solution:
+            'As the ball rises under constant downward gravitational acceleration ($g = 10\\ \\text{m s}^{-2}$), its upward speed decreases until it reaches the turning point where it momentarily stops before falling back down:\n$$v_{\\text{peak}} = 0\\ \\text{m s}^{-1}$$',
           rubric: [{ code: 'B1', text: 'Stating $0\\ \\text{m s}^{-1}$ at the highest point' }]
         },
         {

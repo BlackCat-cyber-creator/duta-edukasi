@@ -77,3 +77,50 @@ Sumber: arsip Google Drive (`content-inbox/drive/batch3/`, tidak di-commit). Set
 | `to-osnk-mat-sma` | OSN-K (try out) | 20 soal | butir Lanjut 7 dinyatakan ulang sebagai pilihan acak 50/50 (catatan di pembahasan) |
 
 Metadata 27 paket lama ikut dinaikkan: seri Bilangan menjadi `Seri Pembinaan OSN` (`ID / EN`), simulasi OSK menjadi `OSN-K`, paket sains SMA memakai nama mapel.
+
+---
+
+## Pemutakhiran Pedagogis 38 Paket Terbit & Batch 4 (32 Paket Baru Hasil Arsip Terbuka, Total 70 `published`)
+
+### 1. Audit Pembahasan Pedagogis 38 Paket Lama (1.233 bagian)
+Seluruh 38 paket terbit diaudit ulang per butir untuk menghapus jalan pintas kalkulator (`\approx` desimal pada soal matematika/logaritma), tebak-coba tanpa pembuktian, dan pembahasan 1 baris:
+- `to-osnk-mat-sma` (20 bagian): butir logaritma Q1(10), identitas polinomial Q2(4), dan bukti geometri vektor Q2(10) ditulis ulang dengan hukum logaritma/ketidaksamaan eksak bebas kalkulator.
+- 37 paket terbit lainnya (1.213 bagian diaudit, 246 bagian ditulis ulang): diperkaya penurunan konsep langkah demi langkah sesuai kaidah olimpiade & buku saku tanpa mengubah kunci terverifikasi maupun aset `.webp`.
+
+### 2. Batch 4: 32 Paket Soal Olimpiade & Kompetisi Nasional/Internasional
+Seluruh naskah bersumber dari arsip terbuka (Po-Shen Loh / MAA AMC, M3Kang, mathcyber1997, defantri, urip.info, folderosn, naskah PDF resmi). Butir bergambar hilang atau ambigu dilewati (tercatat pada `instructions` tiap paket), seluruh kunci diverifikasi ulang secara matematis/ilmiah, dan seluruh paket lulus `node scratch/verify_paper.mjs`, `npm test` (28 berkas / 303 tes), serta `npm run lint`.
+
+| ID Paket | Kompetisi | Butir dipakai | Sumber & catatan verifikasi |
+| :--- | :--- | :--- | :--- |
+| `osnk-mat-sma-2026` | OSN-K | 2 nomor (18 sub-bagian) | arsip folderosn; Dasar 1–8,10 + Lanjut 1–6,8–10 dimuat; 2 soal gambar/data kurang dilewati |
+| `osnk-mat-sma-2025` | OSN-K | 8 soal | arsip mathcyber1997 (Kemampuan Dasar); butir teks lengkap diverifikasi ulang |
+| `osnk-mat-sma-2024` | OSN-K | 8 soal | arsip mathcyber1997 (Kemampuan Dasar); No. 1 & 7 dilewati |
+| `osnk-mat-sma-2023` | OSN-K | 10 soal | arsip mathcyber1997 (Kemampuan Dasar); seluruh 10 soal lengkap dimuat |
+| `osnk-mat-sma-2022` | OSN-K | 9 soal | arsip mathcyber1997 (Kemampuan Dasar); No. 7 dilewati |
+| `osnk-mat-smp-2024` | OSN-K | 23 soal | naskah PDF + pembahasan bersih; 2 butir bergambar dilewati |
+| `osnk-mat-smp-2020` | OSN-K | 24 soal | arsip mathcyber1997; 1 butir bergambar dilewati |
+| `osnp-mat-smp-2019` | OSN-P | 2 nomor (14 sub-bagian) | arsip mathcyber1997 (Isian Singkat + Uraian terverifikasi) |
+| `osnk-mat-sd-2025` | OSN-K | 24 soal | arsip defantri; 6 butir bergambar/data hilang dilewati |
+| `osnk-mat-sd-2024` | OSN-K | 21 soal | arsip defantri; 9 butir bergambar dilewati |
+| `osnk-ipa-sd-2024` | OSN-K | 20 soal | arsip defantri (`[CORRECT]`); 10 butir bergambar dilewati |
+| `osnk-ipa-sd-2023` | OSN-K | 29 soal | arsip defantri (`[CORRECT]`); butir bergambar dari 60 soal asli dilewati |
+| `osnk-ipa-smp-2025` | OSN-K | 40 soal | arsip defantri (`[CORRECT]`); 10 butir bergambar dilewati |
+| `osnp-ipa-smp-2024` | OSN-P | 32 soal | arsip defantri (`[CORRECT]`); butir bergambar dari 50 soal dilewati |
+| `osnk-fis-sma-2024` | OSN-K | 27 soal | naskah soal + solusi PDF Basyir; 13 butir bergambar dilewati |
+| `osnk-fis-sma-2023` | OSN-K | 26 soal | naskah soal + solusi PDF Basyir; butir bergambar dilewati |
+| `osnp-fis-sma-2024` | OSN-P | 6 nomor (17 sub-bagian) | naskah soal + solusi uraian PDF Basyir; sub-soal bergambar dilewati |
+| `osnk-kim-sma-2024` | OSN-K | 30 soal | arsip urip.info; seluruh stoikiometri/kesetimbangan/termokimia dihitung & diverifikasi ulang |
+| `osnk-kim-sma-2023` | OSN-K | 30 soal | arsip urip.info; seluruh perhitungan kimia diverifikasi ulang tanpa `\ce`/`\pu` |
+| `osnk-bio-sma-2024` | OSN-K | 14 skenario (56 pernyataan B/S) | arsip defantri (`[CORRECT]`); hanya skenario bebas gambar/grafik |
+| `osnk-bio-sma-2023` | OSN-K | 6 skenario (24 pernyataan B/S) | arsip defantri (`[CORRECT]`); hanya skenario bebas gambar/grafik |
+| `amc-8-2024` | AMC 8 | 22 soal | arsip resmi MAA (live.poshenloh.com); 3 soal bergambar dilewati |
+| `amc-8-2023` | AMC 8 | 15 soal | arsip resmi MAA (live.poshenloh.com); 10 soal bergambar dilewati |
+| `amc-10a-2024` | AMC 10 | 21 soal | arsip resmi MAA (live.poshenloh.com); 4 soal bergambar dilewati |
+| `amc-10a-2023` | AMC 10 | 23 soal | arsip resmi MAA (live.poshenloh.com); Q11 & Q24 bergambar dilewati |
+| `amc-12a-2024` | AMC 12 | 23 soal | arsip resmi MAA (live.poshenloh.com); 2 soal bergambar dilewati |
+| `amc-12a-2023` | AMC 12 | 23 soal | arsip resmi MAA (live.poshenloh.com); 2 soal bergambar dilewati |
+| `kangaroo-sg-2015-student` | Kangaroo | 3 nomor (21 sub-bagian) | Singapore Math Kangaroo 2015 Student (Grades 11–12); 9 soal gambar dilewati |
+| `ikmc-kadett-2022-2024` | IKMC | 3 nomor (13 sub-bagian) | kompilasi teks lengkap M3Kang (Kadett 2022–2024) |
+| `kmnr-kelas-9-2016` | KMNR | 20 soal | arsip mathcyber1997; 5 soal bergambar dilewati |
+| `omvn-sma-2022` | OMVN | 2 nomor (16 sub-bagian) | PDF Penyisihan OMVN SMA 2022; dipecahkan ulang secara eksak (butir PDF rusak dilewati) |
+| `ksm-mat-ma-2018` | KSM | 18 soal | arsip mathcyber1997; No. 2–25 diselesaikan & diverifikasi ulang, butir gambar/ambigu dilewati |

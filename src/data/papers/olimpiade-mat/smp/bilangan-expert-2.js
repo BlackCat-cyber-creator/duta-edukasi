@@ -63,7 +63,7 @@ export default {
           answer: 'D. $6$',
           principle: 'Selesaikan persamaan Diophantine pecahan dengan pemfaktoran Simon\'s Favorite Factoring Trick.',
           solution:
-            'Kalikan kedua ruas persamaan dengan $5xy$:\n$$5y + 10x = xy \\implies xy - 10x - 5y = 0$$\nTambahkan $50$ pada kedua ruas untuk memfaktorkan:\n$$(x - 5)(y - 10) = 50$$\nKarena $x, y > 0$, kemungkinan pasangan faktor dari $50$ yang menghasilkan $(x, y)$ bulat positif berasal dari pembagi positif $50$, yaitu $1, 2, 5, 10, 25, 50$:\n- $x - 5 = d \\implies x = 5 + d > 5$\n- $y - 10 = \\frac{50}{d} \\implies y = 10 + \\frac{50}{d} > 10$\n(Faktor negatif $d < 0$ tidak menghasilkan $x, y$ yang keduanya positif.)\nKarena ada $6$ pembagi positif dari $50$, terdapat $6$ pasangan bilangan bulat positif $(x, y)$ yang memenuhi.',
+            'Kalikan kedua ruas persamaan dengan $5xy$:\n$$5y + 10x = xy \\implies xy - 10x - 5y = 0$$\nTambahkan $50$ pada kedua ruas untuk memfaktorkan:\n$$(x - 5)(y - 10) = 50$$\nKarena $x, y > 0$, berlaku $\\frac{1}{x} < \\frac{1}{5} \\implies x > 5$ dan $\\frac{2}{y} < \\frac{1}{5} \\implies y > 10$, sehingga kedua faktor $(x - 5)$ dan $(y - 10)$ harus bernilai positif.\nDengan demikian, $d = x - 5$ harus berupa pembagi positif dari $50 = 2 \\times 5^2$, yaitu $d \\in \\{1, 2, 5, 10, 25, 50\\}$:\n- $x = 5 + d > 5$\n- $y = 10 + \\frac{50}{d} > 10$\nSetiap dari $6$ pembagi positif dari $50$ menghasilkan tepat satu pasangan bilangan bulat positif $(x, y)$, sehingga terdapat $6$ pasangan yang memenuhi.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -72,9 +72,9 @@ export default {
           prompt:
             'Let $N$ be the smallest positive integer such that $N!$ ($N$ factorial) ends in exactly $100$ consecutive zeros. What is the value of $N$?\n\nA. $400$\nB. $404$\nC. $405$\nD. $410$',
           answer: 'C. $405$',
-          principle: 'Use Legendre\'s formula to compute the exponent of $5$ in $N!$, which equals the number of trailing zeros.',
+          principle: 'Use Legendre\'s formula to compute the exponent of $5$ in $N!$ and bound $N$ via the geometric series $v_5(N!) < \\frac{N}{4}$.',
           solution:
-            'The number of trailing zeros in $N!$ equals $v_5(N!) = \\sum_{k \\ge 1} \\left\\lfloor \\frac{N}{5^k} \\right\\rfloor$.\nCheck $N = 404$:\n$$\\left\\lfloor \\frac{404}{5} \\right\\rfloor + \\left\\lfloor \\frac{404}{25} \\right\\rfloor + \\left\\lfloor \\frac{404}{125} \\right\\rfloor = 80 + 16 + 3 = 99$$\nCheck $N = 405$:\n$$\\left\\lfloor \\frac{405}{5} \\right\\rfloor + \\left\\lfloor \\frac{405}{25} \\right\\rfloor + \\left\\lfloor \\frac{405}{125} \\right\\rfloor = 81 + 16 + 3 = 100$$\nThus the smallest positive integer $N$ is $405$.',
+            'Each trailing zero comes from a factor of $10 = 2 \\times 5$. Since factors of $2$ are more abundant than factors of $5$ ($v_2(N!) \\ge v_5(N!)$), the number of trailing zeros in $N!$ equals $v_5(N!)$ via Legendre\'s formula:\n$$v_5(N!) = \\sum_{k \\ge 1} \\left\\lfloor \\frac{N}{5^k} \\right\\rfloor$$\nFirst, bound $N$ using the infinite geometric series:\n$$100 = v_5(N!) < \\frac{N}{5} + \\frac{N}{25} + \\frac{N}{125} + \\cdots = \\frac{N/5}{1 - 1/5} = \\frac{N}{4} \\implies N > 400$$\nEvaluating at $N = 400$ gives:\n$$v_5(400!) = \\left\\lfloor \\frac{400}{5} \\right\\rfloor + \\left\\lfloor \\frac{400}{25} \\right\\rfloor + \\left\\lfloor \\frac{400}{125} \\right\\rfloor = 80 + 16 + 3 = 99$$\nFor $400 \\le N \\le 404$, no new factor of $5$ is introduced, so $v_5(N!) = 99$. At the next multiple of $5$, namely $N = 405$ (where $5 \\mid 405$ and $25 \\nmid 405$), $v_5(N!)$ increases by $1$:\n$$v_5(405!) = \\left\\lfloor \\frac{405}{5} \\right\\rfloor + \\left\\lfloor \\frac{405}{25} \\right\\rfloor + \\left\\lfloor \\frac{405}{125} \\right\\rfloor = 81 + 16 + 3 = 100$$\nThus the smallest positive integer $N$ is $405$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -85,7 +85,7 @@ export default {
           answer: 'C. $21$',
           principle: 'Pemfaktoran selisih pangkat tiga $x^3 - y^3 = (x - y)(x^2 + xy + y^2)$ dan analisis pembagi positif $999$.',
           solution:
-            'Faktorkan $x^3 - y^3$:\n$$x^3 - y^3 = (x - y)(x^2 + xy + y^2) = 999$$\nKarena $x^2 + xy + y^2 = \\left(x + \\frac{y}{2}\\right)^2 + \\frac{3}{4}y^2 > 0$, maka $d = x - y$ harus merupakan pembagi positif dari $999 = 3^3 \\times 37$.\nSubstitusikan $x = y + d$ ke $x^2 + xy + y^2 = \\frac{999}{d}$:\n- Untuk $d = 1$: $3y^2 + 3y + 1 = 999 \\implies 3y(y + 1) = 998$, tidak memiliki solusi bulat karena $3 \\nmid 998$.\n- Untuk $d = 3$: $(y + 3)^2 + (y + 3)y + y^2 = 333 \\implies 3y^2 + 9y - 324 = 0 \\implies (y + 12)(y - 9) = 0$. Diperoleh $(x, y) = (12, 9)$ dengan $x + y = 21$ atau $(x, y) = (-9, -12)$ dengan $x + y = -21$.\n- Untuk $d = 9$: $3y^2 + 27y + 81 = 111 \\implies y^2 + 9y - 10 = 0 \\implies (y + 10)(y - 1) = 0$, memberi nilai maksimum $x + y = 10 + 1 = 11$.\n- Untuk $d \\ge 27$: nilai minimum $x^2 + xy + y^2 = 3\\left(y + \\frac{d}{2}\\right)^2 + \\frac{d^2}{4} \\ge \\frac{27^2}{4} = 182{,}25 > \\frac{999}{27} = 37$, sehingga tidak ada solusi.\nJadi, nilai maksimum yang mungkin dari $x + y$ adalah $21$.',
+            'Faktorkan $x^3 - y^3$:\n$$x^3 - y^3 = (x - y)(x^2 + xy + y^2) = 999$$\nKarena $(x, y) \\ne (0, 0)$ dan $x^2 + xy + y^2 = \\left(x + \\frac{y}{2}\\right)^2 + \\frac{3}{4}y^2 > 0$, maka $d = x - y$ harus merupakan pembagi positif dari $999 = 3^3 \\times 37$.\nSubstitusikan $x = y + d$ ke $x^2 + xy + y^2 = \\frac{999}{d}$:\n- Untuk $d = 1$: $3y^2 + 3y + 1 = 999 \\implies 3y(y + 1) = 998$, tidak memiliki solusi bulat karena $3 \\nmid 998$.\n- Untuk $d = 3$: $(y + 3)^2 + (y + 3)y + y^2 = 333 \\implies 3y^2 + 9y - 324 = 0 \\implies (y + 12)(y - 9) = 0$. Diperoleh $(x, y) = (12, 9)$ dengan $x + y = 21$ atau $(x, y) = (-9, -12)$ dengan $x + y = -21$.\n- Untuk $d = 9$: $3y^2 + 27y + 81 = 111 \\implies y^2 + 9y - 10 = 0 \\implies (y + 10)(y - 1) = 0$. Diperoleh $(x, y) = (10, 1)$ dengan $x + y = 11$ atau $(x, y) = (-1, -10)$ dengan $x + y = -11$.\n- Untuk $d \\ge 27$: dengan melengkapkan kuadrat, $x^2 + xy + y^2 = 3\\left(y + \\frac{d}{2}\\right)^2 + \\frac{d^2}{4} \\ge \\frac{27^2}{4} = \\frac{729}{4} > 37 \\ge \\frac{999}{d}$ (karena $729 > 148$), sehingga tidak ada solusi.\nJadi, nilai maksimum yang mungkin dari $x + y$ adalah $21$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -151,7 +151,7 @@ export default {
           answer: 'A. $36$',
           principle: 'Fungsi jumlah pembagi $\\sigma(n)$ bersifat multiplikatif: jika $n = \\prod p_i^{a_i}$, maka $\\sigma(n) = \\prod (1 + p_i + \\dots + p_i^{a_i})$.',
           solution:
-            'Diketahui $f(n) = \\sigma(n) = 91 = 7 \\times 13$.\nUntuk kasus satu faktor prima $n = p^a$, nilai $1 + p + \\dots + p^a = 91$ tidak memiliki solusi prima $p$ (untuk $a = 1$, $p = 90$ bukan prima; untuk $a = 2$, $p^2 + p + 1 = 91 \\implies p = 9$ bukan prima; untuk $a \\ge 3$, nilai untuk $p = 2$ adalah $15, 31, 63, 127$ dan untuk $p = 3$ adalah $40, 121$).\nUntuk dua faktor prima $n = p^a q^b$, faktorisasi $91 = 7 \\times 13$ memberikan:\n$$1 + p + p^2 = 7 \\implies p = 2 \\quad (a = 2)$$\n$$1 + q + q^2 = 13 \\implies q = 3 \\quad (b = 2)$$\nJadi, bilangan asli terkecil adalah $n = 2^2 \\times 3^2 = 36$.',
+            'Diketahui $f(n) = \\sigma(n) = 91 = 7 \\times 13$. Karena $91$ adalah hasil kali dua bilangan prima, $n$ memiliki paling banyak dua faktor prima berbeda:\n1. Kasus satu faktor prima ($n = p^a$): diperlukan $1 + p + \\dots + p^a = 91$.\n   - Untuk $a = 1$: $1 + p = 91 \\implies p = 90$ (bukan prima).\n   - Untuk $a = 2$: $1 + p + p^2 = 91 \\implies p(p + 1) = 90 \\implies p = 9$ (bukan prima).\n   - Untuk $a \\ge 3$: jika $p = 2$, deret $2^{a+1} - 1$ bernilai $15, 31, 63, 127, \\dots \\ne 91$; jika $p = 3$, nilainya $40, 121, \\dots \\ne 91$; dan jika $p \\ge 5$, maka $1 + p + p^2 + p^3 \\ge 1 + 5 + 25 + 125 = 156 > 91$. Jadi, kasus ini tidak memiliki solusi.\n2. Kasus dua faktor prima ($n = p^a q^b$): satu faktor prima harus memberi $\\sigma(p^a) = 7$ dan faktor lainnya $\\sigma(q^b) = 13$.\n   - Dari $\\sigma(p^a) = 7$: untuk $a = 1$, $p = 6$ (bukan prima); untuk $a = 2$, $1 + p + p^2 = 7 \\implies p = 2$ (prima); untuk $a \\ge 3$, $\\sigma(p^a) \\ge 15 > 7$. Jadi $p^a = 2^2$.\n   - Dari $\\sigma(q^b) = 13$: untuk $b = 1$, $q = 12$ (bukan prima); untuk $b = 2$, $1 + q + q^2 = 13 \\implies q = 3$ (prima); untuk $b \\ge 3$, $\\sigma(q^b) \\ge 15 > 13$. Jadi $q^b = 3^2$.\nSatu-satunya bilangan asli yang memenuhi adalah $n = 2^2 \\times 3^2 = 36$, sehingga nilai terkecilnya adalah $36$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -217,7 +217,7 @@ export default {
           answer: 'C. $24$',
           principle: 'Hubungan antara dua bilangan bulat positif dengan FPB dan KPK-nya: $a \\times b = \\text{FPB}(a, b) \\times \\text{KPK}(a, b)$.',
           solution:
-            'Gunakan sifat $\\text{FPB}(n, 36) \\times \\text{KPK}(n, 36) = n \\times 36$:\n$$12 \\times 72 = n \\times 36$$\n$$n = \\frac{12 \\times 72}{36} = 12 \\times 2 = 24$$',
+            'Untuk setiap bilangan prima $p$, pangkat $p$ dalam $\\text{FPB}(a, b) \\times \\text{KPK}(a, b)$ adalah $\\min(e_a, e_b) + \\max(e_a, e_b) = e_a + e_b$, sehingga selalu berlaku $\\text{FPB}(n, 36) \\times \\text{KPK}(n, 36) = n \\times 36$:\n$$12 \\times 72 = n \\times 36$$\n$$n = \\frac{12 \\times 72}{36} = 12 \\times 2 = 24$$\nVerifikasi: $\\text{FPB}(24, 36) = 12$ dan $\\text{KPK}(24, 36) = 72$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -304,7 +304,7 @@ export default {
           answerNumeric: [{ name: 'power', value: 74, unit: '' }],
           principle: 'Since $10 = 2 \\times 5$ and $v_2(300!) > v_5(300!)$, the highest power of $10$ dividing $300!$ equals $v_5(300!)$ via Legendre\'s formula.',
           solution:
-            'Use Legendre\'s formula for the prime factor $5$ in $300!$:\n$$v_5(300!) = \\left\\lfloor \\frac{300}{5} \\right\\rfloor + \\left\\lfloor \\frac{300}{25} \\right\\rfloor + \\left\\lfloor \\frac{300}{125} \\right\\rfloor = 60 + 12 + 2 = 74$$\nThus $10^{74}$ is the highest power of $10$ that divides $300!$.',
+            'Since $10 = 2 \\times 5$, the exponent of $10$ dividing $300!$ is $\\min(v_2(300!), v_5(300!))$. Because $v_2(300!) \\ge \\left\\lfloor \\frac{300}{2} \\right\\rfloor = 150 > v_5(300!)$, the limiting factor is $v_5(300!)$. By Legendre\'s formula:\n$$v_5(300!) = \\left\\lfloor \\frac{300}{5} \\right\\rfloor + \\left\\lfloor \\frac{300}{25} \\right\\rfloor + \\left\\lfloor \\frac{300}{125} \\right\\rfloor = 60 + 12 + 2 = 74$$\nThus $10^{74}$ is the highest power of $10$ dividing $300!$, so the exponent is $74$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -315,7 +315,7 @@ export default {
           answerNumeric: [{ name: 'duaDigitTerakhir', value: 36, unit: '' }],
           principle: 'Gunakan Teorema Sisa Cina (CRT) pada modulo $4$ dan modulo $25$ untuk menentukan sisa modulo $100$.',
           solution:
-            'Cari $14^{2026} \\pmod{100}$ dengan memecah ke modulo $4$ dan modulo $25$:\n1. Modulo $4$: karena $2026 \\ge 2$, maka $14^{2026} = 2^{2026} \\times 7^{2026} \\equiv 0 \\pmod{4}$.\n2. Modulo $25$: $\\varphi(25) = 20$, sehingga $14^{20} \\equiv 1 \\pmod{25}$. Karena $2026 \\equiv 6 \\pmod{20}$:\n$$14^{2026} \\equiv 14^6 \\equiv (-11)^6 = (121)^3 \\equiv (-4)^3 = -64 \\equiv 11 \\pmod{25}$$\nBilangan antara $0$ hingga $99$ yang habis dibagi $4$ dan bersisa $11$ saat dibagi $25$ adalah $36$.',
+            'Cari sisa $x = 14^{2026} \\pmod{100}$ dengan memecah ke modulo $4$ dan modulo $25$:\n1. Modulo $4$: karena $2026 \\ge 2$, maka $14^{2026} = 2^{2026} \\times 7^{2026} \\equiv 0 \\pmod{4}$.\n2. Modulo $25$: $\\varphi(25) = 20$, sehingga $14^{20} \\equiv 1 \\pmod{25}$. Karena $2026 = 20 \\times 101 + 6 \\equiv 6 \\pmod{20}$:\n$$14^{2026} \\equiv 14^6 \\equiv (-11)^6 = (121)^3 \\equiv (-4)^3 = -64 \\equiv 11 \\pmod{25}$$\nDari $x \\equiv 11 \\pmod{25}$, tuliskan $x = 25k + 11$. Substitusi ke $x \\equiv 0 \\pmod{4}$:\n$$25k + 11 \\equiv k + 3 \\equiv 0 \\pmod{4} \\implies k \\equiv 1 \\pmod{4}$$\nUntuk $k = 1$, diperoleh $x = 25(1) + 11 = 36$, sehingga dua digit terakhirnya adalah $36$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -324,9 +324,9 @@ export default {
           prompt: 'Find the smallest positive integer $n > 1$ such that its square $n^2$ ends with the digits $44$.',
           answer: '$12$',
           answerNumeric: [{ name: 'n', value: 12, unit: '' }],
-          principle: 'Analyze $n^2 \\equiv 44 \\pmod{100}$ by checking modulo $4$ and modulo $25$, or testing small integers.',
+          principle: 'Analyze $n^2 \\equiv 44 \\pmod{100}$ by writing $n = 10k + d$ from its units digit $d$ and solving the resulting linear congruences.',
           solution:
-            'If $n^2 \\equiv 44 \\pmod{100}$, then $n^2 \\equiv 0 \\pmod{4}$ (so $n$ is even) and $n^2 \\equiv 44 \\equiv 19 \\pmod{25}$.\nTesting small positive even integers $n > 1$:\n$$2^2 = 4, \\quad 4^2 = 16, \\quad 6^2 = 36, \\quad 8^2 = 64, \\quad 10^2 = 100, \\quad 12^2 = 144$$\nSince $12^2 = 144$ ends in $44$, the smallest such integer $n > 1$ is $12$.',
+            'Since $n^2$ ends in $4$, the units digit of $n$ must be $2$ or $8$. Write $n = 10k + d$ for an integer $k \\ge 0$ and $d \\in \\{2, 8\\}$:\n- Case $d = 2$: $n^2 = (10k + 2)^2 = 100k^2 + 40k + 4 \\equiv 40k + 4 \\pmod{100}$. Setting $40k + 4 \\equiv 44 \\pmod{100}$ gives $40k \\equiv 40 \\pmod{100}$, or $2k \\equiv 2 \\pmod{5}$, so $k \\equiv 1 \\pmod{5}$. The smallest solution with $k \\ge 0$ is $k = 1$, yielding $n = 12$ ($12^2 = 144$).\n- Case $d = 8$: $n^2 = (10k + 8)^2 = 100k^2 + 160k + 64 \\equiv 60k + 64 \\pmod{100}$. Setting $60k + 64 \\equiv 44 \\pmod{100}$ gives $60k \\equiv 80 \\pmod{100}$, or $3k \\equiv 4 \\pmod{5}$, so $k \\equiv 3 \\pmod{5}$. The smallest solution with $k \\ge 0$ is $k = 3$, yielding $n = 38$ ($38^2 = 1444$).\nComparing the two smallest candidates ($12$ and $38$), the smallest positive integer $n > 1$ is $12$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -347,9 +347,9 @@ export default {
           prompt:
             'What is the greatest common divisor (GCD) of the two large integers $(2^{100} - 1)$ and $(2^{120} - 1)$? (Write the answer as an algebraic power of $2$).',
           answer: '$2^{20} - 1$',
-          principle: 'Use the divisibility identity $\\gcd(2^a - 1, 2^b - 1) = 2^{\\gcd(a, b)} - 1$.',
+          principle: 'Apply the Euclidean algorithm directly to $(2^{120} - 1)$ and $(2^{100} - 1)$ to obtain $\\gcd(2^a - 1, 2^b - 1) = 2^{\\gcd(a, b)} - 1$.',
           solution:
-            'By the standard Euclidean identity for Mersenne-type numbers $\\gcd(2^a - 1, 2^b - 1) = 2^{\\gcd(a, b)} - 1$:\n$$\\gcd(100, 120) = 20$$\nTherefore:\n$$\\gcd(2^{100} - 1, 2^{120} - 1) = 2^{20} - 1$$',
+            'Apply the Euclidean algorithm directly by rewriting $2^{120} - 1$ in terms of $2^{100} - 1$:\n$$2^{120} - 1 = 2^{20}(2^{100} - 1) + (2^{20} - 1)$$\nTherefore, $\\gcd(2^{120} - 1, 2^{100} - 1) = \\gcd(2^{100} - 1, 2^{20} - 1)$.\nNext, observe that $2^{20} - 1$ divides $2^{100} - 1$ because letting $u = 2^{20}$ gives:\n$$2^{100} - 1 = u^5 - 1 = (u - 1)(u^4 + u^3 + u^2 + u + 1)$$\nHence $2^{20} - 1$ is a divisor of $2^{100} - 1$, so:\n$$\\gcd(2^{100} - 1, 2^{120} - 1) = 2^{20} - 1$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

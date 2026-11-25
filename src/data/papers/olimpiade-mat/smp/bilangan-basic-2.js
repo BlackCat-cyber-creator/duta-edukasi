@@ -140,7 +140,7 @@ export default {
           answer: 'B. $8$',
           principle: "Euler's totient function $\\varphi(n) = n \\prod_{p \\mid n} \\left(1 - \\frac{1}{p}\\right)$ counts integers in $\\{1, \\dots, n\\}$ coprime to $n$.",
           solution:
-            'The prime factors of $30$ are $2$, $3$, and $5$ ($30 = 2 \\times 3 \\times 5$). Using Euler’s totient function:\n$$\\varphi(30) = 30 \\left(1 - \\frac{1}{2}\\right)\\left(1 - \\frac{1}{3}\\right)\\left(1 - \\frac{1}{5}\\right) = 30 \\times \\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{4}{5} = 8$$',
+            'An integer is coprime to $30 = 2 \\times 3 \\times 5$ if and only if it is divisible by none of $2$, $3$, or $5$. Over the full period of $30$ integers from $1$ to $30$, divisibility by distinct primes $2$, $3$, and $5$ is independent: removing multiples of $2$ leaves $1 - \\frac{1}{2}$ of the integers, removing multiples of $3$ leaves $1 - \\frac{1}{3}$ of those, and removing multiples of $5$ leaves $1 - \\frac{1}{5}$ (Euler’s totient formula):\n$$\\varphi(30) = 30 \\left(1 - \\frac{1}{2}\\right)\\left(1 - \\frac{1}{3}\\right)\\left(1 - \\frac{1}{5}\\right) = 30 \\times \\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{4}{5} = 8$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -304,7 +304,7 @@ export default {
           answerNumeric: [{ name: 'x', value: 25, unit: '' }],
           principle: 'Combine like radical terms and square both sides to solve for $x$.',
           solution:
-            'Combine the four identical $\\sqrt{x}$ terms:\n$$4\\sqrt{x} = 20 \\implies \\sqrt{x} = 5$$\nSquare both sides:\n$$x = 5^2 = 25$$',
+            'Combine the four identical $\\sqrt{x}$ terms (with $x \\ge 0$ so $\\sqrt{x}$ is defined):\n$$4\\sqrt{x} = 20 \\implies \\sqrt{x} = 5$$\nBecause both sides are non-negative, squaring gives the unique solution:\n$$x = 5^2 = 25$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -373,7 +373,7 @@ export default {
           answerNumeric: [{ name: 'number', value: 960, unit: '' }],
           principle: 'Any common multiple of $4$, $5$, and $6$ is a multiple of $\\operatorname{lcm}(4, 5, 6)$.',
           solution:
-            'Compute the least common multiple of $4$, $5$, and $6$:\n$$\\operatorname{lcm}(4, 5, 6) = 60$$\nFind the largest multiple of $60$ less than $1000$:\n$$1000 \\div 60 = 16\\text{ remainder } 40 \\implies 16 \\times 60 = 960$$',
+            'Any common multiple of $4$, $5$, and $6$ is a multiple of their LCM. Using the prime factorizations $4 = 2^2$, $5 = 5$, and $6 = 2 \\times 3$:\n$$\\operatorname{lcm}(4, 5, 6) = 2^2 \\times 3 \\times 5 = 60$$\nSince the greatest three-digit integer is $999$, divide $999$ by $60$ to find the largest multiple of $60$ at most $999$:\n$$999 = 16 \\times 60 + 39 \\implies 16 \\times 60 = 960$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         }
       ]

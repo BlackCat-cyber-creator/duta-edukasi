@@ -67,7 +67,7 @@ export default {
           principle:
             'Paritas bilangan prima (satu-satunya bilangan prima genap adalah $2$) serta memaksimalkan hasil kali dua bilangan berjumlah tetap dengan memilih pasangan yang paling berdekatan.',
           solution:
-            'Karena jumlah ketiga bilangan prima adalah bilangan genap ($100$), tepat satu di antaranya harus merupakan bilangan prima genap, yaitu $2$. Sisa jumlah untuk dua bilangan prima ganjil lainnya adalah $100 - 2 = 98$. Pasangan bilangan prima berbeda yang berjumlah $98$ dan nilainya paling berdekatan adalah $37$ dan $61$. Hasil kali ketiganya adalah $2 \\times 37 \\times 61 = 4514$.',
+            'Karena jumlah ketiga bilangan prima adalah bilangan genap ($100$), ketiga bilangan prima tersebut tidak mungkin semuanya ganjil (jumlah tiga bilangan ganjil selalu ganjil). Maka tepat satu di antaranya harus genap, yaitu $2$, sedangkan dua lainnya merupakan bilangan prima ganjil $p$ dan $q$ dengan $p + q = 100 - 2 = 98$.\n\nTuliskan $p = 49 - d$ dan $q = 49 + d$ (dengan $d > 0$ genap karena $p, q$ ganjil dan berbeda). Hasil kalinya adalah $pq = (49 - d)(49 + d) = 49^2 - d^2$, yang mencapai nilai maksimum ketika $d$ sekecil mungkin:\n- $d = 2 \\implies (47, 51)$, gugur karena $51 = 3 \\times 17$.\n- $d = 4 \\implies (45, 53)$, gugur karena $45$ bukan prima.\n- $d = 6 \\implies (43, 55)$, gugur karena $55$ bukan prima.\n- $d = 8 \\implies (41, 57)$, gugur karena $57 = 3 \\times 19$.\n- $d = 10 \\implies (39, 59)$, gugur karena $39$ bukan prima.\n- $d = 12 \\implies (37, 61)$, keduanya bilangan prima.\n\nJadi, nilai maksimum hasil kali ketiganya adalah $2 \\times 37 \\times 61 = 4514$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -163,7 +163,7 @@ export default {
           principle:
             'Representasi nilai tempat bilangan basis $7$ dan basis $9$ serta syarat digit valid.',
           solution:
-            'Misalkan bilangan tersebut adalah $\\overline{ab}_7 = \\overline{ba}_9$, dengan $1 \\le a, b < 7$. Maka $7a + b = 9b + a \\implies 6a = 8b \\implies 3a = 4b$. Karena $a$ dan $b$ adalah bilangan bulat kurang dari $7$, satu-satunya solusi adalah $a = 4$ dan $b = 3$. Dalam basis $10$, nilainya adalah $(4 \\times 7) + 3 = 31$.',
+            'Misalkan bilangan tersebut adalah $\\overline{ab}_7 = \\overline{ba}_9$, dengan syarat bilangan $2$-digit yang valid di kedua basis yaitu $1 \\le a, b < 7$. Konversikan ke basis $10$:\n$$7a + b = 9b + a \\implies 6a = 8b \\implies 3a = 4b$$\nKarena $\\operatorname{FPB}(3, 4) = 1$, maka $a$ harus habis dibagi $4$. Dengan syarat $1 \\le a < 7$, satu-satunya nilai yang mungkin adalah $a = 4$, sehingga $b = \\frac{3 \\times 4}{4} = 3$. Dalam basis $10$, nilainya adalah $(4 \\times 7) + 3 = 31$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -175,7 +175,7 @@ export default {
           principle:
             'Minimizing the sum of positive factors with a fixed product by choosing distinct factors as close to each other as possible.',
           solution:
-            'To minimize $a + b + c$ when $a \\times b \\times c = 120$ with distinct positive integers, pick factors as close together as possible. The optimal factorization is $4 \\times 5 \\times 6 = 120$, giving a minimum sum of $4 + 5 + 6 = 15$.',
+            'Factor $120 = 2^3 \\times 3 \\times 5$, and order the three distinct positive integers as $a < b < c$. Since $a \\ge 5$ would imply $a \\times b \\times c \\ge 5 \\times 6 \\times 7 = 210 > 120$, we must have $a \\in \\{1, 2, 3, 4\\}$:\n- If $a = 1$, then $bc = 120$ (with $b, c > 1$); the closest factor pair is $(10, 12)$, giving sum $1 + 10 + 12 = 23$.\n- If $a = 2$, then $bc = 60$ (with $b, c > 2$); the closest factor pair is $(6, 10)$, giving sum $2 + 6 + 10 = 18$.\n- If $a = 3$, then $bc = 40$ (with $b, c > 3$); the closest factor pair is $(5, 8)$, giving sum $3 + 5 + 8 = 16$.\n- If $a = 4$, then $bc = 30$ (with $b, c > 4$); the closest factor pair is $(5, 6)$, giving sum $4 + 5 + 6 = 15$.\n\nThus, the minimum possible sum is $4 + 5 + 6 = 15$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -259,7 +259,7 @@ export default {
           principle:
             'Faktorisasi prima dan pengelompokan faktor ke dalam rentang bilangan belasan ($13$–$19$).',
           solution:
-            'Faktorkan $4590 = 10 \\times 459 = 2 \\times 5 \\times 9 \\times 51 = 2 \\times 3^3 \\times 5 \\times 17$. Usia remaja berada di antara $13$ dan $19$ tahun. Susun ulang faktor-faktor tersebut menjadi tiga bilangan belasan: $17$, $3 \\times 5 = 15$, dan $2 \\times 9 = 18$. Jumlah umur mereka adalah $17 + 15 + 18 = 50$.',
+            'Faktorkan $4590 = 10 \\times 459 = 2 \\times 5 \\times 9 \\times 51 = 2 \\times 3^3 \\times 5 \\times 17$. Usia remaja berada di rentang $13$–$19$ tahun:\n- Faktor prima $17$ tidak bisa dikalikan dengan faktor prima lain karena $2 \\times 17 = 34 > 19$, sehingga salah satu remaja pasti berusia $17$ tahun.\n- Sisa hasil kali dua usia lainnya adalah $2 \\times 3^3 \\times 5 = 270$. Faktor prima $5$ hanya dapat membentuk bilangan belasan jika dipasangkan dengan $3$, menghasilkan $3 \\times 5 = 15$ ($2 \\times 5 = 10$ terlalu kecil dan $5 \\times 9 = 45$ terlalu besar).\n- Faktor yang tersisa adalah $2 \\times 3^2 = 18$.\n\nJadi usia ketiga remaja adalah $15$, $17$, dan $18$ tahun, dengan jumlah $15 + 17 + 18 = 50$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -283,7 +283,7 @@ export default {
           principle:
             'Teorema Legendre untuk menghitung banyaknya faktor prima $5$ pada $n!$, karena pasangan $2 \\times 5$ menghasilkan angka nol di akhir.',
           solution:
-            'Gunakan Teorema Legendre untuk menghitung pangkat faktor $5$ dalam $100!$:\n$$\\left\\lfloor \\frac{100}{5} \\right\\rfloor + \\left\\lfloor \\frac{100}{25} \\right\\rfloor = 20 + 4 = 24$$\nKarena faktor $2$ berlimpah, pasangan $2$ dan $5$ membentuk tepat $24$ angka nol berurutan di akhir $100!$.',
+            'Setiap angka $0$ di akhir bilangan berasal dari satu pasangan faktor $2 \\times 5 = 10$. Dalam perkalian $100! = 1 \\times 2 \\times \\dots \\times 100$, faktor prima $2$ muncul jauh lebih banyak daripada faktor prima $5$ (ada $\\lfloor 100/2 \\rfloor = 50$ kelipatan $2$), sehingga banyaknya angka nol ditentukan sepenuhnya oleh pangkat faktor prima $5$ (Teorema Legendre).\n- Setiap kelipatan $5$ menyumbang sedikitnya satu faktor $5$: $\\left\\lfloor \\frac{100}{5} \\right\\rfloor = 20$.\n- Setiap kelipatan $25 = 5^2$ menyumbang satu faktor $5$ tambahan: $\\left\\lfloor \\frac{100}{25} \\right\\rfloor = 4$.\n- Kelipatan $125 = 5^3$ tidak ada karena $125 > 100$.\n\nTotal faktor $5$ pada $100!$ adalah $20 + 4 = 24$, sehingga terdapat $24$ angka nol berurutan di akhir $100!$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -365,7 +365,7 @@ export default {
           principle:
             'Menuliskan kedua bilangan sebagai $10x$ dan $10y$ dengan syarat $\\operatorname{FPB}(x, y) = 1$.',
           solution:
-            'Misalkan kedua bilangan adalah $10x$ dan $10y$ dengan $x$ dan $y$ saling prima. Maka $10x + 10y = 100 \\implies x + y = 10$. Pasangan tak terurut $(x, y)$ bilangan bulat positif yang saling prima dan berjumlah $10$ hanyalah $(1, 9)$ dan $(3, 7)$, yang menghasilkan pasangan bilangan $(10, 90)$ dan $(30, 70)$. Jadi ada $2$ pasangan yang memenuhi.',
+            'Misalkan kedua bilangan adalah $10x$ dan $10y$ dengan $x$ dan $y$ bilangan bulat positif yang saling prima ($\\operatorname{FPB}(x, y) = 1$). Maka $10x + 10y = 100 \\implies x + y = 10$. Semua pasangan tak terurut $(x, y)$ dengan $x \\le y$ yang berjumlah $10$ adalah $(1, 9)$, $(2, 8)$, $(3, 7)$, $(4, 6)$, dan $(5, 5)$. Pasangan $(2, 8)$, $(4, 6)$, dan $(5, 5)$ gugur karena FPB-nya berturut-turut $2$, $2$, dan $5$. Hanya $(1, 9)$ dan $(3, 7)$ yang saling prima, menghasilkan pasangan $(10, 90)$ dan $(30, 70)$, sehingga ada $2$ pasangan.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -416,7 +416,7 @@ export default {
           principle:
             'Fungsi jumlah pembagi $\\sigma(n)$ dari faktorisasi prima $1000 = 2^3 \\times 5^3$.',
           solution:
-            'Faktorisasi prima $1000 = 2^3 \\times 5^3$. Jumlah seluruh faktor pembagi positifnya adalah:\n$$(1 + 2 + 4 + 8) \\times (1 + 5 + 25 + 125) = 15 \\times 156 = 2340$$',
+            'Faktorisasi prima dari $1000$ adalah $2^3 \\times 5^3$. Setiap faktor pembagi positif dari $1000$ berbentuk $2^a \\times 5^b$ dengan $a \\in \\{0, 1, 2, 3\\}$ dan $b \\in \\{0, 1, 2, 3\\}$. Jika kita menjabarkan hasil kali $(2^0 + 2^1 + 2^2 + 2^3)(5^0 + 5^1 + 5^2 + 5^3)$ dengan sifat distributif, setiap suku $2^a \\times 5^b$ muncul tepat satu kali sehingga hasilnya sama dengan jumlah seluruh $4 \\times 4 = 16$ faktor pembagi positif tersebut:\n$$(1 + 2 + 4 + 8) \\times (1 + 5 + 25 + 125) = 15 \\times 156 = 2340$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -454,7 +454,7 @@ export default {
           principle:
             'Sum of an infinite geometric series $S_\\infty = \\frac{a}{1 - r}$ for $|r| < 1$.',
           solution:
-            'This is an infinite geometric series with first term $a = \\frac{1}{3}$ and common ratio $r = \\frac{1}{3}$. Its sum is:\n$$A = \\frac{a}{1 - r} = \\frac{1/3}{1 - 1/3} = \\frac{1/3}{2/3} = \\frac{1}{2}$$',
+            'Notice that every term after the first is $\\frac{1}{3}$ of the previous term. Multiply both sides of $A = \\frac{1}{3} + \\frac{1}{9} + \\frac{1}{27} + \\frac{1}{81} + \\dots$ by $3$:\n$$3A = 1 + \\frac{1}{3} + \\frac{1}{9} + \\frac{1}{27} + \\dots = 1 + A$$\nSubtracting $A$ from both sides gives $2A = 1$, so $A = \\frac{1}{2}$ (which also matches the geometric series formula $\\frac{a}{1 - r} = \\frac{1/3}{1 - 1/3} = \\frac{1}{2}$).',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -506,7 +506,7 @@ export default {
           principle:
             'Difference of squares factorization $1 - \\frac{1}{k^2} = \\frac{k-1}{k} \\times \\frac{k+1}{k}$ creating a telescoping product.',
           solution:
-            'Factor each term as $\\left(1 - \\frac{1}{k^2}\\right) = \\frac{k-1}{k} \\times \\frac{k+1}{k}$. Multiplying from $k = 2$ to $n = 20$, intermediate terms cancel telescopically, simplifying to $\\frac{n + 1}{2n}$. For $n = 20$, the product is $\\frac{20 + 1}{2 \\times 20} = \\frac{21}{40}$.',
+            'Factor each term using the difference of squares $1 - \\frac{1}{k^2} = \\frac{k^2 - 1}{k^2} = \\frac{k - 1}{k} \\times \\frac{k + 1}{k}$:\n$$\\left(\\frac{1}{2} \\cdot \\frac{3}{2}\\right) \\times \\left(\\frac{2}{3} \\cdot \\frac{4}{3}\\right) \\times \\left(\\frac{3}{4} \\cdot \\frac{5}{4}\\right) \\times \\dots \\times \\left(\\frac{19}{20} \\cdot \\frac{21}{20}\\right)$$\nEvery consecutive pair $\\frac{k + 1}{k} \\times \\frac{k}{k + 1}$ cancels to $1$, leaving only the very first factor $\\frac{1}{2}$ and the very last factor $\\frac{21}{20}$. Thus, the product is $\\frac{1}{2} \\times \\frac{21}{20} = \\frac{21}{40}$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

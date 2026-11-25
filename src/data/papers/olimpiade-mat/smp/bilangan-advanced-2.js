@@ -65,7 +65,7 @@ export default {
           principle:
             "Persamaan Diophantine pecahan satuan $\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{k}$ diubah menggunakan trik pemfaktoran (Simon's Favorite Factoring Trick) menjadi $(x - k)(y - k) = k^2$.",
           solution:
-            'Kalikan kedua ruas persamaan dengan $6xy$:\n$$6y + 6x = xy \\implies xy - 6x - 6y = 0$$\nTambahkan $36$ ke kedua ruas untuk pemfaktoran:\n$$xy - 6x - 6y + 36 = 36 \\implies (x - 6)(y - 6) = 36$$\nFaktor positif dari $36$ adalah $1, 2, 3, 4, 6, 9, 12, 18,$ dan $36$ (sebanyak $9$ faktor). Karena masing-masing faktor memberikan satu nilai $x - 6 > 0$ dan $y - 6 > 0$ yang menghasilkan pasangan bulat positif $(x, y)$ yang valid, terdapat tepat $9$ pasangan.',
+            'Kalikan kedua ruas persamaan dengan $6xy$:\n$$6y + 6x = xy \\implies xy - 6x - 6y = 0$$\nTambahkan $36$ ke kedua ruas untuk pemfaktoran:\n$$xy - 6x - 6y + 36 = 36 \\implies (x - 6)(y - 6) = 36$$\nKarena $x, y > 0$, maka $\\frac{1}{x} < \\frac{1}{6}$ dan $\\frac{1}{y} < \\frac{1}{6}$, yang memaksa $x > 6$ dan $y > 6$, sehingga kedua faktor $(x - 6)$ dan $(y - 6)$ harus bernilai positif (faktor negatif seperti $-1$ dan $-36$ menghasilkan $y = -30 < 0$).\nFaktorisasi prima $36 = 2^2 \\times 3^2$ memiliki $(2 + 1)(2 + 1) = 9$ pembagi positif, yaitu $1, 2, 3, 4, 6, 9, 12, 18,$ dan $36$. Setiap pilihan faktor positif $x - 6$ menghasilkan tepat satu pasangan bilangan bulat positif $(x, y)$, sehingga terdapat tepat $9$ pasangan.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -87,9 +87,9 @@ export default {
             'Sebuah bilangan tiga digit $ABC$ dalam basis $10$ bernilai tepat sama dengan bilangan $CBA$ jika dituliskan dalam basis $9$. Berapakah nilai dari $A + B + C$?\n\nA. $11$\nB. $13$\nC. $15$\nD. $17$',
           answer: 'B. $13$',
           principle:
-            'Konversi representasi bilangan basis $b$ menjadi polinomial nilai tempat serta batasan digit basis ($0 \\le d < b$).',
+            'Konversi representasi bilangan basis $b$ menjadi polinomial nilai tempat, batasan digit basis ($0 \\le d < b$), serta reduksi aritmetika modular.',
           solution:
-            'Nyatakan nilai masing-masing bilangan dalam basis $10$:\n$$ABC_{10} = 100A + 10B + C$$\n$$CBA_9 = 81C + 9B + A$$\nSamakan kedua ekspresi:\n$$100A + 10B + C = 81C + 9B + A \\implies 99A + B = 80C$$\nKarena $A, B, C$ adalah digit basis $9$ dengan $A, C \\ge 1$, maka $A, B, C \\in \\{0, 1, \\dots, 8\\}$ dan $A, C \\neq 0$. Perhatikan bahwa $0 \\le B \\le 8$ dan $99A \\le 80C \\le 99A + 8$.\nUji $C = 5$: $80C = 400$. Dengan $A = 4$, diperoleh $99(4) + B = 396 + B = 400 \\implies B = 4$ (memenuhi $0 \\le B \\le 8$). Tidak ada nilai $C \\in \\{1, \\dots, 8\\}$ lain yang membuat $80C \\bmod 99 \\in \\{0, \\dots, 8\\}$.\nJadi $A = 4, B = 4, C = 5$, dan:\n$$A + B + C = 4 + 4 + 5 = 13$$',
+            'Nyatakan nilai masing-masing bilangan dalam basis $10$:\n$$ABC_{10} = 100A + 10B + C$$\n$$CBA_9 = 81C + 9B + A$$\nSamakan kedua ekspresi:\n$$100A + 10B + C = 81C + 9B + A \\implies 99A + B = 80C$$\nKarena $A, B, C$ adalah digit basis $9$ dengan digit terdepan $A, C \\neq 0$, maka $1 \\le A, C \\le 8$ dan $0 \\le B \\le 8$. Reduksi persamaan modulo $9$ (perhatikan $99 \\equiv 0 \\pmod{9}$ dan $80 \\equiv -1 \\pmod{9}$):\n$$B \\equiv -C \\pmod{9} \\implies B + C \\equiv 0 \\pmod{9}$$\nKarena $1 \\le B + C \\le 8 + 8 = 16$, satu-satunya kelipatan $9$ yang mungkin adalah $B + C = 9$, sehingga $B = 9 - C$. Substitusikan ke persamaan awal:\n$$99A + (9 - C) = 80C \\implies 99A + 9 = 81C \\implies 11A + 1 = 9C$$\nReduksi kembali persamaan $11A + 1 = 9C$ modulo $9$:\n$$2A + 1 \\equiv 0 \\pmod{9} \\implies 2A \\equiv 8 \\pmod{9} \\implies A \\equiv 4 \\pmod{9}$$\nKarena $1 \\le A \\le 8$, diperoleh nilai tunggal $A = 4$. Substitusi $A = 4$ memberikan $9C = 11(4) + 1 = 45 \\implies C = 5$, dan $B = 9 - 5 = 4$.\nJadi, $A + B + C = 4 + 4 + 5 = 13$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -113,7 +113,7 @@ export default {
           principle:
             'Banyaknya angka nol di akhir $N!$ ditentukan oleh pangkat tertinggi faktor prima $5$ menggunakan rumus Legendre: $\\sum_{k \\ge 1} \\lfloor N / 5^k \\rfloor$.',
           solution:
-            'Banyaknya angka nol di akhir $125!$ sama dengan banyaknya faktor $10 = 2 \\times 5$, yang ditentukan oleh jumlah faktor $5$ dalam faktorisasi prima $125!$. Gunakan rumus Legendre:\n$$\\left\\lfloor \\frac{125}{5} \\right\\rfloor + \\left\\lfloor \\frac{125}{25} \\right\\rfloor + \\left\\lfloor \\frac{125}{125} \\right\\rfloor = 25 + 5 + 1 = 31$$\nJadi, terdapat $31$ angka nol berturut-turut di bagian paling akhir.',
+            'Banyaknya angka nol di akhir $125!$ sama dengan pangkat tertinggi dari $10 = 2 \\times 5$ yang membagi $125!$. Karena faktor prima $2$ selalu jauh lebih banyak daripada $5$ (sudah ada $\\lfloor 125/2 \\rfloor = 62$ kelipatan $2$), jumlah angka nol ditentukan oleh banyaknya faktor prima $5$.\nDengan rumus Legendre, setiap kelipatan $5$ menyumbang minimal satu faktor $5$, setiap kelipatan $25 = 5^2$ menyumbang satu faktor tambahan, dan $125 = 5^3$ menyumbang satu faktor tambahan lagi:\n$$v_5(125!) = \\left\\lfloor \\frac{125}{5} \\right\\rfloor + \\left\\lfloor \\frac{125}{25} \\right\\rfloor + \\left\\lfloor \\frac{125}{125} \\right\\rfloor = 25 + 5 + 1 = 31$$\nJadi, terdapat $31$ angka nol berturut-turut di bagian paling akhir.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -173,7 +173,7 @@ export default {
           principle:
             'Sum of divisors function $\\sigma(n) = \\prod_{i=1}^k (1 + p_i + p_i^2 + \\dots + p_i^{e_i})$ from the prime factorization $n = \\prod p_i^{e_i}$.',
           solution:
-            'Find the prime factorization of $120$:\n$$120 = 2^3 \\times 3^1 \\times 5^1$$\nThe sum of all positive divisors $S$ is:\n$$S = (2^0 + 2^1 + 2^2 + 2^3)(3^0 + 3^1)(5^0 + 5^1)$$\n$$S = (1 + 2 + 4 + 8)(1 + 3)(1 + 5) = 15 \\times 4 \\times 6 = 360$$',
+            'Find the prime factorization of $120$:\n$$120 = 2^3 \\times 3^1 \\times 5^1$$\nEvery positive divisor of $120$ has the form $2^a 3^b 5^c$ with $0 \\le a \\le 3$, $0 \\le b \\le 1$, and $0 \\le c \\le 1$. By the distributive property, expanding the product of the prime-power sums generates each divisor $2^a 3^b 5^c$ exactly once:\n$$S = (2^0 + 2^1 + 2^2 + 2^3)(3^0 + 3^1)(5^0 + 5^1)$$\n$$S = (1 + 2 + 4 + 8)(1 + 3)(1 + 5) = 15 \\times 4 \\times 6 = 360$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -220,7 +220,7 @@ export default {
           principle:
             'Divisibility by $99 = 9 \\times 11$ requires simultaneous divisibility by $9$ (digit sum) and $11$ (alternating digit sum).',
           solution:
-            'A number is divisible by $99$ if and only if it is divisible by both $9$ and $11$.\n1. Divisibility by $9$: The sum of digits must be a multiple of $9$:\n$$3 + A + 4 + 5 + B + 6 + C = 18 + A + B + C \\implies A + B + C \\equiv 0 \\pmod{9}$$\nSince $A, B, C \\in \\{0, 1, \\dots, 9\\}$, possible values for $A + B + C$ are $0, 9, 18, 27$.\n2. Divisibility by $11$: The alternating digit sum must be divisible by $11$:\n$$3 - A + 4 - 5 + B - 6 + C = -4 - A + B + C \\equiv 0 \\pmod{11} \\implies (B + C) - A \\equiv 4 \\pmod{11}$$\nCheck the largest candidate $A + B + C = 27$: this forces $A = B = C = 9$, giving $(9 + 9) - 9 = 9 \\not\\equiv 4 \\pmod{11}$ (invalid).\nCheck $A + B + C = 18$: let $S = B + C$, so $A + S = 18$ and $S - A \\equiv 4 \\pmod{11}$. Adding gives $2S \\equiv 22 \\equiv 0 \\pmod{11}$, so $S = 11$ (valid since $0 \\le S \\le 18$) and $A = 7$. For example, $(A, B, C) = (7, 5, 6)$ gives $3745566 = 99 \\times 37834$.\nThus, the maximum possible value of $A + B + C$ is $18$.',
+            'A number is divisible by $99$ if and only if it is divisible by both $9$ and $11$.\n1. Divisibility by $9$: The sum of digits must be a multiple of $9$:\n$$3 + A + 4 + 5 + B + 6 + C = 18 + A + B + C \\implies A + B + C \\equiv 0 \\pmod{9}$$\nSince $A, B, C \\in \\{0, 1, \\dots, 9\\}$, possible values for $A + B + C$ are $0, 9, 18, 27$.\n2. Divisibility by $11$: The alternating digit sum must be divisible by $11$:\n$$3 - A + 4 - 5 + B - 6 + C = -4 - A + B + C \\equiv 0 \\pmod{11} \\implies (B + C) - A \\equiv 4 \\pmod{11}$$\nCheck the largest candidate $A + B + C = 27$: this forces $A = B = C = 9$, giving $(9 + 9) - 9 = 9 \\not\\equiv 4 \\pmod{11}$ (invalid).\nCheck $A + B + C = 18$: let $S = B + C$, so $A + S = 18$ and $S - A \\equiv 4 \\pmod{11}$. Adding gives $2S \\equiv 22 \\equiv 0 \\pmod{11}$, so $S \\equiv 0 \\pmod{11}$. Since $0 \\le S \\le 18$, either $S = 0$ (which forces $A = 18 > 9$, invalid) or $S = 11$ (giving $A = 7$, valid). For example, $(A, B, C) = (7, 5, 6)$ gives $3745566 = 99 \\times 37834$.\nThus, the maximum possible value of $A + B + C$ is $18$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -300,7 +300,7 @@ export default {
           principle:
             "Use Legendre's Formula to find the exponent of prime $p$ in $N!$: $v_p(N!) = \\sum_{k \\ge 1} \\lfloor N / p^k \\rfloor$.",
           solution:
-            "Apply Legendre's Formula for the prime $p = 7$ dividing $200!$:\n$$v_7(200!) = \\left\\lfloor \\frac{200}{7} \\right\\rfloor + \\left\\lfloor \\frac{200}{49} \\right\\rfloor + \\left\\lfloor \\frac{200}{343} \\right\\rfloor = 28 + 4 + 0 = 32$$\nThe highest power of $7$ dividing $200!$ is $32$.",
+            "Apply Legendre's Formula for the prime $p = 7$ dividing $200!$. Each multiple of $7$ contributes at least one factor of $7$, and each multiple of $7^2 = 49$ contributes an additional factor of $7$ (while $7^3 = 343 > 200$ contributes none):\n$$v_7(200!) = \\left\\lfloor \\frac{200}{7} \\right\\rfloor + \\left\\lfloor \\frac{200}{49} \\right\\rfloor + \\left\\lfloor \\frac{200}{343} \\right\\rfloor = 28 + 4 + 0 = 32$$\nThe highest power of $7$ dividing $200!$ is $32$.",
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -337,9 +337,9 @@ export default {
           answer: '$12$',
           answerNumeric: [{ name: 'nilai', value: 12, unit: '' }],
           principle:
-            'Identitas $(p + q)^2 + 3pq = p^2 + 5pq + q^2$, analisis keterbagian modulo $3$, serta uji nilai prima.',
+            'Identitas $(p + q)^2 + 3pq = p^2 + 5pq + q^2$, analisis keterbagian modulo $3$, paritas, dan faktorisasi prima.',
           solution:
-            'Ubah bentuk persamaan dengan melengkapkan kuadrat:\n$$(p + q)^2 + 3pq = 249$$\nKarena $249$ habis dibagi $3$ dan $3pq$ juga kelipatan $3$, maka $(p + q)^2$ harus habis dibagi $3$, sehingga $p + q$ merupakan kelipatan $3$. Selain itu, $(p + q)^2 < 249 \\implies p + q \\le 15$, dan $p, q$ tidak boleh sama dengan $2$ (jika $p = 2$, maka $q^2 + 10q - 245 = 0$ tidak memiliki akar bulat), sehingga $p, q$ keduanya prima ganjil dan $p + q$ genap.\nKelipatan $3$ genap yang kurang dari atau sama dengan $15$ hanyalah $6$ dan $12$.\n- Jika $p + q = 6$, maka $(p, q) = (3, 3)$, menghasilkan $3^2 + 5(3)(3) + 3^2 = 63 \\neq 249$.\n- Jika $p + q = 12$, pilih pasangan prima $p = 5$ dan $q = 7$:\n$$5^2 + 5(5)(7) + 7^2 = 25 + 175 + 49 = 249$$\nTerbukti benar, sehingga $p + q = 5 + 7 = 12$.',
+            'Ubah bentuk persamaan dengan melengkapkan kuadrat:\n$$(p + q)^2 + 3pq = 249$$\nKarena $249 = 3 \\times 83$ habis dibagi $3$ dan $3pq$ kelipatan $3$, maka $(p + q)^2$ harus habis dibagi $3$, sehingga $p + q$ merupakan kelipatan $3$. Selain itu, karena $3pq > 0$, diperoleh $(p + q)^2 < 249 \\implies p + q \\le 15$.\nPeriksa kemungkinan bilangan prima genap $p = 2$ (atau $q = 2$ karena simetris): substitusi $p = 2$ memberikan $4 + 10q + q^2 = 249 \\implies (q + 5)^2 = 270$, yang tidak memiliki solusi bulat karena $16^2 = 256 < 270 < 289 = 17^2$. Dengan demikian, $p$ dan $q$ keduanya prima ganjil, sehingga $p + q$ genap.\nKelipatan $3$ yang genap dan memenuhi $p + q \\le 15$ hanyalah $6$ dan $12$:\n- Jika $p + q = 6$, maka $6^2 + 3pq = 249 \\implies 3pq = 213 \\implies pq = 71$ (mustahil karena $71$ prima dan tidak ada dua prima ganjil yang jumlahnya $6$ selain $3 + 3$ dengan $3 \\times 3 = 9 \\neq 71$).\n- Jika $p + q = 12$, maka $12^2 + 3pq = 249 \\implies 3pq = 105 \\implies pq = 35$. Faktorisasi prima tunggal $35 = 5 \\times 7$ menghasilkan $\\{p, q\\} = \\{5, 7\\}$, yang tepat memenuhi $5 + 7 = 12$.\nJadi, nilai dari $p + q$ adalah $12$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -390,7 +390,7 @@ export default {
           principle:
             'Evaluasi aritmetika langsung dan pola bilangan repunit: $11\\dots 1 - 22\\dots 2 = (33\\dots 3)^2$.',
           solution:
-            'Hitung selisih di dalam tanda akar:\n$$1111 - 22 = 1089$$\nTentukan akar kuadrat dari $1089$:\n$$\\sqrt{1089} = 33 \\quad (\\text{karena } 33 \\times 33 = 1089)$$\nJadi, nilainya adalah $33$.',
+            'Faktorkan bilangan repunit di dalam tanda akar menggunakan nilai tempat ($1111 = 11 \\times 101$ dan $22 = 11 \\times 2$):\n$$1111 - 22 = 11 \\times (101 - 2) = 11 \\times 99 = 11 \\times (9 \\times 11) = 3^2 \\times 11^2 = (3 \\times 11)^2 = 33^2$$\nTentukan akar kuadrat positifnya:\n$$\\sqrt{1111 - 22} = \\sqrt{33^2} = 33$$\nJadi, nilainya adalah $33$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

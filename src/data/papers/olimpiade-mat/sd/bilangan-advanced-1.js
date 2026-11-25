@@ -68,9 +68,9 @@ export default {
             'Hasil kali empat bilangan bulat positif berurutan adalah $3.024$. Berapakah nilai bilangan yang paling besar dari keempat bilangan tersebut?\nA. 7\nB. 8\nC. 9\nD. 10',
           answer: 'C. 9',
           principle:
-            'Estimasi menggunakan akar pangkat empat (atau faktorisasi prima) membantu menentukan empat bilangan bulat berurutan yang hasil kalinya diketahui.',
+            'Gunakan faktorisasi prima untuk membatasi himpunan faktor yang mungkin tanpa menebak: kemunculan faktor prima besar dan ketiadaan faktor $5$ langsung mengunci rentang empat bilangan berurutan.',
           solution:
-            'Kita mencari bilangan sekitar akar pangkat empat dari $3.024$. Karena $7^4 = 2.401$, kita dapat mencoba bilangan di sekitar $7$. Jika diuji: $6 \\times 7 \\times 8 \\times 9 = 42 \\times 72 = 3.024$. Bilangan terbesarnya adalah $9$.',
+            'Faktorkan $3.024$ ke dalam faktor primanya:\n$$3.024 = 2^4 \\times 3^3 \\times 7.$$\nKarena $7$ adalah faktor prima dari $3.024$, salah satu dari keempat bilangan berurutan harus merupakan kelipatan $7$. Kelipatan $7$ berikutnya adalah $14$, namun $11 \\times 12 \\times 13 \\times 14 > 10.000 > 3.024$, sehingga $7$ pasti termasuk di antara keempat bilangan tersebut. Selain itu, $3.024$ tidak memiliki faktor $5$, sehingga baik $5$ maupun $10$ tidak boleh muncul. Empat bilangan bulat positif berurutan di antara $5$ dan $10$ hanyalah $6, 7, 8,$ dan $9$. Periksa: $6 \\times 7 \\times 8 \\times 9 = 3.024$. Jadi, bilangan terbesarnya adalah $9$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -118,7 +118,7 @@ export default {
           principle:
             'Kejadian periodik yang dimulai bersama akan terulang kembali secara bersamaan untuk pertama kali setelah selang waktu sebesar KPK dari masing-masing periodenya.',
           solution:
-            'Cari KPK dari $24$, $36$, dan $48$, yaitu $144$ menit. $144$ menit sama dengan $2$ jam $24$ menit. Lonceng akan berbunyi bersama lagi pada pukul $09:00 + 2\\text{ jam } 24\\text{ menit} = 11:24$.',
+            'Tentukan KPK dari $24$, $36$, dan $48$ dengan faktorisasi prima: $24 = 2^3 \\times 3$, $36 = 2^2 \\times 3^2$, dan $48 = 2^4 \\times 3$. Ambil pangkat tertinggi setiap faktor prima, sehingga $\\text{KPK} = 2^4 \\times 3^2 = 16 \\times 9 = 144$ menit. Karena $144$ menit $= 2$ jam $24$ menit, ketiga lonceng berbunyi bersama lagi pada pukul $09:00 + 2\\text{ jam } 24\\text{ menit} = 11:24$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -130,7 +130,7 @@ export default {
           principle:
             'A number leaving the same remainder $r$ when divided by several divisors has the form $k \\cdot \\text{LCM} + r$.',
           solution:
-            'The LCM of $4, 5,$ and $6$ is $60$. The number must be a multiple of $60$ plus $3$. The greatest $3$-digit multiple of $60$ is $960$ (since $1000 / 60 = 16.66\\dots$, $16 \\times 60 = 960$). Add the remainder: $960 + 3 = 963$.',
+            'Since $\\text{LCM}(4, 5, 6) = 60$, any number leaving remainder $3$ upon division by $4, 5,$ and $6$ has the form $60k + 3$. For the greatest $3$-digit number, we need $60k + 3 \\le 999$, which means $60k \\le 996$. Dividing exactly gives $996 = 60 \\times 16 + 36$, so the largest integer is $k = 16$. Therefore, the number is $60 \\times 16 + 3 = 960 + 3 = 963$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -140,9 +140,9 @@ export default {
             'Jumlah empat bilangan prima berurutan adalah $72$. Berapakah bilangan prima yang paling kecil di antara keempat bilangan tersebut?\nA. 11\nB. 13\nC. 17\nD. 19',
           answer: 'B. 13',
           principle:
-            'Nilai rata-rata dari sekumpulan bilangan berurutan berada di sekitar bagian tengah deretan tersebut.',
+            'Rata-rata empat bilangan berurutan ($72 \\div 4 = 18$) memusatkan pencarian pada bilangan prima di sekitar $18$, sementara sifat monoton naik menjamin ketunggalan susunan.',
           solution:
-            'Rata-rata keempat bilangan prima tersebut adalah $72 \\div 4 = 18$. Bilangan prima yang berdekatan dengan $18$ adalah $17$ dan $19$. Coba urutan: $13 + 17 + 19 + 23 = 72$. Sesuai. Bilangan terkecilnya adalah $13$.',
+            'Rata-rata keempat bilangan prima tersebut adalah $72 \\div 4 = 18$, sehingga barisan prima berurutan itu harus mengapit $18$. Daftar bilangan prima di sekitar $18$ adalah $\\dots, 11, 13, 17, 19, 23, 29, \\dots$. Jika dua suku tengah mengapit $18$ yaitu $17$ dan $19$, keempat bilangan prima berurutan tersebut adalah $13, 17, 19,$ dan $23$, yang jumlahnya $13 + 17 + 19 + 23 = 72$. Pergeseran ke kiri memberi $11 + 13 + 17 + 19 = 60 < 72$ dan ke kanan memberi $17 + 19 + 23 + 29 = 88 > 72$, sehingga penyelesaiannya tunggal. Bilangan prima terkecilnya adalah $13$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -154,7 +154,7 @@ export default {
           principle:
             'Among $p, p + 2,$ and $p + 4$, exactly one is divisible by $3$; the only prime divisible by $3$ is $3$ itself.',
           solution:
-            'The only set of three consecutive odd prime numbers (a prime triplet) is $3, 5,$ and $7$. Thus, $p = 3$. The value of $p^2$ is $3^2 = 9$.',
+            'Consider the remainder of $p$ upon division by $3$:\n- If $p \\equiv 0 \\pmod 3$, then $3 \\mid p$. Since $p$ is prime, $p = 3$, giving $(3, 5, 7)$, which are all prime.\n- If $p \\equiv 1 \\pmod 3$, then $p + 2 \\equiv 3 \\equiv 0 \\pmod 3$, so $p + 2$ is a multiple of $3$ greater than $3$ and thus composite.\n- If $p \\equiv 2 \\pmod 3$, then $p + 4 \\equiv 6 \\equiv 0 \\pmod 3$, so $p + 4$ is a multiple of $3$ greater than $3$ and thus composite.\nHence $p = 3$ is the unique prime satisfying the condition, and $p^2 = 3^2 = 9$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -202,7 +202,7 @@ export default {
           principle:
             'A purely repeating decimal with a block of $k$ repeating digits equals that $k$-digit integer divided by $10^k - 1$ (a string of $k$ nines).',
           solution:
-            'A repeating decimal with $3$ repeating digits is represented over $999$:\n$$0.123123\\dots = \\frac{123}{999}.$$\nDivide numerator and denominator by $3$ to get $\\frac{41}{333}$.',
+            'Let $x = 0.123123123\\dots$. Multiply by $10^3 = 1000$ to align the repeating $3$-digit block:\n$$1000x = 123.123123\\dots$$\nSubtract $x$ from $1000x$ to cancel the infinite tail:\n$$999x = 123 \\implies x = \\frac{123}{999}.$$\nDivide numerator and denominator by $\\gcd(123, 999) = 3$ to obtain $\\frac{41}{333}$.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -226,7 +226,7 @@ export default {
           principle:
             'The number exactly halfway between $x$ and $y$ on a number line is their arithmetic mean $\\frac{x + y}{2}$.',
           solution:
-            'Find the average of $\\frac{1}{6}$ and $\\frac{1}{4}$. Find a common denominator ($12$): $\\frac{1}{6} = \\frac{2}{12}$ and $\\frac{1}{4} = \\frac{3}{12}$. Halfway between $\\frac{2}{12}$ and $\\frac{3}{12}$ is $\\frac{2.5}{12}$. Multiply by $\\frac{2}{2}$ to eliminate the decimal: $\\frac{5}{24}$.',
+            'Compute the arithmetic mean of $\\frac{1}{6}$ and $\\frac{1}{4}$ using the common denominator $24$: $\\frac{1}{6} = \\frac{4}{24}$ and $\\frac{1}{4} = \\frac{6}{24}$. The fraction halfway between $\\frac{4}{24}$ and $\\frac{6}{24}$ is\n$$\\frac{\\frac{4}{24} + \\frac{6}{24}}{2} = \\frac{\\frac{10}{24}}{2} = \\frac{5}{24}.$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -355,7 +355,7 @@ export default {
           principle:
             'Evaluate a custom binary operation by substituting the given numbers into its defining expression in order.',
           solution:
-            'Substitute $a = 3$ and $b = 2$ into the operation definition:\n$$3 \\nabla 2 = 3^2 - 2^3 = 9 - 8 = 1.$$',
+            'Identify the first operand $a = 3$ and the second operand $b = 2$ (order matters since $a^b - b^a$ is not commutative). Substitute into the definition:\n$$3 \\nabla 2 = 3^2 - 2^3 = 9 - 8 = 1.$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -368,7 +368,7 @@ export default {
           principle:
             'Jika $\\text{FPB}(a, b) = g$, maka $a = gx$ dan $b = gy$ dengan $x, y$ saling prima dan $x \\cdot y = \\text{KPK} / \\text{FPB}$.',
           solution:
-            'Gunakan rasio $\\text{KPK}/\\text{FPB} = 120/8 = 15$. Faktor yang saling prima dari $15$ adalah $3$ dan $5$. Kalikan dengan FPB untuk mendapat kedua bilangan tersebut: $3 \\times 8 = 24$ dan $5 \\times 8 = 40$. (Keduanya berada di antara $10$ dan $50$). Selisih $= 40 - 24 = 16$.',
+            'Misalkan kedua bilangan adalah $8x$ dan $8y$ dengan $\\text{FPB}(x, y) = 1$. Karena $\\text{KPK} = 8xy = 120$, diperoleh $xy = 120 \\div 8 = 15$. Pasangan bilangan saling prima yang hasil kalinya $15$ adalah $(1, 15)$ dan $(3, 5)$:\n- $(1, 15)$ menghasilkan $8$ dan $120$ (tidak memenuhi syarat di antara $10$ dan $50$).\n- $(3, 5)$ menghasilkan $3 \\times 8 = 24$ dan $5 \\times 8 = 40$ (keduanya di antara $10$ dan $50$).\nJadi, selisih kedua bilangan tersebut adalah $40 - 24 = 16$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -404,7 +404,7 @@ export default {
           principle:
             'Expand a two-digit number $d_1 d_0$ in base $b$ as $d_1 \\cdot b + d_0$ to solve for the base.',
           solution:
-            'Translate $44_b$ into a base-$10$ equation: $4b + 4 = 32$. Solving for $b$: $4b = 28$, so $b = 7$.',
+            'Expand $44_b$ using base-$b$ place values ($b^1$ and $b^0$):\n$$4 \\cdot b^1 + 4 \\cdot b^0 = 32 \\implies 4b + 4 = 32.$$\nSubtract $4$ from both sides to get $4b = 28$, so $b = 7$. (Check: the digit $4$ satisfies $4 < 7$, so base $7$ is valid.)',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -428,9 +428,9 @@ export default {
           answer: '24',
           answerNumeric: [{ name: 'sum', value: 24 }],
           principle:
-            'The cube root of the product approximates the middle integer of three consecutive even integers.',
+            'Factor out $2$ from three consecutive even integers $2(k - 1), 2k, 2(k + 1)$ to reduce their product to a product of three consecutive integers.',
           solution:
-            'Estimate the cube root of $480$ (since $x^3 \\approx 480$). The cube root of $512$ is $8$. Let\'s test even numbers around $8$: $6 \\times 8 \\times 10 = 480$. The three numbers are $6, 8,$ and $10$. Their sum is $6 + 8 + 10 = 24$.',
+            'Write the three consecutive even integers as $2(k - 1), 2k,$ and $2(k + 1)$ for an integer $k$. Their product is\n$$2(k - 1) \\cdot 2k \\cdot 2(k + 1) = 8(k - 1)k(k + 1) = 480 \\implies (k - 1)k(k + 1) = 60.$$\nPrime-factorizing $60 = 2^2 \\times 3 \\times 5 = 3 \\times 4 \\times 5$ (and noting $(k - 1)k(k + 1)$ increases strictly for $k \\ge 1$, while $k \\le 0$ gives product $\\le 0$) uniquely gives $k = 4$. Thus the three integers are $6, 8,$ and $10$, and their sum is $6 + 8 + 10 = 24$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -505,7 +505,7 @@ export default {
           principle:
             'Prime numbers are integers greater than $1$ that have exactly two positive divisors: $1$ and themselves.',
           solution:
-            'List the primes: $2, 3, 5, 7, 11, 13, 17, 19, 23, 29$. The 10th prime number is $29$.',
+            'Start from the only even prime, $2$, then examine consecutive odd integers above $2$ while excluding odd composites divisible by $3$ or $5$ ($9, 15, 21, 25, 27$):\n$$2,\\ 3,\\ 5,\\ 7,\\ 11,\\ 13,\\ 17,\\ 19,\\ 23,\\ 29.$$\nCounting in order ($p_1 = 2, p_2 = 3, \\dots$), the 10th prime number is $29$.',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {

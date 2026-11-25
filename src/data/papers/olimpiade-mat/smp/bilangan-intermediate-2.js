@@ -52,7 +52,7 @@ export default {
           answer: 'B. $12$',
           principle: "Legendre's formula for the highest power of prime $5$ dividing $n!$ (since factors of $2$ are more abundant than factors of $5$).",
           solution:
-            "The number of trailing zeros equals the highest power of $5$ dividing $50!$. Using Legendre's formula:\n$$\\left\\lfloor \\frac{50}{5} \\right\\rfloor + \\left\\lfloor \\frac{50}{25} \\right\\rfloor = 10 + 2 = 12$$\nThus, there are $12$ trailing zero digits.",
+            "A trailing zero is created by a factor of $10 = 2 \\times 5$. In $50! = 1 \\times 2 \\times \\dots \\times 50$, factors of $2$ are far more abundant than factors of $5$, so the number of trailing zeros equals the highest power of $5$ dividing $50!$.\nUsing Legendre's formula, count multiples of $5$ (which contribute one factor of $5$) and multiples of $25 = 5^2$ (which contribute a second factor of $5$; $5^3 = 125 > 50$):\n$$\\left\\lfloor \\frac{50}{5} \\right\\rfloor + \\left\\lfloor \\frac{50}{25} \\right\\rfloor = 10 + 2 = 12$$\nThus, there are $12$ trailing zero digits.",
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -118,7 +118,7 @@ export default {
           answer: 'A. $12$',
           principle: 'Divisor counting formula applied only to odd prime factors.',
           solution:
-            'Odd divisors cannot include any factor of $2$, so we ignore $2^4$ and consider only the odd prime part $3^2 \\times 5^3$.\nUsing the number-of-divisors formula:\n$$(2 + 1)(3 + 1) = 3 \\times 4 = 12$$\nThus, $N$ has $12$ positive odd integer divisors.',
+            'Odd divisors cannot include any factor of $2$, so we ignore $2^4$ and consider only the odd prime part $3^2 \\times 5^3$.\nEvery positive odd divisor has the form $3^a \\times 5^b$, where $a \\in \\{0, 1, 2\\}$ ($2 + 1 = 3$ choices) and $b \\in \\{0, 1, 2, 3\\}$ ($3 + 1 = 4$ choices).\nBy the multiplication rule (divisor-counting formula):\n$$(2 + 1)(3 + 1) = 3 \\times 4 = 12$$\nThus, $N$ has $12$ positive odd integer divisors.',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -206,7 +206,7 @@ export default {
           answer: 'B. $40$',
           principle: "Euler's totient function $\\varphi(n) = n \\prod_{p \\mid n} \\left(1 - \\frac{1}{p}\\right)$.",
           solution:
-            "This asks for Euler's totient function $\\varphi(100)$. Prime factorize $100 = 2^2 \\times 5^2$:\n$$\\varphi(100) = 100 \\left(1 - \\frac{1}{2}\\right)\\left(1 - \\frac{1}{5}\\right) = 100 \\times \\frac{1}{2} \\times \\frac{4}{5} = 40$$",
+            "Since $\\gcd(100, 100) = 100 \\ne 1$, the number of positive integers less than $100$ coprime to $100$ equals Euler's totient $\\varphi(100)$.\nPrime factorize $100 = 2^2 \\times 5^2$. An integer is coprime to $100$ if and only if it is divisible by neither $2$ nor $5$. Using Euler's totient formula:\n$$\\varphi(100) = 100 \\left(1 - \\frac{1}{2}\\right)\\left(1 - \\frac{1}{5}\\right) = 100 \\times \\frac{1}{2} \\times \\frac{4}{5} = 40$$\n(Equivalently, by Inclusion-Exclusion on $\\{1, 2, \\dots, 100\\}$: $100 - \\left\\lfloor \\frac{100}{2} \\right\\rfloor - \\left\\lfloor \\frac{100}{5} \\right\\rfloor + \\left\\lfloor \\frac{100}{10} \\right\\rfloor = 100 - 50 - 20 + 10 = 40$.)",
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -237,9 +237,9 @@ export default {
           prompt:
             'Jika diketahui $A = 1 \\times 2 + 2 \\times 3 + 3 \\times 4 + \\dots + 20 \\times 21$, maka nilai $A$ adalah...\n\nA. $2870$\nB. $3080$\nC. $3210$\nD. $3450$',
           answer: 'B. $3080$',
-          principle: 'Rumus jumlah deret perkalian dua bilangan berurutan: $\\sum_{k=1}^{n} k(k + 1) = \\frac{n(n + 1)(n + 2)}{3}$.',
+          principle: 'Deret teleskopik dari identitas $k(k + 1) = \\frac{k(k + 1)(k + 2) - (k - 1)k(k + 1)}{3}$ untuk memperoleh $\\sum_{k=1}^{n} k(k + 1) = \\frac{n(n + 1)(n + 2)}{3}$.',
           solution:
-            'Gunakan rumus jumlah deret $\\sum_{k=1}^{n} k(k + 1) = \\frac{n(n + 1)(n + 2)}{3}$ dengan $n = 20$:\n$$A = \\frac{20 \\times 21 \\times 22}{3} = 20 \\times 7 \\times 22 = 3080$$',
+            'Nyatakan setiap suku $k(k + 1)$ sebagai selisih teleskopik:\n$$k(k + 1) = \\frac{k(k + 1)(k + 2) - (k - 1)k(k + 1)}{3}$$\nJika dijumlahkan dari $k = 1$ hingga $k = n$, semua suku di tengah saling meniadakan (teleskopik) sehingga tersisa:\n$$\\sum_{k=1}^{n} k(k + 1) = \\frac{n(n + 1)(n + 2) - 0}{3} = \\frac{n(n + 1)(n + 2)}{3}$$\nSubstitusikan $n = 20$:\n$$A = \\frac{20 \\times 21 \\times 22}{3} = 20 \\times 7 \\times 22 = 3080$$',
           rubric: [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }]
         },
         {
@@ -301,9 +301,9 @@ export default {
             'A positive integer $N$ leaves a remainder of $5$ when divided by $7$, and a remainder of $2$ when divided by $6$. What is the smallest possible positive value of $N$?',
           answer: '$26$',
           answerNumeric: [{ name: 'N', value: 26, unit: '' }],
-          principle: 'Solving a system of linear congruences by testing arithmetic progression candidates.',
+          principle: 'Solving a system of linear congruences via parametric substitution and modular reduction.',
           solution:
-            'We have $N \\equiv 5 \\pmod{7}$ and $N \\equiv 2 \\pmod{6}$.\nFrom the first congruence, write $N = 7k + 5$ for non-negative integers $k$:\n- $k = 0 \\implies N = 5 \\equiv 5 \\pmod{6}$\n- $k = 1 \\implies N = 12 \\equiv 0 \\pmod{6}$\n- $k = 2 \\implies N = 19 \\equiv 1 \\pmod{6}$\n- $k = 3 \\implies N = 26 \\equiv 2 \\pmod{6}$\nThe smallest positive value is $N = 26$.',
+            'We have $N \\equiv 5 \\pmod{7}$ and $N \\equiv 2 \\pmod{6}$.\nFrom the first congruence, write $N = 7k + 5$ for an integer $k \\ge 0$ (since $N > 0$). Substitute into the second congruence:\n$$7k + 5 \\equiv 2 \\pmod{6}$$\nSince $7 \\equiv 1 \\pmod{6}$, this simplifies directly to:\n$$k + 5 \\equiv 2 \\pmod{6} \\implies k \\equiv -3 \\equiv 3 \\pmod{6}$$\nThe smallest non-negative integer satisfying $k \\equiv 3 \\pmod{6}$ is $k = 3$, which yields:\n$$N = 7(3) + 5 = 26$$\n(Check: $26 = 3 \\times 7 + 5$ and $26 = 4 \\times 6 + 2$.)',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -326,7 +326,7 @@ export default {
           answerNumeric: [{ name: 'k', value: 47, unit: '' }],
           principle: "Legendre's formula for the exact exponent of a prime $p$ dividing $n!$.",
           solution:
-            "Apply Legendre's formula for $p = 2$ in $50!$:\n$$k = \\left\\lfloor \\frac{50}{2} \\right\\rfloor + \\left\\lfloor \\frac{50}{4} \\right\\rfloor + \\left\\lfloor \\frac{50}{8} \\right\\rfloor + \\left\\lfloor \\frac{50}{16} \\right\\rfloor + \\left\\lfloor \\frac{50}{32} \\right\\rfloor$$\n$$k = 25 + 12 + 6 + 3 + 1 = 47$$",
+            "In $50! = 1 \\times 2 \\times \\dots \\times 50$, every multiple of $2$ contributes at least one factor of $2$, every multiple of $4 = 2^2$ contributes an additional factor of $2$, every multiple of $8 = 2^3$ contributes another, and so on up to $32 = 2^5$ (since $2^6 = 64 > 50$).\nApplying Legendre's formula for $p = 2$:\n$$k = \\left\\lfloor \\frac{50}{2} \\right\\rfloor + \\left\\lfloor \\frac{50}{4} \\right\\rfloor + \\left\\lfloor \\frac{50}{8} \\right\\rfloor + \\left\\lfloor \\frac{50}{16} \\right\\rfloor + \\left\\lfloor \\frac{50}{32} \\right\\rfloor$$\n$$k = 25 + 12 + 6 + 3 + 1 = 47$$",
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         },
         {
@@ -373,7 +373,7 @@ export default {
           answer: '$\\frac{3}{7}$',
           principle: 'Exact fractional representation of the repeating decimal $0.\\overline{142857} = \\frac{1}{7}$.',
           solution:
-            'Notice that $0.142857142857\\dots = \\frac{142857}{999999} = \\frac{1}{7}$.\nMultiplying by $3$ gives:\n$$3 \\times \\frac{1}{7} = \\frac{3}{7}$$',
+            'Let $x = 0.142857142857\\dots$ Since the repeating block has length $6$, multiply by $10^6 = 1\\,000\\,000$:\n$$1\\,000\\,000x = 142\\,857.142857\\dots$$\nSubtract $x$ from both sides:\n$$999\\,999x = 142\\,857 \\implies x = \\frac{142\\,857}{999\\,999}$$\nSince $999\\,999 = 7 \\times 142\\,857$, this simplifies to $x = \\frac{1}{7}$.\nMultiplying by $3$ gives:\n$$3 \\times \\frac{1}{7} = \\frac{3}{7}$$',
           rubric: [{ code: 'A1', text: 'Jawaban akhir eksak benar.' }]
         }
       ]

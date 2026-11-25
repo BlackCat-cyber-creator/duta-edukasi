@@ -133,7 +133,7 @@ export default {
           principle:
             'Group into a perfect square and use the difference of squares.',
           solution:
-            '$$x^2-(y^2-6y+9)=x^2-(y-3)^2=(x-(y-3))(x+(y-3))=(x-y+3)(x+y-3).$$',
+            'Group the last three terms so they form a perfect square trinomial:\n$$x^2-y^2+6y-9 = x^2-(y^2-6y+9) = x^2-(y-3)^2.$$\nNow apply the difference of squares identity $A^2-B^2=(A-B)(A+B)$ with $A=x$ and $B=y-3$:\n$$x^2-(y-3)^2 = \\big(x-(y-3)\\big)\\big(x+(y-3)\\big) = (x-y+3)(x+y-3).$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -145,7 +145,7 @@ export default {
           principle:
             'Solve the linear inequality and count the integers in the interval.',
           solution:
-            '$-39\\le 7x\\le 32$, so $-\\tfrac{39}{7}\\le x\\le \\tfrac{32}{7}$, i.e. $-5.57\\ldots\\le x\\le 4.57\\ldots$. The integers are $-5,-4,\\dots,4$, which is $10$ integers.',
+            'Subtract $4$ from all parts to get $-39\\le 7x\\le 32$, then divide by $7$:\n$$-\\frac{39}{7}\\le x\\le \\frac{32}{7}, \\quad \\text{i.e., } -5\\frac{4}{7}\\le x\\le 4\\frac{4}{7}.$$\nSince $x$ must be an integer, the least possible value is $-5$ and the greatest is $4$. Counting from $-5$ to $4$ inclusive gives $4-(-5)+1=10$ integer solutions.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -169,7 +169,7 @@ export default {
           principle:
             'Linear Diophantine equation: find the congruence class of $y$, then bound it by the sign conditions.',
           solution:
-            '$4x=-305-9y$ requires $9y\\equiv-305\\pmod 4$, i.e. $y\\equiv 3\\pmod 4$ (since $-305\\equiv 3$ and $9\\equiv 1$). Also $x<0$ gives $-305-9y<0$, i.e. $y>-33.9$, and $y<0$. So $y\\in\\{-1,-5,-9,\\dots,-33\\}$, which is $9$ values, each giving a negative integer $x$ (e.g. $y=-33\\Rightarrow x=-2$, $y=-1\\Rightarrow x=-74$). The next value $y=-37$ gives $x=7>0$. There are $9$ solutions.',
+            '$4x=-305-9y$ requires $9y\\equiv-305\\pmod 4$. Since $9\\equiv 1\\pmod 4$ and $-305=-4\\times 77+3\\equiv 3\\pmod 4$, we obtain $y\\equiv 3\\pmod 4$.\nThe condition $x<0$ requires $-305-9y<0$, i.e. $y>-\\frac{305}{9}=-33\\frac{8}{9}$, so $y\\ge -33$. Together with $y<0$ and $y\\equiv 3\\pmod 4$, the possible values are\n$$y\\in\\{-1,-5,-9,\\dots,-33\\},$$\nwhich gives $\\frac{33-1}{4}+1=9$ values, each producing a negative integer $x$ (for $y=-33$, $x=-2$; for $y=-1$, $x=-74$; the next value $y=-37$ gives $x=7>0$). Thus there are $9$ solutions.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -237,7 +237,7 @@ export default {
           principle:
             'If $n=p_1^{e_1}\\cdots p_k^{e_k}$, then $\\sigma(n)=\\prod \\frac{p_i^{e_i+1}-1}{p_i-1}$.',
           solution:
-            '$868=4\\times 217=2^2\\times 7\\times 31$. So $\\sigma(868)=(1+2+4)(1+7)(1+31)=7\\times 8\\times 32=1792$.',
+            'First find the prime factorisation of $868$:\n$$868 = 4\\times 217 = 2^2\\times 7\\times 31.$$\nEvery positive factor of $868$ has the form $2^a\\cdot 7^b\\cdot 31^c$ with $a\\in\\{0,1,2\\}$ and $b,c\\in\\{0,1\\}$. When the product $(1+2+2^2)(1+7)(1+31)$ is expanded, each combination $(a,b,c)$ appears once as a term, so the sum of all positive factors is\n$$\\sigma(868)=(1+2+4)(1+7)(1+31)=7\\times 8\\times 32=1792.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -249,7 +249,7 @@ export default {
           principle:
             'Factor theorem: $(x-a)$ divides $P(x)$ iff $P(a)=0$.',
           solution:
-            'Put $x=2$: $3\\cdot4-79\\cdot 2+c=0\\Rightarrow 12-158+c=0\\Rightarrow c=146$.',
+            'Let $P(x)=3x^2-79x+c$. Since $(x-2)$ is a factor of $P(x)$, the Factor Theorem gives $P(2)=0$. Substituting $x=2$ yields:\n$$3(2)^2-79(2)+c=0 \\implies 12-158+c=0 \\implies c=146.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -329,7 +329,7 @@ export default {
           principle:
             'A convex $n$-gon has $\\frac{n(n-3)}{2}$ diagonals.',
           solution:
-            'Each vertex gives $n-3=7$ diagonals, and each diagonal is counted twice: $\\frac{10\\times 7}{2}=35$.',
+            'From each of the $10$ vertices of a convex decagon, segments can be drawn to the other $9$ vertices. Two of those segments go to the two adjacent vertices and are sides of the polygon, leaving $10-3=7$ diagonals from each vertex.\nSince each diagonal connects $2$ vertices, multiplying $10\\times 7$ counts every diagonal twice. Therefore, the total number of diagonals is\n$$\\frac{10\\times 7}{2}=35.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -441,7 +441,7 @@ export default {
           principle:
             'Combine opposite movements, then apply the Pythagorean theorem.',
           solution:
-            'Net movement: $15$ km west and $31-11=20$ km north (perpendicular). Distance $=\\sqrt{15^2+20^2}=\\sqrt{625}=25$ km.',
+            'North and south are opposite directions, so $31\\text{ km}$ north followed by $11\\text{ km}$ south gives a net displacement of $31-11=20\\text{ km}$ north. Together with $15\\text{ km}$ west, these two net displacements are perpendicular, so by the Pythagorean theorem the distance from the starting point is\n$$\\sqrt{15^2+20^2}=\\sqrt{225+400}=\\sqrt{625}=25\\text{ km}.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -509,7 +509,7 @@ export default {
           principle:
             'A sum of non-negative terms is zero only when each term is zero.',
           solution:
-            '$2x+3y=26$ and $x=y-7$. Substituting: $2y-14+3y=26$, $5y=40$, $y=8$ (and $x=1$).',
+            'Since every absolute value is non-negative ($|u|\\ge 0$), their sum is $0$ if and only if each term is $0$:\n$$2x+3y-26=0 \\quad \\text{and} \\quad x-y+7=0.$$\nFrom the second equation, $x=y-7$. Substituting into the first equation gives:\n$$2(y-7)+3y=26 \\implies 5y-14=26 \\implies 5y=40 \\implies y=8$$ (and $x=1$).',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -521,7 +521,7 @@ export default {
           principle:
             'Complete the square in both variables and use $p^2-q^2=(p-q)(p+q)$.',
           solution:
-            '$x^2+4x+4-(y^2-2y+1)=(x+2)^2-(y-1)^2=(x+2-y+1)(x+2+y-1)=(x-y+3)(x+y+1)$. Constant check: $4-1=3$.',
+            'Split the constant $3=4-1$ and group terms in $x$ and $y$ to complete the square for each variable:\n$$x^2+4x+4-(y^2-2y+1)=(x+2)^2-(y-1)^2.$$\nUsing the difference of squares $A^2-B^2=(A-B)(A+B)$ with $A=x+2$ and $B=y-1$:\n$$(x+2)^2-(y-1)^2=\\big((x+2)-(y-1)\\big)\\big((x+2)+(y-1)\\big)=(x-y+3)(x+y+1).$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -533,7 +533,7 @@ export default {
           principle:
             'Solve the inequality and count integers.',
           solution:
-            '$-49\\le 6x\\le 22$ gives $-8.17\\ldots\\le x\\le 3.67\\ldots$, so $x=-8,-7,\\dots,3$, which is $12$ integers.',
+            'Subtract $4$ from all parts to get $-49\\le 6x\\le 22$, then divide by $6$:\n$$-\\frac{49}{6}\\le x\\le \\frac{22}{6}, \\quad \\text{i.e., } -8\\frac{1}{6}\\le x\\le 3\\frac{2}{3}.$$\nFor integer $x$, the bounds give $-8\\le x\\le 3$. Counting from $-8$ to $3$ inclusive yields $3-(-8)+1=12$ integer solutions.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -569,7 +569,7 @@ export default {
           principle:
             'Discriminant $\\Delta\\ge0$.',
           solution:
-            'For $a\\ne0$: $\\Delta=49-20a\\ge0\\Rightarrow a\\le2.45$. So the integer $a\\le 2$; $a=2$ gives $2x^2+7x+5=(2x+5)(x+1)$ with roots $-\\frac52,-1$, while $a\\ge3$ gives $\\Delta<0$. Greatest $a=2$.',
+            'For $a\\ne 0$, the quadratic $ax^2+7x+5=0$ has real roots if and only if its discriminant is non-negative:\n$$\\Delta=7^2-4a(5)=49-20a\\ge 0 \\implies a\\le \\frac{49}{20}=2\\frac{9}{20}.$$\nSince $a$ is an integer, $a\\le 2$ (note that $a=0$ also gives a real root $x=-\\frac{5}{7}$). At $a=2$, $2x^2+7x+5=(2x+5)(x+1)=0$ has roots $-\\frac{5}{2}$ and $-1$, whereas any integer $a\\ge 3$ gives $\\Delta<0$. Hence the greatest integer value is $a=2$.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         }
       ]
@@ -589,7 +589,7 @@ export default {
           principle:
             '$1001=7\\times11\\times13$, so $10^3\\equiv-1\\pmod{13}$; use an alternating sum of 3-digit blocks.',
           solution:
-            '$20209108=20\\cdot10^6+209\\cdot10^3+108\\equiv 20-209+108=-81\\pmod{13}$. Since $-81+91=10$, the remainder is $10$.',
+            'Since $10^3=1000=13\\times 77-1$, we have $10^3\\equiv -1\\pmod{13}$ and therefore $10^6=(10^3)^2\\equiv 1\\pmod{13}$. Breaking the number into 3-digit blocks from right to left:\n$$20209108 = 20\\cdot 10^6 + 209\\cdot 10^3 + 108 \\equiv 20(1)+209(-1)+108 = -81\\pmod{13}.$$\nAdding $7\\times 13=91$ gives $-81+91=10$, so the remainder is $10$.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -625,7 +625,7 @@ export default {
           principle:
             'Sum of divisors is multiplicative: $\\sigma(pqr)=(1+p)(1+q)(1+r)$ for distinct primes.',
           solution:
-            '$1955=5\\times391=5\\times17\\times23$. So $\\sigma=(1+5)(1+17)(1+23)=6\\times18\\times24=2592$.',
+            'First find the prime factorisation of $1955$:\n$$1955 = 5\\times 391 = 5\\times 17\\times 23.$$\nEvery positive factor of $1955$ has the form $5^a\\cdot 17^b\\cdot 23^c$ with $a,b,c\\in\\{0,1\\}$. Expanding the product $(1+5)(1+17)(1+23)$ produces each such factor exactly once, so the sum of all positive factors is\n$$\\sigma(1955)=(1+5)(1+17)(1+23)=6\\times 18\\times 24=2592.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -637,7 +637,7 @@ export default {
           principle:
             'Factor theorem.',
           solution:
-            'Put $x=7$: $5\\cdot49-63\\cdot7+c=0\\Rightarrow245-441+c=0\\Rightarrow c=196$.',
+            'Let $P(x)=5x^2-63x+c$. Because $(x-7)$ divides $P(x)$, the Factor Theorem gives $P(7)=0$. Substituting $x=7$ yields:\n$$5(7)^2-63(7)+c=0 \\implies 245-441+c=0 \\implies c=196.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -681,7 +681,7 @@ export default {
           principle:
             'Shoelace formula.',
           solution:
-            '$$\\text{Area}=\\tfrac12\\big|-1(5-1)+2(1-8)+3(8-5)\\big|=\\tfrac12|-4-14+9|=\\tfrac92.$$',
+            'Apply the Shoelace formula for triangle $ABC$ with $(x_A,y_A)=(-1,8)$, $(x_B,y_B)=(2,5)$, and $(x_C,y_C)=(3,1)$:\n$$\\text{Area}=\\frac12\\big|x_A(y_B-y_C)+x_B(y_C-y_A)+x_C(y_A-y_B)\\big|$$\n$$=\\frac12\\big|-1(5-1)+2(1-8)+3(8-5)\\big|=\\frac12|-4-14+9|=\\frac{9}{2}.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -705,7 +705,7 @@ export default {
           principle:
             'A convex $n$-gon has $\\frac{n(n-3)}2$ diagonals.',
           solution:
-            '$\\frac{11\\times 8}{2}=44$.',
+            'From each of the $11$ vertices of a convex $11$-sided polygon, we can draw segments to the other $10$ vertices. Two of those segments go to the two adjacent vertices (forming sides of the polygon), so each vertex gives $11-3=8$ diagonals.\nSince every diagonal joins $2$ vertices, $11\\times 8$ counts each diagonal twice. Thus the total number of diagonals is\n$$\\frac{11\\times 8}{2}=44.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -885,7 +885,7 @@ export default {
           principle:
             'A sum of non-negative terms is zero only when each term is zero.',
           solution:
-            '$x+2y=17$ and $2x-y=9$. From the second, $y=2x-9$; then $x+4x-18=17$, $x=7$, $y=5$.',
+            'Since absolute values are always non-negative ($|u|\\ge 0$), their sum can be $0$ only if both terms are $0$:\n$$x+2y-17=0 \\quad \\text{and} \\quad 2x-y-9=0.$$\nFrom the second equation, $y=2x-9$. Substituting into the first equation gives:\n$$x+2(2x-9)=17 \\implies 5x-18=17 \\implies 5x=35 \\implies x=7,$$\nand therefore $y=2(7)-9=5$.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -897,7 +897,7 @@ export default {
           principle:
             'Complete squares in $x$ and in $y$, then use the difference of squares.',
           solution:
-            '$(x^2-2x+1)-(y^2+6y+9)=(x-1)^2-(y+3)^2=(x-1-y-3)(x-1+y+3)=(x-y-4)(x+y+2)$. Constant check: $1-9=-8$.',
+            'Split the constant $-8=1-9$ and group the $x$-terms and $y$-terms to complete each square:\n$$(x^2-2x+1)-(y^2+6y+9)=(x-1)^2-(y+3)^2.$$\nNow apply the difference of squares identity $A^2-B^2=(A-B)(A+B)$ with $A=x-1$ and $B=y+3$:\n$$(x-1)^2-(y+3)^2=\\big((x-1)-(y+3)\\big)\\big((x-1)+(y+3)\\big)=(x-y-4)(x+y+2).$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -909,7 +909,7 @@ export default {
           principle:
             'Solve the inequality and count integers.',
           solution:
-            '$-48\\le3x\\le38$, so $-16\\le x\\le 12.67\\ldots$. The integers are $-16,\\dots,12$: $12-(-16)+1=29$.',
+            'Subtract $4$ from all parts to obtain $-48\\le 3x\\le 38$, then divide by $3$:\n$$-16\\le x\\le \\frac{38}{3}=12\\frac{2}{3}.$$\nBecause $x$ is an integer, the largest possible value is $12$, so $-16\\le x\\le 12$. Counting from $-16$ to $12$ inclusive gives $12-(-16)+1=29$ integer solutions.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -921,7 +921,7 @@ export default {
           principle:
             'Divide by $x$ and repeatedly use $\\left(u+\\frac1u\\right)^2=u^2+\\frac1{u^2}+2$.',
           solution:
-            '$x\\ne0$, so $x+\\frac1x=8$. Then $x^2+\\frac1{x^2}=8^2-2=62$ and $x^4+\\frac1{x^4}=62^2-2=3844-2=3842$.',
+            'Setting $x=0$ in $x^2-8x+1=0$ gives $1=0$, so $x\\ne 0$ and we may divide through by $x$:\n$$x-8+\\frac1x=0 \\implies x+\\frac1x=8.$$\nSquaring both sides gives $x^2+2+\\frac1{x^2}=64$, so $x^2+\\frac1{x^2}=62$.\nSquaring once more yields $x^4+2+\\frac1{x^4}=62^2=3844$, hence\n$$x^4+\\frac1{x^4}=3844-2=3842.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -933,7 +933,7 @@ export default {
           principle:
             'Linear Diophantine equation with sign restrictions.',
           solution:
-            '$3x=-298-7y$ requires $7y\\equiv-298\\pmod3$, i.e. $y\\equiv2\\pmod 3$ (as $-298\\equiv2$, $7\\equiv1$). Also $x<0$ gives $-298-7y<0$, i.e. $y>-42.6$, and $y<0$. So $y\\in\\{-1,-4,-7,\\dots,-40\\}$, which has $\\frac{40-1}{3}+1=14$ values (e.g. $y=-1\\Rightarrow x=-97$; $y=-40\\Rightarrow x=-6$; $y=-43$ would give $x=1>0$). There are $14$ solutions.',
+            '$3x=-298-7y$ requires $7y\\equiv-298\\pmod3$. Since $7\\equiv 1\\pmod 3$ and $-298=-3\\times 100+2\\equiv 2\\pmod 3$, we need $y\\equiv2\\pmod 3$.\nThe condition $x<0$ gives $-298-7y<0$, i.e. $y>-\\frac{298}{7}=-42\\frac{4}{7}$, so $y\\ge -42$. Combined with $y<0$ and $y\\equiv 2\\pmod 3$, the valid values are $y\\in\\{-1,-4,-7,\\dots,-40\\}$, giving $\\frac{40-1}{3}+1=14$ values (for $y=-1$, $x=-97$; for $y=-40$, $x=-6$; the next value $y=-43$ would give $x=1>0$). Thus there are $14$ solutions.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -945,7 +945,7 @@ export default {
           principle:
             'Discriminant condition for $a\\ne0$, and check $a=0$ separately (the equation is then linear).',
           solution:
-            'If $a=0$: $2x+4=0$ has the real root $x=-2$, so $a=0$ counts. If $a\\ne0$: $\\Delta=(a+2)^2-4a(a+4)=-3a^2-12a+4\\ge0$, i.e. $3a^2+12a-4\\le0$, i.e. $-2-\\frac{4\\sqrt3}{3}\\le a\\le-2+\\frac{4\\sqrt3}{3}$, approximately $-4.31\\le a\\le0.31$. The non-zero integers are $-4,-3,-2,-1$. In total $a\\in\\{-4,-3,-2,-1,0\\}$: $5$ values.',
+            'If $a=0$, the equation becomes $2x+4=0$, which has the real root $x=-2$, so $a=0$ works.\nIf $a\\ne 0$, the quadratic has a real root if and only if its discriminant is non-negative:\n$$\\Delta=(a+2)^2-4a(a+4)=-3a^2-12a+4\\ge 0 \\iff 3a^2+12a-4\\le 0.$$\nCompleting the square gives $3(a+2)^2\\le 16$, so $(a+2)^2\\le \\frac{16}{3}=5\\frac{1}{3}$. Because $a$ is an integer, $(a+2)^2$ is a perfect square at most $5$, which means $(a+2)^2\\in\\{0,1,4\\}$, i.e. $|a+2|\\le 2$, or $-4\\le a\\le 0$.\nThus the non-zero integer solutions are $a\\in\\{-4,-3,-2,-1\\}$, and including $a=0$ gives $5$ values in total.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         }
       ]
@@ -1001,7 +1001,7 @@ export default {
           principle:
             'Sum of divisors is multiplicative over distinct prime factors.',
           solution:
-            '$6851=13\\times527=13\\times17\\times31$. So $\\sigma=(1+13)(1+17)(1+31)=14\\times18\\times32=8064$.',
+            'First find the prime factorisation of $6851$:\n$$6851 = 13\\times 527 = 13\\times 17\\times 31.$$\nEvery positive factor of $6851$ has the form $13^a\\cdot 17^b\\cdot 31^c$ with $a,b,c\\in\\{0,1\\}$. Expanding $(1+13)(1+17)(1+31)$ generates every positive factor once, so the sum of all positive factors is\n$$\\sigma(6851)=(1+13)(1+17)(1+31)=14\\times 18\\times 32=8064.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1013,7 +1013,7 @@ export default {
           principle:
             'Factor theorem.',
           solution:
-            'Put $x=4$: $7\\cdot16-17\\cdot4+c=0\\Rightarrow112-68+c=0\\Rightarrow c=-44$.',
+            'Let $P(x)=7x^2-17x+c$. Since $(x-4)$ is a factor of $P(x)$, the Factor Theorem gives $P(4)=0$. Substituting $x=4$ yields:\n$$7(4)^2-17(4)+c=0 \\implies 112-68+c=0 \\implies c=-44.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1057,7 +1057,7 @@ export default {
           principle:
             'Shoelace formula.',
           solution:
-            '$$\\text{Area}=\\tfrac12\\big|-2(7-(-1))+1(-1-5)+3(5-7)\\big|=\\tfrac12|-16-6-6|=14.$$',
+            'Apply the Shoelace formula for triangle $ABC$ with $(x_A,y_A)=(-2,5)$, $(x_B,y_B)=(1,7)$, and $(x_C,y_C)=(3,-1)$:\n$$\\text{Area}=\\frac12\\big|x_A(y_B-y_C)+x_B(y_C-y_A)+x_C(y_A-y_B)\\big|$$\n$$=\\frac12\\big|-2(7-(-1))+1(-1-5)+3(5-7)\\big|=\\frac12|-16-6-6|=\\frac{28}{2}=14.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1093,7 +1093,7 @@ export default {
           principle:
             'A convex $n$-gon has $\\frac{n(n-3)}2$ diagonals.',
           solution:
-            '$\\frac{12\\times9}{2}=54$.',
+            'From each of the $12$ vertices of a convex $12$-sided polygon, segments can be drawn to the other $11$ vertices. Two of those go to the two adjacent vertices (sides of the polygon), leaving $12-3=9$ diagonals from each vertex.\nSince each diagonal connects $2$ vertices, $12\\times 9$ counts every diagonal twice, so the total number of diagonals is\n$$\\frac{12\\times 9}{2}=54.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1105,7 +1105,7 @@ export default {
           principle:
             'The inscribed circle of a square of side $s$ has radius $\\frac s2$.',
           solution:
-            '$s^2-3.14\\cdot\\frac{s^2}{4}=0.215\\,s^2=344$, so $s^2=1600$ and $s=40$ cm.',
+            'A square of side $s$ has area $s^2$, and its inscribed circle has diameter $s$, so radius $\\frac s2$ and area $\\pi\\left(\\frac s2\\right)^2=\\frac{3.14}{4}s^2=0.785\\,s^2$.\nThe difference in areas is $s^2-0.785\\,s^2=0.215\\,s^2=344$. Dividing by $0.215$ gives $s^2=\\frac{344}{0.215}=1600$, so $s=40\\text{ cm}$.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         }
       ]
@@ -1273,7 +1273,7 @@ export default {
           principle:
             'A sum of non-negative terms is zero only when each term is zero.',
           solution:
-            '$3x-y=2$ and $2x+3y=27$. Then $y=3x-2$, so $2x+9x-6=27$, $x=3$, $y=7$.',
+            'Since absolute values are always non-negative ($|u|\\ge 0$), their sum is $0$ only when each term equals $0$:\n$$3x-y-2=0 \\quad \\text{and} \\quad 2x+3y-27=0.$$\nFrom the first equation, $y=3x-2$. Substituting into the second equation gives:\n$$2x+3(3x-2)=27 \\implies 11x-6=27 \\implies 11x=33 \\implies x=3,$$\nand hence $y=3(3)-2=7$.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1285,7 +1285,7 @@ export default {
           principle:
             'Complete squares and use the difference of squares.',
           solution:
-            '$(x^2-6x+9)-(y^2+8y+16)=(x-3)^2-(y+4)^2=(x-3-y-4)(x-3+y+4)=(x-y-7)(x+y+1)$. Constant check: $9-16=-7$.',
+            'Split the constant $-7=9-16$ and group the $x$-terms and $y$-terms to form two perfect squares:\n$$(x^2-6x+9)-(y^2+8y+16)=(x-3)^2-(y+4)^2.$$\nApplying the difference of squares identity $A^2-B^2=(A-B)(A+B)$ with $A=x-3$ and $B=y+4$ gives:\n$$(x-3)^2-(y+4)^2=\\big((x-3)-(y+4)\\big)\\big((x-3)+(y+4)\\big)=(x-y-7)(x+y+1).$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1297,7 +1297,7 @@ export default {
           principle:
             'Solve the inequality and count integers.',
           solution:
-            '$-58\\le4x\\le56$ gives $-14.5\\le x\\le14$. The integers are $-14,\\dots,14$: $29$ integers.',
+            'Subtract $7$ from all parts to get $-58\\le 4x\\le 56$, then divide by $4$:\n$$-\\frac{58}{4}\\le x\\le \\frac{56}{4}, \\quad \\text{i.e., } -14\\frac{1}{2}\\le x\\le 14.$$\nSince $x$ must be an integer, the least possible value is $-14$ and the greatest is $14$. Counting from $-14$ to $14$ inclusive gives $14-(-14)+1=29$ integer solutions.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1309,7 +1309,7 @@ export default {
           principle:
             '$u^3+\\frac1{u^3}=\\left(u+\\frac1u\\right)^3-3\\left(u+\\frac1u\\right)$.',
           solution:
-            '$x\\ne0$, so $x+\\frac1x=3$. Then $x^3+\\frac1{x^3}=3^3-3\\cdot3=27-9=18$.',
+            'Setting $x=0$ in $x^2-3x+1=0$ yields $1=0$, so $x\\ne 0$ and we may divide through by $x$:\n$$x-3+\\frac1x=0 \\implies x+\\frac1x=3.$$\nUsing the identity $\\left(x+\\frac1x\\right)^3=x^3+3x+\\frac3x+\\frac1{x^3}=\\left(x^3+\\frac1{x^3}\\right)+3\\left(x+\\frac1x\\right)$, we obtain\n$$x^3+\\frac1{x^3}=\\left(x+\\frac1x\\right)^3-3\\left(x+\\frac1x\\right)=3^3-3(3)=27-9=18.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1389,7 +1389,7 @@ export default {
           principle:
             'Sum of divisors is multiplicative over distinct prime factors.',
           solution:
-            '$4123=7\\times589=7\\times19\\times31$. So $\\sigma=(1+7)(1+19)(1+31)=8\\times20\\times32=5120$.',
+            'First find the prime factorisation of $4123$:\n$$4123 = 7\\times 589 = 7\\times 19\\times 31.$$\nEvery positive factor of $4123$ has the form $7^a\\cdot 19^b\\cdot 31^c$ with $a,b,c\\in\\{0,1\\}$. Expanding $(1+7)(1+19)(1+31)$ produces each positive factor once, so the sum of all positive factors is\n$$\\sigma(4123)=(1+7)(1+19)(1+31)=8\\times 20\\times 32=5120.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1401,7 +1401,7 @@ export default {
           principle:
             'Factor theorem.',
           solution:
-            'Put $x=5$: $11\\cdot25-179\\cdot5+c=0\\Rightarrow275-895+c=0\\Rightarrow c=620$.',
+            'Let $P(x)=11x^2-179x+c$. Since $(x-5)$ is a factor of $P(x)$, the Factor Theorem gives $P(5)=0$. Substituting $x=5$ yields:\n$$11(5)^2-179(5)+c=0 \\implies 275-895+c=0 \\implies c=620.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1445,7 +1445,7 @@ export default {
           principle:
             'Shoelace formula.',
           solution:
-            '$$\\text{Area}=\\tfrac12\\big|-3(4-(-3))+0(-3-1)+3(1-4)\\big|=\\tfrac12|-21+0-9|=15.$$',
+            'Apply the Shoelace formula for triangle $ABC$ with $(x_A,y_A)=(-3,1)$, $(x_B,y_B)=(0,4)$, and $(x_C,y_C)=(3,-3)$:\n$$\\text{Area}=\\frac12\\big|x_A(y_B-y_C)+x_B(y_C-y_A)+x_C(y_A-y_B)\\big|$$\n$$=\\frac12\\big|-3(4-(-3))+0(-3-1)+3(1-4)\\big|=\\frac12|-21+0-9|=\\frac{30}{2}=15.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1481,7 +1481,7 @@ export default {
           principle:
             'A convex $n$-gon has $\\frac{n(n-3)}2$ diagonals.',
           solution:
-            '$\\frac{13\\times10}{2}=65$.',
+            'From each of the $13$ vertices of a convex $13$-sided polygon, we can draw segments to the other $12$ vertices. Two of those segments go to the two adjacent vertices (forming sides of the polygon), leaving $13-3=10$ diagonals from each vertex.\nSince every diagonal connects $2$ vertices, $13\\times 10$ counts each diagonal twice, so the total number of diagonals is\n$$\\frac{13\\times 10}{2}=65.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1513,7 +1513,7 @@ export default {
           principle:
             'Choose the positions of one kind of book: $\\binom nk$.',
           solution:
-            'There are $8$ positions; choosing the $3$ positions of the Mathematics books fixes the arrangement: $\\binom83=56$.',
+            'There are $3+5=8$ positions on the bookshelf. Because books of the same subject are identical, an arrangement is uniquely determined once we choose which $3$ positions hold the Mathematics books (the remaining $5$ positions hold the English books):\n$$\\binom{8}{3}=\\frac{8\\times 7\\times 6}{3\\times 2\\times 1}=56.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1637,7 +1637,7 @@ export default {
           principle:
             'A sum of non-negative terms is zero only when each term is zero.',
           solution:
-            '$4x-3y=7$ and $x+2y=10$. Then $x=10-2y$, so $40-8y-3y=7$, $11y=33$, $y=3$ (and $x=4$).',
+            'Since absolute values are always non-negative ($|u|\\ge 0$), their sum can be $0$ only if each term equals $0$:\n$$4x-3y-7=0 \\quad \\text{and} \\quad x+2y-10=0.$$\nFrom the second equation, $x=10-2y$. Substituting into the first equation gives:\n$$4(10-2y)-3y=7 \\implies 40-11y=7 \\implies 11y=33 \\implies y=3,$$\nand $x=10-2(3)=4$.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1649,7 +1649,7 @@ export default {
           principle:
             'Group $4x^2-8x+4=4(x-1)^2$, then use the difference of squares.',
           solution:
-            '$4(x-1)^2-y^2=(2x-2)^2-y^2=(2x-2-y)(2x-2+y)=(2x-y-2)(2x+y-2)$.',
+            'Group the $x$-terms and constant to form a perfect square trinomial:\n$$4x^2-8x+4-y^2=4(x^2-2x+1)-y^2=4(x-1)^2-y^2=(2x-2)^2-y^2.$$\nApplying the difference of squares identity $A^2-B^2=(A-B)(A+B)$ with $A=2x-2$ and $B=y$ gives:\n$$(2x-2)^2-y^2=(2x-2-y)(2x-2+y)=(2x-y-2)(2x+y-2).$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1661,7 +1661,7 @@ export default {
           principle:
             'Solve the inequality and count integers.',
           solution:
-            '$-76\\le8x\\le44$ gives $-9.5\\le x\\le5.5$. The integers are $-9,\\dots,5$: $15$ integers.',
+            'Subtract $13$ from all parts to obtain $-76\\le 8x\\le 44$, then divide by $8$:\n$$-\\frac{76}{8}\\le x\\le \\frac{44}{8}, \\quad \\text{i.e., } -9\\frac{1}{2}\\le x\\le 5\\frac{1}{2}.$$\nSince $x$ is an integer, the bounds tighten to $-9\\le x\\le 5$. Counting from $-9$ to $5$ inclusive gives $5-(-9)+1=15$ integer solutions.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1685,7 +1685,7 @@ export default {
           principle:
             'Linear Diophantine equation with sign restrictions.',
           solution:
-            '$7x=-456-13y$ requires $13y\\equiv-456\\pmod7$. Since $-456\\equiv6$ and $13\\equiv6\\pmod 7$, $6y\\equiv6$, so $y\\equiv1\\pmod7$. Also $x<0$ gives $y>-\\frac{456}{13}=-35.08\\ldots$ and $y<0$. So $y\\in\\{-6,-13,-20,-27,-34\\}$, each giving a negative integer $x$ (e.g. $y=-34\\Rightarrow x=-2$, $y=-6\\Rightarrow x=-54$). There are $5$ solutions.',
+            '$7x=-456-13y$ requires $13y\\equiv-456\\pmod7$. Since $13\\equiv6\\pmod 7$ and $-456=-7\\times 66+6\\equiv6\\pmod 7$, we get $6y\\equiv6\\pmod 7$, so $y\\equiv1\\pmod7$.\nThe condition $x<0$ gives $-456-13y<0$, i.e. $y>-\\frac{456}{13}=-35\\frac{1}{13}$, so $y\\ge -35$. Combined with $y<0$ and $y\\equiv 1\\pmod 7$, the valid values are $y\\in\\{-6,-13,-20,-27,-34\\}$, each giving a negative integer $x$ (for $y=-34$, $x=-2$; for $y=-6$, $x=-54$). Thus there are $5$ solutions.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1753,7 +1753,7 @@ export default {
           principle:
             'Sum of divisors is multiplicative over distinct prime factors.',
           solution:
-            '$5681=13\\times437=13\\times19\\times23$. So $\\sigma=(1+13)(1+19)(1+23)=14\\times20\\times24=6720$.',
+            'First find the prime factorisation of $5681$:\n$$5681 = 13\\times 437 = 13\\times 19\\times 23.$$\nEvery positive factor of $5681$ has the form $13^a\\cdot 19^b\\cdot 23^c$ with $a,b,c\\in\\{0,1\\}$. Expanding $(1+13)(1+19)(1+23)$ yields each positive factor exactly once, so the sum of all positive factors is\n$$\\sigma(5681)=(1+13)(1+19)(1+23)=14\\times 20\\times 24=6720.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1765,7 +1765,7 @@ export default {
           principle:
             'Factor theorem.',
           solution:
-            'Put $x=9$: $9\\cdot81+69\\cdot9+c=0\\Rightarrow729+621+c=0\\Rightarrow c=-1350$.',
+            'Let $P(x)=9x^2+69x+c$. Since $(x-9)$ is a factor of $P(x)$, the Factor Theorem gives $P(9)=0$. Substituting $x=9$ yields:\n$$9(9)^2+69(9)+c=0 \\implies 729+621+c=0 \\implies c=-1350.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1809,7 +1809,7 @@ export default {
           principle:
             'Shoelace formula.',
           solution:
-            '$$\\text{Area}=\\tfrac12\\big|1(5-(-2))+2(-2-8)+4(8-5)\\big|=\\tfrac12|7-20+12|=\\tfrac12.$$',
+            'Apply the Shoelace formula for triangle $ABC$ with $(x_A,y_A)=(1,8)$, $(x_B,y_B)=(2,5)$, and $(x_C,y_C)=(4,-2)$:\n$$\\text{Area}=\\frac12\\big|x_A(y_B-y_C)+x_B(y_C-y_A)+x_C(y_A-y_B)\\big|$$\n$$=\\frac12\\big|1(5-(-2))+2(-2-8)+4(8-5)\\big|=\\frac12|7-20+12|=\\frac{1}{2}.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1833,7 +1833,7 @@ export default {
           principle:
             'Each exterior angle of a regular $n$-gon is $\\frac{360^\\circ}n$.',
           solution:
-            '$\\frac{360}{n}=10n\\Rightarrow n^2=36\\Rightarrow n=6$ (positive).',
+            'The sum of the exterior angles of any convex polygon is $360^\\circ$, and in a regular $n$-sided polygon all $n$ exterior angles are equal, so each measures $\\frac{360^\\circ}{n}$. Equating this to $(10n)^\\circ$ gives:\n$$\\frac{360}{n}=10n \\implies 10n^2=360 \\implies n^2=36.$$\nSince the number of sides $n$ must be positive, $n=6$ (check: each exterior angle of a regular hexagon is $60^\\circ=10\\cdot 6^\\circ$).',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1845,7 +1845,7 @@ export default {
           principle:
             'A convex $n$-gon has $\\frac{n(n-3)}2$ diagonals.',
           solution:
-            '$\\frac{14\\times11}{2}=77$.',
+            'From each of the $14$ vertices of a convex $14$-sided polygon, we can draw segments to the other $13$ vertices. Two of those segments go to the two adjacent vertices (forming sides of the polygon), leaving $14-3=11$ diagonals from each vertex.\nSince every diagonal connects $2$ vertices, $14\\times 11$ counts each diagonal twice, so the total number of diagonals is\n$$\\frac{14\\times 11}{2}=77.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         }
       ]
@@ -1865,7 +1865,7 @@ export default {
           principle:
             'Choose the positions of one kind of book: $\\binom nk$.',
           solution:
-            'There are $9$ positions; choosing the $2$ positions of the English books fixes the arrangement: $\\binom92=36$.',
+            'There are $7+2=9$ positions on the bookshelf. Because books of the same subject are identical, an arrangement is uniquely determined once we choose which $2$ positions hold the English books (the remaining $7$ positions hold the Mathematics books):\n$$\\binom{9}{2}=\\frac{9\\times 8}{2}=36.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1887,7 +1887,7 @@ export default {
             'Amy draws all triangles which perimeter is 35cm and length of sides are integers. How many different types of triangle(s) does she draw? (triangles with sides (4,5,6) and (4,6,5) are regarded as the same type of triangle)',
           answer: '$30$',
           principle:
-            'Triangle inequality: the longest side $c<17.5$; count by $c$.',
+            'Triangle inequality: the longest side $c<\\frac{35}{2}$ (so $c\\le 17$); count by $c$.',
           solution:
             'Let $a\\le b\\le c$, $a+b+c=35$. Then $12\\le c\\le17$. For each $c$ count $(a,b)$ with $a\\le b\\le c$, $a+b=35-c$:\n- $c=17$: $a+b=18$: $(1,17),(2,16),\\dots,(9,9)$: $9$\n- $c=16$: $a+b=19$: $(3,16),(4,15),\\dots,(9,10)$: $7$\n- $c=15$: $a+b=20$: $(5,15),(6,14),\\dots,(10,10)$: $6$\n- $c=14$: $a+b=21$: $(7,14),(8,13),(9,12),(10,11)$: $4$\n- $c=13$: $a+b=22$: $(9,13),(10,12),(11,11)$: $3$\n- $c=12$: $a+b=23$: $(11,12)$: $1$\nTotal $9+7+6+4+3+1=30$.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
