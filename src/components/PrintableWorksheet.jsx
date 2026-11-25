@@ -79,7 +79,7 @@ export function PrintableWorksheet({ quest: propQuest = null, onBack = null }) {
 
   const [isLoading, setIsLoading] = useState(!quest && Boolean(questId));
   const [tutoringName, setTutoringName] = useState(ORGANIZATION.name);
-  const [teacherName, setTeacherName] = useState("Studio Guru Matematika & Fisika");
+  const [teacherName, setTeacherName] = useState("Lembar Latihan Cetak — Duta e-dukasi");
   const [studentName, setStudentName] = useState(quest?.studentName || "Lembar Siswa");
   const [timeAlloc, setTimeAlloc] = useState("20 Menit");
   const [isEditingHeader, setIsEditingHeader] = useState(false);

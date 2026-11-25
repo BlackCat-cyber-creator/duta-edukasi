@@ -52,5 +52,10 @@ service cloud.firestore {
         && request.resource.data.createdAt is string && request.resource.data.createdAt.size() <= 40;
       allow read, delete: if isAuthenticated();
     }
+
+    // 4. Profil & Progres Belajar Pelajar — users/{userId}
+    match /users/{userId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId;
+    }
   }
 }

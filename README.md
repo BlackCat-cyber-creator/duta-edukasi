@@ -16,7 +16,7 @@ Situs: **https://dutaedukasi.vercel.app** (domain lama `awesomemathj.vercel.app`
 | Kimia | Kelas 10–12 (SMA) | 13 bab · 195 soal |
 | Biologi | Kelas 10–12 (SMA) | 13 bab · 195 soal |
 | Olimpiade AMC 8 / 10 / 12 | SMP–SMA | 36 bab konsep + latihan isian singkat |
-| Paket Soal | SD–SMA & olimpiade | 38 paket (Fisika 5, Kimia 4, Biologi 2, Olimpiade Matematika 26, Olimpiade Sains 1) dengan kunci & rubrik |
+| Paket Soal | SD–SMA & olimpiade | 82 paket (Matematika, Sains & Olimpiade OSN, AMC, SASMO, SMO, HKIMO, TIMO, SIMOC, IKMC, KSM, KMNR) dengan kunci & rubrik |
 | Latihan TKA | Kelas 6, 9, 12 | 4 mata uji × Paket A/B (30 soal per paket) |
 
 Setiap bab kurikulum berisi: pengantar, materi per subbab, rumus kunci, contoh soal bertahap, kesalahan yang sering terjadi, tips, dan latihan soal (mudah → sulit) yang bisa dicetak sebagai LKPD A4 ber-QR. Materi diselaraskan dengan Capaian Pembelajaran Kurikulum Merdeka (Keputusan Kepala BSKAP No. 046/H/KR/2025).
@@ -31,15 +31,15 @@ Menu atas hanya berisi tujuan belajar: **Materi · Olimpiade · Paket Soal · TK
 | `/matematika/kelas-N/<bab>` | Bab Matematika (N = 4–12) |
 | `/ipa/kelas-N/<bab>` | Bab IPA (N = 4–9) |
 | `/fisika/kelas-N/<bab>`, `/kimia/…`, `/biologi/…` | Bab SMA (N = 10–12) |
-| `/olimpiade` | Pusat olimpiade (OSN, SASMO, AMC, HKIMO, TIMO, SIMOC) |
+| `/olimpiade` & `/olimpiade/<kompetisi>` | Pusat olimpiade & halaman khusus per kompetisi (OSN, SASMO, AMC, SMO, HKIMO, TIMO, SIMOC, IKMC, KSM, KMNR, Pembinaan) |
 | `/olimpiade/amc-N/<bab>` | Bab AMC 8 / 10 / 12 |
-| `/paket-soal`, `/paket-soal/<mapel>/<slug>` | Arsip paket soal + rubrik |
+| `/paket-soal`, `/paket-soal/english`, `/paket-soal/<mapel>/<slug>` | Arsip paket soal + rubrik & jalur berbahasa Inggris |
 | `/tka`, `/tka/<paket>` | Latihan TKA |
 | `/rumus`, `/daftar-isi` | Kumpulan rumus, daftar isi per topik |
 | `/tentang` | Profil, pendiri & tim, **prestasi siswa** (`/tentang#prestasi`), lisensi |
 | `/pendiri`, `/program`, `/kontak` | Profil pendiri, program bimbel, kontak & lokasi |
-| `/quest/:id`, `/worksheet/:id`, `/solution/…` | PR murid, LKPD cetak, pembahasan dari QR |
-| `/teacher` | Studio Guru (login guru) |
+| `/quest/:id`, `/worksheet/:id`, `/solution/…` | PR murid, LKPD cetak ber-QR, pembahasan dari QR |
+| `/akun` | Akun belajar (Masuk/Daftar Google & Email), sinkronisasi progres, bookmark & Asisten Belajar AI |
 
 Alamat lama tetap berfungsi: `/prestasi` → `/tentang#prestasi` (pengalihan permanen di `vercel.json`), dan tautan `/?questId=…` / `/?pembahasan=1&grade=…` dari QR lama diarahkan oleh `QueryRedirectHandler` di `src/App.jsx`.
 
@@ -54,10 +54,11 @@ npm install
 npm run dev      # http://localhost:5173
 npm test         # Vitest (konten, rute, konfigurasi deploy)
 npm run lint     # oxlint
-npm run build    # vite build + scripts/prerender.mjs → dist/
+npm run build    # manifest + katalog AI + vite build + scripts/prerender.mjs → dist/
+npm run indexnow # kirim daftar URL dist/sitemap.xml ke IndexNow (pasca-deploy)
 ```
 
-`npm run build` juga membuat HTML statis untuk setiap bab (untuk mesin pencari), `sitemap.xml`, `llms.txt`, dan `llms-full.txt`.
+`npm run build` juga membuat HTML statis untuk setiap bab dan kompetisi, `sitemap.xml`, `rss.xml`, `llms.txt`, `llms-olimpiade.txt`, `llms-kurikulum.txt`, dan `llms-full.txt`. Untuk mengaktifkan Asisten Belajar AI penuh di `/api/ai-chat`, atur environment variable `GEMINI_API_KEY` (dan opsional `GEMINI_MODEL=gemini-2.5-flash-lite`) di Vercel.
 
 ## Struktur folder
 

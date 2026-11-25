@@ -16,16 +16,23 @@ function setMeta(attr, key, content) {
  * yang sedang dibuka (navigasi di dalam aplikasi tidak memuat ulang HTML).
  */
 export function useDocumentMeta(meta) {
-  const { title, description, path, lang } = meta || {};
+  const { title, description, path, lang, ogImage } = meta || {};
   useEffect(() => {
     if (!title || typeof document === 'undefined') return;
+    const docLang = lang || 'id';
     const url = `${SITE_URL}${path || '/'}`;
+    const imgUrl = `${SITE_URL}${ogImage || '/brand/og/default.png'}`;
     document.title = title;
-    document.documentElement.lang = lang || 'id';
+    document.documentElement.lang = docLang;
     setMeta('name', 'description', description || '');
+    setMeta('property', 'og:locale', docLang === 'en' ? 'en_US' : 'id_ID');
     setMeta('property', 'og:title', title);
     setMeta('property', 'og:description', description || '');
     setMeta('property', 'og:url', url);
+    setMeta('property', 'og:image', imgUrl);
+    setMeta('name', 'twitter:title', title);
+    setMeta('name', 'twitter:description', description || '');
+    setMeta('name', 'twitter:image', imgUrl);
     let canonical = document.head.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
@@ -33,7 +40,7 @@ export function useDocumentMeta(meta) {
       document.head.appendChild(canonical);
     }
     canonical.setAttribute('href', url);
-  }, [title, description, path, lang]);
+  }, [title, description, path, lang, ogImage]);
 }
 
 export default useDocumentMeta;

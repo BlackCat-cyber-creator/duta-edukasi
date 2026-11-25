@@ -171,9 +171,9 @@
 }
 
 @media (max-width: 768px) {
-  /* baris 1: logotipe + tombol Studio Guru; baris 2: menu yang dapat digeser */
+  /* baris 1: logotipe + tombol Akun; baris 2: menu yang dapat digeser */
   .nav-container > div:last-child { display: contents !important; }
-  .nav-container #btn-nav-open-teacher-studio { order: 1; margin-left: auto; padding: 0.35rem 0.7rem !important; font-size: 0.78rem !important; }
+  .nav-container #btn-nav-account { order: 1; margin-left: auto; padding: 0.35rem 0.7rem !important; font-size: 0.78rem !important; }
   .nav-container .top-nav-links { order: 2; width: 100%; }
 }
 

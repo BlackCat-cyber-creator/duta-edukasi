@@ -1,11 +1,58 @@
-# Materi publik boleh diindeks; Studio Guru, link PR murid, lembar kerja,
-# dan halaman kunci jawaban tidak diindeks.
+# Materi publik boleh diindeks; akun pribadi, endpoint API, link PR murid,
+# lembar kerja, dan halaman kunci jawaban tidak diindeks.
 User-agent: *
 Allow: /
+Disallow: /akun
+Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
 Disallow: /worksheet
 Disallow: /solution/
 Disallow: /app.html
+
+User-agent: Googlebot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
 
 Sitemap: https://dutaedukasi.vercel.app/sitemap.xml

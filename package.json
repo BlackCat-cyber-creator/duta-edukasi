@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-paper-manifest.mjs && vite build && node scripts/prerender.mjs",
+    "build": "node scripts/generate-paper-manifest.mjs && node scripts/generate-ai-catalog.mjs && vite build && node scripts/prerender.mjs",
     "lint": "oxlint",
     "test": "vitest run",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "indexnow": "node scripts/ping-indexnow.mjs"
   },
   "dependencies": {
     "firebase": "^12.19.0",

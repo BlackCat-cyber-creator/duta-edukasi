@@ -106,6 +106,10 @@
       "destination": "/tka.html"
     },
     {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/app.html"
     }

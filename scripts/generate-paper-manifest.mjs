@@ -7,6 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { ALL_PAPERS, countPaperItems } from '../src/data/papers/index.js';
+import { extractPaperYear } from '../src/data/papers/meta.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -43,6 +44,7 @@ const manifest = ALL_PAPERS.map((p) => ({
   lang: p.lang,
   langDisplay: p.langDisplay || (p.lang === 'en' ? 'EN' : 'ID'),
   competition: p.competition,
+  year: extractPaperYear(p),
   title: p.title,
   totalMarks: p.totalMarks,
   itemCount: countPaperItems(p),

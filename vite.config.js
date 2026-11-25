@@ -25,7 +25,7 @@ export default defineConfig({
         navigateFallback: null,
         runtimeCaching: [
           {
-            urlPattern: ({ request }) => request.mode === 'navigate',
+            urlPattern: ({ request, url }) => request.mode === 'navigate' && !url.pathname.startsWith('/api/'),
             handler: 'NetworkFirst',
             options: { cacheName: 'halaman', networkTimeoutSeconds: 4, expiration: { maxEntries: 60 } }
           },

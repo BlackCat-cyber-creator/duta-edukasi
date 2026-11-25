@@ -30,7 +30,7 @@ import {
   Dna,
   ChevronLeft
 } from 'lucide-react';
-import { getProgress, PROGRESS_EVENT } from '../utils/progress';
+import { getProgress, PROGRESS_EVENT, recordRecentActivity } from '../utils/progress';
 import { getCp2025Note } from '../data/cp2025Mapping';
 import { handbookPath, parseHandbookPath } from '../utils/seoRoutes';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
@@ -260,6 +260,24 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
       ? (activeAmcChapter ? amcChapterMeta(selectedAmcLevel, activeAmcChapter) : amcLevelMeta(selectedAmcLevel))
       : (currentChapter ? chapterMeta(selectedGrade, currentChapter) : gradeMeta(selectedGrade, displaySubject))
   );
+
+  useEffect(() => {
+    if (isAmcMode && activeAmcChapter?.id) {
+      recordRecentActivity({
+        path: handbookPath({ mode: 'amc', level: selectedAmcLevel, chapter: activeAmcChapter.id }),
+        title: activeAmcChapter.title,
+        type: 'amc',
+        meta: `Olimpiade AMC ${selectedAmcLevel}`
+      });
+    } else if (!isAmcMode && currentChapter?.id) {
+      recordRecentActivity({
+        path: handbookPath({ mode: 'school', subject: displaySubject, grade: selectedGrade, chapter: currentChapter.id }),
+        title: currentChapter.title,
+        type: 'chapter',
+        meta: `${SUBJECT_LABELS[displaySubject] || 'Materi'} Kelas ${selectedGrade}`
+      });
+    }
+  }, [isAmcMode, activeAmcChapter, currentChapter, selectedAmcLevel, selectedGrade, displaySubject]);
 
   // ----------------------------------------------------
   // NAVIGATION & MODE SWITCH HANDLERS

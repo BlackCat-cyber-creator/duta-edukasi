@@ -77,7 +77,7 @@ export const AUTHOR = {
     'https://jevon-one.vercel.app'
   ],
   bioHighlights: [
-    'Lead Developer & Arsitek Platform Digital Duta e-dukasi — merancang portal buku saku interaktif, mesin kuis diagnostik, Studio Guru, lembar kerja cetak ber-QR, dan arsip Paket Soal Terstruktur.',
+    'Lead Developer & Arsitek Platform Digital Duta e-dukasi — merancang portal buku saku interaktif, mesin kuis diagnostik, akun pelajar & sinkronisasi progres, lembar kerja cetak ber-QR, dan arsip Paket Soal Terstruktur.',
     'Berlatar belakang kompetisi matematika tingkat sekolah menengah hingga perguruan tinggi (termasuk Finalis Nasional ONMIPA-PT Bidang Matematika dan juara kompetisi matematika tingkat provinsi di Kalimantan Barat).',
     'Fokus mengembangkan teknologi edukasi modern dan sumber belajar terbuka Matematika & Fisika yang terstruktur bagi pelajar, pengajar, serta referensi AI.'
   ]

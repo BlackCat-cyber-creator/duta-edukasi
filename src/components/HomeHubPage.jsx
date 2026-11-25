@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   BookOpen,
@@ -12,12 +12,21 @@ import {
   Compass,
   ArrowRight,
   FileCheck2,
-  ClipboardCheck
+  ClipboardCheck,
+  Clock
 } from 'lucide-react';
-import { PUBLISHED_PAPER_MANIFEST as PUBLISHED_PAPERS, PAPER_SUBJECT_META, paperPath, formatPaperMeta, OLYMPIAD_COMPETITIONS } from '../data/papers/manifest';
+import {
+  PUBLISHED_PAPER_MANIFEST as PUBLISHED_PAPERS,
+  PAPER_SUBJECT_META,
+  paperPath,
+  formatPaperMeta,
+  OLYMPIAD_COMPETITIONS,
+  englishPapersFilter
+} from '../data/papers/manifest';
 import { HOME_META } from '../utils/seoMeta';
 import { gradePath } from '../utils/seoRoutes';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
+import { getStudyState, STUDY_STATE_EVENT } from '../utils/progress';
 import { SiteSearch } from './SiteSearch';
 import { ORGANIZATION } from '../data/siteInfo';
 
@@ -41,7 +50,7 @@ const SCHOOL_SUBJECTS = [
 
 function matchesLevel(paper, filter) {
   if (filter === 'all') return true;
-  if (filter === 'en') return paper.lang === 'en';
+  if (filter === 'en') return englishPapersFilter(paper);
   if (filter === 'olimpiade') return String(paper.subject || '').startsWith('olimpiade');
   if (filter === 'sd') return paper.grade <= 6;
   if (filter === 'smp') return paper.grade >= 7 && paper.grade <= 9;
@@ -63,14 +72,23 @@ function rangeLabel(grades) {
 export function HomeHubPage() {
   useDocumentMeta(HOME_META);
   const [levelFilter, setLevelFilter] = useState('all');
+  const [recentItems, setRecentItems] = useState([]);
+
+  useEffect(() => {
+    const syncRecent = () => setRecentItems((getStudyState().recent || []).slice(0, 3));
+    syncRecent();
+    window.addEventListener(STUDY_STATE_EVENT, syncRecent);
+    return () => window.removeEventListener(STUDY_STATE_EVENT, syncRecent);
+  }, []);
 
   const filteredPapers = PUBLISHED_PAPERS.filter((p) => matchesLevel(p, levelFilter));
-  const englishPapers = PUBLISHED_PAPERS.filter((p) => p.lang === 'en').slice(0, 6);
+  const englishPapers = PUBLISHED_PAPERS.filter(englishPapersFilter).slice(0, 6);
   const paperCountBySubject = PUBLISHED_PAPERS.reduce((acc, p) => {
     acc[p.subject] = (acc[p.subject] || 0) + 1;
     return acc;
   }, {});
-  const competitionCount = (names) => PUBLISHED_PAPERS.filter((p) => names.includes(p.competition)).length;
+  const competitionCount = (names) => PUBLISHED_PAPERS.filter((p) => names.includes(p.competition) && matchesLevel(p, levelFilter)).length;
+  const totalCompetitionCount = (names) => PUBLISHED_PAPERS.filter((p) => names.includes(p.competition)).length;
 
   return (
     <div className="handbook-container">
@@ -99,6 +117,23 @@ export function HomeHubPage() {
           ))}
         </div>
       </section>
+
+      {recentItems.length > 0 && (
+        <section className="hub-resume-bar" aria-label="Lanjutkan Belajar">
+          <div className="hub-resume-label">
+            <Clock size={15} />
+            <strong>Lanjutkan Belajar:</strong>
+          </div>
+          <div className="hub-resume-links">
+            {recentItems.map((item) => (
+              <Link key={item.path} to={item.path} className="hub-grade-chip hub-chip-accent">
+                {item.title} <ArrowRight size={12} />
+              </Link>
+            ))}
+            <Link to="/akun" className="hub-more-link">Semua riwayat</Link>
+          </div>
+        </section>
+      )}
 
       {/* 4 Structural Bento Pillars */}
       <section className="hub-section" aria-label="Pilar Utama Belajar">
@@ -167,11 +202,14 @@ export function HomeHubPage() {
 
             <div className="hub-chip-list">
               {OLYMPIAD_COMPETITIONS.map((c) => {
-                const n = c.amc ? null : competitionCount(c.competitions);
-                if (n === 0) return null;
+                const totalN = c.amc ? null : totalCompetitionCount(c.competitions);
+                if (totalN === 0) return null;
+                const filteredN = c.amc ? null : competitionCount(c.competitions);
+                if (levelFilter !== 'all' && !c.amc && filteredN === 0) return null;
+                const shownN = levelFilter === 'all' ? totalN : filteredN;
                 return (
-                  <Link key={c.id} to={`/olimpiade?k=${c.id}`} className="hub-grade-chip">
-                    {c.label}{n ? ` (${n})` : ''}
+                  <Link key={c.id} to={c.path || `/olimpiade/${c.id}`} className="hub-grade-chip">
+                    {c.label}{shownN ? ` (${shownN})` : ''}
                   </Link>
                 );
               })}
@@ -197,8 +235,8 @@ export function HomeHubPage() {
                   <ArrowRight size={14} />
                 </Link>
               ))}
-              <Link to="/paket-soal" className="hub-more-link" style={{ marginTop: '0.25rem' }}>
-                Semua paket English <ArrowRight size={13} />
+              <Link to="/paket-soal/english" className="hub-more-link" style={{ marginTop: '0.25rem' }}>
+                Semua paket English ({PUBLISHED_PAPERS.filter(englishPapersFilter).length}) <ArrowRight size={13} />
               </Link>
             </div>
           </article>

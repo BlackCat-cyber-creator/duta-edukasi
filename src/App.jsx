@@ -5,16 +5,13 @@ import { handbookPath } from './utils/seoRoutes';
 import { isMateriPath, shouldScrollToTop } from './utils/navigation';
 import { AUTHOR, ORGANIZATION } from './data/siteInfo';
 import {
-  Lock,
-  ShieldCheck,
+  User,
   BookOpen,
-  LogOut,
   Loader2
 } from 'lucide-react';
 
 // Lazy-loaded Views for maximal code-splitting
 const HomeHubPage = lazy(() => import('./components/HomeHubPage').then((m) => ({ default: m.HomeHubPage })));
-const TeacherDashboard = lazy(() => import('./components/TeacherDashboard').then((m) => ({ default: m.TeacherDashboard })));
 const StudentQuestView = lazy(() => import('./components/StudentQuestView').then((m) => ({ default: m.StudentQuestView })));
 const PrintableWorksheet = lazy(() => import('./components/PrintableWorksheet').then((m) => ({ default: m.PrintableWorksheet })));
 const ChapterSolutionView = lazy(() => import('./components/ChapterSolutionView').then((m) => ({ default: m.ChapterSolutionView })));
@@ -29,7 +26,8 @@ const PaperDetailPage = lazy(() => import('./components/PaperDetailPage').then((
 const TopicIndexPage = lazy(() => import('./components/TopicIndexPage').then((m) => ({ default: m.TopicIndexPage })));
 const FormulaIndexPage = lazy(() => import('./components/FormulaIndexPage').then((m) => ({ default: m.FormulaIndexPage })));
 const TkaPage = lazy(() => import('./components/TkaPage').then((m) => ({ default: m.TkaPage })));
-const TeacherLoginView = lazy(() => import('./components/TeacherLoginView').then((m) => ({ default: m.TeacherLoginView })));
+const AccountPage = lazy(() => import('./components/AccountPage').then((m) => ({ default: m.AccountPage })));
+const AiAssistantWidget = lazy(() => import('./components/AiAssistantWidget').then((m) => ({ default: m.AiAssistantWidget })));
 
 /** Mata pelajaran sekolah yang memakai buku saku (alamat /<mapel>/kelas-N/<bab>). */
 const HANDBOOK_SUBJECT_PATHS = ['matematika', 'ipa', 'fisika', 'kimia', 'biologi'];
@@ -76,7 +74,6 @@ function resolveQueryRedirect(searchParams, pathname = '/') {
   if (isSolution && grade && chapter) {
     return `/solution/${encodeURIComponent(grade)}/${encodeURIComponent(chapter)}`;
   }
-  // Link buku saku lama (?grade=... / ?mode=amc...) -> alamat rapi
   if (mode === 'amc') {
     return handbookPath({ mode: 'amc', level: Number(level) || 8, chapter });
   }
@@ -123,9 +120,8 @@ function ScrollToTopOnNavigate() {
 export function App() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, teacherName, isAuthenticated, logout } = useAuth();
+  const { displayName, isAuthenticated } = useAuth();
 
-  const isTeacherRoute = location.pathname.startsWith('/teacher');
   const isFullScreenView = location.pathname.startsWith('/quest/') ||
                            location.pathname.startsWith('/worksheet') ||
                            location.pathname.startsWith('/solution/');
@@ -135,16 +131,12 @@ export function App() {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   };
 
-  // Dibuka dari Studio Guru: mode pratinjau agar jawaban guru tidak tercatat sebagai jawaban murid
-  const handleLaunchQuest = (qId) => {
-    navigate(`/quest/${encodeURIComponent(qId)}?preview=1`);
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  };
-
   const handleLaunchPracticeQuest = (practiceQuest) => {
     try {
       localStorage.setItem(`mathquest_practice_${practiceQuest.id}`, JSON.stringify(practiceQuest));
-    } catch {}
+    } catch {
+      // Abaikan bila localStorage tidak tersedia
+    }
     navigate(`/quest/${encodeURIComponent(practiceQuest.id)}`);
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   };
@@ -153,18 +145,15 @@ export function App() {
     if (!quest) return;
     try {
       localStorage.setItem(`mathquest_worksheet_${quest.id || 'current'}`, JSON.stringify(quest));
-    } catch {}
+    } catch {
+      // Abaikan bila localStorage tidak tersedia
+    }
     navigate(`/worksheet/${encodeURIComponent(quest.id || 'current')}`, { state: { quest } });
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   };
 
   // Satu komponen buku saku untuk semua mata pelajaran dan jalur AMC
   const handbook = <PublicHandbook onLaunchPractice={handleLaunchPracticeQuest} onPrintQuest={handlePrintQuest} />;
-
-  const handleSignOut = async () => {
-    await logout();
-    navigate('/teacher/login');
-  };
 
   return (
     <div className="app-layout">
@@ -175,7 +164,6 @@ export function App() {
       {/* Top Navbar */}
       <header className="top-navbar no-print">
         <div className="nav-container">
-          {/* Logo: tautan ke beranda (bisa difokus dengan keyboard) */}
           <Link to="/" className="brand-logo" onClick={handleBackToHome} aria-label={`${ORGANIZATION.name} — Beranda`}>
             <img
               className="brand-logo-mark"
@@ -191,11 +179,6 @@ export function App() {
                   <span className="brand-wordmark-edukasi">e-dukasi</span>
                 </span>
               </div>
-              {isTeacherRoute && (
-                <div className="brand-subtitle">
-                  Studio Guru {ORGANIZATION.name}
-                </div>
-              )}
             </div>
           </Link>
 
@@ -210,40 +193,8 @@ export function App() {
                 <BookOpen size={14} />
                 Portal Utama
               </button>
-            ) : isTeacherRoute ? (
-              <div className="nav-teacher-actions">
-                {isAuthenticated && (
-                  <div className="teacher-status-pill">
-                    <span className="teacher-status-dot" aria-hidden="true"></span>
-                    <span className="teacher-status-name">Studio Guru ({teacherName})</span>
-                  </div>
-                )}
-
-                <button
-                  id="btn-nav-switch-public"
-                  className="btn btn-outline btn-nav-sm"
-                  onClick={() => navigate('/')}
-                  title="Kembali ke Buku Panduan Publik"
-                >
-                  <BookOpen size={14} />
-                  Portal Publik
-                </button>
-
-                {isAuthenticated && (
-                  <button
-                    id="btn-nav-signout"
-                    className="btn btn-subtle btn-nav-sm btn-nav-signout"
-                    onClick={handleSignOut}
-                    title="Keluar dari sesi guru"
-                  >
-                    <LogOut size={14} />
-                    Keluar
-                  </button>
-                )}
-              </div>
             ) : (
               <>
-                {/* Menu utama hanya berisi tujuan belajar; Tentang, Prestasi, Pendiri & Kontak ada di footer */}
                 <nav className="top-nav-links" aria-label="Menu Utama">
                   <NavLink to="/" className={() => `top-nav-link ${isMateriPath(location.pathname) ? 'active' : ''}`}>
                     Materi
@@ -262,12 +213,13 @@ export function App() {
                   </NavLink>
                 </nav>
                 <button
-                  id="btn-nav-open-teacher-studio"
-                  className="btn btn-royal btn-nav-studio"
-                  onClick={() => navigate('/teacher')}
+                  id="btn-nav-account"
+                  type="button"
+                  className={`btn ${isAuthenticated ? 'btn-outline' : 'btn-royal'} btn-nav-studio`}
+                  onClick={() => navigate('/akun')}
                 >
-                  {isAuthenticated ? <ShieldCheck size={15} /> : <Lock size={14} />}
-                  Studio Guru
+                  <User size={14} />
+                  <span>{isAuthenticated ? displayName : 'Masuk / Daftar'}</span>
                 </button>
               </>
             )}
@@ -287,13 +239,18 @@ export function App() {
               <Route key={subject} path={`/${subject}/*`} element={handbook} />
             ))}
             <Route path="/olimpiade" element={<OlimpiadeHubPage />} />
-            <Route path="/olimpiade/*" element={handbook} />
+            <Route path="/olimpiade/amc-8" element={handbook} />
+            <Route path="/olimpiade/amc-8/*" element={handbook} />
+            <Route path="/olimpiade/amc-10" element={handbook} />
+            <Route path="/olimpiade/amc-10/*" element={handbook} />
+            <Route path="/olimpiade/amc-12" element={handbook} />
+            <Route path="/olimpiade/amc-12/*" element={handbook} />
+            <Route path="/olimpiade/:competitionId" element={<OlimpiadeHubPage />} />
 
             {/* 1c. Halaman Profil Bimbel & Arsip Paket Soal */}
             <Route path="/tentang" element={<AboutPage />} />
             <Route path="/program" element={<ProgramPage />} />
             <Route path="/pendiri" element={<FounderPage />} />
-            {/* Prestasi kini bagian dari halaman Tentang; alamat lama tetap berfungsi */}
             <Route path="/prestasi" element={<Navigate to="/tentang#prestasi" replace />} />
             <Route path="/kontak" element={<ContactPage />} />
             <Route path="/paket-soal" element={<PapersHubPage />} />
@@ -305,12 +262,17 @@ export function App() {
             <Route path="/tka" element={<TkaPage onPrintQuest={handlePrintQuest} />} />
             <Route path="/tka/:paket" element={<TkaPage onPrintQuest={handlePrintQuest} />} />
 
-            {/* 2. Interactive Student Quest Player */}
+            {/* 2. Akun Pelajar & Sinkronisasi Progres */}
+            <Route path="/akun" element={<AccountPage />} />
+            <Route path="/teacher" element={<Navigate to="/akun" replace />} />
+            <Route path="/teacher/*" element={<Navigate to="/akun" replace />} />
+
+            {/* 3. Interactive Student Quest Player */}
             <Route path="/quest/:questId" element={
               <StudentQuestView onBackToDashboard={handleBackToHome} />
             } />
 
-            {/* 3. Printable Worksheet A4 with QR Code */}
+            {/* 4. Printable Worksheet A4 with QR Code */}
             <Route path="/worksheet/:questId" element={
               <PrintableWorksheet onBack={handleBackToHome} />
             } />
@@ -318,41 +280,12 @@ export function App() {
               <PrintableWorksheet onBack={handleBackToHome} />
             } />
 
-            {/* 4. Chapter Online Solution via QR Code Scan */}
+            {/* 5. Chapter Online Solution via QR Code Scan */}
             <Route path="/solution/amc/:level/:chapterId" element={
               <ChapterSolutionView onBack={handleBackToHome} />
             } />
             <Route path="/solution/:grade/:chapterId" element={
               <ChapterSolutionView onBack={handleBackToHome} />
-            } />
-
-            {/* 5. Teacher Authentication */}
-            <Route path="/teacher/login" element={
-              isAuthenticated ? <Navigate to="/teacher" replace /> : (
-                <TeacherLoginView
-                  onBack={handleBackToHome}
-                  onSuccess={() => navigate('/teacher')}
-                />
-              )
-            } />
-
-            {/* 6. Teacher Studio Workspace (Protected) */}
-            <Route path="/teacher" element={
-              isAuthenticated ? (
-                <TeacherDashboard
-                  onLaunchQuest={handleLaunchQuest}
-                  onPrintQuest={handlePrintQuest}
-                  currentTeacher={user}
-                />
-              ) : (
-                <TeacherLoginView
-                  onBack={handleBackToHome}
-                  onSuccess={() => navigate('/teacher')}
-                />
-              )
-            } />
-            <Route path="/teacher/*" element={
-              <Navigate to="/teacher" replace />
             } />
 
             {/* Catch-all fallback redirect */}
@@ -361,7 +294,13 @@ export function App() {
         </Suspense>
       </main>
 
-      {!isTeacherRoute && !isFullScreenView && (
+      {!isFullScreenView && (
+        <Suspense fallback={null}>
+          <AiAssistantWidget />
+        </Suspense>
+      )}
+
+      {!isFullScreenView && (
         <footer className="site-footer no-print">
           <div className="site-footer-columns">
             <nav className="site-footer-group" aria-label="Belajar">
@@ -380,6 +319,7 @@ export function App() {
               <Link to="/pendiri">Pendiri</Link>
               <Link to="/program">Program bimbel</Link>
               <Link to="/kontak">Kontak &amp; lokasi</Link>
+              <Link to="/akun">Akun belajar</Link>
             </nav>
             <div className="site-footer-group">
               <h2 className="site-footer-heading">{ORGANIZATION.name}</h2>

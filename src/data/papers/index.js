@@ -97,7 +97,12 @@ import {
   levelNameOfGrade,
   paperLangLabel,
   paperTag,
-  formatPaperMeta
+  formatPaperMeta,
+  extractPaperYear,
+  englishPapersFilter,
+  getOlympiadCompetition,
+  competitionOfPaper,
+  getRelatedPapers
 } from './meta.js';
 
 export {
@@ -111,7 +116,12 @@ export {
   levelNameOfGrade,
   paperLangLabel,
   paperTag,
-  formatPaperMeta
+  formatPaperMeta,
+  extractPaperYear,
+  englishPapersFilter,
+  getOlympiadCompetition,
+  competitionOfPaper,
+  getRelatedPapers
 };
 
 export const ALL_PAPERS = [
