@@ -103,6 +103,10 @@ import mat12PeluangKaidahPencacahan from './matematika/kelas12/peluang-kaidah-pe
 import kim11ChemicalEquilibrium from './kimia/kelas11/chemical-equilibrium-practice.js';
 import ipa9EdexcelBioGenetics from './ipa/kelas9/edexcel-biology-genetics-inheritance.js';
 import ipa8BioHomeostasis from './ipa/kelas8/biology-grade-8-homeostasis-excretion.js';
+import olimSasmo2022P4 from './olimpiade-mat/sd/sasmo-2022-primary-4.js';
+import olimSasmo2023G9 from './olimpiade-mat/smp/sasmo-2023-grade-9.js';
+import olimOsnIpaSdLatihan1 from './olimpiade-sains/sd/osn-ipa-sd-latihan-1.js';
+import olimSasmoPractice1 from './olimpiade-mat/sd/sasmo-practice-1.js';
 
 import {
   PAPER_SUBJECT_META,
@@ -242,7 +246,11 @@ export const ALL_PAPERS = [
   mat12PeluangKaidahPencacahan,
   kim11ChemicalEquilibrium,
   ipa9EdexcelBioGenetics,
-  ipa8BioHomeostasis
+  ipa8BioHomeostasis,
+  olimSasmo2022P4,
+  olimSasmo2023G9,
+  olimOsnIpaSdLatihan1,
+  olimSasmoPractice1
 ];
 
 export const PUBLISHED_PAPERS = ALL_PAPERS.filter((p) => p.status === 'published');

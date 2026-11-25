@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 120" width="440" height="120" role="img">
+  <rect width="440" height="120" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Circle 1: Purple (35, 6, 4) -->
+  <g transform="translate(60, 60)" stroke="#7E22CE" stroke-width="2.5" fill="none">
+    <circle cx="0" cy="0" r="44"/>
+    <line x1="0" y1="0" x2="0" y2="44"/>
+    <line x1="0" y1="0" x2="-38.1" y2="-22"/>
+    <line x1="0" y1="0" x2="38.1" y2="-22"/>
+  </g>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="700" fill="#7E22CE" text-anchor="middle" dominant-baseline="central">
+    <text x="60" y="34">35</text>
+    <text x="38" y="71">6</text>
+    <text x="82" y="71">4</text>
+  </g>
+  <!-- Circle 2: Green (56, 6, 7) -->
+  <g transform="translate(166, 60)" stroke="#15803D" stroke-width="2.5" fill="none">
+    <circle cx="0" cy="0" r="44"/>
+    <line x1="0" y1="0" x2="0" y2="44"/>
+    <line x1="0" y1="0" x2="-38.1" y2="-22"/>
+    <line x1="0" y1="0" x2="38.1" y2="-22"/>
+  </g>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="700" fill="#15803D" text-anchor="middle" dominant-baseline="central">
+    <text x="166" y="34">56</text>
+    <text x="144" y="71">6</text>
+    <text x="188" y="71">7</text>
+  </g>
+  <!-- Circle 3: Blue (15, 2, 4) -->
+  <g transform="translate(272, 60)" stroke="#1D4ED8" stroke-width="2.5" fill="none">
+    <circle cx="0" cy="0" r="44"/>
+    <line x1="0" y1="0" x2="0" y2="44"/>
+    <line x1="0" y1="0" x2="-38.1" y2="-22"/>
+    <line x1="0" y1="0" x2="38.1" y2="-22"/>
+  </g>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="700" fill="#1D4ED8" text-anchor="middle" dominant-baseline="central">
+    <text x="272" y="34">15</text>
+    <text x="250" y="71">2</text>
+    <text x="294" y="71">4</text>
+  </g>
+  <!-- Circle 4: Red (?, 4, 7) -->
+  <g transform="translate(378, 60)" stroke="#DC2626" stroke-width="2.5" fill="none">
+    <circle cx="0" cy="0" r="44"/>
+    <line x1="0" y1="0" x2="0" y2="44"/>
+    <line x1="0" y1="0" x2="-38.1" y2="-22"/>
+    <line x1="0" y1="0" x2="38.1" y2="-22"/>
+  </g>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="700" fill="#DC2626" text-anchor="middle" dominant-baseline="central">
+    <text x="378" y="34">?</text>
+    <text x="356" y="71">4</text>
+    <text x="400" y="71">7</text>
+  </g>
+</svg>

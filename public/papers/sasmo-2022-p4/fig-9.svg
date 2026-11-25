@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 220" width="260" height="220" role="img">
+  <rect width="260" height="220" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Wireframe cube: front face (80,80)-(170,170), back face (120,45)-(210,135) -->
+  <g stroke="#0F172A" stroke-width="2.2" fill="none" stroke-linejoin="round">
+    <!-- Hidden edges (dashed) -->
+    <line x1="80" y1="170" x2="120" y2="135" stroke-dasharray="5,5" stroke="#64748B"/>
+    <line x1="120" y1="45" x2="120" y2="135" stroke-dasharray="5,5" stroke="#64748B"/>
+    <line x1="120" y1="135" x2="210" y2="135" stroke-dasharray="5,5" stroke="#64748B"/>
+    <!-- Visible edges -->
+    <rect x="80" y="80" width="90" height="90"/>
+    <line x1="80" y1="80" x2="120" y2="45"/>
+    <line x1="170" y1="80" x2="210" y2="45"/>
+    <line x1="170" y1="170" x2="210" y2="135"/>
+    <line x1="120" y1="45" x2="210" y2="45"/>
+    <line x1="210" y1="45" x2="210" y2="135"/>
+  </g>
+  <!-- Ant / Start marker at front-bottom-left vertex (80, 170) -->
+  <circle cx="80" cy="170" r="6" fill="#DC2626" stroke="#FFFFFF" stroke-width="1.5"/>
+  <text x="42" y="192" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#DC2626">Ant (Start)</text>
+</svg>

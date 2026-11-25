@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 170" width="260" height="170" role="img">
+  <rect width="260" height="170" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g stroke="#1D4ED8" stroke-width="2" fill="none" stroke-linejoin="round">
+    <!-- Outer triangle T(130,18), BL(26,148), BR(234,148) -->
+    <polygon points="130,18 26,148 234,148"/>
+    <!-- Midline ML(78,83) to MR(182,83) -->
+    <line x1="78" y1="83" x2="182" y2="83"/>
+    <!-- Vertical altitude T(130,18) to BM(130,148) -->
+    <line x1="130" y1="18" x2="130" y2="148"/>
+    <!-- Left vertical ML(78,83) to B1(78,148) and diagonal ML(78,83) to BM(130,148) -->
+    <line x1="78" y1="83" x2="78" y2="148"/>
+    <line x1="78" y1="83" x2="130" y2="148"/>
+    <!-- Right vertical MR(182,83) to B2(182,148) and diagonal MR(182,83) to BM(130,148) -->
+    <line x1="182" y1="83" x2="182" y2="148"/>
+    <line x1="182" y1="83" x2="130" y2="148"/>
+  </g>
+</svg>

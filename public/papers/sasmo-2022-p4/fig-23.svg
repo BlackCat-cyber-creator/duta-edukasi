@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 260" width="360" height="260" role="img">
+  <rect width="360" height="260" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Scale 10px per cm: E=(50,40), B=(130,40), C=(130,120), A=(50,180), D=(290,120) -->
+  <g stroke="#0F172A" stroke-width="2" stroke-linejoin="round">
+    <!-- Top-left square (80x80) -->
+    <rect x="50" y="40" width="80" height="80" fill="#FFFFFF"/>
+    <!-- Middle horizontal rectangle (160x60) from x=50..210, y=120..180 -->
+    <rect x="50" y="120" width="160" height="60" fill="#FFFFFF"/>
+    <!-- Bottom-right square (80x80) from x=210..290, y=120..200 -->
+    <rect x="210" y="120" width="80" height="80" fill="#FFFFFF"/>
+    <!-- Shaded quadrilateral ABCD -->
+    <polygon points="50,180 130,40 130,120 290,120" fill="#64748B" fill-opacity="0.85" stroke="#0F172A" stroke-width="2.2"/>
+  </g>
+  <g font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="700" font-size="15" fill="#0F172A">
+    <text x="34"  y="194">A</text>
+    <text x="132" y="32">B</text>
+    <text x="125" y="138">C</text>
+    <text x="296" y="118">D</text>
+  </g>
+</svg>

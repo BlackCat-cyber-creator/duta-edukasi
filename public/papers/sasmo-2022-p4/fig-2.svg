@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100" role="img">
+  <rect width="400" height="100" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g transform="translate(20, 20)" stroke="#0F172A" stroke-width="2" stroke-linejoin="round">
+    <!-- Square 1: top-left shaded -->
+    <polygon points="0,0 60,0 0,60" fill="#64748B"/>
+    <polygon points="60,0 60,60 0,60" fill="#FFFFFF"/>
+    <!-- Square 2: top-right shaded -->
+    <polygon points="60,0 120,0 120,60" fill="#64748B"/>
+    <polygon points="60,0 120,60 60,60" fill="#FFFFFF"/>
+    <!-- Square 3: unshaded -->
+    <rect x="120" y="0" width="60" height="60" fill="#FFFFFF"/>
+    <!-- Square 4: top-right shaded -->
+    <polygon points="180,0 240,0 240,60" fill="#64748B"/>
+    <polygon points="180,0 240,60 180,60" fill="#FFFFFF"/>
+    <!-- Square 5: top-left shaded -->
+    <polygon points="240,0 300,0 240,60" fill="#64748B"/>
+    <polygon points="300,0 300,60 240,60" fill="#FFFFFF"/>
+    <!-- Square 6: top-right shaded -->
+    <polygon points="300,0 360,0 360,60" fill="#64748B"/>
+    <polygon points="300,0 360,60 300,60" fill="#FFFFFF"/>
+    <!-- Outer frame -->
+    <rect x="0" y="0" width="360" height="60" fill="none" stroke-width="2.2"/>
+  </g>
+</svg>

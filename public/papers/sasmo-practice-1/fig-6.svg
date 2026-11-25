@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img">
+  <rect width="240" height="240" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g stroke="#475569" stroke-width="1.5" stroke-linejoin="round">
+    <!-- Painter's order: (u=0,v=2) height 3 -->
+    <!-- (0,2,1) -->
+    <polygon points="122,135 104,120 146,115 164,130" fill="#FFFFFF"/>
+    <polygon points="122,135 104,120 104,162 122,177" fill="#808080"/>
+    <polygon points="122,135 164,130 164,172 122,177" fill="#BFBFBF"/>
+    <!-- (0,2,2) -->
+    <polygon points="122,93 104,78 146,73 164,88" fill="#FFFFFF"/>
+    <polygon points="122,93 104,78 104,120 122,135" fill="#808080"/>
+    <polygon points="122,93 164,88 164,130 122,135" fill="#BFBFBF"/>
+    <!-- (0,2,3) -->
+    <polygon points="122,51 104,36 146,31 164,46" fill="#FFFFFF"/>
+    <polygon points="122,51 104,36 104,78 122,93" fill="#808080"/>
+    <polygon points="122,51 164,46 164,88 122,93" fill="#BFBFBF"/>
+
+    <!-- (u=0,v=0) height 2 -->
+    <!-- (0,0,1) -->
+    <polygon points="38,145 20,130 62,125 80,140" fill="#FFFFFF"/>
+    <polygon points="38,145 20,130 20,172 38,187" fill="#808080"/>
+    <polygon points="38,145 80,140 80,182 38,187" fill="#BFBFBF"/>
+    <!-- (0,0,2) -->
+    <polygon points="38,103 20,88 62,83 80,98" fill="#FFFFFF"/>
+    <polygon points="38,103 20,88 20,130 38,145" fill="#808080"/>
+    <polygon points="38,103 80,98 80,140 38,145" fill="#BFBFBF"/>
+
+    <!-- (u=1,v=2) height 2 -->
+    <!-- (1,2,1) -->
+    <polygon points="140,150 122,135 164,130 182,145" fill="#FFFFFF"/>
+    <polygon points="140,150 122,135 122,177 140,192" fill="#808080"/>
+    <polygon points="140,150 182,145 182,187 140,192" fill="#BFBFBF"/>
+    <!-- (1,2,2) -->
+    <polygon points="140,108 122,93 164,88 182,103" fill="#FFFFFF"/>
+    <polygon points="140,108 122,93 122,135 140,150" fill="#808080"/>
+    <polygon points="140,108 182,103 182,145 140,150" fill="#BFBFBF"/>
+
+    <!-- (u=1,v=1) height 1 -->
+    <polygon points="98,155 80,140 122,135 140,150" fill="#FFFFFF"/>
+    <polygon points="98,155 80,140 80,182 98,197" fill="#808080"/>
+    <polygon points="98,155 140,150 140,192 98,197" fill="#BFBFBF"/>
+
+    <!-- (u=2,v=1) height 1 -->
+    <polygon points="116,170 98,155 140,150 158,165" fill="#FFFFFF"/>
+    <polygon points="116,170 98,155 98,197 116,212" fill="#808080"/>
+    <polygon points="116,170 158,165 158,207 116,212" fill="#BFBFBF"/>
+  </g>
+</svg>

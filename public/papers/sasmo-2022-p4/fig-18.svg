@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 210" width="380" height="210" role="img">
+  <rect width="380" height="210" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Grid coordinates scaled by 50px per unit: origin (0,3) at (40,30), base (0..6) at x=40..340, y=180 -->
+  <g stroke="#0F172A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Outer triangle -->
+    <polygon points="40,180 340,180 190,30"/>
+    <!-- Horizontal lines -->
+    <line x1="140" y1="80" x2="240" y2="80"/>
+    <line x1="90"  y1="130" x2="290" y2="130"/>
+    <!-- Vertical segments -->
+    <line x1="90"  y1="130" x2="90"  y2="180"/>
+    <line x1="140" y1="80"  x2="140" y2="180"/>
+    <line x1="190" y1="30"  x2="190" y2="180"/>
+    <line x1="240" y1="80"  x2="240" y2="180"/>
+    <line x1="290" y1="130" x2="290" y2="180"/>
+    <!-- Diagonals -->
+    <line x1="90"  y1="130" x2="140" y2="180"/>
+    <line x1="140" y1="80"  x2="240" y2="180"/>
+    <line x1="140" y1="180" x2="240" y2="80"/>
+    <line x1="240" y1="180" x2="290" y2="130"/>
+  </g>
+</svg>

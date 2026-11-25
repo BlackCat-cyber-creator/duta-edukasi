@@ -22,7 +22,7 @@
 | Phase 1 | Foundation (SEO, search, `/akun`, AI chat) | — | `done` | Committed before Phase 2 |
 | **Batch 6** | 10 Olympiad & Competition Inbox Sets (Text PDFs) | 10 | `done` | 82 → 92 published |
 | **Batch 7** | 8 School Math, IPA SMP, Chem & IGCSE Bio Sets | 8 | `done` | 92 → 100 published |
-| **Batch 8** | 4 Scanned/Visual Olympiad PDFs (Edge PNG + Vision) | 4 | `pending` | `scratch/workflow_batch8.py` |
+| **Batch 8** | 4 Scanned/Visual Olympiad PDFs (Edge PNG + Vision) | 4 | `done` | 100 → 104 published |
 | **Batch 9** | Next Up: SVG diagrams on Batch 4/5 + fresh open-archive Olympiads (OSN-P/Nasional, AMC/AIME, SASMO/SMO, UTBK/SNBT, OSN Inf/Astro/Kebumian/Eko) | TBD | `queued` | Starts after Batch 8 |
 
 ---
@@ -63,7 +63,7 @@
 
 | ID | Source PDF | Target File | Status |
 | :--- | :--- | :--- | :--- |
-| `sasmo-2022-p4` | `batch3/sasmo_2022_p4.pdf` | `src/data/papers/olimpiade-mat/sd/sasmo-2022-primary-4.js` | `pending` |
-| `sasmo-2023-g9` | `batch3/sasmo_2023_g9.pdf` | `src/data/papers/olimpiade-mat/smp/sasmo-2023-grade-9.js` | `pending` |
-| `osn-ipa-sd-latihan-1` | `batch2_science/01 SOAL OSN IPA SD.pdf` | `src/data/papers/olimpiade-sains/sd/osn-ipa-sd-latihan-1.js` | `pending` |
-| `sasmo-practice-1` | `batch3/sasmo_practice_kris.pdf` | `src/data/papers/olimpiade-mat/sd/sasmo-practice-1.js` | `pending` |
+| `sasmo-2022-p4` | `batch3/sasmo_2022_p4.pdf` | `src/data/papers/olimpiade-mat/sd/sasmo-2022-primary-4.js` | `done` (24 soal, 9 SVG) |
+| `sasmo-2023-g9` | `batch3/sasmo_2023_g9.pdf` | `src/data/papers/olimpiade-mat/smp/sasmo-2023-grade-9.js` | `done` (25 soal, 3 SVG) |
+| `osn-ipa-sd-latihan-1` | `batch2_science/01 SOAL OSN IPA SD.pdf` | `src/data/papers/olimpiade-sains/sd/osn-ipa-sd-latihan-1.js` | `done` (27 soal) |
+| `sasmo-practice-1` | `batch3/sasmo_practice_kris.pdf` | `src/data/papers/olimpiade-mat/sd/sasmo-practice-1.js` | `done` (28 soal, 10 SVG) |

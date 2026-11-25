@@ -179,3 +179,14 @@ Seluruh naskah bersumber dari arsip terbuka (Po-Shen Loh / MAA AMC, M3Kang, math
 | `kim11-chemical-equilibrium` | Kimia SMA | 12 soal (30 bagian, 61 Marks) | Kesetimbangan Kimia (`EN`, bebas `\ce`/`\pu`) |
 | `ipa9-edexcel-bio-genetics` | IGCSE Biology | 28 soal (92 Marks) | Genetics & Inheritance (`EN`, Q18–19 diagram dilewati) |
 | `ipa8-bio-homeostasis` | IPA SMP | 16 bagian (24 Marks) | Homeostasis & Excretion (`EN`, identitas sekolah sumber dihapus) |
+
+---
+
+## Batch 8 — 4 Paket Olimpiade Vision-Extracted (104 Paket Terpublikasi)
+
+| ID Paket | Kompetisi | Cakupan | Catatan |
+| :--- | :--- | :--- | :--- |
+| `sasmo-2022-p4` | SASMO | 24 soal (68 poin) | SASMO 2022 Primary 4 + 9 diagram SVG (Q4 dilewati) |
+| `sasmo-2023-g9` | SASMO | 25 soal (70 poin) | SASMO 2023 Grade 9 + 3 diagram SVG |
+| `osn-ipa-sd-latihan-1` | OSN-K | 27 soal | Latihan OSN IPA SD Paket 1 (Q12–14 halaman sumber kosong dilewati) |
+| `sasmo-practice-1` | SASMO | 28 soal (112 poin) | SASMO Practice Set I + 10 diagram SVG (Q1–2 dilewati) |

@@ -2508,6 +2508,113 @@ export const PAPER_MANIFEST = [
     "itemCount": 16,
     "questionCount": 6,
     "status": "published"
+  },
+  {
+    "id": "sasmo-2022-p4",
+    "slug": "sasmo-2022-primary-4",
+    "subject": "olimpiade-mat",
+    "grade": 4,
+    "track": "olimpiade-sd",
+    "accessTier": "free",
+    "topic": "SASMO 2022 Primary 4: arithmetic, fractions, sequences, divisibility, 3D cubes, combinatorics, logic, and geometry",
+    "relatedChapterIds": [
+      "sd4-bab1-bilangan-cacah",
+      "sd4-bab2-pecahan",
+      "sd4-bab3-pola-gambar-bilangan",
+      "sd4-bab4-luas-volume",
+      "sd4-bab5-bangun-datar",
+      "sd4-bab6-piktogram-diagram-batang"
+    ],
+    "lang": "en",
+    "langDisplay": "EN",
+    "competition": "SASMO",
+    "year": 2022,
+    "title": "SASMO 2022 Primary 4",
+    "totalMarks": 68,
+    "itemCount": 24,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "sasmo-2023-g9",
+    "slug": "sasmo-2023-grade-9",
+    "subject": "olimpiade-mat",
+    "grade": 9,
+    "track": "olimpiade-smp",
+    "accessTier": "free",
+    "topic": "SASMO 2023 Grade 9 (Secondary 3): arithmetic, exponents, divisibility, sequences, counting, geometry, algebra, and cryptarithm",
+    "relatedChapterIds": [
+      "smp7-bab1-bilangan-bulat",
+      "smp7-bab4-bentuk-aljabar",
+      "smp8-bab1-bilangan-berpangkat",
+      "smp8-bab3-persamaan-pertidaksamaan-linear",
+      "smp9-bab3-transformasi-geometri"
+    ],
+    "lang": "en",
+    "langDisplay": "EN",
+    "competition": "SASMO",
+    "year": 2023,
+    "title": "SASMO 2023 Grade 9",
+    "totalMarks": 70,
+    "itemCount": 25,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "osn-ipa-sd-latihan-1",
+    "slug": "osn-ipa-sd-latihan-1",
+    "subject": "olimpiade-sains",
+    "grade": 5,
+    "track": "olimpiade-sd",
+    "accessTier": "free",
+    "topic": "Latihan Soal OSN IPA SD: biologi tumbuhan & manusia, ekologi, metode ilmiah, mekanika, kalor & wujud zat, gelombang, optik, magnet, tata surya, dan cuaca",
+    "relatedChapterIds": [
+      "ipa4-bab1-wujud-zat-dan-perubahannya",
+      "ipa4-bab2-gaya-di-sekitar-kita",
+      "ipa4-bab3-energi-dan-perubahannya",
+      "ipa4-bab4-pancaindra-dan-pengamatan-ilmiah",
+      "ipa5-bab1-cahaya-dan-sifatnya",
+      "ipa5-bab2-bunyi-dan-pendengaran",
+      "ipa5-bab3-listrik-dan-magnet-sederhana",
+      "ipa5-bab4-ekosistem-dan-siklus-air",
+      "ipa6-bab1-rangka-dan-mekanika-gerak-tubuh",
+      "ipa6-bab3-sistem-tata-surya"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "OSN-K",
+    "year": null,
+    "title": "Latihan Soal OSN IPA SD — Paket 1",
+    "totalMarks": 27,
+    "itemCount": 27,
+    "questionCount": 1,
+    "status": "published"
+  },
+  {
+    "id": "sasmo-practice-1",
+    "slug": "sasmo-practice-1",
+    "subject": "olimpiade-mat",
+    "grade": 5,
+    "track": "olimpiade-sd",
+    "accessTier": "free",
+    "topic": "SASMO Practice Set I: number patterns, arithmetic, logic puzzles, divisibility, combinatorics, geometry, and cryptarithms",
+    "relatedChapterIds": [
+      "sd4-bab1-bilangan-cacah",
+      "sd4-bab3-pola-gambar-bilangan",
+      "sd5-bab2-kpk-fpb",
+      "sd5-bab5-luas-daerah-bangun-datar",
+      "sd6-bab3-kubus-balok",
+      "sd6-bab4-peluang"
+    ],
+    "lang": "en",
+    "langDisplay": "EN",
+    "competition": "SASMO",
+    "year": null,
+    "title": "SASMO Practice Set I",
+    "totalMarks": 112,
+    "itemCount": 28,
+    "questionCount": 1,
+    "status": "published"
   }
 ];
 
@@ -2622,7 +2729,11 @@ export const PAPER_LOADERS = {
   'matematika/peluang-kaidah-pencacahan': () => import('./matematika/kelas12/peluang-kaidah-pencacahan.js'),
   'kimia/chemical-equilibrium-practice': () => import('./kimia/kelas11/chemical-equilibrium-practice.js'),
   'ipa/edexcel-biology-genetics-inheritance': () => import('./ipa/kelas9/edexcel-biology-genetics-inheritance.js'),
-  'ipa/biology-grade-8-homeostasis-excretion': () => import('./ipa/kelas8/biology-grade-8-homeostasis-excretion.js')
+  'ipa/biology-grade-8-homeostasis-excretion': () => import('./ipa/kelas8/biology-grade-8-homeostasis-excretion.js'),
+  'olimpiade-mat/sasmo-2022-primary-4': () => import('./olimpiade-mat/sd/sasmo-2022-primary-4.js'),
+  'olimpiade-mat/sasmo-2023-grade-9': () => import('./olimpiade-mat/smp/sasmo-2023-grade-9.js'),
+  'olimpiade-sains/osn-ipa-sd-latihan-1': () => import('./olimpiade-sains/sd/osn-ipa-sd-latihan-1.js'),
+  'olimpiade-mat/sasmo-practice-1': () => import('./olimpiade-mat/sd/sasmo-practice-1.js')
 };
 
 const paperCache = new Map();

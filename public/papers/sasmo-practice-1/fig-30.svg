@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 175" width="220" height="175" role="img">
+  <rect width="220" height="175" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="600" fill="#0F172A" text-anchor="middle" dominant-baseline="central">
+    <!-- Row 1: 6 A -->
+    <text x="135" y="28">6</text>
+    <text x="165" y="28">A</text>
+    <!-- Row 2: 3 B 9 -->
+    <text x="105" y="56">3</text>
+    <text x="135" y="56">B</text>
+    <text x="165" y="56">9</text>
+    <!-- Row 3: 1 C 5 8 -->
+    <text x="75" y="84">1</text>
+    <text x="105" y="84">C</text>
+    <text x="135" y="84">5</text>
+    <text x="165" y="84">8</text>
+    <!-- Row 4: + D 2 4 7 -->
+    <text x="45" y="112">+</text>
+    <text x="75" y="112">D</text>
+    <text x="105" y="112">2</text>
+    <text x="135" y="112">4</text>
+    <text x="165" y="112">7</text>
+    <!-- Sum: 4 3 2 1 -->
+    <text x="75" y="148">4</text>
+    <text x="105" y="148">3</text>
+    <text x="135" y="148">2</text>
+    <text x="165" y="148">1</text>
+  </g>
+  <line x1="34" y1="129" x2="182" y2="129" stroke="#0F172A" stroke-width="2"/>
+</svg>

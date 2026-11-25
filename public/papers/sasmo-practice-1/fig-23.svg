@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 105" width="460" height="105" role="img">
+  <rect width="460" height="105" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Box 1: 5 | 1,4,8 -->
+  <g transform="translate(16, 14)" stroke="#0F172A" stroke-width="1.8" fill="none">
+    <rect x="0" y="0" width="96" height="76"/>
+    <line x1="0" y1="38" x2="96" y2="38"/>
+    <line x1="32" y1="38" x2="32" y2="76"/>
+    <line x1="64" y1="38" x2="64" y2="76"/>
+  </g>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#0F172A" text-anchor="middle" dominant-baseline="central">
+    <text x="64" y="33">5</text>
+    <text x="32" y="71">1</text>
+    <text x="64" y="71">4</text>
+    <text x="96" y="71">8</text>
+  </g>
+  <!-- Box 2: 4 | 2,3,5 -->
+  <g transform="translate(128, 14)" stroke="#0F172A" stroke-width="1.8" fill="none">
+    <rect x="0" y="0" width="96" height="76"/>
+    <line x1="0" y1="38" x2="96" y2="38"/>
+    <line x1="32" y1="38" x2="32" y2="76"/>
+    <line x1="64" y1="38" x2="64" y2="76"/>
+  </g>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#0F172A" text-anchor="middle" dominant-baseline="central">
+    <text x="176" y="33">4</text>
+    <text x="144" y="71">2</text>
+    <text x="176" y="71">3</text>
+    <text x="208" y="71">5</text>
+  </g>
+  <!-- Box 3: 9 | 5,3,7 -->
+  <g transform="translate(240, 14)" stroke="#0F172A" stroke-width="1.8" fill="none">
+    <rect x="0" y="0" width="96" height="76"/>
+    <line x1="0" y1="38" x2="96" y2="38"/>
+    <line x1="32" y1="38" x2="32" y2="76"/>
+    <line x1="64" y1="38" x2="64" y2="76"/>
+  </g>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#0F172A" text-anchor="middle" dominant-baseline="central">
+    <text x="288" y="33">9</text>
+    <text x="256" y="71">5</text>
+    <text x="288" y="71">3</text>
+    <text x="320" y="71">7</text>
+  </g>
+  <!-- Box 4: ? | 1,2,3 -->
+  <g transform="translate(352, 14)" stroke="#0F172A" stroke-width="1.8" fill="none">
+    <rect x="0" y="0" width="96" height="76"/>
+    <line x1="0" y1="38" x2="96" y2="38"/>
+    <line x1="32" y1="38" x2="32" y2="76"/>
+    <line x1="64" y1="38" x2="64" y2="76"/>
+  </g>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#0F172A" text-anchor="middle" dominant-baseline="central">
+    <text x="400" y="33">?</text>
+    <text x="368" y="71">1</text>
+    <text x="400" y="71">2</text>
+    <text x="432" y="71">3</text>
+  </g>
+</svg>

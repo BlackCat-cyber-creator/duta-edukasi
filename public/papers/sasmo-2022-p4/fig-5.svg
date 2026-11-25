@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 240" width="260" height="240" role="img">
+  <rect width="260" height="240" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g transform="translate(50, 35)">
+    <!-- Shaded quadrilateral EBDF -->
+    <polygon points="80,0 160,0 0,160 0,80" fill="#64748B" stroke="#0F172A" stroke-width="1.8" stroke-linejoin="round"/>
+    <!-- Square ABCD outline -->
+    <rect x="0" y="0" width="160" height="160" fill="none" stroke="#0F172A" stroke-width="2.2"/>
+    <!-- Midpoint dots -->
+    <circle cx="80" cy="0" r="3" fill="#0F172A"/>
+    <circle cx="0" cy="80" r="3" fill="#0F172A"/>
+  </g>
+  <g font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="700" font-size="16" fill="#0F172A">
+    <text x="36" y="32">A</text>
+    <text x="125" y="28">E</text>
+    <text x="214" y="32">B</text>
+    <text x="214" y="206">C</text>
+    <text x="34" y="206">D</text>
+    <text x="32" y="120">F</text>
+  </g>
+</svg>
