@@ -24,7 +24,7 @@
 | **Batch 7** | 8 School Math, IPA SMP, Chem & IGCSE Bio Sets | 8 | `done` | 92 → 100 published |
 | **Batch 8** | 4 Scanned/Visual Olympiad PDFs (Edge PNG + Vision) | 4 | `done` | 100 → 104 published |
 | **Batch 9** | 8 New OSN SMA Subjects (Inf/Astro/Kebumian/Eko), OSN-P Mat, AIME & UTBK-SNBT | 8 | `done` | 104 → 112 published |
-| **Batch 10** | 8 School SD–SMA, Fisika & Cambridge IGCSE 0580 Extended | 8 | `in_progress` | 112 → 120 published |
+| **Batch 10** | 8 School SD–SMA, Fisika & Cambridge IGCSE 0580 Extended | 8 | `done` | 112 → 120 published |
 
 ---
 
@@ -83,3 +83,18 @@
 | `aime-practice-set-1` | AIME | `src/data/papers/olimpiade-mat/sma/aime-practice-set-1.js` | `done` (15 soal, EN) |
 | `utbk-snbt-penalaran-mat-1` | UTBK / SNBT | `src/data/papers/matematika/sma/utbk-snbt-penalaran-mat-1.js` | `done` (20 soal) |
 | `utbk-snbt-penalaran-mat-2` | UTBK / SNBT | `src/data/papers/matematika/sma/utbk-snbt-penalaran-mat-2.js` | `done` (20 soal) |
+
+---
+
+## Batch 10 — 8 School SD–SMA & Cambridge IGCSE 0580 Sets (`112 -> 120`)
+
+| ID | Competition / Track | Target File | Status |
+| :--- | :--- | :--- | :--- |
+| `mat6-ujian-sekolah-p1` | Matematika SD | `src/data/papers/matematika/sd/mat6-ujian-sekolah-paket-1.js` | `done` (20 soal, 30 poin) |
+| `mat8-pythagoras-spldv-p1` | Matematika SMP | `src/data/papers/matematika/smp/mat8-pythagoras-spldv-paket-1.js` | `done` (16 soal, 24 poin) |
+| `mat9-bangun-ruang-kesebangunan-p1` | Matematika SMP | `src/data/papers/matematika/smp/mat9-bangun-ruang-kesebangunan-paket-1.js` | `done` (16 soal, 24 poin) |
+| `ipa6-sains-terpadu-p1` | IPA SD | `src/data/papers/ipa/sd/ipa6-sains-terpadu-paket-1.js` | `done` (20 soal) |
+| `ipa7-kalor-gerak-gaya-p1` | IPA SMP | `src/data/papers/ipa/smp/ipa7-kalor-gerak-gaya-paket-1.js` | `done` (16 soal, 24 poin) |
+| `fis11-fluida-statis-dinamis-p1` | Fisika SMA | `src/data/papers/fisika/sma/fis11-fluida-statis-dinamis-paket-1.js` | `done` (15 soal, 30 poin) |
+| `fis12-listrik-magnet-p1` | Fisika SMA | `src/data/papers/fisika/sma/fis12-listrik-magnet-paket-1.js` | `done` (15 soal, 30 poin) |
+| `mat10-igcse-0580-extended-p1` | Cambridge IGCSE 0580 | `src/data/papers/matematika/sma/mat10-igcse-0580-extended-paket-1.js` | `done` (30 bagian, 70 Marks, EN) |

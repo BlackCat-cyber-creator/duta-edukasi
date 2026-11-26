@@ -2806,6 +2806,190 @@ export const PAPER_MANIFEST = [
     "itemCount": 20,
     "questionCount": 5,
     "status": "published"
+  },
+  {
+    "id": "mat6-ujian-sekolah-p1",
+    "slug": "mat6-ujian-sekolah-paket-1",
+    "subject": "matematika",
+    "grade": 6,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "Ujian Sekolah Matematika SD Kelas 6: bilangan bulat, pecahan dan rasio, kubus dan balok, lingkaran/bangun datar, serta pengolahan data",
+    "relatedChapterIds": [
+      "sd6-bab1-pecahan-desimal",
+      "sd6-bab2-rasio",
+      "sd6-bab3-kubus-balok",
+      "sd6-bab4-peluang"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Latihan Kurikulum",
+    "year": null,
+    "title": "Latihan Ujian Sekolah Matematika Kelas 6 — Paket 1",
+    "totalMarks": 30,
+    "itemCount": 20,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "mat8-pythagoras-spldv-p1",
+    "slug": "mat8-pythagoras-spldv-paket-1",
+    "subject": "matematika",
+    "grade": 8,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "Matematika Kelas 8 SMP: Teorema Pythagoras, tripel Pythagoras, jarak dua titik, persamaan garis lurus, dan SPLDV",
+    "relatedChapterIds": [
+      "smp8-bab2-teorema-pythagoras",
+      "smp8-bab5-persamaan-garis-lurus",
+      "smp9-bab1-spldv"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Latihan Kurikulum",
+    "year": null,
+    "title": "Latihan Matematika SMP Kelas 8: Teorema Pythagoras & SPLDV",
+    "totalMarks": 24,
+    "itemCount": 16,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "mat9-bangun-ruang-kesebangunan-p1",
+    "slug": "mat9-bangun-ruang-kesebangunan-paket-1",
+    "subject": "matematika",
+    "grade": 9,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "Matematika Kelas 9 SMP: kesebangunan dan kekongruenan bangun datar serta luas permukaan dan volume tabung, kerucut, dan bola",
+    "relatedChapterIds": [
+      "smp7-bab5-kesebangunan",
+      "smp9-bab2-bangun-ruang"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Latihan Kurikulum",
+    "year": null,
+    "title": "Latihan Matematika SMP Kelas 9: Kesebangunan & Bangun Ruang Sisi Lengkung",
+    "totalMarks": 24,
+    "itemCount": 16,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "ipa6-sains-terpadu-p1",
+    "slug": "ipa6-sains-terpadu-paket-1",
+    "subject": "ipa",
+    "grade": 6,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "IPAS / IPA SD Kelas 6: sistem gerak dan adaptasi makhluk hidup, listrik dan magnet, energi terbarukan, serta tata surya",
+    "relatedChapterIds": [
+      "ipa6-bab1-rangka-dan-mekanika-gerak-tubuh",
+      "ipa6-bab2-penghematan-dan-energi-alternatif",
+      "ipa6-bab3-sistem-tata-surya",
+      "ipa6-bab4-rotasi-revolusi-bumi-dan-gerhana"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Latihan Kurikulum",
+    "year": null,
+    "title": "Latihan IPA SD Kelas 6: Sains Terpadu & Tata Surya",
+    "totalMarks": 20,
+    "itemCount": 20,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "ipa7-kalor-gerak-gaya-p1",
+    "slug": "ipa7-kalor-gerak-gaya-paket-1",
+    "subject": "ipa",
+    "grade": 7,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "IPA Kelas 7 SMP: konversi skala suhu, pemuaian, kalor dan asas Black, kelajuan/GLB, serta Hukum Newton pada gaya",
+    "relatedChapterIds": [
+      "ipa7-bab3-suhu-kalor-pemuaian",
+      "ipa7-bab4-gerak-dan-gaya"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Latihan Kurikulum",
+    "year": null,
+    "title": "Latihan IPA SMP Kelas 7: Suhu, Kalor, Gerak, dan Gaya",
+    "totalMarks": 24,
+    "itemCount": 16,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "fis11-fluida-statis-dinamis-p1",
+    "slug": "fis11-fluida-statis-dinamis-paket-1",
+    "subject": "fisika",
+    "grade": 11,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "Fisika SMA Kelas 11: tekanan hidrostatis, hukum Pascal, gaya apung Archimedes, tegangan permukaan, persamaan kontinuitas, dan asas Bernoulli",
+    "relatedChapterIds": [
+      "ipa11-bab4-fluida-statis-dan-dinamis",
+      "ipa11-bab1-dinamika-gerak-dan-hukum-newton"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Latihan Kurikulum",
+    "year": null,
+    "title": "Latihan Fisika SMA Kelas 11: Fluida Statis & Fluida Dinamis",
+    "totalMarks": 30,
+    "itemCount": 15,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "fis12-listrik-magnet-p1",
+    "slug": "fis12-listrik-magnet-paket-1",
+    "subject": "fisika",
+    "grade": 12,
+    "track": "kurikulum-merdeka",
+    "accessTier": "free",
+    "topic": "Fisika SMA Kelas 12: hukum Coulomb, kapasitor, hukum Ohm dan Kirchhoff, gaya Lorentz, serta hukum Faraday dan Lenz",
+    "relatedChapterIds": [
+      "ipa12-bab1-listrik-statis-dan-kapasitor",
+      "ipa12-bab2-listrik-arus-searah",
+      "ipa12-bab3-medan-magnet-dan-induksi-elektromagnetik"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "Latihan Kurikulum",
+    "year": null,
+    "title": "Latihan Fisika SMA Kelas 12: Listrik Statis, Rangkaian DC & Induksi Magnet",
+    "totalMarks": 30,
+    "itemCount": 15,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "mat10-igcse-0580-extended-p1",
+    "slug": "mat10-igcse-0580-extended-paket-1",
+    "subject": "matematika",
+    "grade": 10,
+    "track": "cambridge-style",
+    "accessTier": "free",
+    "topic": "Cambridge IGCSE 0580 Extended Practice: algebra and quadratics, indices and surds, trigonometry and bearings, vectors, probability, and mensuration",
+    "relatedChapterIds": [
+      "sma10-bab1-eksponen-logaritma",
+      "sma10-bab3-vektor",
+      "sma10-bab4-trigonometri",
+      "sma10-bab6-fungsi-kuadrat"
+    ],
+    "lang": "en",
+    "langDisplay": "EN",
+    "competition": "Cambridge IGCSE 0580",
+    "year": null,
+    "title": "Cambridge IGCSE Mathematics (0580) Extended Style — Paper 4 Practice",
+    "totalMarks": 70,
+    "itemCount": 30,
+    "questionCount": 10,
+    "status": "published"
   }
 ];
 
@@ -2932,7 +3116,15 @@ export const PAPER_LOADERS = {
   'olimpiade-mat/osnp-mat-sma-simulasi-1': () => import('./olimpiade-mat/sma/osnp-mat-sma-simulasi-1.js'),
   'olimpiade-mat/aime-practice-set-1': () => import('./olimpiade-mat/sma/aime-practice-set-1.js'),
   'matematika/utbk-snbt-penalaran-mat-1': () => import('./matematika/sma/utbk-snbt-penalaran-mat-1.js'),
-  'matematika/utbk-snbt-penalaran-mat-2': () => import('./matematika/sma/utbk-snbt-penalaran-mat-2.js')
+  'matematika/utbk-snbt-penalaran-mat-2': () => import('./matematika/sma/utbk-snbt-penalaran-mat-2.js'),
+  'matematika/mat6-ujian-sekolah-paket-1': () => import('./matematika/sd/mat6-ujian-sekolah-paket-1.js'),
+  'matematika/mat8-pythagoras-spldv-paket-1': () => import('./matematika/smp/mat8-pythagoras-spldv-paket-1.js'),
+  'matematika/mat9-bangun-ruang-kesebangunan-paket-1': () => import('./matematika/smp/mat9-bangun-ruang-kesebangunan-paket-1.js'),
+  'ipa/ipa6-sains-terpadu-paket-1': () => import('./ipa/sd/ipa6-sains-terpadu-paket-1.js'),
+  'ipa/ipa7-kalor-gerak-gaya-paket-1': () => import('./ipa/smp/ipa7-kalor-gerak-gaya-paket-1.js'),
+  'fisika/fis11-fluida-statis-dinamis-paket-1': () => import('./fisika/sma/fis11-fluida-statis-dinamis-paket-1.js'),
+  'fisika/fis12-listrik-magnet-paket-1': () => import('./fisika/sma/fis12-listrik-magnet-paket-1.js'),
+  'matematika/mat10-igcse-0580-extended-paket-1': () => import('./matematika/sma/mat10-igcse-0580-extended-paket-1.js')
 };
 
 const paperCache = new Map();

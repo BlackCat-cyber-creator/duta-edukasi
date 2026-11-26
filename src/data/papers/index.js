@@ -115,6 +115,14 @@ import olimOsnpMatSmaSim1 from './olimpiade-mat/sma/osnp-mat-sma-simulasi-1.js';
 import olimAimePracticeSet1 from './olimpiade-mat/sma/aime-practice-set-1.js';
 import matUtbkPenalaran1 from './matematika/sma/utbk-snbt-penalaran-mat-1.js';
 import matUtbkPenalaran2 from './matematika/sma/utbk-snbt-penalaran-mat-2.js';
+import mat6UjianSekolahP1 from './matematika/sd/mat6-ujian-sekolah-paket-1.js';
+import mat8PythagorasSpldvP1 from './matematika/smp/mat8-pythagoras-spldv-paket-1.js';
+import mat9BangunRuangKesebangunanP1 from './matematika/smp/mat9-bangun-ruang-kesebangunan-paket-1.js';
+import ipa6SainsTerpaduP1 from './ipa/sd/ipa6-sains-terpadu-paket-1.js';
+import ipa7KalorGerakGayaP1 from './ipa/smp/ipa7-kalor-gerak-gaya-paket-1.js';
+import fis11FluidaStatisDinamisP1 from './fisika/sma/fis11-fluida-statis-dinamis-paket-1.js';
+import fis12ListrikMagnetP1 from './fisika/sma/fis12-listrik-magnet-paket-1.js';
+import mat10Igcse0580ExtendedP1 from './matematika/sma/mat10-igcse-0580-extended-paket-1.js';
 
 import {
   PAPER_SUBJECT_META,
@@ -266,7 +274,15 @@ export const ALL_PAPERS = [
   olimOsnpMatSmaSim1,
   olimAimePracticeSet1,
   matUtbkPenalaran1,
-  matUtbkPenalaran2
+  matUtbkPenalaran2,
+  mat6UjianSekolahP1,
+  mat8PythagorasSpldvP1,
+  mat9BangunRuangKesebangunanP1,
+  ipa6SainsTerpaduP1,
+  ipa7KalorGerakGayaP1,
+  fis11FluidaStatisDinamisP1,
+  fis12ListrikMagnetP1,
+  mat10Igcse0580ExtendedP1
 ];
 
 export const PUBLISHED_PAPERS = ALL_PAPERS.filter((p) => p.status === 'published');

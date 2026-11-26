@@ -205,3 +205,18 @@ Seluruh naskah bersumber dari arsip terbuka (Po-Shen Loh / MAA AMC, M3Kang, math
 | `aime-practice-set-1` | AIME | 15 soal | AIME Practice Set 1 (`EN`, jawaban bilangan bulat `000–999`) |
 | `utbk-snbt-penalaran-mat-1` | UTBK / SNBT | 20 soal | Penalaran Matematika Paket 1 (5 stimulus kontekstual) |
 | `utbk-snbt-penalaran-mat-2` | UTBK / SNBT | 20 soal | Penalaran Matematika Paket 2 (5 stimulus kontekstual) |
+
+---
+
+## Batch 10 — 8 Paket Sekolah SD–SMA, Fisika & Cambridge IGCSE 0580 (120 Paket Terpublikasi)
+
+| ID Paket | Kompetisi / Mapel | Cakupan | Catatan |
+| :--- | :--- | :--- | :--- |
+| `mat6-ujian-sekolah-p1` | Matematika SD | 20 soal (30 poin) | Latihan Ujian Sekolah Kelas 6 Paket 1 |
+| `mat8-pythagoras-spldv-p1` | Matematika SMP | 16 soal (24 poin) | Teorema Pythagoras, Garis Lurus & SPLDV Kelas 8 |
+| `mat9-bangun-ruang-kesebangunan-p1` | Matematika SMP | 16 soal (24 poin) | Kesebangunan & Bangun Ruang Sisi Lengkung Kelas 9 |
+| `ipa6-sains-terpadu-p1` | IPA SD | 20 soal | Sains Terpadu & Tata Surya Kelas 6 |
+| `ipa7-kalor-gerak-gaya-p1` | IPA SMP | 16 soal (24 poin) | Suhu, Kalor, Asas Black, Gerak & Gaya Kelas 7 |
+| `fis11-fluida-statis-dinamis-p1` | Fisika SMA | 15 soal (30 poin) | Fluida Statis & Fluida Dinamis Kelas 11 |
+| `fis12-listrik-magnet-p1` | Fisika SMA | 15 soal (30 poin) | Listrik Statis, Rangkaian DC & Induksi Magnet Kelas 12 |
+| `mat10-igcse-0580-extended-p1` | Cambridge IGCSE 0580 | 30 bagian (70 Marks) | Extended Paper 4 Style (`EN`, mark scheme `M1/A1/B1`) |
