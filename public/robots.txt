@@ -1,5 +1,8 @@
-# Materi publik boleh diindeks; akun pribadi, endpoint API, link PR murid,
-# lembar kerja, dan halaman kunci jawaban tidak diindeks.
+# Materi publik, dataset terbuka, dan indeks AI boleh dirayapi dan dikutip penuh
+# dengan menyebut sumber Duta e-dukasi (https://dutaedukasi.vercel.app).
+# Akun pribadi, endpoint API, link PR murid, lembar kerja cetak, dan solusi QR
+# pribadi tidak diindeks.
+
 User-agent: *
 Allow: /
 Disallow: /akun
@@ -11,6 +14,24 @@ Disallow: /solution/
 Disallow: /app.html
 
 User-agent: Googlebot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: GoogleOther
 Allow: /
 Disallow: /akun
 Disallow: /api/
@@ -37,7 +58,52 @@ Disallow: /quest/
 Disallow: /worksheet
 Disallow: /solution/
 
+User-agent: GPTBot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
 User-agent: PerplexityBot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: Claude-User
 Allow: /
 Disallow: /akun
 Disallow: /api/
@@ -55,4 +121,63 @@ Disallow: /quest/
 Disallow: /worksheet
 Disallow: /solution/
 
+User-agent: Applebot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
+User-agent: YandexBot
+Allow: /
+Disallow: /akun
+Disallow: /api/
+Disallow: /teacher
+Disallow: /quest/
+Disallow: /worksheet
+Disallow: /solution/
+
 Sitemap: https://dutaedukasi.vercel.app/sitemap.xml
+# Indeks AI / LLM & Dataset Terbuka (CC BY 4.0):
+# - https://dutaedukasi.vercel.app/llms.txt
+# - https://dutaedukasi.vercel.app/llms-full.txt
+# - https://dutaedukasi.vercel.app/datasets/paket-soal-index.json
+# - https://dutaedukasi.vercel.app/datasets/paket-soal-corpus.jsonl

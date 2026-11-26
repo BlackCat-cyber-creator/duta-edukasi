@@ -51,4 +51,17 @@ describe('Konfigurasi deploy Vercel', () => {
     const redirect = (vercel.redirects || []).find((r) => r.source === '/prestasi');
     expect(redirect).toEqual({ source: '/prestasi', destination: '/tentang#prestasi', permanent: true });
   });
+
+  it('robots.txt dan vercel headers membuka akses penuh bagi perayap pencarian, AI, dan dataset', () => {
+    const robots = fs.readFileSync(path.resolve(__dirname, '../public/robots.txt'), 'utf8');
+    for (const bot of ['GPTBot', 'OAI-SearchBot', 'ClaudeBot', 'PerplexityBot', 'Google-Extended']) {
+      expect(robots).toContain(`User-agent: ${bot}`);
+    }
+    expect(robots).toContain('Sitemap: https://dutaedukasi.vercel.app/sitemap.xml');
+
+    const headerSources = (vercel.headers || []).map((h) => h.source);
+    expect(headerSources).toContain('/paket-soal/(.*)\\.md');
+    expect(headerSources).toContain('/llms(.*)\\.txt');
+    expect(headerSources).toContain('/datasets/(.*)\\.json');
+  });
 });
