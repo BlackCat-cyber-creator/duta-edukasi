@@ -23,7 +23,8 @@
 | **Batch 6** | 10 Olympiad & Competition Inbox Sets (Text PDFs) | 10 | `done` | 82 → 92 published |
 | **Batch 7** | 8 School Math, IPA SMP, Chem & IGCSE Bio Sets | 8 | `done` | 92 → 100 published |
 | **Batch 8** | 4 Scanned/Visual Olympiad PDFs (Edge PNG + Vision) | 4 | `done` | 100 → 104 published |
-| **Batch 9** | Next Up: SVG diagrams on Batch 4/5 + fresh open-archive Olympiads (OSN-P/Nasional, AMC/AIME, SASMO/SMO, UTBK/SNBT, OSN Inf/Astro/Kebumian/Eko) | TBD | `queued` | Starts after Batch 8 |
+| **Batch 9** | 8 New OSN SMA Subjects (Inf/Astro/Kebumian/Eko), OSN-P Mat, AIME & UTBK-SNBT | 8 | `done` | 104 → 112 published |
+| **Batch 10** | 8 School SD–SMA, Fisika & Cambridge IGCSE 0580 Extended | 8 | `in_progress` | 112 → 120 published |
 
 ---
 
@@ -67,3 +68,18 @@
 | `sasmo-2023-g9` | `batch3/sasmo_2023_g9.pdf` | `src/data/papers/olimpiade-mat/smp/sasmo-2023-grade-9.js` | `done` (25 soal, 3 SVG) |
 | `osn-ipa-sd-latihan-1` | `batch2_science/01 SOAL OSN IPA SD.pdf` | `src/data/papers/olimpiade-sains/sd/osn-ipa-sd-latihan-1.js` | `done` (27 soal) |
 | `sasmo-practice-1` | `batch3/sasmo_practice_kris.pdf` | `src/data/papers/olimpiade-mat/sd/sasmo-practice-1.js` | `done` (28 soal, 10 SVG) |
+
+---
+
+## Batch 9 — 8 OSN SMA, AIME & UTBK-SNBT Sets (`104 -> 112`)
+
+| ID | Competition / Track | Target File | Status |
+| :--- | :--- | :--- | :--- |
+| `osnk-inf-sma-simulasi-1` | OSN-K Informatika | `src/data/papers/olimpiade-inf/sma/osnk-informatika-sma-simulasi-1.js` | `done` (15 butir, 20 poin) |
+| `osnk-astro-sma-simulasi-1` | OSN-K Astronomi | `src/data/papers/olimpiade-astro/sma/osnk-astronomi-sma-simulasi-1.js` | `done` (15 butir, 2 SVG) |
+| `osnk-kebumian-sma-simulasi-1` | OSN-K Kebumian | `src/data/papers/olimpiade-kebumian/sma/osnk-kebumian-sma-simulasi-1.js` | `done` (15 soal) |
+| `osnk-eko-sma-simulasi-1` | OSN-K Ekonomi | `src/data/papers/olimpiade-eko/sma/osnk-ekonomi-sma-simulasi-1.js` | `done` (15 butir, 18 poin) |
+| `osnp-mat-sma-simulasi-1` | OSN-P Matematika | `src/data/papers/olimpiade-mat/sma/osnp-mat-sma-simulasi-1.js` | `done` (12 soal, 44 poin) |
+| `aime-practice-set-1` | AIME | `src/data/papers/olimpiade-mat/sma/aime-practice-set-1.js` | `done` (15 soal, EN) |
+| `utbk-snbt-penalaran-mat-1` | UTBK / SNBT | `src/data/papers/matematika/sma/utbk-snbt-penalaran-mat-1.js` | `done` (20 soal) |
+| `utbk-snbt-penalaran-mat-2` | UTBK / SNBT | `src/data/papers/matematika/sma/utbk-snbt-penalaran-mat-2.js` | `done` (20 soal) |

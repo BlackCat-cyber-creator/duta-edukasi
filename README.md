@@ -16,7 +16,7 @@ Situs: **https://dutaedukasi.vercel.app** (domain lama `awesomemathj.vercel.app`
 | Kimia | Kelas 10–12 (SMA) | 13 bab · 195 soal |
 | Biologi | Kelas 10–12 (SMA) | 13 bab · 195 soal |
 | Olimpiade AMC 8 / 10 / 12 | SMP–SMA | 36 bab konsep + latihan isian singkat |
-| Paket Soal | SD–SMA & olimpiade | 104 paket (Matematika, IPA, Fisika, Kimia, Biologi & Olimpiade OSN, AMC, SASMO, SMO, HKIMO, TIMO, SIMOC, IKMC, KSM, KMNR) dengan kunci & rubrik |
+| Paket Soal | SD–SMA & olimpiade | 112 paket (Matematika, IPA, Fisika, Kimia, Biologi, UTBK-SNBT & Olimpiade OSN 9 cabang, AMC/AIME, SASMO, SMO, HKIMO, TIMO, SIMOC, IKMC, KSM, KMNR) dengan kunci & rubrik |
 | Latihan TKA | Kelas 6, 9, 12 | 4 mata uji × Paket A/B (30 soal per paket) |
 
 Setiap bab kurikulum berisi: pengantar, materi per subbab, rumus kunci, contoh soal bertahap, kesalahan yang sering terjadi, tips, dan latihan soal (mudah → sulit) yang bisa dicetak sebagai LKPD A4 ber-QR. Materi diselaraskan dengan Capaian Pembelajaran Kurikulum Merdeka (Keputusan Kepala BSKAP No. 046/H/KR/2025).

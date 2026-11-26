@@ -2615,6 +2615,197 @@ export const PAPER_MANIFEST = [
     "itemCount": 28,
     "questionCount": 1,
     "status": "published"
+  },
+  {
+    "id": "osnk-inf-sma-simulasi-1",
+    "slug": "osnk-informatika-sma-simulasi-1",
+    "subject": "olimpiade-inf",
+    "grade": 11,
+    "track": "olimpiade-sma",
+    "accessTier": "free",
+    "topic": "Simulasi OSN-K Informatika SMA: logika analitik, kombinatorika, teori bilangan, graf dan pohon, serta pelacakan pseudocode/C++",
+    "relatedChapterIds": [
+      "sma10-bab2-barisan-deret",
+      "sma12-bab3-kaidah-pencacahan",
+      "sma10-bab8-peluang"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "OSN-K",
+    "year": null,
+    "title": "Simulasi OSN-K Informatika SMA — Paket 1",
+    "totalMarks": 20,
+    "itemCount": 15,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "osnk-astro-sma-simulasi-1",
+    "slug": "osnk-astronomi-sma-simulasi-1",
+    "subject": "olimpiade-astro",
+    "grade": 11,
+    "track": "olimpiade-sma",
+    "accessTier": "free",
+    "topic": "Simulasi OSN-K Astronomi SMA: mekanika orbit Kepler, hukum gravitasi, paralaks, magnitudo bintang, radiasi benda hitam, dan bola langit",
+    "relatedChapterIds": [
+      "ipa10-bab3-gerak-parabola-dan-melingkar",
+      "ipa10-bab4-usaha-energi-dan-energi-terbarukan",
+      "ipa11-bab1-dinamika-gerak-dan-hukum-newton",
+      "sma10-bab4-trigonometri"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "OSN-K",
+    "year": null,
+    "title": "Simulasi OSN-K Astronomi SMA — Paket 1",
+    "totalMarks": 18,
+    "itemCount": 15,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "osnk-kebumian-sma-simulasi-1",
+    "slug": "osnk-kebumian-sma-simulasi-1",
+    "subject": "olimpiade-kebumian",
+    "grade": 11,
+    "track": "olimpiade-sma",
+    "accessTier": "free",
+    "topic": "Simulasi OSN-K Kebumian SMA: geologi dan stratigrafi, tektonik lempeng dan seismologi, meteorologi, oseanografi, serta planetologi",
+    "relatedChapterIds": [
+      "ipa10-bab5-pemanasan-global-dan-fisika-iklim",
+      "ipa11-bab4-fluida-statis-dan-dinamis",
+      "ipa11-bab5-getaran-gelombang-dan-bunyi",
+      "ipa12-bab6-fisika-modern-radioaktivitas-dan-digital"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "OSN-K",
+    "year": null,
+    "title": "Simulasi OSN-K Kebumian SMA — Paket 1",
+    "totalMarks": 15,
+    "itemCount": 15,
+    "questionCount": 1,
+    "status": "published"
+  },
+  {
+    "id": "osnk-eko-sma-simulasi-1",
+    "slug": "osnk-ekonomi-sma-simulasi-1",
+    "subject": "olimpiade-eko",
+    "grade": 11,
+    "track": "olimpiade-sma",
+    "accessTier": "free",
+    "topic": "Simulasi OSN-K Ekonomi SMA: mikroekonomi (elastisitas, pasar, biaya produksi), makroekonomi (PDB, inflasi, pengganda), perdagangan internasional, dan akuntansi",
+    "relatedChapterIds": [
+      "sma10-bab5-spltv-sptldv",
+      "sma10-bab7-statistika",
+      "sma11-bab5-turunan",
+      "sma12-bab2-investasi-pinjaman"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "OSN-K",
+    "year": null,
+    "title": "Simulasi OSN-K Ekonomi SMA — Paket 1",
+    "totalMarks": 18,
+    "itemCount": 15,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "osnp-mat-sma-simulasi-1",
+    "slug": "osnp-mat-sma-simulasi-1",
+    "subject": "olimpiade-mat",
+    "grade": 11,
+    "track": "olimpiade-sma",
+    "accessTier": "free",
+    "topic": "Simulasi OSN-P Matematika SMA: aljabar, teori bilangan, geometri datar, dan kombinatorika tingkat provinsi",
+    "relatedChapterIds": [
+      "sma10-bab1-eksponen-logaritma",
+      "sma10-bab2-barisan-deret",
+      "sma11-bab2-lingkaran",
+      "sma12-bab3-kaidah-pencacahan"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "OSN-P",
+    "year": null,
+    "title": "Simulasi OSN-P Matematika SMA — Paket 1",
+    "totalMarks": 44,
+    "itemCount": 12,
+    "questionCount": 2,
+    "status": "published"
+  },
+  {
+    "id": "aime-practice-set-1",
+    "slug": "aime-practice-set-1",
+    "subject": "olimpiade-mat",
+    "grade": 12,
+    "track": "olimpiade-sma",
+    "accessTier": "free",
+    "topic": "AIME Practice Set 1: 15 progressive integer-answer problems (000–999) in algebra, counting, number theory, and geometry",
+    "relatedChapterIds": [
+      "sma10-bab1-eksponen-logaritma",
+      "sma10-bab4-trigonometri",
+      "sma11-bab2-lingkaran",
+      "sma12-bab3-kaidah-pencacahan"
+    ],
+    "lang": "en",
+    "langDisplay": "EN",
+    "competition": "AIME",
+    "year": null,
+    "title": "AIME Practice Set 1 (Questions 1–15)",
+    "totalMarks": 15,
+    "itemCount": 15,
+    "questionCount": 1,
+    "status": "published"
+  },
+  {
+    "id": "utbk-snbt-penalaran-mat-1",
+    "slug": "utbk-snbt-penalaran-mat-1",
+    "subject": "matematika",
+    "grade": 12,
+    "track": "utbk-snbt",
+    "accessTier": "free",
+    "topic": "UTBK-SNBT Penalaran Matematika Paket 1: pemodelan konteks nyata, aritmetika sosial, statistika, peluang, fungsi, dan geometri terapan",
+    "relatedChapterIds": [
+      "sma10-bab7-statistika",
+      "sma10-bab8-peluang",
+      "sma12-bab3-kaidah-pencacahan",
+      "sma12-bab4-peluang"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "UTBK / SNBT",
+    "year": null,
+    "title": "Latihan UTBK-SNBT: Penalaran Matematika — Paket 1",
+    "totalMarks": 20,
+    "itemCount": 20,
+    "questionCount": 5,
+    "status": "published"
+  },
+  {
+    "id": "utbk-snbt-penalaran-mat-2",
+    "slug": "utbk-snbt-penalaran-mat-2",
+    "subject": "matematika",
+    "grade": 12,
+    "track": "utbk-snbt",
+    "accessTier": "free",
+    "topic": "UTBK-SNBT Penalaran Matematika Paket 2: optimasi, laju perubahan, barisan dan deret, trigonometri terapan, dan geometri koordinat",
+    "relatedChapterIds": [
+      "sma10-bab4-trigonometri",
+      "sma10-bab6-fungsi-kuadrat",
+      "sma12-bab2-investasi-pinjaman",
+      "sma11-bab5-turunan"
+    ],
+    "lang": "id",
+    "langDisplay": "ID",
+    "competition": "UTBK / SNBT",
+    "year": null,
+    "title": "Latihan UTBK-SNBT: Penalaran Matematika — Paket 2",
+    "totalMarks": 20,
+    "itemCount": 20,
+    "questionCount": 5,
+    "status": "published"
   }
 ];
 
@@ -2733,7 +2924,15 @@ export const PAPER_LOADERS = {
   'olimpiade-mat/sasmo-2022-primary-4': () => import('./olimpiade-mat/sd/sasmo-2022-primary-4.js'),
   'olimpiade-mat/sasmo-2023-grade-9': () => import('./olimpiade-mat/smp/sasmo-2023-grade-9.js'),
   'olimpiade-sains/osn-ipa-sd-latihan-1': () => import('./olimpiade-sains/sd/osn-ipa-sd-latihan-1.js'),
-  'olimpiade-mat/sasmo-practice-1': () => import('./olimpiade-mat/sd/sasmo-practice-1.js')
+  'olimpiade-mat/sasmo-practice-1': () => import('./olimpiade-mat/sd/sasmo-practice-1.js'),
+  'olimpiade-inf/osnk-informatika-sma-simulasi-1': () => import('./olimpiade-inf/sma/osnk-informatika-sma-simulasi-1.js'),
+  'olimpiade-astro/osnk-astronomi-sma-simulasi-1': () => import('./olimpiade-astro/sma/osnk-astronomi-sma-simulasi-1.js'),
+  'olimpiade-kebumian/osnk-kebumian-sma-simulasi-1': () => import('./olimpiade-kebumian/sma/osnk-kebumian-sma-simulasi-1.js'),
+  'olimpiade-eko/osnk-ekonomi-sma-simulasi-1': () => import('./olimpiade-eko/sma/osnk-ekonomi-sma-simulasi-1.js'),
+  'olimpiade-mat/osnp-mat-sma-simulasi-1': () => import('./olimpiade-mat/sma/osnp-mat-sma-simulasi-1.js'),
+  'olimpiade-mat/aime-practice-set-1': () => import('./olimpiade-mat/sma/aime-practice-set-1.js'),
+  'matematika/utbk-snbt-penalaran-mat-1': () => import('./matematika/sma/utbk-snbt-penalaran-mat-1.js'),
+  'matematika/utbk-snbt-penalaran-mat-2': () => import('./matematika/sma/utbk-snbt-penalaran-mat-2.js')
 };
 
 const paperCache = new Map();

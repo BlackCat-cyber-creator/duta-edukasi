@@ -190,3 +190,18 @@ Seluruh naskah bersumber dari arsip terbuka (Po-Shen Loh / MAA AMC, M3Kang, math
 | `sasmo-2023-g9` | SASMO | 25 soal (70 poin) | SASMO 2023 Grade 9 + 3 diagram SVG |
 | `osn-ipa-sd-latihan-1` | OSN-K | 27 soal | Latihan OSN IPA SD Paket 1 (Q12–14 halaman sumber kosong dilewati) |
 | `sasmo-practice-1` | SASMO | 28 soal (112 poin) | SASMO Practice Set I + 10 diagram SVG (Q1–2 dilewati) |
+
+---
+
+## Batch 9 — 8 Paket OSN SMA Cabang Baru, OSN-P, AIME & UTBK-SNBT (112 Paket Terpublikasi)
+
+| ID Paket | Kompetisi / Jalur | Cakupan | Catatan |
+| :--- | :--- | :--- | :--- |
+| `osnk-inf-sma-simulasi-1` | OSN-K Informatika | 15 butir (20 poin) | Simulasi OSN-K Informatika SMA (logika, graf, pseudocode) |
+| `osnk-astro-sma-simulasi-1` | OSN-K Astronomi | 15 butir (18 poin) | Simulasi OSN-K Astronomi SMA + 2 diagram SVG |
+| `osnk-kebumian-sma-simulasi-1` | OSN-K Kebumian | 15 soal | Simulasi OSN-K Kebumian SMA (geologi, meteorologi, oseanografi) |
+| `osnk-eko-sma-simulasi-1` | OSN-K Ekonomi | 15 butir (18 poin) | Simulasi OSN-K Ekonomi SMA (mikro, makro, akuntansi) |
+| `osnp-mat-sma-simulasi-1` | OSN-P Matematika | 12 soal (44 poin) | Simulasi OSN-P Matematika SMA (8 Isian + 4 Uraian Pembuktian) |
+| `aime-practice-set-1` | AIME | 15 soal | AIME Practice Set 1 (`EN`, jawaban bilangan bulat `000–999`) |
+| `utbk-snbt-penalaran-mat-1` | UTBK / SNBT | 20 soal | Penalaran Matematika Paket 1 (5 stimulus kontekstual) |
+| `utbk-snbt-penalaran-mat-2` | UTBK / SNBT | 20 soal | Penalaran Matematika Paket 2 (5 stimulus kontekstual) |

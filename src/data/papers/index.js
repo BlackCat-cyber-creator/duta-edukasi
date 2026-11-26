@@ -107,6 +107,14 @@ import olimSasmo2022P4 from './olimpiade-mat/sd/sasmo-2022-primary-4.js';
 import olimSasmo2023G9 from './olimpiade-mat/smp/sasmo-2023-grade-9.js';
 import olimOsnIpaSdLatihan1 from './olimpiade-sains/sd/osn-ipa-sd-latihan-1.js';
 import olimSasmoPractice1 from './olimpiade-mat/sd/sasmo-practice-1.js';
+import olimOsnkInfSmaSim1 from './olimpiade-inf/sma/osnk-informatika-sma-simulasi-1.js';
+import olimOsnkAstroSmaSim1 from './olimpiade-astro/sma/osnk-astronomi-sma-simulasi-1.js';
+import olimOsnkKebumianSmaSim1 from './olimpiade-kebumian/sma/osnk-kebumian-sma-simulasi-1.js';
+import olimOsnkEkoSmaSim1 from './olimpiade-eko/sma/osnk-ekonomi-sma-simulasi-1.js';
+import olimOsnpMatSmaSim1 from './olimpiade-mat/sma/osnp-mat-sma-simulasi-1.js';
+import olimAimePracticeSet1 from './olimpiade-mat/sma/aime-practice-set-1.js';
+import matUtbkPenalaran1 from './matematika/sma/utbk-snbt-penalaran-mat-1.js';
+import matUtbkPenalaran2 from './matematika/sma/utbk-snbt-penalaran-mat-2.js';
 
 import {
   PAPER_SUBJECT_META,
@@ -250,7 +258,15 @@ export const ALL_PAPERS = [
   olimSasmo2022P4,
   olimSasmo2023G9,
   olimOsnIpaSdLatihan1,
-  olimSasmoPractice1
+  olimSasmoPractice1,
+  olimOsnkInfSmaSim1,
+  olimOsnkAstroSmaSim1,
+  olimOsnkKebumianSmaSim1,
+  olimOsnkEkoSmaSim1,
+  olimOsnpMatSmaSim1,
+  olimAimePracticeSet1,
+  matUtbkPenalaran1,
+  matUtbkPenalaran2
 ];
 
 export const PUBLISHED_PAPERS = ALL_PAPERS.filter((p) => p.status === 'published');

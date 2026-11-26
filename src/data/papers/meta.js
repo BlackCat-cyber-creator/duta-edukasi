@@ -14,7 +14,11 @@ export const PAPER_SUBJECT_META = {
   'olimpiade-sains': { id: 'olimpiade-sains', label: 'Olimpiade Sains (OSN)', shortLabel: 'Olimpiade Sains', color: '#0D9488' },
   'olimpiade-fis': { id: 'olimpiade-fis', label: 'Olimpiade Fisika', shortLabel: 'Olimpiade Fis', color: '#1D4ED8' },
   'olimpiade-kim': { id: 'olimpiade-kim', label: 'Olimpiade Kimia', shortLabel: 'Olimpiade Kim', color: '#7C3AED' },
-  'olimpiade-bio': { id: 'olimpiade-bio', label: 'Olimpiade Biologi', shortLabel: 'Olimpiade Bio', color: '#059669' }
+  'olimpiade-bio': { id: 'olimpiade-bio', label: 'Olimpiade Biologi', shortLabel: 'Olimpiade Bio', color: '#059669' },
+  'olimpiade-inf': { id: 'olimpiade-inf', label: 'Olimpiade Informatika', shortLabel: 'Olimpiade Inf', color: '#0284C7' },
+  'olimpiade-astro': { id: 'olimpiade-astro', label: 'Olimpiade Astronomi', shortLabel: 'Olimpiade Astro', color: '#4338CA' },
+  'olimpiade-kebumian': { id: 'olimpiade-kebumian', label: 'Olimpiade Kebumian', shortLabel: 'Olimpiade Kebumian', color: '#B45309' },
+  'olimpiade-eko': { id: 'olimpiade-eko', label: 'Olimpiade Ekonomi', shortLabel: 'Olimpiade Eko', color: '#0E7490' }
 };
 
 export function paperPath(paper) {
@@ -31,7 +35,8 @@ export const TRACK_LABELS = {
   'olimpiade-smp': 'Olimpiade SMP',
   'olimpiade-sma': 'Olimpiade SMA',
   'kurikulum-merdeka': 'Kurikulum Merdeka',
-  'cambridge-style': 'Gaya Cambridge / IGCSE'
+  'cambridge-style': 'Gaya Cambridge / IGCSE',
+  'utbk-snbt': 'UTBK / SNBT'
 };
 
 /** Hanya paket bergaya mark scheme (Cambridge/Edexcel/IGCSE) yang memakai istilah "Marks". */
@@ -126,7 +131,7 @@ export const OLYMPIAD_COMPETITIONS = [
     competitions: ['OSN-K', 'OSN-P', 'OSN'],
     blurb: 'Olimpiade Sains Nasional jenjang Kabupaten/Kota hingga Nasional: latihan soal Matematika dan sains berbahasa Indonesia.',
     seoTitle: 'Soal & Pembahasan OSN / OSK / OSN-P Matematika & Sains (SD, SMP, SMA)',
-    seoDescription: 'Arsip lengkap soal OSN-K dan OSN-P Matematika, IPA, Fisika, Kimia, dan Biologi SD, SMP, dan SMA beserta kunci jawaban, prinsip konsep, dan pembahasan bertahap gratis.',
+    seoDescription: 'Arsip lengkap soal OSN-K dan OSN-P Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Kebumian, dan Ekonomi SD–SMA beserta kunci jawaban dan pembahasan bertahap gratis.',
     faqs: [
       {
         question: 'Apa perbedaan OSN-K, OSN-P, dan OSN Nasional?',
@@ -134,11 +139,11 @@ export const OLYMPIAD_COMPETITIONS = [
       },
       {
         question: 'Apakah soal OSN di Duta e-dukasi bisa dikerjakan gratis tanpa daftar?',
-        answer: 'Ya, seluruh paket soal OSN-K dan OSN-P Matematika, IPA, Fisika, Kimia, dan Biologi beserta kunci jawaban dan pembahasannya dapat dibuka dan dicetak gratis tanpa login.'
+        answer: 'Ya, seluruh paket soal OSN-K dan OSN-P Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Kebumian, dan Ekonomi beserta kunci jawaban dan pembahasannya dapat dibuka dan dicetak gratis tanpa login.'
       },
       {
         question: 'Jenjang apa saja yang tersedia untuk latihan OSN?',
-        answer: 'Tersedia paket soal OSN untuk jenjang SD (Matematika & IPA), SMP (Matematika & IPA), dan SMA (Matematika, Fisika, Kimia, dan Biologi).'
+        answer: 'Tersedia paket soal OSN untuk jenjang SD (Matematika & IPA), SMP (Matematika & IPA), dan SMA (Matematika, Fisika, Kimia, Biologi, Informatika, Astronomi, Kebumian, dan Ekonomi).'
       }
     ]
   },
@@ -164,10 +169,10 @@ export const OLYMPIAD_COMPETITIONS = [
   },
   {
     id: 'amc',
-    label: 'AMC 8 / 10 / 12',
+    label: 'AMC 8 / 10 / 12 & AIME',
     path: '/olimpiade/amc',
     ogCategory: 'amc',
-    competitions: ['AMC 8', 'AMC 10', 'AMC 12'],
+    competitions: ['AMC 8', 'AMC 10', 'AMC 12', 'AIME'],
     amc: true,
     blurb: 'Modul interaktif American Mathematics Competitions (36 bab konsep) serta paket soal resmi AMC 8, AMC 10, dan AMC 12.',
     seoTitle: 'Persiapan & Paket Soal AMC 8, AMC 10, dan AMC 12 Lengkap Pembahasan',

@@ -138,7 +138,11 @@ export function papersHubMeta(subject = 'all') {
     'olimpiade-sains': 'Olimpiade Sains',
     'olimpiade-fis': 'Olimpiade Fisika',
     'olimpiade-kim': 'Olimpiade Kimia',
-    'olimpiade-bio': 'Olimpiade Biologi'
+    'olimpiade-bio': 'Olimpiade Biologi',
+    'olimpiade-inf': 'Olimpiade Informatika',
+    'olimpiade-astro': 'Olimpiade Astronomi',
+    'olimpiade-kebumian': 'Olimpiade Kebumian',
+    'olimpiade-eko': 'Olimpiade Ekonomi'
   };
   const ogMap = {
     matematika: 'matematika',
@@ -150,7 +154,11 @@ export function papersHubMeta(subject = 'all') {
     'olimpiade-sains': 'osn',
     'olimpiade-fis': 'osn',
     'olimpiade-kim': 'osn',
-    'olimpiade-bio': 'osn'
+    'olimpiade-bio': 'osn',
+    'olimpiade-inf': 'osn',
+    'olimpiade-astro': 'osn',
+    'olimpiade-kebumian': 'osn',
+    'olimpiade-eko': 'osn'
   };
   const subLabel = labelMap[subject];
   if (subLabel) {
