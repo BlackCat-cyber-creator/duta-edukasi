@@ -25,6 +25,20 @@ const LEVELS = [
   { id: 'SMA', label: 'SMA' }
 ];
 
+const OLYMPIAD_SUBJECT_ORDER = [
+  { id: 'olimpiade-mat', label: 'Matematika' },
+  { id: 'olimpiade-sains', label: 'IPA / Sains' },
+  { id: 'olimpiade-fis', label: 'Fisika' },
+  { id: 'olimpiade-kim', label: 'Kimia' },
+  { id: 'olimpiade-bio', label: 'Biologi' },
+  { id: 'olimpiade-inf', label: 'Informatika' },
+  { id: 'olimpiade-astro', label: 'Astronomi' },
+  { id: 'olimpiade-kebumian', label: 'Kebumian' },
+  { id: 'olimpiade-eko', label: 'Ekonomi' }
+];
+
+const papersOfComp = (c) => PUBLISHED_PAPERS.filter((p) => c.competitions.includes(p.competition));
+
 function PaperCard({ paper, progress }) {
   const meta = PAPER_SUBJECT_META[paper.subject] || {};
   const info = formatPaperMeta(paper);
@@ -56,7 +70,6 @@ export function OlimpiadeHubPage() {
   const legacyParam = !routeComp && OLYMPIAD_COMPETITIONS.some((c) => c.id === params.get('k')) ? params.get('k') : 'all';
   const active = routeComp ? routeComp.id : legacyParam;
   const level = LEVELS.some((l) => l.id === params.get('j')) ? params.get('j') : 'all';
-  const subjectFilter = params.get('m') || 'all';
   const yearFilter = params.get('t') || 'all';
   const [searchQuery, setSearchQuery] = useState('');
   const [paperProgressMap, setPaperProgressMap] = useState({});
@@ -68,9 +81,9 @@ export function OlimpiadeHubPage() {
     return () => window.removeEventListener(STUDY_STATE_EVENT, sync);
   }, []);
 
-  const papersOf = (c) => PUBLISHED_PAPERS.filter((p) => c.competitions.includes(p.competition));
   const isUnknownCompetition = Boolean(competitionId && !routeComp);
-  const routePapersCount = routeComp ? papersOf(routeComp).length : 0;
+  const routePapers = useMemo(() => (routeComp ? papersOfComp(routeComp) : []), [routeComp]);
+  const routePapersCount = routePapers.length;
   useDocumentMeta(
     isUnknownCompetition
       ? { ...OLIMPIADE_HUB_META, title: 'Kompetisi Tidak Ditemukan | Duta e-dukasi', path: '', noindex: true }
@@ -87,18 +100,40 @@ export function OlimpiadeHubPage() {
   };
 
   const competitions = useMemo(
-    () => OLYMPIAD_COMPETITIONS.filter((c) => c.amc || papersOf(c).length > 0),
+    () => OLYMPIAD_COMPETITIONS.filter((c) => c.amc || papersOfComp(c).length > 0),
     []
   );
+  const allOlympiadPapers = useMemo(() => {
+    const compSet = new Set(OLYMPIAD_COMPETITIONS.flatMap((c) => c.competitions));
+    return PUBLISHED_PAPERS.filter((p) => compSet.has(p.competition));
+  }, []);
   const amcTotal = ALL_AMC_CHAPTERS_INDEX.length;
 
-  const shownCompetitions = competitions.filter((c) => active === 'all' || c.id === active);
-  const routePapers = useMemo(() => (routeComp ? papersOf(routeComp) : []), [routeComp]);
+  const { subjectCounts, bidangOptions } = useMemo(() => {
+    const scoped = routeComp ? routePapers : allOlympiadPapers;
+    const counts = {};
+    for (const p of scoped) {
+      counts[p.subject] = (counts[p.subject] || 0) + 1;
+    }
+    const hasAmcInScope = routeComp ? Boolean(routeComp.amc) : competitions.some((c) => c.amc);
+    const options = OLYMPIAD_SUBJECT_ORDER.filter(
+      (s) => (counts[s.id] || 0) > 0 || (s.id === 'olimpiade-mat' && hasAmcInScope)
+    );
+    return { subjectCounts: counts, bidangOptions: options };
+  }, [routeComp, routePapers, allOlympiadPapers, competitions]);
 
-  const availableSubjects = useMemo(() => {
-    const set = new Set(routePapers.map((p) => p.subject));
-    return Array.from(set);
-  }, [routePapers]);
+  const subjectFilter = bidangOptions.some((b) => b.id === params.get('m')) ? params.get('m') : 'all';
+
+  const visibleCompetitions = useMemo(() => {
+    if (subjectFilter === 'all') return competitions;
+    return competitions.filter(
+      (c) => (c.amc && subjectFilter === 'olimpiade-mat') || papersOfComp(c).some((p) => p.subject === subjectFilter)
+    );
+  }, [competitions, subjectFilter]);
+
+  const shownCompetitions = active === 'all'
+    ? visibleCompetitions
+    : competitions.filter((c) => c.id === active);
 
   const availableYears = useMemo(() => {
     const set = new Set(routePapers.map((p) => extractPaperYear(p)).filter(Boolean));
@@ -107,7 +142,7 @@ export function OlimpiadeHubPage() {
 
   const matchesFilters = (p) => {
     if (level !== 'all' && levelNameOfGrade(p.grade) !== level) return false;
-    if (routeComp && subjectFilter !== 'all' && p.subject !== subjectFilter) return false;
+    if (subjectFilter !== 'all' && p.subject !== subjectFilter) return false;
     if (routeComp && yearFilter !== 'all' && extractPaperYear(p) !== Number(yearFilter)) return false;
     const q = searchQuery.trim().toLowerCase();
     if (q) {
@@ -118,6 +153,7 @@ export function OlimpiadeHubPage() {
   };
 
   const faqsToRender = routeComp?.faqs?.length ? routeComp.faqs : OLIMPIADE_HUB_FAQS;
+  const compQuerySuffix = subjectFilter !== 'all' ? `?m=${encodeURIComponent(subjectFilter)}` : '';
 
   return (
     <div className="handbook-container">
@@ -140,42 +176,80 @@ export function OlimpiadeHubPage() {
         <p className="hub-hero-desc">
           {routeComp
             ? routeComp.blurb
-            : 'Soal dan pembahasan dari berbagai kompetisi matematika dan sains nasional maupun internasional. Pilih kompetisi atau jenjang, lalu buka paketnya.'}
+            : 'Soal dan pembahasan dari berbagai kompetisi matematika dan sains nasional maupun internasional. Pilih bidang, kompetisi, atau jenjang, lalu buka paketnya.'}
         </p>
 
-        <div className="hub-level-tabs" role="tablist" aria-label="Pilih kompetisi">
-          <Link
-            to="/olimpiade"
-            className={`hub-level-pill ${active === 'all' ? 'active' : ''}`}
-            style={{ textDecoration: 'none' }}
-          >
-            Semua kompetisi
-          </Link>
-          {competitions.map((c) => (
+        {bidangOptions.length > 1 && (
+          <div className="olim-filter-group">
+            <span className="olim-filter-label">Bidang</span>
+            <div className="hub-level-tabs" role="tablist" aria-label="Filter bidang olimpiade">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={subjectFilter === 'all'}
+                className={`hub-level-pill ${subjectFilter === 'all' ? 'active' : ''}`}
+                onClick={() => setFilter('m', 'all')}
+              >
+                Semua Bidang
+              </button>
+              {bidangOptions.map((b) => (
+                <button
+                  key={b.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={subjectFilter === b.id}
+                  className={`hub-level-pill ${subjectFilter === b.id ? 'active' : ''}`}
+                  onClick={() => setFilter('m', b.id)}
+                >
+                  {b.label} ({subjectCounts[b.id] || 0})
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="olim-filter-group">
+          <span className="olim-filter-label">Kompetisi</span>
+          <div className="hub-level-tabs" role="tablist" aria-label="Pilih kompetisi">
             <Link
-              key={c.id}
-              to={c.path || `/olimpiade/${c.id}`}
-              className={`hub-level-pill ${active === c.id ? 'active' : ''}`}
+              to={`/olimpiade${compQuerySuffix}`}
+              className={`hub-level-pill hub-level-pill-sub ${active === 'all' ? 'active' : ''}`}
               style={{ textDecoration: 'none' }}
             >
-              {c.label}
+              Semua kompetisi
             </Link>
-          ))}
+            {visibleCompetitions.map((c) => {
+              const target = `${c.path || `/olimpiade/${c.id}`}${compQuerySuffix}`;
+              return (
+                <Link
+                  key={c.id}
+                  to={target}
+                  className={`hub-level-pill hub-level-pill-sub ${active === c.id ? 'active' : ''}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  {c.label}
+                </Link>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="hub-level-tabs" role="tablist" aria-label="Filter jenjang">
-          {LEVELS.map((l) => (
-            <button
-              key={l.id}
-              type="button"
-              role="tab"
-              aria-selected={level === l.id}
-              className={`hub-level-pill hub-level-pill-sub ${level === l.id ? 'active' : ''}`}
-              onClick={() => setFilter('j', l.id)}
-            >
-              {l.label}
-            </button>
-          ))}
+        <div className="olim-filter-group">
+          <span className="olim-filter-label">Jenjang</span>
+          <div className="hub-level-tabs" role="tablist" aria-label="Filter jenjang">
+            {LEVELS.map((l) => (
+              <button
+                key={l.id}
+                type="button"
+                role="tab"
+                aria-selected={level === l.id}
+                className={`hub-level-pill hub-level-pill-sub ${level === l.id ? 'active' : ''}`}
+                onClick={() => setFilter('j', l.id)}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="olim-filter-bar">
@@ -189,20 +263,6 @@ export function OlimpiadeHubPage() {
               aria-label="Cari paket olimpiade"
             />
           </div>
-
-          {routeComp && availableSubjects.length > 1 && (
-            <select
-              className="filter-select"
-              value={subjectFilter}
-              onChange={(e) => setFilter('m', e.target.value)}
-              aria-label="Filter bidang"
-            >
-              <option value="all">Semua Bidang</option>
-              {availableSubjects.map((s) => (
-                <option key={s} value={s}>{PAPER_SUBJECT_META[s]?.label || s}</option>
-              ))}
-            </select>
-          )}
 
           {routeComp && availableYears.length > 1 && (
             <select
@@ -222,12 +282,14 @@ export function OlimpiadeHubPage() {
 
       <section className="hub-section" aria-label="Daftar kompetisi">
         {shownCompetitions.map((c) => {
-          const papers = papersOf(c).filter(matchesFilters);
-          const amcLevels = c.amc
+          const papers = papersOfComp(c).filter(matchesFilters);
+          const showAmc = c.amc && (subjectFilter === 'all' || subjectFilter === 'olimpiade-mat');
+          const amcLevels = showAmc
             ? AMC_LEVELS_METADATA.filter((lvl) => level === 'all' || (level === 'SMP' && lvl.level === 8) || (level === 'SMA' && lvl.level !== 8))
             : [];
           if (!c.amc && papers.length === 0) return null;
           if (c.amc && amcLevels.length === 0 && papers.length === 0) return null;
+          const compTarget = `${c.path || `/olimpiade/${c.id}`}${compQuerySuffix}`;
           return (
             <article key={c.id} className="olim-block" id={`kompetisi-${c.id}`}>
               <header className="olim-block-head">
@@ -235,10 +297,10 @@ export function OlimpiadeHubPage() {
                 <div style={{ flex: 1 }}>
                   <div className="olim-block-title-row">
                     <h2 className="olim-block-title">
-                      {routeComp ? c.label : <Link to={c.path || `/olimpiade/${c.id}`}>{c.label}</Link>}
+                      {routeComp ? c.label : <Link to={compTarget}>{c.label}</Link>}
                     </h2>
                     {!routeComp && (
-                      <Link to={c.path || `/olimpiade/${c.id}`} className="hub-more-link">
+                      <Link to={compTarget} className="hub-more-link">
                         Halaman {c.label} <ArrowRight size={13} />
                       </Link>
                     )}
@@ -247,7 +309,7 @@ export function OlimpiadeHubPage() {
                 </div>
               </header>
 
-              {c.amc && amcLevels.length > 0 && (
+              {showAmc && amcLevels.length > 0 && (
                 <div className="olim-amc-grid">
                   {amcLevels.map((lvl) => (
                     <Link key={lvl.level} to={amcLevelPath(lvl.level)} className="olim-amc-card">
@@ -262,7 +324,7 @@ export function OlimpiadeHubPage() {
               )}
 
               {papers.length > 0 && (
-                <div className="info-grid" style={c.amc && amcLevels.length > 0 ? { marginTop: '0.85rem' } : undefined}>
+                <div className="info-grid" style={showAmc && amcLevels.length > 0 ? { marginTop: '0.85rem' } : undefined}>
                   {papers.map((paper) => (
                     <PaperCard key={paper.id} paper={paper} progress={paperProgressMap[paper.id]} />
                   ))}
@@ -273,13 +335,14 @@ export function OlimpiadeHubPage() {
         })}
 
         {shownCompetitions.every((c) => {
-          const papersCount = papersOf(c).filter(matchesFilters).length;
-          const amcLevelsCount = c.amc
+          const papersCount = papersOfComp(c).filter(matchesFilters).length;
+          const showAmc = c.amc && (subjectFilter === 'all' || subjectFilter === 'olimpiade-mat');
+          const amcLevelsCount = showAmc
             ? AMC_LEVELS_METADATA.filter((lvl) => level === 'all' || (level === 'SMP' && lvl.level === 8) || (level === 'SMA' && lvl.level !== 8)).length
             : 0;
           return papersCount === 0 && amcLevelsCount === 0;
         }) && (
-          <p className="olim-empty">Belum ada paket untuk kombinasi kompetisi dan filter ini.</p>
+          <p className="olim-empty">Belum ada paket untuk kombinasi bidang, kompetisi, dan filter ini.</p>
         )}
       </section>
 

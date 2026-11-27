@@ -42,6 +42,17 @@ function setAuthFlag(on) {
   }
 }
 
+function serializeStudyData(bundle = {}) {
+  const study = bundle.study || {};
+  return JSON.stringify({
+    chapters: bundle.chapters || {},
+    profile: study.profile || { targetLevel: '', targetCompetitions: [], school: '' },
+    papers: study.papers || {},
+    bookmarks: study.bookmarks || {},
+    recent: study.recent || []
+  });
+}
+
 export function AuthProvider({ children }) {
   const location = useLocation();
   const needsAuth = location.pathname.startsWith('/akun') || hasAuthFlag();
@@ -72,9 +83,17 @@ export function AuthProvider({ children }) {
       const remoteBundle = res.data || {};
       const merged = mergeStudyStates(localBundle, remoteBundle);
       replaceAllLocalProgress(merged);
-      const saveRes = await saveUserCloudData(uid, merged);
+      const mergedSig = serializeStudyData(merged);
+      const shouldSkipSave = res.data
+        ? mergedSig === serializeStudyData(remoteBundle)
+        : mergedSig === serializeStudyData({});
+      let saveOk = true;
+      if (!shouldSkipSave) {
+        const saveRes = await saveUserCloudData(uid, merged);
+        saveOk = saveRes.ok;
+      }
       hydratedUidRef.current = uid;
-      setSyncStatus(saveRes.ok ? 'synced' : 'local-only');
+      setSyncStatus(saveOk ? 'synced' : 'local-only');
     } catch {
       setSyncStatus('local-only');
     }
@@ -123,7 +142,7 @@ export function AuthProvider({ children }) {
         } catch {
           setSyncStatus('local-only');
         }
-      }, 1500);
+      }, 4000);
     };
     window.addEventListener(STUDY_STATE_EVENT, scheduleSync);
     window.addEventListener(PROGRESS_EVENT, scheduleSync);

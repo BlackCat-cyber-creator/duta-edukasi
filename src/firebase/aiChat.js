@@ -1,6 +1,6 @@
 import { getAI, getGenerativeModel, GoogleAIBackend } from 'firebase/ai';
 import app from './config';
-import { retrieveCatalogContext, buildFallbackReply } from '../utils/aiRetriever';
+import { retrieveCatalogContext, buildFallbackReply, isGreetingOrSmallTalk } from '../utils/aiRetriever';
 
 const MODEL_NAME = 'gemini-2.5-flash-lite';
 const RATE_LIMIT_KEY = 'duta_ai_rate_v1';
@@ -8,6 +8,7 @@ const RATE_LIMIT_MAX = 25;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 
 let cachedCatalog = null;
+let serverGeminiUnavailable = false;
 
 async function loadCatalog() {
   if (cachedCatalog) return cachedCatalog;
@@ -48,7 +49,7 @@ function recordRateTimestamp() {
 
 function normalizeContents(messages) {
   const cleaned = (Array.isArray(messages) ? messages : [])
-    .slice(-6)
+    .slice(-8)
     .map((m) => ({
       role: m?.role === 'assistant' ? 'model' : 'user',
       parts: [{ text: String(m?.text || '').trim().slice(0, 600) }]
@@ -58,23 +59,37 @@ function normalizeContents(messages) {
   while (cleaned.length > 0 && cleaned[0].role !== 'user') {
     cleaned.shift();
   }
-  return cleaned;
+
+  const merged = [];
+  for (const m of cleaned) {
+    const prev = merged[merged.length - 1];
+    if (prev && prev.role === m.role) {
+      prev.parts[0].text = `${prev.parts[0].text}\n${m.parts[0].text}`;
+    } else {
+      merged.push(m);
+    }
+  }
+  return merged;
 }
 
 function buildSystemInstruction(catalog, matches, userContext, displayName) {
   const stats = catalog?.stats || {};
-  const catalogLines = matches
-    .map((m) => `- [${m.title}](${m.path}) | tipe=${m.type} | mapel=${m.subject} | level=${m.level || '-'} | topik=${m.topic || '-'}`)
-    .join('\n');
+  const catalogLines = matches.length
+    ? matches
+      .map((m) => `- [${m.title}](${m.path}) | tipe=${m.type} | mapel=${m.subject} | level=${m.level || '-'} | topik=${m.topic || '-'}`)
+      .join('\n')
+    : '(tidak ada katalog spesifik untuk pesan ini)';
 
   return [
-    'Kamu adalah Asisten Belajar Duta e-dukasi (portal belajar Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Kebumian, Ekonomi Kelas 4–12, TKA, UTBK, dan Olimpiade OSN/AMC/AIME/SASMO/SMO/HKIMO/TIMO/SIMOC/IKMC).',
-    `Statistik situs saat ini: ${stats.totalPapers || 100}+ Paket Soal terstruktur, ${stats.totalSchoolChapters || 70}+ bab kurikulum sekolah, dan ${stats.totalAmcChapters || 10}+ modul AMC.`,
+    'Kamu adalah Asisten Belajar & Tutor AI Duta e-dukasi (Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Kebumian, Ekonomi Kelas 4–12, TKA, UTBK, serta Olimpiade OSN/AMC/AIME/SASMO/SMO/HKIMO/TIMO/SIMOC/IKMC).',
+    `Statistik portal Duta e-dukasi saat ini: ${stats.totalPapers || 100}+ Paket Soal terstruktur, ${stats.totalSchoolChapters || 70}+ bab kurikulum sekolah, dan ${stats.totalAmcChapters || 10}+ modul AMC.`,
     `Konteks pelajar: nama="${displayName || 'Pelajar'}", jenjang="${userContext?.targetLevel || 'belum diisi'}", target="${(userContext?.targetCompetitions || []).join(', ') || 'umum'}", halamanSaatIni="${userContext?.currentPath || '/'}".`,
-    'Aturan ketat:',
-    '1. Jawab ringkas, ramah pelajar, dan akurat dalam Bahasa Indonesia (kecuali pengguna bertanya dalam Bahasa Inggris).',
-    '2. Hanya rekomendasikan URL/path yang ada dalam daftar KATALOG RELEVAN di bawah menggunakan format Markdown [Judul](path). JANGAN mengarang URL atau paket yang tidak ada di daftar.',
-    '3. Jika pelajar meminta rencana belajar atau latihan berikutnya, susun urutan 2–4 tautan dari mudah ke menantang.',
+    'Aturan:',
+    '1. Jawab ringkas, ramah pelajar, dan akurat dalam Bahasa Indonesia (atau Bahasa Inggris jika pengguna bertanya dalam Bahasa Inggris).',
+    '2. Untuk sapaan atau obrolan ringan ("Hi", "Halo", "Terima kasih"), balas ramah dan singkat tanpa memaksa daftar rekomendasi atau tautan.',
+    '3. Kamu boleh menjawab pertanyaan umum Matematika, Sains, dan Olimpiade secara langsung (menjelaskan konsep, rumus dengan LaTeX $...$, pembuktian, atau langkah penyelesaian) — pengetahuanmu tidak dibatasi hanya pada isi website.',
+    '4. Jika merekomendasikan materi atau paket soal di Duta e-dukasi, HANYA gunakan URL/path yang ada dalam daftar KATALOG RELEVAN di bawah dengan format Markdown [Judul](path). JANGAN mengarang URL atau paket yang tidak ada di daftar.',
+    '5. Jika pelajar meminta rencana belajar atau latihan berikutnya, susun urutan 2–4 tautan dari mudah ke menantang.',
     '',
     'KATALOG RELEVAN:',
     catalogLines
@@ -96,17 +111,52 @@ export async function sendFirebaseAiChat({ messages, userContext = {}, displayNa
     return { ok: false, status: 400, error: 'Pesan tidak boleh kosong.' };
   }
 
+  const isGreeting = isGreetingOrSmallTalk(latestUserMsg);
+
+  if (idToken && !serverGeminiUnavailable) {
+    try {
+      const res = await fetch('/api/ai-chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${idToken}`
+        },
+        body: JSON.stringify({ messages, userContext: { ...userContext, displayName } })
+      });
+      if (res.ok) {
+        const data = await res.json().catch(() => null);
+        if (data?.mode === 'gemini' && data?.reply) {
+          recordRateTimestamp();
+          return {
+            ok: true,
+            reply: data.reply,
+            recommendations: isGreeting ? [] : (data.recommendations || []),
+            mode: data.mode,
+            model: data.model
+          };
+        }
+        if (data?.mode === 'catalog-fallback') {
+          serverGeminiUnavailable = true;
+        }
+      }
+    } catch (err) {
+      console.warn('Server /api/ai-chat unavailable:', err?.message || err);
+    }
+  }
+
   const catalog = await loadCatalog();
-  const matches = retrieveCatalogContext(latestUserMsg, catalog, userContext, 12);
-  const recommendations = matches.slice(0, 5).map(({ id, type, title, path, subject, level, count }) => ({
-    id,
-    type,
-    title,
-    path,
-    subject,
-    level,
-    count
-  }));
+  const matches = isGreeting ? [] : retrieveCatalogContext(latestUserMsg, catalog, userContext, 12);
+  const recommendations = isGreeting
+    ? []
+    : matches.slice(0, 5).map(({ id, type, title, path, subject, level, count }) => ({
+      id,
+      type,
+      title,
+      path,
+      subject,
+      level,
+      count
+    }));
 
   try {
     const ai = getAI(app, { backend: new GoogleAIBackend() });
@@ -121,33 +171,8 @@ export async function sendFirebaseAiChat({ messages, userContext = {}, displayNa
       recordRateTimestamp();
       return { ok: true, reply, recommendations, mode: 'firebase-ai', model: MODEL_NAME };
     }
-  } catch {
-    // Lanjut ke endpoint server / fallback katalog bila Firebase AI Logic belum aktif
-  }
-
-  try {
-    const res = await fetch('/api/ai-chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...(idToken ? { Authorization: `Bearer ${idToken}` } : {})
-      },
-      body: JSON.stringify({ messages, userContext })
-    });
-    if (res.ok) {
-      const data = await res.json().catch(() => null);
-      if (data?.reply) {
-        recordRateTimestamp();
-        return {
-          ok: true,
-          reply: data.reply,
-          recommendations: data.recommendations || recommendations,
-          mode: data.mode || 'api'
-        };
-      }
-    }
-  } catch {
-    // Fallback terakhir menggunakan katalog lokal di browser
+  } catch (err) {
+    console.warn('Firebase AI Logic unavailable:', err?.message || err);
   }
 
   return {

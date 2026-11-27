@@ -75,7 +75,8 @@ describe('Tautan Instagram prestasi', () => {
 });
 
 describe('Profil pendiri dan tim', () => {
-  it('foto pendiri tersedia di folder public', () => {
+  it('foto pendiri tersedia di folder public dan gelar akademik lengkap tercatat', () => {
+    expect(FOUNDER.formalName).toBe('Jono, S.T., M.Pd.');
     expect(FOUNDER.photo).toBe('/people/jono-yang.jpg');
     expect(fs.existsSync(path.resolve(__dirname, '../public', FOUNDER.photo.slice(1)))).toBe(true);
   });

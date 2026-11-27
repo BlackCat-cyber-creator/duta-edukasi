@@ -64,6 +64,17 @@ describe('Pusat Olimpiade /olimpiade', () => {
     expect(html).toContain('href="/paket-soal/olimpiade-mat/amc-8-2024"');
     expect(html).toContain('IKMC / Kangaroo');
     expect(OLYMPIAD_COMPETITIONS.filter((c) => c.amc)).toHaveLength(1);
+    for (const bidang of ['Semua Bidang', 'Matematika (', 'IPA / Sains (', 'Fisika (']) {
+      expect(html, bidang).toContain(bidang);
+    }
+  });
+
+  it('filter bidang (?m=olimpiade-fis) membatasi hasil hanya paket Fisika dan menyembunyikan modul AMC', () => {
+    const html = renderAt('/olimpiade?m=olimpiade-fis', React.createElement(OlimpiadeHubPage));
+    expect(html).toContain('OSN / OSK');
+    expect(html).not.toContain('href="/olimpiade/amc-8"');
+    expect(html).toContain('/paket-soal/olimpiade-fis/');
+    expect(html).not.toContain('/paket-soal/olimpiade-mat/');
   });
 
   it('kartu paket memakai label tenang (ID/EN) dan "Soal", bukan badge merah atau "Marks"', () => {

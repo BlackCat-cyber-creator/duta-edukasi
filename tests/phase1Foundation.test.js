@@ -15,7 +15,7 @@ import { searchSite } from '../src/utils/siteSearch.js';
 import { mergeStudyStates } from '../src/utils/progress.js';
 import { OlimpiadeHubPage } from '../src/components/OlimpiadeHubPage.jsx';
 import { PapersHubPage } from '../src/components/PapersHubPage.jsx';
-import { retrieveCatalogContext, buildFallbackReply } from '../api/_retriever.js';
+import { retrieveCatalogContext, buildFallbackReply, isGreetingOrSmallTalk } from '../api/_retriever.js';
 
 const clean = (s) => s.replace(/<!--[\s\S]*?-->/g, '');
 
@@ -176,5 +176,24 @@ describe('AI Catalog & Retriever', () => {
 
     const reply = buildFallbackReply('latihan soal OSN matematika SMP', matches, { targetLevel: 'SMP' });
     expect(reply).toContain('](/');
+  });
+
+  it('sapaan "Hi" tidak salah mencocokkan "hibridisasi" dan dibalas ramah tanpa rekomendasi kimia', () => {
+    const catalogPath = path.resolve(__dirname, '../api/_catalog.json');
+    const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+
+    expect(isGreetingOrSmallTalk('Hi')).toBe(true);
+    expect(isGreetingOrSmallTalk('Halo')).toBe(true);
+    expect(isGreetingOrSmallTalk('Terima kasih')).toBe(true);
+    expect(isGreetingOrSmallTalk('Halo, ada soal OSN Fisika?')).toBe(false);
+    expect(isGreetingOrSmallTalk('Ada soal OSN Fisika?')).toBe(false);
+
+    const hiMatches = retrieveCatalogContext('Hi', catalog, { targetLevel: '' }, 8);
+    expect(hiMatches).toEqual([]);
+
+    const hiReply = buildFallbackReply('Hi', hiMatches, {});
+    expect(hiReply).toContain('Asisten Belajar');
+    expect(hiReply).not.toContain('ASAS Kimia');
+    expect(hiReply).not.toContain('Hibridisasi');
   });
 });

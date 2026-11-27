@@ -1636,10 +1636,22 @@ renderCurriculum('biologi', BIOLOGI);
     return `<section id="kompetisi-${c.id}"><h2><a href="${c.path}">${escapeHtml(c.label)}</a></h2><p>${escapeHtml(c.blurb)}</p><ul>${items}</ul></section>`;
   }).filter(Boolean).join('\n');
 
+  const subjectLinks = Object.keys(PAPER_SUBJECT_META)
+    .filter((id) => id.startsWith('olimpiade-'))
+    .map((id) => {
+      const cnt = PUBLISHED_PAPERS.filter((p) => p.subject === id).length;
+      if (!cnt) return '';
+      const label = PAPER_SUBJECT_META[id]?.label || id;
+      return `<li><a href="${subjectHubPath(id)}">${escapeHtml(label)} (${cnt} paket)</a></li>`;
+    })
+    .filter(Boolean)
+    .join('');
+
   const body = `
     ${breadcrumbHtml(crumbs)}
     <h1>Olimpiade &amp; Kompetisi</h1>
     <p>${escapeHtml(OLIMPIADE_HUB_META.description)}</p>
+    ${subjectLinks ? `<nav class="seo-chapters" aria-label="Olimpiade per Bidang"><h2>Olimpiade per Bidang</h2><ul>${subjectLinks}</ul></nav>` : ''}
     ${blocks}
     ${faqSectionHtml(OLIMPIADE_HUB_FAQS)}
     <p><a href="/paket-soal">Semua paket soal</a> · <a href="/tentang#prestasi">Arsip prestasi siswa</a></p>`;

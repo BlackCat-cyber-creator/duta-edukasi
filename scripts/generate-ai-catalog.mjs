@@ -36,8 +36,7 @@ for (const p of PUBLISHED_PAPERS) {
     year: extractPaperYear(p),
     lang: p.langDisplay || p.lang?.toUpperCase() || 'ID',
     topic: p.topic || '',
-    count: itemCount,
-    keywords: `${p.title} ${p.competition || ''} ${subjLabel} kelas ${p.grade} ${p.topic || ''} ${p.slug}`.toLowerCase()
+    count: itemCount
   });
 }
 
@@ -50,7 +49,7 @@ for (const c of OLYMPIAD_COMPETITIONS) {
     subject: 'Olimpiade',
     competition: c.label,
     topic: c.blurb,
-    keywords: `${c.label} ${c.competitions.join(' ')} olimpiade kompetisi ${c.blurb}`.toLowerCase()
+    keywords: `${c.competitions.join(' ')} olimpiade kompetisi`.toLowerCase()
   });
 }
 
@@ -72,7 +71,7 @@ for (const ch of [...ALL_CHAPTERS_INDEX, ...ALL_IPA_CHAPTERS_INDEX, ...ALL_KIMIA
     grade: ch.grade,
     level: ch.grade <= 6 ? 'SD' : ch.grade <= 9 ? 'SMP' : 'SMA',
     topic: (ch.coreConcepts || []).map((x) => String(x).split(':')[0]).slice(0, 5).join(', '),
-    keywords: `${ch.title} ${subj} kelas ${ch.grade} ${(ch.coreConcepts || []).join(' ')}`.toLowerCase()
+    keywords: (ch.coreConcepts || []).join(' ').toLowerCase()
   });
 }
 
@@ -86,7 +85,7 @@ for (const ch of ALL_AMC_CHAPTERS_INDEX) {
     level: ch.level === 8 ? 'SMP' : 'SMA',
     competition: `AMC ${ch.level}`,
     topic: ch.domain || 'Olimpiade Matematika',
-    keywords: `${ch.title} amc ${ch.level} ${ch.domain || ''} ${(ch.concepts || []).join(' ')}`.toLowerCase()
+    keywords: (ch.concepts || []).join(' ').toLowerCase()
   });
 }
 
@@ -101,7 +100,7 @@ for (const test of TKA_TESTS) {
       level: test.id.includes('-sd') ? 'SD' : test.id.includes('-smp') ? 'SMP' : 'SMA',
       topic: test.elements.map((e) => e.name).join(', '),
       count: 30,
-      keywords: `${test.title} tka paket ${pkt} ${test.audience} ${test.elements.map((e) => e.name).join(' ')}`.toLowerCase()
+      keywords: `tka ${test.audience}`.toLowerCase()
     });
   }
 }

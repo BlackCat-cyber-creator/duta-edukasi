@@ -154,7 +154,8 @@ export function AiAssistantPanel({ embedded = false, onClose }) {
           {
             role: 'assistant',
             text: data.reply || 'Silakan jelajahi materi di portal.',
-            recommendations: data.recommendations || []
+            recommendations: data.recommendations || [],
+            mode: data.mode || 'gemini'
           }
         ]);
       }
@@ -189,6 +190,11 @@ export function AiAssistantPanel({ embedded = false, onClose }) {
             ) : (
               <>
                 <FormattedAiMessage text={msg.text} onNavigate={onClose} />
+                {msg.mode === 'catalog-fallback' && (
+                  <p style={{ margin: '0.35rem 0 0', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                    Mode katalog lokal
+                  </p>
+                )}
                 {msg.recommendations?.length > 0 && (
                   <div className="ai-rec-list">
                     {msg.recommendations.slice(0, 3).map((rec) => (

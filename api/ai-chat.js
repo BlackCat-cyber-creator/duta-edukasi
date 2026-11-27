@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { retrieveCatalogContext, buildFallbackReply } from './_retriever.js';
+import { retrieveCatalogContext, buildFallbackReply, isGreetingOrSmallTalk } from './_retriever.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CATALOG_PATH = path.join(__dirname, '_catalog.json');
@@ -77,13 +77,27 @@ export default async function handler(req, res) {
     try { body = JSON.parse(body); } catch { body = {}; }
   }
   const rawMessages = Array.isArray(body?.messages) ? body.messages : [];
-  const messages = rawMessages
-    .slice(-6)
+  const cleanedMessages = rawMessages
+    .slice(-8)
     .map((m) => ({
       role: m?.role === 'assistant' ? 'model' : 'user',
       text: String(m?.text || '').trim().slice(0, 600)
     }))
     .filter((m) => m.text.length > 0);
+
+  while (cleanedMessages.length > 0 && cleanedMessages[0].role !== 'user') {
+    cleanedMessages.shift();
+  }
+
+  const messages = [];
+  for (const m of cleanedMessages) {
+    const prev = messages[messages.length - 1];
+    if (prev && prev.role === m.role) {
+      prev.text = `${prev.text}\n${m.text}`;
+    } else {
+      messages.push({ role: m.role, text: m.text });
+    }
+  }
 
   const latestUserMsg = [...messages].reverse().find((m) => m.role === 'user')?.text || '';
   if (!latestUserMsg) {
@@ -92,11 +106,15 @@ export default async function handler(req, res) {
   }
 
   const userContext = body?.userContext && typeof body.userContext === 'object' ? body.userContext : {};
+  const studentName = verifiedUser.displayName || String(userContext.displayName || '').trim() || 'Pelajar';
+  const isGreeting = isGreetingOrSmallTalk(latestUserMsg);
   const catalog = getCatalog();
-  const matches = retrieveCatalogContext(latestUserMsg, catalog, userContext, 12);
-  const recommendations = matches.slice(0, 5).map(({ id, type, title, path: p, subject, level, count }) => ({
-    id, type, title, path: p, subject, level, count
-  }));
+  const matches = isGreeting ? [] : retrieveCatalogContext(latestUserMsg, catalog, userContext, 12);
+  const recommendations = isGreeting
+    ? []
+    : matches.slice(0, 5).map(({ id, type, title, path: p, subject, level, count }) => ({
+      id, type, title, path: p, subject, level, count
+    }));
 
   const geminiKey = process.env.GEMINI_API_KEY;
   if (!geminiKey) {
@@ -109,18 +127,22 @@ export default async function handler(req, res) {
   }
 
   const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
-  const catalogLines = matches.map((m) =>
-    `- [${m.title}](${m.path}) | tipe=${m.type} | mapel=${m.subject} | level=${m.level || '-'} | topik=${m.topic || '-'}`
-  ).join('\n');
+  const catalogLines = matches.length
+    ? matches.map((m) =>
+      `- [${m.title}](${m.path}) | tipe=${m.type} | mapel=${m.subject} | level=${m.level || '-'} | topik=${m.topic || '-'}`
+    ).join('\n')
+    : '(tidak ada katalog spesifik untuk pesan ini)';
 
   const systemInstruction = [
-    'Kamu adalah Asisten Belajar Duta e-dukasi (portal belajar Matematika, IPA, Fisika, Kimia, Biologi Kelas 4–12, TKA, dan Olimpiade OSN/AMC/SASMO/SMO/HKIMO/TIMO/SIMOC/IKMC).',
-    `Statistik situs saat ini: ${catalog.stats.totalPapers} Paket Soal terstruktur, ${catalog.stats.totalSchoolChapters} bab kurikulum sekolah, dan ${catalog.stats.totalAmcChapters} modul AMC.`,
-    `Konteks pelajar: nama="${verifiedUser.displayName || 'Pelajar'}", jenjang="${userContext.targetLevel || 'belum diisi'}", target="${(userContext.targetCompetitions || []).join(', ') || 'umum'}", halamanSaatIni="${userContext.currentPath || '/'}".`,
-    'Aturan ketat:',
-    '1. Jawab ringkas, ramah pelajar, dan akurat dalam Bahasa Indonesia (kecuali pengguna bertanya dalam Bahasa Inggris).',
-    '2. Hanya rekomendasikan URL/path yang ada dalam daftar KATALOG RELEVAN di bawah menggunakan format Markdown [Judul](path). JANGAN mengarang URL atau paket yang tidak ada di daftar.',
-    '3. Jika pelajar meminta rencana belajar atau latihan berikutnya, susun urutan 2–4 tautan dari mudah ke menantang.',
+    'Kamu adalah Asisten Belajar & Tutor AI Duta e-dukasi (Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Kebumian, Ekonomi Kelas 4–12, TKA, UTBK, serta Olimpiade OSN/AMC/AIME/SASMO/SMO/HKIMO/TIMO/SIMOC/IKMC).',
+    `Statistik portal Duta e-dukasi saat ini: ${catalog.stats.totalPapers} Paket Soal terstruktur, ${catalog.stats.totalSchoolChapters} bab kurikulum sekolah, dan ${catalog.stats.totalAmcChapters} modul AMC.`,
+    `Konteks pelajar: nama="${studentName}", jenjang="${userContext.targetLevel || 'belum diisi'}", target="${(userContext.targetCompetitions || []).join(', ') || 'umum'}", halamanSaatIni="${userContext.currentPath || '/'}".`,
+    'Aturan:',
+    '1. Jawab ringkas, ramah pelajar, dan akurat dalam Bahasa Indonesia (atau Bahasa Inggris jika pengguna bertanya dalam Bahasa Inggris).',
+    '2. Untuk sapaan atau obrolan ringan ("Hi", "Halo", "Terima kasih"), balas ramah dan singkat tanpa memaksa daftar rekomendasi atau tautan.',
+    '3. Kamu boleh menjawab pertanyaan umum Matematika, Sains, dan Olimpiade secara langsung (menjelaskan konsep, rumus dengan LaTeX $...$, pembuktian, atau langkah penyelesaian) — pengetahuanmu tidak dibatasi hanya pada isi website.',
+    '4. Jika merekomendasikan materi atau paket soal di Duta e-dukasi, HANYA gunakan URL/path yang ada dalam daftar KATALOG RELEVAN di bawah dengan format Markdown [Judul](path). JANGAN mengarang URL atau paket yang tidak ada di daftar.',
+    '5. Jika pelajar meminta rencana belajar atau latihan berikutnya, susun urutan 2–4 tautan dari mudah ke menantang.',
     '',
     'KATALOG RELEVAN:',
     catalogLines
@@ -144,6 +166,7 @@ export default async function handler(req, res) {
     );
 
     if (!geminiRes.ok) {
+      console.warn('Gemini API error:', geminiRes.status);
       res.status(200).json({
         reply: buildFallbackReply(latestUserMsg, matches, userContext),
         recommendations,
@@ -164,7 +187,8 @@ export default async function handler(req, res) {
     }
 
     res.status(200).json({ reply, recommendations, mode: 'gemini', model });
-  } catch {
+  } catch (err) {
+    console.warn('Gemini API fetch failed:', err?.message || err);
     res.status(200).json({
       reply: buildFallbackReply(latestUserMsg, matches, userContext),
       recommendations,

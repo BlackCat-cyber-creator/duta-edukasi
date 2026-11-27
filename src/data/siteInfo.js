@@ -85,7 +85,7 @@ export const AUTHOR = {
 
 export const FOUNDER = {
   name: 'Jono Yang',
-  formalName: 'Jono, S.T.',
+  formalName: 'Jono, S.T., M.Pd.',
   role: 'Pendiri & Pembina Utama Olimpiade Matematika Duta e-dukasi',
   photo: '/people/jono-yang.jpg',
   instagramHandle: '@jonoyang78',

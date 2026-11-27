@@ -6,7 +6,7 @@ Dokumen ini mencatat seluruh klaim terverifikasi untuk halaman [`/pendiri`](/pen
 
 ---
 
-## 1. Profil Pendiri: Jono Yang (`Jono, S.T.`)
+## 1. Profil Pendiri: Jono Yang (`Jono, S.T., M.Pd.`)
 
 | Klaim | Bukti Terverifikasi | Sumber Primer |
 | :--- | :--- | :--- |
