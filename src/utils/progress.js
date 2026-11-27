@@ -9,6 +9,7 @@ export const PROGRESS_EVENT = 'awesomemathj:progress';
 
 export const STUDY_STATE_KEY = 'duta_study_state_v1';
 export const STUDY_STATE_EVENT = 'duta:study-state';
+export const MAX_RECENT_ITEMS = 3;
 
 const EMPTY_STUDY_STATE = {
   profile: { targetLevel: '', targetCompetitions: [], school: '' },
@@ -73,7 +74,7 @@ export function getStudyState() {
       },
       papers: parsed?.papers && typeof parsed.papers === 'object' ? parsed.papers : {},
       bookmarks: parsed?.bookmarks && typeof parsed.bookmarks === 'object' ? parsed.bookmarks : {},
-      recent: Array.isArray(parsed?.recent) ? parsed.recent : [],
+      recent: Array.isArray(parsed?.recent) ? parsed.recent.slice(0, MAX_RECENT_ITEMS) : [],
       updatedAt: parsed?.updatedAt || null
     };
   } catch {
@@ -90,7 +91,7 @@ export function saveStudyState(nextState, { silent = false } = {}) {
     },
     papers: nextState?.papers || {},
     bookmarks: nextState?.bookmarks || {},
-    recent: Array.isArray(nextState?.recent) ? nextState.recent.slice(0, 15) : [],
+    recent: Array.isArray(nextState?.recent) ? nextState.recent.slice(0, MAX_RECENT_ITEMS) : [],
     updatedAt: nextState?.updatedAt || new Date().toISOString()
   };
   if (hasStorage()) {
@@ -157,7 +158,7 @@ export function recordRecentActivity({ path, title, type = 'paper', meta = '' })
   if (!path || !title) return getStudyState();
   const state = getStudyState();
   const entry = { path, title, type, meta, visitedAt: new Date().toISOString() };
-  const nextRecent = [entry, ...state.recent.filter((item) => item.path !== path)].slice(0, 15);
+  const nextRecent = [entry, ...state.recent.filter((item) => item.path !== path)].slice(0, MAX_RECENT_ITEMS);
   return saveStudyState({ ...state, recent: nextRecent, updatedAt: new Date().toISOString() });
 }
 
@@ -247,7 +248,7 @@ export function mergeStudyStates(localBundle = {}, remoteBundle = {}) {
   }
   const mergedRecent = [...recentMap.values()]
     .sort((a, b) => String(b.visitedAt || '').localeCompare(String(a.visitedAt || '')))
-    .slice(0, 15);
+    .slice(0, MAX_RECENT_ITEMS);
 
   return {
     chapters: mergedChapters,

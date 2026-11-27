@@ -12,7 +12,7 @@ import {
 } from '../src/data/papers/manifest.js';
 import { paperDetailMeta, olympiadCompetitionMeta, englishPapersHubMeta } from '../src/utils/seoMeta.js';
 import { searchSite } from '../src/utils/siteSearch.js';
-import { mergeStudyStates } from '../src/utils/progress.js';
+import { mergeStudyStates, saveStudyState, MAX_RECENT_ITEMS } from '../src/utils/progress.js';
 import { OlimpiadeHubPage } from '../src/components/OlimpiadeHubPage.jsx';
 import { PapersHubPage } from '../src/components/PapersHubPage.jsx';
 import { retrieveCatalogContext, buildFallbackReply, isGreetingOrSmallTalk } from '../api/_retriever.js';
@@ -160,6 +160,25 @@ describe('Unified Search, Related Ladder & Progress Merge', () => {
     expect(merged.study.recent[0].path).toBe('/paket-soal/b');
     expect(merged.study.profile.targetLevel).toBe('SMP');
     expect(merged.study.profile.school).toBe('SMP 1');
+  });
+
+  it('saveStudyState dan mergeStudyStates membatasi riwayat recent maksimal 3 item agar hemat database', () => {
+    expect(MAX_RECENT_ITEMS).toBe(3);
+    const items = [1, 2, 3, 4, 5].map((n) => ({
+      path: `/p/${n}`,
+      title: `Item ${n}`,
+      visitedAt: `2026-11-2${n}T10:00:00Z`
+    }));
+    const saved = saveStudyState({ recent: items }, { silent: true });
+    expect(saved.recent).toHaveLength(3);
+    expect(saved.recent.map((i) => i.path)).toEqual(['/p/1', '/p/2', '/p/3']);
+
+    const merged = mergeStudyStates(
+      { study: { recent: items.slice(0, 3) } },
+      { study: { recent: items.slice(2, 5) } }
+    );
+    expect(merged.study.recent).toHaveLength(3);
+    expect(merged.study.recent.map((i) => i.path)).toEqual(['/p/5', '/p/4', '/p/3']);
   });
 });
 

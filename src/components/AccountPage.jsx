@@ -22,6 +22,7 @@ import {
   getStudyState,
   updateStudentProfile,
   toggleBookmark,
+  MAX_RECENT_ITEMS,
   PROGRESS_EVENT,
   STUDY_STATE_EVENT
 } from '../utils/progress';
@@ -124,7 +125,7 @@ export function AccountPage() {
   const completedPapers = paperEntries.filter(([, v]) => v?.completed);
   const chapterEntries = Object.entries(chapterProgress || {});
   const bookmarkList = Object.values(studyState.bookmarks || {});
-  const recentList = studyState.recent || [];
+  const recentList = (studyState.recent || []).slice(0, MAX_RECENT_ITEMS);
 
   const findPaperMeta = (id) => PUBLISHED_PAPER_MANIFEST.find((p) => p.id === id);
 
@@ -329,10 +330,6 @@ export function AccountPage() {
             <div className="info-card account-stat-tile">
               <strong>{bookmarkList.length}</strong>
               <span>Tersimpan</span>
-            </div>
-            <div className="info-card account-stat-tile">
-              <strong>{recentList.length}</strong>
-              <span>Riwayat Terakhir</span>
             </div>
           </div>
 
