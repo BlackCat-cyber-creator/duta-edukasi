@@ -16,7 +16,7 @@ Situs: **https://dutaedukasi.vercel.app** (domain lama `awesomemathj.vercel.app`
 | Kimia | Kelas 10–12 (SMA) | 13 bab · 195 soal |
 | Biologi | Kelas 10–12 (SMA) | 13 bab · 195 soal |
 | Olimpiade AMC 8 / 10 / 12 | SMP–SMA | 36 bab konsep + latihan isian singkat |
-| Paket Soal | SD–SMA & olimpiade | 120 paket (Matematika, IPA, Fisika, Kimia, Biologi, UTBK-SNBT, Cambridge IGCSE & Olimpiade OSN 9 cabang, AMC/AIME, SASMO, SMO, HKIMO, TIMO, SIMOC, IKMC, KSM, KMNR) dengan kunci & rubrik |
+| Paket Soal | SD–SMA & olimpiade | 165 paket (Matematika, IPA, Fisika, Kimia, Biologi, UTBK-SNBT, Cambridge IGCSE & Olimpiade OSN 9 cabang, AMC/AIME, SASMO, SMO, HKIMO, TIMO, SIMOC, IKMC, KSM, KMNR) dengan kunci & rubrik |
 | Latihan TKA | Kelas 6, 9, 12 | 4 mata uji × Paket A/B (30 soal per paket) |
 
 Setiap bab kurikulum berisi: pengantar, materi per subbab, rumus kunci, contoh soal bertahap, kesalahan yang sering terjadi, tips, dan latihan soal (mudah → sulit) yang bisa dicetak sebagai LKPD A4 ber-QR. Materi diselaraskan dengan Capaian Pembelajaran Kurikulum Merdeka (Keputusan Kepala BSKAP No. 046/H/KR/2025).
@@ -28,6 +28,7 @@ Menu atas hanya berisi tujuan belajar: **Materi · Olimpiade · Paket Soal · TK
 | Alamat | Isi |
 | :--- | :--- |
 | `/` | Beranda: pilih mata pelajaran & kelas, cari materi |
+| `/matematika`, `/ipa`, `/fisika`, `/kimia`, `/biologi` | Halaman hub per mata pelajaran sekolah |
 | `/matematika/kelas-N/<bab>` | Bab Matematika (N = 4–12) |
 | `/ipa/kelas-N/<bab>` | Bab IPA (N = 4–9) |
 | `/fisika/kelas-N/<bab>`, `/kimia/…`, `/biologi/…` | Bab SMA (N = 10–12) |
@@ -109,6 +110,8 @@ Setelah menambah atau mengganti judul bab, jalankan `node pipeline/build_chapter
 
 ## Dokumen lain
 
+- Aturan wajib SEO & indexing pasca-deploy: [`AGENTS.md`](AGENTS.md)
+- Panduan lengkap indexing GSC, Bing Webmaster & IndexNow: [`docs/SEO_INDEXING_RUNBOOK.md`](docs/SEO_INDEXING_RUNBOOK.md)
 - Rencana pengembangan: [`docs/ROADMAP.md`](docs/ROADMAP.md)
 - Capaian Pembelajaran per mapel: [`docs/kurikulum/`](docs/kurikulum/README.md)
 - Standar kualitas paket soal: [`docs/reference/QUALITY_BAR.md`](docs/reference/QUALITY_BAR.md)
