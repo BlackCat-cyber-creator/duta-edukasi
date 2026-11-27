@@ -103,8 +103,8 @@ describe('Pesan galat kamera/mikrofon', () => {
     };
 
     try {
-      const camTrack = { kind: 'video', id: 'vid-1', enabled: true };
-      const micTrack = { kind: 'audio', id: 'aud-1', enabled: true };
+      const camTrack = { kind: 'video', id: 'vid-1', enabled: true, readyState: 'live', stop() {} };
+      const micTrack = { kind: 'audio', id: 'aud-1', enabled: true, readyState: 'live', stop() {} };
       const localStream = new globalThis.MediaStream([camTrack, micTrack]);
 
       const session = new LiveRtcSession({
@@ -130,12 +130,26 @@ describe('Pesan galat kamera/mikrofon', () => {
         { kind: 'video', track: camTrack }
       ]);
 
+      // Uji attachTrack terlambat (mis. murid menyalakan mic setelah gabung) + diagnostik koneksi
+      const lateMicTrack = { kind: 'audio', id: 'aud-late', enabled: true, readyState: 'live', stop() {} };
+      session.audioSender = fakeAudioSender;
+      await session.attachTrack(lateMicTrack);
+      expect(replacedTracks.some((r) => r.kind === 'audio' && r.track === lateMicTrack)).toBe(true);
+      expect(session.getConnectionDiagnostics().hasLocalAudio).toBe(true);
+
       session.destroy();
     } finally {
       globalThis.RTCPeerConnection = origPC;
       globalThis.RTCSessionDescription = origDesc;
       globalThis.MediaStream = origStream;
     }
+  });
+
+  it('LiveClassroomRoom memakai elemen <audio> persisten dan video remote di-mute agar suara tidak putus saat ganti tab', () => {
+    const roomSrc = fs.readFileSync(path.join(ROOT, 'src/components/live/LiveClassroomRoom.jsx'), 'utf8');
+    expect(roomSrc).toContain('<audio ref={remoteAudioRef} autoPlay playsInline');
+    expect(roomSrc).toContain('<video ref={dockRemoteVideoRef} autoPlay playsInline muted />');
+    expect(roomSrc).toContain('<video ref={stageRemoteVideoRef} autoPlay playsInline muted className="live-video-main" />');
   });
 });
 

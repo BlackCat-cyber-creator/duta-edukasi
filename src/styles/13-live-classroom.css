@@ -245,6 +245,37 @@
   color: #FFFFFF;
 }
 
+.live-audio-unblock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid #F59E0B;
+  background: rgba(245, 158, 11, 0.22);
+  color: #FDE68A;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.32rem 0.65rem;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.live-audio-meter {
+  width: 36px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.live-audio-meter-fill {
+  height: 100%;
+  background: #22C55E;
+  border-radius: 999px;
+  transition: width 0.08s linear;
+}
+
 /* Main Stage + Dock */
 .live-body {
   flex: 1;

@@ -97,6 +97,15 @@ export async function requestSingleTrack(kind, deviceId = '') {
     const track = kind === 'video' ? stream.getVideoTracks()[0] : stream.getAudioTracks()[0];
     return { track: track || null, error: track ? '' : formatMediaError(null) };
   } catch (err) {
+    if (kind === 'audio') {
+      try {
+        const fallback = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+        const track = fallback.getAudioTracks()[0];
+        if (track) return { track, error: '' };
+      } catch {
+        // lanjutkan error asli
+      }
+    }
     return { track: null, error: formatMediaError(err) };
   }
 }
@@ -116,14 +125,20 @@ export async function acquireLocalMedia({
     };
   }
 
-  const audioConstraint = audio
-    ? {
-        echoCancellation: true,
-        noiseSuppression: true,
-        autoGainControl: true,
-        ...(audioDeviceId ? { deviceId: { exact: audioDeviceId } } : {})
-      }
-    : false;
+  const buildAudioConstraint = (simple = false) => {
+    if (!audio) return false;
+    if (simple) {
+      return audioDeviceId ? { deviceId: { ideal: audioDeviceId } } : true;
+    }
+    return {
+      echoCancellation: true,
+      noiseSuppression: true,
+      autoGainControl: true,
+      ...(audioDeviceId ? { deviceId: { exact: audioDeviceId } } : {})
+    };
+  };
+
+  const audioConstraint = buildAudioConstraint(false);
   const videoConstraint = video
     ? {
         width: { ideal: 1280 },
@@ -148,10 +163,25 @@ export async function acquireLocalMedia({
   } catch (err) {
     const errorName = String(err?.name || '');
     const isPermission = errorName === 'NotAllowedError' || errorName === 'PermissionDeniedError';
-    if (audio && video && !isPermission) {
+    if (!isPermission && audio && video) {
+      try {
+        const relaxed = await navigator.mediaDevices.getUserMedia({
+          audio: buildAudioConstraint(true),
+          video: videoConstraint
+        });
+        return {
+          stream: relaxed,
+          hasAudio: relaxed.getAudioTracks().length > 0,
+          hasVideo: relaxed.getVideoTracks().length > 0,
+          warning: '',
+          errorName: ''
+        };
+      } catch {
+        // lanjut fallback satu per satu
+      }
       try {
         const audioOnly = await navigator.mediaDevices.getUserMedia({
-          audio: audioConstraint,
+          audio: buildAudioConstraint(true),
           video: false
         });
         return {
@@ -159,6 +189,21 @@ export async function acquireLocalMedia({
           hasAudio: audioOnly.getAudioTracks().length > 0,
           hasVideo: false,
           warning: `${formatMediaError(err)} (Mikrofon tetap aktif.)`,
+          errorName
+        };
+      } catch {
+        // lanjut fallback video-only jika mic gagal
+      }
+      try {
+        const videoOnly = await navigator.mediaDevices.getUserMedia({
+          audio: false,
+          video: videoConstraint
+        });
+        return {
+          stream: videoOnly,
+          hasAudio: false,
+          hasVideo: videoOnly.getVideoTracks().length > 0,
+          warning: 'Mikrofon tidak terdeteksi atau sedang dipakai aplikasi lain (Kamera tetap aktif). Cek izin atau pilih mikrofon lain di menu Perangkat.',
           errorName
         };
       } catch {
@@ -211,6 +256,7 @@ export class LiveRtcSession {
     }
     this.screenStream = null;
     this.remoteStream = new MediaStream();
+    this.remoteStreamRev = 0;
 
     this.destroyed = false;
     this.currentEpoch = 1;
@@ -240,15 +286,18 @@ export class LiveRtcSession {
       this.videoSender = videoTransceiver.sender;
 
       if (this.audioTrack) {
+        this.audioSender.setStreams?.(this.localStream);
         this.audioSender.replaceTrack(this.audioTrack).catch(() => {});
       }
       if (this.cameraTrack) {
+        this.videoSender.setStreams?.(this.localStream);
         this.videoSender.replaceTrack(this.cameraTrack).catch(() => {});
       }
     }
 
     const emitRemoteStream = () => {
-      this.onRemoteStream(new MediaStream(this.remoteStream.getTracks()));
+      this.remoteStreamRev += 1;
+      this.onRemoteStream(this.remoteStream, this.remoteStreamRev);
     };
 
     this.pc.ontrack = (event) => {
@@ -398,10 +447,12 @@ export class LiveRtcSession {
     this.pendingRemoteCandidates = [];
 
     if (this.audioSender && this.audioTrack) {
+      this.audioSender.setStreams?.(this.localStream);
       await this.audioSender.replaceTrack(this.audioTrack).catch(() => {});
     }
     const activeVideo = this.screenStream?.getVideoTracks()[0] || this.cameraTrack;
     if (this.videoSender && activeVideo) {
+      this.videoSender.setStreams?.(this.localStream);
       await this.videoSender.replaceTrack(activeVideo).catch(() => {});
     }
 
@@ -492,6 +543,7 @@ export class LiveRtcSession {
           }
           this.audioSender = t.sender;
           if (this.audioTrack) {
+            t.sender.setStreams?.(this.localStream);
             await t.sender.replaceTrack(this.audioTrack).catch(() => {});
           }
         } else if (kind === 'video') {
@@ -503,6 +555,7 @@ export class LiveRtcSession {
           this.videoSender = t.sender;
           const activeVideo = this.screenStream?.getVideoTracks()[0] || this.cameraTrack;
           if (activeVideo) {
+            t.sender.setStreams?.(this.localStream);
             await t.sender.replaceTrack(activeVideo).catch(() => {});
           }
         }
@@ -529,7 +582,11 @@ export class LiveRtcSession {
     if (this.audioTrack) {
       this.audioTrack.enabled = Boolean(enabled);
     }
-    this.sendData({ type: 'media-state', micOn: Boolean(enabled) });
+    this.sendData({
+      type: 'media-state',
+      micOn: Boolean(enabled),
+      hasAudioTrack: Boolean(this.audioTrack && this.audioTrack.readyState === 'live')
+    });
   }
 
   setCamEnabled(enabled) {
@@ -545,26 +602,43 @@ export class LiveRtcSession {
       if ('contentHint' in track) track.contentHint = 'motion';
       if (this.cameraTrack && this.cameraTrack !== track) {
         this.localStream.removeTrack(this.cameraTrack);
-        this.cameraTrack.stop();
+        this.cameraTrack.stop?.();
       }
       this.cameraTrack = track;
       if (!this.localStream.getTracks().includes(track)) this.localStream.addTrack(track);
       if (!this.screenStream && this.videoSender) {
+        this.videoSender.setStreams?.(this.localStream);
         await this.videoSender.replaceTrack(track).catch(() => {});
       }
       this.sendData({ type: 'media-state', camOn: true });
     } else if (track.kind === 'audio') {
       if (this.audioTrack && this.audioTrack !== track) {
         this.localStream.removeTrack(this.audioTrack);
-        this.audioTrack.stop();
+        this.audioTrack.stop?.();
       }
       this.audioTrack = track;
       if (!this.localStream.getTracks().includes(track)) this.localStream.addTrack(track);
       if (this.audioSender) {
+        this.audioSender.setStreams?.(this.localStream);
         await this.audioSender.replaceTrack(track).catch(() => {});
       }
-      this.sendData({ type: 'media-state', micOn: true });
+      this.sendData({ type: 'media-state', micOn: true, hasAudioTrack: true });
     }
+  }
+
+  getConnectionDiagnostics() {
+    const localAudio = this.localStream?.getAudioTracks?.().find((t) => t.readyState === 'live') || null;
+    const localVideo = this.localStream?.getVideoTracks?.().find((t) => t.readyState === 'live') || null;
+    const remoteAudio = this.remoteStream?.getAudioTracks?.().find((t) => t.readyState === 'live') || null;
+    const remoteVideo = this.remoteStream?.getVideoTracks?.().find((t) => t.readyState === 'live') || null;
+    return {
+      hasLocalAudio: Boolean(localAudio),
+      hasLocalVideo: Boolean(localVideo),
+      hasRemoteAudio: Boolean(remoteAudio),
+      hasRemoteVideo: Boolean(remoteVideo),
+      localAudioMuted: Boolean(localAudio?.muted),
+      remoteAudioMuted: Boolean(remoteAudio?.muted)
+    };
   }
 
   async switchDevice({ videoDeviceId, audioDeviceId } = {}) {
@@ -590,14 +664,21 @@ export class LiveRtcSession {
     }
 
     if (audioDeviceId && navigator.mediaDevices?.getUserMedia) {
-      const aStream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          deviceId: { exact: audioDeviceId },
-          echoCancellation: true,
-          noiseSuppression: true,
-          autoGainControl: true
-        }
-      });
+      let aStream;
+      try {
+        aStream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            deviceId: { exact: audioDeviceId },
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true
+          }
+        });
+      } catch {
+        aStream = await navigator.mediaDevices.getUserMedia({
+          audio: { deviceId: { ideal: audioDeviceId } }
+        });
+      }
       const newAudio = aStream.getAudioTracks()[0];
       if (newAudio) {
         const wasEnabled = this.audioTrack ? this.audioTrack.enabled : true;
@@ -609,8 +690,14 @@ export class LiveRtcSession {
         this.audioTrack = newAudio;
         this.localStream.addTrack(newAudio);
         if (this.audioSender) {
+          this.audioSender.setStreams?.(this.localStream);
           await this.audioSender.replaceTrack(newAudio);
         }
+        this.sendData({
+          type: 'media-state',
+          micOn: wasEnabled,
+          hasAudioTrack: newAudio.readyState === 'live'
+        });
       }
     }
 

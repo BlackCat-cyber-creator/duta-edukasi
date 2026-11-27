@@ -22,7 +22,8 @@ import {
   Send,
   Loader2,
   ShieldAlert,
-  LogOut
+  LogOut,
+  Volume2
 } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { useDocumentMeta } from '../../hooks/useDocumentMeta';
@@ -57,6 +58,56 @@ const ROOM_META = {
   path: '',
   noindex: true
 };
+
+function useAudioLevel(stream, active, enabled = true, rev = 0) {
+  const [rawLevel, setRawLevel] = useState(0);
+
+  useEffect(() => {
+    if (!active || !enabled || !stream || typeof window === 'undefined') return undefined;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return undefined;
+
+    const audioTracks = stream.getAudioTracks?.() || [];
+    if (audioTracks.length === 0 || audioTracks.every((t) => t.readyState !== 'live')) {
+      return undefined;
+    }
+
+    let ctx = null;
+    let timer = null;
+    try {
+      ctx = new AudioCtx();
+      if (ctx.state === 'suspended') {
+        ctx.resume().catch(() => {});
+      }
+      const source = ctx.createMediaStreamSource(new MediaStream([audioTracks[0]]));
+      const analyser = ctx.createAnalyser();
+      analyser.fftSize = 256;
+      source.connect(analyser);
+      const data = new Uint8Array(analyser.frequencyBinCount);
+
+      timer = setInterval(() => {
+        if (!analyser) return;
+        analyser.getByteTimeDomainData(data);
+        let sum = 0;
+        for (let i = 0; i < data.length; i++) {
+          const v = (data[i] - 128) / 128;
+          sum += v * v;
+        }
+        const rms = Math.sqrt(sum / data.length);
+        setRawLevel(Math.min(100, Math.round(rms * 320)));
+      }, 110);
+    } catch {
+      return undefined;
+    }
+
+    return () => {
+      if (timer) clearInterval(timer);
+      if (ctx) ctx.close().catch(() => {});
+    };
+  }, [stream, active, enabled, rev]);
+
+  return active && enabled ? rawLevel : 0;
+}
 
 function RoomLoginCard({ auth }) {
   const [tab, setTab] = useState('login');
@@ -192,7 +243,12 @@ export function LiveClassroomRoom() {
   const [iceProvider, setIceProvider] = useState('stun-only');
   const [connState, setConnState] = useState('new');
   const [dcOpen, setDcOpen] = useState(false);
-  const [remoteMedia, setRemoteMedia] = useState({ micOn: true, camOn: true, screenSharing: false });
+  const [remoteMedia, setRemoteMedia] = useState({ micOn: true, camOn: true, screenSharing: false, hasAudioTrack: true });
+  const [audioPlayBlocked, setAudioPlayBlocked] = useState(false);
+  const [localStreamState, setLocalStreamState] = useState(null);
+  const [remoteStreamState, setRemoteStreamState] = useState(null);
+  const [localMediaRev, setLocalMediaRev] = useState(0);
+  const [remoteMediaRev, setRemoteMediaRev] = useState(0);
 
   const [workspaceMode, setWorkspaceMode] = useState('soal'); // 'soal' | 'whiteboard' | 'video'
   const [soalPath, setSoalPath] = useState('/paket-soal');
@@ -211,8 +267,10 @@ export function LiveClassroomRoom() {
   const sessionRef = useRef(null);
   const roomRef = useRef(null);
   const joinedRef = useRef(false);
+  const mediaInitPromiseRef = useRef(null);
 
   const prejoinVideoRef = useRef(null);
+  const remoteAudioRef = useRef(null);
   const dockLocalVideoRef = useRef(null);
   const dockRemoteVideoRef = useRef(null);
   const stageRemoteVideoRef = useRef(null);
@@ -275,17 +333,34 @@ export function LiveClassroomRoom() {
     return () => unsub();
   }, [auth.isAuthenticated, roomId]);
 
+  const isRoomEnded = room?.status === 'ended';
+  const localAudioLevel = useAudioLevel(localStreamState, !isRoomEnded, micOn, localMediaRev);
+  const remoteAudioLevel = useAudioLevel(remoteStreamState, joined, remoteMedia.micOn, remoteMediaRev);
+
   // Siapkan preview kamera & daftar perangkat sebelum masuk
   useEffect(() => {
-    if (!isAuthorized || room?.status === 'ended' || joined) return undefined;
-    let cancelled = false;
+    if (!isAuthorized || isRoomEnded || joined) return undefined;
+    if (localStreamRef.current?.getTracks?.().some((t) => t.readyState === 'live')) {
+      if (prejoinVideoRef.current && prejoinVideoRef.current.srcObject !== localStreamRef.current) {
+        prejoinVideoRef.current.srcObject = localStreamRef.current;
+        prejoinVideoRef.current.play?.()?.catch?.(() => {});
+      }
+      return undefined;
+    }
 
-    acquireLocalMedia({ video: true, audio: true }).then(async ({ stream, hasAudio, hasVideo, warning }) => {
+    let cancelled = false;
+    const promise = acquireLocalMedia({ video: true, audio: true });
+    mediaInitPromiseRef.current = promise;
+
+    promise.then(async ({ stream, hasAudio, hasVideo, warning }) => {
+      if (mediaInitPromiseRef.current === promise) mediaInitPromiseRef.current = null;
       if (cancelled) {
         stream?.getTracks().forEach((t) => t.stop());
         return;
       }
       localStreamRef.current = stream;
+      setLocalStreamState(stream);
+      setLocalMediaRev((v) => v + 1);
       setMicOn(hasAudio);
       setCamOn(hasVideo);
       if (warning) setMediaWarning(warning);
@@ -306,9 +381,9 @@ export function LiveClassroomRoom() {
     return () => {
       cancelled = true;
     };
-  }, [isAuthorized, room?.status, joined]);
+  }, [isAuthorized, isRoomEnded, joined]);
 
-  // Sinkronkan srcObject video ke elemen aktif setiap ganti layout/mode
+  // Sinkronkan srcObject video & audio persisten ke elemen aktif setiap ganti layout/mode
   const attachStreams = useCallback(() => {
     const localDisplay = screenStreamRef.current || localStreamRef.current;
     const remote = remoteStreamRef.current;
@@ -327,6 +402,21 @@ export function LiveClassroomRoom() {
     bind(stagePipVideoRef.current, localDisplay);
     bind(dockRemoteVideoRef.current, remote);
     bind(stageRemoteVideoRef.current, remote);
+
+    const audioEl = remoteAudioRef.current;
+    if (audioEl) {
+      if (audioEl.srcObject !== (remote || null)) {
+        audioEl.srcObject = remote || null;
+      }
+      if (remote && remote.getAudioTracks().length > 0) {
+        audioEl.muted = false;
+        audioEl.volume = 1;
+        const p = audioEl.play?.();
+        if (p && typeof p.then === 'function') {
+          p.then(() => setAudioPlayBlocked(false)).catch(() => setAudioPlayBlocked(true));
+        }
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -395,20 +485,48 @@ export function LiveClassroomRoom() {
     if (!room || joining) return;
     setJoining(true);
     try {
-      let localStream = localStreamRef.current;
-      if (!localStream) {
-        const res = await acquireLocalMedia({ video: camOn, audio: micOn });
-        localStream = res.stream;
-        localStreamRef.current = localStream;
-        if (res.warning) setMediaWarning(res.warning);
+      if (mediaInitPromiseRef.current && !localStreamRef.current) {
+        const res = await mediaInitPromiseRef.current.catch(() => null);
+        if (res?.stream && !localStreamRef.current) {
+          localStreamRef.current = res.stream;
+          setLocalStreamState(res.stream);
+          setMicOn(res.hasAudio);
+          setCamOn(res.hasVideo);
+        }
       }
 
+      let localStream = localStreamRef.current;
+      if (!localStream || localStream.getTracks().length === 0) {
+        const res = await acquireLocalMedia({ video: true, audio: true });
+        localStream = res.stream;
+        localStreamRef.current = localStream;
+        setLocalStreamState(localStream);
+        setLocalMediaRev((v) => v + 1);
+        setMicOn(res.hasAudio);
+        setCamOn(res.hasVideo);
+        if (res.warning) setMediaWarning(res.warning);
+      } else if (!localStream.getAudioTracks().some((t) => t.readyState === 'live')) {
+        const { track } = await requestSingleTrack('audio', selectedMicId);
+        if (track) {
+          localStream.addTrack(track);
+          setMicOn(true);
+          setLocalMediaRev((v) => v + 1);
+        }
+      }
+
+      const finalHasAudio = localStream?.getAudioTracks().some((t) => t.readyState === 'live');
+      const finalHasVideo = localStream?.getVideoTracks().some((t) => t.readyState === 'live');
+      const effectiveMicOn = Boolean(finalHasAudio && micOn);
+      const effectiveCamOn = Boolean(finalHasVideo && camOn);
+
       localStream?.getAudioTracks().forEach((t) => {
-        t.enabled = micOn;
+        t.enabled = effectiveMicOn;
       });
       localStream?.getVideoTracks().forEach((t) => {
-        t.enabled = camOn;
+        t.enabled = effectiveCamOn;
       });
+      setMicOn(effectiveMicOn);
+      setCamOn(effectiveCamOn);
 
       const iceConfig = await fetchIceConfiguration(auth.getIdToken);
       setIceProvider(iceConfig.provider);
@@ -420,8 +538,10 @@ export function LiveClassroomRoom() {
         localStream,
         studentUid: auth.uid,
         initialStudentJoinedAt: roomRef.current?.studentJoinedAt || null,
-        onRemoteStream: (stream) => {
+        onRemoteStream: (stream, rev) => {
           remoteStreamRef.current = stream;
+          setRemoteStreamState(stream);
+          setRemoteMediaRev(rev || ((v) => v + 1));
           attachStreams();
         },
         onConnectionState: (state) => {
@@ -431,7 +551,13 @@ export function LiveClassroomRoom() {
           const open = state === 'open';
           setDcOpen(open);
           if (open) {
-            session.sendData({ type: 'media-state', micOn, camOn, screenSharing });
+            session.sendData({
+              type: 'media-state',
+              micOn: effectiveMicOn,
+              camOn: effectiveCamOn,
+              screenSharing,
+              hasAudioTrack: Boolean(finalHasAudio)
+            });
             if (isTeacher) {
               session.sendData({ type: 'wb-permission', allowStudentDraw });
               whiteboardRef.current?.sendFullSync();
@@ -455,7 +581,9 @@ export function LiveClassroomRoom() {
               micOn: typeof msg.micOn === 'boolean' ? msg.micOn : prev.micOn,
               camOn: typeof msg.camOn === 'boolean' ? msg.camOn : prev.camOn,
               screenSharing:
-                typeof msg.screenSharing === 'boolean' ? msg.screenSharing : prev.screenSharing
+                typeof msg.screenSharing === 'boolean' ? msg.screenSharing : prev.screenSharing,
+              hasAudioTrack:
+                typeof msg.hasAudioTrack === 'boolean' ? msg.hasAudioTrack : prev.hasAudioTrack
             }));
             if (msg.screenSharing === true) {
               setWorkspaceMode('video');
@@ -508,6 +636,8 @@ export function LiveClassroomRoom() {
     localStreamRef.current?.getTracks().forEach((t) => t.stop());
     const res = await acquireLocalMedia({ video: true, audio: true });
     localStreamRef.current = res.stream;
+    setLocalStreamState(res.stream);
+    setLocalMediaRev((v) => v + 1);
     setMicOn(res.hasAudio);
     setCamOn(res.hasVideo);
     setMediaWarning(res.warning || '');
@@ -545,6 +675,8 @@ export function LiveClassroomRoom() {
       }
       if (existing) target.removeTrack(existing);
       target.addTrack(track);
+      setLocalStreamState(target);
+      setLocalMediaRev((v) => v + 1);
       if (sessionRef.current) {
         await sessionRef.current.attachTrack(track);
         attachStreams();
@@ -661,7 +793,9 @@ export function LiveClassroomRoom() {
   const handleDeviceChange = async ({ videoDeviceId, audioDeviceId }) => {
     try {
       if (sessionRef.current) {
-        await sessionRef.current.switchDevice({ videoDeviceId, audioDeviceId });
+        const updated = await sessionRef.current.switchDevice({ videoDeviceId, audioDeviceId });
+        setLocalStreamState(updated);
+        setLocalMediaRev((v) => v + 1);
       } else {
         localStreamRef.current?.getTracks().forEach((t) => t.stop());
         const res = await acquireLocalMedia({
@@ -671,6 +805,8 @@ export function LiveClassroomRoom() {
           audioDeviceId: audioDeviceId || selectedMicId
         });
         localStreamRef.current = res.stream;
+        setLocalStreamState(res.stream);
+        setLocalMediaRev((v) => v + 1);
         bindPrejoinPreview(res.stream);
       }
       if (videoDeviceId) setSelectedCamId(videoDeviceId);
@@ -829,7 +965,7 @@ export function LiveClassroomRoom() {
                 </div>
               )}
             </div>
-            <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', marginTop: '0.75rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', marginTop: '0.75rem', flexWrap: 'wrap' }}>
               <button
                 type="button"
                 className={`live-ctrl-btn ${!micOn ? 'is-off' : ''}`}
@@ -837,6 +973,11 @@ export function LiveClassroomRoom() {
               >
                 {micOn ? <Mic size={15} /> : <MicOff size={15} />}
                 <span>{micOn ? 'Mic Nyala' : 'Mic Mati'}</span>
+                {micOn && (
+                  <span className="live-audio-meter" aria-hidden="true">
+                    <span className="live-audio-meter-fill" style={{ width: `${Math.max(8, localAudioLevel)}%` }} />
+                  </span>
+                )}
               </button>
               <button
                 type="button"
@@ -847,6 +988,29 @@ export function LiveClassroomRoom() {
                 <span>{camOn ? 'Kamera Nyala' : 'Kamera Mati'}</span>
               </button>
             </div>
+            {devices.microphones.length > 1 && (
+              <div style={{ marginTop: '0.55rem' }}>
+                <select
+                  aria-label="Pilih mikrofon"
+                  value={selectedMicId}
+                  onChange={(e) => handleDeviceChange({ audioDeviceId: e.target.value })}
+                  style={{
+                    width: '100%',
+                    border: '1px solid var(--border-subtle)',
+                    borderRadius: '8px',
+                    padding: '0.35rem 0.55rem',
+                    fontSize: '0.8rem',
+                    background: '#FFFFFF'
+                  }}
+                >
+                  {devices.microphones.map((d, i) => (
+                    <option key={d.deviceId || i} value={d.deviceId}>
+                      Mic: {d.label || `Mikrofon ${i + 1}`}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -932,8 +1096,23 @@ export function LiveClassroomRoom() {
         ? 'is-failed'
         : '';
 
+  const unlockRemoteAudio = () => {
+    const audioEl = remoteAudioRef.current;
+    if (!audioEl) return;
+    audioEl.muted = false;
+    audioEl.volume = 1;
+    const p = audioEl.play?.();
+    if (p && typeof p.then === 'function') {
+      p.then(() => setAudioPlayBlocked(false)).catch(() => setAudioPlayBlocked(true));
+    } else {
+      setAudioPlayBlocked(false);
+    }
+  };
+
   return (
-    <div className="live-studio">
+    <div className="live-studio" onClick={audioPlayBlocked ? unlockRemoteAudio : undefined}>
+      {/* Elemen audio persisten agar suara tetap lancar saat pindah tab Soal / Whiteboard / Video */}
+      <audio ref={remoteAudioRef} autoPlay playsInline style={{ display: 'none' }} />
       {/* Top Bar */}
       <header className="live-topbar">
         <div className="live-topbar-brand">
@@ -948,6 +1127,12 @@ export function LiveClassroomRoom() {
           <span className={`live-timer-badge ${elapsedSec >= 5400 ? 'is-long' : ''}`} title="Durasi sesi berjalan">
             {formatCallDuration(elapsedSec)}
           </span>
+          {audioPlayBlocked && (
+            <button type="button" className="live-audio-unblock-btn" onClick={unlockRemoteAudio}>
+              <Volume2 size={14} />
+              <span>Aktifkan Suara</span>
+            </button>
+          )}
         </div>
 
         <div className="live-mode-tabs" role="tablist" aria-label="Mode area kerja">
@@ -1043,7 +1228,7 @@ export function LiveClassroomRoom() {
           {/* Panel Video & Screen Share Besar */}
           {workspaceMode === 'video' && (
             <div className="live-video-stage">
-              <video ref={stageRemoteVideoRef} autoPlay playsInline className="live-video-main" />
+              <video ref={stageRemoteVideoRef} autoPlay playsInline muted className="live-video-main" />
               {connState !== 'connected' && (
                 <div className="live-video-placeholder" style={{ position: 'absolute' }}>
                   <Video size={36} />
@@ -1071,10 +1256,19 @@ export function LiveClassroomRoom() {
           {workspaceMode !== 'video' && (
             <>
               <div className="live-video-card" onClick={() => handleModeSwitch('video')} style={{ cursor: 'pointer' }} title="Klik untuk perbesar video/layar">
-                <video ref={dockRemoteVideoRef} autoPlay playsInline />
+                <video ref={dockRemoteVideoRef} autoPlay playsInline muted />
                 <span className="live-video-card-label">
-                  {remoteMedia.micOn ? <Mic size={11} /> : <MicOff size={11} style={{ color: '#F87171' }} />}
+                  {remoteMedia.micOn && remoteMedia.hasAudioTrack !== false ? (
+                    <Mic size={11} />
+                  ) : (
+                    <MicOff size={11} style={{ color: '#F87171' }} />
+                  )}
                   <span>{counterpartLabel}</span>
+                  {remoteMedia.micOn && (
+                    <span className="live-audio-meter" aria-hidden="true">
+                      <span className="live-audio-meter-fill" style={{ width: `${Math.max(8, remoteAudioLevel)}%` }} />
+                    </span>
+                  )}
                 </span>
               </div>
               <div className="live-video-card">
@@ -1088,6 +1282,11 @@ export function LiveClassroomRoom() {
                 <span className="live-video-card-label">
                   {micOn ? <Mic size={11} /> : <MicOff size={11} style={{ color: '#F87171' }} />}
                   <span>{screenSharing ? 'Berbagi Layar' : 'Anda'}</span>
+                  {micOn && (
+                    <span className="live-audio-meter" aria-hidden="true">
+                      <span className="live-audio-meter-fill" style={{ width: `${Math.max(8, localAudioLevel)}%` }} />
+                    </span>
+                  )}
                 </span>
               </div>
             </>
@@ -1157,6 +1356,12 @@ export function LiveClassroomRoom() {
               ))}
             </select>
           </label>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem', fontSize: '0.75rem', color: '#CBD5E1' }}>
+            <span>Tes Suara Mic:</span>
+            <span className="live-audio-meter" style={{ width: 120, height: 8 }}>
+              <span className="live-audio-meter-fill" style={{ width: `${micOn ? Math.max(6, localAudioLevel) : 0}%` }} />
+            </span>
+          </div>
           <label>
             <span>Kamera</span>
             <select
@@ -1170,6 +1375,17 @@ export function LiveClassroomRoom() {
               ))}
             </select>
           </label>
+          <button
+            type="button"
+            className="live-top-btn"
+            onClick={() => {
+              retryAcquireMedia();
+              enumerateMediaDevices().then(setDevices).catch(() => {});
+            }}
+            style={{ justifyContent: 'center' }}
+          >
+            <RefreshCw size={13} /> Deteksi Ulang Mic &amp; Kamera
+          </button>
         </div>
       )}
 
@@ -1183,6 +1399,11 @@ export function LiveClassroomRoom() {
         >
           {micOn ? <Mic size={16} /> : <MicOff size={16} />}
           <span>{micOn ? 'Mic' : 'Mic Mati'}</span>
+          {micOn && (
+            <span className="live-audio-meter" aria-hidden="true">
+              <span className="live-audio-meter-fill" style={{ width: `${Math.max(8, localAudioLevel)}%` }} />
+            </span>
+          )}
         </button>
 
         <button
