@@ -27,6 +27,9 @@ const TopicIndexPage = lazy(() => import('./components/TopicIndexPage').then((m)
 const FormulaIndexPage = lazy(() => import('./components/FormulaIndexPage').then((m) => ({ default: m.FormulaIndexPage })));
 const TkaPage = lazy(() => import('./components/TkaPage').then((m) => ({ default: m.TkaPage })));
 const AccountPage = lazy(() => import('./components/AccountPage').then((m) => ({ default: m.AccountPage })));
+const LiveClassroomLobby = lazy(() => import('./components/live/LiveClassroomLobby').then((m) => ({ default: m.LiveClassroomLobby })));
+const LiveClassroomRoom = lazy(() => import('./components/live/LiveClassroomRoom').then((m) => ({ default: m.LiveClassroomRoom })));
+const IncomingCallBanner = lazy(() => import('./components/live/IncomingCallBanner').then((m) => ({ default: m.IncomingCallBanner })));
 const SubjectHubPage = lazy(() => import('./components/SubjectHubPage').then((m) => ({ default: m.SubjectHubPage })));
 const NotFoundPage = lazy(() => import('./components/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
 const AiAssistantWidget = lazy(() => import('./components/AiAssistantWidget').then((m) => ({ default: m.AiAssistantWidget })));
@@ -119,11 +122,43 @@ function ScrollToTopOnNavigate() {
   return null;
 }
 
+function checkLiveEmbed() {
+  if (typeof window === 'undefined') return false;
+  try {
+    return window.self !== window.top && window.top.location.pathname.startsWith('/kelas');
+  } catch {
+    return false;
+  }
+}
+
+function LiveEmbedBridge({ active }) {
+  const location = useLocation();
+  useEffect(() => {
+    if (!active || typeof window === 'undefined' || !window.parent) return;
+    try {
+      window.parent.postMessage(
+        {
+          type: 'duta-live-iframe-nav',
+          path: `${location.pathname}${location.search || ''}${location.hash || ''}`,
+          title: document.title
+        },
+        window.location.origin
+      );
+    } catch {
+      // Abaikan jika parent tidak satu origin
+    }
+  }, [active, location.pathname, location.search, location.hash]);
+  return null;
+}
+
 export function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const { displayName, isAuthenticated } = useAuth();
 
+  const isLiveClassroomRoute =
+    location.pathname === '/kelas' || location.pathname.startsWith('/kelas/');
+  const isLiveEmbed = checkLiveEmbed();
   const isFullScreenView = location.pathname.startsWith('/quest/') ||
                            location.pathname.startsWith('/worksheet') ||
                            location.pathname.startsWith('/solution/');
@@ -162,9 +197,11 @@ export function App() {
       {/* Backward-compatibility query redirector */}
       <QueryRedirectHandler />
       <ScrollToTopOnNavigate />
+      <LiveEmbedBridge active={isLiveEmbed} />
 
       {/* Top Navbar */}
-      <header className="top-navbar no-print">
+      {!isLiveClassroomRoute && !isLiveEmbed && (
+        <header className="top-navbar no-print">
         <div className="nav-container">
           <Link to="/" className="brand-logo" onClick={handleBackToHome} aria-label={`${ORGANIZATION.name} — Beranda`}>
             <img
@@ -228,6 +265,7 @@ export function App() {
           </div>
         </div>
       </header>
+      )}
 
       {/* Main Content Area with Declarative React Router v7 */}
       <main>
@@ -269,6 +307,8 @@ export function App() {
 
             {/* 2. Akun Pelajar & Sinkronisasi Progres */}
             <Route path="/akun" element={<AccountPage />} />
+            <Route path="/kelas" element={<LiveClassroomLobby />} />
+            <Route path="/kelas/:roomId" element={<LiveClassroomRoom />} />
             <Route path="/teacher" element={<Navigate to="/akun" replace />} />
             <Route path="/teacher/*" element={<Navigate to="/akun" replace />} />
 
@@ -299,13 +339,19 @@ export function App() {
         </Suspense>
       </main>
 
-      {!isFullScreenView && (
+      {!isFullScreenView && !isLiveClassroomRoute && !isLiveEmbed && (
         <Suspense fallback={null}>
           <AiAssistantWidget />
         </Suspense>
       )}
 
-      {!isFullScreenView && (
+      {isAuthenticated && !isLiveClassroomRoute && !isLiveEmbed && (
+        <Suspense fallback={null}>
+          <IncomingCallBanner />
+        </Suspense>
+      )}
+
+      {!isFullScreenView && !isLiveClassroomRoute && !isLiveEmbed && (
         <footer className="site-footer no-print">
           <div className="site-footer-columns">
             <nav className="site-footer-group" aria-label="Belajar">

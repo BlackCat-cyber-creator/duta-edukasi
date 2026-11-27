@@ -6,6 +6,7 @@
 User-agent: *
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -16,6 +17,7 @@ Disallow: /app.html
 User-agent: Googlebot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -26,6 +28,7 @@ Disallow: /app.html
 User-agent: Google-Extended
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -36,6 +39,7 @@ Disallow: /app.html
 User-agent: GoogleOther
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -46,6 +50,7 @@ Disallow: /app.html
 User-agent: Bingbot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -56,6 +61,7 @@ Disallow: /app.html
 User-agent: OAI-SearchBot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -66,6 +72,7 @@ Disallow: /app.html
 User-agent: GPTBot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -76,6 +83,7 @@ Disallow: /app.html
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -86,6 +94,7 @@ Disallow: /app.html
 User-agent: PerplexityBot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -96,6 +105,7 @@ Disallow: /app.html
 User-agent: Perplexity-User
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -106,6 +116,7 @@ Disallow: /app.html
 User-agent: ClaudeBot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -116,6 +127,7 @@ Disallow: /app.html
 User-agent: Claude-User
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -126,6 +138,7 @@ Disallow: /app.html
 User-agent: Claude-SearchBot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -136,6 +149,7 @@ Disallow: /app.html
 User-agent: Applebot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -146,6 +160,7 @@ Disallow: /app.html
 User-agent: Applebot-Extended
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -156,6 +171,7 @@ Disallow: /app.html
 User-agent: DuckAssistBot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -166,6 +182,7 @@ Disallow: /app.html
 User-agent: Meta-ExternalAgent
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -176,6 +193,7 @@ Disallow: /app.html
 User-agent: Amazonbot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -186,6 +204,7 @@ Disallow: /app.html
 User-agent: YandexBot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -196,6 +215,7 @@ Disallow: /app.html
 User-agent: MistralAI-User
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -206,6 +226,7 @@ Disallow: /app.html
 User-agent: cohere-ai
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -216,6 +237,7 @@ Disallow: /app.html
 User-agent: FacebookBot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -226,6 +248,7 @@ Disallow: /app.html
 User-agent: Twitterbot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -236,6 +259,7 @@ Disallow: /app.html
 User-agent: LinkedInBot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -246,6 +270,7 @@ Disallow: /app.html
 User-agent: WhatsApp
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/
@@ -256,6 +281,7 @@ Disallow: /app.html
 User-agent: TelegramBot
 Allow: /
 Disallow: /akun
+Disallow: /kelas
 Disallow: /api/
 Disallow: /teacher
 Disallow: /quest/

@@ -57,5 +57,52 @@ service cloud.firestore {
     match /users/{userId} {
       allow read, write: if isAuthenticated() && request.auth.uid == userId;
     }
+
+    // 5. Ruang Kelas Privat 1-on-1 (Duta Live) — liveRooms/{roomId}
+    function isLiveTeacher() {
+      return isAuthenticated()
+        && request.auth.token.email != null
+        && request.auth.token.email.lower() == 'jevon.naldo@gmail.com';
+    }
+
+    function isInvitedStudent(roomData) {
+      return isAuthenticated()
+        && request.auth.token.email != null
+        && roomData.studentEmail is string
+        && request.auth.token.email.lower() == roomData.studentEmail;
+    }
+
+    match /liveRooms/{roomId} {
+      allow get: if isLiveTeacher() || (resource != null && isInvitedStudent(resource.data));
+      allow list: if isLiveTeacher() || isInvitedStudent(resource.data);
+
+      allow create: if isLiveTeacher()
+        && request.resource.data.teacherUid == request.auth.uid
+        && request.resource.data.teacherEmail == request.auth.token.email.lower()
+        && request.resource.data.studentEmail is string
+        && request.resource.data.studentEmail.size() >= 5
+        && request.resource.data.studentEmail.size() <= 160;
+
+      allow delete: if isLiveTeacher() && resource.data.teacherUid == request.auth.uid;
+
+      allow update: if (isLiveTeacher() && resource.data.teacherUid == request.auth.uid)
+        || (isInvitedStudent(resource.data)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['answer', 'status', 'studentUid', 'studentJoinedAt', 'sharedPath', 'updatedAt'])
+          && request.resource.data.studentEmail == resource.data.studentEmail
+          && request.resource.data.teacherUid == resource.data.teacherUid);
+
+      match /offerCandidates/{candId} {
+        allow read: if isLiveTeacher()
+          || isInvitedStudent(get(/databases/$(database)/documents/liveRooms/$(roomId)).data);
+        allow create, delete: if isLiveTeacher()
+          && get(/databases/$(database)/documents/liveRooms/$(roomId)).data.teacherUid == request.auth.uid;
+      }
+
+      match /answerCandidates/{candId} {
+        allow read, create, delete: if (isLiveTeacher()
+            && get(/databases/$(database)/documents/liveRooms/$(roomId)).data.teacherUid == request.auth.uid)
+          || isInvitedStudent(get(/databases/$(database)/documents/liveRooms/$(roomId)).data);
+      }
+    }
   }
 }

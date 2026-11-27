@@ -55,7 +55,7 @@ function serializeStudyData(bundle = {}) {
 
 export function AuthProvider({ children }) {
   const location = useLocation();
-  const needsAuth = location.pathname.startsWith('/akun') || hasAuthFlag();
+  const needsAuth = location.pathname.startsWith('/akun') || location.pathname.startsWith('/kelas') || hasAuthFlag();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(needsAuth);
   const [started, setStarted] = useState(false);

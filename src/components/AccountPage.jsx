@@ -11,9 +11,11 @@ import {
   CloudOff,
   Loader2,
   ArrowRight,
-  Trash2
+  Trash2,
+  Video
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
+import { isLiveTeacherEmail } from '../utils/liveConfig';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import {
   getProgress,
@@ -270,9 +272,16 @@ export function AccountPage() {
                   </span>
                 </p>
               </div>
-              <button type="button" className="btn btn-outline" onClick={logout} style={{ marginLeft: 'auto', fontSize: '0.82rem' }}>
-                <LogOut size={14} /> Keluar
-              </button>
+              <div style={{ marginLeft: 'auto', display: 'flex', gap: '0.45rem', flexWrap: 'wrap' }}>
+                {isLiveTeacherEmail(email) && (
+                  <Link to="/kelas" className="btn btn-royal" style={{ fontSize: '0.82rem' }}>
+                    <Video size={14} /> Kelas Privat
+                  </Link>
+                )}
+                <button type="button" className="btn btn-outline" onClick={logout} style={{ fontSize: '0.82rem' }}>
+                  <LogOut size={14} /> Keluar
+                </button>
+              </div>
             </div>
 
             <div className="account-targets">
