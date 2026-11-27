@@ -6,6 +6,7 @@ import { retrieveCatalogContext, buildFallbackReply, isGreetingOrSmallTalk } fro
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CATALOG_PATH = path.join(__dirname, '_catalog.json');
 let cachedCatalog = null;
+let cachedWorkingModel = null;
 
 function getCatalog() {
   if (!cachedCatalog) {
@@ -126,7 +127,16 @@ export default async function handler(req, res) {
     return;
   }
 
-  const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
+  const envModel = String(process.env.GEMINI_MODEL || '').trim();
+  const preferred = envModel && envModel !== 'gemini-2.5-flash-lite' ? [envModel] : [];
+  const candidateModels = [...new Set([
+    ...(cachedWorkingModel ? [cachedWorkingModel] : []),
+    ...preferred,
+    'gemini-3.5-flash-lite',
+    'gemini-3.8-flash',
+    'gemini-3.1-flash-lite',
+    ...(envModel === 'gemini-2.5-flash-lite' ? ['gemini-2.5-flash-lite'] : [])
+  ])];
   const catalogLines = matches.length
     ? matches.map((m) =>
       `- [${m.title}](${m.path}) | tipe=${m.type} | mapel=${m.subject} | level=${m.level || '-'} | topik=${m.topic || '-'}`
@@ -148,51 +158,48 @@ export default async function handler(req, res) {
     catalogLines
   ].join('\n');
 
-  try {
-    const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': geminiKey
-        },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: systemInstruction }] },
-          contents: messages.map((m) => ({ role: m.role, parts: [{ text: m.text }] })),
-          generationConfig: { temperature: 0.4, maxOutputTokens: 650 }
-        })
+  for (const model of candidateModels) {
+    try {
+      const geminiRes = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': geminiKey
+          },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: systemInstruction }] },
+            contents: messages.map((m) => ({ role: m.role, parts: [{ text: m.text }] })),
+            generationConfig: { temperature: 0.4, maxOutputTokens: 650 }
+          })
+        }
+      );
+
+      if (!geminiRes.ok) {
+        const errData = await geminiRes.json().catch(() => null);
+        const errMsg = errData?.error?.message || '';
+        console.warn('Gemini API error:', model, geminiRes.status, errMsg);
+        if (cachedWorkingModel === model) cachedWorkingModel = null;
+        if (geminiRes.status === 401 || geminiRes.status === 403) break;
+        continue;
       }
-    );
 
-    if (!geminiRes.ok) {
-      console.warn('Gemini API error:', geminiRes.status);
-      res.status(200).json({
-        reply: buildFallbackReply(latestUserMsg, matches, userContext),
-        recommendations,
-        mode: 'catalog-fallback'
-      });
-      return;
+      const payload = await geminiRes.json();
+      const reply = payload?.candidates?.[0]?.content?.parts?.map((p) => p.text || '').join('').trim();
+      if (reply) {
+        cachedWorkingModel = model;
+        res.status(200).json({ reply, recommendations, mode: 'gemini', model });
+        return;
+      }
+    } catch (err) {
+      console.warn('Gemini API fetch failed:', model, err?.message || err);
     }
-
-    const payload = await geminiRes.json();
-    const reply = payload?.candidates?.[0]?.content?.parts?.map((p) => p.text || '').join('').trim();
-    if (!reply) {
-      res.status(200).json({
-        reply: buildFallbackReply(latestUserMsg, matches, userContext),
-        recommendations,
-        mode: 'catalog-fallback'
-      });
-      return;
-    }
-
-    res.status(200).json({ reply, recommendations, mode: 'gemini', model });
-  } catch (err) {
-    console.warn('Gemini API fetch failed:', err?.message || err);
-    res.status(200).json({
-      reply: buildFallbackReply(latestUserMsg, matches, userContext),
-      recommendations,
-      mode: 'catalog-fallback'
-    });
   }
+
+  res.status(200).json({
+    reply: buildFallbackReply(latestUserMsg, matches, userContext),
+    recommendations,
+    mode: 'catalog-fallback'
+  });
 }

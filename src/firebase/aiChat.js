@@ -2,7 +2,7 @@ import { getAI, getGenerativeModel, GoogleAIBackend } from 'firebase/ai';
 import app from './config';
 import { retrieveCatalogContext, buildFallbackReply, isGreetingOrSmallTalk } from '../utils/aiRetriever';
 
-const MODEL_NAME = 'gemini-2.5-flash-lite';
+const MODEL_NAME = 'gemini-3.5-flash-lite';
 const RATE_LIMIT_KEY = 'duta_ai_rate_v1';
 const RATE_LIMIT_MAX = 25;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
