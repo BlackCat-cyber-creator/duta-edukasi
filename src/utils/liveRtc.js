@@ -52,6 +52,56 @@ export async function enumerateMediaDevices() {
   }
 }
 
+export function formatMediaError(err) {
+  const name = String(err?.name || '');
+  if (name === 'NotAllowedError' || name === 'PermissionDeniedError' || name === 'SecurityError') {
+    return 'Izin kamera/mikrofon ditolak browser. Klik ikon gembok di samping alamat situs, pilih "Izinkan" untuk Kamera & Mikrofon, lalu muat ulang halaman.';
+  }
+  if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+    return 'Kamera atau mikrofon tidak ditemukan di perangkat ini. Pastikan webcam/mic terpasang.';
+  }
+  if (name === 'NotReadableError' || name === 'TrackStartError') {
+    return 'Kamera/mikrofon sedang dipakai aplikasi lain (Zoom, Meet, OBS, dll). Tutup aplikasi tersebut lalu coba lagi.';
+  }
+  if (name === 'OverconstrainedError') {
+    return 'Perangkat kamera/mikrofon yang dipilih tidak tersedia. Pilih perangkat lain.';
+  }
+  return 'Kamera dan mikrofon belum aktif. Klik "Coba Aktifkan Kamera & Mic" atau izinkan lewat ikon gembok browser.';
+}
+
+export async function requestSingleTrack(kind, deviceId = '') {
+  if (typeof navigator === 'undefined' || !navigator.mediaDevices?.getUserMedia) {
+    return { track: null, error: 'Browser tidak mendukung akses kamera dan mikrofon.' };
+  }
+  const constraints =
+    kind === 'video'
+      ? {
+          video: {
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+            frameRate: { ideal: 24, max: 30 },
+            ...(deviceId ? { deviceId: { ideal: deviceId } } : {})
+          },
+          audio: false
+        }
+      : {
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+            ...(deviceId ? { deviceId: { ideal: deviceId } } : {})
+          },
+          video: false
+        };
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    const track = kind === 'video' ? stream.getVideoTracks()[0] : stream.getAudioTracks()[0];
+    return { track: track || null, error: track ? '' : formatMediaError(null) };
+  } catch (err) {
+    return { track: null, error: formatMediaError(err) };
+  }
+}
+
 export async function acquireLocalMedia({
   video = true,
   audio = true,
@@ -93,10 +143,13 @@ export async function acquireLocalMedia({
       stream,
       hasAudio: stream.getAudioTracks().length > 0,
       hasVideo: stream.getVideoTracks().length > 0,
-      warning: ''
+      warning: '',
+      errorName: ''
     };
-  } catch {
-    if (audio && video) {
+  } catch (err) {
+    const errorName = String(err?.name || '');
+    const isPermission = errorName === 'NotAllowedError' || errorName === 'PermissionDeniedError';
+    if (audio && video && !isPermission) {
       try {
         const audioOnly = await navigator.mediaDevices.getUserMedia({
           audio: audioConstraint,
@@ -106,7 +159,8 @@ export async function acquireLocalMedia({
           stream: audioOnly,
           hasAudio: audioOnly.getAudioTracks().length > 0,
           hasVideo: false,
-          warning: 'Kamera tidak tersedia atau diblokir. Masuk dengan mikrofon saja.'
+          warning: `${formatMediaError(err)} (Mikrofon tetap aktif.)`,
+          errorName
         };
       } catch {
         // lanjut fallback kosong
@@ -116,7 +170,8 @@ export async function acquireLocalMedia({
       stream: new MediaStream(),
       hasAudio: false,
       hasVideo: false,
-      warning: 'Kamera dan mikrofon tidak aktif. Anda tetap bisa menyimak atau memberi izin lewat ikon gembok browser.'
+      warning: formatMediaError(err),
+      errorName
     };
   }
 }
@@ -435,6 +490,34 @@ export class LiveRtcSession {
       this.cameraTrack.enabled = Boolean(enabled);
     }
     this.sendData({ type: 'media-state', camOn: Boolean(enabled) });
+  }
+
+  async attachTrack(track) {
+    if (!track) return;
+    if (track.kind === 'video') {
+      if ('contentHint' in track) track.contentHint = 'motion';
+      if (this.cameraTrack && this.cameraTrack !== track) {
+        this.localStream.removeTrack(this.cameraTrack);
+        this.cameraTrack.stop();
+      }
+      this.cameraTrack = track;
+      if (!this.localStream.getTracks().includes(track)) this.localStream.addTrack(track);
+      if (!this.screenStream && this.videoSender) {
+        await this.videoSender.replaceTrack(track).catch(() => {});
+      }
+      this.sendData({ type: 'media-state', camOn: true });
+    } else if (track.kind === 'audio') {
+      if (this.audioTrack && this.audioTrack !== track) {
+        this.localStream.removeTrack(this.audioTrack);
+        this.audioTrack.stop();
+      }
+      this.audioTrack = track;
+      if (!this.localStream.getTracks().includes(track)) this.localStream.addTrack(track);
+      if (this.audioSender) {
+        await this.audioSender.replaceTrack(track).catch(() => {});
+      }
+      this.sendData({ type: 'media-state', micOn: true });
+    }
   }
 
   async switchDevice({ videoDeviceId, audioDeviceId } = {}) {

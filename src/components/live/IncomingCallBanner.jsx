@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { PhoneIncoming, Video, X } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { subscribeStudentIncomingRooms } from '../../firebase/liveRooms';
@@ -36,7 +35,6 @@ function playRingChime() {
 
 export function IncomingCallBanner() {
   const { isAuthenticated, email } = useAuth();
-  const navigate = useNavigate();
   const [rooms, setRooms] = useState([]);
   const [dismissedKey, setDismissedKey] = useState('');
   const lastChimeKeyRef = useRef('');
@@ -131,7 +129,7 @@ export function IncomingCallBanner() {
       <div style={{ display: 'flex', gap: '0.5rem' }}>
         <button
           type="button"
-          onClick={() => navigate(`/kelas/${encodeURIComponent(topRoom.id)}`)}
+          onClick={() => window.location.assign(`/kelas/${encodeURIComponent(topRoom.id)}`)}
           style={{
             flex: 1,
             display: 'inline-flex',

@@ -713,6 +713,10 @@
   align-items: center;
 }
 
+.live-prejoin-card > * {
+  min-width: 0;
+}
+
 .live-prejoin-preview {
   position: relative;
   width: 100%;

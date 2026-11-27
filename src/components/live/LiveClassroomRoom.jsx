@@ -44,7 +44,8 @@ import {
   LiveRtcSession,
   acquireLocalMedia,
   enumerateMediaDevices,
-  fetchIceConfiguration
+  fetchIceConfiguration,
+  requestSingleTrack
 } from '../../utils/liveRtc';
 import { LiveWhiteboard } from './LiveWhiteboard';
 import { LiveSoalPanel } from './LiveSoalPanel';
@@ -285,6 +286,7 @@ export function LiveClassroomRoom() {
       if (warning) setMediaWarning(warning);
       if (prejoinVideoRef.current) {
         prejoinVideoRef.current.srcObject = stream;
+        prejoinVideoRef.current.play?.()?.catch?.(() => {});
       }
       const devList = await enumerateMediaDevices();
       if (!cancelled) {
@@ -486,8 +488,77 @@ export function LiveClassroomRoom() {
     }
   };
 
-  const toggleMic = useCallback(() => {
+  const bindPrejoinPreview = useCallback((stream) => {
+    const el = prejoinVideoRef.current;
+    if (!el) return;
+    el.srcObject = stream || null;
+    el.play?.()?.catch?.(() => {});
+  }, []);
+
+  const retryAcquireMedia = useCallback(async () => {
+    localStreamRef.current?.getTracks().forEach((t) => t.stop());
+    const res = await acquireLocalMedia({ video: true, audio: true });
+    localStreamRef.current = res.stream;
+    setMicOn(res.hasAudio);
+    setCamOn(res.hasVideo);
+    setMediaWarning(res.warning || '');
+    if (sessionRef.current && res.stream) {
+      for (const t of res.stream.getTracks()) {
+        await sessionRef.current.attachTrack(t);
+      }
+      attachStreams();
+    } else {
+      bindPrejoinPreview(res.stream);
+    }
+    const devList = await enumerateMediaDevices();
+    setDevices(devList);
+  }, [attachStreams, bindPrejoinPreview]);
+
+  const ensureTrack = useCallback(
+    async (kind) => {
+      const stream = localStreamRef.current;
+      const existing =
+        kind === 'video' ? stream?.getVideoTracks?.()[0] : stream?.getAudioTracks?.()[0];
+      if (existing && existing.readyState === 'live') return existing;
+
+      const { track, error } = await requestSingleTrack(
+        kind,
+        kind === 'video' ? selectedCamId : selectedMicId
+      );
+      if (!track) {
+        setMediaWarning(error);
+        return null;
+      }
+      let target = localStreamRef.current;
+      if (!target) {
+        target = new MediaStream();
+        localStreamRef.current = target;
+      }
+      if (existing) target.removeTrack(existing);
+      target.addTrack(track);
+      if (sessionRef.current) {
+        await sessionRef.current.attachTrack(track);
+        attachStreams();
+      } else {
+        bindPrejoinPreview(target);
+      }
+      setMediaWarning('');
+      enumerateMediaDevices().then(setDevices).catch(() => {});
+      return track;
+    },
+    [selectedCamId, selectedMicId, attachStreams, bindPrejoinPreview]
+  );
+
+  const toggleMic = useCallback(async () => {
     const next = !micOn;
+    if (next) {
+      const track = await ensureTrack('audio');
+      if (!track) {
+        setMicOn(false);
+        return;
+      }
+      track.enabled = true;
+    }
     setMicOn(next);
     if (sessionRef.current) {
       sessionRef.current.setMicEnabled(next);
@@ -496,10 +567,18 @@ export function LiveClassroomRoom() {
         t.enabled = next;
       });
     }
-  }, [micOn]);
+  }, [micOn, ensureTrack]);
 
-  const toggleCam = useCallback(() => {
+  const toggleCam = useCallback(async () => {
     const next = !camOn;
+    if (next) {
+      const track = await ensureTrack('video');
+      if (!track) {
+        setCamOn(false);
+        return;
+      }
+      track.enabled = true;
+    }
     setCamOn(next);
     if (sessionRef.current) {
       sessionRef.current.setCamEnabled(next);
@@ -508,7 +587,7 @@ export function LiveClassroomRoom() {
         t.enabled = next;
       });
     }
-  }, [camOn]);
+  }, [camOn, ensureTrack]);
 
   const toggleScreenShare = async () => {
     const session = sessionRef.current;
@@ -583,7 +662,7 @@ export function LiveClassroomRoom() {
           audioDeviceId: audioDeviceId || selectedMicId
         });
         localStreamRef.current = res.stream;
-        if (prejoinVideoRef.current) prejoinVideoRef.current.srcObject = res.stream;
+        bindPrejoinPreview(res.stream);
       }
       if (videoDeviceId) setSelectedCamId(videoDeviceId);
       if (audioDeviceId) setSelectedMicId(audioDeviceId);
@@ -772,9 +851,17 @@ export function LiveClassroomRoom() {
             </div>
 
             {mediaWarning && (
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#B45309', background: '#FFFBEB', padding: '0.5rem 0.65rem', borderRadius: '8px', border: '1px solid #FDE68A' }}>
-                {mediaWarning}
-              </p>
+              <div style={{ margin: 0, fontSize: '0.8rem', color: '#B45309', background: '#FFFBEB', padding: '0.5rem 0.65rem', borderRadius: '8px', border: '1px solid #FDE68A', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                <span>{mediaWarning}</span>
+                <button
+                  type="button"
+                  className="btn btn-outline"
+                  onClick={retryAcquireMedia}
+                  style={{ alignSelf: 'flex-start', fontSize: '0.78rem', padding: '0.3rem 0.65rem' }}
+                >
+                  <RefreshCw size={13} /> Coba Aktifkan Kamera &amp; Mic
+                </button>
+              </div>
             )}
 
             <button

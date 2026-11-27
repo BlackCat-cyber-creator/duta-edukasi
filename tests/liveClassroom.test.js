@@ -28,6 +28,16 @@ import {
   hydrateBoardState
 } from '../src/utils/liveWhiteboard.js';
 import handler, { resolveIceServers } from '../api/turn-credentials.js';
+import { formatMediaError } from '../src/utils/liveRtc.js';
+
+describe('Pesan galat kamera/mikrofon', () => {
+  it('memberi panduan jelas untuk izin ditolak, perangkat tidak ada, dan perangkat sibuk', () => {
+    expect(formatMediaError({ name: 'NotAllowedError' })).toContain('ikon gembok');
+    expect(formatMediaError({ name: 'NotFoundError' })).toContain('tidak ditemukan');
+    expect(formatMediaError({ name: 'NotReadableError' })).toContain('aplikasi lain');
+    expect(formatMediaError(null)).toBeTruthy();
+  });
+});
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -207,7 +217,7 @@ describe('Isolasi Publik, Keamanan & SEO /kelas', () => {
     const headerMap = Object.fromEntries((vercel.headers || []).map((h) => [h.source, h.headers]));
 
     const globalPerm = headerMap['/(.*)']?.find((h) => h.key === 'Permissions-Policy')?.value;
-    expect(globalPerm).toBe('camera=(), microphone=(), geolocation=()');
+    expect(globalPerm).toBe('camera=(self), microphone=(self), display-capture=(self), geolocation=()');
 
     for (const routeKey of ['/kelas', '/kelas/(.*)']) {
       const headers = headerMap[routeKey];

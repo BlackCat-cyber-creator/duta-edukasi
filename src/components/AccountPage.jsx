@@ -274,9 +274,9 @@ export function AccountPage() {
               </div>
               <div style={{ marginLeft: 'auto', display: 'flex', gap: '0.45rem', flexWrap: 'wrap' }}>
                 {isLiveTeacherEmail(email) && (
-                  <Link to="/kelas" className="btn btn-royal" style={{ fontSize: '0.82rem' }}>
+                  <a href="/kelas" className="btn btn-royal" style={{ fontSize: '0.82rem' }}>
                     <Video size={14} /> Kelas Privat
-                  </Link>
+                  </a>
                 )}
                 <button type="button" className="btn btn-outline" onClick={logout} style={{ fontSize: '0.82rem' }}>
                   <LogOut size={14} /> Keluar
