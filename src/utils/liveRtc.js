@@ -1,6 +1,5 @@
 import {
   addIceCandidate,
-  clearCandidates,
   subscribeIceCandidates,
   updateLiveRoom
 } from '../firebase/liveRooms';
@@ -183,6 +182,7 @@ export class LiveRtcSession {
     iceServers,
     localStream,
     studentUid = null,
+    initialStudentJoinedAt = null,
     onRemoteStream,
     onConnectionState,
     onDataMessage,
@@ -216,7 +216,7 @@ export class LiveRtcSession {
     this.currentEpoch = 1;
     this.lastHandledOfferEpoch = 0;
     this.lastHandledAnswerEpoch = 0;
-    this.lastStudentJoinedAt = null;
+    this.lastStudentJoinedAt = initialStudentJoinedAt;
     this.pendingRemoteCandidates = [];
     this.seenCandidateIds = new Set();
     this.incomingChunks = new Map();
@@ -233,17 +233,23 @@ export class LiveRtcSession {
       iceCandidatePoolSize: 8
     });
 
-    const audioTransceiver = this.pc.addTransceiver('audio', { direction: 'sendrecv' });
-    const videoTransceiver = this.pc.addTransceiver('video', { direction: 'sendrecv' });
-    this.audioSender = audioTransceiver.sender;
-    this.videoSender = videoTransceiver.sender;
+    if (this.role === 'teacher') {
+      const audioTransceiver = this.pc.addTransceiver('audio', { direction: 'sendrecv' });
+      const videoTransceiver = this.pc.addTransceiver('video', { direction: 'sendrecv' });
+      this.audioSender = audioTransceiver.sender;
+      this.videoSender = videoTransceiver.sender;
 
-    if (this.audioTrack) {
-      this.audioSender.replaceTrack(this.audioTrack).catch(() => {});
+      if (this.audioTrack) {
+        this.audioSender.replaceTrack(this.audioTrack).catch(() => {});
+      }
+      if (this.cameraTrack) {
+        this.videoSender.replaceTrack(this.cameraTrack).catch(() => {});
+      }
     }
-    if (this.cameraTrack) {
-      this.videoSender.replaceTrack(this.cameraTrack).catch(() => {});
-    }
+
+    const emitRemoteStream = () => {
+      this.onRemoteStream(new MediaStream(this.remoteStream.getTracks()));
+    };
 
     this.pc.ontrack = (event) => {
       const track = event.track;
@@ -255,7 +261,8 @@ export class LiveRtcSession {
       if (!this.remoteStream.getTracks().some((t) => t.id === track.id)) {
         this.remoteStream.addTrack(track);
       }
-      this.onRemoteStream(new MediaStream(this.remoteStream.getTracks()));
+      track.onunmute = emitRemoteStream;
+      emitRemoteStream();
     };
 
     const candidateCol = this.role === 'teacher' ? 'offerCandidates' : 'answerCandidates';
@@ -313,7 +320,14 @@ export class LiveRtcSession {
 
     this.pc.oniceconnectionstatechange = () => {
       const iceState = this.pc?.iceConnectionState;
-      if (iceState === 'failed' && this.role === 'teacher' && this.iceRestartCount < 3) {
+      if (iceState === 'connected' || iceState === 'completed') {
+        this.iceRestartCount = 0;
+        if (this.disconnectTimer) {
+          clearTimeout(this.disconnectTimer);
+          this.disconnectTimer = null;
+        }
+        this.onConnectionState('connected');
+      } else if (iceState === 'failed' && this.role === 'teacher' && this.iceRestartCount < 3) {
         this.iceRestartCount += 1;
         this.restartIce().catch(() => {});
       }
@@ -380,11 +394,15 @@ export class LiveRtcSession {
   async startTeacherCall({ epoch = 1, iceRestart = false } = {}) {
     if (this.destroyed || this.role !== 'teacher' || !this.pc) return;
     this.currentEpoch = epoch;
+    this.lastHandledAnswerEpoch = 0;
     this.pendingRemoteCandidates = [];
 
-    if (iceRestart) {
-      await clearCandidates(this.roomId, 'offerCandidates');
-      await clearCandidates(this.roomId, 'answerCandidates');
+    if (this.audioSender && this.audioTrack) {
+      await this.audioSender.replaceTrack(this.audioTrack).catch(() => {});
+    }
+    const activeVideo = this.screenStream?.getVideoTracks()[0] || this.cameraTrack;
+    if (this.videoSender && activeVideo) {
+      await this.videoSender.replaceTrack(activeVideo).catch(() => {});
     }
 
     const offer = await this.pc.createOffer({ iceRestart });
@@ -461,6 +479,35 @@ export class LiveRtcSession {
       this.pendingRemoteCandidates = [];
 
       await this.pc.setRemoteDescription(new RTCSessionDescription({ type: offer.type, sdp: offer.sdp }));
+
+      // Ikat track audio & video murid ke transceiver yang terasosiasi dengan offer guru
+      const transceivers = this.pc.getTransceivers ? this.pc.getTransceivers() : [];
+      for (const t of transceivers) {
+        const kind = t.receiver?.track?.kind || t.sender?.track?.kind;
+        if (kind === 'audio') {
+          try {
+            t.direction = 'sendrecv';
+          } catch {
+            // abaikan jika browser tidak mengizinkan perubahan direction
+          }
+          this.audioSender = t.sender;
+          if (this.audioTrack) {
+            await t.sender.replaceTrack(this.audioTrack).catch(() => {});
+          }
+        } else if (kind === 'video') {
+          try {
+            t.direction = 'sendrecv';
+          } catch {
+            // abaikan
+          }
+          this.videoSender = t.sender;
+          const activeVideo = this.screenStream?.getVideoTracks()[0] || this.cameraTrack;
+          if (activeVideo) {
+            await t.sender.replaceTrack(activeVideo).catch(() => {});
+          }
+        }
+      }
+
       await this.flushPendingCandidates();
 
       const answer = await this.pc.createAnswer();

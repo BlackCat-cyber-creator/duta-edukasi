@@ -745,16 +745,23 @@
   .live-dock {
     width: 100%;
     flex-direction: row;
-    height: 132px;
+    height: 118px;
   }
 
   .live-video-card {
-    width: 170px;
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
     height: 100%;
     aspect-ratio: auto;
   }
 
   .live-chat-box {
+    display: none;
+  }
+
+  .live-stage.is-video-mode + .live-dock .live-chat-box {
+    display: flex;
     min-height: 0;
     height: 100%;
   }

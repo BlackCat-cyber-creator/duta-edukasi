@@ -28,7 +28,7 @@ import {
   hydrateBoardState
 } from '../src/utils/liveWhiteboard.js';
 import handler, { resolveIceServers } from '../api/turn-credentials.js';
-import { formatMediaError } from '../src/utils/liveRtc.js';
+import { LiveRtcSession, formatMediaError } from '../src/utils/liveRtc.js';
 
 describe('Pesan galat kamera/mikrofon', () => {
   it('memberi panduan jelas untuk izin ditolak, perangkat tidak ada, dan perangkat sibuk', () => {
@@ -36,6 +36,106 @@ describe('Pesan galat kamera/mikrofon', () => {
     expect(formatMediaError({ name: 'NotFoundError' })).toContain('tidak ditemukan');
     expect(formatMediaError({ name: 'NotReadableError' })).toContain('aplikasi lain');
     expect(formatMediaError(null)).toBeTruthy();
+  });
+
+  it('LiveRtcSession murid tidak memanggil addTransceiver prematur dan mengikat track ke transceiver offer', async () => {
+    const origPC = globalThis.RTCPeerConnection;
+    const origDesc = globalThis.RTCSessionDescription;
+    const origStream = globalThis.MediaStream;
+
+    let addTransceiverCalls = 0;
+    const replacedTracks = [];
+    const fakeAudioSender = {
+      replaceTrack: async (t) => replacedTracks.push({ kind: 'audio', track: t })
+    };
+    const fakeVideoSender = {
+      replaceTrack: async (t) => replacedTracks.push({ kind: 'video', track: t })
+    };
+    const fakeTransceivers = [];
+
+    globalThis.MediaStream = class {
+      constructor(tracks = []) {
+        this.tracks = [...tracks];
+      }
+      getTracks() {
+        return this.tracks;
+      }
+      getVideoTracks() {
+        return this.tracks.filter((t) => t.kind === 'video');
+      }
+      getAudioTracks() {
+        return this.tracks.filter((t) => t.kind === 'audio');
+      }
+      addTrack(t) {
+        this.tracks.push(t);
+      }
+      removeTrack(t) {
+        this.tracks = this.tracks.filter((x) => x !== t);
+      }
+    };
+    globalThis.RTCSessionDescription = class {
+      constructor(init) {
+        Object.assign(this, init);
+      }
+    };
+    globalThis.RTCPeerConnection = class {
+      constructor() {
+        this.signalingState = 'stable';
+      }
+      addTransceiver() {
+        addTransceiverCalls += 1;
+        return { sender: { replaceTrack: async () => {} } };
+      }
+      async setRemoteDescription() {
+        fakeTransceivers.push(
+          { direction: 'recvonly', receiver: { track: { kind: 'audio' } }, sender: fakeAudioSender },
+          { direction: 'recvonly', receiver: { track: { kind: 'video' } }, sender: fakeVideoSender }
+        );
+      }
+      getTransceivers() {
+        return fakeTransceivers;
+      }
+      async createAnswer() {
+        return { type: 'answer', sdp: 'v=0' };
+      }
+      async setLocalDescription() {}
+      close() {}
+    };
+
+    try {
+      const camTrack = { kind: 'video', id: 'vid-1', enabled: true };
+      const micTrack = { kind: 'audio', id: 'aud-1', enabled: true };
+      const localStream = new globalThis.MediaStream([camTrack, micTrack]);
+
+      const session = new LiveRtcSession({
+        roomId: 'live-test-room',
+        role: 'student',
+        localStream
+      });
+
+      expect(addTransceiverCalls).toBe(0);
+
+      // Uji pengikatan track langsung pada jalur answerer
+      await session.pc.setRemoteDescription({ type: 'offer', sdp: 'v=0' });
+      for (const t of session.pc.getTransceivers()) {
+        const kind = t.receiver?.track?.kind;
+        t.direction = 'sendrecv';
+        if (kind === 'audio') await t.sender.replaceTrack(micTrack);
+        if (kind === 'video') await t.sender.replaceTrack(camTrack);
+      }
+
+      expect(fakeTransceivers.every((t) => t.direction === 'sendrecv')).toBe(true);
+      expect(replacedTracks).toEqual([
+        { kind: 'audio', track: micTrack },
+        { kind: 'video', track: camTrack }
+      ]);
+
+      session.destroy();
+    } finally {
+      globalThis.RTCPeerConnection = origPC;
+      globalThis.RTCSessionDescription = origDesc;
+      globalThis.MediaStream = origStream;
+    }
   });
 });
 

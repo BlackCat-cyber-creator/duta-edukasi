@@ -210,6 +210,7 @@ export function LiveClassroomRoom() {
   const remoteStreamRef = useRef(null);
   const sessionRef = useRef(null);
   const roomRef = useRef(null);
+  const joinedRef = useRef(false);
 
   const prejoinVideoRef = useRef(null);
   const dockLocalVideoRef = useRef(null);
@@ -224,6 +225,10 @@ export function LiveClassroomRoom() {
   useEffect(() => {
     roomRef.current = room;
   }, [room]);
+
+  useEffect(() => {
+    joinedRef.current = joined;
+  }, [joined]);
 
   const roomLoading = Boolean(auth.isAuthenticated && roomId && loadedRoomKey !== roomId);
 
@@ -248,7 +253,7 @@ export function LiveClassroomRoom() {
         setLoadedRoomKey(roomId);
         setRoomError('');
         setRoom(docData);
-        if (docData?.sharedPath && !joined) {
+        if (docData?.sharedPath && !joinedRef.current) {
           setSoalPath(sanitizeLivePath(docData.sharedPath, '/paket-soal'));
         }
         if (typeof docData?.allowStudentDraw === 'boolean') {
@@ -268,7 +273,7 @@ export function LiveClassroomRoom() {
       }
     );
     return () => unsub();
-  }, [auth.isAuthenticated, roomId, joined]);
+  }, [auth.isAuthenticated, roomId]);
 
   // Siapkan preview kamera & daftar perangkat sebelum masuk
   useEffect(() => {
@@ -308,18 +313,20 @@ export function LiveClassroomRoom() {
     const localDisplay = screenStreamRef.current || localStreamRef.current;
     const remote = remoteStreamRef.current;
 
-    if (dockLocalVideoRef.current && dockLocalVideoRef.current.srcObject !== localDisplay) {
-      dockLocalVideoRef.current.srcObject = localDisplay || null;
-    }
-    if (stagePipVideoRef.current && stagePipVideoRef.current.srcObject !== localDisplay) {
-      stagePipVideoRef.current.srcObject = localDisplay || null;
-    }
-    if (dockRemoteVideoRef.current && dockRemoteVideoRef.current.srcObject !== remote) {
-      dockRemoteVideoRef.current.srcObject = remote || null;
-    }
-    if (stageRemoteVideoRef.current && stageRemoteVideoRef.current.srcObject !== remote) {
-      stageRemoteVideoRef.current.srcObject = remote || null;
-    }
+    const bind = (el, stream) => {
+      if (!el) return;
+      if (el.srcObject !== (stream || null)) {
+        el.srcObject = stream || null;
+      }
+      if (stream && stream.getTracks().length > 0 && el.paused) {
+        el.play?.()?.catch?.(() => {});
+      }
+    };
+
+    bind(dockLocalVideoRef.current, localDisplay);
+    bind(stagePipVideoRef.current, localDisplay);
+    bind(dockRemoteVideoRef.current, remote);
+    bind(stageRemoteVideoRef.current, remote);
   }, []);
 
   useEffect(() => {
@@ -412,6 +419,7 @@ export function LiveClassroomRoom() {
         iceServers: iceConfig.iceServers,
         localStream,
         studentUid: auth.uid,
+        initialStudentJoinedAt: roomRef.current?.studentJoinedAt || null,
         onRemoteStream: (stream) => {
           remoteStreamRef.current = stream;
           attachStreams();
@@ -473,7 +481,8 @@ export function LiveClassroomRoom() {
       setJoined(true);
 
       if (isTeacher) {
-        const epoch = Math.max(1, Number(room.callEpoch || 1));
+        const latestRoom = roomRef.current || room;
+        const epoch = latestRoom.offer ? Math.max(1, Number(latestRoom.callEpoch || 1)) + 1 : 1;
         await session.startTeacherCall({ epoch });
       } else {
         await session.announceStudentJoined();
