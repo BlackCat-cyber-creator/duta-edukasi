@@ -798,7 +798,8 @@ export function LiveClassroomRoom() {
     roomUrl,
     studentName: room.studentName,
     studentEmail: room.studentEmail,
-    topic: room.topic
+    topic: room.topic,
+    phone: room.studentPhone
   });
   const counterpartLabel = isTeacher
     ? room.studentName || room.studentEmail

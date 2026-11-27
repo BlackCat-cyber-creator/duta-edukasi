@@ -249,6 +249,7 @@ export function LiveClassroomLobby() {
         teacherName: auth.displayName || 'Jevon Naldo',
         studentEmail,
         studentName,
+        studentPhone,
         topic,
         initialPath
       });
@@ -275,9 +276,9 @@ export function LiveClassroomLobby() {
     <div className="live-lobby-shell">
       <header className="live-lobby-header">
         <div>
-          <h1 style={{ fontSize: '1.5rem', marginBottom: '0.2rem' }}>Duta Live — Kelas Privat 1-on-1</h1>
+          <h1 style={{ fontSize: '1.5rem', marginBottom: '0.2rem' }}>Duta Live — Kelas Privat</h1>
           <p style={{ margin: 0, fontSize: '0.86rem', color: 'var(--text-muted)' }}>
-            Pengajar aktif: <strong>{auth.email}</strong> · Tanpa batas durasi 40 menit · Terkunci per email
+            Pengajar: <strong>{auth.email}</strong>
           </p>
         </div>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
@@ -298,7 +299,7 @@ export function LiveClassroomLobby() {
           <h2 style={{ fontSize: '1.1rem', marginBottom: '0.8rem' }}>Panggil / Buat Kelas Baru</h2>
           <form onSubmit={handleCreateRoom} className="live-form-stack">
             <label className="account-field">
-              <span>Email Akun Murid (Wajib)</span>
+              <span>Email Murid</span>
               <input
                 type="email"
                 required
@@ -319,7 +320,7 @@ export function LiveClassroomLobby() {
             </label>
 
             <label className="account-field">
-              <span>No. WhatsApp Murid (Opsional, untuk kirim link 1 klik)</span>
+              <span>No. WhatsApp (Opsional)</span>
               <input
                 type="tel"
                 value={studentPhone}
@@ -329,7 +330,7 @@ export function LiveClassroomLobby() {
             </label>
 
             <label className="account-field">
-              <span>Topik / Catatan Sesi (Opsional)</span>
+              <span>Topik Sesi (Opsional)</span>
               <input
                 type="text"
                 value={topic}
@@ -390,7 +391,8 @@ export function LiveClassroomLobby() {
                   roomUrl,
                   studentName: r.studentName,
                   studentEmail: r.studentEmail,
-                  topic: r.topic
+                  topic: r.topic,
+                  phone: r.studentPhone
                 });
                 const statusLabel =
                   r.status === 'ringing' ? 'Memanggil' : r.status === 'active' ? 'Berlangsung' : 'Selesai';

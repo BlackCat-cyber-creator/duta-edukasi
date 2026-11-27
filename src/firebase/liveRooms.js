@@ -29,6 +29,7 @@ export async function createLiveRoom({
   teacherName,
   studentEmail,
   studentName = '',
+  studentPhone = '',
   topic = '',
   initialPath = '/paket-soal'
 }) {
@@ -46,6 +47,7 @@ export async function createLiveRoom({
     teacherName: String(teacherName || 'Pengajar').trim(),
     studentEmail: cleanStudentEmail,
     studentName: String(studentName || '').trim(),
+    studentPhone: String(studentPhone || '').trim(),
     topic: String(topic || '').trim(),
     status: 'ringing',
     callEpoch: 1,
