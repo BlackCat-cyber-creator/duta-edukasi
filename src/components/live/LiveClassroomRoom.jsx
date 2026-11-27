@@ -74,11 +74,19 @@ function useAudioLevel(stream, active, enabled = true, rev = 0) {
 
     let ctx = null;
     let timer = null;
+    let resumeHandler = null;
     try {
       ctx = new AudioCtx();
-      if (ctx.state === 'suspended') {
-        ctx.resume().catch(() => {});
-      }
+      const tryResume = () => {
+        if (ctx && ctx.state === 'suspended') {
+          ctx.resume().catch(() => {});
+        }
+      };
+      tryResume();
+      resumeHandler = tryResume;
+      document.addEventListener('pointerdown', resumeHandler, { passive: true });
+      document.addEventListener('keydown', resumeHandler, { passive: true });
+
       const source = ctx.createMediaStreamSource(new MediaStream([audioTracks[0]]));
       const analyser = ctx.createAnalyser();
       analyser.fftSize = 256;
@@ -87,6 +95,9 @@ function useAudioLevel(stream, active, enabled = true, rev = 0) {
 
       timer = setInterval(() => {
         if (!analyser) return;
+        if (ctx.state === 'suspended') {
+          ctx.resume().catch(() => {});
+        }
         analyser.getByteTimeDomainData(data);
         let sum = 0;
         for (let i = 0; i < data.length; i++) {
@@ -94,19 +105,43 @@ function useAudioLevel(stream, active, enabled = true, rev = 0) {
           sum += v * v;
         }
         const rms = Math.sqrt(sum / data.length);
-        setRawLevel(Math.min(100, Math.round(rms * 320)));
-      }, 110);
+        const scaled = Math.min(100, Math.round(rms * 580));
+        setRawLevel(scaled < 3 ? 0 : scaled);
+      }, 100);
     } catch {
       return undefined;
     }
 
     return () => {
       if (timer) clearInterval(timer);
+      if (resumeHandler) {
+        document.removeEventListener('pointerdown', resumeHandler);
+        document.removeEventListener('keydown', resumeHandler);
+      }
       if (ctx) ctx.close().catch(() => {});
     };
   }, [stream, active, enabled, rev]);
 
   return active && enabled ? rawLevel : 0;
+}
+
+function VoiceBars({ level }) {
+  const weights = [0.45, 0.95, 0.7, 0.4];
+  const isHot = level > 10;
+  return (
+    <span className="live-voice-bars" aria-hidden="true">
+      {weights.map((w, idx) => {
+        const h = level > 2 ? Math.max(3, Math.min(12, Math.round(3 + (level / 100) * 9 * w))) : 3;
+        return (
+          <span
+            key={idx}
+            className={`live-voice-bar ${isHot ? 'is-hot' : ''}`}
+            style={{ height: `${h}px` }}
+          />
+        );
+      })}
+    </span>
+  );
 }
 
 function RoomLoginCard({ auth }) {
@@ -249,6 +284,7 @@ export function LiveClassroomRoom() {
   const [remoteStreamState, setRemoteStreamState] = useState(null);
   const [localMediaRev, setLocalMediaRev] = useState(0);
   const [remoteMediaRev, setRemoteMediaRev] = useState(0);
+  const [statsLevels, setStatsLevels] = useState({ local: 0, remote: 0 });
 
   const [workspaceMode, setWorkspaceMode] = useState('soal'); // 'soal' | 'whiteboard' | 'video'
   const [soalPath, setSoalPath] = useState('/paket-soal');
@@ -334,8 +370,23 @@ export function LiveClassroomRoom() {
   }, [auth.isAuthenticated, roomId]);
 
   const isRoomEnded = room?.status === 'ended';
-  const localAudioLevel = useAudioLevel(localStreamState, !isRoomEnded, micOn, localMediaRev);
-  const remoteAudioLevel = useAudioLevel(remoteStreamState, joined, remoteMedia.micOn, remoteMediaRev);
+  const analyserLocalAudio = useAudioLevel(localStreamState, !isRoomEnded, micOn, localMediaRev);
+  const analyserRemoteAudio = useAudioLevel(remoteStreamState, joined, remoteMedia.micOn, remoteMediaRev);
+  const localAudioLevel = micOn ? Math.max(analyserLocalAudio, joined ? statsLevels.local : 0) : 0;
+  const remoteAudioLevel = remoteMedia.micOn
+    ? Math.max(analyserRemoteAudio, joined ? statsLevels.remote : 0)
+    : 0;
+
+  useEffect(() => {
+    if (!joined) return undefined;
+    const timer = setInterval(async () => {
+      const s = await sessionRef.current?.getAudioStats();
+      if (s) {
+        setStatsLevels({ local: s.localLevel, remote: s.remoteLevel });
+      }
+    }, 180);
+    return () => clearInterval(timer);
+  }, [joined]);
 
   // Siapkan preview kamera & daftar perangkat sebelum masuk
   useEffect(() => {
@@ -561,6 +612,7 @@ export function LiveClassroomRoom() {
             if (isTeacher) {
               session.sendData({ type: 'wb-permission', allowStudentDraw });
               whiteboardRef.current?.sendFullSync();
+              soalRef.current?.sendCurrentSync();
             } else {
               session.sendData({ type: 'wb-sync-request' });
             }
@@ -570,6 +622,9 @@ export function LiveClassroomRoom() {
           if (!msg || typeof msg !== 'object') return;
           if (msg.type === 'mode-change' && ['soal', 'whiteboard', 'video'].includes(msg.mode)) {
             setWorkspaceMode(msg.mode);
+            if (msg.mode === 'soal' && typeof requestAnimationFrame === 'function') {
+              requestAnimationFrame(() => soalRef.current?.restoreScroll());
+            }
             return;
           }
           if (msg.type === 'wb-permission') {
@@ -772,6 +827,9 @@ export function LiveClassroomRoom() {
   const handleModeSwitch = (mode) => {
     setWorkspaceMode(mode);
     sendData({ type: 'mode-change', mode });
+    if (mode === 'soal' && typeof requestAnimationFrame === 'function') {
+      requestAnimationFrame(() => soalRef.current?.restoreScroll());
+    }
   };
 
   const handleToggleStudentDraw = () => {
@@ -783,9 +841,9 @@ export function LiveClassroomRoom() {
     }
   };
 
-  const handleSoalPathChange = (nextPath) => {
+  const handleSoalPathChange = (nextPath, { persist = true } = {}) => {
     setSoalPath(nextPath);
-    if (room?.id) {
+    if (persist && room?.id) {
       updateLiveRoom(room.id, { sharedPath: nextPath }).catch(() => {});
     }
   };
@@ -968,16 +1026,12 @@ export function LiveClassroomRoom() {
             <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', marginTop: '0.75rem', flexWrap: 'wrap' }}>
               <button
                 type="button"
-                className={`live-ctrl-btn ${!micOn ? 'is-off' : ''}`}
+                className={`live-ctrl-btn ${micOn ? `is-mic-active ${localAudioLevel > 8 ? 'is-speaking' : ''}` : 'is-off'}`}
                 onClick={toggleMic}
               >
                 {micOn ? <Mic size={15} /> : <MicOff size={15} />}
                 <span>{micOn ? 'Mic Nyala' : 'Mic Mati'}</span>
-                {micOn && (
-                  <span className="live-audio-meter" aria-hidden="true">
-                    <span className="live-audio-meter-fill" style={{ width: `${Math.max(8, localAudioLevel)}%` }} />
-                  </span>
-                )}
+                {micOn && <VoiceBars level={localAudioLevel} />}
               </button>
               <button
                 type="button"
@@ -1255,23 +1309,24 @@ export function LiveClassroomRoom() {
         <aside className={`live-dock ${dockCollapsed ? 'is-collapsed' : ''}`}>
           {workspaceMode !== 'video' && (
             <>
-              <div className="live-video-card" onClick={() => handleModeSwitch('video')} style={{ cursor: 'pointer' }} title="Klik untuk perbesar video/layar">
+              <div
+                className={`live-video-card ${remoteMedia.micOn && remoteAudioLevel > 8 ? 'is-speaking' : ''}`}
+                onClick={() => handleModeSwitch('video')}
+                style={{ cursor: 'pointer' }}
+                title="Klik untuk perbesar video/layar"
+              >
                 <video ref={dockRemoteVideoRef} autoPlay playsInline muted />
                 <span className="live-video-card-label">
                   {remoteMedia.micOn && remoteMedia.hasAudioTrack !== false ? (
-                    <Mic size={11} />
+                    <Mic size={11} style={{ color: '#4ADE80' }} />
                   ) : (
                     <MicOff size={11} style={{ color: '#F87171' }} />
                   )}
                   <span>{counterpartLabel}</span>
-                  {remoteMedia.micOn && (
-                    <span className="live-audio-meter" aria-hidden="true">
-                      <span className="live-audio-meter-fill" style={{ width: `${Math.max(8, remoteAudioLevel)}%` }} />
-                    </span>
-                  )}
+                  {remoteMedia.micOn && <VoiceBars level={remoteAudioLevel} />}
                 </span>
               </div>
-              <div className="live-video-card">
+              <div className={`live-video-card ${micOn && localAudioLevel > 8 ? 'is-speaking' : ''}`}>
                 <video
                   ref={dockLocalVideoRef}
                   autoPlay
@@ -1280,13 +1335,13 @@ export function LiveClassroomRoom() {
                   className={screenSharing ? '' : 'live-mirrored'}
                 />
                 <span className="live-video-card-label">
-                  {micOn ? <Mic size={11} /> : <MicOff size={11} style={{ color: '#F87171' }} />}
-                  <span>{screenSharing ? 'Berbagi Layar' : 'Anda'}</span>
-                  {micOn && (
-                    <span className="live-audio-meter" aria-hidden="true">
-                      <span className="live-audio-meter-fill" style={{ width: `${Math.max(8, localAudioLevel)}%` }} />
-                    </span>
+                  {micOn ? (
+                    <Mic size={11} style={{ color: '#4ADE80' }} />
+                  ) : (
+                    <MicOff size={11} style={{ color: '#F87171' }} />
                   )}
+                  <span>{screenSharing ? 'Berbagi Layar' : 'Anda'}</span>
+                  {micOn && <VoiceBars level={localAudioLevel} />}
                 </span>
               </div>
             </>
@@ -1393,17 +1448,13 @@ export function LiveClassroomRoom() {
       <footer className="live-controls-bar">
         <button
           type="button"
-          className={`live-ctrl-btn ${!micOn ? 'is-off' : ''}`}
+          className={`live-ctrl-btn ${micOn ? `is-mic-active ${localAudioLevel > 8 ? 'is-speaking' : ''}` : 'is-off'}`}
           onClick={toggleMic}
           title="Pintasan keyboard: M"
         >
           {micOn ? <Mic size={16} /> : <MicOff size={16} />}
           <span>{micOn ? 'Mic' : 'Mic Mati'}</span>
-          {micOn && (
-            <span className="live-audio-meter" aria-hidden="true">
-              <span className="live-audio-meter-fill" style={{ width: `${Math.max(8, localAudioLevel)}%` }} />
-            </span>
-          )}
+          {micOn && <VoiceBars level={localAudioLevel} />}
         </button>
 
         <button

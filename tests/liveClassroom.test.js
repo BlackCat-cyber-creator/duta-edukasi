@@ -137,6 +137,16 @@ describe('Pesan galat kamera/mikrofon', () => {
       expect(replacedTracks.some((r) => r.kind === 'audio' && r.track === lateMicTrack)).toBe(true);
       expect(session.getConnectionDiagnostics().hasLocalAudio).toBe(true);
 
+      // Uji pembacaan audio level native lewat pc.getStats()
+      session.pc.getStats = async () =>
+        new Map([
+          ['ms1', { type: 'media-source', kind: 'audio', audioLevel: 0.25 }],
+          ['ir1', { type: 'inbound-rtp', kind: 'audio', audioLevel: 0.35 }]
+        ]);
+      const stats = await session.getAudioStats();
+      expect(stats.localLevel).toBeGreaterThan(50);
+      expect(stats.remoteLevel).toBeGreaterThan(70);
+
       session.destroy();
     } finally {
       globalThis.RTCPeerConnection = origPC;
@@ -145,11 +155,17 @@ describe('Pesan galat kamera/mikrofon', () => {
     }
   });
 
-  it('LiveClassroomRoom memakai elemen <audio> persisten dan video remote di-mute agar suara tidak putus saat ganti tab', () => {
+  it('LiveClassroomRoom memakai elemen <audio> persisten, video remote di-mute, dan CSS tidak membuang iframe scroll saat pindah ke whiteboard', () => {
     const roomSrc = fs.readFileSync(path.join(ROOT, 'src/components/live/LiveClassroomRoom.jsx'), 'utf8');
     expect(roomSrc).toContain('<audio ref={remoteAudioRef} autoPlay playsInline');
     expect(roomSrc).toContain('<video ref={dockRemoteVideoRef} autoPlay playsInline muted />');
     expect(roomSrc).toContain('<video ref={stageRemoteVideoRef} autoPlay playsInline muted className="live-video-main" />');
+    expect(roomSrc).toContain('is-mic-active');
+
+    const cssSrc = fs.readFileSync(path.join(ROOT, 'src/styles/13-live-classroom.css'), 'utf8');
+    const hiddenBlock = cssSrc.match(/\.live-stage-pane\.is-hidden\s*\{[^}]*\}/)?.[0] || '';
+    expect(hiddenBlock).toContain('visibility: hidden');
+    expect(hiddenBlock).not.toContain('display: none');
   });
 });
 

@@ -133,13 +133,21 @@ function checkLiveEmbed() {
 
 function LiveEmbedBridge({ active }) {
   const location = useLocation();
+  const suppressScrollUntilRef = useRef(0);
+  const currentPath = `${location.pathname}${location.search || ''}${location.hash || ''}`;
+  const pathRef = useRef(currentPath);
+
+  useEffect(() => {
+    pathRef.current = currentPath;
+  }, [currentPath]);
+
   useEffect(() => {
     if (!active || typeof window === 'undefined' || !window.parent) return;
     try {
       window.parent.postMessage(
         {
           type: 'duta-live-iframe-nav',
-          path: `${location.pathname}${location.search || ''}${location.hash || ''}`,
+          path: currentPath,
           title: document.title
         },
         window.location.origin
@@ -147,7 +155,77 @@ function LiveEmbedBridge({ active }) {
     } catch {
       // Abaikan jika parent tidak satu origin
     }
-  }, [active, location.pathname, location.search, location.hash]);
+  }, [active, currentPath]);
+
+  useEffect(() => {
+    if (!active || typeof window === 'undefined' || !window.parent) return undefined;
+
+    let lastSentAt = 0;
+    let trailingTimer = null;
+
+    const getScrollRatio = () => {
+      const doc = document.documentElement;
+      const body = document.body;
+      const scrollTop = window.scrollY || doc?.scrollTop || body?.scrollTop || 0;
+      const scrollHeight = Math.max(doc?.scrollHeight || 0, body?.scrollHeight || 0);
+      const maxScroll = Math.max(1, scrollHeight - window.innerHeight);
+      return Number(Math.max(0, Math.min(1, scrollTop / maxScroll)).toFixed(4));
+    };
+
+    const emitScroll = () => {
+      try {
+        window.parent.postMessage(
+          {
+            type: 'duta-live-iframe-scroll',
+            path: pathRef.current,
+            ratio: getScrollRatio()
+          },
+          window.location.origin
+        );
+      } catch {
+        // Abaikan jika parent tidak satu origin
+      }
+    };
+
+    const onScroll = () => {
+      if (performance.now() < suppressScrollUntilRef.current) return;
+      const now = performance.now();
+      if (now - lastSentAt >= 65) {
+        lastSentAt = now;
+        emitScroll();
+      }
+      if (trailingTimer) clearTimeout(trailingTimer);
+      trailingTimer = setTimeout(() => {
+        if (performance.now() >= suppressScrollUntilRef.current) {
+          emitScroll();
+        }
+      }, 130);
+    };
+
+    const onMessage = (event) => {
+      if (event.origin !== window.location.origin) return;
+      const data = event.data;
+      if (data?.type !== 'duta-live-set-scroll') return;
+      const ratio = Number(data.ratio);
+      if (!Number.isFinite(ratio)) return;
+      const doc = document.documentElement;
+      const body = document.body;
+      const scrollHeight = Math.max(doc?.scrollHeight || 0, body?.scrollHeight || 0);
+      const maxScroll = Math.max(0, scrollHeight - window.innerHeight);
+      const targetY = Math.round(Math.max(0, Math.min(1, ratio)) * maxScroll);
+      suppressScrollUntilRef.current = performance.now() + 260;
+      window.scrollTo({ top: targetY, behavior: 'auto' });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('message', onMessage);
+    return () => {
+      if (trailingTimer) clearTimeout(trailingTimer);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('message', onMessage);
+    };
+  }, [active]);
+
   return null;
 }
 

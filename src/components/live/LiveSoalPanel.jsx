@@ -40,8 +40,41 @@ export const LiveSoalPanel = forwardRef(function LiveSoalPanel(
   const lastEmitRef = useRef(0);
   const skipNextBridgePathRef = useRef('');
   const laserTimerRef = useRef(null);
+  const savedScrollRef = useRef({ path: currentPath || '/paket-soal', ratio: 0 });
+  const pendingScrollRef = useRef(null);
+  const restoreTimersRef = useRef([]);
 
   const pathInput = draftPath !== null ? draftPath : (currentPath || '/paket-soal');
+
+  const clearRestoreTimers = useCallback(() => {
+    restoreTimersRef.current.forEach((id) => clearTimeout(id));
+    restoreTimersRef.current = [];
+  }, []);
+
+  const applyScrollToIframe = useCallback((ratio) => {
+    const win = iframeRef.current?.contentWindow;
+    if (!win || !Number.isFinite(Number(ratio))) return;
+    try {
+      win.postMessage(
+        { type: 'duta-live-set-scroll', ratio: Number(ratio) },
+        window.location.origin
+      );
+    } catch {
+      // Abaikan jika iframe belum siap
+    }
+  }, []);
+
+  const scheduleApplyScroll = useCallback(
+    (ratio) => {
+      clearRestoreTimers();
+      applyScrollToIframe(ratio);
+      restoreTimersRef.current.push(setTimeout(() => applyScrollToIframe(ratio), 140));
+      restoreTimersRef.current.push(setTimeout(() => applyScrollToIframe(ratio), 450));
+    },
+    [applyScrollToIframe, clearRestoreTimers]
+  );
+
+  useEffect(() => () => clearRestoreTimers(), [clearRestoreTimers]);
 
   const redrawOverlay = useCallback(() => {
     const canvas = overlayCanvasRef.current;
@@ -86,50 +119,110 @@ export const LiveSoalPanel = forwardRef(function LiveSoalPanel(
     (nextRawPath, broadcast = true) => {
       const safe = sanitizeLivePath(nextRawPath, '/paket-soal');
       setDraftPath(null);
-      onPathChange?.(safe);
+      savedScrollRef.current = { path: safe, ratio: 0 };
+      pendingScrollRef.current = null;
+      onPathChange?.(safe, { persist: true });
       if (broadcast && syncEnabled) {
-        onSendData?.({ type: 'soal-nav', path: safe });
+        onSendData?.({ type: 'soal-nav', path: safe, scrollRatio: 0 });
       }
     },
     [onPathChange, onSendData, syncEnabled]
   );
 
-  // Dengarkan navigasi dari dalam iframe (same-origin) agar halaman murid & guru sinkron
+  // Dengarkan navigasi & scroll dari dalam iframe (same-origin) agar halaman murid & guru sinkron
   useEffect(() => {
     const handleMessage = (event) => {
       if (event.origin !== window.location.origin) return;
       const data = event.data;
-      if (data?.type !== 'duta-live-iframe-nav' || !data.path) return;
+      if (!data || typeof data !== 'object') return;
+
+      if (data.type === 'duta-live-iframe-scroll') {
+        const incomingPath = sanitizeLivePath(data.path || currentPath, '/paket-soal');
+        const ratio = Number(data.ratio);
+        if (!Number.isFinite(ratio)) return;
+        savedScrollRef.current = { path: incomingPath, ratio };
+        if (syncEnabled) {
+          onSendData?.({ type: 'soal-scroll', path: incomingPath, ratio });
+        }
+        return;
+      }
+
+      if (data.type !== 'duta-live-iframe-nav' || !data.path) return;
       const incomingPath = sanitizeLivePath(data.path, '/paket-soal');
+
+      if (pendingScrollRef.current?.path === incomingPath) {
+        const targetRatio = pendingScrollRef.current.ratio;
+        pendingScrollRef.current = null;
+        scheduleApplyScroll(targetRatio);
+      } else if (savedScrollRef.current.path === incomingPath && savedScrollRef.current.ratio > 0) {
+        scheduleApplyScroll(savedScrollRef.current.ratio);
+      }
+
       if (skipNextBridgePathRef.current === incomingPath) {
         skipNextBridgePathRef.current = '';
         return;
       }
       setDraftPath(null);
       if (incomingPath !== currentPath) {
-        onPathChange?.(incomingPath);
+        savedScrollRef.current = { path: incomingPath, ratio: 0 };
+        onPathChange?.(incomingPath, { persist: true });
         if (syncEnabled) {
-          onSendData?.({ type: 'soal-nav', path: incomingPath });
+          onSendData?.({ type: 'soal-nav', path: incomingPath, scrollRatio: 0 });
         }
       }
     };
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [currentPath, onPathChange, onSendData, syncEnabled]);
+  }, [currentPath, onPathChange, onSendData, scheduleApplyScroll, syncEnabled]);
 
   useImperativeHandle(
     ref,
     () => ({
+      restoreScroll() {
+        const saved = savedScrollRef.current;
+        if (saved && saved.path === (currentPath || '/paket-soal') && saved.ratio > 0) {
+          scheduleApplyScroll(saved.ratio);
+        }
+      },
+      sendCurrentSync() {
+        const activePath = currentPath || '/paket-soal';
+        const ratio =
+          savedScrollRef.current.path === activePath ? savedScrollRef.current.ratio : 0;
+        onSendData?.({ type: 'soal-nav', path: activePath, scrollRatio: ratio });
+      },
       handleRemoteMessage(msg) {
         if (!msg || typeof msg !== 'object') return;
         switch (msg.type) {
           case 'soal-nav': {
             if (!syncEnabled || !msg.path) break;
             const safe = sanitizeLivePath(msg.path, '/paket-soal');
+            const ratio = Number.isFinite(Number(msg.scrollRatio)) ? Number(msg.scrollRatio) : 0;
+            savedScrollRef.current = { path: safe, ratio };
+            if (safe === currentPath) {
+              if (ratio > 0) scheduleApplyScroll(ratio);
+              break;
+            }
             skipNextBridgePathRef.current = safe;
+            pendingScrollRef.current = ratio > 0 ? { path: safe, ratio } : null;
             setDraftPath(null);
-            onPathChange?.(safe);
+            onPathChange?.(safe, { persist: false });
+            break;
+          }
+          case 'soal-scroll': {
+            if (!syncEnabled) break;
+            const ratio = Number(msg.ratio);
+            if (!Number.isFinite(ratio)) break;
+            const safe = sanitizeLivePath(msg.path || currentPath, '/paket-soal');
+            savedScrollRef.current = { path: safe, ratio };
+            if (safe === currentPath) {
+              applyScrollToIframe(ratio);
+            } else {
+              skipNextBridgePathRef.current = safe;
+              pendingScrollRef.current = { path: safe, ratio };
+              setDraftPath(null);
+              onPathChange?.(safe, { persist: false });
+            }
             break;
           }
           case 'soal-draw-start':
@@ -153,7 +246,7 @@ export const LiveSoalPanel = forwardRef(function LiveSoalPanel(
         }
       }
     }),
-    [onPathChange, syncEnabled]
+    [applyScrollToIframe, currentPath, onPathChange, onSendData, scheduleApplyScroll, syncEnabled]
   );
 
   const getNormPoint = (e) => {
@@ -353,6 +446,16 @@ export const LiveSoalPanel = forwardRef(function LiveSoalPanel(
           src={currentPath || '/paket-soal'}
           title="Soal & Materi Duta e-dukasi"
           className="live-soal-iframe"
+          onLoad={() => {
+            const activePath = currentPath || '/paket-soal';
+            if (pendingScrollRef.current?.path === activePath) {
+              const r = pendingScrollRef.current.ratio;
+              pendingScrollRef.current = null;
+              scheduleApplyScroll(r);
+            } else if (savedScrollRef.current.path === activePath && savedScrollRef.current.ratio > 0) {
+              scheduleApplyScroll(savedScrollRef.current.ratio);
+            }
+          }}
         />
         <canvas
           ref={overlayCanvasRef}

@@ -257,6 +257,8 @@ export class LiveRtcSession {
     this.screenStream = null;
     this.remoteStream = new MediaStream();
     this.remoteStreamRev = 0;
+    this.lastRemoteEnergy = 0;
+    this.lastRemoteEnergyAt = 0;
 
     this.destroyed = false;
     this.currentEpoch = 1;
@@ -639,6 +641,49 @@ export class LiveRtcSession {
       localAudioMuted: Boolean(localAudio?.muted),
       remoteAudioMuted: Boolean(remoteAudio?.muted)
     };
+  }
+
+  async getAudioStats() {
+    if (!this.pc?.getStats || this.destroyed) {
+      return { localLevel: 0, remoteLevel: 0 };
+    }
+    try {
+      const stats = await this.pc.getStats();
+      let localLevel = 0;
+      let remoteLevel = 0;
+      const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
+
+      stats.forEach((report) => {
+        if (report.type === 'media-source' && report.kind === 'audio') {
+          const raw = Number(report.audioLevel);
+          if (Number.isFinite(raw)) {
+            localLevel = Math.max(localLevel, Math.min(100, Math.round(raw * 260)));
+          }
+        }
+        if (report.type === 'inbound-rtp' && report.kind === 'audio') {
+          if (Number.isFinite(Number(report.audioLevel))) {
+            remoteLevel = Math.max(
+              remoteLevel,
+              Math.min(100, Math.round(Number(report.audioLevel) * 260))
+            );
+          } else if (Number.isFinite(Number(report.totalAudioEnergy))) {
+            const energy = Number(report.totalAudioEnergy);
+            if (this.lastRemoteEnergyAt > 0 && now > this.lastRemoteEnergyAt) {
+              const dt = (now - this.lastRemoteEnergyAt) / 1000;
+              const dEnergy = Math.max(0, energy - this.lastRemoteEnergy);
+              const rms = Math.sqrt(dEnergy / Math.max(0.05, dt));
+              remoteLevel = Math.max(remoteLevel, Math.min(100, Math.round(rms * 260)));
+            }
+            this.lastRemoteEnergy = energy;
+            this.lastRemoteEnergyAt = now;
+          }
+        }
+      });
+
+      return { localLevel, remoteLevel };
+    } catch {
+      return { localLevel: 0, remoteLevel: 0 };
+    }
   }
 
   async switchDevice({ videoDeviceId, audioDeviceId } = {}) {
