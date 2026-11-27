@@ -1,7 +1,7 @@
 /**
  * Paket Soal Terstruktur: OSN-K Matematika SD 2026 (rekonstruksi soal latihan, isian singkat)
  * Sumber: osnk_mat_sd_2026.pdf. Bahasa dipertahankan sesuai naskah (soal 9 berbahasa Inggris).
- * Soal 14 (butuh gambar), 28 (angka tidak konsisten), dan 29 (asumsi jam per hari tidak diketahui) tidak dimuat.
+ * Soal 28 (angka tidak konsisten) dan 29 (asumsi jam per hari tidak diketahui) tidak dimuat.
  */
 const OK = [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }];
 
@@ -18,9 +18,9 @@ export default {
   langDisplay: 'ID',
   competition: 'OSN-K',
   title: 'OSN-K Matematika SD 2026',
-  totalMarks: 26,
+  totalMarks: 27,
   instructions:
-    'Kerjakan seluruh 26 soal isian singkat. Setiap jawaban benar bernilai 1 poin. Naskah ini merupakan rekonstruksi soal latihan bergaya OSN-K SD; satu soal (nomor 9) tetap berbahasa Inggris sesuai naskah.',
+    'Kerjakan seluruh 27 soal isian singkat. Setiap jawaban benar bernilai 1 poin. Naskah ini merupakan rekonstruksi soal latihan bergaya OSN-K SD; satu soal (nomor 9) tetap berbahasa Inggris sesuai naskah.',
   source: {
     org: 'OSN-K (Olimpiade Sains Nasional tingkat Kabupaten/Kota)',
     file: 'osnk_mat_sd_2026.pdf',
@@ -31,7 +31,7 @@ export default {
     {
       no: 1,
       title: 'Bagian I: Soal Utama',
-      marks: 22,
+      marks: 23,
       stem: 'Jawablah setiap soal isian singkat berikut dengan jawaban akhir yang tepat (masing-masing bernilai 1 poin).',
       parts: [
         {
@@ -175,6 +175,24 @@ export default {
           principle: 'Kaidah perkalian dalam pencacahan.',
           solution:
             'Memilih baju ada $4$ cara, celana $3$ cara, sepatu $2$ cara. Menurut kaidah perkalian, banyak susunan $=4 \\times 3 \\times 2 = 24$.',
+          rubric: OK
+        },
+        {
+          label: '14',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2026/fig-14.svg',
+              alt: 'Susunan tiga segitiga siku-siku identik yang sisi terpendeknya saling bertemu membentuk lubang segitiga sama sisi di bagian tengah',
+              caption: 'Ilustrasi susunan mainan bumerang dari tiga segitiga siku-siku identik'
+            }
+          ],
+          prompt:
+            'Siti membuat sebuah mainan bumerang yang disusun dari $3$ buah karton berbentuk segitiga siku-siku identik. Ia merangkainya sedemikian rupa sehingga sisi terpendek dari ketiga segitiga tersebut saling bertemu dan membentuk sebuah lubang berbentuk segitiga sama sisi di bagian tengahnya, seperti ditunjukkan pada gambar. Jika semua sisi karton tersebut memiliki panjang berupa bilangan asli, berapakah keliling terkecil yang mungkin dari bumerang tersebut?',
+          answer: '$27$ satuan',
+          principle: 'Tripel Pythagoras bilangan asli terkecil dan keliling luar bangun datar gabungan.',
+          solution:
+            'Misalkan panjang sisi-sisi setiap segitiga siku-siku identik adalah $a < b < c$ (dengan $a$ sisi terpendek, $b$ sisi siku-siku lainnya, dan $c$ sisi miring). Karena ketiga panjang sisi berupa bilangan asli dan memenuhi teorema Pythagoras $a^2 + b^2 = c^2$, $(a, b, c)$ merupakan tripel Pythagoras.\nUntuk $c \\le 4$, tidak ada pasangan bilangan asli $a < b$ yang memenuhi $a^2 + b^2 = c^2$. Untuk $c = 5$, diperoleh tripel Pythagoras bilangan asli terkecil $(a, b, c) = (3, 4, 5)$, sebab $3^2 + 4^2 = 9 + 16 = 25 = 5^2$.\nPada susunan bumerang seperti pada gambar, ketiga sisi terpendek ($a = 3$) saling bertemu membentuk lubang segitiga sama sisi di bagian tengah, sedangkan tepi luar bumerang dibentuk oleh tiga pasang sisi $b$ dan $c$. Oleh karena itu, keliling terkecil yang mungkin dari bumerang tersebut adalah\n$$\\text{Keliling} = 3 \\times (b + c) = 3 \\times (4 + 5) = 3 \\times 9 = 27 \\text{ satuan}.$$',
           rubric: OK
         },
         {

@@ -6,6 +6,7 @@ import { buildTkaPacket, chaptersMap } from '../utils/tkaBuilder';
 import { getGradeData } from '../data/curriculumData';
 import { questionAnchor } from '../utils/reports';
 import { tkaHomeMeta, tkaPacketMeta } from '../utils/seoMeta';
+import { TKA_HUB_FAQS } from '../utils/seoFaqs';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { ChapterQuiz } from './handbook/ChapterQuiz';
 
@@ -28,10 +29,14 @@ function ElementTable({ test }) {
   );
 }
 
-function TkaHome() {
-  useDocumentMeta(tkaHomeMeta());
+function TkaHome({ notFound = false }) {
+  const baseMeta = tkaHomeMeta();
+  useDocumentMeta(notFound ? { ...baseMeta, title: 'Paket TKA Tidak Ditemukan | Duta e-dukasi', path: '', noindex: true } : baseMeta);
   return (
     <div className="handbook-container seo-page tka-page">
+      <nav className="seo-breadcrumb" aria-label="Navigasi">
+        <Link to="/">Beranda</Link> › <span>Latihan TKA</span>
+      </nav>
       <h1>Latihan TKA Matematika, IPA &amp; Fisika (SD, SMP, SMA)</h1>
       <p>
         Tes Kemampuan Akademik (TKA) mengukur pemahaman dan penerapan Matematika, IPA, dan Fisika bagi murid Kelas 6 SD/MI, Kelas 9 SMP/MTs, dan Kelas 12 SMA/MA.
@@ -51,6 +56,17 @@ function TkaHome() {
           </p>
         </section>
       ))}
+      <section className="info-card seo-faq-box" aria-label="Pertanyaan Umum" style={{ marginTop: '1.25rem' }}>
+        <h2 style={{ fontSize: '1.1rem', marginBottom: '0.75rem' }}>Pertanyaan Umum Latihan TKA</h2>
+        <div className="seo-faq-grid">
+          {TKA_HUB_FAQS.map((f) => (
+            <div key={f.question} className="seo-faq-item">
+              <h3>{f.question}</h3>
+              <p>{f.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
       <p className="tka-note">
         Muatan dan cakupan elemen mengacu pada kerangka TKA Pusat Asesmen Pendidikan (Pusmendik) Kemendikdasmen.
         Paket ini adalah latihan dari Duta e-dukasi, bukan soal resmi.
@@ -113,7 +129,7 @@ function TkaPacket({ test, packet, onPrintQuest }) {
 export function TkaPage({ onPrintQuest }) {
   const { paket } = useParams();
   const parsed = paket ? parseTkaSlug(paket) : null;
-  if (!parsed) return <TkaHome />;
+  if (!parsed) return <TkaHome notFound={Boolean(paket)} />;
   return <TkaPacket key={paket} test={parsed.test} packet={parsed.packet} onPrintQuest={onPrintQuest} />;
 }
 

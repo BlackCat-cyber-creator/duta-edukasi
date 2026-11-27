@@ -6,6 +6,36 @@
       "source": "/prestasi",
       "destination": "/tentang#prestasi",
       "permanent": true
+    },
+    {
+      "source": "/ipa/kelas-10",
+      "destination": "/fisika/kelas-10",
+      "permanent": true
+    },
+    {
+      "source": "/ipa/kelas-11",
+      "destination": "/fisika/kelas-11",
+      "permanent": true
+    },
+    {
+      "source": "/ipa/kelas-12",
+      "destination": "/fisika/kelas-12",
+      "permanent": true
+    },
+    {
+      "source": "/ipa/kelas-10/:bab",
+      "destination": "/fisika/kelas-10/:bab",
+      "permanent": true
+    },
+    {
+      "source": "/ipa/kelas-11/:bab",
+      "destination": "/fisika/kelas-11/:bab",
+      "permanent": true
+    },
+    {
+      "source": "/ipa/kelas-12/:bab",
+      "destination": "/fisika/kelas-12/:bab",
+      "permanent": true
     }
   ],
   "headers": [
@@ -19,6 +49,14 @@
     },
     {
       "source": "/paket-soal/(.*)\\.md",
+      "headers": [
+        { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "X-Robots-Tag", "value": "index, follow" }
+      ]
+    },
+    {
+      "source": "/(matematika|ipa|fisika|kimia|biologi|olimpiade)/(.*)\\.md",
       "headers": [
         { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
@@ -46,16 +84,54 @@
       ]
     },
     {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(brand|papers|prestasi|people)/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/(sitemap\\.xml|rss\\.xml|robots\\.txt)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/(app\\.html|akun|teacher|worksheet)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/(teacher|quest|worksheet|solution|api)/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
           "key": "Link",
           "value": "<https://dutaedukasi.vercel.app/llms.txt>; rel=\"alternate\"; type=\"text/markdown\", <https://dutaedukasi.vercel.app/rss.xml>; rel=\"alternate\"; type=\"application/rss+xml\""
-        }
+        },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
       ]
     }
   ],
   "rewrites": [
+    {
+      "source": "/matematika",
+      "destination": "/matematika.html"
+    },
     {
       "source": "/matematika/:kelas/:bab",
       "destination": "/matematika/:kelas/:bab.html"
@@ -63,6 +139,10 @@
     {
       "source": "/matematika/:kelas",
       "destination": "/matematika/:kelas.html"
+    },
+    {
+      "source": "/ipa",
+      "destination": "/ipa.html"
     },
     {
       "source": "/ipa/:kelas/:bab",
@@ -73,6 +153,10 @@
       "destination": "/ipa/:kelas.html"
     },
     {
+      "source": "/fisika",
+      "destination": "/fisika.html"
+    },
+    {
       "source": "/fisika/:kelas/:bab",
       "destination": "/fisika/:kelas/:bab.html"
     },
@@ -81,12 +165,20 @@
       "destination": "/fisika/:kelas.html"
     },
     {
+      "source": "/kimia",
+      "destination": "/kimia.html"
+    },
+    {
       "source": "/kimia/:kelas/:bab",
       "destination": "/kimia/:kelas/:bab.html"
     },
     {
       "source": "/kimia/:kelas",
       "destination": "/kimia/:kelas.html"
+    },
+    {
+      "source": "/biologi",
+      "destination": "/biologi.html"
     },
     {
       "source": "/biologi/:kelas/:bab",

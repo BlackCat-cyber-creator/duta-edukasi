@@ -13,7 +13,7 @@ export default {
   topic: 'Simulasi OSK IPA SMP (Biologi, Fisika & Kimia)',
   relatedChapterIds: [
     'ipa7-bab5-klasifikasi-makhluk-hidup',
-    'ipa8-bab1-pengenalan-sel'
+    'ipa8-bab1-sel'
   ],
   lang: 'id',
   langDisplay: 'ID',

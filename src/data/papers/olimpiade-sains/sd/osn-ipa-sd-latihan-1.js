@@ -1,8 +1,8 @@
 /**
- * Paket Soal Terstruktur: Latihan Soal OSN IPA SD — Paket 1 (27 soal pilihan ganda)
- * Sumber: Latihan Soal OSN IPA SD.pdf (30 soal asli; nomor 12, 13, dan 14 dilewati karena halaman 4 pada pindaian kosong/hilang).
- * Penomoran label butir soal mengikuti nomor asli (1–11 dan 15–30), bahasa sumber dipertahankan,
- * dan soal bergambar/grafik/tabel dinyatakan ulang secara tekstual.
+ * Paket Soal Terstruktur: Latihan Soal OSN IPA SD — Paket 1 (30 soal pilihan ganda)
+ * Sumber: Latihan Soal OSN IPA SD.pdf (30 soal lengkap nomor 1–30).
+ * Penomoran label butir soal mengikuti nomor asli (1–30), bahasa sumber dipertahankan,
+ * dan soal bergambar/grafik/tabel dilengkapi gambar asli naskah.
  */
 export default {
   id: 'osn-ipa-sd-latihan-1',
@@ -12,7 +12,7 @@ export default {
   track: 'olimpiade-sd',
   accessTier: 'free',
   topic:
-    'Latihan Soal OSN IPA SD: biologi tumbuhan & manusia, ekologi, metode ilmiah, mekanika, kalor & wujud zat, gelombang, optik, magnet, tata surya, dan cuaca',
+    'Latihan Soal OSN IPA SD: biologi tumbuhan & manusia, ekologi, metode ilmiah, mekanika, kalor & wujud zat, gelombang, optik, listrik, magnet, tata surya, dan cuaca',
   relatedChapterIds: [
     'ipa4-bab1-wujud-zat-dan-perubahannya',
     'ipa4-bab2-gaya-di-sekitar-kita',
@@ -29,9 +29,9 @@ export default {
   langDisplay: 'ID',
   competition: 'OSN-K',
   title: 'Latihan Soal OSN IPA SD — Paket 1',
-  totalMarks: 27,
+  totalMarks: 30,
   instructions:
-    'Kerjakan seluruh 27 soal pilihan ganda berikut (masing-masing bernilai 1 poin; total 27 poin). Penomoran butir soal mengikuti nomor asli naskah (1–11 dan 15–30). Dari 30 soal pada naskah sumber, sebanyak 3 soal (nomor 12, 13, dan 14) dilewati karena halaman 4 pada pindaian naskah (osn-ipa-sd-latihan-1_p4.png) kosong/hilang. Soal yang memuat gambar, grafik, atau tabel dinyatakan ulang secara lengkap dalam teks.',
+    'Kerjakan seluruh 30 soal pilihan ganda berikut (nomor 1–30; masing-masing bernilai 1 poin; total 30 poin). Soal yang memuat gambar, grafik, atau diagram dilengkapi ilustrasi asli dari naskah.',
   source: {
     org: 'OSN-K',
     file: 'Latihan Soal OSN IPA SD.pdf',
@@ -42,8 +42,8 @@ export default {
     {
       no: 1,
       title: 'Soal Pilihan Ganda',
-      marks: 27,
-      stem: 'Pilihlah satu jawaban yang paling tepat untuk setiap soal berikut (27 soal pilihan ganda; masing-masing bernilai 1 poin).',
+      marks: 30,
+      stem: 'Pilihlah satu jawaban yang paling tepat untuk setiap soal berikut (30 soal pilihan ganda; masing-masing bernilai 1 poin).',
       parts: [
         {
           label: '1',
@@ -60,8 +60,15 @@ export default {
         {
           label: '2',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-2.webp',
+              alt: 'Ilustrasi sebuah mobil melaju ke kanan dengan tanda panah bertuliskan V = 20 m/s',
+              caption: 'Ilustrasi gerak mobil untuk Soal No. 2.'
+            }
+          ],
           prompt:
-            'Rina mengendarai mobil dengan kecepatan $20\\text{ m/s}$ seperti pada gambar berikut (gambar menunjukkan sebuah mobil melaju dengan panah berlabel $V = 20\\text{ m/s}$).\n\nJika perjalanan Rina menempuh jarak $4{,}8\\text{ km}$, maka waktu yang diperlukan Rina untuk sampai ke tujuan adalah...\n\nA. 2,0 menit\nB. 2,4 menit\nC. 4,0 menit\nD. 4,2 menit',
+            'Rina mengendarai mobil dengan kecepatan $20\\text{ m/s}$ seperti pada gambar berikut.\n\nJika perjalanan Rina menempuh jarak $4{,}8\\text{ km}$, maka waktu yang diperlukan Rina untuk sampai ke tujuan adalah...\n\nA. 2,0 menit\nB. 2,4 menit\nC. 4,0 menit\nD. 4,2 menit',
           answer: 'C. 4,0 menit',
           principle:
             'Pada gerak lurus beraturan, waktu tempuh adalah jarak dibagi kelajuan ($t = \\frac{s}{v}$), dengan satuan panjang dan waktu disamakan terlebih dahulu.',
@@ -84,8 +91,15 @@ export default {
         {
           label: '4',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-4.webp',
+              alt: 'Diagram sebuah katrol bebas yang tergantung pada penopang atas dengan tali ditarik ke atas oleh gaya F dan beban di bawahnya',
+              caption: 'Diagram sistem katrol untuk Soal No. 4.'
+            }
+          ],
           prompt:
-            'Sebuah beban digantungkan pada katrol bebas seperti pada gambar berikut (diagram menunjukkan satu katrol bergerak yang menopang beban $w$ di bagian tengahnya; satu ujung tali diikat tetap pada penopang di atas, melingkari bagian bawah katrol, dan ujung tali lainnya ditarik ke atas dengan gaya $F$).\n\nJika berat beban adalah $20\\text{ N}$, maka besar gaya $F$ minimum untuk mengangkat benda adalah ...\n\nA. 10 N\nB. 20 N\nC. 30 N\nD. 40 N',
+            'Sebuah beban digantungkan pada katrol bebas seperti pada gambar berikut.\n\nJika berat beban adalah $20\\text{ N}$, maka besar gaya $F$ minimum untuk mengangkat benda adalah ...\n\nA. 10 N\nB. 20 N\nC. 30 N\nD. 40 N',
           answer: 'A. 10 N',
           principle:
             'Katrol bebas tunggal ditopang oleh dua segmen tali yang sama tegangannya sehingga memiliki keuntungan mekanis $KM = 2$, yaitu $F = \\frac{w}{2}$.',
@@ -108,8 +122,15 @@ export default {
         {
           label: '6',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-6.webp',
+              alt: 'Grafik kecepatan v dalam m/s terhadap waktu t dalam sekon dengan garis mendatar pada 15 hingga t = 4, naik ke 20 pada t = 6, lalu turun ke 0 pada t = 10',
+              caption: 'Grafik kecepatan terhadap waktu untuk Soal No. 6.'
+            }
+          ],
           prompt:
-            'Perhatikan pernyataan dan grafik kecepatan terhadap waktu berikut.\n\n(Grafik $v\\text{ (m/s)}$ terhadap $t\\text{ (s)}$ menunjukkan: dari $t = 0\\text{ s}$ hingga $t = 4\\text{ s}$ berupa garis datar pada $v = 15\\text{ m/s}$; dari $t = 4\\text{ s}$ hingga $t = 6\\text{ s}$ berupa garis lurus naik dari $v = 15\\text{ m/s}$ menjadi $v = 20\\text{ m/s}$; dan dari $t = 6\\text{ s}$ hingga $t = 10\\text{ s}$ berupa garis lurus turun dari $v = 20\\text{ m/s}$ menjadi $v = 0\\text{ m/s}$.)\n\n(1) Benda bergerak dengan kecepatan tetap pada detik ke-0 hingga 4\n(2) Benda mengalami percepatan pada detik ke-4 hingga 6\n(3) Benda mengalami perlambatan pada detik ke-6 hingga 10\n(4) Benda tidak bergerak pada detik ke-0 hingga 4\n\nPernyataan yang benar berdasarkan grafik di atas adalah ...\n\nA. (1) dan (2)\nB. (3) dan (4)\nC. (1), (2) dan (3)\nD. (2), (3) dan (4)',
+            'Perhatikan pernyataan dan grafik kecepatan terhadap waktu berikut.\n\n(1) Benda bergerak dengan kecepatan tetap pada detik ke-0 hingga 4\n(2) Benda mengalami percepatan pada detik ke-4 hingga 6\n(3) Benda mengalami perlambatan pada detik ke-6 hingga 10\n(4) Benda tidak bergerak pada detik ke-0 hingga 4\n\nPernyataan yang benar berdasarkan grafik di atas adalah ...\n\nA. (1) dan (2)\nB. (3) dan (4)\nC. (1), (2) dan (3)\nD. (2), (3) dan (4)',
           answer: 'C. (1), (2) dan (3)',
           principle:
             'Pada grafik $v$–$t$: garis horizontal pada $v \\neq 0$ menunjukkan gerak lurus beraturan (kecepatan tetap), garis miring naik menunjukkan percepatan, dan garis miring turun menuju nol menunjukkan perlambatan.',
@@ -156,8 +177,15 @@ export default {
         {
           label: '10',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-10.webp',
+              alt: 'Wadah berisi empat lapisan cairan berlabel K, L, M, dan N dari atas ke bawah disertai tabel massa jenis Madu, Air, Minyak, dan Sirup',
+              caption: 'Susunan lapisan cairan dan tabel massa jenis untuk Soal No. 10.'
+            }
+          ],
           prompt:
-            'Empat jenis cairan dengan massa jenis berbeda ditempatkan dalam sebuah wadah seperti pada gambar berikut.\n\n(Gambar menunjukkan sebuah wadah berisi empat lapisan cairan tidak saling bercampur yang tersusun vertikal dari atas ke bawah: lapisan paling atas $K$, lapisan kedua $L$, lapisan ketiga $M$, dan lapisan paling bawah $N$. Tabel massa jenis menunjukkan: Madu $= 1420\\text{ kg/m}^3$, Air $= 1000\\text{ kg/m}^3$, Minyak $= 800\\text{ kg/m}^3$, Sirup $= 1300\\text{ kg/m}^3$.)\n\nCairan yang tepat pada K, L, M dan N berturut-turut adalah ...\n\nA. Minyak, Air, Madu, Sirup\nB. Madu, Sirup, Air, Minyak\nC. Minyak, Air, Sirup, Madu\nD. Sirup, Minyak, Air, Madu',
+            'Empat jenis cairan dengan massa jenis berbeda ditempatkan dalam sebuah wadah seperti pada gambar berikut.\n\nCairan yang tepat pada K, L, M dan N berturut-turut adalah ...\n\nA. Minyak, Air, Madu, Sirup\nB. Madu, Sirup, Air, Minyak\nC. Minyak, Air, Sirup, Madu\nD. Sirup, Minyak, Air, Madu',
           answer: 'C. Minyak, Air, Sirup, Madu',
           principle:
             'Pada fluida tak saling campur, cairan bermassa jenis lebih kecil selalu berada di lapisan atas, sedangkan cairan bermassa jenis lebih besar tenggelam ke lapisan bawah.',
@@ -178,6 +206,63 @@ export default {
           rubric: [{ code: 'A1', text: 'Memilih opsi B (4-2-3-1).' }]
         },
         {
+          label: '12',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-12.webp',
+              alt: 'Diagram alur tiga komponen berurutan dari kiri ke kanan: matahari, panel surya, dan kipas angin',
+              caption: 'Ilustrasi rangkaian konversi energi untuk Soal No. 12.'
+            }
+          ],
+          prompt:
+            'Perhatikan gambar berikut.\n\nPerubahan energi yang terjadi pada gambar di atas adalah...\n\nA. energi cahaya – energi kimia – energi kinetik\nB. energi kalor – energi listrik – energi kinetik\nC. energi cahaya – energi listrik – energi kinetik\nD. energi kalor– energi listrik – energi potensial',
+          answer: 'C. energi cahaya – energi listrik – energi kinetik',
+          principle:
+            'Sel fotovoltaik pada panel surya mengubah energi cahaya matahari secara langsung menjadi energi listrik, kemudian motor listrik pada kipas angin mengubah energi listrik menjadi energi gerak (energi kinetik).',
+          solution:
+            'Alur perubahan bentuk energi pada gambar berlangsung dalam dua tahap:\n1. **Matahari $\\rightarrow$ Panel surya**: energi cahaya matahari diubah oleh sel surya (fotovoltaik) menjadi energi listrik.\n2. **Panel surya $\\rightarrow$ Kipas angin**: energi listrik menggerakkan motor listrik pada kipas sehingga berputar menghasilkan energi gerak (energi kinetik).\n\nJadi perubahan energi yang terjadi adalah **energi cahaya – energi listrik – energi kinetik**.',
+          rubric: [{ code: 'A1', text: 'Memilih opsi C (energi cahaya – energi listrik – energi kinetik).' }]
+        },
+        {
+          label: '13',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-13.webp',
+              alt: 'Diagram lengkung rahang bawah manusia dengan empat garis penunjuk bernomor 1, 2, 3, dan 4 dari gigi depan hingga gigi belakang',
+              caption: 'Diagram struktur gigi rahang bawah manusia untuk Soal No. 13.'
+            }
+          ],
+          prompt:
+            'Diagram di bawah ini menunjukkan struktur geraham bawah manusia. Nama gigi yang diberi nomor 1, 2, 3, dan 4 berturut-turut adalah …\n\nA. insisor, molar, premolar, kaninus\nB. insisor, premolar, molar, kaninus\nC. insisor, kaninus, premolar, molar\nD. insisor, kaninus, molar, premolar',
+          answer: 'C. insisor, kaninus, premolar, molar',
+          principle:
+            'Susunan gigi permanen manusia dari bagian depan (anterior) ke belakang (posterior) secara berurutan adalah gigi seri (insisor), gigi taring (kaninus), gigi geraham depan (premolar), dan gigi geraham belakang (molar).',
+          solution:
+            'Urutan jenis gigi pada rahang dari bagian depan menuju bagian belakang adalah:\n1. **Nomor 1 (Insisor / gigi seri)**: terletak di bagian paling depan, berbentuk pipih seperti pahat untuk memotong makanan.\n2. **Nomor 2 (Kaninus / gigi taring)**: terletak di samping gigi seri, berbentuk runcing untuk merobek makanan.\n3. **Nomor 3 (Premolar / gigi geraham depan)**: terletak di belakang gigi taring untuk mengunyah dan menggiling makanan.\n4. **Nomor 4 (Molar / gigi geraham belakang)**: terletak di bagian paling belakang dengan permukaan lebar untuk melumatkan makanan.\n\nJadi urutan yang tepat adalah **insisor, kaninus, premolar, molar**.',
+          rubric: [{ code: 'A1', text: 'Memilih opsi C (insisor, kaninus, premolar, molar).' }]
+        },
+        {
+          label: '14',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-14.webp',
+              alt: 'Skema rangkaian listrik satu lintasan tertutup berisi baterai 12 V, sakelar SW1, dan tiga resistor R1, R2, dan R3 terhubung berurutan',
+              caption: 'Diagram rangkaian listrik untuk Soal No. 14.'
+            }
+          ],
+          prompt:
+            'Perhatikan gambar rangkaian listrik berikut.\n\nRangkaian tersebut merupakan rangkaian ...(X)... . Pada rangkaian tersebut, setiap resistor akan memiliki besar ...(Y)... yang sama. Pernyataan pada (X) dan (Y) adalah ...\n\nA. X: paralel dan Y: tegangan\nB. X: paralel dan Y: arus\nC. X: seri dan Y: tegangan\nD. X: seri dan Y: arus',
+          answer: 'D. X: seri dan Y: arus',
+          principle:
+            'Pada rangkaian seri, seluruh komponen tersusun berderet dalam satu lintasan tanpa percabangan sehingga kuat arus listrik yang mengalir melalui setiap resistor sama besar, sedangkan tegangannya terbagi.',
+          solution:
+            'Pada diagram rangkaian, baterai $12\\text{ V}$, sakelar $\\text{SW}_1$, serta ketiga resistor $R_1 = 200\\ \\Omega$, $R_2 = 500\\ \\Omega$, dan $R_3 = 1\\text{ k}\\Omega$ terhubung berurutan membentuk satu lintasan tunggal tanpa titik percabangan:\n- Karena hanya terdapat satu jalur aliran muatan listrik, rangkaian tersebut adalah **rangkaian seri** ($X$).\n- Pada rangkaian seri, besar kuat **arus listrik** ($Y$) yang melewati $R_1$, $R_2$, dan $R_3$ bernilai sama besar ($I_1 = I_2 = I_3$), sedangkan beda potensial (tegangan) pada tiap resistor berbeda sebanding dengan nilai hambatannya.\n\nJadi pernyataan yang tepat adalah **X: seri dan Y: arus**.',
+          rubric: [{ code: 'A1', text: 'Memilih opsi D (X: seri dan Y: arus).' }]
+        },
+        {
           label: '15',
           marks: 1,
           prompt:
@@ -192,8 +277,15 @@ export default {
         {
           label: '16',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-16.webp',
+              alt: 'Ilustrasi seekor burung terbang di posisi A pada ketinggian 16 m dan di posisi B pada ketinggian 24 m di atas permukaan tanah',
+              caption: 'Ilustrasi ketinggian terbang burung untuk Soal No. 16.'
+            }
+          ],
           prompt:
-            'Perhatikan gambar berikut (gambar menunjukkan seekor burung mula-mula berada di posisi A pada ketinggian $16\\text{ m}$ di atas tanah datar, lalu terbang naik ke posisi B pada ketinggian $24\\text{ m}$ di atas tanah datar).\n\nSeekor burung mula-mula terbang pada ketinggian A, setelah beberapa saat burung tersebut terbang naik hingga ketinggian B. Jika massa burung $600\\text{ gram}$, maka perubahan energi potensial burung untuk berpindah dari posisi A ke B adalah ... ($g = 10\\text{ m/s}^2$)\n\nA. 48 Joule\nB. 96 Joule\nC. 144 Joule\nD. 240 Joule',
+            'Perhatikan gambar berikut.\n\nSeekor burung mula-mula terbang pada ketinggian A, setelah beberapa saat burung tersebut terbang naik hingga ketinggian B. Jika massa burung $600\\text{ gram}$, maka perubahan energi potensial burung untuk berpindah dari posisi A ke B adalah ... ($g = 10\\text{ m/s}^2$)\n\nA. 48 Joule\nB. 96 Joule\nC. 144 Joule\nD. 240 Joule',
           answer: 'A. 48 Joule',
           principle:
             'Perubahan energi potensial gravitasi bergantung pada selisih ketinggian vertikal: $\\Delta E_p = m g (h_B - h_A)$ dengan massa dalam kilogram.',
@@ -216,8 +308,15 @@ export default {
         {
           label: '18',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-18.webp',
+              alt: 'Diagram tiga buah magnet batang sejajar mendatar dengan ujung berlabel K dan L, M dan N, serta O dan P',
+              caption: 'Susunan tiga magnet batang untuk Soal No. 18.'
+            }
+          ],
           prompt:
-            'Tiga buah magnet batang disusun seperti pada gambar berikut (tiga magnet batang berjajar horizontal: magnet pertama ujung kiri $K$ dan ujung kanan $L$; magnet kedua ujung kiri $M$ dan ujung kanan $N$; magnet ketiga ujung kiri $O$ dan ujung kanan $P$).\n\nKutub L tolak-menolak dengan kutub M dan kutub N tarik-menarik dengan kutub O. Jika kutub P adalah kutub selatan, maka kutub yang sesuai pada magnet yang lain adalah ...\n\nA. K = selatan, L = utara, M = utara, N = selatan, O = selatan\nB. K = selatan, L = utara, M = utara, N = selatan, O = utara\nC. K = utara, L = selatan, M = selatan, N = utara, O = selatan\nD. K = utara, L = selatan, M = selatan, N = utara, O = utara',
+            'Tiga buah magnet batang disusun seperti pada gambar berikut.\n\nKutub L tolak-menolak dengan kutub M dan kutub N tarik-menarik dengan kutub O. Jika kutub P adalah kutub selatan, maka kutub yang sesuai pada magnet yang lain adalah ...\n\nA. K = selatan, L = utara, M = utara, N = selatan, O = selatan\nB. K = selatan, L = utara, M = utara, N = selatan, O = utara\nC. K = utara, L = selatan, M = selatan, N = utara, O = selatan\nD. K = utara, L = selatan, M = selatan, N = utara, O = utara',
           answer: 'B. K = selatan, L = utara, M = utara, N = selatan, O = utara',
           principle:
             'Setiap magnet batang memiliki dua kutub berlawanan (utara dan selatan); kutub senama tolak-menolak, sedangkan kutub tak senama tarik-menarik.',
@@ -240,8 +339,15 @@ export default {
         {
           label: '20',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-20.webp',
+              alt: 'Grafik simpangan terhadap waktu berisi tiga kurva osilasi dengan sebuah tanda panah menunjuk kurva yang amplitudonya menyusut menuju nol',
+              caption: 'Grafik simpangan terhadap waktu untuk Soal No. 20.'
+            }
+          ],
           prompt:
-            'Perhatikan gambar di samping (grafik simpangan terhadap waktu menampilkan tiga kurva gelombang yang mulai dari simpangan $1\\text{ m}$ pada $t = 0\\text{ s}$: satu kurva beramplitudo tetap $\\pm 1\\text{ m}$, satu kurva beramplitudo menurun perlahan hingga sekitar $0{,}68\\text{ m}$ pada $t \\approx 38\\text{ s}$, dan satu kurva lagi mengalami penurunan amplitudo secara cepat menuju nol pada $t \\approx 35\\text{–}40\\text{ s}$; tanda panah menunjuk langsung pada kurva yang amplitudonya menyusut mendekati nol tersebut).\n\nPeristiwa yang ditunjukkan dengan tanda panah pada grafik gelombang tersebut adalah ...\n\nA. gelombang stasioner\nB. gelombang kontinu\nC. gelombang teredam\nD. gelombang tetap',
+            'Perhatikan gambar di samping.\n\nPeristiwa yang ditunjukkan dengan tanda panah pada grafik gelombang tersebut adalah ...\n\nA. gelombang stasioner\nB. gelombang kontinu\nC. gelombang teredam\nD. gelombang tetap',
           answer: 'C. gelombang teredam',
           principle:
             'Gelombang atau osilasi teredam (*damped wave*) ditandai oleh amplitudo yang makin lama makin berkurang terhadap waktu akibat kehilangan energi.',
@@ -264,13 +370,20 @@ export default {
         {
           label: '22',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-22.webp',
+              alt: 'Empat gambar pemanfaatan alat optik bernomor (1) cermin tikungan jalan, (2) kaca spion mobil, (3) kaca pembesar, dan (4) lilin di depan cermin tegak',
+              caption: 'Empat contoh pemanfaatan alat optik untuk Soal No. 22.'
+            }
+          ],
           prompt:
-            'Perhatikan macam-macam pemanfaatan alat optik pada gambar berikut.\n(1) Cermin cembung pengawas tikungan jalan (*traffic mirror*)\n(2) Kaca spion mobil\n(3) Kaca pembesar (lup)\n(4) Lilin menyala di depan cermin datar\n\nPemanfaatan cermin cembung ditunjukkan oleh gambar ...\n\nA. (1) dan (2)\nB. (2) dan (3)\nC. (3) dan (4)\nD. (4) dan (1)',
+            'Perhatikan macam-macam pemanfaatan alat optik pada gambar berikut.\n\nPemanfaatan cermin cembung ditunjukkan oleh gambar ...\n\nA. (1) dan (2)\nB. (2) dan (3)\nC. (3) dan (4)\nD. (4) dan (1)',
           answer: 'A. (1) dan (2)',
           principle:
             'Cermin cembung selalu membentuk bayangan maya, tegak, dan diperkecil sehingga menghasilkan bidang pandang yang luas.',
           solution:
-            'Sifat cermin cembung adalah menyebarkan sinar (divergen) dan menghasilkan bayangan yang selalu maya, tegak, dan diperkecil sehingga jangkauan penglihatannya luas:\n- (1) Cermin tikungan jalan menggunakan **cermin cembung** agar pengendara dapat melihat kendaraan dari arah berlawanan secara luas.\n- (2) Kaca spion mobil juga menggunakan **cermin cembung** untuk memperluas daerah pandang di belakang dan samping kendaraan.\n- (3) Lup menggunakan **lensa cembung**, bukan cermin cembung.\n- (4) Lilin di depan cermin datar menunjukkan pemantulan pada **cermin datar**.\n\nJadi pemanfaatan cermin cembung ditunjukkan oleh (1) dan (2).',
+            'Sifat cermin cembung adalah menyebarkan sinar (divergen) dan menghasilkan bayangan yang selalu maya, tegak, dan diperkecil sehingga jangkauan penglihatannya luas:\n- (1) Cermin tikungan jalan menggunakan **cermin cembung** agar pengendara dapat melihat kendaraan dari arah berlawanan secara luas.\n- (2) Kaca spion mobil juga menggunakan **cermin cembung** untuk memperluas daerah pandang di belakang dan samping kendaraan.\n- (3) Lup (kaca pembesar) menggunakan **lensa cembung**, bukan cermin cembung.\n- (4) Lilin di depan cermin tegak pada meja menunjukkan pemantulan pada **cermin datar**.\n\nJadi pemanfaatan cermin cembung ditunjukkan oleh (1) dan (2).',
           rubric: [{ code: 'A1', text: 'Memilih opsi A ((1) dan (2)).' }]
         },
         {
@@ -288,14 +401,20 @@ export default {
         {
           label: '24',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-24.webp',
+              alt: 'Ilustrasi seorang anak berdiri di sebelah kiri garis vertikal bertuliskan CERMIN DATAR beserta empat pilihan gambar pembentukan bayangan A, B, C, dan D',
+              caption: 'Ilustrasi objek dan pilihan gambar bayangan pada cermin datar untuk Soal No. 24.'
+            }
+          ],
           prompt:
-            'Gilang berdiri di depan cermin datar seperti yang ditunjukkan pada gambar berikut (di sebelah kiri garis vertikal bertuliskan CERMIN DATAR, tampak anak laki-laki menghadap ke depan; lengan kanannya di sisi kiri gambar terangkat sedikit menjauhi tubuh dengan telapak tangan terbuka, sedangkan lengan kirinya di sisi kanan gambar lurus ke bawah di samping badan).\n\nPembentukan bayangan yang tepat ditunjukkan oleh ...\n\nA. Gambar A (bayangan berupa anak perempuan berambut kuncir tampak dari belakang)\nB. Gambar B (bayangan anak laki-laki tampak depan identik tanpa pencerminan: lengan yang terangkat tetap berada di sisi kiri dekat cermin)\nC. Gambar C (bayangan berupa anak bertopi/berkuncir tampak dari samping menghadap ke cermin)\nD. Gambar D (bayangan anak laki-laki tampak depan yang simetris kiri–kanan terhadap garis cermin: lengan yang dekat cermin lurus ke bawah, sedangkan lengan yang jauh dari cermin di sisi kanan terangkat terbuka)',
-          answer:
-            'D. Gambar D (bayangan anak laki-laki tampak depan yang simetris kiri–kanan terhadap garis cermin: lengan yang dekat cermin lurus ke bawah, sedangkan lengan yang jauh dari cermin di sisi kanan terangkat terbuka)',
+            'Gilang berdiri di depan cermin datar seperti yang ditunjukkan pada gambar berikut.\n\nPembentukan bayangan yang tepat ditunjukkan oleh ...\n\nA. Gambar A\nB. Gambar B\nC. Gambar C\nD. Gambar D',
+          answer: 'D. Gambar D',
           principle:
             'Cermin datar membentuk bayangan maya, tegak, sama besar, berjarak sama dengan jarak benda ke cermin, dan simetris (tertukar kiri–kanan terhadap bidang cermin).',
           solution:
-            'Pada gambar benda di sebelah kiri cermin datar:\n- Sisi tubuh Gilang yang **dekat** dengan cermin adalah lengan yang lurus ke bawah.\n- Sisi tubuh Gilang yang **jauh** dari cermin adalah lengan yang terangkat ke samping.\n\nBerdasarkan sifat bayangan cermin datar yang simetris terhadap garis cermin, bayangan di sebelah kanan cermin juga harus tampak sama besar, tegak, dan bagian yang dekat cermin tetap di sisi yang dekat cermin (lengan kiri bayangan lurus ke bawah), sedangkan lengan yang terangkat berada di sisi yang jauh dari cermin (sisi kanan gambar). Pola pencerminan ini ditunjukkan dengan tepat oleh gambar **D** (gambar B hanya menggeser objek tanpa mencerminkan, sedangkan A dan C bukan bayangan Gilang yang sesuai).',
+            'Pada gambar benda di sebelah kiri cermin datar:\n- Sisi tubuh Gilang yang **dekat** dengan cermin adalah lengan yang lurus ke bawah.\n- Sisi tubuh Gilang yang **jauh** dari cermin adalah lengan yang terangkat ke samping.\n\nBerdasarkan sifat bayangan cermin datar yang simetris terhadap garis cermin, bayangan di sebelah kanan cermin juga harus tampak sama besar, tegak, dan bagian yang dekat cermin tetap di sisi yang dekat cermin (lengan di sisi dekat cermin lurus ke bawah), sedangkan lengan yang terangkat berada di sisi yang jauh dari cermin (sisi kanan gambar). Pola pencerminan ini ditunjukkan dengan tepat oleh gambar **D** (gambar B hanya menggeser objek tanpa mencerminkan, sedangkan A dan C bukan bayangan Gilang yang sesuai).',
           rubric: [{ code: 'A1', text: 'Memilih opsi D sesuai sifat simetri bayangan pada cermin datar.' }]
         },
         {
@@ -313,8 +432,15 @@ export default {
         {
           label: '26',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-26.webp',
+              alt: 'Diagram segitiga perubahan wujud zat antara kotak P, kotak Cair, dan kotak Q dengan panah berlabel Mencair, Membeku, Menyublim, Mengkristal, Menguap, dan R',
+              caption: 'Diagram perubahan wujud zat untuk Soal No. 26.'
+            }
+          ],
           prompt:
-            'Perhatikan diagram perubahan wujud zat berikut.\n\n(Diagram segitiga menghubungkan kotak $P$ di kiri bawah, kotak $\\text{Cair}$ di kanan bawah, dan kotak $Q$ di puncak atas: panah dari $P$ ke $\\text{Cair}$ bertuliskan $\\text{Mencair}$ dan sebaliknya bertuliskan $\\text{Membeku}$; panah dari $P$ ke $Q$ bertuliskan $\\text{Menyublim}$ dan sebaliknya bertuliskan $\\text{Mengkristal}$; panah dari $\\text{Cair}$ ke $Q$ bertuliskan $\\text{Menguap}$ dan panah sebaliknya dari $Q$ ke $\\text{Cair}$ berlabel $R$.)\n\nJenis zat pada P dan Q serta perubahan wujud R yang tepat sesuai diagram di atas adalah ...\n\nA. P = Padat, Q = Gas, R = Mengembun\nB. P = Padat, Q = Gas, R = Mencair\nC. P = Gas, Q = Padat, R = Mengembun\nD. P = Gas, Q = Padat, R = Mencair',
+            'Perhatikan diagram perubahan wujud zat berikut.\n\nJenis zat pada P dan Q serta perubahan wujud R yang tepat sesuai diagram di atas adalah ...\n\nA. P = Padat, Q = Gas, R = Mengembun\nB. P = Padat, Q = Gas, R = Mencair\nC. P = Gas, Q = Padat, R = Mengembun\nD. P = Gas, Q = Padat, R = Mencair',
           answer: 'A. P = Padat, Q = Gas, R = Mengembun',
           principle:
             'Zat padat mencair menjadi cair dan menyublim menjadi gas; zat gas mengembun menjadi cair dan mengkristal menjadi padat.',
@@ -337,8 +463,15 @@ export default {
         {
           label: '28',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-28.webp',
+              alt: 'Ilustrasi pantai dengan rumah di daratan yang asap cerobongnya tertiup ke arah laut dan perahu layar bergerak menjauhi pantai',
+              caption: 'Ilustrasi perahu nelayan dan arah angin di pantai untuk Soal No. 28.'
+            }
+          ],
           prompt:
-            'Seorang nelayan memanfaatkan angin darat untuk melaut seperti pada gambar berikut (ilustrasi pantai pada malam hari: perahu layar nelayan bergerak menjauhi daratan menuju ke laut lepas terdorong angin dari arah daratan).\n\nPernyataan yang tepat mengenai angin darat adalah ...\n\nA. angin darat merupakan jenis angin yang bergerak dari darat ke laut dan berlangsung pada malam hari\nB. angin darat merupakan jenis angin yang bergerak dari darat ke laut dan berlangsung pada siang hari\nC. angin darat merupakan jenis angin yang bergerak dari laut ke darat dan berlangsung pada malam hari\nD. angin darat merupakan jenis angin yang bergerak dari laut ke darat dan berlangsung pada siang hari',
+            'Seorang nelayan memanfaatkan angin darat untuk melaut seperti pada gambar berikut.\n\nPernyataan yang tepat mengenai angin darat adalah ...\n\nA. angin darat merupakan jenis angin yang bergerak dari darat ke laut dan berlangsung pada malam hari\nB. angin darat merupakan jenis angin yang bergerak dari darat ke laut dan berlangsung pada siang hari\nC. angin darat merupakan jenis angin yang bergerak dari laut ke darat dan berlangsung pada malam hari\nD. angin darat merupakan jenis angin yang bergerak dari laut ke darat dan berlangsung pada siang hari',
           answer: 'A. angin darat merupakan jenis angin yang bergerak dari darat ke laut dan berlangsung pada malam hari',
           principle:
             'Angin bergerak dari daerah bertekanan udara tinggi (lebih dingin) ke daerah bertekanan udara rendah (lebih hangat); nama angin diambil dari arah asalnya.',
@@ -361,8 +494,15 @@ export default {
         {
           label: '30',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-sd-latihan-1/fig-30.webp',
+              alt: 'Diagram jenis-jenis awan di troposfer beserta rentang ketinggiannya dalam satuan kaki dari permukaan tanah hingga di atas 50.000 kaki',
+              caption: 'Diagram jenis-jenis awan di troposfer untuk Soal No. 30.'
+            }
+          ],
           prompt:
-            'Look at the figure (diagram *Common types of clouds in the troposphere* menampilkan ketinggian awan: *Cirrocumulus* dan *Cirrus* di atas $18{.}000\\text{ feet}$; *Altocumulus* dan *Altostratus* pada $6{.}000\\text{–}20{.}000\\text{ feet}$; *Stratocumulus*, *Stratus*, dan *Cumulus* di bawah $6{.}000\\text{ feet}$; serta awan *Cumulonimbus* yang menjulang tinggi dari dekat permukaan tanah hingga di atas $50{.}000\\text{ feet}$ disertai curah hujan lebat di bawahnya).\n\nType of cloud which has strong connection with thunderstorm is ...\n\nA. Stratocumulus\nB. Cumulus\nC. Altostratus\nD. Cumulonimbus',
+            'Look at the figure.\n\nType of cloud which has strong connection with thunderstorm is ...\n\nA. Stratocumulus\nB. Cumulus\nC. Altostratus\nD. Cumulonimbus',
           answer: 'D. Cumulonimbus',
           principle:
             'Awan *Cumulonimbus* merupakan awan konvektif vertikal yang menjulang dari lapisan troposfer bawah hingga puncak troposfer dan menghasilkan hujan deras, petir, serta badai guntur (*thunderstorm*).',

@@ -21,7 +21,22 @@
 .seo-page h1 { font-size: 1.6rem; color: var(--primary-navy); margin: 0.5rem 0; }
 .seo-page h2 { font-size: 1.2rem; color: var(--primary-navy); margin: 1.5rem 0 0.5rem; }
 .seo-page h3 { font-size: 1rem; margin: 1rem 0 0.35rem; }
-.seo-page a { color: var(--primary-blue); }
+.seo-page a:not(.btn):not(.paper-ladder-card):not(.hub-paper-card):not(.olim-amc-card):not(.account-item-link) {
+  color: var(--primary-blue);
+}
+.seo-page a.btn-royal, .seo-page a.btn-royal:visited,
+.seo-page a.btn-primary, .seo-page a.btn-primary:visited,
+.seo-page a.btn-emerald, .seo-page a.btn-emerald:visited,
+.seo-page a.btn-whatsapp, .seo-page a.btn-whatsapp:visited {
+  color: #FFFFFF;
+}
+.seo-page a.btn-outline, .seo-page a.btn-outline:visited,
+.seo-page a.btn-subtle, .seo-page a.btn-subtle:visited {
+  color: var(--text-secondary);
+}
+.seo-page a.btn-outline:hover, .seo-page a.btn-subtle:hover {
+  color: var(--text-primary);
+}
 .seo-breadcrumb { font-size: 0.85rem; color: var(--text-muted); }
 .seo-subtitle { color: var(--text-muted); margin-top: 0; }
 .seo-questions > li { margin-bottom: 0.9rem; }
@@ -297,7 +312,8 @@
   background: #F1F5F9;
 }
 
-.handbook-mode-tabs .btn {
+.handbook-mode-tabs .btn,
+.handbook-mode-tabs a {
   display: flex;
   align-items: center;
   gap: 0.45rem;
@@ -305,6 +321,7 @@
   border-radius: 8px;
   font-size: 0.875rem;
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .handbook-mode-tabs .btn-royal {
@@ -493,6 +510,7 @@
   font-size: 0.88rem;
   font-weight: 600;
   text-align: left;
+  text-decoration: none;
   cursor: pointer;
 }
 

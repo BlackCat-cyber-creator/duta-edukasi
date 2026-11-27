@@ -27,6 +27,8 @@ const TopicIndexPage = lazy(() => import('./components/TopicIndexPage').then((m)
 const FormulaIndexPage = lazy(() => import('./components/FormulaIndexPage').then((m) => ({ default: m.FormulaIndexPage })));
 const TkaPage = lazy(() => import('./components/TkaPage').then((m) => ({ default: m.TkaPage })));
 const AccountPage = lazy(() => import('./components/AccountPage').then((m) => ({ default: m.AccountPage })));
+const SubjectHubPage = lazy(() => import('./components/SubjectHubPage').then((m) => ({ default: m.SubjectHubPage })));
+const NotFoundPage = lazy(() => import('./components/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
 const AiAssistantWidget = lazy(() => import('./components/AiAssistantWidget').then((m) => ({ default: m.AiAssistantWidget })));
 
 /** Mata pelajaran sekolah yang memakai buku saku (alamat /<mapel>/kelas-N/<bab>). */
@@ -234,9 +236,12 @@ export function App() {
             {/* 1. Public Portal Hub */}
             <Route path="/" element={<HomeHubPage />} />
 
-            {/* 1b. Buku saku dengan alamat rapi (diindeks mesin pencari) */}
+            {/* 1b. Halaman hub mata pelajaran & buku saku dengan alamat rapi */}
             {HANDBOOK_SUBJECT_PATHS.map((subject) => (
-              <Route key={subject} path={`/${subject}/*`} element={handbook} />
+              <React.Fragment key={subject}>
+                <Route path={`/${subject}`} element={<SubjectHubPage subject={subject} />} />
+                <Route path={`/${subject}/*`} element={handbook} />
+              </React.Fragment>
             ))}
             <Route path="/olimpiade" element={<OlimpiadeHubPage />} />
             <Route path="/olimpiade/amc-8" element={handbook} />
@@ -288,8 +293,8 @@ export function App() {
               <ChapterSolutionView onBack={handleBackToHome} />
             } />
 
-            {/* Catch-all fallback redirect */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            {/* Catch-all 404 page (noindex, menghindari soft-404 redirect ke beranda) */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </main>

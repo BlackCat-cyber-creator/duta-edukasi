@@ -123,6 +123,7 @@ img, svg {
 .handbook-grade-btn {
   flex-shrink: 0;
   white-space: nowrap;
+  text-decoration: none;
 }
 
 /* Handbook Explorer 2-Column Grid (Desktop) vs 1-Column (Mobile) */
@@ -163,6 +164,7 @@ img, svg {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  text-decoration: none;
   width: 100%;
   padding: 0.85rem 1rem;
   border-radius: var(--radius-sm);

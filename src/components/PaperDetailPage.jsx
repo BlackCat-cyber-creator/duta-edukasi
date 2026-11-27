@@ -31,6 +31,7 @@ import { findChapterIndex } from '../data/curriculumData';
 import { ORGANIZATION } from '../data/siteInfo';
 import { SITE_URL, chapterPath } from '../utils/seoRoutes';
 import { paperDetailMeta } from '../utils/seoMeta';
+import { getPaperFaqs } from '../utils/seoFaqs';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import {
   getPaperProgress,
@@ -40,6 +41,7 @@ import {
   recordRecentActivity
 } from '../utils/progress';
 import { MathText } from './MathRenderer';
+import { parsePaperPart, evaluatePaperPartAnswer } from '../utils/paperInteractive';
 
 function parseRubricMarks(code) {
   const m = String(code || '').match(/^[BMA](\d+)$/i);
@@ -70,12 +72,18 @@ function PaperDetailInner({ subject, slug }) {
   useDocumentMeta(
     manifestEntry
       ? paperDetailMeta(manifestEntry)
-      : { title: `Paket Soal Tidak Ditemukan | ${ORGANIZATION.name}`, description: '', path: '/paket-soal' }
+      : { title: `Paket Soal Tidak Ditemukan | ${ORGANIZATION.name}`, description: '', path: '/paket-soal', noindex: true }
   );
 
   const [loadedState, setLoadedState] = useState({ key: '', paper: null, error: false });
   const [revealedKeys, setRevealedKeys] = useState({});
   const [revealedSolutions, setRevealedSolutions] = useState({});
+  const [responses, setResponses] = useState(() => (
+    manifestEntry ? (getPaperProgress(manifestEntry.id)?.responses || {}) : {}
+  ));
+  const [checkedParts, setCheckedParts] = useState(() => (
+    manifestEntry ? (getPaperProgress(manifestEntry.id)?.checkedParts || {}) : {}
+  ));
   const [checkedRubrics, setCheckedRubrics] = useState(() => (
     manifestEntry ? (getPaperProgress(manifestEntry.id)?.checkedRubrics || {}) : {}
   ));
@@ -174,6 +182,89 @@ function PaperDetailInner({ subject, slug }) {
   const togglePartKey = (k) => setRevealedKeys((prev) => ({ ...prev, [k]: !prev[k] }));
   const togglePartSolution = (k) => setRevealedSolutions((prev) => ({ ...prev, [k]: !prev[k] }));
 
+  const handleSelectMcq = (partKey, optKey) => {
+    setResponses((prev) => {
+      const nextResponses = { ...prev, [partKey]: optKey };
+      setCheckedParts((prevChecked) => {
+        const nextChecked = { ...prevChecked };
+        delete nextChecked[partKey];
+        updatePaperProgress(paper.id, {
+          responses: nextResponses,
+          checkedParts: nextChecked,
+          totalMarks: paper.totalMarks
+        });
+        return nextChecked;
+      });
+      return nextResponses;
+    });
+  };
+
+  const handleShortAnswerChange = (partKey, val) => {
+    setResponses((prev) => {
+      const nextResponses = { ...prev, [partKey]: val };
+      if (checkedParts[partKey]) {
+        setCheckedParts((prevChecked) => {
+          const nextChecked = { ...prevChecked };
+          delete nextChecked[partKey];
+          updatePaperProgress(paper.id, {
+            responses: nextResponses,
+            checkedParts: nextChecked,
+            totalMarks: paper.totalMarks
+          });
+          return nextChecked;
+        });
+      } else {
+        updatePaperProgress(paper.id, {
+          responses: nextResponses,
+          totalMarks: paper.totalMarks
+        });
+      }
+      return nextResponses;
+    });
+  };
+
+  const handleCheckSinglePart = (partKey) => {
+    if (!String(responses[partKey] || '').trim()) return;
+    setCheckedParts((prev) => {
+      const next = { ...prev, [partKey]: true };
+      updatePaperProgress(paper.id, {
+        responses,
+        checkedParts: next,
+        totalMarks: paper.totalMarks
+      });
+      return next;
+    });
+  };
+
+  const handleCheckAllParts = () => {
+    const nextChecked = { ...checkedParts };
+    for (const q of paper.questions) {
+      for (const pt of q.parts) {
+        const partKey = `${routeKey}::${q.no}-${pt.label}`;
+        const parsed = parsePaperPart(pt);
+        if (parsed.kind !== 'essay') {
+          nextChecked[partKey] = true;
+        }
+      }
+    }
+    setCheckedParts(nextChecked);
+    updatePaperProgress(paper.id, {
+      responses,
+      checkedParts: nextChecked,
+      totalMarks: paper.totalMarks
+    });
+  };
+
+  const handleResetResponses = () => {
+    setResponses({});
+    setCheckedParts({});
+    updatePaperProgress(paper.id, {
+      responses: {},
+      checkedParts: {},
+      totalMarks: paper.totalMarks
+    });
+  };
+
   const toggleRubricCheck = (rKey) => {
     setCheckedRubrics((prev) => {
       const next = { ...prev, [rKey]: !prev[rKey] };
@@ -247,6 +338,27 @@ function PaperDetailInner({ subject, slug }) {
   };
 
   const earnedMarks = computeEarnedMarks(paper, checkedRubrics, routeKey);
+  const quizSummary = (() => {
+    let gradableCount = 0;
+    let answeredCount = 0;
+    let checkedCount = 0;
+    let correctCount = 0;
+    for (const q of paper.questions) {
+      for (const pt of q.parts) {
+        const parsed = parsePaperPart(pt);
+        if (parsed.kind === 'essay') continue;
+        gradableCount += 1;
+        const partKey = `${routeKey}::${q.no}-${pt.label}`;
+        const resp = responses[partKey];
+        if (String(resp || '').trim()) answeredCount += 1;
+        if (checkedParts[partKey]) {
+          checkedCount += 1;
+          if (evaluatePaperPartAnswer(pt, resp).isCorrect) correctCount += 1;
+        }
+      }
+    }
+    return { gradableCount, answeredCount, checkedCount, correctCount };
+  })();
   const subjectLabel = PAPER_SUBJECT_META[paper.subject]?.label || paper.subject;
   const info = formatPaperMeta(paper);
   const markWord = info.usesMarks ? (paper.lang === 'en' ? 'marks' : 'poin') : (paper.lang === 'en' ? 'points' : 'poin');
@@ -378,7 +490,7 @@ function PaperDetailInner({ subject, slug }) {
 
           {(q.figures || []).map((fig) => (
             <figure key={fig.src} className="paper-figure">
-              <img src={fig.src} alt={fig.alt} loading="lazy" />
+              <img src={fig.src} alt={fig.alt} loading="lazy" decoding="async" />
               <figcaption>{fig.caption}</figcaption>
             </figure>
           ))}
@@ -388,23 +500,125 @@ function PaperDetailInner({ subject, slug }) {
               const partKey = `${routeKey}::${q.no}-${pt.label}`;
               const showKey = Boolean(revealedKeys[partKey]);
               const showSol = Boolean(revealedSolutions[partKey]);
+              const parsed = parsePaperPart(pt);
+              const userVal = responses[partKey] || '';
+              const isPartChecked = Boolean(checkedParts[partKey]);
+              const evalResult = isPartChecked ? evaluatePaperPartAnswer(pt, userVal) : null;
+              const isEn = paper.lang === 'en';
               return (
                 <div key={pt.label} className="paper-part" id={`soal-${q.no}-${pt.label}`}>
                   <div className="paper-part-head">
                     <div style={{ flex: 1 }}>
-                      <strong>({pt.label})</strong> <MathText text={pt.prompt} />
+                      <strong>({pt.label})</strong> <MathText text={parsed.stemPrompt} />
                     </div>
                     <span className="badge badge-subtle" style={{ flexShrink: 0 }}>[{pt.marks}]</span>
                   </div>
 
                   {(pt.figures || []).map((fig) => (
                     <figure key={fig.src} className="paper-figure" style={{ marginTop: '0.6rem', marginBottom: '0.6rem' }}>
-                      <img src={fig.src} alt={fig.alt} loading="lazy" />
+                      <img src={fig.src} alt={fig.alt} loading="lazy" decoding="async" />
                       <figcaption>{fig.caption}</figcaption>
                     </figure>
                   ))}
 
+                  {parsed.kind === 'mcq' && (
+                    <div className="paper-options-list" role="radiogroup" aria-label={`Pilihan soal ${q.no}-${pt.label}`}>
+                      {parsed.options.map((opt) => {
+                        const isChosen = userVal.toUpperCase() === opt.key;
+                        let optClass = 'option-btn paper-option-btn allow-print';
+                        if (isChosen) optClass += ' selected';
+                        if (isPartChecked) {
+                          if (opt.key === parsed.correctKey) optClass += ' correct';
+                          else if (isChosen && opt.key !== parsed.correctKey) optClass += ' incorrect';
+                        }
+                        return (
+                          <button
+                            key={opt.key}
+                            type="button"
+                            className={optClass}
+                            aria-pressed={isChosen}
+                            onClick={() => handleSelectMcq(partKey, opt.key)}
+                          >
+                            <span className="option-circle">{opt.key}</span>
+                            <span style={{ flex: 1, textAlign: 'left' }}>
+                              <MathText text={opt.text} />
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {parsed.kind === 'short_answer' && (
+                    <>
+                      <div className="paper-short-answer-row no-print">
+                        <label htmlFor={`ans-${q.no}-${pt.label}`} className="paper-short-label">
+                          {isEn ? 'Your answer:' : 'Jawaban Anda:'}
+                        </label>
+                        <input
+                          id={`ans-${q.no}-${pt.label}`}
+                          type="text"
+                          className={`form-input paper-short-input ${
+                            evalResult ? (evalResult.isCorrect ? 'is-correct' : 'is-incorrect') : ''
+                          }`}
+                          placeholder={isEn ? 'Type answer...' : 'Ketik jawaban...'}
+                          value={userVal}
+                          onChange={(e) => handleShortAnswerChange(partKey, e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              handleCheckSinglePart(partKey);
+                            }
+                          }}
+                        />
+                        <button
+                          type="button"
+                          className="btn btn-royal"
+                          style={{ fontSize: '0.78rem', padding: '0.36rem 0.8rem' }}
+                          disabled={!userVal.trim()}
+                          onClick={() => handleCheckSinglePart(partKey)}
+                        >
+                          {isEn ? 'Check' : 'Periksa'}
+                        </button>
+                      </div>
+                      <div className="print-only-answer-line" aria-hidden="true">
+                        {isEn ? 'Answer:' : 'Jawaban:'}
+                      </div>
+                    </>
+                  )}
+
+                  {evalResult && (
+                    <div className={`paper-answer-feedback no-print ${evalResult.isCorrect ? 'is-correct' : 'is-incorrect'}`}>
+                      <CheckCircle2 size={14} />
+                      {evalResult.isCorrect ? (
+                        <span>{isEn ? 'Correct!' : 'Benar!'}</span>
+                      ) : parsed.kind === 'mcq' ? (
+                        <span>
+                          {isEn
+                            ? `Incorrect — Correct answer: ${parsed.correctKey}`
+                            : `Kurang tepat — Kunci: ${parsed.correctKey}`}
+                        </span>
+                      ) : (
+                        <span>
+                          {isEn ? 'Not quite — Key: ' : 'Kurang tepat — Kunci: '}
+                          <MathText text={pt.answer} />
+                        </span>
+                      )}
+                    </div>
+                  )}
+
                   <div className="paper-part-actions no-print">
+                    {parsed.kind === 'mcq' && (
+                      <button
+                        type="button"
+                        className="btn btn-royal"
+                        style={{ fontSize: '0.78rem', padding: '0.28rem 0.65rem' }}
+                        disabled={!userVal.trim()}
+                        onClick={() => handleCheckSinglePart(partKey)}
+                      >
+                        <CheckCircle2 size={13} /> {isEn ? 'Check Answer' : 'Periksa Jawaban'}
+                      </button>
+                    )}
                     <button
                       type="button"
                       className="btn btn-outline"
@@ -491,13 +705,49 @@ function PaperDetailInner({ subject, slug }) {
 
       {/* Self-Scoring Progress Bar */}
       <div className="paper-score-bar no-print">
-        <div>
-          <strong style={{ color: 'var(--brand-navy)' }}>Skor Rubrik Mandiri:</strong>{' '}
-          <span style={{ fontWeight: 800, color: 'var(--brand-crimson)', fontSize: '1.05rem' }}>
-            {earnedMarks} / {paper.totalMarks}
-          </span>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem 1.15rem', alignItems: 'center' }}>
+          {quizSummary.gradableCount > 0 && (
+            <div>
+              <strong style={{ color: 'var(--brand-navy)' }}>
+                {paper.lang === 'en' ? 'Quiz Score:' : 'Skor Jawaban:'}
+              </strong>{' '}
+              <span style={{ fontWeight: 800, color: 'var(--primary-blue)', fontSize: '1.02rem' }}>
+                {quizSummary.checkedCount > 0
+                  ? `${quizSummary.correctCount} / ${quizSummary.gradableCount} (${Math.round((quizSummary.correctCount / quizSummary.gradableCount) * 100)}%)`
+                  : `${quizSummary.answeredCount} / ${quizSummary.gradableCount} ${paper.lang === 'en' ? 'answered' : 'terjawab'}`}
+              </span>
+            </div>
+          )}
+          <div>
+            <strong style={{ color: 'var(--brand-navy)' }}>Skor Rubrik Mandiri:</strong>{' '}
+            <span style={{ fontWeight: 800, color: 'var(--brand-crimson)', fontSize: '1.05rem' }}>
+              {earnedMarks} / {paper.totalMarks}
+            </span>
+          </div>
         </div>
-        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          {quizSummary.gradableCount > 0 && (
+            <>
+              <button
+                type="button"
+                className="btn btn-royal"
+                style={{ fontSize: '0.78rem', padding: '0.32rem 0.75rem' }}
+                onClick={handleCheckAllParts}
+              >
+                <CheckCircle2 size={13} /> {paper.lang === 'en' ? 'Check All Answers' : 'Periksa Semua Jawaban'}
+              </button>
+              {(quizSummary.answeredCount > 0 || quizSummary.checkedCount > 0) && (
+                <button
+                  type="button"
+                  className="btn btn-subtle"
+                  style={{ fontSize: '0.78rem', padding: '0.3rem 0.6rem' }}
+                  onClick={handleResetResponses}
+                >
+                  <RotateCcw size={13} /> {paper.lang === 'en' ? 'Reset Answers' : 'Reset Jawaban'}
+                </button>
+              )}
+            </>
+          )}
           {earnedMarks > 0 && (
             <button
               type="button"
@@ -505,12 +755,14 @@ function PaperDetailInner({ subject, slug }) {
               style={{ fontSize: '0.78rem', padding: '0.3rem 0.6rem' }}
               onClick={resetScore}
             >
-              <RotateCcw size={13} /> Reset Skor
+              <RotateCcw size={13} /> Reset Skor Rubrik
             </button>
           )}
-          <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-            Centang kotak [B1/M1/A1] pada pembahasan untuk menghitung skor (tersimpan otomatis).
-          </span>
+          {quizSummary.gradableCount === 0 && (
+            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              Centang kotak [B1/M1/A1] pada pembahasan untuk menghitung skor (tersimpan otomatis).
+            </span>
+          )}
         </div>
       </div>
 
@@ -574,6 +826,22 @@ function PaperDetailInner({ subject, slug }) {
         </aside>
       )}
 
+      {getPaperFaqs(paper, info).length > 0 && (
+        <section className="info-card seo-faq-box no-print" style={{ marginTop: '1.25rem' }} aria-label={paper.lang === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan Umum'}>
+          <h2 style={{ fontSize: '1.05rem', marginBottom: '0.75rem' }}>
+            {paper.lang === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan Umum'}
+          </h2>
+          <div className="seo-faq-grid">
+            {getPaperFaqs(paper, info).map((f) => (
+              <div key={f.question} className="seo-faq-item">
+                <h3>{f.question}</h3>
+                <p>{f.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       <div className="info-card" style={{ marginTop: '1.25rem', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
         <strong>Sumber &amp; Lisensi:</strong> Materi oleh <strong>{paper.source?.org || ORGANIZATION.name}</strong> ({paper.source?.file}).
         Diterbitkan di bawah lisensi{' '}
@@ -581,6 +849,10 @@ function PaperDetailInner({ subject, slug }) {
           {paper.source?.license || ORGANIZATION.licenseName}
         </a>{' '}
         — boleh digunakan dan dibagikan kembali dengan mencantumkan kredit <strong>{ORGANIZATION.name}</strong>.
+        <div className="no-print" style={{ marginTop: '0.45rem' }}>
+          <a href={`${paperPath(paper)}.md`}>Format Markdown + LaTeX (.md)</a> ·{' '}
+          <a href="/datasets/paket-soal-index.json">Dataset Terbuka (JSON)</a>
+        </div>
       </div>
     </div>
   );

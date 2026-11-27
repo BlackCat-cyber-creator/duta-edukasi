@@ -1,7 +1,7 @@
 /**
  * Structured Practice Set: Biology Grade 8 – Homeostasis & Excretion Practice
  * Source: Biology Grade 8 – Homeostasis & Excretion Practice.pdf (Duta e-dukasi).
- * Original English wording is preserved throughout; figure-dependent items without available diagrams are skipped.
+ * Original English wording is preserved throughout; kidney/nephron diagram items without included figures remain skipped.
  */
 export default {
   id: 'ipa8-bio-homeostasis',
@@ -19,9 +19,9 @@ export default {
   langDisplay: 'EN',
   competition: 'IPA SMP',
   title: 'Biology Grade 8 – Homeostasis & Excretion Practice',
-  totalMarks: 24,
+  totalMarks: 36,
   instructions:
-    'Answer all included questions (6 questions, 16 parts, total 24 marks out of 43 in the source paper). Show clear biological reasoning and working where required. Note: items that depend on unavailable diagrams or graphs are skipped—specifically Q2(a–c), Q3(a)(i–iv), Q3(b)(i–iii), Q4(a–b), Q5, and Q6(a–e).',
+    'Answer all included questions (8 questions, 27 parts, total 36 marks out of 43 in the source paper). Show clear biological reasoning and working where required. Note: items whose kidney and nephron diagrams are not included are skipped—specifically Q3(a)(i–iv) and Q3(b)(i–iii).',
   source: {
     org: 'Duta e-dukasi',
     file: "Biology Grade 8 \u2013 Homeostasis & Excretion Practice.pdf",
@@ -53,6 +53,54 @@ export default {
             { code: 'A1', text: 'Selects statement 5 (sugar in urine is a sign of diabetes)' },
             { code: 'A1', text: 'Selects statement 6 (homeostasis keeps the internal environment constant)' }
           ]
+        }
+      ]
+    },
+    {
+      no: 2,
+      title: 'Human Organs Involved in Excretion and Homeostasis',
+      marks: 3,
+      stem: 'The diagram shows some of the organs of the human body.',
+      figures: [
+        {
+          src: '/papers/ipa8-bio-homeostasis/fig-2.webp',
+          caption: 'Diagram of selected organs of the human body (Question 2).',
+          alt: 'Outline diagram of the human torso showing labelled organs: Skin, Lung, Heart, Liver, Kidney, Large intestine, and Bladder.'
+        }
+      ],
+      parts: [
+        {
+          label: 'a',
+          marks: 1,
+          prompt: 'Which organ is labelled on the diagram that produces urine?',
+          answer: 'Kidney',
+          principle:
+            'The kidneys filter metabolic waste (such as urea) together with excess water and mineral ions from the blood to produce urine.',
+          solution:
+            'From the labelled organs on the diagram, the **Kidney** filters blood to remove urea, excess water, and mineral salts, producing **urine**.',
+          rubric: [{ code: 'A1', text: 'Identifies Kidney' }]
+        },
+        {
+          label: 'b',
+          marks: 1,
+          prompt: 'Which organ is labelled on the diagram that stores urine?',
+          answer: 'Bladder',
+          principle:
+            'The urinary bladder is a muscular sac that collects and temporarily stores urine transported from the kidneys via the ureters.',
+          solution:
+            'From the labelled organs on the diagram, the **Bladder** receives urine from the kidneys and **stores urine** temporarily before urination.',
+          rubric: [{ code: 'A1', text: 'Identifies Bladder' }]
+        },
+        {
+          label: 'c',
+          marks: 1,
+          prompt: 'Which organ is labelled on the diagram that helps to control body temperature?',
+          answer: 'Skin',
+          principle:
+            'The skin plays a central role in thermoregulation through sweating (evaporative cooling) and adjusting blood flow in surface capillaries.',
+          solution:
+            'From the labelled organs on the diagram, the **Skin** helps to **control body temperature** by producing sweat that cools the body as it evaporates and by regulating heat loss via blood flow near the surface.',
+          rubric: [{ code: 'A1', text: 'Identifies Skin' }]
         }
       ]
     },
@@ -188,10 +236,49 @@ export default {
     },
     {
       no: 4,
-      title: 'Water Loss from the Skin and Homeostasis',
-      marks: 2,
-      stem: 'The human body maintains water balance and constant internal temperature through homeostasis, including water loss from the skin.',
+      title: 'Water Balance, Skin Water Loss, and Homeostasis',
+      marks: 5,
+      stem: 'The diagram below shows the water balance for a person on a cold day. The volumes of water gained and lost by the body are shown in $\\text{cm}^3$.',
+      figures: [
+        {
+          src: '/papers/ipa8-bio-homeostasis/fig-4.webp',
+          caption: 'Water balance scale for a person on a cold day (Question 4).',
+          alt: 'Balance scale comparing water gained by the body through respiration, food, and drinking against water lost through faeces, the skin, breathing, and urine.'
+        }
+      ],
       parts: [
+        {
+          label: 'a',
+          marks: 1,
+          prompt:
+            'Calculate the total volume of water lost from the body. Choose the correct answer:\nA. $1800\\ \\text{cm}^3$\nB. $2400\\ \\text{cm}^3$\nC. $3300\\ \\text{cm}^3$',
+          answer: 'B. $2400\\ \\text{cm}^3$',
+          answerNumeric: [{ name: 'totalWaterLost', value: 2400, unit: 'cm^3' }],
+          principle:
+            'Total water lost from the body equals the sum of all routes of water loss: faeces, skin, breathing, and urine.',
+          solution:
+            'Add all the volumes on the "Water lost from the body" side of the balance:\n$$100 + 400 + 400 + 1500 = 2400\\ \\text{cm}^3$$\nTherefore, the correct answer is **B. $2400\\ \\text{cm}^3$**.',
+          rubric: [{ code: 'A1', text: 'Selects B ($2400\\ \\text{cm}^3$)' }]
+        },
+        {
+          label: 'b',
+          marks: 2,
+          prompt:
+            'To maintain homeostasis, the volume of water gained by the body should balance the volume of water lost. Calculate how much water the person should drink. Show your working.',
+          answer: '$1400\\ \\text{cm}^3$',
+          answerNumeric: [{ name: 'waterToDrink', value: 1400, unit: 'cm^3' }],
+          principle:
+            'At osmotic water balance (homeostasis), total water gain equals total water loss: $\\text{Respiration} + \\text{Food} + \\text{Drinking} = \\text{Total water lost}$.',
+          solution:
+            'Step 1: Find the water gained from respiration and food:\n$$400 + 600 = 1000\\ \\text{cm}^3$$\n\nStep 2: Subtract this from the total water lost ($2400\\ \\text{cm}^3$) to balance the scale:\n$$2400 - 1000 = 1400\\ \\text{cm}^3$$\nSo the person should drink **$1400\\ \\text{cm}^3$** of water.',
+          rubric: [
+            {
+              code: 'M1',
+              text: 'Subtracts water from respiration and food ($400 + 600 = 1000\\ \\text{cm}^3$) from total water lost ($2400\\ \\text{cm}^3$)'
+            },
+            { code: 'A1', text: 'Obtains $1400\\ \\text{cm}^3$' }
+          ]
+        },
         {
           label: 'c',
           marks: 1,
@@ -223,11 +310,110 @@ export default {
       ]
     },
     {
-      no: 6,
-      title: 'Role of Skin Hair in Temperature Regulation',
+      no: 5,
+      title: 'Body Temperature Variation and Sweating Response',
       marks: 1,
-      stem: 'Human skin contains hair follicles and erector muscles that respond to changes in environmental temperature.',
+      stem: 'The graph shows the variation in a person’s body temperature over a period of time.',
+      figures: [
+        {
+          src: '/papers/ipa8-bio-homeostasis/fig-5.webp',
+          caption: 'Graph of variation in body temperature over time (Question 5).',
+          alt: 'Line graph of body temperature against time around the normal body temperature baseline, with four labelled intervals A, B, C, and D along the curve.'
+        }
+      ],
       parts: [
+        {
+          label: 'a',
+          marks: 1,
+          prompt:
+            'Which temperature change is likely to cause the most sweating?\nA. A\nB. B\nC. C\nD. D',
+          answer: 'B. B',
+          principle:
+            'Sweating increases when body temperature rises above the normal set point so that evaporation can dissipate excess thermal energy.',
+          solution:
+            'Examine each labelled change on the graph:\n- **A**: Body temperature is falling below normal (cold response: sweating decreases).\n- **B**: Body temperature is **increasing above normal**, triggering the cooling response of **increased sweating**.\n- **C**: Body temperature is falling back toward and below normal.\n- **D**: Body temperature is still below normal while returning toward the baseline.\n\nTherefore, the correct option is **B**.',
+          rubric: [{ code: 'A1', text: 'Selects B (body temperature increasing above normal)' }]
+        }
+      ]
+    },
+    {
+      no: 6,
+      title: 'Structure and Function of Human Skin in Thermoregulation',
+      marks: 6,
+      stem: 'The diagram shows a cross-section through human skin.',
+      figures: [
+        {
+          src: '/papers/ipa8-bio-homeostasis/fig-6.webp',
+          caption: 'Cross-section diagram through human skin (Question 6).',
+          alt: 'Cross-section diagram of human skin showing pore, hair, oil gland, hair follicle, and unknown structures labelled X, Y, and Z.'
+        }
+      ],
+      parts: [
+        {
+          label: 'a',
+          marks: 1,
+          prompt:
+            'Which structure is labelled X?\nA. Blood capillary\nB. Sweat gland\nC. Hair\nD. Nerve fibre',
+          answer: 'B. Sweat gland',
+          principle:
+            'A sweat gland is a coiled tubular structure in the dermis connected to a duct that opens at a sweat pore on the skin surface.',
+          solution:
+            'Structure **X** is the coiled gland deep in the dermis whose duct leads directly up to the skin pore. Therefore, **X** is a **sweat gland** (option **B**).',
+          rubric: [{ code: 'A1', text: 'Selects B (Sweat gland)' }]
+        },
+        {
+          label: 'b',
+          marks: 1,
+          prompt:
+            'Which structure is labelled Y?\nA. Erector muscle\nB. Blood capillary\nC. Sweat duct\nD. Fat layer',
+          answer: 'A. Erector muscle',
+          principle:
+            'The hair erector muscle attaches obliquely to the hair follicle and pulls the hair upright when it contracts.',
+          solution:
+            'Structure **Y** is the muscle band attached to the side of the hair follicle. Therefore, **Y** is the **erector muscle** (option **A**).',
+          rubric: [{ code: 'A1', text: 'Selects A (Erector muscle)' }]
+        },
+        {
+          label: 'c',
+          marks: 1,
+          prompt:
+            'Which structure is labelled Z?\nA. Nerve fibre\nB. Sweat duct\nC. Oil duct\nD. Blood capillary',
+          answer: 'D. Blood capillary',
+          principle:
+            'Blood capillaries form branching loops in the dermis close to the epidermis to supply cells and regulate heat loss.',
+          solution:
+            'Structure **Z** points to the branching loop of vessels running through the dermis beneath the epidermis. Therefore, **Z** is a **blood capillary** (option **D**).',
+          rubric: [{ code: 'A1', text: 'Selects D (Blood capillary)' }]
+        },
+        {
+          label: 'd',
+          marks: 1,
+          prompt:
+            'What is the main function of part X?\nA. To produce oil for the skin\nB. To reduce heat loss\nC. To produce sweat\nD. To insulate the body',
+          answer: 'C. To produce sweat',
+          principle:
+            'Sweat glands secrete sweat onto the skin surface via the sweat duct and pore to cool the body by evaporation.',
+          solution:
+            'Part **X** is the sweat gland, whose main function is **to produce sweat** (option **C**). Oil is produced by the oil gland, while insulation is provided by the fat layer and trapped air.',
+          rubric: [{ code: 'A1', text: 'Selects C (To produce sweat)' }]
+        },
+        {
+          label: 'e',
+          marks: 1,
+          prompt:
+            'What happens to the part Y in cold conditions?\nA. It relaxes, and the hair lies flat against the skin\nB. It contracts and pulls the hair so it stands upright\nC. It produces sweat to help cool the body\nD. It dilates and increases blood flow in the skin',
+          answer: 'B. It contracts and pulls the hair so it stands upright',
+          principle:
+            'In cold conditions, the hair erector muscle contracts to raise the skin hairs upright and reduce heat loss.',
+          solution:
+            'Part **Y** is the erector muscle. In cold conditions, **it contracts and pulls the hair so it stands upright** (option **B**).',
+          rubric: [
+            {
+              code: 'A1',
+              text: 'Selects B (It contracts and pulls the hair so it stands upright)'
+            }
+          ]
+        },
         {
           label: 'f',
           marks: 1,

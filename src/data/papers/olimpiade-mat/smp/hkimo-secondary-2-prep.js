@@ -16,9 +16,9 @@ export default {
   langDisplay: 'EN',
   competition: 'HKIMO',
   title: 'HKIMO Secondary 2 Preparation: Practice 1 to 5',
-  totalMarks: 141,
+  totalMarks: 150,
   instructions:
-    'Work through the five practice sets (Logical Thinking, Algebra, Number Theory, Geometry, Combinatorics in each). Every item is worth 1 mark and has a single final answer. Items that depended on an unstated diagram or were ambiguous as printed were omitted, so item numbers within a section may skip. One item is kept in Indonesian as in the source.',
+    'Work through the five practice sets (Logical Thinking, Algebra, Number Theory, Geometry, Combinatorics in each; 6 items per section, 150 items total). Every item is worth 1 mark and has a single final answer. Clarifying notes are added where the source printout omitted a standard assumption or contained a typographical slip. One item is kept in Indonesian as in the source.',
   source: {
     org: 'HKIMO',
     file: 'hkimo_sec2_prep.pdf',
@@ -30,7 +30,7 @@ export default {
       no: 1,
       title: 'Practice 1: Logical Thinking',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 1, Logical Thinking. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 1, Logical Thinking. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -110,7 +110,7 @@ export default {
       no: 2,
       title: 'Practice 1: Algebra',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 1, Algebra. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 1, Algebra. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -190,7 +190,7 @@ export default {
       no: 3,
       title: 'Practice 1: Number Theory',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 1, Number Theory. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 1, Number Theory. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -270,11 +270,18 @@ export default {
       no: 4,
       title: 'Practice 1: Geometry',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 1, Geometry. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 1, Geometry. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/hkimo-sec2-prep/fig-1.svg',
+              alt: 'Triangle ABC with point D on side AB and point E on the extension of AC beyond C, where line segment DE intersects side BC at point F.',
+              caption: 'Menelaus configuration in triangle ABC.'
+            }
+          ],
           prompt:
             'In triangle $ABC$, $D$ is a point on $AB$ and $E$ is on the extension of $AC$ (beyond $C$). $DE$ intersects $BC$ at $F$. If $\\dfrac{DE}{EF}=\\dfrac94$ and $\\dfrac{AD}{DB}=\\dfrac23$, find the value of $\\dfrac{AC}{AE}$.',
           answer: '$\\dfrac{25}{37}$',
@@ -349,9 +356,21 @@ export default {
     {
       no: 5,
       title: 'Practice 1: Combinatorics',
-      marks: 5,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 1, Combinatorics. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      marks: 6,
+      stem: 'HKIMO Secondary 2 Preparation, Practice 1, Combinatorics. Answer each item; every item is worth 1 mark.',
       parts: [
+        {
+          label: '1',
+          marks: 1,
+          prompt:
+            'Find the number of the combination(s) arranging 3 boys and 7 girls in a row. (All boys and girls are distinct.)',
+          answer: '$3{,}628{,}800$',
+          principle:
+            'Permutation of $n$ distinct people in a row is $n!$.',
+          solution:
+            'There are $3+7=10$ distinct people in total, so there are $10!=3{,}628{,}800$ arrangements.',
+          rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
+        },
         {
           label: '2',
           marks: 1,
@@ -418,7 +437,7 @@ export default {
       no: 6,
       title: 'Practice 2: Logical Thinking',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 2, Logical Thinking. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 2, Logical Thinking. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -498,7 +517,7 @@ export default {
       no: 7,
       title: 'Practice 2: Algebra',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 2, Algebra. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 2, Algebra. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -578,7 +597,7 @@ export default {
       no: 8,
       title: 'Practice 2: Number Theory',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 2, Number Theory. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 2, Number Theory. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -657,12 +676,19 @@ export default {
     {
       no: 9,
       title: 'Practice 2: Geometry',
-      marks: 5,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 2, Geometry. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      marks: 6,
+      stem: 'HKIMO Secondary 2 Preparation, Practice 2, Geometry. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/hkimo-sec2-prep/fig-1.svg',
+              alt: 'Triangle ABC with point D on side AB and point E on the extension of AC beyond C, where line segment DE intersects side BC at point F.',
+              caption: 'Menelaus configuration in triangle ABC.'
+            }
+          ],
           prompt:
             'In triangle $ABC$, $D$ is a point on $AB$ and $E$ is on the extension of $AC$ (beyond $C$). $DE$ intersects $BC$ at $F$. If $\\dfrac{DE}{EF}=\\dfrac85$ and $\\dfrac{AD}{DB}=\\dfrac34$, find the value of $\\dfrac{AC}{AE}$.',
           answer: '$\\dfrac{21}{41}$',
@@ -682,6 +708,18 @@ export default {
             'Shoelace formula.',
           solution:
             'Apply the Shoelace formula for triangle $ABC$ with $(x_A,y_A)=(-1,8)$, $(x_B,y_B)=(2,5)$, and $(x_C,y_C)=(3,1)$:\n$$\\text{Area}=\\frac12\\big|x_A(y_B-y_C)+x_B(y_C-y_A)+x_C(y_A-y_B)\\big|$$\n$$=\\frac12\\big|-1(5-1)+2(1-8)+3(8-5)\\big|=\\frac12|-4-14+9|=\\frac{9}{2}.$$',
+          rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
+        },
+        {
+          label: '3',
+          marks: 1,
+          prompt:
+            'An iron wire is bent into a rectangle which side is $88$. If the wire is now bent into a circle, what is the maximum value of area of it? (Take $\\pi=\\frac{22}{7}$) (The initial shape is understood to be a square of side $88$, as a general rectangle has no fixed perimeter from one side alone.)',
+          answer: '$9856$',
+          principle:
+            'A square of side $s$ has perimeter $4s$; a circle of circumference $C$ has radius $r=\\frac{C}{2\\pi}$ and area $\\pi r^2$.',
+          solution:
+            'The wire length is the perimeter of the square, $4\\times 88=352$. Bending it into a circle gives circumference $2\\pi r=2\\cdot\\frac{22}{7}r=352$, so $r=56$. Its area is $\\frac{22}{7}\\times 56^2=22\\times 8\\times 56=9856$.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -725,9 +763,21 @@ export default {
     {
       no: 10,
       title: 'Practice 2: Combinatorics',
-      marks: 5,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 2, Combinatorics. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      marks: 6,
+      stem: 'HKIMO Secondary 2 Preparation, Practice 2, Combinatorics. Answer each item; every item is worth 1 mark.',
       parts: [
+        {
+          label: '1',
+          marks: 1,
+          prompt:
+            'Find the number of the combination(s) arranging 4 boys and 6 girls in a row. (All boys and girls are distinct.)',
+          answer: '$3{,}628{,}800$',
+          principle:
+            'Permutation of $n$ distinct people in a row is $n!$.',
+          solution:
+            'There are $4+6=10$ distinct people in total, so there are $10!=3{,}628{,}800$ arrangements.',
+          rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
+        },
         {
           label: '2',
           marks: 1,
@@ -794,7 +844,7 @@ export default {
       no: 11,
       title: 'Practice 3: Logical Thinking',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 3, Logical Thinking. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 3, Logical Thinking. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -874,7 +924,7 @@ export default {
       no: 12,
       title: 'Practice 3: Algebra',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 3, Algebra. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 3, Algebra. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -954,7 +1004,7 @@ export default {
       no: 13,
       title: 'Practice 3: Number Theory',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 3, Number Theory. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 3, Number Theory. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -1034,11 +1084,18 @@ export default {
       no: 14,
       title: 'Practice 3: Geometry',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 3, Geometry. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 3, Geometry. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/hkimo-sec2-prep/fig-1.svg',
+              alt: 'Triangle ABC with point D on side AB and point E on the extension of AC beyond C, where line segment DE intersects side BC at point F.',
+              caption: 'Menelaus configuration in triangle ABC.'
+            }
+          ],
           prompt:
             'In triangle $ABC$, $D$ is a point on $AB$ and $E$ is on the extension of $AC$ (beyond $C$). $DE$ intersects $BC$ at $F$. If $\\dfrac{DE}{EF}=\\dfrac{11}{5}$ and $\\dfrac{AD}{DB}=\\dfrac35$, find the value of $\\dfrac{AC}{AE}$.',
           answer: '$\\dfrac{48}{73}$',
@@ -1113,9 +1170,21 @@ export default {
     {
       no: 15,
       title: 'Practice 3: Combinatorics',
-      marks: 5,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 3, Combinatorics. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      marks: 6,
+      stem: 'HKIMO Secondary 2 Preparation, Practice 3, Combinatorics. Answer each item; every item is worth 1 mark.',
       parts: [
+        {
+          label: '1',
+          marks: 1,
+          prompt:
+            'Find the number of the combination(s) arranging 2 boys and 7 girls in a row. (All boys and girls are distinct.)',
+          answer: '$362{,}880$',
+          principle:
+            'Permutation of $n$ distinct people in a row is $n!$.',
+          solution:
+            'There are $2+7=9$ distinct people in total, so there are $9!=362{,}880$ arrangements.',
+          rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
+        },
         {
           label: '2',
           marks: 1,
@@ -1182,7 +1251,7 @@ export default {
       no: 16,
       title: 'Practice 4: Logical Thinking',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 4, Logical Thinking. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 4, Logical Thinking. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -1262,7 +1331,7 @@ export default {
       no: 17,
       title: 'Practice 4: Algebra',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 4, Algebra. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 4, Algebra. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -1342,7 +1411,7 @@ export default {
       no: 18,
       title: 'Practice 4: Number Theory',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 4, Number Theory. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 4, Number Theory. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -1422,11 +1491,18 @@ export default {
       no: 19,
       title: 'Practice 4: Geometry',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 4, Geometry. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 4, Geometry. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/hkimo-sec2-prep/fig-1.svg',
+              alt: 'Triangle ABC with point D on side AB and point E on the extension of AC beyond C, where line segment DE intersects side BC at point F.',
+              caption: 'Menelaus configuration in triangle ABC.'
+            }
+          ],
           prompt:
             'In triangle $ABC$, $D$ is a point on $AB$ and $E$ is on the extension of $AC$ (beyond $C$). $DE$ intersects $BC$ at $F$. If $\\dfrac{DE}{EF}=\\dfrac83$ and $\\dfrac{AD}{DB}=\\dfrac23$, find the value of $\\dfrac{AC}{AE}$.',
           answer: '$\\dfrac{25}{34}$',
@@ -1501,9 +1577,21 @@ export default {
     {
       no: 20,
       title: 'Practice 4: Combinatorics',
-      marks: 5,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 4, Combinatorics. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      marks: 6,
+      stem: 'HKIMO Secondary 2 Preparation, Practice 4, Combinatorics. Answer each item; every item is worth 1 mark.',
       parts: [
+        {
+          label: '1',
+          marks: 1,
+          prompt:
+            'Find the number of the combination(s) arranging 3 boys and 5 girls in a row. (All boys and girls are distinct.)',
+          answer: '$40{,}320$',
+          principle:
+            'Permutation of $n$ distinct people in a row is $n!$.',
+          solution:
+            'There are $3+5=8$ distinct people in total, so there are $8!=40{,}320$ arrangements.',
+          rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
+        },
         {
           label: '2',
           marks: 1,
@@ -1569,9 +1657,21 @@ export default {
     {
       no: 21,
       title: 'Practice 5: Logical Thinking',
-      marks: 4,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 5, Logical Thinking. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      marks: 6,
+      stem: 'HKIMO Secondary 2 Preparation, Practice 5, Logical Thinking. Answer each item; every item is worth 1 mark.',
       parts: [
+        {
+          label: '1',
+          marks: 1,
+          prompt:
+            'Given $A$, $B$ and $C$ are three distinct non-zero digits and the 3-digit numbers formed by these three digits have the following properties:\n- $\\overline{CBA}$ is divisible by $9$.\n- $\\overline{CAB}$ is divisible by $4$.\n- $\\overline{ABC}$ is divisible by $8$.\n\nFind the 3-digit number $\\overline{BCB}$. (Note: the source printout misprints "not divisible" for the second and third conditions and omits "distinct", which leaves multiple solutions; restoring the intended divisibility and distinct-digit conditions gives a unique answer.)',
+          answer: '$484$',
+          principle:
+            'Use divisibility rules for $4$, $8$, and $9$ together with distinctness of digits.',
+          solution:
+            'Since $\\overline{CAB}$ is divisible by $4$ and $\\overline{ABC}$ is divisible by $8$, both $B$ and $C$ are even non-zero digits ($2,4,6,8$) with $B\\ne C$. Moreover, $4\\mid \\overline{AB}$ and $8\\mid \\overline{ABC}$ with $C\\in\\{2,4,6,8\\}$. Checking all non-zero distinct triples $(A,B,C)$ with $A+B+C\\in\\{9,18\\}$: $8\\mid 100A+10B+C$ and $4\\mid 10A+B$ leave only $(A,B,C)=(6,4,8)$: $\\overline{CBA}=846=9\\times 94$, $\\overline{CAB}=864=4\\times 216$, and $\\overline{ABC}=648=8\\times 81$. Thus $\\overline{BCB}=484$.',
+          rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
+        },
         {
           label: '2',
           marks: 1,
@@ -1594,6 +1694,18 @@ export default {
             'Every pair of lines gives exactly one intersection point, and no point is shared by three lines.',
           solution:
             'Each pair of lines meets in a distinct point, so the number of intersections is $\\binom n2=\\frac{n(n-1)}2=66$. Then $n(n-1)=132=12\\times11$, so $n=12$ (the other root $n=-11$ is rejected).',
+          rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
+        },
+        {
+          label: '4',
+          marks: 1,
+          prompt:
+            'If $\\overline{acbd}+\\overline{bdac}=16766$, calculate $a+b+c+d$. (Different letters represent distinct digits.)',
+          answer: '$22$',
+          principle:
+            'Expand in place values: $\\overline{acbd}+\\overline{bdac}=101\\big(10(a+b)+(c+d)\\big)$.',
+          solution:
+            'Writing in base $10$: $\\overline{acbd}+\\overline{bdac}=1010(a+b)+101(c+d)=101\\big(10(a+b)+(c+d)\\big)=16766$. Dividing by $101$ gives $10(a+b)+(c+d)=166$. Since $0\\le c+d\\le 18$, either $(a+b,c+d)=(16,6)$ or $(15,16)$. For distinct digits $a,b,c,d$, $(a+b,c+d)=(15,16)$ is impossible (any pair summing to $15$ from $\\{6,9\\}$ or $\\{7,8\\}$ collides with any distinct pair summing to $16$ from $\\{7,9\\}$). Thus $a+b=16$ and $c+d=6$ (e.g. $7294+9472=16766$), giving $a+b+c+d=22$.',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         },
         {
@@ -1626,7 +1738,7 @@ export default {
       no: 22,
       title: 'Practice 5: Algebra',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 5, Algebra. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 5, Algebra. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -1706,7 +1818,7 @@ export default {
       no: 23,
       title: 'Practice 5: Number Theory',
       marks: 6,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 5, Number Theory. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      stem: 'HKIMO Secondary 2 Preparation, Practice 5, Number Theory. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
@@ -1785,12 +1897,19 @@ export default {
     {
       no: 24,
       title: 'Practice 5: Geometry',
-      marks: 5,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 5, Geometry. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      marks: 6,
+      stem: 'HKIMO Secondary 2 Preparation, Practice 5, Geometry. Answer each item; every item is worth 1 mark.',
       parts: [
         {
           label: '1',
           marks: 1,
+          figures: [
+            {
+              src: '/papers/hkimo-sec2-prep/fig-1.svg',
+              alt: 'Triangle ABC with point D on side AB and point E on the extension of AC beyond C, where line segment DE intersects side BC at point F.',
+              caption: 'Menelaus configuration in triangle ABC.'
+            }
+          ],
           prompt:
             'In triangle $ABC$, $D$ is a point on $AB$ and $E$ is on the extension of $AC$ (beyond $C$). $DE$ intersects $BC$ at $F$. If $\\dfrac{DE}{EF}=\\dfrac{10}{3}$ and $\\dfrac{AD}{DB}=\\dfrac13$, find the value of $\\dfrac{AC}{AE}$.',
           answer: '$\\dfrac{28}{37}$',
@@ -1847,15 +1966,39 @@ export default {
           solution:
             'From each of the $14$ vertices of a convex $14$-sided polygon, we can draw segments to the other $13$ vertices. Two of those segments go to the two adjacent vertices (forming sides of the polygon), leaving $14-3=11$ diagonals from each vertex.\nSince every diagonal connects $2$ vertices, $14\\times 11$ counts each diagonal twice, so the total number of diagonals is\n$$\\frac{14\\times 11}{2}=77.$$',
           rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
+        },
+        {
+          label: '6',
+          marks: 1,
+          prompt:
+            'The area of a circle is $456\\text{ cm}^2$ larger than its inscribed square. Find the radius of the circle. (Take $\\pi=3.14$, omitted in the source printout.)',
+          answer: '$20\\text{ cm}$',
+          principle:
+            'A square inscribed in a circle of radius $r$ has diagonal $2r$, hence area $\\frac{(2r)^2}{2}=2r^2$.',
+          solution:
+            'The circle has area $\\pi r^2=3.14 r^2$ and its inscribed square has diagonal $2r$, so side $r\\sqrt2$ and area $2r^2$. Thus $(3.14-2)r^2=1.14r^2=456$, giving $r^2=400$ and $r=20\\text{ cm}$.',
+          rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
         }
       ]
     },
     {
       no: 25,
       title: 'Practice 5: Combinatorics',
-      marks: 5,
-      stem: 'HKIMO Secondary 2 Preparation, Practice 5, Combinatorics. Answer each item; every item is worth 1 mark. Item numbers follow the original paper (items that could not be stated unambiguously in text are omitted).',
+      marks: 6,
+      stem: 'HKIMO Secondary 2 Preparation, Practice 5, Combinatorics. Answer each item; every item is worth 1 mark.',
       parts: [
+        {
+          label: '1',
+          marks: 1,
+          prompt:
+            'Find the number of the combination(s) arranging 6 boys and 7 girls in a row. (All boys and girls are distinct.)',
+          answer: '$6{,}227{,}020{,}800$',
+          principle:
+            'Permutation of $n$ distinct people in a row is $n!$.',
+          solution:
+            'There are $6+7=13$ distinct people in total, so there are $13!=6{,}227{,}020{,}800$ arrangements.',
+          rubric: [{ code: 'A1', text: 'Correct final answer supported by valid working.' }]
+        },
         {
           label: '2',
           marks: 1,

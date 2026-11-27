@@ -31,7 +31,8 @@ import { AiAssistantPanel } from './AiAssistantWidget';
 const ACCOUNT_META = {
   title: 'Akun Belajar & Progres | Duta e-dukasi',
   description: 'Masuk atau daftar gratis di Duta e-dukasi untuk menyinkronkan progres belajar, bookmark paket soal, dan mengakses Asisten Belajar AI.',
-  path: '/akun'
+  path: '/akun',
+  noindex: true
 };
 
 const LEVEL_CHOICES = ['SD', 'SMP', 'SMA'];

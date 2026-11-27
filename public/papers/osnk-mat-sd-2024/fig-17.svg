@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 230" width="420" height="230">
+  <rect width="420" height="230" fill="#ffffff"/>
+  <!-- Coordinates: B=(50,180), C=(330,180), A=(190,75) -> AB=AC=sqrt(140^2+105^2)=175 (scaled 35 px/unit: half-base=4*35=140, height=3*35=105, side=5*35=175) -->
+  <!-- Extension D along ray BA: unit vector BA = (140/175, -105/175) = (0.8, -0.6). Wait: D is foot of C=(330,180) onto line AB! -->
+  <!-- Let's compute D: vector BA=(140,-105), BC=(280,0). Proj of BC on BA: (280*140)/(175^2) * (140,-105) = 1.28 * (140,-105) = (179.2, -134.4). So D = (50+179.2, 180-134.4) = (229.2, 45.6) -->
+  <!-- Triangle ABC filled -->
+  <polygon points="190,75 50,180 330,180" fill="#fee2e2" fill-opacity="0.7" stroke="#dc2626" stroke-width="2"/>
+  <!-- Dashed extension AD and perpendicular CD -->
+  <line x1="190" y1="75" x2="229.2" y2="45.6" stroke="#1f2937" stroke-width="1.6" stroke-dasharray="5,4"/>
+  <line x1="330" y1="180" x2="229.2" y2="45.6" stroke="#1f2937" stroke-width="1.6" stroke-dasharray="5,4"/>
+  <!-- Dashed internal altitude from A to BC -->
+  <line x1="190" y1="75" x2="190" y2="180" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="5,4"/>
+  <!-- Right angle mark on BC -->
+  <polyline points="190,166 204,166 204,180" fill="none" stroke="#16a34a" stroke-width="1.8"/>
+  <!-- Right angle mark at D (unit vectors DB=(-0.8,0.6), DC=(0.6,0.8)) -->
+  <!-- Corner offset 11: P1=D+11*(-0.8,0.6)=(220.4,52.2), P2=D+11*(-0.8+0.6, 0.6+0.8)=(227.0,61.0), P3=D+11*(0.6,0.8)=(235.8,54.4) -->
+  <polyline points="220.4,52.2 227.0,61.0 235.8,54.4" fill="none" stroke="#374151" stroke-width="1.5"/>
+
+  <!-- Tick marks on AB and AC -->
+  <!-- Midpoint AB=(120,127.5), normal=(0.6,0.8) -->
+  <line x1="115.5" y1="121.5" x2="124.5" y2="133.5" stroke="#dc2626" stroke-width="1.8"/>
+  <!-- Midpoint AC=(260,127.5), normal=(-0.6,0.8) -->
+  <line x1="255.5" y1="133.5" x2="264.5" y2="121.5" stroke="#dc2626" stroke-width="1.8"/>
+
+  <!-- Vertices -->
+  <circle cx="190" cy="75" r="4" fill="#2563eb"/>
+  <circle cx="50" cy="180" r="3.5" fill="#9ca3af" stroke="#2563eb" stroke-width="1.2"/>
+  <circle cx="330" cy="180" r="3.5" fill="#9ca3af" stroke="#2563eb" stroke-width="1.2"/>
+  <circle cx="229.2" cy="45.6" r="3.5" fill="#9ca3af" stroke="#374151" stroke-width="1.2"/>
+
+  <!-- Labels -->
+  <text x="180" y="65" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">A</text>
+  <text x="38" y="172" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">B</text>
+  <text x="340" y="185" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">C</text>
+  <text x="237" y="42" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1f2937">D</text>
+
+  <!-- Side lengths -->
+  <text x="108" y="114" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#dc2626">5</text>
+  <text x="186" y="202" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#dc2626">8</text>
+  <text x="288" y="108" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#111827">t</text>
+</svg>

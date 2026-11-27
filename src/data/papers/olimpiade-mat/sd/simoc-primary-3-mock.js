@@ -2,9 +2,9 @@
  * Paket Soal: SIMOC Primary 3 Mock Test
  * Sumber: simoc_p3_mock.pdf (5 halaman, 20 soal dalam Section A dan Section B).
  * Bahasa dipertahankan sesuai naskah sumber (Inggris).
- * Lima soal bergambar yang tidak dapat direkonstruksi secara unik dari teks
- * (Soal 1, 6, 9, 12, 16) dilewati dengan penomoran asli tetap dipertahankan.
- * Soal 10 dilengkapi diagram vektor SVG pada public/papers/simoc-p3-mock/fig-10.svg.
+ * Seluruh 20 soal asli (Section A 1–10 dan Section B 11–20) dimuat lengkap.
+ * Soal 1, 6, 9, 10, 12, dan 16 dilengkapi diagram pada public/papers/simoc-p3-mock/
+ * (fig-1.webp, fig-6.webp, fig-9.webp, fig-10.svg, fig-12.webp, fig-16.webp).
  */
 export default {
   id: 'simoc-p3-mock',
@@ -26,9 +26,9 @@ export default {
   langDisplay: 'EN',
   competition: 'SIMOC',
   title: 'SIMOC Primary 3 Mock Test',
-  totalMarks: 46,
+  totalMarks: 60,
   instructions:
-    'Attempt all 15 included questions from the SIMOC Primary 3 Mock Test (no calculators; original question numbering is preserved). Section A has 7 included multiple-choice questions worth 2 marks each ($14$ marks total), and Section B has 8 included short-answer questions worth 4 marks each ($32$ marks total). Five questions from the original paper are skipped because their required diagrams are unavailable and cannot be uniquely reconstructed from text: Questions 1, 6, 9, 12, and 16. Question 10 includes a reconstructed vector diagram of the $4$-by-$3$ example grid.',
+    'Attempt all 20 questions from the SIMOC Primary 3 Mock Test (no calculators). Section A has 10 multiple-choice questions worth 2 marks each ($20$ marks total), and Section B has 10 short-answer questions worth 4 marks each ($40$ marks total). Diagrams for Questions 1, 6, 9, 10, 12, and 16 are provided as figures.',
   source: {
     org: 'SIMOC',
     file: 'simoc_p3_mock.pdf',
@@ -39,9 +39,31 @@ export default {
     {
       no: 1,
       title: 'Section A: Multiple Choice',
-      marks: 14,
-      stem: 'Choose the one correct answer for each included question (7 questions, 2 marks each; Questions 1, 6, and 9 are skipped because their figures are unavailable).',
+      marks: 20,
+      stem: 'Choose the one correct answer for each question (10 questions, 2 marks each).',
       parts: [
+        {
+          label: '1',
+          marks: 2,
+          prompt:
+            'The diagram shows some cubes of the same size stacked at a corner of a room. How many cubes are there altogether? (Note: The floor is horizontal and the two walls are vertical. There are no gaps or holes behind the visible cubes.)\n\nA. $7$\nB. $8$\nC. $9$\nD. $10$\nE. None of the above',
+          figures: [
+            {
+              src: '/papers/simoc-p3-mock/fig-1.webp',
+              alt: 'Isometric diagram of unit cubes stacked in a corner against two vertical walls and a horizontal floor',
+              caption: 'Cubes stacked at a corner of a room (Question 1).'
+            }
+          ],
+          answer: 'D. $10$',
+          principle:
+            'Count stacked cubes layer by layer from bottom to top (or column by column), remembering that every elevated visible cube must be supported underneath with no hidden gaps.',
+          solution:
+            'Count the cubes layer by layer from the floor upward:\n- **Bottom layer (Layer 1):** Along the left wall there are $3$ cubes in a row, and along the back wall there are $3$ more cubes extending to the right, giving $3 + 3 = 6$ cubes on the floor.\n- **Second layer (Layer 2):** Directly above the bottom layer, there are $2$ visible cubes in the second layer (the middle-left cube and the back-second-from-left cube) plus $1$ hidden cube in the back-left corner supporting the top cube, giving $3$ cubes.\n- **Third layer (Layer 3):** There is $1$ cube at the very top in the back-left corner.\nAdding the three layers gives\n$$6 + 3 + 1 = 10\\text{ cubes}.$$\n(Equivalently, there are $8$ visible cubes and $2$ hidden cubes directly beneath the height-$3$ corner cube, for $8 + 2 = 10$ cubes in total.)',
+          rubric: [
+            { code: 'M1', text: 'Counts the cubes by layer ($6 + 3 + 1$) or identifies the $8$ visible cubes plus $2$ hidden supporting cubes.' },
+            { code: 'A1', text: 'Obtains $10$ cubes, option D.' }
+          ]
+        },
         {
           label: '2',
           marks: 2,
@@ -103,6 +125,28 @@ export default {
           ]
         },
         {
+          label: '6',
+          marks: 2,
+          prompt:
+            'The following bar graph shows the favourite colour of a class of $40$ students (each student chooses exactly one colour). The tic marks on the vertical axis are equally spaced. How many students’ favourite colour is blue?\n\nA. $4$\nB. $8$\nC. $12$\nD. $16$\nE. $20$',
+          figures: [
+            {
+              src: '/papers/simoc-p3-mock/fig-6.webp',
+              alt: 'Bar graph titled Favourite Colour with equally spaced vertical gridlines and four bars labeled yellow, green, blue, and red',
+              caption: 'Bar graph of students’ favourite colours (Question 6).'
+            }
+          ],
+          answer: 'D. $16$',
+          principle:
+            'Use the equally spaced horizontal gridlines to express all bar heights in common units, then divide the total number of students by the sum of the unit heights.',
+          solution:
+            'Read the height of each bar in terms of the equally spaced vertical tic-mark units:\n- **Yellow:** $1$ unit\n- **Green:** $2$ units\n- **Blue:** $4$ units\n- **Red:** $3$ units\nThe total number of units across all four colours is\n$$1 + 2 + 4 + 3 = 10\\text{ units}.$$\nSince these $10$ units represent $40$ students in total, each tic-mark unit represents\n$$40 \\div 10 = 4\\text{ students}.$$\nBecause the bar for **blue** has a height of $4$ units, the number of students whose favourite colour is blue is\n$$4 \\times 4 = 16.$$',
+          rubric: [
+            { code: 'M1', text: 'Reads the bar heights ($1, 2, 4, 3$ units, total $10$ units) and finds each unit equals $40 \\div 10 = 4$ students.' },
+            { code: 'A1', text: 'Computes $4 \\times 4 = 16$ students for blue, option D.' }
+          ]
+        },
+        {
           label: '7',
           marks: 2,
           prompt:
@@ -133,6 +177,28 @@ export default {
           ]
         },
         {
+          label: '9',
+          marks: 2,
+          prompt:
+            'Which one of the following figures is the odd one out?\n\nA. Fig. 1\nB. Fig. 2\nC. Fig. 3\nD. Fig. 4\nE. Fig. 5',
+          figures: [
+            {
+              src: '/papers/simoc-p3-mock/fig-9.webp',
+              alt: 'Five labeled shapes in a row: a thick-outlined circle, a plain thin-outlined circle, a triangle, a small circle, and a hatched shaded circle',
+              caption: 'Five figures labeled Fig. 1 to Fig. 5 (Question 9).'
+            }
+          ],
+          answer: 'B. Fig. 2',
+          principle:
+            'When four of five figures each possess a distinct special property (thick border, different shape, smaller size, or shading), the remaining plain figure is the only one without a unique distinguishing feature.',
+          solution:
+            'Compare the attributes of all five figures:\n- **Fig. 1:** large, unshaded circle with a **thick border** (unique border thickness).\n- **Fig. 3:** large, unshaded **triangle** with a thin border (unique shape).\n- **Fig. 4:** **small**, unshaded circle with a thin border (unique size).\n- **Fig. 5:** large, **shaded** circle with a thin border (unique shading).\n- **Fig. 2:** large, unshaded circle with a thin border.\nEvery figure except Fig. 2 differs from the majority in one unique feature, whereas **Fig. 2** shares all four majority features and has no unique distinguishing property.\nTherefore, **Fig. 2** is the odd one out.',
+          rubric: [
+            { code: 'M1', text: 'Identifies the unique distinguishing feature of Fig. 1 (thick border), Fig. 3 (triangle), Fig. 4 (small), and Fig. 5 (shaded).' },
+            { code: 'A1', text: 'Concludes Fig. 2 is the odd one out because it lacks any unique feature, option B.' }
+          ]
+        },
+        {
           label: '10',
           marks: 2,
           prompt:
@@ -159,8 +225,8 @@ export default {
     {
       no: 2,
       title: 'Section B: Short Answer',
-      marks: 32,
-      stem: 'Write down the answer to each included question with working (8 questions, 4 marks each; Questions 12 and 16 are skipped because their figures cannot be uniquely reconstructed from text).',
+      marks: 40,
+      stem: 'Write down the answer to each question with working (10 questions, 4 marks each).',
       parts: [
         {
           label: '11',
@@ -175,6 +241,28 @@ export default {
           rubric: [
             { code: 'M2', text: 'Tests or bounds non-zero whole numbers to locate the triple $\\{1, 2, 3\\}$.' },
             { code: 'A2', text: 'States $a = 1, b = 2, c = 3$ (or any permutation) and verifies $1+2+3 = 1\\times 2\\times 3 = 6$.' }
+          ]
+        },
+        {
+          label: '12',
+          marks: 4,
+          prompt:
+            'The diagram shows a big rectangle that is made up of $5$ small identical rectangles. If the perimeter of the big rectangle is $48\\text{ cm}$, find the area of the big rectangle.',
+          figures: [
+            {
+              src: '/papers/simoc-p3-mock/fig-12.webp',
+              alt: 'A large rectangle divided into five identical smaller rectangles: one vertical on the left, three horizontal stacked in the centre, and one vertical on the right',
+              caption: 'Big rectangle made up of 5 small identical rectangles (Question 12).'
+            }
+          ],
+          answer: '$135\\text{ cm}^2$',
+          principle:
+            'Express the length of each small identical rectangle as a multiple of its width using the stacked middle section, then solve for the width from the perimeter.',
+          solution:
+            'Let each small identical rectangle have width $W$ and length $L$.\nLooking at the height of the big rectangle, the vertical rectangle on the left (of height $L$) matches the three horizontal rectangles stacked in the middle (total height $3W$), so\n$$L = 3W.$$\nNow find the dimensions of the big rectangle in terms of $W$:\n- **Width:** $W + L + W = W + 3W + W = 5W$.\n- **Height:** $L = 3W$.\nIts perimeter is therefore\n$$2 \\times (5W + 3W) = 16W = 48\\text{ cm} \\implies W = 48 \\div 16 = 3\\text{ cm}.$$\nHence $L = 3 \\times 3 = 9\\text{ cm}$, and the big rectangle has width $5 \\times 3 = 15\\text{ cm}$ and height $3 \\times 3 = 9\\text{ cm}$.\nCheck perimeter: $2 \\times (15 + 9) = 48\\text{ cm}$.\nThe area of the big rectangle is\n$$15 \\times 9 = 135\\text{ cm}^2$$\n(or $5 \\times (9 \\times 3) = 5 \\times 27 = 135\\text{ cm}^2$).',
+          rubric: [
+            { code: 'M2', text: 'Uses $L = 3W$ to express the big rectangle perimeter as $16W = 48\\text{ cm}$ and finds $W = 3\\text{ cm}$, $L = 9\\text{ cm}$.' },
+            { code: 'A2', text: 'Computes the area $15 \\times 9 = 135\\text{ cm}^2$.' }
           ]
         },
         {
@@ -220,6 +308,28 @@ export default {
           rubric: [
             { code: 'M2', text: 'Counts $27$ gaps of $2$ years plus $2$ extra years for skipping $1963$ (total $56$ years).' },
             { code: 'A2', text: 'Computes $2015 - 56 = 1959$ and checks forward.' }
+          ]
+        },
+        {
+          label: '16',
+          marks: 4,
+          prompt:
+            'The diagram shows a triangle $ACE$. The lines $AD$ and $BE$ intersect at the point $F$. How many triangles are there in the diagram altogether?',
+          figures: [
+            {
+              src: '/papers/simoc-p3-mock/fig-16.webp',
+              alt: 'Triangle ACE with point B on AC, point D on CE, segments AD and BE intersecting at F, and segment BD drawn',
+              caption: 'Triangle ACE with intersecting segments AD, BE, and BD (Question 16).'
+            }
+          ],
+          answer: '$12$',
+          principle:
+            'Label the elementary non-overlapping regions inside the figure and count triangles systematically by how many regions they combine (1-region, 2-region, 3-region, ..., whole figure).',
+          solution:
+            'In the diagram, besides the outer triangle $ACE$ and segments $AD$ and $BE$ meeting at $F$, segment $BD$ is also drawn, splitting the interior into $5$ elementary regions—every one of which is a triangle.\nCount all triangles systematically by the number of elementary regions they contain:\n- **1-region triangles ($5$):** $\\triangle ABF$, $\\triangle AEF$, $\\triangle DEF$, $\\triangle BDF$, $\\triangle BCD$.\n- **2-region triangles ($4$):** $\\triangle ABE$ ($ABF + AEF$), $\\triangle ABD$ ($ABF + BDF$), $\\triangle ADE$ ($AEF + DEF$), $\\triangle BDE$ ($BDF + DEF$).\n- **3-region triangles ($2$):** $\\triangle BCE$ ($BCD + BDF + DEF$), $\\triangle ACD$ ($ABF + BDF + BCD$).\n- **4-region triangles ($0$):** none.\n- **5-region triangles ($1$):** $\\triangle ACE$ (the whole figure).\nAdding them up gives\n$$5 + 4 + 2 + 1 = 12\\text{ triangles}.$$',
+          rubric: [
+            { code: 'M2', text: 'Counts triangles systematically by size/regions (including those formed with segment $BD$): $5$ single, $4$ double, $2$ triple, $1$ whole.' },
+            { code: 'A2', text: 'Totals $5 + 4 + 2 + 1 = 12$ triangles.' }
           ]
         },
         {

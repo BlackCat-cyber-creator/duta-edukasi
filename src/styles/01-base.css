@@ -349,6 +349,17 @@ p {
   color: var(--text-primary);
 }
 
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: transparent;
+}
+
+.btn-ghost:hover {
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+}
+
 .btn-whatsapp {
   background: var(--whatsapp-green);
   color: #FFFFFF;
@@ -357,6 +368,13 @@ p {
 
 .btn-whatsapp:hover {
   background: #15803D;
+}
+
+a.btn-primary, a.btn-primary:visited, a.btn-primary:hover,
+a.btn-royal, a.btn-royal:visited, a.btn-royal:hover,
+a.btn-emerald, a.btn-emerald:visited, a.btn-emerald:hover,
+a.btn-whatsapp, a.btn-whatsapp:visited, a.btn-whatsapp:hover {
+  color: #FFFFFF;
 }
 
 /* Form Controls */

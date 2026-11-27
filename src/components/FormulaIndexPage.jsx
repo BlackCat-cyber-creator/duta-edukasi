@@ -5,6 +5,7 @@ import { getGradeData } from '../data/curriculumData';
 import { getAmcModuleData } from '../data/amc/amcData';
 import { chapterPath, amcChapterPath, SUBJECT_GRADES } from '../utils/seoRoutes';
 import { FORMULA_INDEX_META, subjectDisplayName, levelLabel } from '../utils/seoMeta';
+import { FORMULA_INDEX_FAQS } from '../utils/seoFaqs';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { MathText } from './MathRenderer';
 
@@ -190,6 +191,18 @@ export function FormulaIndexPage() {
           ))}
         </div>
       )}
+
+      <section className="info-card seo-faq-box" aria-label="Pertanyaan Umum" style={{ marginTop: '1.5rem' }}>
+        <h2 style={{ fontSize: '1.1rem', marginBottom: '0.75rem' }}>Pertanyaan Umum Kumpulan Rumus</h2>
+        <div className="seo-faq-grid">
+          {FORMULA_INDEX_FAQS.map((f) => (
+            <div key={f.question} className="seo-faq-item">
+              <h3>{f.question}</h3>
+              <p>{f.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

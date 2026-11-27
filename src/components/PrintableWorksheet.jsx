@@ -11,6 +11,7 @@ import { getAmcModuleData, normalizeAmcLevel } from '../data/amc/amcData';
 import { exportWorksheetToPdf, triggerSafePrint } from '../utils/pdfExport';
 import { SITE_URL } from '../utils/seoRoutes';
 import { ORGANIZATION } from '../data/siteInfo';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { 
   Printer, 
   ArrowLeft, 
@@ -75,6 +76,13 @@ export function PrintableWorksheet({ quest: propQuest = null, onBack = null }) {
       } catch {}
     }
     return null;
+  });
+
+  useDocumentMeta({
+    title: `${quest?.title || 'Lembar Kerja Cetak A4'} | Duta e-dukasi`,
+    description: 'Lembar kerja cetak A4 ber-QR Duta e-dukasi.',
+    path: '',
+    noindex: true
   });
 
   const [isLoading, setIsLoading] = useState(!quest && Boolean(questId));

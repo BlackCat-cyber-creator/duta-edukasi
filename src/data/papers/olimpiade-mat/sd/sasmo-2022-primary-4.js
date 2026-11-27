@@ -2,9 +2,8 @@
  * Paket Soal: SASMO 2022 Primary 4 (Grade 4)
  * Sumber: Singapore and Asian Schools Math Olympiad 2022, Primary 4 Contest (sasmo_2022_p4.pdf).
  * Bahasa dipertahankan sesuai naskah sumber (Inggris).
- * Soal 4 (bergantung pada ilustrasi 3D rumah anjing dan lima potongan kayu isometrik kompleks) tidak dimuat;
- * penomoran asli tetap dipertahankan.
- * Soal 2, 5, 7, 9, 12, 16, 17, 18, dan 23 dilengkapi diagram SVG vektor berdasarkan gambar asli pada PDF.
+ * Seluruh 25 soal asli (Section A 1–15 dan Section B 16–25) dimuat lengkap.
+ * Soal 2, 4, 5, 7, 9, 12, 16, 17, 18, dan 23 dilengkapi diagram (SVG vektor atau crop ilustrasi .webp).
  */
 export default {
   id: 'sasmo-2022-p4',
@@ -27,9 +26,9 @@ export default {
   langDisplay: 'EN',
   competition: 'SASMO',
   title: 'SASMO 2022 Primary 4',
-  totalMarks: 68,
+  totalMarks: 70,
   instructions:
-    'Attempt all 24 included questions (original paper has 25 questions; original time allowed: 1 hour 30 minutes; no calculators). Section A has 14 included multiple-choice questions worth 2 marks each (28 marks; Question 4 is skipped because it depends on a complex 3D illustrated dog-kennel puzzle). Section B has 10 short-answer questions worth 4 marks each (40 marks). Original question numbering is preserved. Diagrams for Questions 2, 5, 7, 9, 12, 16, 17, 18, and 23 are provided as vector SVG figures.',
+    'Attempt all 25 questions (time allowed: 1 hour 30 minutes; no calculators). Section A has 15 multiple-choice questions worth 2 marks each (30 marks). Section B has 10 short-answer questions worth 4 marks each (40 marks). Diagrams for Questions 2, 4, 5, 7, 9, 12, 16, 17, 18, and 23 are provided as figures.',
   source: {
     org: 'SASMO',
     file: 'sasmo_2022_p4.pdf',
@@ -40,8 +39,8 @@ export default {
     {
       no: 1,
       title: 'Section A: Multiple Choice',
-      marks: 28,
-      stem: 'Choose the one correct answer for each question (14 included questions, 2 marks each; Question 4 skipped).',
+      marks: 30,
+      stem: 'Choose the one correct answer for each question (15 questions, 2 marks each).',
       parts: [
         {
           label: '1',
@@ -93,6 +92,28 @@ export default {
           rubric: [
             { code: 'M1', text: 'Finds the doubling differences $3, 6, 12, 24, 48$ (or the rule $2a_n + 2$).' },
             { code: 'A1', text: 'Next number $190$, option A.' }
+          ]
+        },
+        {
+          label: '4',
+          marks: 2,
+          prompt:
+            "Which one of the following options is a missing piece of the dog's kennel?\n\nA. Option A (see figure)\nB. Option B (see figure)\nC. Option C (see figure)\nD. Option D (see figure)\nE. Option E (see figure)",
+          figures: [
+            {
+              src: '/papers/sasmo-2022-p4/fig-4.webp',
+              alt: '3D illustration of a wooden dog kennel missing its right side wall and five isometric wooden block options labeled A through E.',
+              caption: 'Dog kennel 3D puzzle and options A–E for Question 4.'
+            }
+          ],
+          answer: 'B. Option B',
+          principle:
+            'Match the 3D interlocking side-wall geometry of the kennel: check the lower base notch, the upper wall alignment, and the recessed step near the roof.',
+          solution:
+            'Inspect the missing right-side wall of the dog kennel:\n- The lower plank extends flush along the bottom edge and steps upward at the back corner to interlock with the rear wall.\n- Above the lower plank sits an inset inner horizontal beam aligned with the inner edge of the front pillar, rather than overhanging to the outside.\n- Checking options A through E against these front and rear interlocking notches shows that only **Option B** fits cleanly into the opening without overhang or gap.',
+          rubric: [
+            { code: 'M1', text: 'Identifies the interlocking step and inner-aligned upper beam required to close the right wall.' },
+            { code: 'A1', text: 'Selects option B.' }
           ]
         },
         {

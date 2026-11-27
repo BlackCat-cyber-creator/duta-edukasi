@@ -1,6 +1,6 @@
 /**
- * Paket Soal Terstruktur: Latihan OSN IPA SMP (Fisika) 2023 (25 soal teks lengkap)
- * Sumber: osn_fis_smp_2023.pdf (30 soal sumber Paket A Fisika; 5 soal bergantung pada gambar/grafik dilewati: nomor 1, 2, 16, 21, dan 28).
+ * Paket Soal Terstruktur: Latihan OSN IPA SMP (Fisika) 2023 (30 soal lengkap)
+ * Sumber: osn_fis_smp_2023.pdf (30 soal sumber Paket A Fisika; seluruh 5 soal bergambar/grafik pada nomor 1, 2, 16, 21, dan 28 telah dipulihkan).
  */
 const OK = [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }];
 
@@ -27,9 +27,9 @@ export default {
   langDisplay: 'ID',
   competition: 'OSN-K',
   title: 'Latihan OSN IPA SMP (Fisika) 2023',
-  totalMarks: 29,
+  totalMarks: 35,
   instructions:
-    'Kerjakan seluruh 25 butir soal Fisika berikut dengan mempertahankan nomor asli naskah sumber (`osn_fis_smp_2023.pdf`, Paket A Fisika, 30 soal). Sebanyak 5 soal dilewati karena bergantung pada gambar/grafik yang tidak tersedia pada teks ekstraksi: nomor 1 (grafik percepatan terhadap waktu), 2 (grafik energi potensial dan energi kinetik terhadap waktu), 16 (gambar magnet batang, kumparan, dan galvanometer), 21 (kurva jarak tempuh terhadap waktu), serta 28 (gambar rangkaian hambatan listrik). Penilaian: Bagian I (Pilihan Ganda, 8 soal), Bagian II (Pilihan 1234, 9 soal), dan Bagian III (Sebab-Akibat, 4 soal) masing-masing bernilai 1 poin (total 21 poin); Bagian IV (Isian Singkat, 4 soal: nomor 26, 27, 29, 30) masing-masing bernilai 2 poin (total 8 poin), sehingga skor maksimum 29 poin.',
+    'Kerjakan seluruh 30 butir soal Fisika berikut sesuai nomor asli naskah sumber (`osn_fis_smp_2023.pdf`, Paket A Fisika, nomor 1–30). Penilaian: Bagian I (Pilihan Ganda, 10 soal: nomor 1–10), Bagian II (Pilihan 1234, 10 soal: nomor 11–20), dan Bagian III (Sebab-Akibat, 5 soal: nomor 21–25) masing-masing bernilai 1 poin (total 25 poin); Bagian IV (Isian Singkat, 5 soal: nomor 26–30) masing-masing bernilai 2 poin (total 10 poin), sehingga skor maksimum 35 poin.',
   source: {
     org: 'OSN-K',
     file: 'osn_fis_smp_2023.pdf',
@@ -40,9 +40,47 @@ export default {
     {
       no: 1,
       title: 'Bagian I: Pilihan Ganda',
-      marks: 8,
-      stem: 'Pilihlah satu jawaban yang paling tepat (8 soal dari nomor asli 3–10; masing-masing 1 poin).',
+      marks: 10,
+      stem: 'Pilihlah satu jawaban yang paling tepat (10 soal dari nomor asli 1–10; masing-masing 1 poin).',
       parts: [
+        {
+          label: '1',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-smp-fisika-2023/fig-1.webp',
+              caption: 'Grafik percepatan terhadap waktu untuk benda A, B, dan C.',
+              alt: 'Tiga grafik percepatan dalam m/s^2 terhadap waktu dalam sekon untuk benda A, B, dan C berupa pulsa persegi panjang konstan pada selang waktu tertentu.'
+            }
+          ],
+          prompt:
+            'Gambar berikut menunjukkan percepatan benda A, B, dan C yang bergerak pada sumbu-$x$.\n\nKecepatan awal benda A, B, dan C berturut-turut adalah $-2\\text{ m/s}$, $0\\text{ m/s}$, dan $+1\\text{ m/s}$. Urutan benda berdasarkan kecepatan akhirnya dari kecepatan terbesar ke kecepatan terkecil adalah ....\n\nA. A, B, C\nB. B, C, A\nC. C, B, A\nD. A, C, B',
+          answer: 'B. B, C, A',
+          principle:
+            'Perubahan kecepatan suatu benda sama dengan luas daerah di bawah kurva percepatan terhadap waktu ($\\Delta v = \\int a\\,dt = a \\cdot \\Delta t$ untuk percepatan konstan), sehingga kecepatan akhir memenuhi $v_f = v_0 + \\Delta v$.',
+          solution:
+            'Hitung perubahan kecepatan $\\Delta v = a \\cdot \\Delta t$ dari luas kurva percepatan-waktu masing-masing benda:\n- **Benda A:** $a_A = 4\\text{ m/s}^2$ selama $\\Delta t_A = 3 - 1 = 2\\text{ s}$, sehingga $\\Delta v_A = 4 \\times 2 = +8\\text{ m/s}$.\n  $$v_{fA} = v_{0A} + \\Delta v_A = -2 + 8 = 6\\text{ m/s}.$$\n- **Benda B:** $a_B = 2\\text{ m/s}^2$ selama $\\Delta t_B = 8 - 4 = 4\\text{ s}$, sehingga $\\Delta v_B = 2 \\times 4 = +8\\text{ m/s}$.\n  $$v_{fB} = v_{0B} + \\Delta v_B = 0 + 8 = 8\\text{ m/s}.$$\n- **Benda C:** $a_C = 6\\text{ m/s}^2$ selama $\\Delta t_C = 10 - 9 = 1\\text{ s}$, sehingga $\\Delta v_C = 6 \\times 1 = +6\\text{ m/s}$.\n  $$v_{fC} = v_{0C} + \\Delta v_C = 1 + 6 = 7\\text{ m/s}.$$\n\nUrutan dari kecepatan akhir terbesar ke terkecil adalah $8\\text{ m/s} > 7\\text{ m/s} > 6\\text{ m/s}$, yaitu **B, C, A** (pilihan B).',
+          rubric: OK
+        },
+        {
+          label: '2',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-smp-fisika-2023/fig-2.webp',
+              caption: 'Grafik energi potensial dan energi kinetik benda terhadap waktu.',
+              alt: 'Grafik garis energi dalam Joule terhadap waktu dalam sekon yang menampilkan kurva Energi Kinetik menurun linear dan kurva Energi Potensial meningkat linear.'
+            }
+          ],
+          prompt:
+            'Sebuah benda bergerak pada sebuah bidang di bawah pengaruh gaya gravitasi. Grafik energi potensial dan energi kinetik benda terhadap waktu ditunjukkan pada gambar.\n\nPernyataan yang benar untuk gerak benda tersebut adalah ....\n\nA. benda bergerak pada bidang datar licin\nB. benda bergerak pada bidang datar kasar\nC. benda bergerak pada bidang miring licin\nD. benda bergerak pada bidang miring kasar',
+          answer: 'C. benda bergerak pada bidang miring licin',
+          principle:
+            'Perubahan energi potensial gravitasi ($\\Delta E_p = m g \\Delta h \\ne 0$) menunjukkan adanya perubahan ketinggian (bidang miring), sedangkan energi mekanik total yang konstan ($E_m = E_k + E_p = \\text{tetap}$) menunjukkan tidak ada energi yang hilang akibat gaya gesek (bidang licin).',
+          solution:
+            'Baca nilai energi kinetik $E_k$ dan energi potensial $E_p$ pada setiap detik dari grafik:\n- $t = 0\\text{ s}$: $E_k = 80\\text{ J}$, $E_p = 0\\text{ J} \\implies E_m = 80\\text{ J}$\n- $t = 1\\text{ s}$: $E_k = 70\\text{ J}$, $E_p = 10\\text{ J} \\implies E_m = 80\\text{ J}$\n- $t = 2\\text{ s}$: $E_k = 60\\text{ J}$, $E_p = 20\\text{ J} \\implies E_m = 80\\text{ J}$\n- $t = 3\\text{ s}$: $E_k = 50\\text{ J}$, $E_p = 30\\text{ J} \\implies E_m = 80\\text{ J}$\n- $t = 4\\text{ s}$: $E_k = 40\\text{ J}$, $E_p = 40\\text{ J} \\implies E_m = 80\\text{ J}$\n- $t = 5\\text{ s}$: $E_k = 30\\text{ J}$, $E_p = 50\\text{ J} \\implies E_m = 80\\text{ J}$\n\n1. Karena $E_p$ terus bertambah dari $0$ hingga $50\\text{ J}$, ketinggian benda berubah (naik), sehingga benda bergerak pada **bidang miring** (bukan bidang datar).\n2. Karena energi mekanik total $E_m = E_k + E_p$ selalu konstan sebesar $80\\text{ J}$, tidak ada energi mekanik yang berubah menjadi panas akibat gesekan, sehingga bidang tersebut **licin**.\n\nJadi, pernyataan yang benar adalah benda bergerak pada bidang miring licin (pilihan C).',
+          rubric: OK
+        },
         {
           label: '3',
           marks: 1,
@@ -144,8 +182,8 @@ export default {
     {
       no: 2,
       title: 'Bagian II: Pilihan 1234',
-      marks: 9,
-      stem: 'Tentukan pernyataan bernomor yang benar untuk setiap soal (9 soal dari nomor asli 11–15 dan 17–20; masing-masing 1 poin).',
+      marks: 10,
+      stem: 'Tentukan pernyataan bernomor yang benar untuk setiap soal (10 soal dari nomor asli 11–20; masing-masing 1 poin).',
       parts: [
         {
           label: '11',
@@ -208,6 +246,25 @@ export default {
           rubric: OK
         },
         {
+          label: '16',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-smp-fisika-2023/fig-16.webp',
+              caption: 'Magnet batang di dekat kumparan kawat yang terhubung ke galvanometer.',
+              alt: 'Diagram magnet batang dengan kutub S di kiri dan U di kanan di sebelah kiri kumparan solenoida yang kedua ujungnya A dan B terhubung ke galvanometer.'
+            }
+          ],
+          prompt:
+            'Perhatikan gambar magnet batang, kawat kumparan, dan galvanometer di bawah ini.\n\nPernyataan berikut berkaitan dengan gerak magnet batang di atas:\n1. saat magnet digeser ke kiri, arus induksi mengalir dari A ke B\n2. saat magnet digeser ke kiri, arus induksi mengalir dari B ke A\n3. saat magnet digeser ke kanan, arus induksi mengalir dari A ke B\n4. saat magnet digeser ke kanan, arus induksi mengalir dari B ke A\n5. saat magnet digeser ke atas, arus induksi mengalir dari B ke A\n6. saat magnet digeser ke bawah, arus induksi mengalir dari A ke B\n\nPernyataan yang benar adalah ....\n\nA. $1$ dan $3$\nB. $2$ dan $3$\nC. $1$ dan $5$\nD. $4$ dan $6$',
+          answer: 'B. $2$ dan $3$',
+          principle:
+            'Menurut Hukum Lenz, arah arus induksi dalam kumparan selalu menimbulkan medan magnet induksi yang menentang perubahan fluks magnetik penyebabnya.',
+          solution:
+            'Pada gambar, kutub utara (U) magnet batang menghadap ke sisi kiri kumparan sehingga fluks magnetik dari magnet menembus kumparan ke arah kanan:\n- **Saat magnet digeser ke kanan (mendekati kumparan):** fluks magnetik ke kanan melalui kumparan bertambah. Sesuai Hukum Lenz, kumparan melawan pertambahan fluks tersebut dengan menghasilkan medan magnet induksi ke arah kiri (sisi kiri kumparan menjadi kutub U). Dengan aturan genggaman tangan kanan (ibu jari ke kiri) mengikuti arah lilitan pada gambar dari terminal $A$ ke $B$, arus induksi mengalir dari **A ke B** (pernyataan $3$ benar, pernyataan $4$ salah).\n- **Saat magnet digeser ke kiri (menjauhi kumparan):** fluks magnetik ke kanan berkurang, sehingga kumparan menghasilkan medan magnet induksi ke arah kanan untuk mempertahankannya. Arah arus induksi berbalik, yakni mengalir dari **B ke A** (pernyataan $2$ benar, pernyataan $1$ salah).\n- **Saat magnet digeser ke atas atau ke bawah:** kedua gerakan menjauhkan sumbu magnet dari sumbu kumparan sehingga fluks magnetik berkurang (sama seperti digeser ke kiri), sehingga arah arus induksi adalah dari B ke A (pernyataan $6$ salah).\n\nBerdasarkan pilihan yang tersedia, pasangan pernyataan yang benar adalah $2$ dan $3$ (pilihan B).',
+          rubric: OK
+        },
+        {
           label: '17',
           marks: 1,
           prompt:
@@ -260,9 +317,28 @@ export default {
     {
       no: 3,
       title: 'Bagian III: Sebab-Akibat',
-      marks: 4,
-      stem: 'Tentukan hubungan kebenaran pernyataan dan alasan pada setiap soal (4 soal dari nomor asli 22–25; masing-masing 1 poin).',
+      marks: 5,
+      stem: 'Tentukan hubungan kebenaran pernyataan dan alasan pada setiap soal (5 soal dari nomor asli 21–25; masing-masing 1 poin).',
       parts: [
+        {
+          label: '21',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-smp-fisika-2023/fig-21.webp',
+              caption: 'Kurva jarak tempuh terhadap waktu tempuh perjalanan sepeda.',
+              alt: 'Grafik jarak tempuh pada sumbu vertikal terhadap waktu tempuh pada sumbu horizontal dengan segmen menanjak melengkung, segmen datar mendatar, dan segmen garis lurus miring.'
+            }
+          ],
+          prompt:
+            'Gambar berikut merupakan kurva jarak tempuh terhadap waktu dari seorang anak yang berangkat ke sekolah dengan mengendarai sepeda.\n\nGrafik tersebut menunjukkan bahwa selama keberangkatan ke sekolah, anak tersebut pernah berhenti sebelum sampai sekolah.\nSEBAB\nGaris-garis lurus pada kurva tersebut menunjukkan kecepatan sepeda sama dengan nol.\n\nKedua pernyataan di atas adalah...\n\nA. benar dan berhubungan\nB. benar tetapi tidak berhubungan\nC. hanya satu yang benar\nD. tidak benar',
+          answer: 'C. hanya satu yang benar',
+          principle:
+            'Pada grafik jarak tempuh terhadap waktu ($s$–$t$), kemiringan (gradien) kurva menyatakan laju/kecepatan sesaat ($v = \\frac{\\Delta s}{\\Delta t}$): garis mendatar (gradien nol) berarti berhenti ($v = 0$), sedangkan garis lurus miring berarti bergerak dengan kecepatan konstan tidak nol ($v \\ne 0$).',
+          solution:
+            '- **Pernyataan pertama (benar):** Pada grafik jarak tempuh terhadap waktu, terdapat bagian kurva yang berbentuk garis lurus mendatar (horizontal), di mana jarak tempuh tidak bertambah meskipun waktu terus berjalan. Artinya laju anak sama dengan nol (pernah berhenti sebelum tiba di sekolah).\n- **Pernyataan kedua (salah):** Tidak semua garis lurus pada kurva menunjukkan kecepatan sama dengan nol. Selain garis lurus mendatar ($v = 0$), grafik juga memuat segmen garis lurus miring menanjak di bagian akhir yang memiliki kemiringan positif konstan, yang berarti sepeda bergerak dengan kecepatan tetap tidak nol ($v > 0$).\n\nKarena hanya pernyataan pertama yang benar, jawaban yang tepat adalah C.',
+          rubric: OK
+        },
         {
           label: '22',
           marks: 1,
@@ -316,8 +392,8 @@ export default {
     {
       no: 4,
       title: 'Bagian IV: Isian Singkat',
-      marks: 8,
-      stem: 'Tuliskan jawaban singkat beserta satuan yang diminta (4 soal dari nomor asli 26, 27, 29, dan 30; masing-masing 2 poin).',
+      marks: 10,
+      stem: 'Tuliskan jawaban singkat beserta satuan yang diminta (5 soal dari nomor asli 26–30; masing-masing 2 poin).',
       parts: [
         {
           label: '26',
@@ -349,6 +425,29 @@ export default {
           rubric: [
             { code: 'M1', text: 'Menghitung volume awan ($2 \\times 10^8\\text{ m}^3$), jumlah tetes total ($4{,}2 \\times 10^{16}$), dan volume satu tetes bola dengan konversi satuan SI yang konsisten.' },
             { code: 'A1', text: 'Memperoleh massa total air $176\\,000\\text{ kg}$ dengan tepat.' }
+          ]
+        },
+        {
+          label: '28',
+          marks: 2,
+          figures: [
+            {
+              src: '/papers/osn-ipa-smp-fisika-2023/fig-28.webp',
+              caption: 'Rangkaian hambatan listrik antara terminal A, B, C, dan D.',
+              alt: 'Diagram rangkaian hambatan listrik berbentuk tangga dengan jalur atas dan jalur bawah antara terminal A dan B serta dua cabang vertikal dan ujung kanan terbuka di C dan D.'
+            }
+          ],
+          prompt:
+            'Perhatikan rangkaian hambatan listrik berikut ini.\n\nHambatan pengganti antara ujung A dan B adalah ... ohm.',
+          answer: '$\\frac{52}{7}\\text{ ohm}$ ($\\approx 7{,}43\\text{ ohm}$)',
+          answerNumeric: [{ name: 'hambatan_pengganti', value: 7.43, unit: 'ohm' }],
+          principle:
+            'Cabang rangkaian yang berujung terbuka tidak dialiri arus listrik sehingga tidak memengaruhi hambatan ekivalen; hambatan disederhanakan dengan aturan seri ($R_s = \\sum R_i$) dan paralel ($\\frac{1}{R_p} = \\sum \\frac{1}{R_i}$).',
+          solution:
+            'Karena terminal $C$ dan $D$ terbuka (tidak terhubung ke mana pun), arus listrik tidak mengalir melalui dua resistor $2\\ \\Omega$ paling kanan di cabang atas maupun cabang bawah.\n\n1. **Sederhanakan cabang seri di sebelah kanan cabang $6\\ \\Omega$:**\nTiga hambatan yang dilewati arus pada loop kanan tersusun seri:\n$$R_{\\text{seri}} = 2\\ \\Omega + 4\\ \\Omega + 2\\ \\Omega = 8\\ \\Omega.$$\n\n2. **Gabungkan secara paralel dengan hambatan vertikal $6\\ \\Omega$:**\n$$R_p = \\frac{6 \\times 8}{6 + 8} = \\frac{48}{14} = \\frac{24}{7}\\ \\Omega.$$\n\n3. **Tambahkan dua hambatan $2\\ \\Omega$ yang terhubung seri ke terminal A dan B:**\n$$R_{AB} = 2\\ \\Omega + \\frac{24}{7}\\ \\Omega + 2\\ \\Omega = 4 + \\frac{24}{7} = \\frac{52}{7}\\ \\Omega \\approx 7{,}43\\ \\Omega.$$\n\n*(Catatan: kunci pada naskah sumber menuliskan $8\\text{ ohm}$, kemungkinan karena salah cetak nilai hambatan pada salah satu cabang vertikal pada gambar sumber; untuk rangkaian sesuai nilai yang tertera pada gambar, hambatan penggantinya adalah $\\frac{52}{7}\\text{ ohm} \\approx 7{,}43\\text{ ohm}$.)*',
+          rubric: [
+            { code: 'M1', text: 'Mengabaikan cabang terbuka di C dan D serta menghitung susunan seri-paralel $R_p = 6 \\parallel (2 + 4 + 2) = \\frac{24}{7}\\ \\Omega$.' },
+            { code: 'A1', text: 'Menjumlahkan hambatan seri dengan cabang menuju A dan B hingga memperoleh $R_{AB} = \\frac{52}{7}\\text{ ohm} \\approx 7{,}43\\text{ ohm}$.' }
           ]
         },
         {

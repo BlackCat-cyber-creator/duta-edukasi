@@ -1,7 +1,6 @@
 /**
  * Paket Soal: SASMO 2016 Secondary 2 (Singapore and Asian Schools Math Olympiad).
  * Source: sasmo_2016_sec2.pdf. Original English wording and original question numbers are kept.
- * Items that depend on a diagram that cannot be restated in text (Q6, Q12, Q13) are omitted.
  */
 export default {
   id: 'sasmo-2016-sec2',
@@ -16,9 +15,9 @@ export default {
   langDisplay: 'EN',
   competition: 'SASMO',
   title: 'SASMO 2016 Secondary 2',
-  totalMarks: 64,
+  totalMarks: 70,
   instructions:
-    'Section A has 12 multiple-choice questions (2 points each) and Section B has 10 open-ended questions (4 points each). Original question numbers are kept; Questions 6, 12 and 13 of the original paper depend on diagrams and are omitted. Calculators are not allowed.',
+    'Section A has 15 multiple-choice questions (2 points each) and Section B has 10 open-ended questions (4 points each). Calculators are not allowed.',
   source: {
     org: 'SASMO',
     file: 'sasmo_2016_sec2.pdf',
@@ -29,7 +28,7 @@ export default {
     {
       no: 1,
       title: 'Section A: Multiple Choice',
-      marks: 24,
+      marks: 30,
       stem: 'Choose the correct option for each question (2 points each in the original contest). Question numbers follow the original paper.',
       parts: [
         {
@@ -103,6 +102,27 @@ export default {
           ]
         },
         {
+          label: '6',
+          marks: 2,
+          prompt:
+            'How would the pattern appear when the transparent sheet is folded along the dotted line?\n\nA. Option A\nB. Option B\nC. Option C\nD. Option D\nE. None of the above',
+          figures: [
+            {
+              src: '/papers/sasmo-2016-sec2/fig-6.webp',
+              alt: 'A square transparent sheet with a vertical dotted fold line and geometric pattern above four folded options labelled A through D.',
+              caption: 'Original transparent sheet pattern and folded options A–D.'
+            }
+          ],
+          answer: 'C. Option C',
+          principle: 'Folding a transparent sheet along a line reflects the markings on one side across the line onto the stationary half.',
+          solution:
+            'Fold the left half rightwards across the vertical dotted line onto the stationary right half:\n- On the left half, the outer chevron at the far left and the inner chevron meeting the middle horizontal segment reflect across the dotted line to form an outer right-pointing chevron on the far right and an inner left-pointing chevron ending on the middle segment.\n- On the stationary right half, the existing chevron starts at the top and bottom of the dotted line and meets the middle horizontal segment at the same inner vertex.\nSuperimposing the two halves produces the crossing X-shape with the middle segment ending at the crossing point and the outer chevron pointing right, which matches Option C (Option A omits the stationary chevron, Option B flips it leftwards, and Option D reverses the outer chevron).',
+          rubric: [
+            { code: 'M1', text: 'Reflects the left-half pattern across the dotted line and keeps the stationary right-half chevron.' },
+            { code: 'A1', text: 'Identifies the resulting X-crossing with right-pointing outer chevron and chooses C.' }
+          ]
+        },
+        {
           label: '7',
           marks: 2,
           prompt:
@@ -169,6 +189,48 @@ export default {
           rubric: [
             { code: 'M1', text: 'Argues at most one statement can be true and that zero true statements is impossible.' },
             { code: 'A1', text: 'Concludes the count of false statements is $4$ and chooses D.' }
+          ]
+        },
+        {
+          label: '12',
+          marks: 2,
+          prompt:
+            'There are 13 regions in the diagram. Each region is to be painted with one colour. What is the least number of colours needed to paint all the regions so that any two adjacent regions do not share the same colour?\n\nA. $3$\nB. $4$\nC. $5$\nD. $6$\nE. None of the above',
+          figures: [
+            {
+              src: '/papers/sasmo-2016-sec2/fig-12.webp',
+              alt: 'A circular diagram divided into a central disc, a middle ring of six sectors, and a staggered outer ring of six sectors.',
+              caption: 'Circular map of thirteen regions to be coloured.'
+            }
+          ],
+          answer: 'B. $4$',
+          principle: 'Prove $3$ colours are impossible by adjacency forcing, and exhibit a valid $4$-colouring.',
+          solution:
+            'The diagram consists of $1$ central disc, $6$ middle-ring sectors surrounding it, and $6$ staggered outer-ring sectors.\n**Why $3$ colours fail.** Suppose colours $1,2,3$ suffice, and give the central disc colour $1$. Every middle-ring sector touches the centre, so the $6$ middle sectors must use only $2$ and $3$; because adjacent middle sectors differ, they must alternate $2,3,2,3,2,3$ around the ring. Each staggered outer-ring sector touches one middle sector of colour $2$ and one of colour $3$, so every outer sector is forced to have colour $1$—impossible because adjacent outer sectors share a boundary.\n**Why $4$ colours work.** Colour the central disc $1$, alternate the middle ring as $2,3,2,3,2,3$, and alternate the outer ring as $1,4,1,4,1,4$. No two adjacent regions share a colour, so the least number of colours needed is $4$.',
+          rubric: [
+            { code: 'M1', text: 'Proves $3$ colours are impossible because alternating $2,3$ in the middle ring forces adjacent outer regions to both take colour $1$.' },
+            { code: 'A1', text: 'Gives a valid $4$-colouring and chooses B.' }
+          ]
+        },
+        {
+          label: '13',
+          marks: 2,
+          prompt:
+            'How many triangles are there in the diagram below?\n\nA. $45$\nB. $33$\nC. $35$\nD. $41$\nE. $43$',
+          figures: [
+            {
+              src: '/papers/sasmo-2016-sec2/fig-13.webp',
+              alt: 'A five-by-two rectangular grid of squares subdivided by a horizontal midline and alternating diagonal segments forming triangles.',
+              caption: 'Grid diagram for counting triangles.'
+            }
+          ],
+          answer: 'E. $43$',
+          principle: 'Count triangles systematically by the number of elementary ($1$-part) triangles they contain.',
+          solution:
+            'Group the triangles by the number of elementary ($1$-part) triangles they contain:\n- **$1$-part triangles:** $20$ (each of the $10$ unit squares is split by one diagonal into $2$ right triangles, giving $10\\times2=20$).\n- **$2$-part triangles:** $13$ (pairs of adjacent $1$-part triangles sharing a vertical, horizontal, or diagonal edge).\n- **$4$-part triangles:** $8$ (larger right triangles spanning $2\\times2$ blocks or along the diagonal lines).\n- **$8$-part triangles:** $2$ (the two largest triangles spanning $4$ columns and $2$ rows).\nTotal: $20+13+8+2=43$, so the answer is E.',
+          rubric: [
+            { code: 'M1', text: 'Categorises triangles by size ($1$-part, $2$-part, $4$-part, $8$-part) and counts $20,13,8,2$.' },
+            { code: 'A1', text: 'Sums to $43$ and chooses E.' }
           ]
         },
         {

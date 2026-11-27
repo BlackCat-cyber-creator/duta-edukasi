@@ -14,6 +14,7 @@ import {
 import { AMC_LEVELS_METADATA, ALL_AMC_CHAPTERS_INDEX } from '../data/amc';
 import { amcLevelPath } from '../utils/seoRoutes';
 import { OLIMPIADE_HUB_META, olympiadCompetitionMeta } from '../utils/seoMeta';
+import { OLIMPIADE_HUB_FAQS } from '../utils/seoFaqs';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { getStudyState, STUDY_STATE_EVENT } from '../utils/progress';
 
@@ -22,17 +23,6 @@ const LEVELS = [
   { id: 'SD', label: 'SD' },
   { id: 'SMP', label: 'SMP' },
   { id: 'SMA', label: 'SMA' }
-];
-
-const HUB_FAQS = [
-  {
-    question: 'Kompetisi olimpiade apa saja yang tersedia di Duta e-dukasi?',
-    answer: 'Tersedia latihan soal dan pembahasan OSN/OSK/OSN-P (Matematika, IPA, Fisika, Kimia, Biologi), AMC 8/10/12 (termasuk 36 bab modul konsep), SASMO, SMO Singapore, HKIMO, TIMO, SIMOC, IKMC/Kangaroo, KSM, KMNR, OMVN, serta Seri Pembinaan OSN.'
-  },
-  {
-    question: 'Apakah seluruh pembahasan soal olimpiade dapat diakses gratis?',
-    answer: 'Ya, seluruh paket soal dan pembahasan di halaman Olimpiade Duta e-dukasi terbuka gratis tanpa perlu login dan berlisensi CC BY 4.0.'
-  }
 ];
 
 function PaperCard({ paper, progress }) {
@@ -79,8 +69,15 @@ export function OlimpiadeHubPage() {
   }, []);
 
   const papersOf = (c) => PUBLISHED_PAPERS.filter((p) => c.competitions.includes(p.competition));
+  const isUnknownCompetition = Boolean(competitionId && !routeComp);
   const routePapersCount = routeComp ? papersOf(routeComp).length : 0;
-  useDocumentMeta(routeComp ? olympiadCompetitionMeta(routeComp, routePapersCount) : OLIMPIADE_HUB_META);
+  useDocumentMeta(
+    isUnknownCompetition
+      ? { ...OLIMPIADE_HUB_META, title: 'Kompetisi Tidak Ditemukan | Duta e-dukasi', path: '', noindex: true }
+      : routeComp
+        ? olympiadCompetitionMeta(routeComp, routePapersCount)
+        : OLIMPIADE_HUB_META
+  );
 
   const setFilter = (key, value) => {
     const next = new URLSearchParams(params);
@@ -120,10 +117,16 @@ export function OlimpiadeHubPage() {
     return true;
   };
 
-  const faqsToRender = routeComp?.faqs?.length ? routeComp.faqs : HUB_FAQS;
+  const faqsToRender = routeComp?.faqs?.length ? routeComp.faqs : OLIMPIADE_HUB_FAQS;
 
   return (
     <div className="handbook-container">
+      {isUnknownCompetition && (
+        <div className="editorial-card" style={{ padding: '1rem 1.25rem', marginBottom: '1rem', borderLeft: '4px solid var(--brand-crimson)' }}>
+          <strong>Kompetisi tidak ditemukan.</strong> Menampilkan semua kompetisi di{' '}
+          <Link to="/olimpiade">Pusat Olimpiade Duta e-dukasi</Link>.
+        </div>
+      )}
       {routeComp && (
         <nav className="seo-breadcrumb" aria-label="Navigasi">
           <Link to="/">Beranda</Link> › <Link to="/olimpiade">Olimpiade</Link> › <span>{routeComp.label}</span>

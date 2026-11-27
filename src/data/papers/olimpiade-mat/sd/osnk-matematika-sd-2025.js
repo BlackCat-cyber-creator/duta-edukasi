@@ -1,8 +1,6 @@
 /**
- * Paket Soal Terstruktur: OSN-K Matematika SD 2025 (24 soal pilihan ganda terpilih)
- * Sumber: scraped_raw/osnk-matematika-sd-2025.md (30 soal asli).
- * Soal nomor 4, 13, 14, 23, dan 24 dilewati karena membutuhkan gambar/diagram yang tidak tersedia;
- * soal nomor 29 dilewati karena hasil perhitungan eksak (Rp85.500,00) tidak terdapat pada pilihan jawaban.
+ * Paket Soal Terstruktur: OSN-K Matematika SD 2025 (30 soal pilihan ganda lengkap)
+ * Sumber: content-inbox/drive/restore/osnk_mat_sd_2025.pdf & scraped_raw/osnk-matematika-sd-2025.md (30 soal asli).
  */
 const OK = [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }];
 
@@ -27,9 +25,9 @@ export default {
   langDisplay: 'ID',
   competition: 'OSN-K',
   title: 'OSN-K Matematika SD 2025',
-  totalMarks: 24,
+  totalMarks: 30,
   instructions:
-    'Kerjakan seluruh 24 soal pilihan ganda terpilih (dari 30 soal naskah asli; setiap jawaban benar bernilai 1 poin). Enam soal dilewati: nomor 4, 13, 14, 23, dan 24 karena memerlukan gambar atau diagram yang tidak tersedia pada arsip, serta nomor 29 karena hasil eksak (Rp85.500,00) tidak tercantum pada pilihan jawaban. Penomoran label soal mengikuti naskah asli, dan soal nomor 28 dipertahankan dalam bahasa Inggris sesuai aslinya.',
+    'Kerjakan seluruh 30 soal pilihan ganda berikut (setiap jawaban benar bernilai 1 poin). Penomoran label soal mengikuti urutan naskah asli, dan soal nomor 23 serta 28 dipertahankan dalam bahasa Inggris sesuai aslinya.',
   source: {
     org: 'OSN-K (Olimpiade Sains Nasional tingkat Kabupaten/Kota)',
     file: 'scraped_raw/osnk-matematika-sd-2025.md',
@@ -40,8 +38,8 @@ export default {
     {
       no: 1,
       title: 'Soal Pilihan Ganda',
-      marks: 24,
-      stem: 'Pilihlah satu jawaban yang paling tepat untuk setiap soal berikut (24 soal terpilih, masing-masing bernilai 1 poin).',
+      marks: 30,
+      stem: 'Pilihlah satu jawaban yang paling tepat untuk setiap soal berikut (30 soal, masing-masing bernilai 1 poin).',
       parts: [
         {
           label: '1',
@@ -74,6 +72,24 @@ export default {
           principle: 'Kubus kecil dengan tepat $2$ sisi bercat berada di bagian tengah setiap rusuk (bukan di titik sudut).',
           solution:
             'Kubus besar berukuran $4 \\times 4 \\times 4$ dipotong menjadi $64$ kubus kecil berukuran $1 \\times 1 \\times 1$.\nKubus kecil yang tepat memiliki dua sisi berwarna merah terletak di sepanjang rusuk kubus besar, tetapi tidak di titik sudut (karena kubus di titik sudut memiliki $3$ sisi merah).\nPada setiap rusuk sepanjang $4$ kubus kecil, terdapat $2$ kubus sudut di kedua ujungnya, sehingga tersisa $4 - 2 = 2$ kubus kecil di bagian tengah rusuk.\nKarena kubus memiliki $12$ rusuk, banyak kubus kecil yang tepat memiliki dua sisi berwarna merah adalah $12 \\times 2 = 24$.',
+          rubric: OK
+        },
+        {
+          label: '4',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2025/fig-4.webp',
+              alt: 'Diagram batang Data Peminjaman Buku Perpustakaan untuk siswa Kelas 4, Kelas 5, dan Kelas 6 dengan skala vertikal 0 sampai 50.',
+              caption: 'Diagram batang peminjaman buku perpustakaan selama satu minggu'
+            }
+          ],
+          prompt:
+            'Data peminjaman buku siswa kelas $4$, $5$, dan $6$ selama satu minggu di perpustakaan sekolah disajikan dalam diagram batang berikut.\n\nPernyataan yang tepat mengenai data tersebut adalah ....\n\nA. Rata-rata banyak buku yang dipinjam oleh tiap kelas adalah $30$\nB. Selisih banyak buku yang dipinjam antara kelas $6$ dengan kelas $4$ adalah $15$ buku\nC. Median dari data peminjaman buku adalah $35$ buku\nD. Jumlah buku yang dipinjam oleh ketiga kelas adalah $100$ buku',
+          answer: 'D. Jumlah buku yang dipinjam oleh ketiga kelas adalah $100$ buku',
+          principle: 'Membaca data pada diagram batang lalu menghitung rata-rata, selisih, median, dan jumlah data.',
+          solution:
+            'Berdasarkan diagram batang, banyak buku yang dipinjam masing-masing kelas adalah:\n- Kelas $4$: $25$ buku\n- Kelas $5$: $30$ buku\n- Kelas $6$: $45$ buku\nPeriksa setiap pernyataan:\n- A salah: rata-rata banyak buku adalah $\\frac{25 + 30 + 45}{3} = \\frac{100}{3} = 33\\frac{1}{3} \\ne 30$.\n- B salah: selisih kelas $6$ dan kelas $4$ adalah $45 - 25 = 20 \\ne 15$ buku.\n- C salah: karena data terurut adalah $25, 30, 45$, mediannya adalah $30 \\ne 35$ buku.\n- D benar: jumlah buku yang dipinjam ketiga kelas adalah $25 + 30 + 45 = 100$ buku.',
           rubric: OK
         },
         {
@@ -165,6 +181,42 @@ export default {
           rubric: OK
         },
         {
+          label: '13',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2025/fig-13.webp',
+              alt: 'Tiga persegi yang saling berimpitan secara mendatar dari kiri ke kanan, yaitu Taman 1 yang terbesar, Taman 2 di tengah, dan Taman 3 yang terkecil.',
+              caption: 'Susunan tiga taman berbentuk persegi yang saling berimpitan'
+            }
+          ],
+          prompt:
+            'Sebuah taman kota terdiri dari tiga taman saling berimpitan yaitu Taman $1$, Taman $2$, dan Taman $3$ yang masing-masing berbentuk persegi seperti pada gambar berikut.\n\nJika perbandingan sisi Taman $1$, Taman $2$, dan Taman $3$ adalah $5 : 4 : 3$, dan luas Taman $1$ adalah $100\\ \\text{m}^2$, maka keliling taman kota adalah ....\n\nA. $60\\ \\text{m}$\nB. $64\\ \\text{m}$\nC. $68\\ \\text{m}$\nD. $72\\ \\text{m}$',
+          answer: 'C. $68\\ \\text{m}$',
+          principle: 'Menentukan panjang sisi persegi dari luasnya, menggunakan perbandingan senilai, dan menghitung keliling gabungan tanpa sisi berimpitan di bagian dalam.',
+          solution:
+            'Luas Taman $1$ adalah $100\\ \\text{m}^2$ (pada naskah asli tertulis $\\text{cm}^2$, disesuaikan menjadi $\\text{m}^2$ mengikuti satuan meter pada pilihan jawaban), sehingga panjang sisi Taman $1$ adalah:\n$$s_1 = \\sqrt{100} = 10\\ \\text{m}.$$\nDengan perbandingan sisi $s_1 : s_2 : s_3 = 5 : 4 : 3$, diperoleh:\n$$s_2 = \\frac{4}{5} \\times 10 = 8\\ \\text{m}, \\qquad s_3 = \\frac{3}{5} \\times 10 = 6\\ \\text{m}.$$\nKetika ketiga persegi disusun mendatar dan berimpitan, sisi bersama antara Taman $1$ dan Taman $2$ (panjang $s_2$) serta antara Taman $2$ dan Taman $3$ (panjang $s_3$) tidak termasuk keliling luar. Masing-masing sisi bersama tersebut terhitung dua kali jika kita menjumlahkan keliling ketiga persegi, sehingga:\n$$\\text{Keliling} = 4(10 + 8 + 6) - 2(8 + 6) = 96 - 28 = 68\\ \\text{m}.$$',
+          rubric: OK
+        },
+        {
+          label: '14',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2025/fig-14.webp',
+              alt: 'Persegi ABEI dengan titik-titik sudut A, B, E, I serta titik C, D pada sisi BE dan titik F, G, H pada sisi EI yang membentuk empat segitiga arsiran berpuncak di A.',
+              caption: 'Persegi ABEI dengan empat daerah segitiga yang diarsir'
+            }
+          ],
+          prompt:
+            'Perhatikan gambar berikut!\n\nJika luas persegi $ABEI$ adalah $49\\ \\text{cm}^2$ dan luas daerah yang diarsir dalam persegi adalah $35\\ \\text{cm}^2$, maka panjang $BC + DE + EF + GH = \\dots\\ \\text{cm}$.\n\nA. $9$\nB. $10$\nC. $12$\nD. $14$',
+          answer: 'B. $10$',
+          principle: 'Keempat segitiga yang diarsir memiliki tinggi yang sama dengan panjang sisi persegi.',
+          solution:
+            'Karena luas persegi $ABEI$ adalah $49\\ \\text{cm}^2$, panjang sisi persegi adalah:\n$$s = \\sqrt{49} = 7\\ \\text{cm}.$$\nKeempat segitiga yang diarsir berpusat di titik $A$:\n- $\\triangle ABC$ dan $\\triangle ADE$ beralas di sisi $BE$ dengan tinggi $AB = 7\\ \\text{cm}$.\n- $\\triangle AEF$ dan $\\triangle AGH$ beralas di sisi $EI$ dengan tinggi $AI = 7\\ \\text{cm}$.\nJumlah luas keempat segitiga yang diarsir adalah:\n$$\\frac{1}{2} \\times 7 \\times (BC + DE + EF + GH) = 35.$$\nKalikan kedua ruas dengan $\\frac{2}{7}$:\n$$BC + DE + EF + GH = \\frac{35 \\times 2}{7} = 10\\ \\text{cm}.$$',
+          rubric: OK
+        },
+        {
           label: '15',
           marks: 1,
           prompt:
@@ -253,6 +305,35 @@ export default {
           rubric: OK
         },
         {
+          label: '23',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2025/fig-23.webp',
+              alt: 'Square grid diagram showing polygon ABCDEFGH and a single unit square labeled P below it.',
+              caption: 'Polygon ABCDEFGH and unit square P on a square grid'
+            }
+          ],
+          prompt:
+            'Look at the picture below.\n\nThe area of $P$ is $2\\ \\text{cm}^2$, the area of $ABCDEFGH$ is $\\dots\\ \\text{cm}^2$.\n\nA. $36$\nB. $40$\nC. $42$\nD. $44$',
+          answer: 'B. $40$',
+          principle: 'Menghitung banyak petak satuan yang menyusun bangun dengan membagi menjadi persegi panjang dan segitiga siku-siku.',
+          solution:
+            'Bagi bangun $ABCDEFGH$ mengikuti garis petak menjadi empat bagian yang mudah dihitung:\n- Persegi panjang bagian atas ($AB$ selebar $5$ petak dan $BC$ setinggi $2$ petak): $5 \\times 2 = 10$ petak satuan.\n- Persegi panjang tengah-kiri (di kiri garis $DE$, lebar $2$ petak dan tinggi $1$ petak): $2 \\times 1 = 2$ petak satuan.\n- Persegi bawah-kiri (dibatasi oleh $HG$ dan perpanjangan vertikal $DE$, berukuran $2 \\times 2$): $2 \\times 2 = 4$ petak satuan.\n- Segitiga siku-siku bawah-kanan (alas $EF = 4$ petak dan tinggi vertikal dari $E$ sejajar $G$ sebesar $2$ petak): $\\frac{1}{2} \\times 4 \\times 2 = 4$ petak satuan.\nTotal luas bangun $ABCDEFGH$ adalah $10 + 2 + 4 + 4 = 20$ petak satuan. Karena luas $1$ petak satuan $P$ adalah $2\\ \\text{cm}^2$, luas $ABCDEFGH$ adalah $20 \\times 2 = 40\\ \\text{cm}^2$.',
+          rubric: OK
+        },
+        {
+          label: '24',
+          marks: 1,
+          prompt:
+            'Sepuluh kubus masing-masing memiliki panjang rusuk $1\\ \\text{cm}$ akan disusun sehingga sisinya bersisian dan membentuk satu bangun ruang baru. Luas permukaan minimal bangun ruang baru tersebut adalah ....\n\nA. $24$\nB. $28$\nC. $30$\nD. $42$',
+          answer: 'C. $30$',
+          principle: 'Meminimalkan luas permukaan gabungan kubus satuan dengan memaksimumkan banyak sisi yang saling berimpitan.',
+          solution:
+            'Untuk meminimalkan luas permukaan $10$ kubus satuan, susun kubus serapat mungkin mendekati bentuk kubus/balok:\n- Susun $8$ kubus menjadi sebuah kubus $2 \\times 2 \\times 2$, yang memiliki luas permukaan $6 \\times (2 \\times 2) = 24\\ \\text{cm}^2$.\n- Tempelkan $1$ kubus ke-$9$ pada salah satu sisi kubus $2 \\times 2 \\times 2$: satu muka tertutupi dan lima muka baru terlihat, sehingga luas permukaan bertambah $5 - 1 = 4\\ \\text{cm}^2$ menjadi $28\\ \\text{cm}^2$.\n- Tempelkan $1$ kubus ke-$10$ tepat di sebelah kubus ke-$9$ sekaligus menempel pada kubus $2 \\times 2 \\times 2$: dua muka tertutupi dan empat muka baru terlihat, sehingga luas permukaan bertambah $4 - 2 = 2\\ \\text{cm}^2$ menjadi $30\\ \\text{cm}^2$.\nLuas permukaan $28\\ \\text{cm}^2$ mustahil dicapai karena jumlah luas proyeksi dari tiga arah (atas, depan, samping) minimal $4 + 5 + 6 = 15$ petak (proyeksi $(4, 5, 5)$ hanya dapat menampung susunan berkapasitas penuh $2\\times 2\\times 2$ dengan tinggi tidak seragam sehingga minimal salah satu proyeksi menjadi $6$), sehingga luas permukaan minimal adalah $2 \\times 15 = 30$.',
+          rubric: OK
+        },
+        {
           label: '25',
           marks: 1,
           prompt:
@@ -294,6 +375,17 @@ export default {
           principle: 'Pemfaktoran menggunakan sifat distributif tanpa menghitung pangkat besar secara langsung.',
           solution:
             'Sederhanakan bilangan di dalam tanda kurung terlebih dahulu: $4^2 - 1 = 16 - 1 = 15$.\nKarena $45 = 15 \\times 3$, keluarkan faktor $15$ dari pembilang:\n$$\\frac{45 + 3^{2025}(4^2 - 1)}{3 + 3^{2025}} = \\frac{15 \\times 3 + 15 \\times 3^{2025}}{3 + 3^{2025}} = \\frac{15(3 + 3^{2025})}{3 + 3^{2025}} = 15.$$',
+          rubric: OK
+        },
+        {
+          label: '29',
+          marks: 1,
+          prompt:
+            'Andika berbelanja di toko alat-alat tulis membeli beberapa barang yaitu sepuluh buku tulis, lima pensil, satu penggaris, dan satu kotak pensil. Harga satu buku Rp5.000,00, satu pensil atau satu penggaris Rp2.000,00, dan satu kotak pensil Rp30.000,00. Jika toko memberikan diskon $10\\%$ untuk buku dan $5\\%$ untuk kotak pensil, maka jumlah yang harus dibayar oleh Andika adalah ....\n\nA. Rp92.000,00\nB. Rp88.400,00\nC. Rp85.500,00\nD. Rp83.800,00',
+          answer: 'C. Rp85.500,00',
+          principle: 'Menghitung harga total tiap barang dan menerapkan potongan diskon persentase secara terpisah.',
+          solution:
+            'Hitung biaya masing-masing barang setelah diskon:\n- $10$ buku tulis: harga sebelum diskon $10 \\times \\text{Rp}5.000{,}00 = \\text{Rp}50.000{,}00$. Diskon $10\\%$ sebesar $\\frac{10}{100} \\times 50.000 = \\text{Rp}5.000{,}00$, sehingga harga bayar $= \\text{Rp}45.000{,}00$.\n- $5$ pensil dan $1$ penggaris: $(5 + 1) \\times \\text{Rp}2.000{,}00 = 6 \\times \\text{Rp}2.000{,}00 = \\text{Rp}12.000{,}00$.\n- $1$ kotak pensil: harga sebelum diskon $\\text{Rp}30.000{,}00$. Diskon $5\\%$ sebesar $\\frac{5}{100} \\times 30.000 = \\text{Rp}1.500{,}00$, sehingga harga bayar $= \\text{Rp}28.500{,}00$.\nTotal jumlah yang harus dibayar oleh Andika adalah:\n$$\\text{Rp}45.000{,}00 + \\text{Rp}12.000{,}00 + \\text{Rp}28.500{,}00 = \\text{Rp}85.500{,}00.$$',
           rubric: OK
         },
         {

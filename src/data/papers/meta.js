@@ -309,14 +309,78 @@ export const OLYMPIAD_COMPETITIONS = [
     label: 'Kompetisi Nasional Lainnya',
     path: '/olimpiade/kompetisi-nasional',
     ogCategory: 'olimpiade',
-    competitions: ['OMVN', 'KOM', 'OMITS', 'OPTIKA'],
-    blurb: 'Soal kompetisi matematika dan sains nasional universitas/lembaga (OMVN, KOM, OMITS, dll.).',
-    seoTitle: 'Soal & Pembahasan Kompetisi Matematika Nasional (OMVN, OMITS, KOM)',
-    seoDescription: 'Arsip soal kompetisi matematika nasional perguruan tinggi dan lembaga seperti OMVN lengkap kunci jawaban dan pembahasan eksak.',
+    competitions: ['OMVN', 'KOM', 'OMITS', 'OPTIKA', 'PASIAD', 'LIMAS'],
+    blurb: 'Soal kompetisi matematika dan sains nasional universitas/lembaga (OMVN, PASIAD, LIMAS, KOM, OMITS, dll.).',
+    seoTitle: 'Soal & Pembahasan Kompetisi Matematika Nasional (OMVN, PASIAD, LIMAS, OMITS)',
+    seoDescription: 'Arsip soal kompetisi matematika nasional perguruan tinggi dan lembaga seperti OMVN, PASIAD, dan LIMAS lengkap kunci jawaban dan pembahasan eksak.',
     faqs: [
       {
         question: 'Kompetisi apa yang termasuk di kategori ini?',
-        answer: 'Kategori ini menghimpun soal kompetisi nasional seperti OMVN dan kompetisi universitas/lembaga setara tingkat OSN.'
+        answer: 'Kategori ini menghimpun soal kompetisi nasional seperti OMVN, PASIAD, LIMAS, dan kompetisi universitas/lembaga setara tingkat OSN.'
+      }
+    ]
+  },
+  {
+    id: 'amo',
+    label: 'AMO',
+    path: '/olimpiade/amo',
+    ogCategory: 'olimpiade',
+    competitions: ['AMO'],
+    blurb: 'American Mathematics Olympiad (AMO) oleh SIMCC berbahasa Inggris lengkap pembahasan konseptual.',
+    seoTitle: 'Soal & Pembahasan AMO (American Mathematics Olympiad)',
+    seoDescription: 'Paket soal latihan dan simulasi American Mathematics Olympiad (AMO) untuk SD, SMP, dan SMA berbahasa Inggris lengkap kunci jawaban dan pembahasan bertahap.',
+    faqs: [
+      {
+        question: 'Untuk jenjang apa kompetisi AMO diselenggarakan?',
+        answer: 'AMO mencakup jenjang Grade 2 hingga Grade 12 (SD, SMP, SMA) dengan soal pilihan ganda dan isian singkat berbahasa Inggris.'
+      }
+    ]
+  },
+  {
+    id: 'asmopss',
+    label: 'ASMOPSS',
+    path: '/olimpiade/asmopss',
+    ogCategory: 'olimpiade',
+    competitions: ['ASMOPSS'],
+    blurb: 'Asian Science & Mathematics Olympiad for Primary and Secondary Schools (ASMOPSS) berbahasa Inggris.',
+    seoTitle: 'Soal & Pembahasan ASMOPSS Matematika & Sains (Primary & Secondary)',
+    seoDescription: 'Kumpulan soal ASMOPSS (Asian Science and Mathematics Olympiad for Primary and Secondary Schools) lengkap kunci jawaban, prinsip utama, dan pembahasan.',
+    faqs: [
+      {
+        question: 'Apa fokus kompetisi ASMOPSS?',
+        answer: 'ASMOPSS menguji pemecahan masalah kreatif Matematika dan Sains bagi siswa Primary (SD) dan Secondary (SMP) tingkat Asia.'
+      }
+    ]
+  },
+  {
+    id: 'imso',
+    label: 'IMSO',
+    path: '/olimpiade/imso',
+    ogCategory: 'olimpiade',
+    competitions: ['IMSO'],
+    blurb: 'International Mathematics and Science Olympiad (IMSO) untuk tingkat SD/Primary berbahasa Inggris.',
+    seoTitle: 'Soal & Pembahasan IMSO (International Mathematics & Science Olympiad)',
+    seoDescription: 'Arsip latihan soal IMSO Matematika dan IPA jenjang SD berbahasa Inggris lengkap kunci jawaban, pembahasan bertahap, dan rubrik penilaian.',
+    faqs: [
+      {
+        question: 'Siapa peserta kompetisi IMSO?',
+        answer: 'IMSO ditujukan bagi siswa sekolah dasar (Primary, umumnya Kelas 5–6) untuk cabang Matematika dan Sains bertaraf internasional.'
+      }
+    ]
+  },
+  {
+    id: 'cemc',
+    label: 'CEMC (Waterloo & BCC)',
+    path: '/olimpiade/cemc',
+    ogCategory: 'olimpiade',
+    competitions: ['CEMC', 'Gauss', 'Pascal', 'Cayley', 'Fermat', 'Euclid', 'BCC'],
+    blurb: 'Kompetisi matematika dan informatika University of Waterloo (Gauss, Pascal, Cayley, Fermat, Euclid, dan Beaver Computing Challenge).',
+    seoTitle: 'Soal & Pembahasan CEMC Waterloo (Gauss, Pascal, Cayley, Fermat, BCC)',
+    seoDescription: 'Latihan soal kompetisi matematika dan berpikir komputasional CEMC University of Waterloo (Gauss, Pascal, Cayley, Fermat, Euclid, BCC) berbahasa Inggris lengkap pembahasan.',
+    faqs: [
+      {
+        question: 'Apa saja cabang kompetisi CEMC Waterloo?',
+        answer: 'CEMC menyelenggarakan Gauss (Kelas 7–8), Pascal (Kelas 9), Cayley (Kelas 10), Fermat (Kelas 11), Euclid (Kelas 12), serta Beaver Computing Challenge (BCC) untuk berpikir komputasional dan informatika.'
       }
     ]
   },

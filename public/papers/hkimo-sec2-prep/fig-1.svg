@@ -1,0 +1,19 @@
+<svg viewBox="0 0 260 205" xmlns="http://www.w3.org/2000/svg" width="260" height="205">
+  <rect width="260" height="205" fill="#ffffff"/>
+  <g stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Triangle ABC -->
+    <polygon points="120,28 40,140 164.2,104.4"/>
+    <!-- Extension CE -->
+    <line x1="164.2" y1="104.4" x2="205" y2="175"/>
+    <!-- Segment DE intersecting BC at F -->
+    <line x1="86.4" y1="75" x2="205" y2="175"/>
+  </g>
+  <g fill="#0f172a" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="16">
+    <text x="115" y="20">A</text>
+    <text x="23" y="148">B</text>
+    <text x="171" y="104">C</text>
+    <text x="70" y="75">D</text>
+    <text x="210" y="182">E</text>
+    <text x="122" y="133">F</text>
+  </g>
+</svg>

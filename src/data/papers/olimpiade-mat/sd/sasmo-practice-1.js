@@ -1,9 +1,9 @@
 /**
  * Paket Soal Terstruktur: SASMO Practice Set I
- * Sumber: SASMO Practice Set I.pdf (30 soal; soal 1 dan 2 dilewati karena teka-teki gambar/bayangan kompleks,
- * soal 3-30 dimuat sebagai soal isian singkat).
+ * Sumber: SASMO Practice Set I.pdf (30 soal lengkap: soal 1 dan 2 pilihan ganda bergambar,
+ * soal 3-30 isian singkat).
  * Bahasa dipertahankan sesuai naskah sumber (Inggris).
- * Soal 5, 6, 7, 9, 12, 14, 23, 25, 29, dan 30 dilengkapi diagram SVG vektor berdasarkan gambar asli pada PDF.
+ * Soal 1 dan 2 dilengkapi ilustrasi .webp dari PDF asli; soal 5, 6, 7, 9, 12, 14, 23, 25, 29, dan 30 dilengkapi diagram SVG vektor.
  */
 export default {
   id: 'sasmo-practice-1',
@@ -26,9 +26,9 @@ export default {
   langDisplay: 'EN',
   competition: 'SASMO',
   title: 'SASMO Practice Set I',
-  totalMarks: 112,
+  totalMarks: 120,
   instructions:
-    'Attempt all 28 short-answer questions (Questions 3 to 30) from SASMO Practice Set I without a calculator. Each correct answer carries 4 marks (112 marks total). Questions 1 and 2 (visual shadow and 3D kennel puzzle matching items with complex artwork) are omitted. Diagrams for Questions 5, 6, 7, 9, 12, 14, 23, 25, 29, and 30 are provided as vector SVG figures.',
+    'Attempt all 30 questions from SASMO Practice Set I without a calculator (Questions 1 and 2 are multiple-choice; Questions 3 to 30 are short-answer). Each correct answer carries 4 marks (120 marks total). Figures for Questions 1 and 2 are provided as cropped illustrations, and diagrams for Questions 5, 6, 7, 9, 12, 14, 23, 25, 29, and 30 are provided as vector SVG figures.',
   source: {
     org: 'SASMO',
     file: 'SASMO Practice Set I.pdf',
@@ -38,10 +38,60 @@ export default {
   questions: [
     {
       no: 1,
-      title: 'Short-Answer Questions',
-      marks: 112,
-      stem: 'Solve all 28 short-answer questions (Questions 3 to 30) without a calculator. Each correct answer carries 4 marks.',
+      title: 'Multiple-Choice and Short-Answer Questions',
+      marks: 120,
+      stem: 'Solve all 30 questions (Questions 1 and 2 multiple-choice; Questions 3 to 30 short-answer) without a calculator. Each correct answer carries 4 marks.',
       parts: [
+        {
+          label: '1',
+          marks: 4,
+          prompt:
+            'Find the correct shadow of the picture below.\n\nA. Option A (see figure)\nB. Option B (see figure)\nC. Option C (see figure)\nD. Option D (see figure)\nE. Option E (see figure)',
+          figures: [
+            {
+              src: '/papers/sasmo-practice-1/fig-1.webp',
+              alt: 'Skating snowman wearing a green scarf and red mittens above five black shadow options labeled A through E.',
+              caption: 'Snowman picture and shadow options A–E for Question 1.'
+            }
+          ],
+          answer: 'C. Option C',
+          principle:
+            'Compare distinctive outer silhouette features—headgear, nose length, scarf tassels, and skate blades—to eliminate shadows that add or omit parts.',
+          solution:
+            'Check the details of the skating snowman against options A through E:\n- **A:** Missing the blade on the raised right ice skate.\n- **B:** The nose is short and stubby instead of the long carrot nose.\n- **D:** Adds a bucket hat on top of the snowman’s head.\n- **E:** Adds round dots/pom-poms to the ends of the scarf fringe tassels.\n- **C:** Matches every silhouette feature accurately (bare round head, long carrot nose, mitten thumbs, plain scarf fringe, raised skate with curled blade, and standing skate on the oval ice patch).\nTherefore, **Option C** is the correct shadow.',
+          rubric: [
+            {
+              code: 'M2',
+              text: 'Compares key silhouette details (carrot nose, bare head, scarf fringe, and raised skate blade) across options A–E.'
+            },
+            { code: 'A2', text: 'Identifies option C as the exact shadow.' }
+          ]
+        },
+        {
+          label: '2',
+          marks: 4,
+          prompt:
+            'Which one of the following options is a missing piece of the dog’s kennel?\n\nA. Option A (see figure)\nB. Option B (see figure)\nC. Option C (see figure)\nD. Option D (see figure)\nE. Option E (see figure)',
+          figures: [
+            {
+              src: '/papers/sasmo-practice-1/fig-2.webp',
+              alt: 'Wooden dog kennel missing part of its right side wall alongside a seated dog and five block options labeled A through E.',
+              caption: 'Dog kennel 3D puzzle and options A–E for Question 2.'
+            }
+          ],
+          answer: 'D. Option D',
+          principle:
+            'Inspect the stepped interlocking ends of the opening on the right side of the kennel: the lower level needs to fill the front-right corner notch while the upper level must sit recessed behind the existing roof-line plank.',
+          solution:
+            'Rotate the candidate piece $90^{\\circ}$ counterclockwise (viewed from above) so its long face aligns with the kennel’s right side wall and its left end sits at the front-right corner:\n- At the front-right corner of the kennel, the $3^{\\text{rd}}$-level plank is missing at the outer corner, whereas the $4^{\\text{th}}$-level plank under the roof already reaches the outer corner. Thus the missing piece must have its lower plank extending outward by one plank width at the front end while its upper plank is recessed inward.\n- **A** has its upper plank overhanging on the right without a full corner return.\n- **B** has flush upper and lower planks on the left end, so it cannot interlock with the stepped front-right corner.\n- **C** and **E** have the upper plank overhanging to the left past the lower plank.\n- **D** is the only piece whose lower plank steps outward on the left while its upper plank is recessed inward, matching the kennel opening.\nTherefore, **Option D** is the missing piece.',
+          rubric: [
+            {
+              code: 'M2',
+              text: 'Matches the stepped front-right corner notch (lower plank extending forward, upper plank recessed) against options A–E.'
+            },
+            { code: 'A2', text: 'Identifies option D as the missing kennel piece.' }
+          ]
+        },
         {
           label: '3',
           marks: 4,

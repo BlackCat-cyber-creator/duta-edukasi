@@ -11,6 +11,7 @@ import { AnswerText } from './AnswerText';
 import { ReportQuestion } from './ReportQuestion';
 import { questionAnchor } from '../utils/reports';
 import { chapterPath, amcChapterPath } from '../utils/seoRoutes';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 function isFilled(value) {
   return value !== undefined && value !== null && String(value).trim() !== '';
@@ -157,6 +158,12 @@ export function StudentQuestView({ questId: propQuestId = null, onBackToDashboar
   const onBack = onBackToDashboard || (() => navigate('/'));
 
   const [quest, setQuest] = useState(() => getQuestById(questId));
+  useDocumentMeta({
+    title: `${quest?.title || 'Latihan PR Siswa'} | Duta e-dukasi`,
+    description: 'Lembar pengerjaan tugas dan latihan interaktif siswa Duta e-dukasi.',
+    path: '',
+    noindex: true
+  });
   const [isLoading, setIsLoading] = useState(() => !getQuestById(questId) && Boolean(questId));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [responses, setResponses] = useState(() => (questId ? getDraftResponses(questId) : {}));

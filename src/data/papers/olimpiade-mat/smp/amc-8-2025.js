@@ -1,8 +1,7 @@
 /**
- * Paket Soal Terstruktur: AMC 8 — 2025 (18 of 25 multiple-choice questions included)
- * Source: scraped_raw/amc-8-2025.md (original 25-question contest).
- * Editing note: Original question numbering is preserved (3, 4, 6-11, 14-16, 18-20, 22-25).
- * Questions 1, 2, 5, 12, 13, 17, and 21 are skipped because they require unprinted figures, grids, graphs, or visual answer choices.
+ * Paket Soal Terstruktur: AMC 8 — 2025 (All 25 multiple-choice questions included)
+ * Source: scraped_raw/amc-8-2025.md & content-inbox/drive/restore/2025_amc_8.pdf (original 25-question contest).
+ * Editing note: Original question numbering 1–25 is preserved, with diagrams cropped from the official contest PDF for Questions 1, 2, 5, 12, 13, 17, 18, and 21.
  */
 const OK = [{ code: 'A1', text: 'Correct answer supported by the derivation.' }];
 
@@ -29,9 +28,9 @@ export default {
   langDisplay: 'EN',
   competition: 'AMC 8',
   title: 'AMC 8 — 2025',
-  totalMarks: 18,
+  totalMarks: 25,
   instructions:
-    'The original AMC 8 (2025) paper consists of 25 multiple-choice questions (1 point each). This set includes 18 self-contained questions using their original numbering (Questions 3, 4, 6, 7, 8, 9, 10, 11, 14, 15, 16, 18, 19, 20, 22, 23, 24, and 25) and skips 7 questions (Questions 1, 2, 5, 12, 13, 17, and 21) that require unprinted figures, grids, graphs, or visual answer choices. No calculators are allowed.',
+    'The original AMC 8 (2025) paper consists of 25 multiple-choice questions (1 point each, 40 minutes working time). No calculators or computational aids are allowed, and there is no penalty for wrong answers.',
   source: {
     org: 'MAA (Mathematical Association of America) — AMC 8',
     file: 'scraped_raw/amc-8-2025.md',
@@ -42,9 +41,50 @@ export default {
     {
       no: 1,
       title: 'Multiple Choice Questions',
-      marks: 18,
-      stem: 'Choose the best answer (A, B, C, D, or E) for each of the 18 included questions from the 25-question contest (1 point each). Original AMC 8 problem numbers are preserved.',
+      marks: 25,
+      stem: 'Choose the best answer (A, B, C, D, or E) for each of the 25 questions from the contest (1 point each).',
       parts: [
+        {
+          label: '1',
+          marks: 1,
+          prompt:
+            'The eight-pointed star, shown in the figure below, is a popular quilting pattern. What percent of the entire $4 \\times 4$ grid is covered by the star?\n\nA. $40$\nB. $50$\nC. $60$\nD. $75$\nE. $80$',
+          figures: [
+            {
+              src: '/papers/amc-8-2025/fig-1.webp',
+              alt: 'An eight-pointed star quilting pattern drawn inside a 4 by 4 square grid.',
+              caption: 'Eight-pointed star quilting pattern on a 4 × 4 grid.'
+            }
+          ],
+          answer: 'B. $50$',
+          principle: 'Decompose the $4 \\times 4$ grid into whole unit squares and half-square triangles to sum the shaded area.',
+          solution:
+            'The $4 \\times 4$ grid contains $4 \\times 4 = 16$ unit squares. Breaking the shaded star into unit-square pieces:\n- The $4$ corner squares are completely unshaded ($0$ square units).\n- The $4$ central squares forming the inner $2 \\times 2$ block are completely shaded ($4$ square units).\n- Each of the remaining $8$ border squares is cut diagonally in half with one shaded triangle ($8 \\times \\frac{1}{2} = 4$ square units).\n\nThus, the star covers $4 + 4 = 8$ unit squares, which is\n$$\\frac{8}{16} \\times 100\\% = 50\\%$$ of the entire grid.',
+          rubric: OK
+        },
+        {
+          label: '2',
+          marks: 1,
+          prompt:
+            'The table below shows the Ancient Egyptian hieroglyphs that were used to represent different numbers. For example, the number $32$ was represented by three $10$-hieroglyphs (arch shapes) followed by two $1$-hieroglyphs (vertical strokes). What number is represented by the combination of hieroglyphs shown in the second figure?\n\nA. $1,423$\nB. $10,423$\nC. $14,023$\nD. $14,203$\nE. $14,230$',
+          figures: [
+            {
+              src: '/papers/amc-8-2025/fig-2a.webp',
+              alt: 'Table mapping Ancient Egyptian hieroglyph symbols to powers of ten from 1 to 100,000.',
+              caption: 'Ancient Egyptian hieroglyphs and their place values.'
+            },
+            {
+              src: '/papers/amc-8-2025/fig-2b.webp',
+              alt: 'Combination of Ancient Egyptian hieroglyph symbols representing a multi-digit number.',
+              caption: 'Hieroglyph combination to evaluate.'
+            }
+          ],
+          answer: 'B. $10,423$',
+          principle: 'Count how many times each hieroglyph appears and multiply by its corresponding power of $10$.',
+          solution:
+            'Reading the combination from left to right and matching each symbol to the place-value table:\n- $1$ finger symbol $= 1 \\times 10,000 = 10,000$\n- $4$ coiled-rope symbols $= 4 \\times 100 = 400$\n- $2$ arch symbols $= 2 \\times 10 = 20$\n- $3$ vertical strokes $= 3 \\times 1 = 3$\n\nAdding these values together gives\n$$10,000 + 400 + 20 + 3 = 10,423.$$',
+          rubric: OK
+        },
         {
           label: '3',
           marks: 1,
@@ -65,6 +105,24 @@ export default {
           principle: 'Use the $n$-th term formula for an arithmetic sequence: $a_n = a_1 + (n - 1)d$.',
           solution:
             'The sequence is arithmetic with first term $a_1 = 100$ and common difference $d = -7$. To reach the $10$th number, Lucius takes $10 - 1 = 9$ steps of $-7$:\n$$a_{10} = 100 - 9 \\times 7 = 100 - 63 = 37.$$',
+          rubric: OK
+        },
+        {
+          label: '5',
+          marks: 1,
+          prompt:
+            'Betty drives a truck to deliver packages in a neighborhood whose street map is shown below. Betty starts at the factory (labeled $F$) and drives to location $A,$ then $B,$ then $C,$ before returning to $F.$ What is the shortest distance, in blocks, she can drive to complete the route?\n\nA. $20$\nB. $22$\nC. $24$\nD. $26$\nE. $28$',
+          figures: [
+            {
+              src: '/papers/amc-8-2025/fig-5.webp',
+              alt: 'Rectangular street grid of 8 by 6 blocks marking factory F and delivery stops A, B, and C.',
+              caption: 'Neighborhood street map showing factory F and delivery locations A, B, and C.'
+            }
+          ],
+          answer: 'C. $24$',
+          principle: 'On a rectangular grid, the shortest distance between $(x_1, y_1)$ and $(x_2, y_2)$ is the Manhattan distance $|x_1 - x_2| + |y_1 - y_2|$.',
+          solution:
+            'Place the bottom-left corner $B$ at the origin $(0, 0)$ with east as $+x$ and north as $+y$. Reading coordinates on the $8 \\times 6$ street grid gives $F = (6, 5)$, $A = (7, 3)$, $B = (0, 0)$, and $C = (2, 4)$.\n\nComputing the shortest (Manhattan) distance for each leg of the route:\n- $F \\to A$: $|7 - 6| + |3 - 5| = 1 + 2 = 3$ blocks\n- $A \\to B$: $|0 - 7| + |0 - 3| = 7 + 3 = 10$ blocks\n- $B \\to C$: $|2 - 0| + |4 - 0| = 2 + 4 = 6$ blocks\n- $C \\to F$: $|6 - 2| + |5 - 4| = 4 + 1 = 5$ blocks\n\nSumming the four legs gives\n$$3 + 10 + 6 + 5 = 24\\text{ blocks}.$$',
           rubric: OK
         },
         {
@@ -134,6 +192,42 @@ export default {
           rubric: OK
         },
         {
+          label: '12',
+          marks: 1,
+          prompt:
+            'The region shown below consists of $24$ squares, each with side length $1$ centimeter. What is the area, in square centimeters, of the largest circle that can fit inside the region, possibly touching the boundaries?\n\nA. $3\\pi$\nB. $4\\pi$\nC. $5\\pi$\nD. $6\\pi$\nE. $8\\pi$',
+          figures: [
+            {
+              src: '/papers/amc-8-2025/fig-12.webp',
+              alt: 'Symmetric polyomino region formed by 24 unit squares arranged in rows of 2, 4, 6, 6, 4, and 2.',
+              caption: 'Region consisting of 24 unit squares of side length 1 cm.'
+            }
+          ],
+          answer: 'C. $5\\pi$',
+          principle: 'By symmetry, center the circle at the figure\'s center and bound its radius by the distance to the nearest re-entrant boundary vertices.',
+          solution:
+            'Place the center of symmetry of the region at $(0, 0)$, so the rows span $[-1, 1]$, $[-2, 2]$, and $[-3, 3]$. By symmetry, the largest circle fitting inside the region is centered at $(0, 0)$.\n\nThe boundary points closest to $(0, 0)$ are the eight re-entrant corners $(\\pm 1, \\pm 2)$ and $(\\pm 2, \\pm 1)$, each at distance\n$$r = \\sqrt{1^2 + 2^2} = \\sqrt{5}\\text{ cm}$$\nfrom the center. Every point $(x, y)$ with $x^2 + y^2 \\le 5$ lies inside the region (for instance, $|x| > 2 \\implies |y| < 1$, and $1 < |x| \\le 2 \\implies |y| < 2$). Therefore, the largest inscribed circle has radius $\\sqrt{5}\\text{ cm}$ and area\n$$\\pi r^2 = \\pi (\\sqrt{5})^2 = 5\\pi\\text{ cm}^2.$$',
+          rubric: OK
+        },
+        {
+          label: '13',
+          marks: 1,
+          prompt:
+            'Each of the even numbers $2, 4, 6, \\dots, 50$ is divided by $7.$ The remainders are recorded. Which histogram displays the number of times each remainder occurs?\n\nA. Histogram (A)\nB. Histogram (B)\nC. Histogram (C)\nD. Histogram (D)\nE. Histogram (E)',
+          figures: [
+            {
+              src: '/papers/amc-8-2025/fig-13.webp',
+              alt: 'Five bar histograms labeled A through E showing counts for remainders 0 through 6 upon division by 7.',
+              caption: 'Five candidate histograms (A)–(E) displaying remainder frequencies.'
+            }
+          ],
+          answer: 'A. Histogram (A)',
+          principle: 'Since $\\gcd(2, 7) = 1$, consecutive multiples of $2$ cycle uniformly through all $7$ remainders modulo $7$.',
+          solution:
+            'The list $2k$ for $k = 1, 2, \\dots, 25$ contains $25$ numbers. Because $\\gcd(2, 7) = 1$, any $7$ consecutive even numbers produce each remainder $0, 1, 2, 3, 4, 5, 6$ modulo $7$ exactly once.\n\nThe first $21$ numbers ($2$ through $42$) form $3$ complete cycles of $7$, giving a count of $3$ for each remainder. The remaining $4$ numbers give remainders:\n- $44 = 7 \\times 6 + 2 \\equiv 2 \\pmod{7}$\n- $46 = 7 \\times 6 + 4 \\equiv 4 \\pmod{7}$\n- $48 = 7 \\times 6 + 6 \\equiv 6 \\pmod{7}$\n- $50 = 7 \\times 7 + 1 \\equiv 1 \\pmod{7}$\n\nThus remainders $1, 2, 4,$ and $6$ occur $4$ times each, while remainders $0, 3,$ and $5$ occur $3$ times each, which matches Histogram (A).',
+          rubric: OK
+        },
+        {
           label: '14',
           marks: 1,
           prompt:
@@ -167,10 +261,35 @@ export default {
           rubric: OK
         },
         {
+          label: '17',
+          marks: 1,
+          prompt:
+            'In the land of Markovia, there are three cities: $A,$ $B,$ and $C.$ There are $100$ people who live in $A,$ $120$ who live in $B,$ and $160$ who live in $C.$ Everyone works in one of the three cities, and a person may work in the same city where they live. In the figure below, an arrow pointing from one city to another is labeled with the fraction of people living in the first city who work in the second city. (For example, $\\frac{1}{4}$ of the people who live in $A$ work in $B.$) How many people work in $A?$\n\nA. $55$\nB. $60$\nC. $85$\nD. $115$\nE. $160$',
+          figures: [
+            {
+              src: '/papers/amc-8-2025/fig-17.webp',
+              alt: 'Directed triangle graph of cities A, B, and C with arrows labeled by commuter fractions between each pair.',
+              caption: 'Directed graph of commuter fractions among cities A, B, and C.'
+            }
+          ],
+          answer: 'D. $115$',
+          principle: 'Use complementarity to find the fraction of city $A$ residents who work in $A$, then sum inflows from all three cities.',
+          solution:
+            'Compute how many residents from each city work in $A$:\n- From $A$: $\\frac{1}{4}$ work in $B$ and $\\frac{1}{5}$ work in $C$, so the fraction who both live and work in $A$ is\n$$1 - \\frac{1}{4} - \\frac{1}{5} = \\frac{11}{20},$$\ncontributing $100 \\times \\frac{11}{20} = 55$ workers.\n- From $B$: $\\frac{1}{3}$ work in $A$, contributing $120 \\times \\frac{1}{3} = 40$ workers.\n- From $C$: $\\frac{1}{8}$ work in $A$, contributing $160 \\times \\frac{1}{8} = 20$ workers.\n\nTherefore, the total number of people who work in $A$ is\n$$55 + 40 + 20 = 115.$$',
+          rubric: OK
+        },
+        {
           label: '18',
           marks: 1,
           prompt:
             'A circle has a radius of $1$ unit, and the region between the circle and its inscribed square is shaded. In a second circle of radius $R$ units, one quarter of the region between the circle and its inscribed square is shaded. The shaded regions in the two circles have the same area. What is the radius $R,$ in units, of the second circle?\n\nA. $\\sqrt{2}$\nB. $2$\nC. $2\\sqrt{2}$\nD. $4$\nE. $4\\sqrt{2}$',
+          figures: [
+            {
+              src: '/papers/amc-8-2025/fig-18.webp',
+              alt: 'Two circles with inscribed squares: the left circle has radius 1 with the full outer region shaded, and the right circle has radius R with one quarter shaded.',
+              caption: 'Circles of radius 1 and radius R with inscribed squares.'
+            }
+          ],
           answer: 'B. $2$',
           principle: 'Similar figures scale in area as the square of their linear scale factor (here, the ratio of radii).',
           solution:
@@ -197,6 +316,24 @@ export default {
           principle: 'Sum an infinite geometric series $\\sum_{k=0}^{\\infty} ar^k = \\frac{a}{1 - r}$ for $|r| < 1$.',
           solution:
             'After each person\'s turn, $\\frac{1}{2}$ of the current cheese remains. Thus, in the first three turns, Sarika eats $\\frac{1}{2}$, Dev eats $\\frac{1}{4}$, and Rajiv eats $\\frac{1}{8}$, leaving $\\frac{1}{8}$ of the original block for the next round.\n\nIn every subsequent $3$-turn cycle, the amounts eaten are scaled by $\\frac{1}{8}$. Therefore, Sarika\'s total share is the infinite geometric series with first term $a = \\frac{1}{2}$ and common ratio $r = \\frac{1}{8}$:\n$$S = \\frac{1}{2} + \\frac{1}{2^4} + \\frac{1}{2^7} + \\cdots = \\frac{\\frac{1}{2}}{1 - \\frac{1}{8}} = \\frac{\\frac{1}{2}}{\\frac{7}{8}} = \\frac{4}{7}.$$',
+          rubric: OK
+        },
+        {
+          label: '21',
+          marks: 1,
+          prompt:
+            'The Konigsberg School has assigned grades $1$ through $7$ to pods $A$ through $G,$ one grade per pod. Some of the pods are connected by walkways, as shown in the figure below. The school noticed that each pair of connected pods has been assigned grades differing by more than $1$ grade level. (For example, grades $1$ and $2$ will not be in pods directly connected by a walkway.) What is the sum of the grade levels assigned to pods $C,$ $E,$ and $F?$\n\nA. $12$\nB. $13$\nC. $14$\nD. $15$\nE. $16$',
+          figures: [
+            {
+              src: '/papers/amc-8-2025/fig-21.webp',
+              alt: 'Network diagram of seven pods A through G connected by straight and curved walkway segments.',
+              caption: 'Walkway graph connecting pods A through G.'
+            }
+          ],
+          answer: 'A. $12$',
+          principle: 'Analyze the complement of the walkway graph: consecutive grades $k$ and $k + 1$ can only occupy pods that are not directly connected.',
+          solution:
+            'Since connected pods cannot hold consecutive grades, any two consecutive grades $k$ and $k + 1$ must be placed in non-adjacent pods:\n- Pod $F$ is directly connected to $A, B, C, E,$ and $G$—every pod except $D$. Thus, the only grade consecutive with $F$\'s grade can be in $D$, forcing $F$ to be an endpoint ($1$ or $7$) and $\\{F, D\\} = \\{1, 2\\}$ or $\\{7, 6\\}$.\n- Pod $C$ is directly connected to $A, B, D, E,$ and $F$—every pod except $G$. Similarly, the only grade consecutive with $C$\'s grade can be in $G$, forcing $\\{C, G\\} = \\{7, 6\\}$ or $\\{1, 2\\}$.\n\nThe remaining grades $\\{3, 4, 5\\}$ must be assigned to $\\{A, B, E\\}$. Because pods $A$ and $B$ are directly connected, they cannot hold consecutive grades from $\\{3, 4, 5\\}$, which forces $\\{A, B\\} = \\{3, 5\\}$ and $E = 4$.\n\nIn either valid assignment ($F = 1, C = 7, E = 4$ or $F = 7, C = 1, E = 4$), we obtain\n$$C + E + F = 7 + 4 + 1 = 12.$$',
           rubric: OK
         },
         {

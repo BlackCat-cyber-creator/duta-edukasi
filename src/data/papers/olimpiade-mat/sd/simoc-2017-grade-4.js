@@ -1,7 +1,7 @@
 /**
- * Paket Soal: SIMOC 2017 Grade 4 (AMO KRIS Contest).
- * Sumber: simoc_2017_g4.pdf. Soal 2 (butuh gambar bangun berarsir) dan soal 7 (data anggaran tidak konsisten) tidak dimuat.
- * Soal bergambar (10, 13, 15, 21, 23, 25) dituliskan ulang secara tekstual dari gambar asli.
+ * Paket Soal: SIMOC 2017 Grade 4.
+ * Sumber: simoc_2017_g4.pdf. Seluruh 25 soal dimuat (soal 2 dan 10 dilengkapi gambar potongan asli;
+ * soal bergambar lain: 13, 15, 21, 23, 25 dituliskan ulang secara tekstual dari gambar asli).
  */
 export default {
   id: 'simoc-2017-g4',
@@ -16,9 +16,9 @@ export default {
   langDisplay: 'EN',
   competition: 'SIMOC',
   title: 'SIMOC 2017 Grade 4',
-  totalMarks: 66,
+  totalMarks: 70,
   instructions:
-    'Section A contains multiple-choice questions with five options (A to E); each correct answer scores 2 points. Section B contains short-answer questions; each correct answer scores 4 points. Questions that depended on a printed figure have been restated in words with all measurements given.',
+    'Section A contains 15 multiple-choice questions with five options (A to E); each correct answer scores 2 points. Section B contains 10 short-answer questions; each correct answer scores 4 points. Some questions that originally depended on a printed figure have been restated in words with all measurements given.',
   source: {
     org: 'SIMOC',
     file: 'simoc_2017_g4.pdf',
@@ -29,8 +29,8 @@ export default {
     {
       no: 1,
       title: 'Section A: Multiple Choice',
-      marks: 26,
-      stem: 'Choose the correct answer for each question. Each correct answer scores 2 points (13 questions).',
+      marks: 30,
+      stem: 'Choose the correct answer for each question. Each correct answer scores 2 points (15 questions).',
       parts: [
         {
           label: '1',
@@ -41,6 +41,23 @@ export default {
           principle: 'Distributive property: $a\\times c + b\\times c + d\\times c = (a+b+d)\\times c$.',
           solution:
             'Every term contains the factor $7$, so factor it out:\n$$234 \\times 7 + 7 \\times 342 + 423 \\times 7 = 7 \\times (234 + 342 + 423)$$\nNow $234 + 342 + 423 = 999$, so the value is\n$$7 \\times 999 = 7 \\times 1000 - 7 = 6993.$$',
+          rubric: [{ code: 'A2', text: 'Correct answer C with valid working.' }]
+        },
+        {
+          label: '2',
+          marks: 2,
+          figures: [
+            {
+              src: '/papers/simoc-2017-g4/fig-2.webp',
+              caption: 'Five shaded geometric figures for Question 2',
+              alt: 'Five geometric figures with shaded sections: a divided hexagon, two subdivided triangles, a tilted striped square, and a square grid.'
+            }
+          ],
+          prompt: 'How many figures below are one-third shaded?\n\nA. $1$\nB. $2$\nC. $3$\nD. $4$\nE. $5$',
+          answer: 'C. $3$',
+          principle: 'A fraction $\\frac{1}{3}$ requires the whole shape to be divided into equal-area parts with one-third of the total area shaded.',
+          solution:
+            'Inspect each of the five figures from left to right:\n1. Regular hexagon divided into $6$ equal triangles with $2$ shaded: $\\frac{2}{6} = \\frac{1}{3}$ (yes).\n2. Triangle divided into $4$ congruent small triangles with $2$ shaded: $\\frac{2}{4} = \\frac{1}{2}$ (no).\n3. Triangle divided by two horizontal lines into $3$ strips of unequal area with $1$ shaded: the three parts do not have equal area (and the shaded strip is less than one-third of the triangle), so it is not $\\frac{1}{3}$ (no).\n4. Tilted square divided into $3$ equal rectangular strips with $1$ shaded: $\\frac{1}{3}$ (yes).\n5. Square grid of $3 \\times 3 = 9$ equal small squares with $3$ shaded: $\\frac{3}{9} = \\frac{1}{3}$ (yes).\nTherefore, $3$ figures are one-third shaded.',
           rubric: [{ code: 'A2', text: 'Correct answer C with valid working.' }]
         },
         {
@@ -88,6 +105,17 @@ export default {
           rubric: [{ code: 'A2', text: 'Correct answer D with valid working.' }]
         },
         {
+          label: '7',
+          marks: 2,
+          prompt:
+            'A shop sells 1 pen for 1 dollar, 5 pens for 4 dollars, and 10 pens for 7 dollars. Luke can buy up to 28 pens and Drake can buy up to 31 pens. If both Luke and Drake combine their money, what is the greatest number of pens they can buy?\n\nA. $31$ pens\nB. $59$ pens\nC. $62$ pens\nD. $72$ pens\nE. None of the above',
+          answer: 'E. None of the above',
+          principle: "Find each person's budget using the bundle prices (10-packs give the lowest cost per pen), sum the budgets, then buy as many 10-packs as possible.",
+          solution:
+            'Using the bundle prices ($10$ pens for $7$ dollars, $5$ pens for $4$ dollars, $1$ pen for $1$ dollar):\n- In the contest decomposition, $28 = 2 \\times 10 + 1 \\times 5 + 3 \\times 1$ costs $2 \\times 7 + 4 + 3 = 21$ dollars for Luke, and $31 = 3 \\times 10 + 1 \\times 1$ costs $3 \\times 7 + 1 = 22$ dollars for Drake.\n- Combined money $= 21 + 22 = 43$ dollars. With $43$ dollars, they can buy $6$ packs of $10$ pens ($42$ dollars) and $1$ single pen ($1$ dollar), giving $60 + 1 = 61$ pens.\n(Note: strictly speaking, $21$ dollars would already buy $3 \\times 10 = 30$ pens rather than $28$, while $20$ dollars buys at most $27$ pens and gives $20 + 22 = 42$ dollars $\\to 60$ pens; in either reading, neither $61$ nor $60$ appears among options A to D.)\nHence the answer is E.',
+          rubric: [{ code: 'A2', text: 'Correct answer E with valid working.' }]
+        },
+        {
           label: '8',
           marks: 2,
           prompt:
@@ -112,8 +140,15 @@ export default {
         {
           label: '10',
           marks: 2,
+          figures: [
+            {
+              src: '/papers/simoc-2017-g4/fig-10.webp',
+              caption: 'Rectilinear shaded figure for Question 10',
+              alt: 'Shaded rectilinear shape with right-angled corners and three white rectangular cut-outs labelled with side lengths.'
+            }
+          ],
           prompt:
-            'A rectilinear shape (all corners are right angles) is obtained as follows. Start with a rectangle 16 units wide and 10 units tall, and cut out three white rectangles; the remaining part is the shaded region.\n- A cut-out 4 units wide and 2 units deep, touching the top edge, whose left side is 4 units from the top-left corner.\n- A cut-out in the top-right corner, 2 units wide and 6 units tall.\n- A cut-out 6 units wide and 4 units tall, touching the bottom edge, whose left side is 4 units from the bottom-left corner.\nGiven that the area of the shaded region is $A$ and the perimeter of the shaded region is $P$, find $A + P$.\n\nA. $168$\nB. $176$\nC. $180$\nD. $190$\nE. None of the above',
+            'The diagram below is a rectilinear shape where all the corners are right angles. Given that the area of the shaded region is $A$ and the perimeter of the shaded region is $P$, find $A + P$.\n\nA. $168$\nB. $176$\nC. $180$\nD. $190$\nE. None of the above',
           answer: 'C. $180$',
           principle: 'Area by subtraction of cut-outs; perimeter of a rectilinear shape: a notch adds twice its depth, a corner cut-out leaves it unchanged.',
           solution:

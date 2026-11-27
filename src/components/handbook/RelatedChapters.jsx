@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { relatedChapters } from '../../utils/relatedChapters';
 import { topicOfChapter } from '../../data/topics';
-import { getRelatedPapersForChapter, paperPath } from '../../data/papers/index';
+import { getRelatedPapersForChapter, paperPath, formatPaperMeta } from '../../data/papers/manifest';
 
 /** "Materi terkait": bab lain dengan topik yang sama serta Paket Soal Duta e-dukasi terkait. */
 export function RelatedChapters({ chapterId }) {
@@ -16,12 +16,15 @@ export function RelatedChapters({ chapterId }) {
         <div style={{ marginBottom: items.length > 0 ? '0.85rem' : 0 }}>
           <strong>Paket Soal Terstruktur Terkait</strong>
           <ul>
-            {papers.map((p) => (
-              <li key={p.id}>
-                <Link to={paperPath(p)}>{p.title}</Link>{' '}
-                <span className="topic-meta">({p.lang === 'en' ? 'English' : 'Indonesia'} · {p.totalMarks} marks)</span>
-              </li>
-            ))}
+            {papers.map((p) => {
+              const info = formatPaperMeta(p);
+              return (
+                <li key={p.id}>
+                  <Link to={paperPath(p)}>{p.title}</Link>{' '}
+                  <span className="topic-meta">({p.lang === 'en' ? 'English' : 'Indonesia'} · {info.itemsLabel}{info.score ? ` · ${info.score}` : ''})</span>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

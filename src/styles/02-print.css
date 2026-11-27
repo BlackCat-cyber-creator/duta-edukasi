@@ -73,6 +73,36 @@
   .paper-print-exam-only .seo-breadcrumb {
     display: none !important;
   }
+
+  .paper-option-btn {
+    padding: 4pt 6pt !important;
+    box-shadow: none !important;
+    border-color: #CBD5E1 !important;
+    background: #FFFFFF !important;
+    font-size: 10pt !important;
+  }
+
+  .paper-print-exam-only .paper-option-btn.selected,
+  .paper-print-exam-only .paper-option-btn.correct,
+  .paper-print-exam-only .paper-option-btn.incorrect {
+    border: 1px solid #CBD5E1 !important;
+    background: #FFFFFF !important;
+  }
+
+  .paper-print-exam-only .paper-option-btn .option-circle {
+    background: #FFFFFF !important;
+    border-color: #9CA3AF !important;
+    color: #111827 !important;
+  }
+
+  .print-only-answer-line {
+    display: block !important;
+    margin: 8pt 0 4pt;
+    border-bottom: 1px dashed #94A3B8;
+    height: 16pt;
+    font-size: 9pt;
+    color: #475569;
+  }
 }
 
 .print-only-header {

@@ -215,6 +215,12 @@ export function mergeStudyStates(localBundle = {}, remoteBundle = {}) {
     if (!lp) { mergedPapers[pid] = rp; continue; }
     if (!rp) { mergedPapers[pid] = lp; continue; }
     const checkedRubrics = { ...(rp.checkedRubrics || {}), ...(lp.checkedRubrics || {}) };
+    const lpTime = lp.lastVisitedAt || '';
+    const rpTime = rp.lastVisitedAt || '';
+    const responses = lpTime >= rpTime
+      ? { ...(rp.responses || {}), ...(lp.responses || {}) }
+      : { ...(lp.responses || {}), ...(rp.responses || {}) };
+    const checkedParts = { ...(rp.checkedParts || {}), ...(lp.checkedParts || {}) };
     mergedPapers[pid] = {
       ...rp,
       ...lp,
@@ -223,7 +229,9 @@ export function mergeStudyStates(localBundle = {}, remoteBundle = {}) {
       earnedMarks: Math.max(lp.earnedMarks || 0, rp.earnedMarks || 0),
       totalMarks: Math.max(lp.totalMarks || 0, rp.totalMarks || 0),
       checkedRubrics,
-      lastVisitedAt: (lp.lastVisitedAt || '') >= (rp.lastVisitedAt || '') ? lp.lastVisitedAt : rp.lastVisitedAt
+      ...(Object.keys(responses).length ? { responses } : {}),
+      ...(Object.keys(checkedParts).length ? { checkedParts } : {}),
+      lastVisitedAt: lpTime >= rpTime ? lp.lastVisitedAt : rp.lastVisitedAt
     };
   }
 

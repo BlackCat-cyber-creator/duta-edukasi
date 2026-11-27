@@ -2,8 +2,7 @@
  * Structured Practice Set: Biology X Block Test Preparation 2026/2027 – Biodiversity, Classification & Viruses
  * Source: bio_10_block_test.pdf (Duta e-dukasi arsip latihan). Original English wording is preserved.
  * The source had no answer key: every answer was derived and checked independently from standard biology.
- * Dropped (see report): item 6 (blank has several equally valid answers), item 25a and items 42, 43 (depend on images
- * that cannot be restated in text). Item 25b is kept because its dichotomous key is fully given as text.
+ * Complete set: all items (1–26 in Section A, 27–55 in Section B) and source diagrams are included.
  */
 export default {
   id: 'bio10-blok-test-keanekaragaman-virus',
@@ -21,9 +20,9 @@ export default {
   langDisplay: 'EN',
   competition: 'Biologi SMA',
   title: 'Biology X Block Test Preparation 2026/2027 – Biodiversity, Classification & Viruses',
-  totalMarks: 91,
+  totalMarks: 105,
   instructions:
-    'Answer every item. Fill-in-the-blank items need the correct term only; explanation items should be answered in complete sentences that use biological reasoning.',
+    'Answer every item. Fill-in-the-blank items need the correct term only; identification, diagram, dichotomous key, and explanation items should be answered clearly using biological reasoning and the provided figures or tables.',
   source: {
     org: 'Duta e-dukasi arsip latihan',
     file: 'bio_10_block_test.pdf',
@@ -34,7 +33,7 @@ export default {
     {
       no: 1,
       title: 'Section A: Biodiversity & Classification',
-      marks: 41,
+      marks: 46,
       stem: 'Complete the blanks or answer the questions on biodiversity, threats to biodiversity, and classification.',
       parts: [
         {
@@ -91,6 +90,17 @@ export default {
           solution:
             'Overhunting removes individuals faster than the population can replace them; if the last individuals are lost, the species is extinct.',
           rubric: [{ code: 'A1', text: 'Correct term: extinction.' }]
+        },
+        {
+          label: '6',
+          marks: 1,
+          prompt:
+            'The introduction of a non-native species that competes with native organisms for food and habitat may negatively affect the __________ of an ecosystem.',
+          answer: 'biodiversity (stability, ecological balance, or species diversity also accepted)',
+          principle: 'Invasive non-native species outcompete native organisms for resources, reducing biodiversity and destabilising the ecosystem.',
+          solution:
+            'A non-native species that competes with native organisms for food and habitat can cause native populations to decline or disappear locally. As species are lost and food-web interactions are disrupted, the biodiversity (as well as ecological stability and balance) of the ecosystem is negatively affected.',
+          rubric: [{ code: 'A1', text: 'Correct term: biodiversity (stability, ecological balance, or species diversity also accepted).' }]
         },
         {
           label: '7',
@@ -335,6 +345,30 @@ export default {
           rubric: [{ code: 'A1', text: 'Correct term: genus.' }]
         },
         {
+          label: '25a',
+          marks: 4,
+          prompt:
+            'Observe the simplified dichotomous key below for identifying four marine organisms (W, X, Y, and Z).\n\nStep 1(a): Organism has a hard outer shell – go to 2\nStep 1(b): Organism does not have a hard outer shell – go to 3\nStep 2(a): Shell consists of two matching hinged valves – Tridacna gigas\nStep 2(b): Shell is a single coiled structure – Charonia tritonis\nStep 3(a): Has eight flexible arms with suction cups – Octopus vulgaris\nStep 3(b): Has a gelatinous bell-shaped body with tentacles – Aurelia aurita\n\nIdentify which organism corresponds to Organism W, X, Y, and Z using the path followed in the key.',
+          figures: [
+            {
+              src: '/papers/bio10-blok-test-keanekaragaman-virus/fig-25.webp',
+              caption: 'Four marine organisms labeled W, X, Y, and Z for dichotomous key identification (Question 25a).',
+              alt: 'Four marine organisms labeled W, X, Y, and Z: W is a ribbed bivalve clam with two hinged shells, X is a mottled snail with a single coiled shell, Y is an octopus with eight arms covered in suckers, and Z is a jellyfish with a bell-shaped body and hanging tentacles.'
+            }
+          ],
+          answer:
+            'W: Tridacna gigas (1a -> 2a); X: Charonia tritonis (1a -> 2b); Y: Octopus vulgaris (1b -> 3a); Z: Aurelia aurita (1b -> 3b)',
+          principle: 'A dichotomous key identifies specimens by following paired, mutually exclusive observable traits step by step.',
+          solution:
+            'Organism W has a hard outer shell made of two matching hinged valves, so following 1(a) -> 2(a) identifies it as Tridacna gigas. Organism X has a hard outer shell forming a single coiled structure, so following 1(a) -> 2(b) identifies it as Charonia tritonis. Organism Y lacks a hard outer shell and has eight flexible arms with suction cups, so following 1(b) -> 3(a) identifies it as Octopus vulgaris. Organism Z lacks a hard outer shell and has a gelatinous bell-shaped body with tentacles, so following 1(b) -> 3(b) identifies it as Aurelia aurita.',
+          rubric: [
+            { code: 'B1', text: 'Identifies Organism W as Tridacna gigas via path 1(a) -> 2(a).' },
+            { code: 'B1', text: 'Identifies Organism X as Charonia tritonis via path 1(a) -> 2(b).' },
+            { code: 'B1', text: 'Identifies Organism Y as Octopus vulgaris via path 1(b) -> 3(a).' },
+            { code: 'B1', text: 'Identifies Organism Z as Aurelia aurita via path 1(b) -> 3(b).' }
+          ]
+        },
+        {
           label: '25b',
           marks: 2,
           prompt:
@@ -369,7 +403,7 @@ export default {
     {
       no: 2,
       title: 'Section B: Virus',
-      marks: 50,
+      marks: 59,
       stem: 'Complete the blanks or answer the questions on the structure, classification and reproduction of viruses.',
       parts: [
         {
@@ -558,10 +592,105 @@ export default {
           ]
         },
         {
+          label: '42a',
+          marks: 1,
+          prompt:
+            'Observe the simplified viral structure diagram below.\n\nIdentify the structure that directly protects the viral genetic material.',
+          figures: [
+            {
+              src: '/papers/bio10-blok-test-keanekaragaman-virus/fig-42.webp',
+              caption: 'Simplified cross-sectional structure of an enveloped virus (Question 42).',
+              alt: 'Cross-sectional diagram of an enveloped virus showing four labeled parts: an outer Phospholipid Envelope with Spike Projections, an inner polygonal Protein Capsid, and a central red helical Nucleic Acid Genome.'
+            }
+          ],
+          answer: 'Protein capsid (capsid)',
+          principle: 'The protein capsid directly encloses and protects the viral nucleic acid genome from enzymatic degradation and physical damage.',
+          solution:
+            'In the diagram, the central nucleic acid genome is immediately enclosed by the polygonal protein capsid. The capsid directly surrounds and shields the genetic material, whereas the phospholipid envelope forms an outer layer around the capsid.',
+          rubric: [{ code: 'A1', text: 'Correctly identifies the protein capsid (capsid).' }]
+        },
+        {
+          label: '42b',
+          marks: 2,
+          prompt: 'Explain the role of the spike projections during infection.',
+          answer:
+            'Spike projections recognise and bind to specific receptor molecules on the host cell surface (adsorption), allowing the virus to attach and enter the host cell and determining host specificity.',
+          principle: 'Viral spike glycoproteins mediate specific attachment (adsorption) to host cell receptors and initiate viral entry.',
+          solution:
+            'The spike projections on the outer viral envelope are glycoproteins whose shape matches specific receptor molecules on the target host cell membrane. Binding to these receptors mediates attachment (adsorption), triggers entry into the host cell (such as membrane fusion or endocytosis), and determines which host cells the virus can infect.',
+          rubric: [
+            { code: 'B1', text: 'Spikes recognise and bind to specific receptors on the host cell surface (adsorption).' },
+            { code: 'B1', text: 'Binding enables viral entry into the host cell and determines host specificity.' }
+          ]
+        },
+        {
+          label: '42c',
+          marks: 2,
+          prompt: 'Explain how the envelope differs functionally from the capsid.',
+          answer:
+            'The capsid gives the virus its core structural shape and directly protects the nucleic acid genome, whereas the outer phospholipid envelope anchors surface spikes for host-cell attachment, assists entry via membrane fusion, and helps shield the virus from host defences.',
+          principle: 'The protein capsid provides core protection and packaging for the genome, while the lipid envelope displays attachment proteins and mediates membrane-based entry and exit.',
+          solution:
+            'The protein capsid is the inner structural shell that maintains viral shape and directly protects the nucleic acid from nucleases and damage. In contrast, the phospholipid envelope is an outer lipid bilayer acquired from the host membrane; it anchors spike projections that bind host receptors, facilitates entry by fusing with the host cell membrane, and helps mask viral antigens from the host immune system.',
+          rubric: [
+            { code: 'B1', text: 'Capsid provides structural integrity and directly protects the viral nucleic acid genome.' },
+            { code: 'B1', text: 'Envelope is an outer lipid layer that carries attachment spikes, mediates membrane fusion/entry, and aids immune evasion.' }
+          ]
+        },
+        {
+          label: '43a',
+          marks: 1,
+          prompt:
+            'Consider the three viral shapes shown below.\n\nIdentify the characteristic used to distinguish these three viruses.',
+          figures: [
+            {
+              src: '/papers/bio10-blok-test-keanekaragaman-virus/fig-43.webp',
+              caption: 'Three viral forms: Virus A, Virus B, and Virus C (Question 43).',
+              alt: 'Three 3D viral models side by side: Virus A is an elongated blue cylinder of capsomeres with a red helical genome; Virus B is a blue geometric icosahedron; Virus C is a spherical virus with an outer spiked membrane surrounding a purple capsid and coiled red genome.'
+            }
+          ],
+          answer: 'Viral shape / morphology (capsid symmetry and presence of an outer envelope)',
+          principle: 'Viruses are distinguished morphologically by capsid symmetry (helical, polyhedral/icosahedral, spherical) and the presence or absence of an envelope.',
+          solution:
+            'The three diagrams contrast viral morphology (shape and structural organisation): Virus A has an elongated helical (cylindrical) capsid, Virus B has a naked polyhedral (icosahedral) capsid, and Virus C is spherical with an outer spiked envelope.',
+          rubric: [{ code: 'A1', text: 'Identifies viral shape or morphology (capsid shape/symmetry and envelope presence).' }]
+        },
+        {
+          label: '43b',
+          marks: 2,
+          prompt: 'Explain why viral shape can be used as one basis for virus classification.',
+          answer:
+            'Viral shape is determined by how capsomeres assemble around the genome (and whether an envelope is present), making it a consistent, genetically determined and observable structural trait that groups viruses into clear morphological classes.',
+          principle: 'Capsid symmetry and overall morphology are stable, observable structural traits used in viral taxonomy.',
+          solution:
+            'Each virus assembles its capsomeres into a specific, genetically encoded geometric arrangement (such as a helical rod or an icosahedron), producing a consistent shape observable by electron microscopy. Because this morphology reflects stable structural features and the presence or absence of an envelope, it provides a reliable criterion for grouping viruses into major classes (helical, polyhedral, spherical/enveloped, or complex).',
+          rubric: [
+            { code: 'B1', text: 'Viral shape is a consistent, genetically determined and observable structural feature (capsomere arrangement/envelope).' },
+            { code: 'B1', text: 'It enables grouping of viruses into distinct morphological classes (e.g. helical, polyhedral, spherical/enveloped).' }
+          ]
+        },
+        {
+          label: '43c',
+          marks: 1,
+          prompt: 'Which structural feature distinguishes Virus C from the other two forms?',
+          answer: 'An outer viral envelope with projecting surface spikes',
+          principle: 'Enveloped viruses possess an outer lipid bilayer with spike proteins surrounding the capsid, unlike naked helical or icosahedral viruses.',
+          solution:
+            'Virus A (helical) and Virus B (polyhedral/icosahedral) are naked viruses whose protein capsids form the outermost layer. Only Virus C possesses an outer lipid envelope studded with projecting surface spikes surrounding its inner capsid.',
+          rubric: [{ code: 'A1', text: 'Identifies the outer viral envelope (with surface spikes) surrounding the capsid.' }]
+        },
+        {
           label: '44',
           marks: 2,
           prompt:
-            'A bacteriophage approaches a bacterial cell. Explain the role of the tail fibers in the infection process and why they are important for host specificity.',
+            'A diagram shows a bacteriophage approaching a bacterial cell. Explain the role of the tail fibers in the infection process and why they are important for host specificity.',
+          figures: [
+            {
+              src: '/papers/bio10-blok-test-keanekaragaman-virus/fig-44.webp',
+              caption: 'Bacteriophage attaching to a bacterial cell (Question 44).',
+              alt: 'Diagram of a bacteriophage on a bacterial cell surface showing Tail, Baseplate, Cell wall, Cell membrane, and Bacterial cell, with tail fibers anchoring the baseplate onto the bacterial cell wall as DNA enters.'
+            }
+          ],
           answer:
             'The tail fibers recognise and bind to specific receptors on the bacterial surface (adsorption), the first step that allows the phage to inject its DNA; because their shape fits only certain receptors, a phage infects only bacteria that have them.',
           principle: 'Tail fibers mediate adsorption, and their receptor specificity determines the phage’s host range.',

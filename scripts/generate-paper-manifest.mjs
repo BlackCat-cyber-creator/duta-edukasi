@@ -79,6 +79,13 @@ export function getManifestBySlug(subject, slug) {
   return PUBLISHED_PAPER_MANIFEST.find((p) => p.subject === subject && p.slug === slug) || null;
 }
 
+export function getRelatedPapersForChapter(chapterId) {
+  if (!chapterId) return [];
+  return PUBLISHED_PAPER_MANIFEST.filter(
+    (p) => Array.isArray(p.relatedChapterIds) && p.relatedChapterIds.includes(chapterId)
+  );
+}
+
 export const PAPER_LOADERS = {
 ${loaderLines.join(',\n')}
 };

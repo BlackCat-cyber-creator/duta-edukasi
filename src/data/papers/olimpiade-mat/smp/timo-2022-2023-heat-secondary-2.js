@@ -1,7 +1,8 @@
 /**
  * Paket Soal: TIMO 2022/2023 Heat Round Secondary 2 (Thailand International Mathematical Olympiad).
  * Sumber: timo_2022_2023_heat_s2.pdf. Naskah asli dwibahasa (Inggris dan terjemahan Indonesia otomatis yang rusak);
- * paket ini memakai teks Inggris. Soal 16 tidak dimuat (data tidak konsisten: "heptagon" dengan sembilan sudut).
+ * paket ini memakai teks Inggris. Seluruh 25 soal dimuat; pada Soal 16, naskah sumber salah cetak menulis
+ * "heptagon" padahal memberikan 9 sudut dan menanyakan jumlah sudut ke-10 dan ke-11 (segi-11 / hendecagon).
  * Naskah tidak memuat kunci jawaban; seluruh jawaban dihitung dan diperiksa ulang secara mandiri.
  */
 export default {
@@ -23,9 +24,9 @@ export default {
   langDisplay: 'EN',
   competition: 'TIMO',
   title: 'TIMO 2022/2023 Heat Round Secondary 2',
-  totalMarks: 96,
+  totalMarks: 100,
   instructions:
-    'Open-ended questions: write down only the final answer in the simplest form (a fraction must be a proper fraction or mixed number, or a decimal). Each correct answer scores 4 points and there is no penalty for wrong answers. No calculators are allowed. Give units where the question asks for a measurement.',
+    'Open-ended questions (1 to 25): write down only the final answer in the simplest form (a fraction must be a proper fraction or mixed number, or a decimal). Each correct answer scores 4 points and there is no penalty for wrong answers (total 100 points). No calculators are allowed. Give units where the question asks for a measurement.',
   source: {
     org: 'TIMO',
     file: 'timo_2022_2023_heat_s2.pdf',
@@ -261,9 +262,23 @@ export default {
     {
       no: 4,
       title: 'Geometry',
-      marks: 16,
-      stem: 'Open-ended questions 17 to 20 (question 16 is not included in this set). Each correct answer scores 4 points.',
+      marks: 20,
+      stem: 'Open-ended questions 16 to 20. Each correct answer scores 4 points.',
       parts: [
+        {
+          label: '16',
+          marks: 4,
+          prompt:
+            'Nine of the interior angles of an irregular hendecagon (11-sided polygon; printed as "heptagon" in the original paper) are $192^\\circ$, $138^\\circ$, $127^\\circ$, $162^\\circ$, $257^\\circ$, $118^\\circ$, $111^\\circ$, $122^\\circ$ and $110^\\circ$. What is the sum of the tenth and eleventh interior angles?',
+          answer: '$283^\\circ$',
+          principle: 'The sum of the interior angles of an $n$-sided polygon is $(n - 2) \\times 180^\\circ$.',
+          solution:
+            'Since the question gives nine interior angles and asks for the sum of the tenth and eleventh interior angles, the polygon has $n = 11$ sides (a hendecagon; "heptagon" in the source paper is a misprint).\nThe sum of all $11$ interior angles is\n$$(11 - 2) \\times 180^\\circ = 9 \\times 180^\\circ = 1620^\\circ.$$\nThe sum of the nine given angles is\n$$192^\\circ + 138^\\circ + 127^\\circ + 162^\\circ + 257^\\circ + 118^\\circ + 111^\\circ + 122^\\circ + 110^\\circ = 1337^\\circ.$$\nTherefore, the sum of the tenth and eleventh interior angles is\n$$1620^\\circ - 1337^\\circ = 283^\\circ.$$',
+          rubric: [
+            { code: 'M2', text: 'Uses $n = 11$ for total angle sum $1620^\\circ$ and sums the 9 given angles to $1337^\\circ$.' },
+            { code: 'A2', text: '$283^\\circ$.' }
+          ]
+        },
         {
           label: '17',
           marks: 4,

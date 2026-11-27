@@ -1,8 +1,6 @@
 /**
- * Paket Soal Terstruktur: OSN-K Matematika SD 2024 (21 soal pilihan ganda terpilih dari 30 soal asli)
- * Sumber: scraped_raw/osnk-matematika-sd-2024.md
- * Soal 14, 17, 19, 21, 22, 23, 24, 29 tidak dimuat karena gambar/tabel tidak tersedia pada arsip;
- * soal 25 tidak dimuat karena ketidakkonsistenan redaksi pecahan dan duplikasi opsi pada arsip.
+ * Paket Soal Terstruktur: OSN-K Matematika SD 2024 (30 soal pilihan ganda lengkap)
+ * Sumber: content-inbox/drive/restore/osnk_mat_sd_2024.pdf & scraped_raw/osnk-matematika-sd-2024.md
  * Pada soal 27, salah ketik OCR "4d+e+f = 10" diperbaiki menjadi "d+e+f = 10" sesuai naskah asli dan opsi jawaban.
  */
 const OK = [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }];
@@ -29,9 +27,9 @@ export default {
   langDisplay: 'ID',
   competition: 'OSN-K',
   title: 'OSN-K Matematika SD 2024',
-  totalMarks: 21,
+  totalMarks: 30,
   instructions:
-    'Kerjakan seluruh 21 soal pilihan ganda terpilih (dari 30 soal asli OSN-K Matematika SD 2024). Setiap jawaban benar bernilai 1 poin. Sebanyak 9 soal tidak dimuat: soal nomor 14, 17, 19, 21, 22, 23, 24, dan 29 karena memerlukan gambar atau tabel yang tidak tersedia pada arsip, serta soal nomor 25 karena ketidakkonsistenan redaksi pecahan dan duplikasi opsi pada arsip.',
+    'Kerjakan seluruh 30 soal pilihan ganda OSN-K Matematika SD 2024. Setiap jawaban benar bernilai 1 poin (total 30 poin).',
   source: {
     org: 'OSN-K (Olimpiade Sains Nasional tingkat Kabupaten/Kota)',
     file: 'scraped_raw/osnk-matematika-sd-2024.md',
@@ -42,8 +40,8 @@ export default {
     {
       no: 1,
       title: 'Soal Pilihan Ganda',
-      marks: 21,
-      stem: 'Pilihlah satu jawaban yang paling tepat untuk setiap soal berikut (21 soal terpilih dari 30 soal asli, masing-masing bernilai 1 poin).',
+      marks: 30,
+      stem: 'Pilihlah satu jawaban yang paling tepat untuk setiap soal berikut (30 soal pilihan ganda, masing-masing bernilai 1 poin).',
       parts: [
         {
           label: '1',
@@ -189,6 +187,24 @@ export default {
           rubric: OK
         },
         {
+          label: '14',
+          marks: 1,
+          prompt:
+            'Andika akan membuat kotak donasi untuk mengumpulkan sumbangan. Jaring-jaring kotak donasi tersebut disajikan pada gambar berikut.\n\nKotak donasi yang terbentuk adalah ....\n\nA. Pilihan A\nB. Pilihan B\nC. Pilihan C\nD. Pilihan D',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2024/fig-14.svg',
+              alt: 'Jaring-jaring kotak donasi dengan sisi bertuliskan Kotak Donasi, sisi kuning, sisi abu-abu, sisi berlubang, dan empat pilihan kotak tiga dimensi A hingga D.',
+              caption: 'Jaring-jaring kotak donasi dan pilihan hasil lipatannya.'
+            }
+          ],
+          answer: 'D. Pilihan D',
+          principle: 'Pelipatan jaring-jaring balok ke bagian dalam sehingga sisi bermotif menghadap ke luar.',
+          solution:
+            'Lipat jaring-jaring ke belakang (menjauhi pengamat) agar tulisan dan warna berada di sisi luar kotak:\n- Sisi depan: bertuliskan **Kotak Donasi** (tegak).\n- Sisi atas: sisi putih dengan lubang celah donasi.\n- Sisi kanan: berwarna abu-abu tua.\n- Sisi kiri: berwarna kuning.\n- Sisi belakang dan bawah: berwarna putih polos.\n\nPeriksa setiap pilihan:\n- **A**: sisi atas polos tanpa lubang dan sisi kanan kuning (tidak sesuai).\n- **B**: tulisan "Kotak Donasi" terbalik; jika kotak dibalik $180^\\circ$ ke bawah agar tulisan terbalik, sisi yang berada di atas seharusnya sisi bawah (polos) dan sisi di kanan adalah sisi kuning, bukan lubang dan abu-abu.\n- **D**: tampak depan bertuliskan **Kotak Donasi** tegak, sisi atas berlubang, dan sisi kanan abu-abu tua — tepat sesuai hasil lipatan dilihat dari arah depan-kanan-atas.\n- *(Catatan: secara geometri 3D, pilihan C juga merupakan kotak yang sama bila diputar $180^\\circ$ mendatar sehingga dilihat dari sisi belakang-kiri-atas: depan putih polos, atas berlubang, dan kanan kuning; kunci resmi mengacu langsung pada tampak depan **D**.)*',
+          rubric: OK
+        },
+        {
           label: '15',
           marks: 1,
           prompt:
@@ -211,6 +227,24 @@ export default {
           rubric: OK
         },
         {
+          label: '17',
+          marks: 1,
+          prompt:
+            'Perhatikan gambar segitiga sama kaki $ABC$ berikut.\n\nTitik $D$ berada pada garis $AB$. Panjang $t$ adalah .... satuan panjang.\n\nA. $\\dfrac{15}{8}$\nB. $\\dfrac{24}{5}$\nC. $\\dfrac{40}{3}$\nD. $120$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2024/fig-17.svg',
+              alt: 'Segitiga sama kaki ABC dengan panjang sisi sama AB dan AC sebesar 5 satuan, alas BC sebesar 8 satuan, serta garis tinggi t dari C ke perpanjangan sisi AB di titik D.',
+              caption: 'Segitiga sama kaki ABC dengan garis tinggi t ke titik D.'
+            }
+          ],
+          answer: 'B. $\\dfrac{24}{5}$',
+          principle: 'Kesamaan luas segitiga dengan dua pasang alas dan tinggi yang berbeda.',
+          solution:
+            'Segitiga $ABC$ adalah segitiga sama kaki dengan $AB = AC = 5$ dan alas $BC = 8$. Garis tinggi dari $A$ ke $BC$ membagi alas $BC$ menjadi dua bagian sama panjang, masing-masing $\\frac{8}{2} = 4$.\n\nDengan Teorema Pythagoras, tinggi segitiga dari titik $A$ terhadap alas $BC$ adalah:\n$$h = \\sqrt{5^2 - 4^2} = \\sqrt{25 - 16} = \\sqrt{9} = 3.$$\n\nLuas segitiga $ABC$ adalah:\n$$L_{\\triangle ABC} = \\frac{1}{2} \\times BC \\times h = \\frac{1}{2} \\times 8 \\times 3 = 12.$$\n\nDengan memandang $AB = 5$ sebagai alas dan $CD = t$ sebagai tinggi yang tegak lurus terhadap garis $AB$, diperoleh:\n$$\\frac{1}{2} \\times AB \\times t = 12 \\implies \\frac{1}{2} \\times 5 \\times t = 12 \\implies t = \\frac{24}{5}.$$',
+          rubric: OK
+        },
+        {
           label: '18',
           marks: 1,
           prompt:
@@ -222,6 +256,24 @@ export default {
           rubric: OK
         },
         {
+          label: '19',
+          marks: 1,
+          prompt:
+            'Perhatikan gambar berikut.\n\n$ABCD$ adalah persegi panjang dan $BEFG$ adalah persegi. Jika perbandingan $HB : BE = 1 : 3$, maka luas daerah yang diarsir adalah .... $\\text{cm}^{2}$.\n\nA. $28$\nB. $33$\nC. $38$\nD. $42$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2024/fig-19.svg',
+              alt: 'Persegi panjang ABCD dengan tinggi 4 cm dan persegi BEFG dengan sisi 6 cm yang bersebelahan pada garis alas AHBE, serta daerah segitiga DHF diarsir.',
+              caption: 'Gabungan persegi panjang ABCD dan persegi BEFG dengan daerah arsiran DHF.'
+            }
+          ],
+          answer: 'A. $28$',
+          principle: 'Luas daerah arsiran sebagai luas trapesium dikurangi dua segitiga siku-siku yang tidak diarsir.',
+          solution:
+            'Karena $BEFG$ adalah persegi dengan $GF = 6\\ \\text{cm}$, maka panjang sisi persegi adalah $BE = EF = 6\\ \\text{cm}$.\n\nDari perbandingan $HB : BE = 1 : 3$, diperoleh:\n$$HB = \\frac{1}{3} \\times 6 = 2\\ \\text{cm}.$$\nDengan $AH = 4\\ \\text{cm}$, panjang seluruh alas adalah:\n$$AE = AH + HB + BE = 4 + 2 + 6 = 12\\ \\text{cm}, \\qquad HE = HB + BE = 2 + 6 = 8\\ \\text{cm}.$$\n\nDaerah yang diarsir adalah segitiga $DHF$, yang berada di dalam trapesium siku-siku $AEFD$ (dengan sisi sejajar $AD = 4\\ \\text{cm}$, $EF = 6\\ \\text{cm}$, dan tinggi $AE = 12\\ \\text{cm}$):\n- Luas trapesium $AEFD = \\frac{4 + 6}{2} \\times 12 = 60\\ \\text{cm}^2$.\n- Luas $\\triangle ADH = \\frac{1}{2} \\times AH \\times AD = \\frac{1}{2} \\times 4 \\times 4 = 8\\ \\text{cm}^2$.\n- Luas $\\triangle HEF = \\frac{1}{2} \\times HE \\times EF = \\frac{1}{2} \\times 8 \\times 6 = 24\\ \\text{cm}^2$.\n\nMaka luas daerah yang diarsir adalah:\n$$L_{\\triangle DHF} = 60 - 8 - 24 = 28\\ \\text{cm}^2.$$',
+          rubric: OK
+        },
+        {
           label: '20',
           marks: 1,
           prompt:
@@ -230,6 +282,82 @@ export default {
           principle: 'Rata-rata maksimum diperoleh saat total kenaikan nilai (nilai akhir $-$ nilai awal) sebesar mungkin.',
           solution:
             'Jumlah nilai awal seluruh $20$ siswa adalah:\n$$20 \\times 68 = 1360.$$\n\nAgar rata-rata setelah remedial setinggi mungkin, $3$ siswa peserta remedial harus memiliki nilai awal serendah mungkin dan nilai remedial setinggi mungkin. Karena seluruh nilai berada pada interval $56 - 100$ dan nilai remedial maksimal $75$, kenaikan terbesar terjadi jika ketiga siswa tersebut semula mendapat nilai $56$ dan setelah remedial mendapat nilai $75$.\n\nPeriksa kelayakan nilai $17$ siswa lainnya: jumlah nilai mereka adalah $1360 - 3 \\times 56 = 1360 - 168 = 1192$, sehingga rata-rata ke-$17$ siswa tersebut adalah $\\frac{1192}{17} = 70\\frac{2}{17}$, yang sah berada dalam interval $56 - 100$.\n\nTotal kenaikan nilai $= 3 \\times (75 - 56) = 3 \\times 19 = 57$. Jumlah nilai akhir $= 1360 + 57 = 1417$, sehingga rata-rata tertinggi adalah:\n$$\\frac{1417}{20} = \\frac{7085}{100} = 70,85.$$',
+          rubric: OK
+        },
+        {
+          label: '21',
+          marks: 1,
+          prompt:
+            'Data banyak penjualan roti $A, B, C, D, E,$ dan $F$ dalam dua hari berturut-turut pada suatu toko disajikan pada tabel di bawah ini:\n\n| Roti | Hari I (Bungkus) | Hari II (Bungkus) |\n|---|---:|---:|\n| A | 12 | 8 |\n| B | 24 | 18 |\n| C | 15 | 10 |\n| D | 19 | 13 |\n| E | 16 | 20 |\n| F | 18 | 8 |\n\nGrafik rata-rata banyak penjualan keenam roti tersebut adalah ....\n\nA. Pilihan A\nB. Pilihan B\nC. Pilihan C\nD. Pilihan D',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2024/fig-21.svg',
+              alt: 'Empat pilihan diagram batang berlabel A sampai D yang menunjukkan rata-rata penjualan enam jenis roti A hingga F.',
+              caption: 'Pilihan grafik batang rata-rata penjualan enam jenis roti.'
+            }
+          ],
+          answer: 'B. Pilihan B',
+          principle: 'Rata-rata dua hari adalah setengah dari jumlah penjualan Hari I dan Hari II.',
+          solution:
+            'Hitung rata-rata penjualan untuk masing-masing jenis roti:\n- Roti A: $\\frac{12 + 8}{2} = \\frac{20}{2} = 10$\n- Roti B: $\\frac{24 + 18}{2} = \\frac{42}{2} = 21$\n- Roti C: $\\frac{15 + 10}{2} = \\frac{25}{2} = 12,5$\n- Roti D: $\\frac{19 + 13}{2} = \\frac{32}{2} = 16$\n- Roti E: $\\frac{16 + 20}{2} = \\frac{36}{2} = 18$\n- Roti F: $\\frac{18 + 8}{2} = \\frac{26}{2} = 13$\n\nPeriksa grafik:\n- Grafik A menunjukkan batang B setinggi $22$ (salah).\n- Grafik C menunjukkan batang D setinggi $18$, sama tinggi dengan E (salah).\n- Grafik D menunjukkan batang A setinggi $12$ (salah).\n- Grafik B tepat menampilkan $A = 10$, $B = 21$, $C = 12,5$, $D = 16$, $E = 18$, dan $F = 13$.',
+          rubric: OK
+        },
+        {
+          label: '22',
+          marks: 1,
+          prompt:
+            'Dua tim siswa sekolah dasar, yaitu tim A dan tim B, berlomba lari estafet $4 \\times 100$ meter. Lari estafet $4 \\times 100$ meter adalah lomba lari yang diikuti oleh empat pelari pada setiap tim dengan aturan: pelari ke-1 membawa tongkat dan berlari $100$ meter, kemudian tongkat diserahkan ke pelari berikutnya yang juga berlari $100$ meter dan seterusnya sampai pelari ke-4. Berikut adalah data kecepatan pelari pada perlombaan tersebut.\n\n| Tim | Pelari ke-1 | Pelari ke-2 | Pelari ke-3 | Pelari ke-4 |\n|---|---|---|---|---|\n| A | $10\\ \\text{m/menit}$ | $10\\ \\text{m/menit}$ | $15\\ \\text{m/menit}$ | $25\\ \\text{m/menit}$ |\n| B | $12,5\\ \\text{m/menit}$ | $8\\ \\text{m/menit}$ | $20\\ \\text{m/menit}$ | $20\\ \\text{m/menit}$ |\n\nSelisih waktu tempuh kedua tim adalah .... detik.\n\nA. $11$\nB. $10$\nC. $9$\nD. $8$',
+          answer: 'B. $10$',
+          principle: 'Waktu tempuh tiap pelari adalah $\\frac{\\text{jarak}}{\\text{kecepatan}}$, lalu konversikan selisih menit ke detik ($1\\text{ menit} = 60\\text{ detik}$).',
+          solution:
+            'Setiap pelari menempuh jarak $100\\ \\text{m}$, sehingga waktu masing-masing pelari (dalam menit) adalah:\n\n**Tim A:**\n$$t_A = \\frac{100}{10} + \\frac{100}{10} + \\frac{100}{15} + \\frac{100}{25} = 10 + 10 + 6\\frac{2}{3} + 4 = 30\\frac{2}{3}\\text{ menit}.$$\n\n**Tim B:**\n$$t_B = \\frac{100}{12,5} + \\frac{100}{8} + \\frac{100}{20} + \\frac{100}{20} = 8 + 12,5 + 5 + 5 = 30\\frac{1}{2}\\text{ menit}.$$\n\nSelisih waktu tempuh kedua tim adalah:\n$$t_A - t_B = 30\\frac{2}{3} - 30\\frac{1}{2} = \\frac{4 - 3}{6} = \\frac{1}{6}\\text{ menit}.$$\nKonversikan ke satuan detik:\n$$\\frac{1}{6} \\times 60 = 10\\text{ detik}.$$',
+          rubric: OK
+        },
+        {
+          label: '23',
+          marks: 1,
+          prompt:
+            'Berikut ini adalah pemenang pada lomba Chicago Marathon 2023.\n\nPada lomba tersebut, jarak yang harus ditempuh adalah $42\\ \\text{km}$. Kecepatan rata-rata Kelvin Kiptum pada lomba tersebut mendekati .... meter/detik.\n\nA. $5$\nB. $6$\nC. $7$\nD. $8$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2024/fig-23.webp',
+              alt: 'Infografis pemenang kategori Men Elite Chicago Marathon 2023 yang menampilkan nama pelari dan catatan waktu masing-masing.',
+              caption: 'Data pemenang lomba Chicago Marathon 2023 (Sumber: Kompas.id).'
+            }
+          ],
+          answer: 'B. $6$',
+          principle: 'Konversi jarak ke meter ($1\\text{ km} = 1000\\text{ m}$) dan waktu ke detik ($1\\text{ jam} = 3600\\text{ detik}$), lalu hitung $v = \\frac{s}{t}$.',
+          solution:
+            'Dari infografis, catatan waktu juara pertama **Kelvin Kiptum** adalah $2\\text{ jam } 00\\text{ menit } 35\\text{ detik}$.\n\nKonversikan jarak dan waktu ke meter dan detik:\n- Jarak tempuh: $s = 42\\ \\text{km} = 42.000\\ \\text{m}$.\n- Waktu tempuh: $t = 2 \\times 3600 + 35 = 7200 + 35 = 7235\\ \\text{detik}$.\n\nKecepatan rata-rata Kelvin Kiptum adalah:\n$$v = \\frac{42.000}{7235} \\approx 5,81\\ \\text{meter/detik}.$$\nNilai tersebut paling mendekati $6\\ \\text{meter/detik}$.',
+          rubric: OK
+        },
+        {
+          label: '24',
+          marks: 1,
+          prompt:
+            'Berikut adalah tabel perolehan hasil tes IPA.\n\n| Banyak Jawaban Benar | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n| **Banyak Siswa** | 1 | 2 | 3 | 2 | 3 | 6 | 8 | 4 | 8 | 5 | 8 |\n\nBerapa minimal banyak jawaban benar sehingga banyak jawaban benar tersebut melebihi $70\\%$ siswa yang lain?\n\nA. $7$\nB. $8$\nC. $9$\nD. $10$',
+          answer: 'C. $9$',
+          principle: 'Frekuensi kumulatif kurang dari suatu nilai untuk menentukan persentil ke-$70$.',
+          solution:
+            'Hitung terlebih dahulu total seluruh siswa:\n$$1 + 2 + 3 + 2 + 3 + 6 + 8 + 4 + 8 + 5 + 8 = 50\\text{ siswa}.$$\n\nSyarat "melebihi $70\\%$ siswa yang lain" berarti banyaknya siswa yang memperoleh jawaban benar **lebih sedikit** dari nilai tersebut harus lebih dari $70\\% \\times 49 = 34,3$ siswa (atau jika dihitung terhadap $50$ siswa, minimal melampaui $70\\% \\times 50 = 35$ siswa), yakni minimal $35$ siswa.\n\nHitung jumlah siswa dengan banyak jawaban benar kurang dari nilai tertentu:\n- Kurang dari $8$ ($0$ sampai $7$): $1 + 2 + 3 + 2 + 3 + 6 + 8 + 4 = 29\\text{ siswa}$ ($\\frac{29}{49} \\approx 59,2\\% < 70\\%$).\n- Kurang dari $9$ ($0$ sampai $8$): $29 + 8 = 37\\text{ siswa}$ ($\\frac{37}{49} \\approx 75,5\\% > 70\\%$, dan $\\frac{37}{50} = 74\\% > 70\\%$).\n\nJadi minimal banyak jawaban benar yang memenuhi adalah $9$.',
+          rubric: OK
+        },
+        {
+          label: '25',
+          marks: 1,
+          prompt:
+            'Pada perlombaan panjat pinang, mula-mula Jimmy memanjat sejauh $\\dfrac{2}{5}$ dari tinggi batang pinang, namun kemudian Jimmy merosot ke posisi $\\dfrac{1}{4}$ dari posisi sebelumnya. Selanjutnya, Jimmy memanjat kembali tepat $\\dfrac{1}{5}$ dari posisi terakhir. Jika Jimmy harus memanjat $6$ meter lagi untuk sampai di puncak, maka tinggi batang pinang adalah .... meter.\n\nA. $9,125$\nB. $9,375$\nC. $9,500$\nD. $9,750$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2024/fig-25.webp',
+              alt: 'Ilustrasi lomba panjat pinang dengan seorang peserta memanjat tiang pinang menuju hadiah di puncak.',
+              caption: 'Ilustrasi perlombaan panjat pinang.'
+            }
+          ],
+          answer: 'B. $9,375$',
+          principle: 'Operasi pecahan bertahap terhadap suatu besaran total $t$.',
+          solution:
+            'Misalkan tinggi batang pinang adalah $t$ meter. Sesuai maksud soal pada naskah resmi ("merosot ke posisi $\\frac{1}{4}$ dari posisi sebelumnya" bermakna turun sebesar $\\frac{1}{4}$ dari ketinggian sebelumnya):\n1. Mula-mula Jimmy mencapai ketinggian:\n   $$t_1 = \\frac{2}{5}t.$$\n2. Jimmy merosot sebesar $\\frac{1}{4}$ dari posisi sebelumnya, sehingga ketinggiannya menjadi:\n   $$t_2 = \\left(1 - \\frac{1}{4}\\right) \\times \\frac{2}{5}t = \\frac{3}{4} \\times \\frac{2}{5}t = \\frac{3}{10}t.$$\n3. Jimmy memanjat kembali sebesar $\\frac{1}{5}$ dari posisi terakhir, sehingga ketinggian akhirnya adalah:\n   $$t_3 = \\left(1 + \\frac{1}{5}\\right) \\times \\frac{3}{10}t = \\frac{6}{5} \\times \\frac{3}{10}t = \\frac{18}{50}t = \\frac{9}{25}t.$$\n\nSisa ketinggian yang harus dipanjat untuk sampai di puncak adalah $6$ meter:\n$$t - \\frac{9}{25}t = 6 \\implies \\frac{16}{25}t = 6 \\implies t = \\frac{6 \\times 25}{16} = \\frac{150}{16} = \\frac{75}{8} = 9,375\\text{ meter}.$$',
           rubric: OK
         },
         {
@@ -263,6 +391,24 @@ export default {
           principle: 'Kombinasi dan kaidah perkalian: setiap $2$ angka berbeda memiliki tepat $1$ cara penyusunan agar $a > c$.',
           solution:
             'Angka yang tersedia adalah $\\{1, 2, 3, 4, 5, 6\\}$ dan ketiga angka $a, b, c$ harus berbeda.\n\n1. Karena $b$ genap, maka $b \\in \\{2, 4, 6\\}$, sehingga ada $3$ pilihan untuk $b$.\n2. Setelah memilih $b$, tersisa $5$ angka berbeda untuk mengisi $a$ dan $c$. Dari $5$ angka tersebut, pilih $2$ angka; banyak cara memilihnya adalah:\n   $$\\binom{5}{2} = \\frac{5 \\times 4}{2} = 10\\text{ pasang}.$$\n3. Untuk setiap pasang angka berbeda yang terpilih, hanya ada tepat $1$ cara menempatkannya pada posisi $a$ dan $c$ agar $a > c$ (angka yang lebih besar sebagai $a$, angka yang lebih kecil sebagai $c$).\n\nJadi banyak bilangan ratusan yang mungkin adalah $3 \\times 10 = 30$.',
+          rubric: OK
+        },
+        {
+          label: '29',
+          marks: 1,
+          prompt:
+            'Perhatikan $3$ untai balon yang disusun sebagai berikut.\n\nSetiap balon akan diledakkan dengan syarat tidak boleh menjatuhkan balon lain, dan untuk meledakkan balon berikutnya harus berbeda untaian. Banyak cara agar balon nomor $6$ diledakkan pada urutan ke-lima adalah ....\n\nA. $6$\nB. $5$\nC. $4$\nD. $3$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2024/fig-29.svg',
+              alt: 'Tiga untai balon bernomor tergantung dari atas ke bawah: untai kiri 1-4-7, untai tengah 2-5, dan untai kanan 3-6-8-9.',
+              caption: 'Susunan tiga untai balon bernomor.'
+            }
+          ],
+          answer: 'C. $4$',
+          principle: 'Pencacahan urutan beraturan dengan kendala ketergantungan (bawah ke atas) dan tidak berurutan pada untaian yang sama.',
+          solution:
+            'Agar tidak menjatuhkan balon lain, setiap untaian harus diledakkan dari balon paling bawah ke atas:\n- Untai $1$: $7 \\to 4 \\to 1$\n- Untai $2$: $5 \\to 2$\n- Untai $3$: $9 \\to 8 \\to 6 \\to 3$\n\nSelain itu, dua peledakan berturut-turut harus berasal dari untaian yang berbeda. Karena balon $6$ (pada Untai $3$) diledakkan pada urutan ke-5, maka balon $9$ dan $8$ (keduanya pada Untai $3$) harus sudah diledakkan di antara urutan ke-1 hingga ke-4 tanpa bersebelahan. Artinya, dua kali peledakan pada Untai $3$ dan dua kali peledakan pada Untai $1$ atau $2$ harus berselang-seling:\n- Kemungkinan posisi Untai $3$ pada 4 urutan pertama agar berbeda dengan urutan ke-5 (Untai $3$) dan tidak bersebelahan adalah urutan ke-1 dan ke-3: `(Untai 3, X, Untai 3, Y, 6)`, yaitu `9 - X - 8 - Y - 6`.\n- Nilai `(X, Y)` yang valid dari Untai $1$ dan Untai $2$ (tanpa dua langkah berurutan pada untaian yang sama) adalah:\n  1. `9 - 7 - 8 - 4 - 6` (Untai 1 lalu Untai 1 — boleh karena dipisahkan oleh `8`)\n  2. `9 - 7 - 8 - 5 - 6`\n  3. `9 - 5 - 8 - 7 - 6`\n  4. `9 - 5 - 8 - 2 - 6`\n\nJadi terdapat $4$ cara urutan hingga balon nomor $6$ diledakkan pada urutan ke-lima.',
           rubric: OK
         },
         {

@@ -15,6 +15,7 @@ import {
 } from '../data/papers/manifest';
 import { ORGANIZATION } from '../data/siteInfo';
 import { englishPapersHubMeta, papersHubMeta } from '../utils/seoMeta';
+import { PAPERS_HUB_FAQS, ENGLISH_PAPERS_HUB_FAQS } from '../utils/seoFaqs';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { getStudyState, STUDY_STATE_EVENT } from '../utils/progress';
 
@@ -328,6 +329,20 @@ export function PapersHubPage() {
           })}
         </div>
       )}
+
+      <section className="info-card seo-faq-box" aria-label={isEnglishHub ? 'Frequently Asked Questions' : 'Pertanyaan Umum'} style={{ marginTop: '1.5rem' }}>
+        <h2 style={{ fontSize: '1.1rem', marginBottom: '0.75rem' }}>
+          {isEnglishHub ? 'Frequently Asked Questions' : 'Pertanyaan Umum Paket Soal'}
+        </h2>
+        <div className="seo-faq-grid">
+          {(isEnglishHub ? ENGLISH_PAPERS_HUB_FAQS : PAPERS_HUB_FAQS).map((f) => (
+            <div key={f.question} className="seo-faq-item">
+              <h3>{f.question}</h3>
+              <p>{f.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

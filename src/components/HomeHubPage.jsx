@@ -160,7 +160,7 @@ export function HomeHubPage() {
                 const papers = paperCountBySubject[id] || 0;
                 return (
                   <div key={id} className="hub-subject-row" style={{ '--row-accent': color }}>
-                    <Link to={gradePath(shown[0], id)} className="hub-subject-label" aria-label={`${label}, ${rangeLabel(grades)}`}>
+                    <Link to={`/${id}`} className="hub-subject-label" aria-label={`${label}, ${rangeLabel(grades)}`}>
                       <span className="hub-subject-icon"><Icon size={17} /></span>
                       <span className="hub-subject-name">
                         <strong>{label}</strong>

@@ -32,7 +32,7 @@ import {
 } from 'lucide-react';
 import { getProgress, PROGRESS_EVENT, recordRecentActivity } from '../utils/progress';
 import { getCp2025Note } from '../data/cp2025Mapping';
-import { handbookPath, parseHandbookPath } from '../utils/seoRoutes';
+import { handbookPath, parseHandbookPath, gradePath, chapterPath, amcLevelPath, amcChapterPath } from '../utils/seoRoutes';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { amcChapterMeta, amcLevelMeta, chapterMeta, gradeMeta } from '../utils/seoMeta';
 
@@ -280,9 +280,9 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
   }, [isAmcMode, activeAmcChapter, currentChapter, selectedAmcLevel, selectedGrade, displaySubject]);
 
   // ----------------------------------------------------
-  // NAVIGATION & MODE SWITCH HANDLERS
+  // NAVIGATION & MODE SWITCH HELPERS
   // ----------------------------------------------------
-  const handleSwitchToSchoolMode = (nextSubject = 'matematika') => {
+  const schoolTabUrl = (nextSubject = 'matematika') => {
     const dataSubject = nextSubject === 'fisika' ? 'ipa' : nextSubject;
     const index = curriculumFor(dataSubject);
     const pool = nextSubject === 'fisika'
@@ -292,44 +292,36 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
         : index; // Matematika 4–12, Kimia dan Biologi 10–12
     const gradeObj = pool.find((g) => g.grade === selectedGrade) || pool[0];
     const firstCh = gradeObj?.chapters?.[0]?.id || '';
-    goTo({ mode: 'school', subject: nextSubject, grade: gradeObj.grade, chapter: firstCh });
-    setSelectedTrackFilter("ALL");
-    setSearchQuery("");
-    setIsMobileChaptersOpen(false);
+    return handbookPath({ mode: 'school', subject: nextSubject, grade: gradeObj.grade, chapter: firstCh });
   };
 
-  const handleSelectGrade = (grade) => {
-    const gradeObj = subjectIndex.find(g => g.grade === grade);
+  const gradeTabUrl = (grade) => {
+    const gradeObj = subjectIndex.find((g) => g.grade === grade);
     const firstCh = gradeObj?.chapters?.[0]?.id || '';
     const nextSubject = subject === 'ipa' ? (grade >= 10 ? 'fisika' : 'ipa') : subject;
-    goTo({ mode: 'school', subject: nextSubject, grade, chapter: firstCh });
+    return handbookPath({ mode: 'school', subject: nextSubject, grade, chapter: firstCh });
+  };
+
+  const amcLevelUrl = (lvl) => {
+    const firstCh = ALL_AMC_CHAPTERS_INDEX.find((c) => c.level === lvl)?.id || '';
+    return handbookPath({ mode: 'amc', level: lvl, chapter: firstCh });
+  };
+
+  const resetTabNavState = () => {
     setSelectedTrackFilter("ALL");
     setSearchQuery("");
     setIsMobileChaptersOpen(false);
   };
 
-  const handleSelectAmcLevel = (lvl) => {
-    const firstCh = ALL_AMC_CHAPTERS_INDEX.find(c => c.level === lvl)?.id || '';
-    goTo({ mode: 'amc', level: lvl, chapter: firstCh });
-    setSearchQuery("");
-    setIsMobileChaptersOpen(false);
-  };
-
-  const handleSelectSchoolChapter = (chapterId) => {
-    goTo({ mode: 'school', subject: displaySubject, grade: selectedGrade, chapter: chapterId });
+  const handleSelectChapterLink = () => {
     setIsMobileChaptersOpen(false);
     if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
       window.scrollTo({ top: 180, behavior: 'smooth' });
     }
   };
 
-  const handleSelectAmcChapter = (chapterId) => {
-    goTo({ mode: 'amc', level: selectedAmcLevel, chapter: chapterId });
-    setIsMobileChaptersOpen(false);
-    if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
-      window.scrollTo({ top: 180, behavior: 'smooth' });
-    }
-  };
+  const hasActiveChapterHeading = Boolean(isAmcMode ? activeAmcChapter : currentChapter);
+  const heroTitleText = isAmcMode ? 'Olimpiade Matematika AMC' : (SUBJECT_HERO[displaySubject] || SUBJECT_HERO.matematika).title;
 
   const handleSelectTrack = (track) => {
     setSelectedTrackFilter(track);
@@ -356,11 +348,30 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
 
   return (
     <div className="handbook-container">
+      <nav className="seo-breadcrumb" aria-label="Navigasi">
+        <Link to="/">Beranda</Link> ›{' '}
+        {isAmcMode ? (
+          <>
+            <Link to="/olimpiade">Olimpiade</Link> ›{' '}
+            <Link to={amcLevelPath(selectedAmcLevel)}>AMC {selectedAmcLevel}</Link>
+            {activeAmcChapter && <> › <span>{activeAmcChapter.title}</span></>}
+          </>
+        ) : (
+          <>
+            <Link to={`/${displaySubject}`}>{SUBJECT_LABELS[displaySubject] || 'Materi'}</Link> ›{' '}
+            <Link to={gradePath(selectedGrade, displaySubject)}>Kelas {selectedGrade}</Link>
+            {currentChapter && <> › <span>{currentChapter.title}</span></>}
+          </>
+        )}
+      </nav>
+
       {/* Top Hero Banner */}
       <div className="handbook-hero">
-        <h1 className="handbook-hero-title">
-          {isAmcMode ? 'Olimpiade Matematika AMC' : (SUBJECT_HERO[displaySubject] || SUBJECT_HERO.matematika).title}
-        </h1>
+        {hasActiveChapterHeading ? (
+          <div className="handbook-hero-title">{heroTitleText}</div>
+        ) : (
+          <h1 className="handbook-hero-title">{heroTitleText}</h1>
+        )}
         <p className="handbook-hero-desc">
           {isAmcMode
             ? 'Materi konsep, pembuktian bertahap, dan latihan isian singkat untuk persiapan AMC 8, AMC 10, dan AMC 12.'
@@ -393,18 +404,19 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
             {SCHOOL_SUBJECT_TABS.map(({ id, buttonId, label, Icon }) => {
               const active = displaySubject === id;
               return (
-                <button
+                <Link
                   key={id}
                   id={buttonId}
-                  type="button"
                   role="tab"
                   aria-selected={active}
+                  to={schoolTabUrl(id)}
                   className={`btn ${active ? 'btn-royal' : 'btn-ghost'}`}
-                  onClick={() => handleSwitchToSchoolMode(id)}
+                  style={{ textDecoration: 'none', color: active ? '#fff' : undefined }}
+                  onClick={resetTabNavState}
                 >
                   <Icon size={16} />
                   <span>{label}</span>
-                </button>
+                </Link>
               );
             })}
           </div>
@@ -419,15 +431,16 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
             AMC_LEVELS_METADATA.map((lvl) => {
               const isSelected = Number(selectedAmcLevel) === lvl.level;
               return (
-                <button
+                <Link
                   key={lvl.level}
                   id={`btn-public-amc-${lvl.level}`}
-                  onClick={() => handleSelectAmcLevel(lvl.level)}
+                  to={amcLevelUrl(lvl.level)}
+                  onClick={() => { setSearchQuery(""); setIsMobileChaptersOpen(false); }}
                   className={`btn ${isSelected ? 'btn-royal' : 'btn-outline'} handbook-grade-btn`}
-                  style={{ padding: '0.5rem 0.9rem', fontSize: '0.825rem', fontWeight: isSelected ? 700 : 500 }}
+                  style={{ padding: '0.5rem 0.9rem', fontSize: '0.825rem', fontWeight: isSelected ? 700 : 500, textDecoration: 'none', color: isSelected ? '#fff' : undefined }}
                 >
                   <span>{lvl.title} • {lvl.targetGrades}</span>
-                </button>
+                </Link>
               );
             })
           ) : (
@@ -440,15 +453,16 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
             ).map((gradeObj) => {
               const isSelected = Number(selectedGrade) === gradeObj.grade;
               return (
-                <button
+                <Link
                   key={gradeObj.grade}
                   id={`btn-public-grade-${gradeObj.grade}`}
-                  onClick={() => handleSelectGrade(gradeObj.grade)}
+                  to={gradeTabUrl(gradeObj.grade)}
+                  onClick={resetTabNavState}
                   className={`btn ${isSelected ? 'btn-royal' : 'btn-outline'} handbook-grade-btn`}
-                  style={{ padding: '0.5rem 0.9rem', fontSize: '0.825rem', fontWeight: isSelected ? 700 : 500 }}
+                  style={{ padding: '0.5rem 0.9rem', fontSize: '0.825rem', fontWeight: isSelected ? 700 : 500, textDecoration: 'none', color: isSelected ? '#fff' : undefined }}
                 >
                   <span>Kelas {gradeObj.grade} {gradeObj.level}</span>
-                </button>
+                </Link>
               );
             })
           )}
@@ -568,11 +582,13 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
               displayedAmcChapters.map((ch, idx) => {
                 const isSelected = activeAmcChapter?.id === ch.id;
                 return (
-                  <button
+                  <Link
                     key={ch.id}
                     id={`btn-sidebar-chapter-${ch.id}`}
-                    onClick={() => handleSelectAmcChapter(ch.id)}
+                    to={amcChapterPath(selectedAmcLevel, ch.id)}
+                    onClick={handleSelectChapterLink}
                     className={`chapter-sidebar-item ${isSelected ? 'active' : ''}`}
+                    style={{ textDecoration: 'none' }}
                   >
                     <div className="chapter-sidebar-item-header">
                       <span className="chapter-num-badge">
@@ -588,7 +604,7 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
                     <div className="chapter-item-subtitle">
                       {ch.questionCount || 6} butir latihan & pembahasan
                     </div>
-                  </button>
+                  </Link>
                 );
               })
             ) : (
@@ -598,11 +614,13 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
                 const isLanjut = (ch.track || '').toUpperCase() === 'LANJUT';
                 const isCompleted = !!studentProgress[ch.id];
                 return (
-                  <button
+                  <Link
                     key={ch.id}
                     id={`btn-sidebar-chapter-${ch.id}`}
-                    onClick={() => handleSelectSchoolChapter(ch.id)}
+                    to={chapterPath(selectedGrade, ch.id, displaySubject)}
+                    onClick={handleSelectChapterLink}
                     className={`chapter-sidebar-item ${isSelected ? 'active' : ''}`}
+                    style={{ textDecoration: 'none' }}
                   >
                     <div className="chapter-sidebar-item-header">
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -619,7 +637,7 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
                     <div className="chapter-item-subtitle">
                       {ch.questionCount || ch.questions?.length || 0} butir latihan & pembahasan
                     </div>
-                  </button>
+                  </Link>
                 );
               })
             )}
@@ -648,7 +666,8 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
                 <ChapterNav
                   chapters={amcLevelChapters}
                   currentId={activeAmcChapter.id}
-                  onSelect={handleSelectAmcChapter}
+                  toPath={(ch) => amcChapterPath(selectedAmcLevel, ch.id)}
+                  onSelect={handleSelectChapterLink}
                 />
               </>
             ) : (
@@ -716,9 +735,9 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
                     </div>
                   </div>
 
-                  <h2 className="chapter-header-title">
+                  <h1 className="chapter-header-title">
                     {currentChapter.title}
-                  </h2>
+                  </h1>
 
                   {getCp2025Note(currentChapter.id) && (
                     <p className="cp2025-note">
@@ -756,7 +775,8 @@ export function PublicHandbook({ onLaunchPractice, onPrintQuest }) {
                 <ChapterNav
                   chapters={currentGradeData.chapters || []}
                   currentId={currentChapter.id}
-                  onSelect={handleSelectSchoolChapter}
+                  toPath={(ch) => chapterPath(selectedGrade, ch.id, displaySubject)}
+                  onSelect={handleSelectChapterLink}
                 />
               </div>
             ) : (

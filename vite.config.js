@@ -36,7 +36,7 @@ export default defineConfig({
           }
         ]
       },
-      includeAssets: ['brand/favicon.svg', 'brand/apple-touch-icon.png', 'brand/logo-monogram.svg'],
+      includeAssets: ['favicon.ico', 'brand/favicon.svg', 'brand/icon-192.png', 'brand/icon-512.png', 'brand/apple-touch-icon.png', 'brand/logo-monogram.svg'],
       manifest: {
         name: 'Duta e-dukasi',
         short_name: 'Duta e-dukasi',
@@ -44,8 +44,20 @@ export default defineConfig({
         theme_color: '#12337A',
         icons: [
           {
-            src: '/brand/favicon.svg',
+            src: '/brand/icon-192.png',
             sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any'
+          },
+          {
+            src: '/brand/icon-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
+          },
+          {
+            src: '/brand/favicon.svg',
+            sizes: 'any',
             type: 'image/svg+xml'
           },
           {

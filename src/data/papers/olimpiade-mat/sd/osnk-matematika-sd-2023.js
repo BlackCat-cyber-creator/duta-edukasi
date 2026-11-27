@@ -1,9 +1,12 @@
 /**
- * Paket Soal Terstruktur: OSN-K Matematika SD 2023 (19 soal pilihan ganda terpilih dari 30 soal asli)
- * Sumber: scraped_raw/osnk-matematika-sd-2023.md
- * Soal 11, 13, 15, 16, 17, 19, 20, 22, 27, dan 29 tidak dimuat karena gambar/tabel tidak tersedia pada arsip;
- * soal 12 tidak dimuat karena nilai maksimum eksak dari ekspresi pada naskah (47) tidak terdapat pada pilihan jawaban.
- * Pada soal 10, kesalahan OCR "15" dan "110" diperbaiki menjadi pecahan 1/5 dan 1/10 sesuai naskah asli dan opsi jawaban.
+ * Paket Soal Terstruktur: OSN-K Matematika SD 2023 (30 soal pilihan ganda lengkap)
+ * Sumber: scraped_raw/osnk-matematika-sd-2023.md & naskah PDF resmi OSN-K Matematika SD 2023.
+ * Catatan rekonstruksi naskah:
+ * - Soal nomor 2 dan 15 dipertahankan dalam bahasa Inggris sesuai naskah aslinya.
+ * - Pada soal 10, kesalahan OCR "15" dan "110" diperbaiki menjadi pecahan 1/5 dan 1/10 sesuai naskah asli dan opsi jawaban.
+ * - Pada soal 15, naskah asli tertulis "area of region A is 2,5 cm^2, then the area of region B is ...";
+ *   berdasarkan gambar berpetak, B adalah persegi satuan (1 satuan) dan A seluas 9,5 satuan sehingga
+ *   9,5 x 2,5 = 23,75 cm^2 sesuai opsi B. Label A dan B pada soal dinormalisasi agar konsisten dengan gambar dan opsi.
  */
 const OK = [{ code: 'A1', text: 'Jawaban benar sesuai pembahasan.' }];
 
@@ -30,9 +33,9 @@ export default {
   langDisplay: 'ID',
   competition: 'OSN-K',
   title: 'OSN-K Matematika SD 2023',
-  totalMarks: 19,
+  totalMarks: 30,
   instructions:
-    'Kerjakan seluruh 19 soal pilihan ganda terpilih (dari 30 soal asli OSN-K Matematika SD 2023). Setiap jawaban benar bernilai 1 poin. Sebanyak 11 soal tidak dimuat: nomor 11, 13, 15, 16, 17, 19, 20, 22, 27, dan 29 karena memerlukan gambar atau tabel yang tidak tersedia pada arsip, serta nomor 12 karena nilai maksimum eksak dari ekspresi pada naskah (47) tidak tercantum pada pilihan jawaban. Penomoran label soal mengikuti naskah asli, soal nomor 2 dipertahankan dalam bahasa Inggris sesuai aslinya, dan kesalahan ketik OCR pecahan pada soal nomor 10 telah diperbaiki menjadi 1/5 dan 1/10.',
+    'Kerjakan seluruh 30 soal pilihan ganda OSN-K Matematika SD 2023 berikut. Setiap jawaban benar bernilai 1 poin (total 30 poin). Penomoran label soal mengikuti naskah asli, soal nomor 2 dan 15 dipertahankan dalam bahasa Inggris sesuai aslinya, kesalahan ketik OCR pecahan pada soal nomor 10 telah diperbaiki menjadi 1/5 dan 1/10, serta kesalahan ketik label daerah A dan B yang tertukar pada soal nomor 15 telah dinormalisasi agar sesuai dengan gambar dan pilihan jawaban.',
   source: {
     org: 'OSN-K (Olimpiade Sains Nasional tingkat Kabupaten/Kota)',
     file: 'scraped_raw/osnk-matematika-sd-2023.md',
@@ -43,8 +46,8 @@ export default {
     {
       no: 1,
       title: 'Soal Pilihan Ganda',
-      marks: 19,
-      stem: 'Pilihlah satu jawaban yang paling tepat untuk setiap soal berikut (19 soal terpilih dari 30 soal asli, masing-masing bernilai 1 poin).',
+      marks: 30,
+      stem: 'Pilihlah satu jawaban yang paling tepat untuk setiap soal berikut (30 soal pilihan ganda, masing-masing bernilai 1 poin).',
       parts: [
         {
           label: '1',
@@ -157,6 +160,53 @@ export default {
           rubric: OK
         },
         {
+          label: '11',
+          marks: 1,
+          prompt:
+            'Perhatikan gambar berikut:\n\nSegitiga, persegi dan jajar genjang mewakili bilangan berbeda $1, 2, 3, 4, 5, 6, 7, 8$ atau $9$. Segitiga di ruas kanan dan kiri merupakan bilangan yang sama. Lingkaran mewakili operasi hitung: tambah, kurang, kali atau bagi. Kedua lingkaran boleh dipasang operasi hitung yang berbeda. Banyak bilangan yang mungkin dipasang pada segitiga adalah ....\n\nA. $6$\nB. $7$\nC. $8$\nD. $9$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2023/fig-11.webp',
+              alt: 'Persamaan bergambar terdiri atas segitiga terbalik, lingkaran operasi, persegi, lingkaran operasi, dan jajar genjang yang sama dengan segitiga terbalik.',
+              caption: 'Persamaan operasi hitung dengan simbol segitiga, persegi, dan jajar genjang.'
+            }
+          ],
+          answer: 'B. $7$',
+          principle: 'Memisalkan segitiga $= a$, persegi $= b$, dan jajar genjang $= c$ ($a, b, c \\in \\{1, \\dots, 9\\}$ berbeda) lalu memeriksa kemungkinan operasi hitung yang mengembalikan nilai ke $a$.',
+          solution:
+            'Misalkan segitiga $= a$, persegi $= b$, dan jajar genjang $= c$, dengan $a, b, c \\in \\{1, 2, \\dots, 9\\}$ saling berbeda. Persamaan berbentuk $a\\ \\text{op}_1\\ b\\ \\text{op}_2\\ c = a$.\nPerhatikan tujuh nilai $a$ yang dapat dibentuk:\n- $a = 1$: $1 \\times 3 - 2 = 1$\n- $a = 2$: $2 \\times 3 - 4 = 2$\n- $a = 3$: $3 \\times 4 - 9 = 3$\n- $a = 4$: $4 \\times 3 - 8 = 4$\n- $a = 6$: $6 \\div 2 + 3 = 6$\n- $a = 8$: $8 \\div 2 + 4 = 8$\n- $a = 9$: $9 \\div 3 + 6 = 9$\n\nSekarang periksa apakah $a = 5$ dan $a = 7$ mungkin:\n- Karena $b \\neq c$, bentuk $a + (b - c)$, $a - (b - c)$, $a \\times b \\div c$, dan $a \\div b \\times c$ tidak mungkin sama dengan $a$ (sebab $b - c \\neq 0$ dan $b \\div c \\neq 1$). Bentuk $a + b \\times c$, $a + b \\div c$, $a - b \\times c$, dan $a - b \\div c$ juga tidak mungkin sama dengan $a$ karena $b \\times c > 0$ dan $b \\div c > 0$.\n- Jadi operasi harus berbentuk $a \\times b - c = a \\iff a(b - 1) = c$, atau $a \\div b + c = a \\iff c = a - \\frac{a}{b}$, atau $(a + b) \\div c = a \\iff b = a(c - 1)$, atau $(a - b) \\times c = a$.\n- Untuk $a = 5$: faktor pembagi $5$ hanyalah $1$ dan $5$. Jika $b = 1$, $a \\div 1 + c = 5 + c > 5$; jika $b = 5$, melanggar $a \\neq b$. Untuk $5(b - 1) = c$ dengan $b \\ge 2$: nilai terkecil $c = 5(1) = 5 = a$ (tidak boleh sama) dan berikutnya $5(2) = 10 > 9$. Begitu pula $(5 - b) \\times c = 5$ memaksa $c = 1$ dan $5 - b = 5 \\implies b = 0$ (tidak valid), atau $c = 5 = a$. Maka $a = 5$ mustahil.\n- Untuk $a = 7$: karena $7$ bilangan prima dan $7(b - 1) = c$ untuk $b \\ge 2$ paling kecil memberi $c = 7 = a$, maka $a = 7$ juga mustahil.\n\nDengan demikian, bilangan yang mungkin dipasang pada segitiga adalah $1, 2, 3, 4, 6, 8,$ dan $9$, yaitu sebanyak $7$ bilangan.',
+          rubric: OK
+        },
+        {
+          label: '12',
+          marks: 1,
+          prompt:
+            'Diberikan empat bilangan bulat positif yang berbeda $A$, $B$, $C$ dan $D$ sehingga $A + B + C + D = 15$. Hasil operasi dari $A \\times C + B \\times D - A : B$ sebesar mungkin adalah .... (pembulatan sampai dua angka di belakang koma)\n\nA. $32{,}83$\nB. $33{,}88$\nC. $36{,}86$\nD. $37{,}17$',
+          answer: 'C. $36{,}86$',
+          principle: 'Memaksimumkan jumlah dua hasil kali $AC + BD$ dari empat bilangan bulat positif berbeda berjumlah $15$, lalu meminimumkan suku pengurang $A : B$.',
+          solution:
+            'Karena $A, B, C, D$ empat bilangan bulat positif yang berbeda dengan $A + B + C + D = 15$, dua bilangan terbesar paling banyak adalah $7$ dan $5$ (jika ada $8$, sisa $3$ bilangan minimal $1 + 2 + 4 = 7$ sehingga $8 + 7 = 15$ memberi $8 \\times 4 + 2 \\times 1 = 34$, lebih kecil daripada $7 \\times 5 + 2 \\times 1 = 37$; jika ada $9$, sisa $3$ bilangan minimal $1 + 2 + 3 = 6$ sehingga $9 \\times 3 + 2 \\times 1 = 29$).\nUntuk memaksimumkan $A \\times C + B \\times D - \\frac{A}{B}$, pasangkan dua bilangan terbesar $\\{5, 7\\}$ menjadi $B \\times D = 35$ dan dua bilangan terkecil $\\{1, 2\\}$ menjadi $A \\times C = 2$, sehingga jumlah hasil kalinya mencapai maksimum $35 + 2 = 37$.\nAgar pengurang $\\frac{A}{B}$ sekecil mungkin, pilih $A = 1$ (yang terkecil dari $\\{1, 2\\}$) dan $B = 7$ (yang terbesar dari $\\{5, 7\\}$), dengan $C = 2$ dan $D = 5$:\n$$A \\times C + B \\times D - \\frac{A}{B} = 1 \\times 2 + 7 \\times 5 - \\frac{1}{7} = 37 - \\frac{1}{7} = 36\\frac{6}{7} \\approx 36{,}8571\\dots$$\nDibulatkan sampai dua angka di belakang koma, hasilnya adalah $36{,}86$.',
+          rubric: OK
+        },
+        {
+          label: '13',
+          marks: 1,
+          prompt:
+            'Perhatikan gambar di bawah ini:\n\nGambar di atas terdiri dari satu lingkaran besar dan empat buah setengah lingkaran kecil yang identik. Jika jari-jari lingkaran besar adalah diameter lingkaran kecil, maka perbandingan luas daerah yang diarsir dan yang tidak diarsir pada gambar di atas adalah ....\n\nA. $1 : 1$\nB. $2 : 3$\nC. $3 : 4$\nD. $4 : 5$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2023/fig-13.svg',
+              alt: 'Satu lingkaran besar yang di dalamnya terdapat empat setengah lingkaran kecil identik yang diarsir membentuk pola kincir.',
+              caption: 'Lingkaran besar berisi empat setengah lingkaran kecil identik yang diarsir.'
+            }
+          ],
+          answer: 'A. $1 : 1$',
+          principle: 'Menghitung luas total empat setengah lingkaran kecil yang saling lepas terhadap luas lingkaran besar dengan $R = 2r$.',
+          solution:
+            'Misalkan jari-jari lingkaran kecil adalah $r$, sehingga diameter lingkaran kecil adalah $2r$. Karena jari-jari lingkaran besar sama dengan diameter lingkaran kecil, maka jari-jari lingkaran besar adalah $R = 2r$.\nLuas lingkaran besar adalah:\n$$L_{\\text{besar}} = \\pi R^2 = \\pi (2r)^2 = 4\\pi r^2.$$\nKeempat setengah lingkaran kecil berada pada empat kuadran berbeda dan tidak saling tumpang tindih. Empat buah setengah lingkaran identik setara dengan $2$ lingkaran kecil utuh, sehingga luas daerah yang diarsir adalah:\n$$L_{\\text{arsir}} = 4 \\times \\frac{1}{2}\\pi r^2 = 2\\pi r^2.$$\nMaka luas daerah yang tidak diarsir adalah:\n$$L_{\\text{tidak diarsir}} = 4\\pi r^2 - 2\\pi r^2 = 2\\pi r^2.$$\nJadi perbandingan luas daerah yang diarsir dan yang tidak diarsir adalah:\n$$2\\pi r^2 : 2\\pi r^2 = 1 : 1.$$',
+          rubric: OK
+        },
+        {
           label: '14',
           marks: 1,
           prompt:
@@ -165,6 +215,60 @@ export default {
           principle: 'Menyatakan panjang, lebar, dan tinggi balok sebagai kelipatan faktor pembanding $k$ pada rumus luas permukaan dan volume balok.',
           solution:
             'Misalkan panjang $p = k$, lebar $l = 5k$, dan tinggi $t = 2k$ (dalam $\\text{cm}$).\nLuas permukaan balok adalah:\n$$L = 2(pl + pt + lt) = 2(k \\cdot 5k + k \\cdot 2k + 5k \\cdot 2k) = 2(5k^2 + 2k^2 + 10k^2) = 34k^2.$$\nDiketahui $L = 9.826\\ \\text{cm}^2$, sehingga:\n$$34k^2 = 9.826 \\implies k^2 = \\frac{9.826}{34} = 289 = 17^2 \\implies k = 17\\ \\text{cm}.$$\nMaka volume balok tersebut adalah:\n$$V = p \\times l \\times t = k \\times 5k \\times 2k = 10k^3 = 10 \\times 17^3 = 10 \\times 4.913 = 49.130\\ \\text{cm}^3.$$',
+          rubric: OK
+        },
+        {
+          label: '15',
+          marks: 1,
+          prompt:
+            'Look at the following picture.\n\nIf the area of region B is $2{,}5\\ \\text{cm}^{2}$, then the area of region A is .... $\\text{cm}^{2}$.\n\nA. $20$\nB. $23{,}75$\nC. $25$\nD. $26{,}25$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2023/fig-15.webp',
+              alt: 'Bidang berpetak berisi poligon segilima A dan sebuah persegi kecil B yang masing-masing titik sudutnya berada pada titik kisi.',
+              caption: 'Bangun A dan persegi B pada bidang berpetak.'
+            }
+          ],
+          answer: 'B. $23{,}75$',
+          principle: 'Menghitung luas bangun pada kisi persegi satuan dengan persegi pembungkus lalu mengalikan dengan nilai luas per satuan petak.',
+          solution:
+            'Perhatikan garis kisi utama pada gambar. Persegi B berukuran $1 \\times 1$ petak utama sehingga luas B adalah $1$ satuan petak $= 2{,}5\\ \\text{cm}^2$.\nUntuk menentukan luas poligon A dalam satuan petak utama, tempatkan titik paling kiri di $(0, 2)$. Maka kelima titik sudut poligon A berturut-turut berada di $(0, 2)$, $(3, 0)$, $(5, 4)$, $(3, 3)$, dan $(2, 4)$.\nBangun A termuat dalam persegi panjang pembungkus berukuran $5 \\times 4$ (dari $x = 0$ sampai $x = 5$, dan $y = 0$ sampai $y = 4$) dengan luas $5 \\times 4 = 20$ satuan petak. Daerah di luar A di dalam persegi panjang tersebut terdiri atas empat segitiga siku-siku dan sebuah trapesium:\n- Kiri bawah: segitiga siku-siku dengan alas $3$ dan tinggi $2$, luas $= \\frac{1}{2} \\times 3 \\times 2 = 3$.\n- Kiri atas: segitiga siku-siku dengan alas $2$ dan tinggi $2$, luas $= \\frac{1}{2} \\times 2 \\times 2 = 2$.\n- Cekungan atas (antara $(2,4)$, $(3,3)$, $(5,4)$): segitiga dengan alas $3$ (dari $x = 2$ ke $5$ pada $y = 4$) dan tinggi $1$, luas $= \\frac{1}{2} \\times 3 \\times 1 = 1{,}5$.\n- Kanan bawah: segitiga siku-siku dengan alas $2$ (dari $x = 3$ ke $5$) dan tinggi $4$, luas $= \\frac{1}{2} \\times 2 \\times 4 = 4$.\n\nMaka luas poligon A dalam satuan petak adalah:\n$$20 - (3 + 2 + 1{,}5 + 4) = 20 - 10{,}5 = 9{,}5\\ \\text{satuan petak}.$$\nJadi luas daerah A adalah:\n$$9{,}5 \\times 2{,}5\\ \\text{cm}^2 = 23{,}75\\ \\text{cm}^2.$$\n(Catatan: pada naskah cetak asli label A dan B pada kalimat soal sempat tertukar.)',
+          rubric: OK
+        },
+        {
+          label: '16',
+          marks: 1,
+          prompt:
+            'Berikut merupakan jaring-jaring suatu kubus.\n\nJika jaring-jaring tersebut dibentuk menjadi kubus, maka sisi $Y$ akan berhadapan dengan sisi ....\n\nA. $U$\nB. $V$\nC. $X$\nD. $Z$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2023/fig-16.webp',
+              alt: 'Jaring-jaring kubus berbentuk enam persegi berlabel huruf W, V, U mendatar, X dan Z di bawah V, serta Y di atas U.',
+              caption: 'Jaring-jaring kubus dengan enam sisi berlabel U, V, W, X, Y, dan Z.'
+            }
+          ],
+          answer: 'C. $X$',
+          principle: 'Menentukan pasangan sisi kubus yang berhadapan dengan menetapkan satu sisi sebagai alas dan melipat sisi-sisi lain tegak lurus.',
+          solution:
+            'Tetapkan persegi $V$ sebagai sisi **alas** kubus, lalu lipat sisi-sisi di sekelilingnya ke atas:\n- $W$ terhubung di sisi kiri $V$, sehingga menjadi sisi **kiri**.\n- $U$ terhubung di sisi kanan $V$, sehingga menjadi sisi **kanan**.\n- $X$ terhubung di sisi depan (bawah pada gambar) $V$, sehingga menjadi sisi **depan**.\n- $Z$ terhubung di sisi bawah $X$, sehingga setelah $X$ dilipat tegak, $Z$ terlipat menjadi sisi **atas** (tutup), berhadapan dengan $V$.\n- $Y$ terhubung di sisi atas $U$, sehingga setelah $U$ dilipat tegak menjadi sisi kanan, $Y$ terlipat ke arah belakang menjadi sisi **belakang**.\n\nDengan demikian, pasangan sisi yang saling berhadapan adalah $(W, U)$, $(V, Z)$, dan $(X, Y)$. Jadi sisi $Y$ berhadapan dengan sisi $X$.',
+          rubric: OK
+        },
+        {
+          label: '17',
+          marks: 1,
+          prompt:
+            'Gambar berikut adalah $2$ kerucut. Kerucut besar dengan diameter alas $AC$ dan tinggi $OB$. Kerucut kecil dengan diameter alas $CF$ dan tinggi $DE$. $ABC$ dan $CEF$ keduanya segitiga sama sisi dengan $AB : CE = 3 : 2$. Perbandingan volume kerucut kecil dan kerucut besar adalah ....\n\nA. $2 : 7$\nB. $4 : 9$\nC. $5 : 12$\nD. $8 : 27$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2023/fig-17.webp',
+              alt: 'Dua kerucut terbalik bersarang dengan diameter alas kerucut besar AC dan tinggi OB serta diameter alas kerucut kecil CF dan tinggi DE.',
+              caption: 'Kerucut besar berdiameter AC dan kerucut kecil berdiameter CF.'
+            }
+          ],
+          answer: 'D. $8 : 27$',
+          principle: 'Dua kerucut dengan penampang segitiga sama sisi bersifat sebangun, sehingga perbandingan volumenya sama dengan pangkat tiga perbandingan panjang rusuk bersesuaian.',
+          solution:
+            'Karena $\\triangle ABC$ dan $\\triangle CEF$ keduanya segitiga sama sisi, kedua kerucut tersebut sebangun. Diketahui $AB : CE = 3 : 2$, sehingga perbandingan panjang unsur-unsur kerucut kecil terhadap kerucut besar adalah $2 : 3$:\n- Perbandingan jari-jari alas: $\\frac{r_{\\text{kecil}}}{r_{\\text{besar}}} = \\frac{CF/2}{AC/2} = \\frac{CE}{AB} = \\frac{2}{3}$.\n- Perbandingan tinggi kerucut: $\\frac{t_{\\text{kecil}}}{t_{\\text{besar}}} = \\frac{DE}{OB} = \\frac{CE}{AB} = \\frac{2}{3}$.\n\nGunakan rumus volume kerucut $V = \\frac{1}{3}\\pi r^2 t$:\n$$\\frac{V_{\\text{kecil}}}{V_{\\text{besar}}} = \\frac{\\frac{1}{3}\\pi r_{\\text{kecil}}^2 t_{\\text{kecil}}}{\\frac{1}{3}\\pi r_{\\text{besar}}^2 t_{\\text{besar}}} = \\left(\\frac{r_{\\text{kecil}}}{r_{\\text{besar}}}\\right)^2 \\times \\frac{t_{\\text{kecil}}}{t_{\\text{besar}}} = \\left(\\frac{2}{3}\\right)^2 \\times \\frac{2}{3} = \\frac{8}{27}.$$\nJadi perbandingan volume kerucut kecil dan kerucut besar adalah $8 : 27$.',
           rubric: OK
         },
         {
@@ -179,6 +283,42 @@ export default {
           rubric: OK
         },
         {
+          label: '19',
+          marks: 1,
+          prompt:
+            'Berikut adalah data penjualan selama triwulan ke-satu (TW 1), ke-dua (TW 2), dan ke-tiga (TW 3) pada tahun $2022$ dari suatu pabrik makanan ringan dalam satuan ton.\n\nJika penjualan pada TW 3 merupakan $20\\%$ dari total penjualan dalam setahun, maka penjualan makanan ringan tersebut pada TW 4 adalah .... ton.\n\nA. $4{,}5$\nB. $5{,}5$\nC. $6{,}5$\nD. $7{,}5$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2023/fig-19.webp',
+              alt: 'Diagram batang penjualan triwulan ke-satu, ke-dua, dan ke-tiga dengan nilai masing-masing 4,5, 5, dan 4 ton.',
+              caption: 'Diagram batang data penjualan TW 1, TW 2, dan TW 3 tahun 2022.'
+            }
+          ],
+          answer: 'C. $6{,}5$',
+          principle: 'Menentukan total penjualan setahun dari persentase satu triwulan lalu mengurangkan jumlah penjualan tiga triwulan yang diketahui.',
+          solution:
+            'Dari diagram batang diperoleh data penjualan:\n- TW 1 $= 4{,}5\\ \\text{ton}$\n- TW 2 $= 5\\ \\text{ton}$\n- TW 3 $= 4\\ \\text{ton}$\n\nDiketahui penjualan pada TW 3 ($4\\ \\text{ton}$) merupakan $20\\%$ dari total penjualan dalam setahun ($1$ tahun $= 4$ triwulan):\n$$20\\% \\times \\text{Total} = 4 \\implies \\text{Total} = \\frac{4}{0{,}2} = 20\\ \\text{ton}.$$\nDengan demikian, penjualan pada TW 4 adalah:\n$$\\text{TW 4} = 20 - (4{,}5 + 5 + 4) = 20 - 13{,}5 = 6{,}5\\ \\text{ton}.$$',
+          rubric: OK
+        },
+        {
+          label: '20',
+          marks: 1,
+          prompt:
+            'Data banyaknya kepala keluarga (KK) dan pemilih kepala Desa Taruma Indah pada $4$ RW disajikan sebagai berikut:\n\nRata-rata banyak pemilih di setiap RW yang bukan kepala keluarga (KK) adalah .... orang.\n\nA. $80$\nB. $85$\nC. $88$\nD. $92$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2023/fig-20.svg',
+              alt: 'Tabel berisi empat baris RW beserta kolom banyaknya kepala keluarga dan banyaknya pemilih di Desa Taruma Indah.',
+              caption: 'Data banyaknya KK dan pemilih di 4 RW Desa Taruma Indah.'
+            }
+          ],
+          answer: 'C. $88$',
+          principle: 'Menghitung selisih banyak pemilih dan banyak kepala keluarga pada setiap RW, lalu mencari rata-ratanya.',
+          solution:
+            'Banyak pemilih yang bukan kepala keluarga (KK) di masing-masing RW diperoleh dari selisih banyak pemilih dengan banyak KK:\n- RW 01: $210 - 95 = 115$ orang\n- RW 02: $200 - 153 = 47$ orang\n- RW 03: $280 - 120 = 160$ orang\n- RW 04: $165 - 135 = 30$ orang\n\nJumlah pemilih yang bukan KK di keempat RW adalah:\n$$115 + 47 + 160 + 30 = 352\\ \\text{orang}.$$\nJadi rata-rata banyak pemilih yang bukan KK di setiap RW adalah:\n$$\\frac{352}{4} = 88\\ \\text{orang}.$$',
+          rubric: OK
+        },
+        {
           label: '21',
           marks: 1,
           prompt:
@@ -187,6 +327,24 @@ export default {
           principle: 'Menghitung sisa waktu meluncur setelah dikurangi waktu naik dan turun tangga, lalu menyamakan satuan kecepatan ke meter/menit.',
           solution:
             'Tangga $AB$ dan $CD$ masing-masing memiliki tinggi (panjang lintasan vertikal) $3\\ \\text{m}$. Hitung waktu pada masing-masing tangga:\n- Waktu naik tangga $AB$: $t_{AB} = \\frac{3\\ \\text{m}}{2\\ \\text{m/menit}} = 1{,}5\\ \\text{menit}$.\n- Waktu turun tangga $CD$: $t_{CD} = \\frac{3\\ \\text{m}}{3\\ \\text{m/menit}} = 1\\ \\text{menit}$.\n\nKarena total waktu perjalanan dari $A$ ke $D$ adalah $5\\ \\text{menit}$, waktu meluncur pada kabel baja $BC$ adalah:\n$$t_{BC} = 5 - 1{,}5 - 1 = 2{,}5\\ \\text{menit}.$$\nUbah kecepatan meluncur ke satuan meter/menit:\n$$15\\ \\text{km/jam} = \\frac{15.000\\ \\text{m}}{60\\ \\text{menit}} = 250\\ \\text{m/menit}.$$\nJadi panjang kabel baja $BC$ adalah:\n$$250\\ \\text{m/menit} \\times 2{,}5\\ \\text{menit} = 625\\ \\text{m}.$$',
+          rubric: OK
+        },
+        {
+          label: '22',
+          marks: 1,
+          prompt:
+            'Hasil penilaian tes matematika yang dilakukan sebanyak dua kali di suatu kelas disajikan sebagai berikut:\n\nPada baris A kolom C tertera angka $1$, artinya banyaknya siswa yang memperoleh nilai A pada tes 1 dan nilai C pada tes 2 adalah $1$ orang. Persentase siswa yang nilainya sama untuk $2$ kali tes adalah ....\n\nA. $30\\%$\nB. $40\\%$\nC. $50\\%$\nD. $60\\%$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2023/fig-22.webp',
+              alt: 'Tabel silang lima kali lima yang menunjukkan sebaran nilai A sampai E siswa pada Tes 1 dan Tes 2.',
+              caption: 'Tabel silang hasil Tes 1 dan Tes 2 matematika.'
+            }
+          ],
+          answer: 'B. $40\\%$',
+          principle: 'Menjumlahkan seluruh frekuensi pada tabel sebagai total siswa dan menjumlahkan elemen diagonal utama sebagai siswa bernilai sama pada kedua tes.',
+          solution:
+            'Hitung jumlah seluruh siswa di kelas dengan menjumlahkan seluruh angka pada tabel:\n- Baris A: $3 + 1 + 1 + 0 + 0 = 5$\n- Baris B: $1 + 4 + 3 + 0 + 0 = 8$\n- Baris C: $2 + 3 + 3 + 2 + 0 = 10$\n- Baris D: $0 + 0 + 1 + 2 + 1 = 4$\n- Baris E: $0 + 0 + 2 + 1 + 0 = 3$\n\nTotal siswa $= 5 + 8 + 10 + 4 + 3 = 30$ orang.\nSiswa yang nilainya sama untuk $2$ kali tes berada pada diagonal utama tabel (AA, BB, CC, DD, EE):\n$$3 + 4 + 3 + 2 + 0 = 12\\ \\text{orang}.$$\nJadi persentase siswa yang nilainya sama adalah:\n$$\\frac{12}{30} \\times 100\\% = 40\\%.$$',
           rubric: OK
         },
         {
@@ -234,6 +392,24 @@ export default {
           rubric: OK
         },
         {
+          label: '27',
+          marks: 1,
+          prompt:
+            'Andika ditugaskan untuk melengkapi huruf-huruf pada petak $3 \\times 4$ berikut.\n\nDalam satu baris, satu kolom, dan satu diagonal yang sama tidak boleh diletakkan huruf yang sama. Minimum banyaknya huruf yang berbeda yang dapat diletakkan pada petak tersebut adalah .... huruf.\n\nA. $4$\nB. $5$\nC. $6$\nD. $7$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2023/fig-27.webp',
+              alt: 'Petak persegi panjang kosong berukuran tiga baris dan empat kolom.',
+              caption: 'Petak persegi panjang berukuran 3 × 4.'
+            }
+          ],
+          answer: 'B. $5$',
+          principle: 'Membuktikan batas bawah pada subpetak $3 \\times 3$ (sel pusat terhubung ke semua sel luar) lalu menyusun konfigurasi valid pada petak $3 \\times 4$.',
+          solution:
+            'Pertama, periksa subpetak $3 \\times 3$ di tiga kolom pertama. Andaikan hanya tersedia $4$ huruf berbeda:\n- Petak tengah $(2, 2)$ terletak pada satu baris, satu kolom, atau satu diagonal dengan seluruh $8$ petak tepi di sekelilingnya, sehingga huruf di $(2, 2)$ tidak dapat dipakai lagi pada ke-$8$ petak tepi tersebut.\n- Tersisa paling banyak $3$ huruf lain untuk mengisi $8$ petak tepi.\n- Namun, pada $8$ petak tepi persegi $3 \\times 3$, tidak ada satu pun huruf yang dapat muncul $3$ kali tanpa berpasangan pada baris, kolom, atau diagonal yang sama: jika memakai sudut seperti $(1,1)$, dua petak tersisa yang aman hanyalah $(2,3)$ dan $(3,2)$, padahal $(2,3)$ dan $(3,2)$ berada pada satu diagonal; jika memakai sisi tengah seperti $(1,2)$, dua petak tersisa yang aman hanyalah $(3,1)$ dan $(3,3)$, padahal keduanya berada pada satu baris.\n- Akibatnya, $3$ huruf paling banyak hanya bisa mengisi $3 \\times 2 = 6 < 8$ petak tepi. Kontradiksi! Jadi dibutuhkan paling sedikit $5$ huruf.\n\nSebanyak $5$ huruf berbeda ($A, B, C, D, E$) sudah mencukupi untuk mengisi seluruh petak $3 \\times 4$, misalnya:\n$$\\begin{array}{|c|c|c|c|} \\hline A & B & C & D \\\\ \\hline C & D & E & A \\\\ \\hline E & A & B & C \\\\ \\hline \\end{array}$$\nDapat diperiksa bahwa setiap baris, setiap kolom, dan setiap garis diagonal pada susunan tersebut memuat huruf-huruf yang saling berbeda. Jadi minimum banyak huruf berbeda yang dapat diletakkan adalah $5$ huruf.',
+          rubric: OK
+        },
+        {
           label: '28',
           marks: 1,
           prompt:
@@ -242,6 +418,24 @@ export default {
           principle: 'Pencacahan berdasarkan digit ratusan dan aturan komplemen (menghitung bilangan yang tidak memuat angka $2$).',
           solution:
             'Perhatikan bahwa $100$ dan $400$ tidak memuat angka $2$, sehingga pencacahan dibagi menurut angka ratusannya:\n1. Rentang $100$–$199$ (ratusan $= 1$, seluruhnya $100$ bilangan):\n   Banyak bilangan yang tidak memuat angka $2$ memiliki $9$ pilihan angka puluhan ($0, 1, 3, \\dots, 9$) dan $9$ pilihan angka satuan ($0, 1, 3, \\dots, 9$), yaitu $9 \\times 9 = 81$ bilangan.\n   Jadi bilangan yang memuat angka $2$ ada $100 - 81 = 19$ bilangan.\n2. Rentang $200$–$299$ (ratusan $= 2$, seluruhnya $100$ bilangan):\n   Semua $100$ bilangan pada rentang ini pasti memuat angka $2$ di posisi ratusan.\n3. Rentang $300$–$399$ (ratusan $= 3$, seluruhnya $100$ bilangan):\n   Sama seperti rentang $100$–$199$, banyak bilangan yang memuat angka $2$ ada $100 - 81 = 19$ bilangan.\n4. Bilangan $400$ tidak memuat angka $2$ ($0$ bilangan).\n\nTotal bilangan bulat yang memuat angka $2$ adalah $19 + 100 + 19 = 138$ bilangan.',
+          rubric: OK
+        },
+        {
+          label: '29',
+          marks: 1,
+          prompt:
+            'Berikut peta perjalanan dari $6$ kecamatan di suatu kabupaten:\n\nAda berapa rute berbeda yang dapat ditempuh oleh seseorang yang berangkat dari M ke N?\n\nA. $9$\nB. $8$\nC. $7$\nD. $6$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sd-2023/fig-29.webp',
+              alt: 'Graf berarah berbentuk segitiga dengan enam titik simpul berlabel M di puncak, A dan B di tengah, serta D, C, dan N di alas.',
+              caption: 'Peta graf berarah dari kecamatan M menuju kecamatan N.'
+            }
+          ],
+          answer: 'D. $6$',
+          principle: 'Menghitung banyak rute pada graf berarah (DAG) dengan metode penjumlahan rute di setiap simpul atau mendaftar seluruh lintasan secara sistematis.',
+          solution:
+            'Ikuti arah panah pada peta dari $M$ menuju $N$:\n- Dari $M$: hanya dapat menuju $A$ ($1$ cara) atau $B$ ($1$ cara).\n- Dari $B$: ada panah ke $A$, $C$, dan $N$.\n- Dari $A$: total cara masuk ke $A$ adalah $1$ (dari $M$) $+ 1$ (dari $M \\to B \\to A$) $= 2$ cara.\n- Dari $D$: hanya dimasuki dari $A$, sehingga ada $2$ cara menuju $D$.\n- Dari $C$: dimasuki dari $D$ ($2$ cara), langsung dari $A$ ($2$ cara), dan langsung dari $B$ ($1$ cara), sehingga total ada $2 + 2 + 1 = 5$ cara menuju $C$.\n- Ke $N$: dimasuki dari $B$ ($1$ cara) dan dari $C$ ($5$ cara), sehingga total ada $1 + 5 = 6$ rute.\n\nSeluruh $6$ rute berbeda tersebut adalah:\n1. $M \\to B \\to N$\n2. $M \\to B \\to C \\to N$\n3. $M \\to B \\to A \\to C \\to N$\n4. $M \\to B \\to A \\to D \\to C \\to N$\n5. $M \\to A \\to C \\to N$\n6. $M \\to A \\to D \\to C \\to N$',
           rubric: OK
         },
         {

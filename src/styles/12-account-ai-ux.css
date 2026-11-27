@@ -527,6 +527,13 @@
   color: #FFFFFF;
 }
 .ai-panel-head .btn-ghost {
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 0.3rem 0.45rem;
+}
+.ai-panel-head .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.28);
   color: #FFFFFF;
 }
 .ai-panel-title {

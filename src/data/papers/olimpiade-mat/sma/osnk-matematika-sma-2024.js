@@ -1,6 +1,6 @@
 /**
  * Paket Soal Terstruktur: OSN-K Matematika SMA 2024 (Kemampuan Dasar)
- * Sumber: scraped_raw/osnk-matematika-sma-2024-dasar.md (8 dari 10 soal isian singkat; soal 1 dan 7 dilewati karena memuat referensi gambar yang tidak tersedia).
+ * Sumber: scraped_raw/osnk-matematika-sma-2024-dasar.md dan arsip PDF OSN-K Matematika SMA 2024 (seluruh 10 soal isian singkat bagian Kemampuan Dasar).
  */
 
 export default {
@@ -21,9 +21,9 @@ export default {
   langDisplay: 'ID',
   competition: 'OSN-K',
   title: 'OSN-K Matematika SMA 2024',
-  totalMarks: 32,
+  totalMarks: 40,
   instructions:
-    'Paket ini memuat 8 soal isian singkat dari total 10 soal asli OSN-K Matematika SMA 2024 bagian Kemampuan Dasar (soal nomor 1 dan 7 dilewati karena memerlukan gambar yang tidak tersedia pada berkas arsip). Setiap soal dijawab dengan bilangan bulat dan bernilai 4 poin (total 32 poin). Pada naskah asli, jawaban benar bernilai 4 poin, salah -1 poin, dan tidak dijawab 0 poin; pada paket latihan ini skor dihitung dari jawaban benar.',
+    'Paket ini memuat seluruh 10 soal isian singkat OSN-K Matematika SMA 2024 bagian Kemampuan Dasar. Setiap soal dijawab dengan bilangan bulat dan bernilai 4 poin (total 40 poin). Pada naskah asli bagian Kemampuan Dasar, setiap jawaban benar bernilai 2 poin tanpa pengurangan nilai; pada paket latihan ini setiap soal bernilai 4 poin yang dihitung dari jawaban benar.',
   source: {
     org: 'OSN-K (Olimpiade Sains Nasional tingkat Kabupaten/Kota)',
     file: 'scraped_raw/osnk-matematika-sma-2024-dasar.md',
@@ -34,9 +34,32 @@ export default {
     {
       no: 1,
       title: 'Kemampuan Dasar',
-      marks: 32,
-      stem: 'Jawablah setiap soal isian singkat berikut dengan bilangan bulat yang tepat (8 soal disertakan: nomor 2, 3, 4, 5, 6, 8, 9, dan 10; masing-masing bernilai 4 poin).',
+      marks: 40,
+      stem: 'Jawablah setiap soal isian singkat berikut dengan bilangan bulat yang tepat (10 soal, masing-masing bernilai 4 poin).',
       parts: [
+        {
+          label: '1',
+          marks: 4,
+          prompt:
+            'Sebuah persegi dibagi menjadi $2$ persegi panjang, seperti terlihat pada gambar. Diketahui hasil penjumlahan kedua keliling persegi panjang tersebut adalah $60$, maka luas persegi adalah $\\cdots$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sma-2024/fig-1.webp',
+              alt: 'Persegi yang terbagi secara horizontal menjadi dua persegi panjang dengan tinggi berbeda.',
+              caption: 'Ilustrasi persegi yang dibagi menjadi dua persegi panjang pada Soal 1.'
+            }
+          ],
+          answer: '$100$',
+          principle: 'Keliling persegi panjang $K = 2(p + l)$ dan penjumlahan keliling dua bagian yang berbagi sisi potong sejajar.',
+          solution:
+            'Misalkan panjang sisi persegi tersebut adalah $x$ dan lebar persegi panjang bagian atas adalah $a$ (dengan $0 < a < x$), sehingga lebar persegi panjang bagian bawah adalah $x - a$, sedangkan panjang kedua persegi panjang sama dengan $x$.\n\nKeliling masing-masing persegi panjang adalah:\n- Keliling persegi panjang atas: $K_1 = 2(x + a) = 2x + 2a$.\n- Keliling persegi panjang bawah: $K_2 = 2(x + (x - a)) = 4x - 2a$.\n\nKarena jumlah kedua keliling persegi panjang tersebut adalah $60$, diperoleh:\n$$K_1 + K_2 = (2x + 2a) + (4x - 2a) = 60 \\iff 6x = 60 \\iff x = 10.$$\n(Secara geometris, garis pemotong horizontal sepanjang $x$ dihitung dua kali, sehingga jumlah kedua keliling sama dengan keliling persegi ditambah $2x$, yakni $4x + 2x = 6x$.)\n\nDengan demikian, luas persegi adalah:\n$$L = x^2 = 10^2 = 100.$$',
+          rubric: [
+            { code: 'M1', text: 'Memisalkan sisi persegi $x$ serta lebar kedua persegi panjang $a$ dan $x - a$.' },
+            { code: 'M1', text: 'Menyusun persamaan jumlah keliling $2(x + a) + 2(2x - a) = 60$.' },
+            { code: 'M1', text: 'Menyederhanakan menjadi $6x = 60$ dan memperoleh panjang sisi persegi $x = 10$.' },
+            { code: 'A1', text: 'Menghitung luas persegi $x^2 = 100$.' }
+          ]
+        },
         {
           label: '2',
           marks: 4,
@@ -113,6 +136,29 @@ export default {
             { code: 'M1', text: 'Memperoleh akar $r = \\frac{1}{4}$ dan $r = 4$.' },
             { code: 'M1', text: 'Menguji syarat $u_1 > u_2$ sehingga hanya $r = \\frac{1}{4}$ yang memenuhi.' },
             { code: 'A1', text: 'Menghitung $u_1 = 32$.' }
+          ]
+        },
+        {
+          label: '7',
+          marks: 4,
+          prompt:
+            'Diberikan segiempat $ABCD$ dengan luas segitiga $AED$ sama dengan luas segitiga $BEC$. Jika $AB = 50$, $AE = 45$, dan $AC = 108$, maka $CD$ adalah $\\cdots$',
+          figures: [
+            {
+              src: '/papers/osnk-mat-sma-2024/fig-7.webp',
+              alt: 'Segiempat ABCD dengan kedua diagonal AC dan BD berpotongan di titik E di dalam segiempat.',
+              caption: 'Ilustrasi segiempat ABCD dengan titik potong diagonal E pada Soal 7.'
+            }
+          ],
+          answer: '$70$',
+          principle: 'Hubungan luas segitiga $[AED] = [BEC]$ yang mengimplikasikan kesebangunan $\\triangle AEB \\sim \\triangle CED$ (atau kesejajaran $AB \\parallel CD$).',
+          solution:
+            'Pada gambar, titik $E$ merupakan perpotongan diagonal $AC$ dan $BD$ di dalam segiempat $ABCD$, sehingga $A, E, C$ segaris dan $B, E, D$ segaris. Karena $AE = 45$ dan $AC = 108$, panjang $EC$ adalah:\n$$EC = AC - AE = 108 - 45 = 63.$$\nDiketahui luas $\\triangle AED$ sama dengan luas $\\triangle BEC$, yakni $[AED] = [BEC]$. Karena $\\angle AED$ dan $\\angle BEC$ merupakan sudut bertolak belakang, maka $\\angle AED = \\angle BEC$, sehingga:\n$$\\frac{1}{2} \\cdot AE \\cdot ED \\sin \\angle AED = \\frac{1}{2} \\cdot BE \\cdot EC \\sin \\angle BEC \\implies AE \\cdot ED = BE \\cdot EC \\implies \\frac{AE}{EC} = \\frac{BE}{ED}.$$\nPerhatikan $\\triangle AEB$ dan $\\triangle CED$. Selain perbandingan sisi $\\frac{AE}{EC} = \\frac{BE}{ED}$, kedua segitiga juga memiliki sudut apit bertolak belakang $\\angle AEB = \\angle CED$. Berdasarkan kriteria kesebangunan Sisi-Sudut-Sisi, diperoleh $\\triangle AEB \\sim \\triangle CED$ (secara ekuivalen, $[ABD] = [AED] + [AEB] = [BEC] + [AEB] = [ABC]$ beralas sama $AB$, sehingga $AB \\parallel CD$).\n\nAkibatnya, perbandingan sisi-sisi yang bersesuaian memenuhi:\n$$\\frac{AB}{CD} = \\frac{AE}{EC} \\implies \\frac{50}{CD} = \\frac{45}{63} = \\frac{5}{7}.$$\nDengan demikian:\n$$CD = \\frac{50 \\times 7}{5} = 70.$$',
+          rubric: [
+            { code: 'M1', text: 'Menghitung panjang $EC = AC - AE = 63$.' },
+            { code: 'M1', text: 'Menggunakan $[AED] = [BEC]$ dan sudut bertolak belakang untuk memperoleh $\\frac{AE}{EC} = \\frac{BE}{ED}$.' },
+            { code: 'M1', text: 'Menyimpulkan $\\triangle AEB \\sim \\triangle CED$ sehingga $\\frac{AB}{CD} = \\frac{AE}{EC}$.' },
+            { code: 'A1', text: 'Menghitung panjang $CD = 70$.' }
           ]
         },
         {

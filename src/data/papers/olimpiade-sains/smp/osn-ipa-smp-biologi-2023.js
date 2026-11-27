@@ -1,6 +1,6 @@
 /**
  * Paket Soal Terstruktur: Latihan OSN IPA SMP (Biologi) 2023
- * Sumber: osn_bio_smp_2023.pdf (30 soal sumber; 5 soal bergambar/grafik dan 2 soal dengan pilihan jawaban cacat dilewati).
+ * Sumber: osn_bio_smp_2023.pdf (30 soal lengkap).
  */
 const OK = [{ code: 'A1', text: 'Jawaban benar sesuai konsep dan pembahasan.' }];
 
@@ -25,9 +25,9 @@ export default {
   langDisplay: 'ID',
   competition: 'OSN-K',
   title: 'Latihan OSN IPA SMP (Biologi) 2023',
-  totalMarks: 24,
+  totalMarks: 36,
   instructions:
-    'Kerjakan seluruh 23 butir soal berikut yang terbagi menjadi Bagian A (17 soal pilihan ganda dan pilihan 1234, masing-masing 1 poin), Bagian B (5 soal sebab-akibat, masing-masing 1 poin), dan Bagian C (1 soal isian singkat dua bagian, 2 poin), dengan total 24 poin. Penomoran asli naskah sumber (osn_bio_smp_2023.pdf, total 30 soal) dipertahankan. Sebanyak 7 butir dilewati: nomor 4, 26, 27, 28, dan 29 bergantung pada gambar/grafik yang tidak tersedia pada teks ekstraksi; sedangkan nomor 12 dan 16 dilewati karena pilihan jawaban pada naskah sumber tidak memuat kombinasi pernyataan yang benar secara ilmiah (pada nomor 12, pernyataan benar 2 dan 3 tidak tersedia pada opsi; pada nomor 16, contoh klasik alelopati 1 Pinus dan 4 Juglans tidak muncul bersama pada opsi mana pun).',
+    'Kerjakan seluruh 30 butir soal berikut yang terbagi menjadi Bagian A (20 soal pilihan ganda dan pilihan 1234, nomor 1–20, masing-masing 1 poin), Bagian B (5 soal sebab-akibat, nomor 21–25, masing-masing 1 poin), dan Bagian C (5 soal isian singkat, nomor 26–30: nomor 26, 27, 28, dan 30 masing-masing 2 poin serta nomor 29 bernilai 3 poin), dengan total 36 poin.',
   source: {
     org: 'OSN-K',
     file: 'osn_bio_smp_2023.pdf',
@@ -38,8 +38,8 @@ export default {
     {
       no: 1,
       title: 'Bagian A: Pilihan Ganda dan Pilihan 1234',
-      marks: 17,
-      stem: 'Pilihlah satu jawaban yang paling tepat untuk setiap soal berikut (17 butir soal dengan penomoran asli sumber: nomor 1–3, 5–11, 13–15, dan 17–20; masing-masing bernilai 1 poin).',
+      marks: 20,
+      stem: 'Pilihlah satu jawaban yang paling tepat untuk setiap soal berikut (20 butir soal, nomor 1–20; masing-masing bernilai 1 poin).',
       parts: [
         {
           label: '1',
@@ -75,6 +75,25 @@ export default {
             'Laju respirasi spesifik (laju konsumsi oksigen per satuan massa per jam) dihitung dengan mengonversi volume $\\text{O}_2$ menjadi per jam ($60\\text{ menit}$) lalu membaginya dengan massa tubuh hewan.',
           solution:
             'Diketahui:\n- Massa anak ayam ($m$) $= 110\\text{ gram}$\n- Volume $\\text{O}_2$ yang dikonsumsi $= 550\\text{ mL}$ dalam $10\\text{ menit}$\n\nLangkah perhitungan:\n1. Ubah konsumsi oksigen dari per $10\\text{ menit}$ menjadi per $1\\text{ jam}$ ($60\\text{ menit}$):\n$$\\text{Konsumsi per jam} = 550\\text{ mL} \\times \\frac{60\\text{ menit}}{10\\text{ menit}} = 550 \\times 6 = 3300\\text{ mL O}_2/\\text{jam}.$$\n2. Bagi dengan berat badan anak ayam ($110\\text{ gram}$):\n$$\\text{Laju respirasi} = \\frac{3300\\text{ mL O}_2/\\text{jam}}{110\\text{ gram}} = 30\\text{ mL O}_2/\\text{gram}/\\text{jam}.$$\n\nJadi, jawaban yang tepat adalah **C. $30\\text{ mL O}_2/\\text{gram}/\\text{jam}$**.',
+          rubric: OK
+        },
+        {
+          label: '4',
+          marks: 1,
+          figures: [
+            {
+              src: '/papers/osn-ipa-smp-biologi-2023/fig-4.webp',
+              alt: 'Diagram anatomi organ sistem pencernaan manusia dengan label angka Romawi satu hingga dua belas',
+              caption: 'Diagram sistem pencernaan manusia untuk Soal No. 4.'
+            }
+          ],
+          prompt:
+            'Perhatikan gambar organ sistem pencernaan di bawah ini.\n\nOrgan yang menghasilkan empedu, hormon sekretin, dan enzim untuk pencernaan lemak adalah ....\n\nA. V, VI, XI\nB. XI, XII, V\nC. X, VI, XII\nD. IV, V, VI',
+          answer: 'C. X, VI, XII',
+          principle:
+            'Hati memproduksi cairan empedu (untuk mengemulsikan lemak), usus halus bagian duodenum menyekresikan hormon sekretin, dan pankreas menghasilkan enzim lipase untuk mencerna lemak.',
+          solution:
+            'Identifikasi organ yang ditunjuk angka Romawi pada gambar:\n- **IV:** lambung\n- **V:** usus besar (kolon transversum)\n- **VI:** usus halus (duodenum–jejunum–ileum)\n- **X:** **hati** $\\rightarrow$ organ yang **menghasilkan empedu** untuk mengemulsikan lemak.\n- **XI:** kantung empedu $\\rightarrow$ hanya menyimpan dan memekatkan empedu, bukan memproduksinya.\n- **XII:** **pankreas** $\\rightarrow$ menghasilkan getah pankreas yang mengandung **enzim lipase** untuk pencernaan lemak.\n\nSementara itu, **hormon sekretin** diproduksi oleh sel-sel mukosa **usus halus/duodenum (VI)** sebagai respons terhadap masuknya kimus asam dari lambung.\n\nJadi, urutan organ penghasil empedu, hormon sekretin, dan enzim pencerna lemak adalah **X, VI, XII** (**C**).',
           rubric: OK
         },
         {
@@ -162,6 +181,19 @@ export default {
           rubric: OK
         },
         {
+          label: '12',
+          marks: 1,
+          prompt:
+            'Di bawah ini adalah reaksi kimia eksotermik pada kelompok bakteri *Geobacter* yang dapat menghasilkan listrik:\nAnoda: $2\\text{CH}_2\\text{O} + 4\\text{OH}^- \\rightarrow 2\\text{CO}_2 + 4\\text{H}_2\\text{O} + 4e^-$\nKatoda: $\\text{O}_2 + 4\\text{H}_2\\text{O} + 4e^- \\rightarrow 4\\text{OH}^-$\n\nPerhatikan beberapa pernyataan berikut:\n1. pada kutub katoda terjadi reaksi oksidasi\n2. reaksi $\\text{O}_2 + 4\\text{H}_2\\text{O} + 4e^- \\rightarrow 4\\text{OH}^-$ merupakan reaksi reduksi\n3. elektron mengalir dari anoda ke katoda dan menghasilkan arus listrik\n4. elektron mengalir dari katoda ke anoda dan menghasilkan arus listrik\n\nPernyataan yang benar berdasarkan fenomena di atas adalah ....\n\nA. 1, 2, 3\nB. 1 dan 3\nC. 3 dan 4\nD. 2 dan 4',
+          answer:
+            '2 dan 3 (catatan naskah sumber: opsi tidak memuat kombinasi 2 dan 3; kunci sumber menandai B. 1 dan 3)',
+          principle:
+            'Pada sel elektrokimia (termasuk sel bahan bakar mikrob *Geobacter*), reaksi oksidasi (pelepasan elektron) berlangsung di anoda, reaksi reduksi (penangkapan elektron) berlangsung di katoda, dan elektron mengalir melalui penghantar luar dari anoda menuju katoda.',
+          solution:
+            'Mari evaluasi kebenaran setiap pernyataan berdasarkan persamaan reaksi sel:\n1. **SALAH:** Pada kutub **katoda** terjadi reaksi **reduksi** (penangkapan elektron), sedangkan oksidasi terjadi di anoda.\n2. **BENAR:** Reaksi $\\text{O}_2 + 4\\text{H}_2\\text{O} + 4e^- \\rightarrow 4\\text{OH}^-$ menangkap $4$ elektron di ruas kiri dan bilangan oksidasi oksigen turun dari $0$ (dalam $\\text{O}_2$) menjadi $-2$ (dalam $\\text{OH}^-$), sehingga merupakan **reaksi reduksi**.\n3. **BENAR:** Oksidasi di anoda melepaskan elektron ($4e^-$) yang kemudian **mengalir dari anoda menuju katoda** melalui rangkaian luar sehingga menghasilkan arus listrik.\n4. **SALAH:** Elektron tidak mengalir dari katoda ke anoda (arah sebaliknya adalah arah arus listrik konvensional, bukan aliran elektron).\n\nDengan demikian, pernyataan yang benar secara ilmiah adalah **2 dan 3**. *(Catatan: pilihan jawaban pada naskah sumber tidak menyediakan kombinasi **2 dan 3**, dan kunci pada naskah sumber menandai **B. 1 dan 3** secara keliru; selain itu koefisien reaksi pada naskah sumber dikutip apa adanya.)*',
+          rubric: OK
+        },
+        {
           label: '13',
           marks: 1,
           prompt:
@@ -195,6 +227,18 @@ export default {
             'Teori evolusi kimia (Oparin–Haldane dan percobaan Miller–Urey) menyatakan bahwa molekul anorganik sederhana di atmosfer purba ($\\text{CH}_4, \\text{NH}_3, \\text{H}_2\\text{O}, \\text{H}_2/\\text{CO}_2$) bereaksi membentuk monomer organik seperti asam amino, yang kemudian berkembang menjadi makromolekul dan sel pertama.',
           solution:
             'Mari evaluasi setiap pernyataan:\n1. **Kurang lengkap (bukan pilihan utama):** $\\text{H}_2\\text{O}$ dan $\\text{CO}_2$ saja tidak memiliki sumber nitrogen ($\\text{NH}_3$) yang diperlukan untuk membentuk asam amino dan asam nukleat.\n2. **BENAR:** Atmosfer purba menurut teori evolusi kimia mengandung senyawa sederhana seperti metana ($\\text{CH}_4$), amonia ($\\text{NH}_3$), uap air ($\\text{H}_2\\text{O}$), hidrogen, dan karbon dioksida ($\\text{CO}_2$).\n3. **SALAH:** Gagasan bahwa kehidupan berasal dari "spora kehidupan" dari luar angkasa merupakan teori **panspermia** (Svante Arrhenius), bukan evolusi kimia.\n4. **BENAR:** Eksperimen Stanley Miller dan Harold Urey membuktikan bahwa gas-gas atmosfer purba yang diberi energi listrik menghasilkan monomer organik berupa **asam amino**, yang menjadi tahap awal evolusi kimia menuju protobion.\n\nJadi, pernyataan yang sesuai dengan evolusi kimia adalah **2 dan 4** (**D**).',
+          rubric: OK
+        },
+        {
+          label: '16',
+          marks: 1,
+          prompt:
+            'Perhatikan interaksi antar organisme berikut.\n1. *Pinus* sp. dengan gulma\n2. *Penicillium* sp. dengan bakteri\n3. *Dinoflagelata* sp. dengan ikan\n4. *Juglans* sp. dengan alang-alang\n5. *Zea mays* dengan gulma\n\nSimbiosis alelopati berikut ini yang tepat adalah ....\n\nA. 1, 2, dan 3\nB. 1, 3, dan 5\nC. 2, 3, dan 4\nD. 2, 4, dan 5',
+          answer: 'A. 1, 2, dan 3',
+          principle:
+            'Alelopati (sering dikelompokkan bersama antibiosis/amensalisme pada tingkat SMP) adalah interaksi ketika suatu organisme melepaskan senyawa kimia penghambat (alelokimia, antibiotik, atau toksin) ke lingkungan yang merugikan pertumbuhan atau kelangsungan hidup organisme lain.',
+          solution:
+            'Tinjau tiap pasangan interaksi:\n1. ***Pinus* sp. dengan gulma — BENAR:** *Pinus* sp. menghasilkan senyawa alelokimia (fenolik dan terpen) dari serasah daun dan akarnya yang menghambat perkecambahan serta pertumbuhan gulma di bawah naungannya.\n2. ***Penicillium* sp. dengan bakteri — BENAR (konteks soal):** Jamur *Penicillium* sp. menyekresikan antibiotik penisilin yang menghambat pertumbuhan bakteri (secara ketat disebut **antibiosis**, yang dalam pengelompokan soal SMP kerap disatukan dengan alelopati/amensalisme).\n3. ***Dinoflagelata* sp. dengan ikan — BENAR (konteks soal):** Saat terjadi ledakan populasi (*red tide*), *Dinoflagelata* melepaskan neurotoksin ke perairan yang meracuni dan mematikan ikan.\n4. ***Juglans* sp. dengan alang-alang:** *Juglans* sp. (kenari hitam) juga merupakan contoh klasik alelopati penghasil senyawa juglon yang menghambat tumbuhan di sekitarnya, namun pada opsi yang tersedia nomor 1 dan 4 tidak muncul bersamaan.\n5. ***Zea mays* dengan gulma — SALAH:** interaksi utama jagung dan gulma adalah **kompetisi** memperebutkan air, cahaya, dan hara.\n\nSesuai kombinasi opsi dan kunci naskah sumber, jawaban yang dipilih adalah **A. 1, 2, dan 3**.',
           rubric: OK
         },
         {
@@ -318,9 +362,98 @@ export default {
     {
       no: 3,
       title: 'Bagian C: Isian Singkat',
-      marks: 2,
-      stem: 'Isilah bagian yang rumpang pada soal berikut dengan singkat dan tepat (nomor asli 30; bernilai 2 poin).',
+      marks: 11,
+      stem: 'Isilah bagian yang rumpang pada soal-soal berikut dengan singkat dan tepat (5 butir soal, nomor 26–30; nomor 26, 27, 28, dan 30 masing-masing bernilai 2 poin, sedangkan nomor 29 bernilai 3 poin).',
       parts: [
+        {
+          label: '26',
+          marks: 2,
+          figures: [
+            {
+              src: '/papers/osn-ipa-smp-biologi-2023/fig-26.webp',
+              alt: 'Skema jalur pergerakan air antar sel tumbuhan berlabel x melewati sitoplasma dan y melewati dinding sel',
+              caption: 'Alur pergerakan air pada sel tumbuhan untuk Soal No. 26 (Sumber: Biology, Campbell).'
+            }
+          ],
+          prompt:
+            'Gambar alur pergerakan air pada sel tumbuhan di bawah ini terdiri atas jalur x dan y.\n\na) Pergerakan air terbanyak melalui jalur ....\nb) Jalur tersebut dikenal dengan istilah ....',
+          answer: 'a) x; b) simplas',
+          principle:
+            'Pengangkutan air antarsel tumbuhan dapat berlangsung melalui jalur simplas (melintasi sitoplasma sel melalui plasmodesmata) dan jalur apoplas (melintasi dinding sel dan ruang antarsel).',
+          solution:
+            'Perhatikan kedua lintasan pada gambar:\n- **Jalur (x) [garis biru]:** air bergerak dari sitoplasma satu sel ke sitoplasma sel berikutnya melewati **plasmodesmata**. Jalur ini disebut **jalur simplas**.\n- **Jalur (y) [garis merah]:** air bergerak menyusuri dinding sel dan ruang antarsel tanpa menembus membran plasma. Jalur ini disebut **jalur apoplas**.\n\nPada konteks soal ini (sesuai kunci naskah sumber), jalur yang dimaksud sebagai lintasan utama menuju silinder pusat adalah **x**, yaitu **simplas**. *(Catatan: pada korteks akar sebelum mencapai endodermis, air banyak melintasi apoplas, namun seluruh aliran air wajib dialihkan memasuki jalur simplas saat terhalang pita Kaspari di endodermis.)*\n\nJadi, jawabannya adalah **a) x** dan **b) simplas**.',
+          rubric: [
+            { code: 'B1', text: 'Menentukan huruf jalur x dengan tepat.' },
+            { code: 'B1', text: 'Menyebutkan istilah simplas dengan tepat.' }
+          ]
+        },
+        {
+          label: '27',
+          marks: 2,
+          figures: [
+            {
+              src: '/papers/osn-ipa-smp-biologi-2023/fig-27.webp',
+              alt: 'Grafik hubungan konsentrasi oksigen relatif terhadap persentase saturasi hemoglobin pada tiga variasi pH darah',
+              caption: 'Kurva disosiasi oksigen–hemoglobin pada pH berbeda untuk Soal No. 27.'
+            }
+          ],
+          prompt:
+            'Hasil pengukuran saturasi hemoglobin pada pH yang berbeda ditunjukkan pada grafik di bawah ini. Kondisi pH normal adalah $7{,}4$.\n\nA. Saturasi hemoglobin seorang atlet yang baru selesai bertanding pada kondisi lingkungan oksigen relatif $80\\%$ adalah ....\nB. Saturasi hemoglobin normal pada kondisi lingkungan oksigen relatif $80\\%$ adalah ....',
+          answer: 'A. 90%; B. 95%',
+          principle:
+            'Efek Bohr menyatakan bahwa penurunan pH darah (akibat peningkatan $\\text{CO}_2$ dan asam laktat saat aktivitas fisik berat) menurunkan afinitas hemoglobin terhadap oksigen sehingga kurva saturasi bergeser ke kanan.',
+          solution:
+            '1. **Atlet yang baru selesai bertanding (A):** aktivitas otot intensif menghasilkan banyak $\\text{CO}_2$ dan asam laktat sehingga pH darah turun menjadi lebih asam dari normal ($\\text{pH } 7{,}2$, kurva hitam). Pada sumbu mendatar konsentrasi oksigen relatif **$80\\%$**, titik pada kurva $\\text{pH } 7{,}2$ berada tepat di nilai saturasi **$90\\%$**.\n2. **Kondisi normal (B):** pH darah normal adalah **$7{,}4$** (kurva jingga). Pada konsentrasi oksigen relatif **$80\\%$**, titik pada kurva $\\text{pH } 7{,}4$ berada tepat di tengah antara $90\\%$ dan $100\\%$, yakni **$95\\%$**.\n\nJadi, jawabannya adalah **A. $90\\%$** dan **B. $95\\%$**.',
+          rubric: [
+            { code: 'B1', text: 'Membaca saturasi hemoglobin atlet pada pH 7,2 sebesar 90% dengan tepat.' },
+            { code: 'B1', text: 'Membaca saturasi hemoglobin normal pada pH 7,4 sebesar 95% dengan tepat.' }
+          ]
+        },
+        {
+          label: '28',
+          marks: 2,
+          figures: [
+            {
+              src: '/papers/osn-ipa-smp-biologi-2023/fig-28.webp',
+              alt: 'Grafik laju pertumbuhan tanaman terhadap waktu yang terbagi atas fase a, b, c, dan d',
+              caption: 'Kurva laju pertumbuhan tanaman terhadap waktu untuk Soal No. 28.'
+            }
+          ],
+          prompt:
+            'Grafik di bawah ini menunjukkan laju pertumbuhan tanaman. Bagian kurva a, b, c, dan d merepresentasikan fase-fase dalam pertumbuhan tanaman.\n\na) Bagian-bagian yang menunjukkan pengaruh hormon ABA dalam pertumbuhan tanaman adalah ....\nb) Hormon-hormon pertumbuhan yang berperan pada bagian b adalah ....',
+          answer: 'a) a dan d; b) giberelin, auksin, sitokinin',
+          principle:
+            'Asam absisat (ABA) berperan menghambat pertumbuhan dan mempertahankan dormansi maupun memicu penuaan/penurunan laju pertumbuhan, sedangkan fase pertumbuhan eksponensial dipacu oleh hormon pemicu tumbuh seperti auksin, giberelin, dan sitokinin.',
+          solution:
+            'Analisis tiap fase kurva laju pertumbuhan terhadap waktu:\n- **Fase a (fase lag / awal):** laju pertumbuhan masih sangat rendah atau terhambat sebelum perkecambahan/pertumbuhan aktif dimulai; **asam absisat (ABA)** berperan menjaga dormansi biji/tunas.\n- **Fase b (fase eksponensial / log):** laju pertumbuhan meningkat tajam berkat pembelahan dan pemanjangan sel yang cepat; proses ini dipacu oleh hormon pertumbuhan **giberelin, auksin, dan sitokinin**.\n- **Fase c (fase stasioner):** laju pertumbuhan mendatar saat tumbuhan mencapai ukuran dewasa.\n- **Fase d (fase penurunan / senesensi):** laju pertumbuhan menurun; **ABA** (bersama etilen) berperan dalam penghambatan pertumbuhan, penuaan, dan pengguguran organ.\n\nJadi, jawabannya adalah **a) a dan d** serta **b) giberelin, auksin, sitokinin**.',
+          rubric: [
+            { code: 'B1', text: 'Menyebutkan bagian a dan d untuk pengaruh hormon ABA dengan tepat.' },
+            { code: 'B1', text: 'Menyebutkan hormon giberelin, auksin, dan sitokinin pada bagian b dengan tepat.' }
+          ]
+        },
+        {
+          label: '29',
+          marks: 3,
+          figures: [
+            {
+              src: '/papers/osn-ipa-smp-biologi-2023/fig-29.webp',
+              alt: 'Tiga gambar sel tumbuhan dengan arah pergerakan molekul air keluar, masuk, dan setimbang',
+              caption: 'Kondisi osmosis tiga sel tumbuhan untuk Soal No. 29.'
+            }
+          ],
+          prompt:
+            'Perhatikan gambar di bawah ini.\n\na. Kondisi konsentrasi larutan 1: ...., keadaan sel 1: ....\nb. Kondisi konsentrasi larutan 2: ...., keadaan sel 2: ....\nc. Kondisi konsentrasi larutan 3: ...., keadaan sel 3: ....',
+          answer: 'a) Hipertonis dan plasmolisis; b) Hipotonis dan turgid; c) Isotonis dan flasid',
+          principle:
+            'Osmosis menggerakkan air dari larutan berpotensial air tinggi (hipotonis) ke larutan berpotensial air rendah (hipertonis) melintasi membran semipermeabel, menyebabkan sel tumbuhan berada dalam keadaan plasmolisis, turgid, atau flasid.',
+          solution:
+            'Analisis arah pergerakan air ($\\text{H}_2\\text{O}$) dan bentuk sel pada tiap panel:\n- **Gambar 1:** air bergerak **keluar** dari dalam sel karena larutan di luar lebih pekat (**hipertonis**). Akibat kehilangan air, vakuola menyusut dan membran plasma terlepas dari dinding sel (**plasmolisis**).\n- **Gambar 2:** air bergerak **masuk** ke dalam sel karena larutan di luar lebih encer (**hipotonis**). Vakuola mengembang menekan dinding sel sehingga sel menjadi tegang penuh (**turgid**).\n- **Gambar 3:** air bergerak **masuk dan keluar dalam laju seimbang** karena konsentrasi larutan di luar sama dengan di dalam sel (**isotonis**). Sel tidak tegang maupun mengkerut (**flasid**).\n\nJadi, jawabannya adalah:\n- **a.** Hipertonis dan plasmolisis\n- **b.** Hipotonis dan turgid\n- **c.** Isotonis dan flasid',
+          rubric: [
+            { code: 'B1', text: 'Menentukan kondisi larutan hipertonis dan keadaan sel plasmolisis pada gambar 1.' },
+            { code: 'B1', text: 'Menentukan kondisi larutan hipotonis dan keadaan sel turgid pada gambar 2.' },
+            { code: 'B1', text: 'Menentukan kondisi larutan isotonis dan keadaan sel flasid pada gambar 3.' }
+          ]
+        },
         {
           label: '30',
           marks: 2,

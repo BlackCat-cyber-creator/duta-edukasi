@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 240" width="460" height="240">
+  <rect width="460" height="240" fill="#ffffff"/>
+  <defs>
+    <pattern id="hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#92400e" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Scale: 1 cm = 24 px. Baseline y = 195.
+       A=(70,195), H=(166,195) [AH=4*24=96], B=(214,195) [HB=2*24=48], E=(358,195) [BE=6*24=144].
+       D=(70,99) [AD=4*24=96], C=(214,99).
+       G=(214,51) [BG=6*24=144], F=(358,51).
+  -->
+  <!-- Shaded triangle DHF -->
+  <polygon points="70,99 166,195 358,51" fill="url(#hatch)" stroke="#111827" stroke-width="1.5"/>
+
+  <!-- Rectangle ABCD -->
+  <rect x="70" y="99" width="144" height="96" fill="none" stroke="#111827" stroke-width="1.6"/>
+  <!-- Square BEFG -->
+  <rect x="214" y="51" width="144" height="144" fill="none" stroke="#111827" stroke-width="1.6"/>
+
+  <!-- Vertices -->
+  <circle cx="70" cy="195" r="3" fill="#2563eb"/>
+  <circle cx="166" cy="195" r="3" fill="#2563eb"/>
+  <circle cx="214" cy="195" r="3" fill="#2563eb"/>
+  <circle cx="358" cy="195" r="3" fill="#2563eb"/>
+  <circle cx="70" cy="99" r="3" fill="#2563eb"/>
+  <circle cx="214" cy="99" r="3" fill="#2563eb"/>
+  <circle cx="214" cy="51" r="3" fill="#2563eb"/>
+  <circle cx="358" cy="51" r="3" fill="#2563eb"/>
+
+  <!-- Vertex Labels -->
+  <text x="64" y="214" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e3a8a">A</text>
+  <text x="161" y="214" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e3a8a">H</text>
+  <text x="209" y="214" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e3a8a">B</text>
+  <text x="354" y="214" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e3a8a">E</text>
+  <text x="64" y="90" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e3a8a">D</text>
+  <text x="220" y="109" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e3a8a">C</text>
+  <text x="209" y="41" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e3a8a">G</text>
+  <text x="354" y="41" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e3a8a">F</text>
+
+  <!-- Dimension Labels -->
+  <text x="30" y="152" font-family="Arial, sans-serif" font-size="13" font-style="italic" fill="#111827">4 cm</text>
+  <text x="108" y="188" font-family="Arial, sans-serif" font-size="13" font-style="italic" fill="#111827">4 cm</text>
+  <text x="276" y="44" font-family="Arial, sans-serif" font-size="13" font-style="italic" fill="#111827">6 cm</text>
+</svg>

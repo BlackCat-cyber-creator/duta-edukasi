@@ -123,6 +123,51 @@ import ipa7KalorGerakGayaP1 from './ipa/smp/ipa7-kalor-gerak-gaya-paket-1.js';
 import fis11FluidaStatisDinamisP1 from './fisika/sma/fis11-fluida-statis-dinamis-paket-1.js';
 import fis12ListrikMagnetP1 from './fisika/sma/fis12-listrik-magnet-paket-1.js';
 import mat10Igcse0580ExtendedP1 from './matematika/sma/mat10-igcse-0580-extended-paket-1.js';
+import olimAmc8_2026 from './olimpiade-mat/smp/amc-8-2026.js';
+import olimAmc10a2025 from './olimpiade-mat/sma/amc-10a-2025.js';
+import olimAmc10a2015 from './olimpiade-mat/sma/amc-10a-2015.js';
+import olimAsmopss2025Sec from './olimpiade-mat/smp/asmopss-2025-secondary.js';
+import cemcGauss7_2025 from './olimpiade-mat/smp/cemc-gauss-7-2025.js';
+import cemcGauss8_2025 from './olimpiade-mat/smp/cemc-gauss-8-2025.js';
+import cemcPascal2025 from './olimpiade-mat/smp/cemc-pascal-2025.js';
+import cemcCayley2025 from './olimpiade-mat/sma/cemc-cayley-2025.js';
+import cemcFermat2025 from './olimpiade-mat/sma/cemc-fermat-2025.js';
+import cemcEuclid2025 from './olimpiade-mat/sma/cemc-euclid-2025.js';
+import cemcBcc78_2025 from './olimpiade-inf/smp/cemc-bcc-7-8-2025.js';
+import cemcBcc910_2025 from './olimpiade-inf/sma/cemc-bcc-9-10-2025.js';
+import olimAmc10b2025 from './olimpiade-mat/sma/amc-10b-2025.js';
+import olimAsmopss2025Pri from './olimpiade-mat/sd/asmopss-2025-primary.js';
+import olimImso17Sci1 from './olimpiade-sains/sd/imso-17-science-theory-1.js';
+import olimImso18Sci1 from './olimpiade-sains/sd/imso-18-science-theory-1.js';
+import olimImsoMatSim1 from './olimpiade-mat/sd/imso-matematika-simulasi-1.js';
+import olimOsnkMatSmp2025 from './olimpiade-mat/smp/osnk-matematika-smp-2025.js';
+import olimOsnkIpaSd2025 from './olimpiade-sains/sd/osnk-ipa-sd-2025.js';
+import olimOsnpIpaSd2024 from './olimpiade-sains/sd/osnp-ipa-sd-2024.js';
+import olimOsnpMatSd2023 from './olimpiade-mat/sd/osnp-matematika-sd-2023.js';
+import olimOsnkIpaSmp2023 from './olimpiade-sains/smp/osnk-ipa-smp-2023.js';
+import olimHkimo2022HeatP6 from './olimpiade-mat/sd/hkimo-2022-heat-primary-6.js';
+import olimTimo2024FrrS2 from './olimpiade-mat/smp/timo-2024-final-secondary-2.js';
+import olimKsm2019MtsNas from './olimpiade-mat/smp/ksm-matematika-mts-2019-nasional.js';
+import olimSasmo2019P4 from './olimpiade-mat/sd/sasmo-2019-primary-4.js';
+import olimSasmo2019P5 from './olimpiade-mat/sd/sasmo-2019-primary-5.js';
+import olimSasmo2019P6 from './olimpiade-mat/sd/sasmo-2019-primary-6.js';
+import olimSasmo2019G7 from './olimpiade-mat/smp/sasmo-2019-grade-7.js';
+import olimSasmo2019G8 from './olimpiade-mat/smp/sasmo-2019-grade-8.js';
+import olimSasmo2019G9 from './olimpiade-mat/smp/sasmo-2019-grade-9.js';
+import olimSimoc2019G5 from './olimpiade-mat/sd/simoc-2019-grade-5.js';
+import olimSimoc2019G6 from './olimpiade-mat/sd/simoc-2019-grade-6.js';
+import olimSimoc2019G7 from './olimpiade-mat/smp/simoc-2019-grade-7.js';
+import olimSimoc2019G8 from './olimpiade-mat/smp/simoc-2019-grade-8.js';
+import olimSasmo2020P4 from './olimpiade-mat/sd/sasmo-2020-primary-4.js';
+import olimSasmo2020P5 from './olimpiade-mat/sd/sasmo-2020-primary-5.js';
+import olimSasmo2020P6 from './olimpiade-mat/sd/sasmo-2020-primary-6.js';
+import olimSasmo2020G7 from './olimpiade-mat/smp/sasmo-2020-grade-7.js';
+import olimSasmo2020G8 from './olimpiade-mat/smp/sasmo-2020-grade-8.js';
+import olimSasmo2020G9 from './olimpiade-mat/smp/sasmo-2020-grade-9.js';
+import olimAmoMockG4 from './olimpiade-mat/sd/amo-mock-grade-4.js';
+import olimAmoMockG5 from './olimpiade-mat/sd/amo-mock-grade-5.js';
+import olimAmoMockG7 from './olimpiade-mat/smp/amo-mock-grade-7.js';
+import olimAmoMockG8 from './olimpiade-mat/smp/amo-mock-grade-8.js';
 
 import {
   PAPER_SUBJECT_META,
@@ -282,7 +327,52 @@ export const ALL_PAPERS = [
   ipa7KalorGerakGayaP1,
   fis11FluidaStatisDinamisP1,
   fis12ListrikMagnetP1,
-  mat10Igcse0580ExtendedP1
+  mat10Igcse0580ExtendedP1,
+  olimAmc8_2026,
+  olimAmc10a2025,
+  olimAmc10a2015,
+  olimAsmopss2025Sec,
+  cemcGauss7_2025,
+  cemcGauss8_2025,
+  cemcPascal2025,
+  cemcCayley2025,
+  cemcFermat2025,
+  cemcEuclid2025,
+  cemcBcc78_2025,
+  cemcBcc910_2025,
+  olimAmc10b2025,
+  olimAsmopss2025Pri,
+  olimImso17Sci1,
+  olimImso18Sci1,
+  olimImsoMatSim1,
+  olimOsnkMatSmp2025,
+  olimOsnkIpaSd2025,
+  olimOsnpIpaSd2024,
+  olimOsnpMatSd2023,
+  olimOsnkIpaSmp2023,
+  olimHkimo2022HeatP6,
+  olimTimo2024FrrS2,
+  olimKsm2019MtsNas,
+  olimSasmo2019P4,
+  olimSasmo2019P5,
+  olimSasmo2019P6,
+  olimSasmo2019G7,
+  olimSasmo2019G8,
+  olimSasmo2019G9,
+  olimSimoc2019G5,
+  olimSimoc2019G6,
+  olimSimoc2019G7,
+  olimSimoc2019G8,
+  olimSasmo2020P4,
+  olimSasmo2020P5,
+  olimSasmo2020P6,
+  olimSasmo2020G7,
+  olimSasmo2020G8,
+  olimSasmo2020G9,
+  olimAmoMockG4,
+  olimAmoMockG5,
+  olimAmoMockG7,
+  olimAmoMockG8
 ];
 
 export const PUBLISHED_PAPERS = ALL_PAPERS.filter((p) => p.status === 'published');

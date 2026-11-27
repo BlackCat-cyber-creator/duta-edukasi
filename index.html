@@ -2,16 +2,19 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/brand/icon-192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
-    <meta name="description" content="Duta e-dukasi (Bimbingan Belajar Duta Edukasi Pontianak) - Portal belajar gratis Matematika, IPA, Fisika, Kimia, dan Biologi (Kelas 4 SD–12 SMA): materi per bab, kuis, paket soal ber-rubrik, latihan TKA, serta pembinaan Olimpiade OSN & AMC." />
+    <meta name="description" content="Portal belajar gratis Duta e-dukasi: materi Matematika, IPA (4–9), Fisika, Kimia, Biologi SMA, TKA, Olimpiade OSN, AMC, SASMO, serta Paket Soal ber-rubrik." />
     <meta name="theme-color" content="#12337A" />
     <meta name="author" content="Jevon Naldo Yoshield" />
     <meta name="msvalidate.01" content="C3889FA1AB286EA787B3D23F5C0BE636" />
-    <meta property="og:image" content="/brand/og/default.png" />
+    <meta property="og:image" content="https://dutaedukasi.vercel.app/brand/og/default.png" />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
-    <title>Duta e-dukasi • Belajar Matematika &amp; Sains (Kelas 4–12), Olimpiade, dan Paket Soal</title>
+    <link rel="search" type="application/opensearchdescription+xml" title="Cari Duta e-dukasi" href="/opensearch.xml" />
+    <title>Duta e-dukasi — Materi Matematika, Sains &amp; Olimpiade Gratis</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +22,21 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
     <!-- Font logotipe: skrip tebal miring seperti banner resmi; hanya huruf "DUTA e-dukasi" yang diunduh -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&amp;text=DUTAe-dukasi%20&amp;display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&amp;text=DUTAe-dukasi%20&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&amp;text=DUTAe-dukasi%20&amp;display=swap"></noscript>
+    <!-- Google Analytics 4 (non-blocking, aktif di produksi dutaedukasi.vercel.app) -->
+    <script>
+      if (location.hostname === 'dutaedukasi.vercel.app') {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){ window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-G2BZYXCEFM', { send_page_view: false });
+        var ga = document.createElement('script');
+        ga.async = true;
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-G2BZYXCEFM';
+        document.head.appendChild(ga);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,8 +1,7 @@
 /**
  * Paket Soal Terstruktur: OSN-K Matematika SD — Bilangan Paket 1
  * Sumber: 1 BILANGAN PAKET 1.pdf (Modul Olimpiade SD PrimaNesa).
- * 14 soal terpilih dimuat dengan penomoran asli (1–10 dan 12–15).
- * Soal nomor 11 tidak dimuat karena data keliling bagian pada gambar sumber tidak menentukan keliling persegi panjang ABCD secara tunggal.
+ * Seluruh 15 soal asli dimuat secara berurutan (1–15).
  * Soal nomor 13 dipertahankan dalam bahasa Inggris sesuai naskah asli.
  */
 export default {
@@ -27,9 +26,9 @@ export default {
   langDisplay: 'ID',
   competition: 'OSN-K',
   title: 'OSN-K Matematika SD — Bilangan Paket 1',
-  totalMarks: 28,
+  totalMarks: 30,
   instructions:
-    'Kerjakan seluruh 14 soal terpilih dari 15 soal asli pada naskah (masing-masing bernilai 2 poin: 1 poin metode dan 1 poin jawaban akhir; total 28 poin). Soal nomor 11 tidak dimuat karena gambar keliling bagian pada naskah sumber bersifat kurang ditentukan (underdetermined), yakni menghasilkan banyak nilai keliling persegi panjang ABCD yang memenuhi pada selang antara 25 hingga 31 (misalnya 27 atau 29) sehingga tidak memiliki jawaban tunggal. Penomoran soal mengikuti naskah asli (1–10 dan 12–15), dan soal nomor 13 dipertahankan dalam bahasa Inggris sesuai aslinya.',
+    'Kerjakan seluruh 15 soal pada naskah (masing-masing bernilai 2 poin: 1 poin metode dan 1 poin jawaban akhir; total 30 poin). Penomoran soal mengikuti naskah asli (1–15), dan soal nomor 13 dipertahankan dalam bahasa Inggris sesuai aslinya.',
   source: {
     org: 'OSN-K',
     file: '1 BILANGAN PAKET 1.pdf',
@@ -40,8 +39,8 @@ export default {
     {
       no: 1,
       title: 'Latihan Soal Bilangan — Paket 1',
-      marks: 28,
-      stem: 'Selesaikan ke-14 soal bilangan berikut (nomor 1–10 dan 12–15) secara teliti dan sistematis.',
+      marks: 30,
+      stem: 'Selesaikan ke-15 soal bilangan berikut (nomor 1–15) secara teliti dan sistematis.',
       parts: [
         {
           label: '1',
@@ -205,6 +204,28 @@ export default {
           rubric: [
             { code: 'M1', text: 'Menghitung $2 \\diamond 5 = 13$ lalu mensubstitusikannya ke $4 \\diamond 13$.' },
             { code: 'A1', text: 'Memperoleh hasil $61$, pilihan C.' }
+          ]
+        },
+        {
+          label: '11',
+          marks: 2,
+          figures: [
+            {
+              src: '/papers/osk-mat-sd-bilangan-p1/fig-11.webp',
+              alt: 'Persegi panjang ABCD terbagi menjadi sembilan bagian dalam kisi tiga kali tiga dengan keliling lima bagian bernilai 11, 20, 8, 11, dan 12',
+              caption: 'Pembagian persegi panjang ABCD menjadi sembilan persegi panjang kecil beserta keliling lima bagiannya.'
+            }
+          ],
+          prompt:
+            'Perhatikan gambar di samping! Jika angka-angka pada gambar menunjukkan keliling dari masing-masing bagian, maka keliling persegi panjang $ABCD$ adalah ....',
+          answer: '$46$',
+          principle:
+            'Jumlahkan keliling kelima bagian yang diketahui, lalu kurangkan dua kali keliling bagian tengah yang terhitung berlebih agar diperoleh keliling persegi panjang $ABCD$.',
+          solution:
+            'Pada gambar, persegi panjang $ABCD$ terbagi menjadi kisi $3 \\times 3$ persegi panjang kecil dengan lebar kolom berturut-turut $w_1, w_2, w_3$ dan tinggi baris berturut-turut $h_1, h_2, h_3$.\nBerdasarkan keliling lima bagian yang diketahui:\n- Bagian atas tengah: $2(w_2 + h_1) = 11$\n- Bagian tengah kiri: $2(w_1 + h_2) = 20$\n- Bagian pusat (tengah-tengah): $2(w_2 + h_2) = 8$\n- Bagian tengah kanan: $2(w_3 + h_2) = 11$\n- Bagian bawah tengah: $2(w_2 + h_3) = 12$\n\nJumlahkan keliling kelima bagian tersebut:\n$$11 + 20 + 8 + 11 + 12 = 62.$$\nSecara aljabar, jumlah tersebut bernilai:\n$$2(w_2 + h_1) + 2(w_1 + h_2) + 2(w_2 + h_2) + 2(w_3 + h_2) + 2(w_2 + h_3) = 2(w_1 + w_2 + w_3 + h_1 + h_2 + h_3) + 4(w_2 + h_2).$$\nPerhatikan bahwa $2(w_1 + w_2 + w_3 + h_1 + h_2 + h_3)$ tepat merupakan keliling persegi panjang $ABCD$, sedangkan $4(w_2 + h_2) = 2 \\times 2(w_2 + h_2) = 2 \\times 8 = 16$.\nDengan demikian, keliling persegi panjang $ABCD$ adalah:\n$$62 - 16 = 46.$$',
+          rubric: [
+            { code: 'M1', text: 'Menjumlahkan keliling lima bagian yang diketahui ($62$) dan mengurangkan dua kali keliling bagian tengah ($2 \\times 8 = 16$).' },
+            { code: 'A1', text: 'Memperoleh keliling persegi panjang $ABCD$ adalah $46$.' }
           ]
         },
         {

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 351 358" width="351" height="358">
+  <rect width="351" height="358" fill="#ffffff" />
+  <polygon points="94.7,189.5 202.7,189.5 94.7,333.5" fill="#e0f2fe" stroke="#1e293b" stroke-width="2.2" stroke-linejoin="round" />
+  <polygon points="202.7,189.5 148.7,96.0 327.4,117.5" fill="#e0f2fe" stroke="#1e293b" stroke-width="2.2" stroke-linejoin="round" />
+  <polygon points="148.7,96.0 94.7,189.5 24.0,24.0" fill="#e0f2fe" stroke="#1e293b" stroke-width="2.2" stroke-linejoin="round" />
+  <polyline points="106.7,189.5 106.7,201.5 94.7,201.5" fill="none" stroke="#1e293b" stroke-width="1.5" />
+  <polyline points="196.7,179.1 207.1,173.1 213.1,183.5" fill="none" stroke="#1e293b" stroke-width="1.5" />
+  <polyline points="142.7,106.4 132.3,100.4 138.3,90.0" fill="none" stroke="#1e293b" stroke-width="1.5" />
+  <polygon points="94.7,189.5 202.7,189.5 148.7,96.0" fill="#ffffff" stroke="#1e293b" stroke-width="2.2" stroke-linejoin="round" />
+  <line x1="148.7" y1="184.5" x2="148.7" y2="194.5" stroke="#1e293b" stroke-width="1.8" />
+  <line x1="171.4" y1="145.3" x2="180.0" y2="140.3" stroke="#1e293b" stroke-width="1.8" />
+  <line x1="126.0" y1="145.3" x2="117.4" y2="140.3" stroke="#1e293b" stroke-width="1.8" />
+</svg>

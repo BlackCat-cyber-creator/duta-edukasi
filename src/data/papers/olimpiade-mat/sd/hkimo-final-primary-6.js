@@ -3,8 +3,8 @@
  * Sumber: Hong Kong International Mathematical Olympiad Final Round 2022, Primary 6 (hkimo_2022_final_p6.pdf).
  * Bahasa dipertahankan sesuai naskah sumber (Inggris). Halaman sampul PDF memuat teks tersembunyi sampel 2018 Heat Round
  * yang bukan bagian dari naskah ujian 2022; soal yang dimuat berasal dari naskah lengkap 2022 (halaman 1–15 ujian).
- * Soal 7 (penulisan deret menghilangkan + 20^2 sehingga elipsis dan keterbagian oleh 7 tidak konsisten) dan
- * Soal 15 (salah cetak definisi operasi yang menghasilkan B = 2072/20555) tidak dimuat; penomoran asli tetap dipertahankan.
+ * Soal 7 (mempertahankan penulisan asli yang menghilangkan + 20^2, dengan pembahasan nilai yang dimaksud maupun literal) dan
+ * Soal 15 (mengikuti definisi operasi cetak asli yang menghasilkan B = 2072/20555) kini turut dimuat; seluruh 30 soal lengkap (1–30).
  * Soal 1, 20, dan 23 dilengkapi diagram SVG vektor berdasarkan gambar asli pada PDF.
  */
 export default {
@@ -30,9 +30,9 @@ export default {
   langDisplay: 'EN',
   competition: 'HKIMO',
   title: 'HKIMO Final Round 2022 — Primary 6',
-  totalMarks: 112,
+  totalMarks: 120,
   instructions:
-    'Attempt all 28 included short-answer questions from the HKIMO Final Round 2022 Primary 6 paper (no calculators; original numbering is preserved across all five sections). Each included question in this practice set carries 4 marks (112 marks total). Two items from the source PDF are skipped due to printing errors in the source text: Question 7 (the printed sum omits $20^2$ between $15^2$ and $25^2$, making the ellipsis and division by $7$ inconsistent) and Question 15 (the printed operation formula yields the non-elementary fraction $B = \\frac{2072}{20555}$). Diagrams for Questions 1, 20, and 23 are provided as vector SVG figures.',
+    'Attempt all 30 short-answer questions from the HKIMO Final Round 2022 Primary 6 paper across five sections (no calculators). Each question carries 4 marks (120 marks total). Diagrams for Questions 1, 20, and 23 are provided as vector SVG figures.',
   source: {
     org: 'HKIMO',
     file: 'hkimo_2022_final_p6.pdf',
@@ -148,9 +148,24 @@ export default {
     {
       no: 2,
       title: 'Section 2: Arithmetic',
-      marks: 20,
-      stem: 'Short-answer questions 8 to 12 (Question 7 is skipped due to a source printing omission). Each correct answer scores 4 marks.',
+      marks: 24,
+      stem: 'Short-answer questions 7 to 12. Each correct answer scores 4 marks.',
       parts: [
+        {
+          label: '7',
+          marks: 4,
+          prompt:
+            'Find the value of $(5^2 + 10^2 + 15^2 + 25^2 + \\cdots + 45^2 + 50^2) \\div 7$.',
+          answer: '$1375$ (or $\\dfrac{9225}{7} = 1317\\dfrac{6}{7}$ if $20^2$ is omitted as printed)',
+          principle:
+            'Factor out $5^2 = 25$ from each square and apply the sum-of-squares formula $\\sum_{k=1}^{n} k^2 = \\dfrac{n(n+1)(2n+1)}{6}$.',
+          solution:
+            'Note that the source PDF accidentally omits $+ 20^2$ between $15^2$ and $25^2$.\n\n1. **Intended full sequence of multiples of $5$ ($5^2$ to $50^2$)**:\nFactor out $5^2 = 25$:\n$$5^2 + 10^2 + 15^2 + 20^2 + \\cdots + 50^2 = 25(1^2 + 2^2 + 3^2 + \\cdots + 10^2).$$\nUsing $\\sum_{k=1}^{10} k^2 = \\dfrac{10 \\times 11 \\times 21}{6} = 385$:\n$$\\frac{25 \\times 385}{7} = 25 \\times 55 = 1375.$$\n\n2. **Literal printed expression (omitting $20^2 = 400$)**:\nSubtracting $400$ from the full sum $25 \\times 385 = 9625$ gives $9625 - 400 = 9225$, so:\n$$\\frac{9225}{7} = 1317\\frac{6}{7}.$$',
+          rubric: [
+            { code: 'M2', text: 'Factors out $5^2 = 25$ and applies $\\sum_{k=1}^{10} k^2 = 385$ before dividing by $7$.' },
+            { code: 'A2', text: 'Correct value $1375$ (or $\\frac{9225}{7}$ if $20^2$ is omitted).' }
+          ]
+        },
         {
           label: '8',
           marks: 4,
@@ -230,8 +245,8 @@ export default {
     {
       no: 3,
       title: 'Section 3: Number Theory',
-      marks: 20,
-      stem: 'Short-answer questions 13, 14, 16, 17, and 18 (Question 15 is skipped due to a source typesetting error). Each correct answer scores 4 marks.',
+      marks: 24,
+      stem: 'Short-answer questions 13 to 18. Each correct answer scores 4 marks.',
       parts: [
         {
           label: '13',
@@ -261,6 +276,21 @@ export default {
           rubric: [
             { code: 'M2', text: 'Finds the units digits of all $10$ terms using power cycles modulo $10$.' },
             { code: 'A2', text: 'Correct unit digit $0$.' }
+          ]
+        },
+        {
+          label: '15',
+          marks: 4,
+          prompt:
+            'Define the operation symbol $a \\otimes b = \\dfrac{4 \\times (b - 2) + b}{ab}$. If $(1 \\otimes B) \\otimes (10 \\otimes 9) = \\dfrac{7}{36}$, find the value of $B$.',
+          answer: '$\\dfrac{2072}{20555}$',
+          principle:
+            'Evaluate the known operation $10 \\otimes 9$ first, let $X = 1 \\otimes B$, solve the outer operation equation for $X$, and then solve for $B$.',
+          solution:
+            'First simplify the operation definition:\n$$a \\otimes b = \\frac{4(b - 2) + b}{ab} = \\frac{5b - 8}{ab}.$$\n\n1. **Evaluate $10 \\otimes 9$**:\n$$10 \\otimes 9 = \\frac{4 \\times (9 - 2) + 9}{10 \\times 9} = \\frac{28 + 9}{90} = \\frac{37}{90}.$$\n\n2. **Let $X = 1 \\otimes B$ and solve $X \\otimes \\frac{37}{90} = \\frac{7}{36}$**:\nUsing $c = \\frac{37}{90}$:\n$$X \\otimes \\frac{37}{90} = \\frac{5 \\times \\frac{37}{90} - 8}{X \\times \\frac{37}{90}} = \\frac{\\frac{37}{18} - 8}{\\frac{37}{90} X} = \\frac{-\\frac{107}{18}}{\\frac{37}{90} X} = -\\frac{107}{18} \\times \\frac{90}{37 X} = -\\frac{535}{37 X}.$$\nSetting this equal to $\\frac{7}{36}$:\n$$-\\frac{535}{37 X} = \\frac{7}{36} \\implies X = -\\frac{535 \\times 36}{37 \\times 7} = -\\frac{19260}{259}.$$\n\n3. **Solve for $B$ from $1 \\otimes B = X$**:\n$$1 \\otimes B = \\frac{5B - 8}{B} = 5 - \\frac{8}{B} = -\\frac{19260}{259}$$\n$$\\implies \\frac{8}{B} = 5 + \\frac{19260}{259} = \\frac{1295 + 19260}{259} = \\frac{20555}{259}.$$\nTherefore:\n$$B = \\frac{8 \\times 259}{20555} = \\frac{2072}{20555}.$$\n(Note: $\\gcd(2072, 20555) = 1$, so $\\frac{2072}{20555}$ is in lowest terms; this unusual fraction follows directly from the printed definition of $\\otimes$.)',
+          rubric: [
+            { code: 'M2', text: 'Evaluates $10 \\otimes 9 = \\frac{37}{90}$ and solves for $X = 1 \\otimes B = -\\frac{19260}{259}$.' },
+            { code: 'A2', text: 'Correct simplified fraction $\\frac{2072}{20555}$.' }
           ]
         },
         {

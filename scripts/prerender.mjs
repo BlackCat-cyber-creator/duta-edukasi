@@ -1,19 +1,11 @@
 /**
  * Prerender halaman publik untuk mesin pencari dan AI/LLM (dijalankan setelah `vite build`).
  *
- * Menghasilkan HTML statis berisi materi lengkap (KaTeX htmlAndMathml), data terstruktur JSON-LD
- * (`EducationalOrganization`, `LocalBusiness`, `Person`, `LearningResource`, `Quiz`, `FAQPage`,
- * `BreadcrumbList`), indeks `llms.txt`, korpus lengkap `llms-full.txt`, serta `sitemap.xml`.
- *
- * Keluaran utama:
- *   dist/index.html, dist/app.html
- *   dist/tentang.html (termasuk prestasi siswa), dist/program.html, dist/pendiri.html, dist/kontak.html
- *   dist/paket-soal.html, dist/paket-soal/<mapel>.html, dist/paket-soal/<mapel>/<slug>.html
- *   dist/rumus.html, dist/daftar-isi.html, dist/tka.html, dist/tka/<paket>.html
- *   dist/matematika/kelas-N[.html|/<bab>.html], dist/ipa/kelas-N[.html|/<bab>.html] (IPA SD–SMP; Kelas 10–12 = stub ke /fisika)
- *   dist/fisika/kelas-N[.html|/<bab>.html], dist/kimia/kelas-N[.html|/<bab>.html], dist/biologi/kelas-N[.html|/<bab>.html] (SMA Kelas 10–12)
- *   dist/olimpiade.html (pusat Olimpiade: semua kompetisi), dist/olimpiade/amc-N[.html|/<bab>.html]
- *   dist/llms.txt, dist/llms-full.txt, dist/sitemap.xml
+ * Menghasilkan HTML statis ringan (KaTeX MathML), Knowledge Graph JSON-LD (`@graph` dengan
+ * `EducationalOrganization`, `LocalBusiness`, `WebSite`, `WebPage`, `Course`, `LearningResource`,
+ * `Quiz`, `FAQPage`, `Dataset`, `DefinedTermSet`, `BreadcrumbList`), kembaran Markdown per halaman
+ * (`.md`), dataset terbuka (`paket-soal-index.json`, `paket-soal-corpus.jsonl`, `kurikulum-index.json`),
+ * indeks `llms.txt`, korpus `llms-*.txt`, `rss.xml`, serta `sitemap.xml` (image + hreflang).
  */
 import fs from 'fs';
 import path from 'path';
@@ -28,6 +20,7 @@ import { TOPIC_GROUPS } from '../src/data/topics.js';
 import { topicChapters, relatedChapters } from '../src/utils/relatedChapters.js';
 import { TKA_TESTS, TKA_PACKETS, tkaPath } from '../src/data/tka.js';
 import { buildTkaPacket, chaptersMap } from '../src/utils/tkaBuilder.js';
+import { parsePaperPart } from '../src/utils/paperInteractive.js';
 import {
   PUBLISHED_PAPERS,
   PAPER_SUBJECT_META,
@@ -40,7 +33,8 @@ import {
   levelNameOfGrade,
   englishPapersFilter,
   competitionOfPaper,
-  getRelatedPapers
+  getRelatedPapers,
+  extractPaperYear
 } from '../src/data/papers/index.js';
 import { kimiaGrade10Data } from '../src/data/kimia/grade10.js';
 import { kimiaGrade11Data } from '../src/data/kimia/grade11.js';
@@ -71,6 +65,8 @@ import { amc10Data } from '../src/data/amc/amc10Data.js';
 import { amc12Data } from '../src/data/amc/amc12Data.js';
 import { SITE_URL, SITE_NAME, gradePath, chapterPath, chapterSlug, amcLevelPath, amcChapterPath } from '../src/utils/seoRoutes.js';
 import {
+  SUBJECT_HUB_INFO,
+  subjectHubMeta,
   HOME_META,
   ABOUT_META,
   PROGRAM_META,
@@ -91,13 +87,24 @@ import {
   amcChapterMeta,
   levelLabel,
   subjectDisplayName,
-  plainText
+  plainText,
+  truncate
 } from '../src/utils/seoMeta.js';
+import {
+  PAPERS_HUB_FAQS,
+  ENGLISH_PAPERS_HUB_FAQS,
+  OLIMPIADE_HUB_FAQS,
+  TKA_HUB_FAQS,
+  FORMULA_INDEX_FAQS,
+  getSubjectHubFaqs,
+  getPaperFaqs
+} from '../src/utils/seoFaqs.js';
 import { AUTHOR, ABOUT, FOUNDER, ORGANIZATION, PROGRAMS, FAQS, PRESTASI_DATA, isPublicInstagramUrl, parseInstagramPost } from '../src/data/siteInfo.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
-const DIST = path.resolve(__dirname, '../dist');
+const PUBLIC_DIR = path.resolve(ROOT, 'public');
+const DIST = path.resolve(ROOT, 'dist');
 const TODAY = new Date().toISOString().slice(0, 10);
 
 const GIT_FILE_DATES = (() => {
@@ -115,25 +122,53 @@ const GIT_FILE_DATES = (() => {
       }
     }
   } catch {
-    // fallback to TODAY when git history unavailable
+    // fallback when git history unavailable
   }
   return map;
 })();
+
+function fileMtimeDate(relPath) {
+  try {
+    const stat = fs.statSync(path.join(ROOT, relPath));
+    return stat.mtime.toISOString().slice(0, 10);
+  } catch {
+    return '';
+  }
+}
 
 function lastmodFor(...relPaths) {
   let latest = '';
   for (const rel of relPaths.flat()) {
     if (!rel) continue;
     const norm = String(rel).replace(/\\/g, '/').replace(/^\.\//, '');
-    const d = GIT_FILE_DATES.get(norm);
+    const d = GIT_FILE_DATES.get(norm) || fileMtimeDate(norm);
     if (d && d > latest) latest = d;
   }
   return latest || TODAY;
 }
 
+const PAPER_DISK_FILES = (() => {
+  const files = [];
+  const walk = (dir) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (e.name.endsWith('.js') && !['index.js', 'meta.js', 'manifest.js'].includes(e.name)) {
+        files.push(path.relative(ROOT, p).replace(/\\/g, '/'));
+      }
+    }
+  };
+  walk(path.join(ROOT, 'src/data/papers'));
+  return files;
+})();
+
 const PAPER_FILE_DATES = new Map();
+for (const fp of PAPER_DISK_FILES) {
+  const d = GIT_FILE_DATES.get(fp) || fileMtimeDate(fp);
+  if (d) PAPER_FILE_DATES.set(fp, d);
+}
 for (const [filePath, d] of GIT_FILE_DATES.entries()) {
-  if (filePath.startsWith('src/data/papers/')) {
+  if (filePath.startsWith('src/data/papers/') && !PAPER_FILE_DATES.has(filePath)) {
     PAPER_FILE_DATES.set(filePath, d);
   }
 }
@@ -141,10 +176,84 @@ for (const [filePath, d] of GIT_FILE_DATES.entries()) {
 function paperLastmod(paper) {
   const slugKey = `/${paper.slug}.js`;
   for (const [fp, d] of PAPER_FILE_DATES.entries()) {
-    if (fp.endsWith(slugKey) || fp.includes(`/${paper.subject}/`) && fp.includes(paper.slug)) return d;
+    if (fp.endsWith(slugKey) || (fp.includes(`/${paper.subject}/`) && fp.includes(paper.slug))) return d;
   }
   return lastmodFor('src/data/papers/index.js');
 }
+
+// ---------------------------------------------------------------------------
+// Image Dimensions Helper (CLS = 0)
+// ---------------------------------------------------------------------------
+const IMAGE_DIM_CACHE = new Map();
+
+function getImageDimensions(publicRelPath) {
+  const cleanRel = String(publicRelPath || '').replace(/^\//, '');
+  if (!cleanRel) return null;
+  if (IMAGE_DIM_CACHE.has(cleanRel)) return IMAGE_DIM_CACHE.get(cleanRel);
+
+  const absPath = path.join(PUBLIC_DIR, cleanRel);
+  let dims = null;
+  try {
+    const ext = path.extname(absPath).toLowerCase();
+    const buf = fs.readFileSync(absPath);
+    if (ext === '.png' && buf.length >= 24 && buf.toString('ascii', 1, 4) === 'PNG') {
+      dims = { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
+    } else if ((ext === '.jpg' || ext === '.jpeg') && buf.length >= 4 && buf[0] === 0xff && buf[1] === 0xd8) {
+      let i = 2;
+      while (i + 9 < buf.length) {
+        if (buf[i] !== 0xff) { i += 1; continue; }
+        const marker = buf[i + 1];
+        if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+          dims = { height: buf.readUInt16BE(i + 5), width: buf.readUInt16BE(i + 7) };
+          break;
+        }
+        if (marker === 0xd9 || marker === 0xda) break;
+        const segLen = buf.readUInt16BE(i + 2);
+        if (segLen < 2) break;
+        i += 2 + segLen;
+      }
+    } else if (ext === '.webp' && buf.length >= 30 && buf.toString('ascii', 0, 4) === 'RIFF' && buf.toString('ascii', 8, 12) === 'WEBP') {
+      const chunk = buf.toString('ascii', 12, 16);
+      if (chunk === 'VP8 ' && buf.length >= 30) {
+        dims = { width: buf.readUInt16LE(26) & 0x3fff, height: buf.readUInt16LE(28) & 0x3fff };
+      } else if (chunk === 'VP8L' && buf.length >= 25) {
+        const b = buf.readUInt32LE(21);
+        dims = { width: (b & 0x3fff) + 1, height: ((b >> 14) & 0x3fff) + 1 };
+      } else if (chunk === 'VP8X' && buf.length >= 30) {
+        const w = 1 + (buf[24] | (buf[25] << 8) | (buf[26] << 16));
+        const h = 1 + (buf[27] | (buf[28] << 8) | (buf[29] << 16));
+        dims = { width: w, height: h };
+      }
+    } else if (ext === '.svg') {
+      const text = buf.toString('utf8', 0, Math.min(buf.length, 4096));
+      const vb = text.match(/viewBox=["']\s*[\d.-]+[\s,]+[\d.-]+[\s,]+([\d.]+)[\s,]+([\d.]+)/i);
+      const wm = text.match(/\bwidth=["']([\d.]+)(?:px)?["']/i);
+      const hm = text.match(/\bheight=["']([\d.]+)(?:px)?["']/i);
+      if (wm && hm) dims = { width: Math.round(Number(wm[1])), height: Math.round(Number(hm[1])) };
+      else if (vb) dims = { width: Math.round(Number(vb[1])), height: Math.round(Number(vb[2])) };
+    }
+  } catch {
+    dims = null;
+  }
+  IMAGE_DIM_CACHE.set(cleanRel, dims);
+  return dims;
+}
+
+const escapeHtml = (s) => String(s ?? '')
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const escapeXml = (s) => escapeHtml(s).replace(/'/g, '&apos;');
+
+function imgTag(src, alt, fallbackDims = null, extraAttrs = '') {
+  const dims = getImageDimensions(src) || fallbackDims;
+  const dimAttrs = dims && dims.width > 0 && dims.height > 0
+    ? ` width="${dims.width}" height="${dims.height}"`
+    : '';
+  return `<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}"${dimAttrs} loading="lazy" decoding="async"${extraAttrs ? ` ${extraAttrs}` : ''} />`;
+}
+
+// ---------------------------------------------------------------------------
+// Data kurikuler & bank soal
+// ---------------------------------------------------------------------------
 const GRADES = [grade4Data, grade5Data, grade6Data, grade7Data, grade8Data, grade9Data, grade10Data, grade11Data, grade12Data];
 const IPA = [ipaGrade4Data, ipaGrade5Data, ipaGrade6Data, ipaGrade7Data, ipaGrade8Data, ipaGrade9Data, fisikaGrade10Data, fisikaGrade11Data, fisikaGrade12Data].filter((g) => g.chapters.length > 0);
 const KIMIA = [kimiaGrade10Data, kimiaGrade11Data, kimiaGrade12Data].filter((g) => g.chapters.length > 0);
@@ -158,14 +267,11 @@ const CHAPTER_TITLE_MAP = new Map(
 );
 
 // ---------------------------------------------------------------------------
-// Teks -> HTML (LaTeX dirender KaTeX htmlAndMathml, **tebal**, baris baru)
+// Teks -> HTML (KaTeX MathML ringan untuk CWV, **tebal**, baris baru)
 // ---------------------------------------------------------------------------
-const escapeHtml = (s) => String(s ?? '')
-  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-
 function renderMath(tex, displayMode) {
   try {
-    return katex.renderToString(tex, { displayMode, throwOnError: false, strict: 'ignore', output: 'htmlAndMathml' });
+    return katex.renderToString(tex, { displayMode, throwOnError: false, strict: 'ignore', output: 'mathml' });
   } catch {
     return escapeHtml(tex);
   }
@@ -190,94 +296,62 @@ function rich(text) {
 const paragraphs = (text) => String(text || '').split(/\n\s*\n/).map((p) => `<p>${rich(p)}</p>`).join('\n');
 
 // ---------------------------------------------------------------------------
-// Kerangka halaman
+// Kerangka halaman & Knowledge Graph JSON-LD (@graph + @id)
 // ---------------------------------------------------------------------------
 const shell = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
-const katexCss = fs.readdirSync(path.join(DIST, 'assets')).find((f) => /katex.*\.css$/.test(f));
 if (!shell.includes('<div id="root"></div>')) throw new Error('dist/index.html tidak berisi <div id="root"></div>');
-fs.writeFileSync(path.join(DIST, 'app.html'), shell);
+// app.html sebagai fallback SPA/404 wajib noindex agar tidak terindeks sebagai soft-404
+fs.writeFileSync(
+  path.join(DIST, 'app.html'),
+  shell.replace('</head>', '    <meta name="robots" content="noindex, nofollow" />\n  </head>')
+);
 
-const FOOTER_HTML = `<footer class="seo-footer">
-  <p><strong>${escapeHtml(ORGANIZATION.name)}</strong> — Platform Belajar Terbuka Matematika &amp; Sains · Disusun oleh <a href="/tentang">${escapeHtml(AUTHOR.name)}</a>.</p>
-  <p>Belajar: <a href="/">Materi</a> · <a href="/daftar-isi">Daftar isi</a> · <a href="/rumus">Kumpulan rumus</a> · <a href="/tka">Latihan TKA</a> · <a href="/olimpiade">Olimpiade</a> · <a href="/paket-soal">Paket Soal</a></p>
-  <p>Referensi Terbuka &amp; AI: <a href="/llms.txt">Indeks AI (llms.txt)</a> · <a href="/datasets/paket-soal-index.json">Dataset Terbuka (JSON)</a> · <a href="/rss.xml">RSS</a> · <a href="/sitemap.xml">Sitemap</a></p>
-  <p>Tentang kami: <a href="/tentang">Tentang</a> · <a href="/tentang#prestasi">Prestasi siswa</a> · <a href="/pendiri">Pendiri</a> · <a href="/program">Program</a> · <a href="/kontak">Kontak</a> · Lisensi <a href="${escapeHtml(ORGANIZATION.licenseUrl)}">${escapeHtml(ORGANIZATION.licenseName)}</a></p>
-</footer>`;
+const ORG_ID = `${SITE_URL}/#organization`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+const FOUNDER_ID = `${SITE_URL}/#founder`;
+const AUTHOR_ID = `${SITE_URL}/#author`;
 
-function renderPage({ meta, body, jsonLd = [] }) {
-  const url = `${SITE_URL}${meta.path === '/' ? '/' : meta.path}`;
-  const docLang = meta.lang || 'id';
-  const ogLocale = docLang === 'en' ? 'en_US' : 'id_ID';
-  const ogImageUrl = `${SITE_URL}${meta.ogImage || '/brand/og/default.png'}`;
-  const altLinks = Array.isArray(meta.alternates) && meta.alternates.length
-    ? meta.alternates.map((a) => `<link rel="alternate" hreflang="${escapeHtml(a.hreflang)}" href="${SITE_URL}${a.path}" />`)
-    : [
-        `<link rel="alternate" hreflang="${escapeHtml(docLang)}" href="${url}" />`,
-        `<link rel="alternate" hreflang="x-default" href="${url}" />`
-      ];
-  const head = [
-    `<title>${escapeHtml(meta.title)}</title>`,
-    `<meta name="description" content="${escapeHtml(meta.description)}" />`,
-    `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />`,
-    `<link rel="canonical" href="${url}" />`,
-    ...altLinks,
-    `<link rel="alternate" type="application/rss+xml" title="${escapeHtml(SITE_NAME)} — Paket Soal &amp; Olimpiade" href="${SITE_URL}/rss.xml" />`,
-    `<link rel="alternate" type="text/markdown" title="${escapeHtml(SITE_NAME)} AI/LLM Index (llms.txt)" href="${SITE_URL}/llms.txt" />`,
-    ...(meta.markdownPath ? [`<link rel="alternate" type="text/markdown" title="${escapeHtml(meta.title.split(' | ')[0])} (Markdown + LaTeX)" href="${SITE_URL}${meta.markdownPath}" />`] : []),
-    `<meta property="og:type" content="website" />`,
-    `<meta property="og:site_name" content="${escapeHtml(SITE_NAME)}" />`,
-    `<meta property="og:locale" content="${ogLocale}" />`,
-    `<meta property="og:title" content="${escapeHtml(meta.title)}" />`,
-    `<meta property="og:description" content="${escapeHtml(meta.description)}" />`,
-    `<meta property="og:url" content="${url}" />`,
-    `<meta property="og:image" content="${ogImageUrl}" />`,
-    `<meta property="og:image:width" content="1200" />`,
-    `<meta property="og:image:height" content="630" />`,
-    `<meta property="og:image:alt" content="${escapeHtml(meta.title)}" />`,
-    `<meta name="twitter:card" content="summary_large_image" />`,
-    `<meta name="twitter:title" content="${escapeHtml(meta.title)}" />`,
-    `<meta name="twitter:description" content="${escapeHtml(meta.description)}" />`,
-    `<meta name="twitter:image" content="${ogImageUrl}" />`,
-    ...(katexCss ? [`<link rel="stylesheet" href="/assets/${katexCss}" />`] : []),
-    ...jsonLd.map((obj) => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`)
-  ].join('\n    ');
-
-  return shell
-    .replace(/<html lang="[^"]*">/, `<html lang="${escapeHtml(docLang)}">`)
-    .replace(/<title>[\s\S]*?<\/title>/, '')
-    .replace(/<meta name="description"[^>]*>/, '')
-    .replace(/<meta property="og:image"[^>]*>/, '')
-    .replace('</head>', `    ${head}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root"><div class="handbook-container seo-page">${body}${FOOTER_HTML}</div></div>`);
-}
-
-const PERSON_LD = {
+const PERSON_NODE = {
   '@type': 'Person',
+  '@id': AUTHOR_ID,
   name: AUTHOR.name,
   jobTitle: AUTHOR.jobTitle,
-  url: `${SITE_URL}/tentang`,
+  url: `${SITE_URL}/tentang#tim`,
+  worksFor: { '@id': ORG_ID },
+  knowsAbout: ['Matematika', 'Fisika', 'Olimpiade Sains', 'Teknologi Edukasi'],
   ...(AUTHOR.sameAs.length ? { sameAs: AUTHOR.sameAs } : {})
 };
 
-const FOUNDER_LD = {
+const FOUNDER_NODE = {
   '@type': 'Person',
+  '@id': FOUNDER_ID,
   name: FOUNDER.name,
   alternateName: FOUNDER.formalName,
   jobTitle: FOUNDER.role,
   url: `${SITE_URL}/pendiri`,
+  ...(FOUNDER.photo ? { image: `${SITE_URL}${FOUNDER.photo}` } : {}),
+  worksFor: { '@id': ORG_ID },
   sameAs: [FOUNDER.instagramUrl, ...(FOUNDER.youtubeUrl ? [FOUNDER.youtubeUrl] : [])]
 };
 
-const ORGANIZATION_LD = {
-  '@context': 'https://schema.org',
+const ORGANIZATION_NODE = {
   '@type': ['EducationalOrganization', 'LocalBusiness'],
+  '@id': ORG_ID,
   name: ORGANIZATION.name,
   legalName: ORGANIZATION.legalName,
   alternateName: ORGANIZATION.alternateName,
+  description: ABOUT.intro,
   url: SITE_URL,
-  logo: `${SITE_URL}/brand/logo-monogram.svg`,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${SITE_URL}/brand/icon-512.png`,
+    width: 512,
+    height: 512
+  },
   image: `${SITE_URL}/brand/og/default.png`,
   telephone: ORGANIZATION.telephone,
+  priceRange: 'Rp0 (Portal Online Gratis)',
+  knowsLanguage: ['id', 'en'],
   address: {
     '@type': 'PostalAddress',
     ...ORGANIZATION.address
@@ -295,23 +369,53 @@ const ORGANIZATION_LD = {
     'KSM', 'KMNR', 'UTBK', 'SNBT', 'TKA', 'Kurikulum Merdeka', 'Cambridge IGCSE 0580',
     'Olimpiade Informatika', 'Olimpiade Astronomi', 'Olimpiade Kebumian', 'Olimpiade Ekonomi'
   ],
+  award: PRESTASI_DATA.slice(0, 8).map((p) => `${p.year} ${p.award} — ${p.competition}`),
   areaServed: ['Indonesia', 'Pontianak, Kalimantan Barat'],
   hasMap: ORGANIZATION.mapsUrl,
-  founder: FOUNDER_LD,
+  founder: { '@id': FOUNDER_ID },
   sameAs: ORGANIZATION.sameAs,
   license: ORGANIZATION.licenseUrl
 };
 
-const DATASET_LD = {
-  '@context': 'https://schema.org',
+const WEBSITE_NODE = {
+  '@type': 'WebSite',
+  '@id': WEBSITE_ID,
+  name: SITE_NAME,
+  alternateName: ORGANIZATION.alternateName,
+  url: SITE_URL,
+  inLanguage: ['id', 'en'],
+  description: HOME_META.description,
+  license: ORGANIZATION.licenseUrl,
+  publisher: { '@id': ORG_ID },
+  creator: { '@id': AUTHOR_ID },
+  author: { '@id': AUTHOR_ID },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${SITE_URL}/paket-soal?q={search_term_string}`
+    },
+    'query-input': 'required name=search_term_string'
+  }
+};
+
+const DATASET_NODE = {
   '@type': 'Dataset',
+  '@id': `${SITE_URL}/paket-soal#dataset`,
   name: `${SITE_NAME} Open Math, Science & Olympiad Practice Dataset (${PUBLISHED_PAPERS.length} Papers)`,
   description: `Open structured benchmark & study corpus containing ${PUBLISHED_PAPERS.length} Matematika, IPA, Fisika, Kimia, Biologi, UTBK-SNBT, Cambridge IGCSE, and Olympiad (OSN, AMC/AIME, SASMO, SMO, HKIMO, TIMO, SIMOC, IKMC) practice papers with step-by-step solutions, key principles, LaTeX math, and marking rubrics.`,
+  identifier: `${SITE_URL}/datasets/paket-soal-index.json`,
+  version: TODAY,
   url: `${SITE_URL}/paket-soal`,
   inLanguage: ['id', 'en'],
   isAccessibleForFree: true,
   license: ORGANIZATION.licenseUrl,
   dateModified: TODAY,
+  spatialCoverage: 'Indonesia',
+  temporalCoverage: '2010/2026',
+  measurementTechnique: 'Curated & structured STEM problem-solving with LaTeX and marking rubrics',
+  variableMeasured: ['questionCount', 'marks', 'answerKey', 'principle', 'rubric'],
+  sameAs: ORGANIZATION.repoUrl,
   keywords: [
     'Bank Soal Matematika Indonesia',
     'Soal Olimpiade OSN Pembahasan',
@@ -320,12 +424,7 @@ const DATASET_LD = {
     'Cambridge IGCSE 0580 Practice',
     'Indonesian STEM Education Dataset'
   ],
-  creator: {
-    '@type': 'EducationalOrganization',
-    name: ORGANIZATION.name,
-    legalName: ORGANIZATION.legalName,
-    url: SITE_URL
-  },
+  creator: { '@id': ORG_ID },
   distribution: [
     {
       '@type': 'DataDownload',
@@ -338,6 +437,12 @@ const DATASET_LD = {
       name: 'Full Structured Question & Solution Corpus (JSONL)',
       encodingFormat: 'application/x-ndjson',
       contentUrl: `${SITE_URL}/datasets/paket-soal-corpus.jsonl`
+    },
+    {
+      '@type': 'DataDownload',
+      name: 'Kurikulum & AMC Chapter Index (JSON)',
+      encodingFormat: 'application/json',
+      contentUrl: `${SITE_URL}/datasets/kurikulum-index.json`
     },
     {
       '@type': 'DataDownload',
@@ -360,17 +465,123 @@ const DATASET_LD = {
   ]
 };
 
+const FOOTER_HTML = `<footer class="seo-footer">
+  <p><strong>${escapeHtml(ORGANIZATION.name)}</strong> — Platform Belajar Terbuka Matematika &amp; Sains · Disusun oleh <a href="/tentang">${escapeHtml(AUTHOR.name)}</a>.</p>
+  <p>Belajar: <a href="/matematika">Matematika</a> · <a href="/ipa">IPA</a> · <a href="/fisika">Fisika</a> · <a href="/kimia">Kimia</a> · <a href="/biologi">Biologi</a> · <a href="/daftar-isi">Daftar isi</a> · <a href="/rumus">Kumpulan rumus</a> · <a href="/tka">Latihan TKA</a> · <a href="/olimpiade">Olimpiade</a> · <a href="/paket-soal">Paket Soal</a></p>
+  <p>Referensi Terbuka &amp; AI: <a href="/llms.txt">Indeks AI (llms.txt)</a> · <a href="/datasets/paket-soal-index.json">Dataset Soal (JSON)</a> · <a href="/datasets/kurikulum-index.json">Dataset Kurikulum (JSON)</a> · <a href="/rss.xml">RSS</a> · <a href="/sitemap.xml">Sitemap</a></p>
+  <p>Tentang kami: <a href="/tentang">Tentang</a> · <a href="/tentang#prestasi">Prestasi siswa</a> · <a href="/pendiri">Pendiri</a> · <a href="/program">Program</a> · <a href="/kontak">Kontak</a> · Lisensi <a href="${escapeHtml(ORGANIZATION.licenseUrl)}">${escapeHtml(ORGANIZATION.licenseName)}</a></p>
+</footer>`;
+
+function renderPage({ meta, body, jsonLd = [], pageType = 'WebPage', dateModified = TODAY, hasBreadcrumb = true }) {
+  const url = `${SITE_URL}${meta.path === '/' ? '/' : meta.path}`;
+  const docLang = meta.lang || 'id';
+  const ogLocale = docLang === 'en' ? 'en_US' : 'id_ID';
+  const hasAltLang = Array.isArray(meta.alternates) && meta.alternates.some((a) => a.hreflang !== docLang && a.hreflang !== 'x-default');
+  const ogLocaleAlt = hasAltLang ? (docLang === 'en' ? 'id_ID' : 'en_US') : null;
+  const ogImageUrl = `${SITE_URL}${meta.ogImage || '/brand/og/default.png'}`;
+  const altLinks = Array.isArray(meta.alternates) && meta.alternates.length
+    ? meta.alternates.map((a) => `<link rel="alternate" hreflang="${escapeHtml(a.hreflang)}" href="${SITE_URL}${a.path}" />`)
+    : [
+        `<link rel="alternate" hreflang="${escapeHtml(docLang)}" href="${url}" />`,
+        `<link rel="alternate" hreflang="x-default" href="${url}" />`
+      ];
+
+  const webPageNode = {
+    '@type': pageType,
+    '@id': `${url}#webpage`,
+    url,
+    name: meta.title,
+    description: meta.description,
+    inLanguage: docLang,
+    dateModified,
+    isPartOf: { '@id': WEBSITE_ID },
+    about: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
+    ...(hasBreadcrumb ? { breadcrumb: { '@id': `${url}#breadcrumb` } } : {}),
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '.seo-subtitle', '.seo-faq']
+    }
+  };
+
+  const graphNodes = [
+    ORGANIZATION_NODE,
+    WEBSITE_NODE,
+    FOUNDER_NODE,
+    PERSON_NODE,
+    webPageNode,
+    ...jsonLd.filter(Boolean).map((n) => {
+      if (!n || typeof n !== 'object') return n;
+      const copy = { ...n };
+      delete copy['@context'];
+      return copy;
+    })
+  ];
+
+  const graphPayload = {
+    '@context': 'https://schema.org',
+    '@graph': graphNodes
+  };
+
+  const head = [
+    `<title>${escapeHtml(meta.title)}</title>`,
+    `<meta name="description" content="${escapeHtml(meta.description)}" />`,
+    `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />`,
+    `<link rel="canonical" href="${url}" />`,
+    ...altLinks,
+    `<link rel="alternate" type="application/rss+xml" title="${escapeHtml(SITE_NAME)} — Paket Soal &amp; Olimpiade" href="${SITE_URL}/rss.xml" />`,
+    `<link rel="alternate" type="text/markdown" title="${escapeHtml(SITE_NAME)} AI/LLM Index (llms.txt)" href="${SITE_URL}/llms.txt" />`,
+    ...(meta.markdownPath ? [`<link rel="alternate" type="text/markdown" title="${escapeHtml(meta.title.split(' | ')[0])} (Markdown + LaTeX)" href="${SITE_URL}${meta.markdownPath}" />`] : []),
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="${escapeHtml(SITE_NAME)}" />`,
+    `<meta property="og:locale" content="${ogLocale}" />`,
+    ...(ogLocaleAlt ? [`<meta property="og:locale:alternate" content="${ogLocaleAlt}" />`] : []),
+    `<meta property="og:title" content="${escapeHtml(meta.title)}" />`,
+    `<meta property="og:description" content="${escapeHtml(meta.description)}" />`,
+    `<meta property="og:url" content="${url}" />`,
+    `<meta property="og:image" content="${ogImageUrl}" />`,
+    `<meta property="og:image:type" content="image/png" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:image:alt" content="${escapeHtml(meta.title)}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${escapeHtml(meta.title)}" />`,
+    `<meta name="twitter:description" content="${escapeHtml(meta.description)}" />`,
+    `<meta name="twitter:image" content="${ogImageUrl}" />`,
+    `<meta name="twitter:image:alt" content="${escapeHtml(meta.title)}" />`,
+    `<script type="application/ld+json">${JSON.stringify(graphPayload).replace(/</g, '\\u003c')}</script>`
+  ].join('\n    ');
+
+  return shell
+    .replace(/<html lang="[^"]*">/, `<html lang="${escapeHtml(docLang)}">`)
+    .replace(/<title>[\s\S]*?<\/title>/, '')
+    .replace(/<meta name="description"[^>]*>/, '')
+    .replace(/<meta property="og:image"[^>]*>/, '')
+    .replace('</head>', `    ${head}\n  </head>`)
+    .replace('<div id="root"></div>', `<div id="root"><div class="handbook-container seo-page">${body}${FOOTER_HTML}</div></div>`);
+}
+
 function writePage(routePath, html) {
   const file = routePath === '/' ? path.join(DIST, 'index.html') : path.join(DIST, `${routePath.slice(1)}.html`);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, html);
 }
 
-const breadcrumbLd = (items) => ({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: items.map(([name, p], i) => ({ '@type': 'ListItem', position: i + 1, name, item: `${SITE_URL}${p}` }))
-});
+function writeMdTwin(routePath, content) {
+  const mdRel = routePath === '/' ? 'index.md' : `${routePath.slice(1)}.md`;
+  const mdDest = path.join(DIST, mdRel);
+  fs.mkdirSync(path.dirname(mdDest), { recursive: true });
+  fs.writeFileSync(mdDest, content);
+}
+
+const breadcrumbLd = (items, pagePath) => {
+  const url = `${SITE_URL}${pagePath === '/' ? '/' : pagePath}`;
+  return {
+    '@type': 'BreadcrumbList',
+    '@id': `${url}#breadcrumb`,
+    itemListElement: items.map(([name, p], i) => ({ '@type': 'ListItem', position: i + 1, name, item: `${SITE_URL}${p}` }))
+  };
+};
 
 const breadcrumbHtml = (items) => `<nav class="seo-breadcrumb" aria-label="Navigasi">${items
   .map(([name, p], i) => (i === items.length - 1 ? `<span>${escapeHtml(name)}</span>` : `<a href="${p}">${escapeHtml(name)}</a>`))
@@ -379,7 +590,6 @@ const breadcrumbHtml = (items) => `<nav class="seo-breadcrumb" aria-label="Navig
 const faqPageLd = (faqs = []) => {
   if (!faqs.length) return null;
   return {
-    '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: faqs.map((f) => ({
       '@type': 'Question',
@@ -395,7 +605,6 @@ const faqSectionHtml = (faqs = [], title = 'Pertanyaan Umum') => {
 };
 
 const itemListLd = (name, pagePath, items = []) => ({
-  '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name,
   url: `${SITE_URL}${pagePath}`,
@@ -411,8 +620,61 @@ const itemListLd = (name, pagePath, items = []) => ({
   }
 });
 
+const courseListLd = (courses = []) => ({
+  '@type': 'ItemList',
+  numberOfItems: courses.length,
+  itemListElement: courses.map((c, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    item: {
+      '@type': 'Course',
+      url: `${SITE_URL}${c.path}`,
+      name: c.name,
+      description: c.description,
+      provider: { '@id': ORG_ID },
+      isAccessibleForFree: true,
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'IDR',
+        category: 'Free'
+      }
+    }
+  }))
+});
+
+const courseNodeLd = ({ name, description, pagePath, educationalLevel, chapters = [], inLanguage = 'id' }) => ({
+  '@type': 'Course',
+  name,
+  description,
+  url: `${SITE_URL}${pagePath}`,
+  inLanguage,
+  educationalLevel,
+  isAccessibleForFree: true,
+  provider: { '@id': ORG_ID },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'IDR',
+    category: 'Free'
+  },
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    courseMode: 'online',
+    courseWorkload: `PT${Math.max(1, chapters.length) * 2}H`
+  },
+  ...(chapters.length
+    ? {
+        syllabusSections: chapters.map((ch) => ({
+          '@type': 'Syllabus',
+          name: ch.title,
+          description: truncate(ch.summary?.overview || ch.title, 140)
+        }))
+      }
+    : {})
+});
+
 const learningResourceLd = ({ meta, educationalLevel, subject = 'Matematika', inLanguage = 'id', dateModified = TODAY, keywords = [] }) => ({
-  '@context': 'https://schema.org',
   '@type': 'LearningResource',
   name: meta.title.split(' | ')[0],
   description: meta.description,
@@ -426,14 +688,24 @@ const learningResourceLd = ({ meta, educationalLevel, subject = 'Matematika', in
   educationalLevel,
   learningResourceType: ['Ringkasan materi', 'Rumus kunci', 'Contoh soal', 'Latihan soal'],
   about: { '@type': 'Thing', name: subject },
-  provider: { '@type': 'EducationalOrganization', name: SITE_NAME, url: SITE_URL },
-  author: PERSON_LD
+  provider: { '@id': ORG_ID },
+  author: { '@id': AUTHOR_ID }
 });
 
 function quizLd({ meta, questions = [], educationalLevel, subject = 'Matematika', inLanguage = 'id', dateModified = TODAY }) {
   if (!questions.length) return null;
+  const ageRange = /\bSD\b|Kelas\s+[4-6]\b/i.test(educationalLevel)
+    ? '9-12'
+    : /\bSMP\b|Kelas\s+[7-9]\b|AMC\s*8\b/i.test(educationalLevel)
+      ? '12-15'
+      : '15-18';
+  const alignment = [
+    { '@type': 'AlignmentObject', alignmentType: 'educationalSubject', targetName: subject },
+    { '@type': 'AlignmentObject', alignmentType: 'educationalLevel', targetName: educationalLevel }
+  ];
+  const topicAssessed = meta.title.split(' — ')[0].split(' | ')[0];
+
   return {
-    '@context': 'https://schema.org',
     '@type': 'Quiz',
     name: `Latihan Soal: ${meta.title.split(' | ')[0]}`,
     description: meta.description,
@@ -443,25 +715,53 @@ function quizLd({ meta, questions = [], educationalLevel, subject = 'Matematika'
     isAccessibleForFree: true,
     license: ORGANIZATION.licenseUrl,
     educationalLevel,
+    educationalAlignment: alignment,
+    typicalAgeRange: ageRange,
     about: { '@type': 'Thing', name: subject },
-    author: PERSON_LD,
+    author: { '@id': AUTHOR_ID },
     hasPart: questions.map((q, idx) => {
+      const hasOptions = Array.isArray(q.options) && q.options.length > 0;
       const key = q.correctAnswer || q.answer;
-      const ansText = q.correctAnswer
+      const correctIdx = hasOptions && q.correctAnswer
+        ? q.options.findIndex((o) => o.key === q.correctAnswer)
+        : -1;
+      const acceptedPos = correctIdx >= 0 ? correctIdx + 1 : 1;
+      const ansText = hasOptions && q.correctAnswer
         ? `${q.correctAnswer}. ${(q.options || []).find((o) => o.key === q.correctAnswer)?.text || ''}`
         : String(key ?? '');
+      const distractors = hasOptions && q.correctAnswer
+        ? q.options
+            .map((o, optIdx) => ({ o, pos: optIdx + 1 }))
+            .filter(({ o }) => o.key !== q.correctAnswer)
+            .map(({ o, pos }) => ({
+              '@type': 'Answer',
+              position: pos,
+              encodingFormat: 'text/plain',
+              text: plainText(`${o.key}. ${o.text}`)
+            }))
+        : [];
       const sol = q.bestSolution || q.conceptualSolution || q.explanation || '';
+      const shortSol = sol ? truncate(sol, 500) : '';
       return {
         '@type': 'Question',
         position: idx + 1,
         name: `Soal ${idx + 1}`,
-        text: plainText(q.question || q.problem || ''),
-        eduQuestionType: (q.options || []).length ? 'Multiple choice' : 'Short answer',
+        text: truncate(q.question || q.problem || '', 600),
+        encodingFormat: 'text/plain',
+        eduQuestionType: hasOptions ? 'Multiple choice' : 'Short answer',
+        learningResourceType: 'Practice problem',
+        educationalAlignment: alignment,
+        typicalAgeRange: ageRange,
+        assesses: topicAssessed,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: plainText(ansText)
+          position: acceptedPos,
+          encodingFormat: 'text/plain',
+          text: plainText(ansText),
+          comment: { '@type': 'Comment', text: inLanguage === 'en' ? 'Correct answer.' : 'Jawaban benar.' },
+          ...(shortSol ? { answerExplanation: { '@type': 'Comment', text: shortSol } } : {})
         },
-        ...(sol ? { comment: { '@type': 'Comment', text: plainText(sol) } } : {})
+        ...(distractors.length ? { suggestedAnswer: distractors } : {})
       };
     })
   };
@@ -538,13 +838,82 @@ const relatedHtml = (chapterId) => {
   return `<aside class="seo-related">${papersBlock}${chBlock}</aside>`;
 };
 
+function mdChapter(title, metaLabel, url, ch) {
+  const s = ch.summary || {};
+  const out = [
+    `# ${title}`,
+    `Canonical URL: ${url}`,
+    `Markdown URL: ${url}.md`,
+    `Kategori: ${metaLabel}`,
+    `Cite As: ${SITE_NAME} — ${title} (${url})`,
+    `License: ${ORGANIZATION.licenseName} (${ORGANIZATION.licenseUrl})`,
+    ''
+  ];
+  if (s.overview) out.push('## Pengantar', s.overview, '');
+  if (s.coreConcepts?.length) {
+    out.push('## Konsep Inti');
+    s.coreConcepts.forEach((c, i) => out.push(`${i + 1}. ${c}`));
+    out.push('');
+  }
+  if (s.keyFormulas?.length) {
+    out.push('## Rumus Kunci');
+    for (const f of s.keyFormulas) out.push(`- **${f.label}**: $$${f.formula}$$`);
+    out.push('');
+  }
+  if (s.workedExamples?.length) {
+    out.push('## Contoh Soal dan Pembahasan');
+    s.workedExamples.forEach((ex, i) => {
+      out.push(`### Contoh ${i + 1}${ex.title ? `: ${ex.title}` : ''}`, ex.problem, `**Pembahasan:** ${ex.solution}`, '');
+    });
+  }
+  if (s.misconceptions?.length) {
+    out.push('## Kesalahan yang Sering Terjadi');
+    for (const m of s.misconceptions) out.push(`- ${m}`);
+    out.push('');
+  }
+  if (s.tutorTip) out.push('## Tips', s.tutorTip, '');
+  if (ch.questions?.length) {
+    out.push(`## Latihan Soal (${ch.questions.length} Soal)`);
+    ch.questions.forEach((q, i) => {
+      out.push(`### Soal ${i + 1} (${q.difficulty || 'Latihan'}) — ${url}#${questionAnchor(q.id)}`);
+      out.push(q.question || q.problem || '');
+      if ((q.options || []).length) {
+        for (const o of q.options) out.push(`- **${o.key}.** ${o.text}`);
+      }
+      const key = q.correctAnswer || q.answer;
+      const sol = q.bestSolution || q.conceptualSolution || q.explanation;
+      if (key) out.push(`**Jawaban:** ${key}`);
+      if (sol) out.push(`**Pembahasan:** ${sol}`);
+      out.push('');
+    });
+  }
+  out.push('---', '');
+  return out.join('\n');
+}
+
 const sitemap = [];
-const addToSitemap = (p, priority, lastmod = TODAY) => sitemap.push({ loc: `${SITE_URL}${p === '/' ? '/' : p}`, priority, lastmod });
+const addToSitemap = (p, priority, lastmod = TODAY, { images = [], alternates = [] } = {}) => {
+  const uniqueImages = [];
+  const seenImg = new Set();
+  for (const img of images) {
+    if (!img?.src || seenImg.has(img.src)) continue;
+    seenImg.add(img.src);
+    uniqueImages.push(img);
+  }
+  sitemap.push({
+    loc: `${SITE_URL}${p === '/' ? '/' : p}`,
+    priority,
+    lastmod: lastmod || TODAY,
+    images: uniqueImages,
+    alternates
+  });
+};
 
 // ---------------------------------------------------------------------------
 // Beranda
 // ---------------------------------------------------------------------------
 {
+  const homeLastmod = lastmodFor('src/components/HomeHubPage.jsx', 'src/data/papers/index.js');
   const gradeList = GRADES.map((g) => `<li><a href="${gradePath(g.grade)}"><strong>Matematika Kelas ${g.grade} ${levelLabel(g.grade)}</strong></a> — ${g.chapters.map((c) => `<a href="${chapterPath(g.grade, c.id)}">${escapeHtml(c.title)}</a>`).join(', ')}</li>`).join('\n');
   const ipaSchoolList = IPA.filter((g) => g.grade <= 9).map((g) => `<li><a href="${gradePath(g.grade, 'ipa')}"><strong>IPA Kelas ${g.grade} ${levelLabel(g.grade)}</strong></a> — ${g.chapters.map((c) => `<a href="${chapterPath(g.grade, c.id)}">${escapeHtml(c.title)}</a>`).join(', ')}</li>`).join('\n');
   const fisikaSmaList = IPA.filter((g) => g.grade >= 10).map((g) => `<li><a href="${gradePath(g.grade, 'fisika')}"><strong>Fisika Kelas ${g.grade} ${levelLabel(g.grade)}</strong></a> — ${g.chapters.map((c) => `<a href="${chapterPath(g.grade, c.id)}">${escapeHtml(c.title)}</a>`).join(', ')}</li>`).join('\n');
@@ -560,14 +929,13 @@ const addToSitemap = (p, priority, lastmod = TODAY) => sitemap.push({ loc: `${SI
   const body = `
     <h1>Matematika &amp; Sains — ${escapeHtml(ORGANIZATION.name)}</h1>
     <p>${escapeHtml(HOME_META.description)}</p>
-    <p><a href="/paket-soal">Paket Soal</a> · <a href="/olimpiade">Olimpiade &amp; Kompetisi</a> · <a href="/tentang#prestasi">Prestasi Siswa</a> · <a href="/daftar-isi">Daftar Isi</a> · <a href="/rumus">Kumpulan Rumus</a> · <a href="/tka">Latihan TKA</a> · <a href="/tentang">Tentang</a></p>
+    <p><a href="/matematika">Matematika</a> · <a href="/ipa">IPA</a> · <a href="/fisika">Fisika</a> · <a href="/kimia">Kimia</a> · <a href="/biologi">Biologi</a> · <a href="/paket-soal">Paket Soal</a> · <a href="/olimpiade">Olimpiade</a> · <a href="/daftar-isi">Daftar Isi</a> · <a href="/rumus">Kumpulan Rumus</a> · <a href="/tka">Latihan TKA</a> · <a href="/tentang">Tentang</a></p>
     <section><h2>1. Materi Sekolah — Matematika &amp; Sains</h2>
-      <h3>Matematika (Kelas 4–12)</h3><ul>${gradeList}</ul>
-      ${ipaSchoolList ? `<h3>IPA (SD &amp; SMP, Kelas 4–9)</h3><ul>${ipaSchoolList}</ul>` : ''}
-      ${fisikaSmaList ? `<h3>Fisika (SMA, Kelas 10–12)</h3><ul>${fisikaSmaList}</ul>` : ''}
-      ${kimiaSmaList ? `<h3>Kimia (SMA, Kelas 10–12)</h3><ul>${kimiaSmaList}</ul>` : ''}
-      ${biologiSmaList ? `<h3>Biologi (SMA, Kelas 10–12)</h3><ul>${biologiSmaList}</ul>` : ''}
-      <ul><li><a href="/paket-soal/kimia">Paket Soal Kimia SMA</a></li><li><a href="/paket-soal/biologi">Paket Soal Biologi SMA</a></li></ul>
+      <h3><a href="/matematika">Matematika (Kelas 4–12)</a></h3><ul>${gradeList}</ul>
+      ${ipaSchoolList ? `<h3><a href="/ipa">IPA (SD &amp; SMP, Kelas 4–9)</a></h3><ul>${ipaSchoolList}</ul>` : ''}
+      ${fisikaSmaList ? `<h3><a href="/fisika">Fisika (SMA, Kelas 10–12)</a></h3><ul>${fisikaSmaList}</ul>` : ''}
+      ${kimiaSmaList ? `<h3><a href="/kimia">Kimia (SMA, Kelas 10–12)</a></h3><ul>${kimiaSmaList}</ul>` : ''}
+      ${biologiSmaList ? `<h3><a href="/biologi">Biologi (SMA, Kelas 10–12)</a></h3><ul>${biologiSmaList}</ul>` : ''}
     </section>
     <section><h2>2. Olimpiade &amp; Kompetisi</h2>
       <ul>
@@ -590,35 +958,33 @@ const addToSitemap = (p, priority, lastmod = TODAY) => sitemap.push({ loc: `${SI
       </ul>
       ${papersList ? `<ul>${papersList}</ul>` : ''}
     </section>`;
-  const ld = [
-    ORGANIZATION_LD,
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: SITE_NAME,
-      alternateName: ORGANIZATION.alternateName,
-      url: SITE_URL,
-      inLanguage: 'id',
-      description: HOME_META.description,
-      license: ORGANIZATION.licenseUrl,
-      publisher: { '@type': 'EducationalOrganization', name: ORGANIZATION.name, url: SITE_URL },
-      creator: PERSON_LD,
-      author: PERSON_LD,
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: `${SITE_URL}/paket-soal?q={search_term_string}`,
-        'query-input': 'required name=search_term_string'
-      }
-    }
-  ];
-  writePage('/', renderPage({ meta: HOME_META, body, jsonLd: ld }));
-  addToSitemap('/', '1.0', lastmodFor('src/components/HomeHubPage.jsx', 'src/data/papers/index.js'));
+  const homeCourses = Object.values(SUBJECT_HUB_INFO).map((s) => ({
+    name: `${s.name} (${s.levelText})`,
+    description: s.description,
+    path: s.path
+  }));
+  writePage('/', renderPage({
+    meta: HOME_META,
+    body,
+    jsonLd: [courseListLd(homeCourses)],
+    dateModified: homeLastmod,
+    hasBreadcrumb: false
+  }));
+  addToSitemap('/', '1.0', homeLastmod, {
+    images: [{ src: HOME_META.ogImage, title: HOME_META.title, caption: HOME_META.description }]
+  });
 }
 
 // ---------------------------------------------------------------------------
 // Halaman Informasi Bimbel (/tentang + prestasi, /program, /pendiri, /kontak)
 // ---------------------------------------------------------------------------
 {
+  const aboutLastmod = lastmodFor('src/data/siteInfo.js', 'src/components/AboutPage.jsx', 'src/components/about/PrestasiSection.jsx');
+  const prestasiImgs = PRESTASI_DATA.filter((p) => p.photo).map((p) => ({
+    src: p.photo,
+    title: `${p.studentName} — ${p.award}`,
+    caption: `${p.year} ${p.competition}`
+  }));
   const body = `
     ${breadcrumbHtml([['Beranda', '/'], ['Tentang', ABOUT_META.path]])}
     <h1>${escapeHtml(ABOUT.title)}</h1>
@@ -636,8 +1002,10 @@ const addToSitemap = (p, priority, lastmod = TODAY) => sitemap.push({ loc: `${SI
       const source = !p.sourceUrl ? '' : isPublicInstagramUrl(p.sourceUrl)
         ? ` (<a href="${escapeHtml(p.sourceUrl)}">${escapeHtml(p.sourceLabel)}</a>)`
         : ` (Dokumentasi: @${escapeHtml(parseInstagramPost(p.sourceUrl)?.account || 'instagram')}, akun Instagram privat)`;
+      const photo = p.photo ? `<div>${imgTag(p.photo, `${p.studentName} — ${p.award}`)}</div>` : '';
       return `
       <li>
+        ${photo}
         <strong>${escapeHtml(p.year)} — ${escapeHtml(p.award)}</strong>: ${escapeHtml(p.studentName)}, ${escapeHtml(p.school)} — ${escapeHtml(p.competition)}.
         ${p.notes ? escapeHtml(p.notes) : ''}${source}
       </li>`;
@@ -647,22 +1015,19 @@ const addToSitemap = (p, priority, lastmod = TODAY) => sitemap.push({ loc: `${SI
     <p>Seluruh materi berlisensi <a href="${escapeHtml(ORGANIZATION.licenseUrl)}">${escapeHtml(ORGANIZATION.licenseName)}</a> dengan atribusi kepada ${escapeHtml(ORGANIZATION.name)}.</p>
     <h2>Mulai Belajar</h2>
     <ul><li><a href="/">Materi per kelas (Matematika, IPA, Fisika, Kimia, Biologi)</a></li><li><a href="/daftar-isi">Daftar Isi per Topik</a></li><li><a href="/rumus">Kumpulan Rumus</a></li><li><a href="/tka">Latihan TKA</a></li><li><a href="/olimpiade">Olimpiade &amp; Kompetisi</a></li><li><a href="/paket-soal">Paket Soal Terstruktur</a></li></ul>`;
-  const ld = [
-    ORGANIZATION_LD,
-    {
-      '@context': 'https://schema.org',
-      '@type': 'ProfilePage',
-      url: `${SITE_URL}${ABOUT_META.path}`,
-      name: ABOUT_META.title,
-      mainEntity: { ...PERSON_LD, description: ABOUT.intro, worksFor: { '@type': 'EducationalOrganization', name: ORGANIZATION.name, url: SITE_URL } }
-    },
-    breadcrumbLd([['Beranda', '/'], ['Tentang', ABOUT_META.path]])
-  ];
-  writePage(ABOUT_META.path, renderPage({ meta: ABOUT_META, body, jsonLd: ld }));
-  addToSitemap(ABOUT_META.path, '0.8');
+  const crumbs = [['Beranda', '/'], ['Tentang', ABOUT_META.path]];
+  writePage(ABOUT_META.path, renderPage({
+    meta: ABOUT_META,
+    body,
+    pageType: 'AboutPage',
+    dateModified: aboutLastmod,
+    jsonLd: [breadcrumbLd(crumbs, ABOUT_META.path)]
+  }));
+  addToSitemap(ABOUT_META.path, '0.8', aboutLastmod, { images: prestasiImgs });
 }
 
 {
+  const programLastmod = lastmodFor('src/data/siteInfo.js', 'src/components/ProgramPage.jsx');
   const body = `
     ${breadcrumbHtml([['Beranda', '/'], ['Program Bimbel', PROGRAM_META.path]])}
     <h1>Program Bimbingan Belajar ${escapeHtml(ORGANIZATION.name)}</h1>
@@ -674,33 +1039,40 @@ const addToSitemap = (p, priority, lastmod = TODAY) => sitemap.push({ loc: `${SI
         <p>${escapeHtml(prog.summary)}</p>
         <ul>${prog.points.map((pt) => `<li>${escapeHtml(pt)}</li>`).join('')}</ul>
       </section>`).join('\n')}
-    <section>
-      <h2>Pertanyaan Umum (FAQ)</h2>
-      ${FAQS.map((f) => `<article><h3>${escapeHtml(f.question)}</h3><p>${escapeHtml(f.answer)}</p></article>`).join('\n')}
-    </section>
+    ${faqSectionHtml(FAQS, 'Pertanyaan Umum (FAQ)')}
     <p><a href="${escapeHtml(ORGANIZATION.whatsappUrl)}">Konsultasi &amp; Daftar via WhatsApp (${escapeHtml(ORGANIZATION.whatsappDisplay)})</a></p>`;
-  const faqLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQS.map((f) => ({
-      '@type': 'Question',
-      name: f.question,
-      acceptedAnswer: { '@type': 'Answer', text: f.answer }
+  const crumbs = [['Beranda', '/'], ['Program Bimbel', PROGRAM_META.path]];
+  const offerCatalogLd = {
+    '@type': 'OfferCatalog',
+    name: `Program Bimbingan Belajar ${ORGANIZATION.name}`,
+    url: `${SITE_URL}${PROGRAM_META.path}`,
+    itemListElement: PROGRAMS.map((prog, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      item: {
+        '@type': 'Course',
+        name: prog.title,
+        description: prog.summary,
+        educationalLevel: prog.audience,
+        provider: { '@id': ORG_ID }
+      }
     }))
   };
   writePage(PROGRAM_META.path, renderPage({
     meta: PROGRAM_META,
     body,
-    jsonLd: [ORGANIZATION_LD, faqLd, breadcrumbLd([['Beranda', '/'], ['Program Bimbel', PROGRAM_META.path]])]
+    dateModified: programLastmod,
+    jsonLd: [offerCatalogLd, faqPageLd(FAQS), breadcrumbLd(crumbs, PROGRAM_META.path)]
   }));
-  addToSitemap(PROGRAM_META.path, '0.8');
+  addToSitemap(PROGRAM_META.path, '0.8', programLastmod);
 }
 
 {
+  const founderLastmod = lastmodFor('src/data/siteInfo.js', 'src/components/FounderPage.jsx');
   const body = `
     ${breadcrumbHtml([['Beranda', '/'], ['Pendiri', FOUNDER_META.path]])}
     <h1>${escapeHtml(FOUNDER.name)} (${escapeHtml(FOUNDER.formalName)}) — ${escapeHtml(FOUNDER.role)}</h1>
-    ${FOUNDER.photo ? `<img src="${escapeHtml(FOUNDER.photo)}" alt="Foto ${escapeHtml(FOUNDER.name)}" width="112" height="112">` : ''}
+    ${FOUNDER.photo ? imgTag(FOUNDER.photo, `Foto ${FOUNDER.name}`, { width: 112, height: 112 }) : ''}
     <ul>${FOUNDER.bioHighlights.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>
     <h2>Rekam Jejak Terverifikasi</h2>
     <ul>${FOUNDER.credentials.map((c) => `<li><strong>${escapeHtml(c.year)} — ${escapeHtml(c.title)}</strong>: ${escapeHtml(c.detail)} (<a href="${escapeHtml(c.sourceUrl)}">Sumber</a>)</li>`).join('')}</ul>
@@ -709,23 +1081,21 @@ const addToSitemap = (p, priority, lastmod = TODAY) => sitemap.push({ loc: `${SI
     <p><strong>${escapeHtml(AUTHOR.name)}</strong> — ${escapeHtml(AUTHOR.jobTitle)}.</p>
     <ul>${(AUTHOR.bioHighlights || []).map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>
     <p>${AUTHOR.instagramUrl ? `Instagram: <a href="${escapeHtml(AUTHOR.instagramUrl)}">${escapeHtml(AUTHOR.instagramHandle)}</a> · ` : ''}${AUTHOR.githubUrl ? `<a href="${escapeHtml(AUTHOR.githubUrl)}">GitHub</a> · ` : ''}<a href="/tentang">Tentang Platform Duta e-dukasi</a></p>`;
-  const ld = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'ProfilePage',
-      url: `${SITE_URL}${FOUNDER_META.path}`,
-      name: FOUNDER_META.title,
-      mainEntity: FOUNDER_LD
-    },
-    breadcrumbLd([['Beranda', '/'], ['Pendiri', FOUNDER_META.path]])
-  ];
-  writePage(FOUNDER_META.path, renderPage({ meta: FOUNDER_META, body, jsonLd: ld }));
-  addToSitemap(FOUNDER_META.path, '0.7');
+  const crumbs = [['Beranda', '/'], ['Pendiri', FOUNDER_META.path]];
+  writePage(FOUNDER_META.path, renderPage({
+    meta: FOUNDER_META,
+    body,
+    pageType: 'ProfilePage',
+    dateModified: founderLastmod,
+    jsonLd: [breadcrumbLd(crumbs, FOUNDER_META.path)]
+  }));
+  addToSitemap(FOUNDER_META.path, '0.7', founderLastmod, {
+    images: FOUNDER.photo ? [{ src: FOUNDER.photo, title: FOUNDER.name, caption: FOUNDER.role }] : []
+  });
 }
 
-// /prestasi kini bagian dari /tentang (#prestasi); Vercel mengalihkan alamat lama secara permanen.
-
 {
+  const contactLastmod = lastmodFor('src/data/siteInfo.js', 'src/components/ContactPage.jsx');
   const body = `
     ${breadcrumbHtml([['Beranda', '/'], ['Kontak', CONTACT_META.path]])}
     <h1>Kontak &amp; Lokasi ${escapeHtml(ORGANIZATION.legalName)}</h1>
@@ -733,12 +1103,15 @@ const addToSitemap = (p, priority, lastmod = TODAY) => sitemap.push({ loc: `${SI
     <p><strong>WhatsApp / Telepon:</strong> <a href="${escapeHtml(ORGANIZATION.whatsappUrl)}">${escapeHtml(ORGANIZATION.whatsappDisplay)}</a></p>
     <p><strong>Google Maps:</strong> <a href="${escapeHtml(ORGANIZATION.mapsUrl)}">${escapeHtml(ORGANIZATION.mapsUrl)}</a></p>
     <p><strong>Pendiri:</strong> <a href="/pendiri">${escapeHtml(FOUNDER.name)}</a> (<a href="${escapeHtml(FOUNDER.instagramUrl)}">${escapeHtml(FOUNDER.instagramHandle)}</a>)</p>`;
+  const crumbs = [['Beranda', '/'], ['Kontak', CONTACT_META.path]];
   writePage(CONTACT_META.path, renderPage({
     meta: CONTACT_META,
     body,
-    jsonLd: [ORGANIZATION_LD, breadcrumbLd([['Beranda', '/'], ['Kontak', CONTACT_META.path]])]
+    pageType: 'ContactPage',
+    dateModified: contactLastmod,
+    jsonLd: [breadcrumbLd(crumbs, CONTACT_META.path)]
   }));
-  addToSitemap(CONTACT_META.path, '0.8');
+  addToSitemap(CONTACT_META.path, '0.8', contactLastmod);
 }
 
 // ---------------------------------------------------------------------------
@@ -781,22 +1154,12 @@ function mdPacket(paper) {
 }
 
 {
+  const papersHubLastmod = lastmodFor('src/data/papers/index.js', 'src/components/PapersHubPage.jsx');
   const renderPacketList = (papers) =>
     `<ul>${papers.map((p) => {
       const info = formatPaperMeta(p);
       return `<li><a href="${paperPath(p)}"><strong>${escapeHtml(p.title)}</strong></a> — ${escapeHtml(p.topic)} · Kelas ${p.grade} · ${escapeHtml(info.itemsLabel)}${info.score ? ` (${escapeHtml(info.score)})` : ''} · ${escapeHtml(info.lang)}</li>`;
     }).join('\n')}</ul>`;
-
-  const hubFaqs = [
-    {
-      question: 'Apa itu Paket Soal Terstruktur Duta e-dukasi?',
-      answer: 'Paket Soal Terstruktur adalah kumpulan soal pilihan ganda, isian, dan uraian bertahap lengkap dengan kunci jawaban, prinsip konsep utama, pembahasan langkah demi langkah, dan rubrik penilaian mandiri.'
-    },
-    {
-      question: 'Apakah tersedia paket soal olimpiade dan soal berbahasa Inggris?',
-      answer: 'Ya, tersedia paket OSN-K/OSN-P (9 bidang), AMC 8/10/12 & AIME, SASMO, SMO Singapore, HKIMO, TIMO, SIMOC, IKMC/Kangaroo, KSM, KMNR, UTBK/SNBT, Seri Pembinaan OSN, serta soal bergaya Cambridge/IGCSE 0580.'
-    }
-  ];
 
   const hubMeta = papersHubMeta('all');
   const hubCrumbs = [['Beranda', '/'], ['Paket Soal', '/paket-soal']];
@@ -806,19 +1169,23 @@ function mdPacket(paper) {
     <p>${escapeHtml(hubMeta.description)}</p>
     <p><a href="/paket-soal/english">International &amp; English Practice Papers (EN)</a> · <a href="/olimpiade">Pusat Olimpiade</a> · <a href="/datasets/paket-soal-index.json">Dataset Terbuka (JSON)</a> · <a href="/llms.txt">Indeks AI (llms.txt)</a></p>
     ${renderPacketList(PUBLISHED_PAPERS)}
-    ${faqSectionHtml(hubFaqs)}`;
+    ${faqSectionHtml(PAPERS_HUB_FAQS, 'Pertanyaan Umum Paket Soal')}`;
   writePage('/paket-soal', renderPage({
     meta: hubMeta,
     body: hubBody,
+    pageType: 'CollectionPage',
+    dateModified: papersHubLastmod,
     jsonLd: [
-      ORGANIZATION_LD,
-      DATASET_LD,
+      DATASET_NODE,
       itemListLd('Paket Soal Terstruktur Duta e-dukasi', '/paket-soal', PUBLISHED_PAPERS.map((p) => ({ name: p.title, path: paperPath(p) }))),
-      faqPageLd(hubFaqs),
-      breadcrumbLd(hubCrumbs)
+      faqPageLd(PAPERS_HUB_FAQS),
+      breadcrumbLd(hubCrumbs, '/paket-soal')
     ].filter(Boolean)
   }));
-  addToSitemap('/paket-soal', '0.9', lastmodFor('src/data/papers/index.js'));
+  addToSitemap('/paket-soal', '0.9', papersHubLastmod, {
+    images: [{ src: hubMeta.ogImage, title: hubMeta.title, caption: hubMeta.description }],
+    alternates: hubMeta.alternates
+  });
 
   // Dedicated English Hub (/paket-soal/english)
   const englishPapers = PUBLISHED_PAPERS.filter(englishPapersFilter);
@@ -828,16 +1195,23 @@ function mdPacket(paper) {
     ${breadcrumbHtml(enCrumbs)}
     <h1>International &amp; English Math and Science Practice Papers</h1>
     <p>${escapeHtml(enHubMeta.description)}</p>
-    ${renderPacketList(englishPapers)}`;
+    ${renderPacketList(englishPapers)}
+    ${faqSectionHtml(ENGLISH_PAPERS_HUB_FAQS, 'Frequently Asked Questions')}`;
   writePage('/paket-soal/english', renderPage({
     meta: enHubMeta,
     body: enBody,
+    pageType: 'CollectionPage',
+    dateModified: papersHubLastmod,
     jsonLd: [
       itemListLd(enHubMeta.title.split(' | ')[0], '/paket-soal/english', englishPapers.map((p) => ({ name: p.title, path: paperPath(p) }))),
-      breadcrumbLd(enCrumbs)
+      faqPageLd(ENGLISH_PAPERS_HUB_FAQS),
+      breadcrumbLd(enCrumbs, '/paket-soal/english')
     ]
   }));
-  addToSitemap('/paket-soal/english', '0.85', lastmodFor('src/data/papers/index.js'));
+  addToSitemap('/paket-soal/english', '0.85', papersHubLastmod, {
+    images: [{ src: enHubMeta.ogImage, title: enHubMeta.title, caption: enHubMeta.description }],
+    alternates: enHubMeta.alternates
+  });
 
   for (const subjMeta of Object.values(PAPER_SUBJECT_META)) {
     const subjPapers = getPapersBySubject(subjMeta.id);
@@ -847,16 +1221,24 @@ function mdPacket(paper) {
       ${breadcrumbHtml(crumbs)}
       <h1>Paket Soal ${escapeHtml(subjMeta.label)} — ${escapeHtml(ORGANIZATION.name)}</h1>
       <p>${escapeHtml(meta.description)}</p>
-      ${subjPapers.length ? renderPacketList(subjPapers) : `<p>Belum ada paket soal di kategori ${escapeHtml(subjMeta.label)}. <a href="/paket-soal">Lihat semua Paket Soal</a>.</p>`}`;
+      ${subjPapers.length ? renderPacketList(subjPapers) : `<p>Belum ada paket soal di kategori ${escapeHtml(subjMeta.label)}. <a href="/paket-soal">Lihat semua Paket Soal</a>.</p>`}
+      ${faqSectionHtml(PAPERS_HUB_FAQS, 'Pertanyaan Umum Paket Soal')}`;
     writePage(meta.path, renderPage({
       meta,
       body,
+      pageType: 'CollectionPage',
+      dateModified: papersHubLastmod,
       jsonLd: [
         itemListLd(`Paket Soal ${subjMeta.label}`, meta.path, subjPapers.map((p) => ({ name: p.title, path: paperPath(p) }))),
-        breadcrumbLd(crumbs)
+        faqPageLd(PAPERS_HUB_FAQS),
+        breadcrumbLd(crumbs, meta.path)
       ]
     }));
-    if (subjPapers.length > 0) addToSitemap(meta.path, '0.8', lastmodFor('src/data/papers/index.js'));
+    if (subjPapers.length > 0) {
+      addToSitemap(meta.path, '0.8', papersHubLastmod, {
+        images: [{ src: meta.ogImage, title: meta.title, caption: meta.description }]
+      });
+    }
   }
 
   const datasetIndexEntries = [];
@@ -875,10 +1257,7 @@ function mdPacket(paper) {
     const markdownUrl = `${SITE_URL}${mdRelPath}`;
     const citationString = `${SITE_NAME} — ${paper.title} (${canonicalUrl})`;
 
-    // Write per-paper Markdown + LaTeX twin for AI systems, scrapers, and researchers
-    const mdDest = path.join(DIST, `${meta.path.slice(1)}.md`);
-    fs.mkdirSync(path.dirname(mdDest), { recursive: true });
-    fs.writeFileSync(mdDest, mdPacket(paper));
+    writeMdTwin(meta.path, mdPacket(paper));
 
     totalDatasetItems += info.items;
     datasetIndexEntries.push({
@@ -898,8 +1277,17 @@ function mdPacket(paper) {
       citation: citationString
     });
 
+    const paperImages = [];
+    const packetQuestionsForLd = [];
+
     for (const q of paper.questions || []) {
+      for (const f of q.figures || []) {
+        paperImages.push({ src: f.src, title: f.caption || q.title, caption: f.alt });
+      }
       for (const pt of q.parts || []) {
+        for (const f of pt.figures || []) {
+          paperImages.push({ src: f.src, title: f.caption || q.title, caption: f.alt });
+        }
         datasetJsonlLines.push(JSON.stringify({
           paperId: paper.id,
           paperTitle: paper.title,
@@ -920,6 +1308,15 @@ function mdPacket(paper) {
           license: ORGANIZATION.licenseUrl,
           attribution: `${SITE_NAME} (${SITE_URL})`
         }));
+
+        const parsed = parsePaperPart(pt);
+        packetQuestionsForLd.push({
+          question: `${q.title} — ${q.stem} (${pt.label}) ${parsed.stemPrompt || pt.prompt}`,
+          options: parsed.kind === 'mcq' ? parsed.options : [],
+          correctAnswer: parsed.kind === 'mcq' ? parsed.correctKey : undefined,
+          answer: pt.answer,
+          explanation: `${pt.principle} ${pt.solution}`
+        });
       }
     }
 
@@ -928,9 +1325,9 @@ function mdPacket(paper) {
       ? `<section class="paper-constants-box"><h2>${paper.lang === 'en' ? 'Given Constants' : 'Konstanta'}</h2><ul>${paper.constants.map((c) => `<li>${renderMath(c, false)}</li>`).join('')}</ul></section>`
       : '';
     const qsHtml = paper.questions.map((q) => {
-      const figsHtml = (q.figures || []).map((f) => `<figure><img src="${escapeHtml(f.src)}" alt="${escapeHtml(f.alt)}" /><figcaption>${escapeHtml(f.caption)}</figcaption></figure>`).join('\n');
+      const figsHtml = (q.figures || []).map((f) => `<figure>${imgTag(f.src, f.alt)}<figcaption>${escapeHtml(f.caption)}</figcaption></figure>`).join('\n');
       const partsHtml = q.parts.map((pt) => {
-        const ptFigsHtml = (pt.figures || []).map((f) => `<figure><img src="${escapeHtml(f.src)}" alt="${escapeHtml(f.alt)}" /><figcaption>${escapeHtml(f.caption)}</figcaption></figure>`).join('\n');
+        const ptFigsHtml = (pt.figures || []).map((f) => `<figure>${imgTag(f.src, f.alt)}<figcaption>${escapeHtml(f.caption)}</figcaption></figure>`).join('\n');
         const rubHtml = (pt.rubric || []).map((r) => `<li><strong>[${escapeHtml(r.code)}]</strong> ${rich(r.text)}</li>`).join('');
         return `
           <div class="paper-part">
@@ -968,27 +1365,7 @@ function mdPacket(paper) {
       ? `<section class="seo-citation"><h2>How to Cite &amp; AI / Research Format</h2><p><strong>Cite as:</strong> ${escapeHtml(citationString)} — licensed under <a href="${escapeHtml(ORGANIZATION.licenseUrl)}">${escapeHtml(ORGANIZATION.licenseName)}</a>.</p><p><a href="${escapeHtml(mdRelPath)}">Versi Markdown + LaTeX untuk AI &amp; Riset (${escapeHtml(mdRelPath)})</a> · <a href="/datasets/paket-soal-index.json">Open Dataset Index (JSON)</a></p></section>`
       : `<section class="seo-citation"><h2>Sitasi &amp; Format Riset / AI</h2><p><strong>Sumber kutipan resmi:</strong> ${escapeHtml(citationString)} — berlisensi terbuka <a href="${escapeHtml(ORGANIZATION.licenseUrl)}">${escapeHtml(ORGANIZATION.licenseName)}</a>.</p><p><a href="${escapeHtml(mdRelPath)}">Versi Markdown + LaTeX untuk AI &amp; Riset (${escapeHtml(mdRelPath)})</a> · <a href="/datasets/paket-soal-index.json">Dataset Terbuka (JSON)</a></p></section>`;
 
-    const paperFaqs = paper.lang === 'en'
-      ? [
-          {
-            question: `How many questions are included in ${paper.title}?`,
-            answer: `${paper.title} contains ${info.items} structured problems covering ${paper.topic} for Grade ${paper.grade}.`
-          },
-          {
-            question: `Are answers, step-by-step solutions, and marking rubrics included for free?`,
-            answer: `Yes. Every question in ${paper.title} includes the final answer key, core mathematical or scientific principle, step-by-step solution, and grading rubric free on ${SITE_NAME}, plus a printable worksheet QR view.`
-          }
-        ]
-      : [
-          {
-            question: `Berapa jumlah soal dan materi pada ${paper.title}?`,
-            answer: `${paper.title} berisi ${info.items} butir soal terstruktur untuk Kelas ${paper.grade} dengan cakupan: ${paper.topic}.`
-          },
-          {
-            question: `Apakah kunci jawaban, pembahasan bertahap, dan rubrik penilaiannya gratis?`,
-            answer: `Ya. Seluruh soal dilengkapi kunci jawaban, prinsip konsep utama, pembahasan langkah demi langkah, rubrik penilaian, serta versi cetak LKPD ber-QR secara gratis di ${SITE_NAME}.`
-          }
-        ];
+    const paperFaqs = getPaperFaqs(paper, info);
 
     const body = `
       ${breadcrumbHtml(crumbs)}
@@ -1002,13 +1379,6 @@ function mdPacket(paper) {
       ${faqSectionHtml(paperFaqs, paper.lang === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan Umum')}
       <p><strong>Lisensi:</strong> ${escapeHtml(paper.source?.license || ORGANIZATION.licenseName)} — <a href="${escapeHtml(ORGANIZATION.licenseUrl)}">${escapeHtml(ORGANIZATION.name)}</a></p>`;
 
-    const packetQuestionsForLd = paper.questions.flatMap((q) =>
-      q.parts.map((pt) => ({
-        question: `${q.title} — ${q.stem} (${pt.label}) ${pt.prompt}`,
-        answer: pt.answer,
-        explanation: `${pt.principle} ${pt.solution}`
-      }))
-    );
     const ld = [
       learningResourceLd({
         meta,
@@ -1027,11 +1397,21 @@ function mdPacket(paper) {
         dateModified: pLastmod
       }),
       faqPageLd(paperFaqs),
-      breadcrumbLd(crumbs)
+      breadcrumbLd(crumbs, meta.path)
     ].filter(Boolean);
 
-    writePage(meta.path, renderPage({ meta: { ...meta, markdownPath: mdRelPath }, body, jsonLd: ld }));
-    addToSitemap(meta.path, '0.8', pLastmod);
+    writePage(meta.path, renderPage({
+      meta: { ...meta, markdownPath: mdRelPath },
+      body,
+      dateModified: pLastmod,
+      jsonLd: ld
+    }));
+    addToSitemap(meta.path, '0.8', pLastmod, {
+      images: [
+        ...paperImages,
+        { src: meta.ogImage, title: paper.title, caption: meta.description }
+      ]
+    });
   }
 
   fs.mkdirSync(path.join(DIST, 'datasets'), { recursive: true });
@@ -1060,13 +1440,13 @@ function writeRedirectStub(oldPath, targetPath, label) {
   const html = shell
     .replace(/<title>[^<]*<\/title>/i, `<title>${escapeHtml(label)} | ${escapeHtml(SITE_NAME)}</title>`)
     .replace(/<link rel="canonical"[^>]*>/i, '')
-    .replace('</head>', `    <link rel="canonical" href="${fullTarget}" />\n    <meta http-equiv="refresh" content="0;url=${targetPath}" />\n  </head>`)
+    .replace('</head>', `    <meta name="robots" content="noindex, follow" />\n    <link rel="canonical" href="${fullTarget}" />\n    <meta http-equiv="refresh" content="0;url=${targetPath}" />\n  </head>`)
     .replace('<div id="root"></div>', `<div id="root"><p>Materi tersedia di <a href="${targetPath}">${fullTarget}</a>.</p></div>`);
   writePage(oldPath, html);
 }
 
 // ---------------------------------------------------------------------------
-// Kurikulum: Matematika, IPA (SD–SMP) & Fisika (SMA)
+// Kurikulum: Hub Mata Pelajaran (/matematika, /ipa, /fisika, /kimia, /biologi) & Kelas/Bab
 // ---------------------------------------------------------------------------
 function gradeSourceFile(subject, grade) {
   if (subject === 'matematika') return `src/data/matematika/grade${grade}.js`;
@@ -1074,12 +1454,68 @@ function gradeSourceFile(subject, grade) {
   return `src/data/${subject}/grade${grade}.js`;
 }
 
+const kurikulumIndexEntries = [];
+
+function renderSubjectHub(subjectKey, grades) {
+  const hubInfo = subjectHubMeta(subjectKey);
+  const faqs = getSubjectHubFaqs(subjectKey);
+  const crumbs = [['Beranda', '/'], [hubInfo.name, hubInfo.path]];
+  const sourceFiles = grades.map((g) => gradeSourceFile(subjectKey === 'fisika' ? 'ipa' : subjectKey, g.grade));
+  const hubLastmod = lastmodFor('src/components/SubjectHubPage.jsx', ...sourceFiles);
+
+  const gradeCardsHtml = grades.map((g) => `
+    <section>
+      <h2><a href="${gradePath(g.grade, subjectKey)}">${subjectKey === 'ipa' ? 'IPA' : hubInfo.name.replace(/\s+(SMA|Terpadu)$/i, '')} Kelas ${g.grade} ${levelLabel(g.grade)}</a> (${g.chapters.length} bab)</h2>
+      ${gradeToc(g.chapters, (c) => chapterPath(g.grade, c.id, subjectKey))}
+    </section>`).join('\n');
+
+  const body = `
+    ${breadcrumbHtml(crumbs)}
+    <h1>Materi &amp; Latihan ${escapeHtml(hubInfo.name)} (${escapeHtml(hubInfo.levelText)})</h1>
+    <p>${escapeHtml(hubInfo.description)}</p>
+    <p><a href="/paket-soal/${subjectKey}">Paket Soal ${escapeHtml(hubInfo.name)}</a> · <a href="/rumus">Kumpulan Rumus</a> · <a href="/daftar-isi">Daftar Isi</a></p>
+    ${gradeCardsHtml}
+    ${faqSectionHtml(faqs, `Pertanyaan Umum ${hubInfo.name}`)}`;
+
+  const courses = grades.map((g) => {
+    const gm = gradeMeta(g.grade, subjectKey);
+    return {
+      name: gm.title.split(' | ')[0],
+      description: gm.description,
+      path: gm.path
+    };
+  });
+
+  writePage(hubInfo.path, renderPage({
+    meta: hubInfo,
+    body,
+    pageType: 'CollectionPage',
+    dateModified: hubLastmod,
+    jsonLd: [
+      courseListLd(courses),
+      faqPageLd(faqs),
+      breadcrumbLd(crumbs, hubInfo.path)
+    ].filter(Boolean)
+  }));
+  addToSitemap(hubInfo.path, '0.9', hubLastmod, {
+    images: [{ src: hubInfo.ogImage, title: hubInfo.title, caption: hubInfo.description }]
+  });
+}
+
+renderSubjectHub('matematika', GRADES);
+renderSubjectHub('ipa', IPA.filter((g) => g.grade <= 9));
+renderSubjectHub('fisika', IPA.filter((g) => g.grade >= 10));
+renderSubjectHub('kimia', KIMIA);
+renderSubjectHub('biologi', BIOLOGI);
+
 function renderCurriculum(subject, grades) {
   for (const g of grades) {
+    const displaySubjKey = subject === 'ipa' && g.grade >= 10 ? 'fisika' : subject;
+    const hubInfo = subjectHubMeta(displaySubjKey);
     const name = subjectDisplayName(subject, g.grade);
     const lvl = levelLabel(g.grade);
     const phase = g.phase || PHASE[g.grade] || '';
-    const crumbsBase = [['Beranda', '/'], [`${name} Kelas ${g.grade}`, gradePath(g.grade, subject)]];
+    const crumbsBase = [['Beranda', '/'], [hubInfo.name, hubInfo.path], [`${name} Kelas ${g.grade}`, gradePath(g.grade, subject)]];
     const gLastmod = lastmodFor(gradeSourceFile(subject, g.grade));
 
     const gMeta = gradeMeta(g.grade, subject);
@@ -1092,18 +1528,30 @@ function renderCurriculum(subject, grades) {
     writePage(gMeta.path, renderPage({
       meta: gMeta,
       body: gradeBody,
+      pageType: 'CollectionPage',
+      dateModified: gLastmod,
       jsonLd: [
+        courseNodeLd({
+          name: gMeta.title.split(' | ')[0],
+          description: gMeta.description,
+          pagePath: gMeta.path,
+          educationalLevel: `Kelas ${g.grade} ${lvl} (${phase})`,
+          chapters: g.chapters
+        }),
         itemListLd(`${name} Kelas ${g.grade} ${lvl}`, gMeta.path, g.chapters.map((c) => ({ name: c.title, path: chapterPath(g.grade, c.id) }))),
-        breadcrumbLd(crumbsBase)
+        breadcrumbLd(crumbsBase, gMeta.path)
       ]
     }));
-    addToSitemap(gMeta.path, '0.8', gLastmod);
+    addToSitemap(gMeta.path, '0.8', gLastmod, {
+      images: [{ src: gMeta.ogImage, title: gMeta.title, caption: gMeta.description }]
+    });
     if (subject === 'ipa' && g.grade >= 10) {
       writeRedirectStub(`/ipa/kelas-${g.grade}`, gMeta.path, gMeta.title.split(' | ')[0]);
     }
 
     for (const ch of g.chapters) {
       const meta = chapterMeta(g.grade, ch);
+      const mdRelPath = `${meta.path}.md`;
       const crumbs = [...crumbsBase, [ch.title, meta.path]];
       const body = `
         ${breadcrumbHtml(crumbs)}
@@ -1115,15 +1563,45 @@ function renderCurriculum(subject, grades) {
           ${questionList(ch.questions || [])}
         </section>
         ${relatedHtml(ch.id)}
-        ${siblingLinks(g.chapters, ch.id, (c) => chapterPath(g.grade, c.id))}`;
+        ${siblingLinks(g.chapters, ch.id, (c) => chapterPath(g.grade, c.id))}
+        <p><a href="${escapeHtml(mdRelPath)}">Versi Markdown + LaTeX (.md)</a></p>`;
+
+      writeMdTwin(meta.path, mdChapter(
+        ch.title,
+        `${name} Kelas ${g.grade} ${lvl} (${phase})`,
+        `${SITE_URL}${meta.path}`,
+        ch
+      ));
+
+      kurikulumIndexEntries.push({
+        id: ch.id,
+        title: ch.title,
+        subject: displaySubjKey,
+        subjectLabel: name,
+        grade: g.grade,
+        level: lvl,
+        url: `${SITE_URL}${meta.path}`,
+        markdownUrl: `${SITE_URL}${mdRelPath}`,
+        formulaCount: ch.summary?.keyFormulas?.length || 0,
+        questionCount: ch.questions?.length || 0,
+        lastmod: gLastmod
+      });
+
       const qLd = quizLd({ meta, questions: ch.questions || [], educationalLevel: `Kelas ${g.grade} ${lvl} (${phase})`, subject: name, dateModified: gLastmod });
       const ld = [
         learningResourceLd({ meta, educationalLevel: `Kelas ${g.grade} ${lvl} (${phase})`, subject: name, dateModified: gLastmod }),
         ...(qLd ? [qLd] : []),
-        breadcrumbLd(crumbs)
+        breadcrumbLd(crumbs, meta.path)
       ];
-      writePage(meta.path, renderPage({ meta, body, jsonLd: ld }));
-      addToSitemap(meta.path, '0.7', gLastmod);
+      writePage(meta.path, renderPage({
+        meta: { ...meta, markdownPath: mdRelPath },
+        body,
+        dateModified: gLastmod,
+        jsonLd: ld
+      }));
+      addToSitemap(meta.path, '0.7', gLastmod, {
+        images: [{ src: meta.ogImage, title: ch.title, caption: meta.description }]
+      });
       if (subject === 'ipa' && g.grade >= 10) {
         writeRedirectStub(`/ipa/kelas-${g.grade}/${chapterSlug(ch.id)}`, meta.path, ch.title);
       }
@@ -1140,17 +1618,8 @@ renderCurriculum('biologi', BIOLOGI);
 // Pusat Olimpiade (/olimpiade) & Halaman Khusus Kompetisi (/olimpiade/:id)
 // ---------------------------------------------------------------------------
 {
+  const olimpLastmod = lastmodFor('src/components/OlimpiadeHubPage.jsx', 'src/data/papers/index.js');
   const crumbs = [['Beranda', '/'], ['Olimpiade', OLIMPIADE_HUB_META.path]];
-  const olimpFaqs = [
-    {
-      question: 'Kompetisi olimpiade apa saja yang tersedia di Duta e-dukasi?',
-      answer: 'Tersedia latihan soal dan pembahasan OSN/OSK/OSN-P (9 bidang: Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Kebumian, dan Ekonomi), AMC 8/10/12 & AIME (termasuk 36 bab modul konsep), SASMO, SMO Singapore, HKIMO, TIMO, SIMOC, IKMC/Kangaroo, KSM, KMNR, OMVN, UTBK/SNBT, serta Seri Pembinaan OSN.'
-    },
-    {
-      question: 'Apakah seluruh pembahasan soal olimpiade dapat diakses gratis?',
-      answer: 'Ya, seluruh paket soal dan pembahasan di halaman Olimpiade Duta e-dukasi terbuka gratis tanpa perlu login dan berlisensi CC BY 4.0.'
-    }
-  ];
 
   const blocks = OLYMPIAD_COMPETITIONS.map((c) => {
     const papers = PUBLISHED_PAPERS.filter((p) => c.competitions.includes(p.competition));
@@ -1172,27 +1641,32 @@ renderCurriculum('biologi', BIOLOGI);
     <h1>Olimpiade &amp; Kompetisi</h1>
     <p>${escapeHtml(OLIMPIADE_HUB_META.description)}</p>
     ${blocks}
-    ${faqSectionHtml(olimpFaqs)}
+    ${faqSectionHtml(OLIMPIADE_HUB_FAQS)}
     <p><a href="/paket-soal">Semua paket soal</a> · <a href="/tentang#prestasi">Arsip prestasi siswa</a></p>`;
   const olimpListItems = OLYMPIAD_COMPETITIONS.map((c) => ({ name: c.label, path: c.path }));
   writePage(OLIMPIADE_HUB_META.path, renderPage({
     meta: OLIMPIADE_HUB_META,
     body,
+    pageType: 'CollectionPage',
+    dateModified: olimpLastmod,
     jsonLd: [
-      ORGANIZATION_LD,
-      DATASET_LD,
+      DATASET_NODE,
       itemListLd('Pusat Olimpiade & Kompetisi', OLIMPIADE_HUB_META.path, olimpListItems),
-      faqPageLd(olimpFaqs),
-      breadcrumbLd(crumbs)
+      faqPageLd(OLIMPIADE_HUB_FAQS),
+      breadcrumbLd(crumbs, OLIMPIADE_HUB_META.path)
     ].filter(Boolean)
   }));
-  addToSitemap(OLIMPIADE_HUB_META.path, '0.9', lastmodFor('src/components/OlimpiadeHubPage.jsx', 'src/data/papers/index.js'));
+  addToSitemap(OLIMPIADE_HUB_META.path, '0.9', olimpLastmod, {
+    images: [{ src: OLIMPIADE_HUB_META.ogImage, title: OLIMPIADE_HUB_META.title, caption: OLIMPIADE_HUB_META.description }]
+  });
 
-  // Prerender halaman khusus per kompetisi: /olimpiade/:id
   for (const c of OLYMPIAD_COMPETITIONS) {
     const papers = PUBLISHED_PAPERS.filter((p) => c.competitions.includes(p.competition));
     if (!c.amc && papers.length === 0) continue;
     const cMeta = olympiadCompetitionMeta(c, papers.length);
+    const cLastmod = papers.length
+      ? papers.reduce((max, p) => { const d = paperLastmod(p); return d > max ? d : max; }, '')
+      : olimpLastmod;
     const cCrumbs = [...crumbs, [c.label, c.path]];
     const itemsHtml = papers.map((p) => {
       const info = formatPaperMeta(p);
@@ -1217,13 +1691,17 @@ renderCurriculum('biologi', BIOLOGI);
     writePage(c.path, renderPage({
       meta: cMeta,
       body: cBody,
+      pageType: 'CollectionPage',
+      dateModified: cLastmod || olimpLastmod,
       jsonLd: [
         itemListLd(c.label, c.path, listEntries),
         faqPageLd(c.faqs || []),
-        breadcrumbLd(cCrumbs)
+        breadcrumbLd(cCrumbs, c.path)
       ].filter(Boolean)
     }));
-    addToSitemap(c.path, '0.85', lastmodFor('src/data/papers/index.js'));
+    addToSitemap(c.path, '0.85', cLastmod || olimpLastmod, {
+      images: [{ src: cMeta.ogImage, title: cMeta.title, caption: cMeta.description }]
+    });
   }
 }
 
@@ -1231,6 +1709,7 @@ renderCurriculum('biologi', BIOLOGI);
 // Olimpiade AMC
 // ---------------------------------------------------------------------------
 for (const d of AMC) {
+  const amcLastmod = lastmodFor(`src/data/amc/amc${d.level}Data.js`, 'src/data/amc/amcMetadata.js');
   const levelInfo = AMC_LEVELS_METADATA.find((m) => m.level === d.level) || {};
   const crumbsBase = [['Beranda', '/'], ['Olimpiade', OLIMPIADE_HUB_META.path], [`Olimpiade AMC ${d.level}`, amcLevelPath(d.level)]];
   const lMeta = amcLevelMeta(d.level);
@@ -1239,11 +1718,29 @@ for (const d of AMC) {
     <h1>Persiapan Olimpiade AMC ${d.level}</h1>
     <p>${escapeHtml(levelInfo.subtitle || '')}${levelInfo.targetGrades ? ` · ${escapeHtml(levelInfo.targetGrades)}` : ''}</p>
     <ul>${d.chapters.map((c) => `<li><a href="${amcChapterPath(d.level, c.id)}">${escapeHtml(c.title)}</a>${c.domain ? ` (${escapeHtml(c.domain)})` : ''}</li>`).join('')}</ul>`;
-  writePage(lMeta.path, renderPage({ meta: lMeta, body: levelBody, jsonLd: [breadcrumbLd(crumbsBase)] }));
-  addToSitemap(lMeta.path, '0.6');
+  writePage(lMeta.path, renderPage({
+    meta: lMeta,
+    body: levelBody,
+    pageType: 'CollectionPage',
+    dateModified: amcLastmod,
+    jsonLd: [
+      courseNodeLd({
+        name: lMeta.title.split(' | ')[0],
+        description: lMeta.description,
+        pagePath: lMeta.path,
+        educationalLevel: `Olimpiade AMC ${d.level} (${levelInfo.targetGrades || ''})`,
+        chapters: d.chapters
+      }),
+      breadcrumbLd(crumbsBase, lMeta.path)
+    ]
+  }));
+  addToSitemap(lMeta.path, '0.7', amcLastmod, {
+    images: [{ src: lMeta.ogImage, title: lMeta.title, caption: lMeta.description }]
+  });
 
   for (const ch of d.chapters) {
     const meta = amcChapterMeta(d.level, ch);
+    const mdRelPath = `${meta.path}.md`;
     const crumbs = [...crumbsBase, [ch.title, meta.path]];
     const body = `
       ${breadcrumbHtml(crumbs)}
@@ -1251,22 +1748,70 @@ for (const d of AMC) {
       <p class="seo-subtitle">Olimpiade AMC ${d.level}${ch.domain ? ` · ${escapeHtml(ch.domain)}` : ''}</p>
       ${chapterBody(ch)}
       <section id="latihan-soal"><h2>Soal Latihan Kompetisi (${ch.questions?.length || 0} soal)</h2>${questionList(ch.questions || [])}</section>
-      ${siblingLinks(d.chapters, ch.id, (c) => amcChapterPath(d.level, c.id))}`;
-    const qLd = quizLd({ meta, questions: ch.questions || [], educationalLevel: `Olimpiade AMC ${d.level}`, subject: 'Matematika Olimpiade' });
+      ${siblingLinks(d.chapters, ch.id, (c) => amcChapterPath(d.level, c.id))}
+      <p><a href="${escapeHtml(mdRelPath)}">Versi Markdown + LaTeX (.md)</a></p>`;
+
+    writeMdTwin(meta.path, mdChapter(
+      ch.title,
+      `Olimpiade AMC ${d.level}${ch.domain ? ` — ${ch.domain}` : ''}`,
+      `${SITE_URL}${meta.path}`,
+      ch
+    ));
+
+    kurikulumIndexEntries.push({
+      id: ch.id,
+      title: ch.title,
+      subject: `amc-${d.level}`,
+      subjectLabel: `Olimpiade AMC ${d.level}`,
+      grade: d.level === 8 ? 8 : d.level === 10 ? 10 : 12,
+      level: d.level === 8 ? 'SMP' : 'SMA',
+      url: `${SITE_URL}${meta.path}`,
+      markdownUrl: `${SITE_URL}${mdRelPath}`,
+      formulaCount: ch.summary?.keyFormulas?.length || 0,
+      questionCount: ch.questions?.length || 0,
+      lastmod: amcLastmod
+    });
+
+    const qLd = quizLd({ meta, questions: ch.questions || [], educationalLevel: `Olimpiade AMC ${d.level}`, subject: 'Matematika Olimpiade', dateModified: amcLastmod });
     const ld = [
-      learningResourceLd({ meta, educationalLevel: `Olimpiade AMC ${d.level}` }),
+      learningResourceLd({ meta, educationalLevel: `Olimpiade AMC ${d.level}`, subject: 'Matematika Olimpiade', dateModified: amcLastmod }),
       ...(qLd ? [qLd] : []),
-      breadcrumbLd(crumbs)
+      breadcrumbLd(crumbs, meta.path)
     ];
-    writePage(meta.path, renderPage({ meta, body, jsonLd: ld }));
-    addToSitemap(meta.path, '0.5');
+    writePage(meta.path, renderPage({
+      meta: { ...meta, markdownPath: mdRelPath },
+      body,
+      dateModified: amcLastmod,
+      jsonLd: ld
+    }));
+    addToSitemap(meta.path, '0.6', amcLastmod, {
+      images: [{ src: meta.ogImage, title: ch.title, caption: meta.description }]
+    });
   }
 }
+
+fs.writeFileSync(
+  path.join(DIST, 'datasets/kurikulum-index.json'),
+  JSON.stringify(
+    {
+      name: `${SITE_NAME} Open Kurikulum & AMC Chapter Index`,
+      publisher: ORGANIZATION.legalName,
+      siteUrl: SITE_URL,
+      license: ORGANIZATION.licenseUrl,
+      generatedAt: TODAY,
+      totalEntries: kurikulumIndexEntries.length,
+      chapters: kurikulumIndexEntries
+    },
+    null,
+    2
+  )
+);
 
 // ---------------------------------------------------------------------------
 // Daftar isi per topik
 // ---------------------------------------------------------------------------
 {
+  const topicLastmod = lastmodFor('src/data/topics.js', 'src/components/TopicIndexPage.jsx');
   const strip = (t) => escapeHtml(String(t).replace(/^Bab \d+:\s*/, ''));
   const groups = TOPIC_GROUPS.map((group) => `<section><h2>${group.name}</h2>${group.topics.map((topic) => `
     <div id="topik-${topic.id}"><h3>${escapeHtml(topic.name)}</h3><p>${escapeHtml(topic.description)}</p>
@@ -1277,14 +1822,21 @@ for (const d of AMC) {
   const body = `${breadcrumbHtml(crumbs)}<h1>Daftar Isi Materi</h1>
     <p>Semua bab Matematika (Kelas 4–12), IPA (Kelas 4–9), Fisika, Kimia, dan Biologi (Kelas 10–12), serta Olimpiade AMC, dikelompokkan per topik.</p>
     <p><a href="/paket-soal">Paket Soal Terstruktur</a> · <a href="/olimpiade">Olimpiade &amp; Kompetisi</a> · <a href="/rumus">Kumpulan Rumus Matematika, IPA, Fisika, Kimia &amp; Biologi</a> · <a href="/tka">Latihan TKA SD, SMP &amp; SMA</a></p>${groups}${amc}`;
-  writePage(TOPIC_INDEX_META.path, renderPage({ meta: TOPIC_INDEX_META, body, jsonLd: [breadcrumbLd(crumbs)] }));
-  addToSitemap(TOPIC_INDEX_META.path, '0.9');
+  writePage(TOPIC_INDEX_META.path, renderPage({
+    meta: TOPIC_INDEX_META,
+    body,
+    pageType: 'CollectionPage',
+    dateModified: topicLastmod,
+    jsonLd: [breadcrumbLd(crumbs, TOPIC_INDEX_META.path)]
+  }));
+  addToSitemap(TOPIC_INDEX_META.path, '0.9', topicLastmod);
 }
 
 // ---------------------------------------------------------------------------
 // Ensiklopedia Rumus (/rumus)
 // ---------------------------------------------------------------------------
 {
+  const formulaLastmod = lastmodFor('src/components/FormulaIndexPage.jsx', 'src/data/chapterIndex.js');
   const crumbs = [['Beranda', '/'], ['Kumpulan Rumus', FORMULA_INDEX_META.path]];
   const renderFormulaGroup = (heading, items) => `
     <section>
@@ -1343,23 +1895,28 @@ for (const d of AMC) {
     ${renderFormulaGroup('Fisika SMA (Kelas 10–12)', fisikaItems)}
     ${kimiaItems.length ? renderFormulaGroup('Kimia SMA (Kelas 10–12)', kimiaItems) : ''}
     ${biologiItems.length ? renderFormulaGroup('Biologi SMA (Kelas 10–12)', biologiItems) : ''}
-    ${renderFormulaGroup('Olimpiade Matematika AMC', amcItems)}`;
-  const ld = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: FORMULA_INDEX_META.title.split(' | ')[0],
-      description: FORMULA_INDEX_META.description,
-      url: `${SITE_URL}${FORMULA_INDEX_META.path}`,
-      inLanguage: 'id',
-      isAccessibleForFree: true,
-      license: ORGANIZATION.licenseUrl,
-      author: PERSON_LD
-    },
-    breadcrumbLd(crumbs)
-  ];
-  writePage(FORMULA_INDEX_META.path, renderPage({ meta: FORMULA_INDEX_META, body, jsonLd: ld }));
-  addToSitemap(FORMULA_INDEX_META.path, '0.9');
+    ${renderFormulaGroup('Olimpiade Matematika AMC', amcItems)}
+    ${faqSectionHtml(FORMULA_INDEX_FAQS, 'Pertanyaan Umum Kumpulan Rumus')}`;
+  const definedTermSetLd = {
+    '@type': 'DefinedTermSet',
+    name: FORMULA_INDEX_META.title.split(' | ')[0],
+    description: FORMULA_INDEX_META.description,
+    url: `${SITE_URL}${FORMULA_INDEX_META.path}`,
+    inLanguage: 'id',
+    isAccessibleForFree: true,
+    license: ORGANIZATION.licenseUrl,
+    creator: { '@id': ORG_ID }
+  };
+  writePage(FORMULA_INDEX_META.path, renderPage({
+    meta: FORMULA_INDEX_META,
+    body,
+    pageType: 'CollectionPage',
+    dateModified: formulaLastmod,
+    jsonLd: [definedTermSetLd, faqPageLd(FORMULA_INDEX_FAQS), breadcrumbLd(crumbs, FORMULA_INDEX_META.path)].filter(Boolean)
+  }));
+  addToSitemap(FORMULA_INDEX_META.path, '0.9', formulaLastmod, {
+    images: [{ src: FORMULA_INDEX_META.ogImage, title: FORMULA_INDEX_META.title, caption: FORMULA_INDEX_META.description }]
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -1371,34 +1928,28 @@ const tkaGeneratedPackets = [];
     .map((el) => `<tr><td><strong>${escapeHtml(el.name)}</strong></td><td>${escapeHtml(el.scope)}</td><td>${el.quota}</td></tr>`).join('')}</tbody></table>`;
   const homeMeta = tkaHomeMeta();
   const homeCrumbs = [['Beranda', '/'], ['Latihan TKA', '/tka']];
-  const tkaFaqs = [
-    {
-      question: 'Apa itu Latihan TKA Duta e-dukasi?',
-      answer: 'Latihan TKA (Tes Kemampuan Akademik) berisi 30 soal pilihan ganda per paket (Paket A dan Paket B) yang disusun sesuai elemen asesmen Pusmendik untuk Matematika SD/SMP, IPA SMP, dan Fisika SMA.'
-    },
-    {
-      question: 'Apakah paket latihan TKA disertai kunci jawaban dan pembahasan?',
-      answer: 'Ya, setiap soal pada Paket A dan Paket B memiliki kunci jawaban serta pembahasan langkah demi langkah yang dapat dibuka langsung atau dicetak.'
-    }
-  ];
-  const tkaLastmod = lastmodFor('src/data/tka.js', 'src/utils/tkaBuilder.js');
+  const tkaLastmod = lastmodFor('src/data/tka.js', 'src/utils/tkaBuilder.js', 'src/components/TkaPage.jsx');
   const homeBody = `${breadcrumbHtml(homeCrumbs)}<h1>Latihan TKA Matematika, IPA &amp; Fisika (SD, SMP, SMA)</h1>
     <p>${escapeHtml(homeMeta.description)}</p>
     ${TKA_TESTS.map((test) => `<section><h2>${escapeHtml(test.title)}</h2><p>${escapeHtml(test.audience)}</p><p>${escapeHtml(test.intro)}</p>${elementTable(test)}
       <ul>${TKA_PACKETS.map((p) => `<li><a href="${tkaPath(test.id, p)}">${escapeHtml(test.title)} Paket ${p.toUpperCase()}</a></li>`).join('')}</ul></section>`).join('')}
-    ${faqSectionHtml(tkaFaqs)}
+    ${faqSectionHtml(TKA_HUB_FAQS, 'Pertanyaan Umum Latihan TKA')}
     <p>Muatan dan cakupan elemen mengacu pada kerangka TKA Pusmendik Kemendikdasmen. Paket ini adalah latihan dari ${escapeHtml(SITE_NAME)}, bukan soal resmi.</p>`;
   const tkaList = TKA_TESTS.flatMap((test) => TKA_PACKETS.map((p) => ({ name: `${test.title} Paket ${p.toUpperCase()}`, path: tkaPath(test.id, p) })));
   writePage('/tka', renderPage({
     meta: homeMeta,
     body: homeBody,
+    pageType: 'CollectionPage',
+    dateModified: tkaLastmod,
     jsonLd: [
       itemListLd('Latihan TKA Matematika, IPA & Fisika', '/tka', tkaList),
-      faqPageLd(tkaFaqs),
-      breadcrumbLd(homeCrumbs)
+      faqPageLd(TKA_HUB_FAQS),
+      breadcrumbLd(homeCrumbs, '/tka')
     ].filter(Boolean)
   }));
-  addToSitemap('/tka', '0.9', tkaLastmod);
+  addToSitemap('/tka', '0.9', tkaLastmod, {
+    images: [{ src: homeMeta.ogImage, title: homeMeta.title, caption: homeMeta.description }]
+  });
 
   const mathChapters = chaptersMap(GRADES);
   const ipaChapters = chaptersMap(IPA);
@@ -1415,20 +1966,22 @@ const tkaGeneratedPackets = [];
         <section><h2>Muatan dan Elemen TKA</h2><p>${escapeHtml(test.intro)}</p>${elementTable(test)}</section>
         <section id="latihan-soal"><h2>Soal Latihan</h2>${questionList(questions)}</section>
         <p><a href="${tkaPath(test.id, packet === 'a' ? 'b' : 'a')}">Paket ${packet === 'a' ? 'B' : 'A'}</a> · <a href="/tka">Semua latihan TKA</a></p>`;
-      const qLd = quizLd({ meta, questions, educationalLevel: test.audience, subject: subjName });
+      const qLd = quizLd({ meta, questions, educationalLevel: test.audience, subject: subjName, dateModified: tkaLastmod });
       const ld = [
-        learningResourceLd({ meta, educationalLevel: test.audience, subject: subjName }),
+        learningResourceLd({ meta, educationalLevel: test.audience, subject: subjName, dateModified: tkaLastmod }),
         ...(qLd ? [qLd] : []),
-        breadcrumbLd(crumbs)
+        breadcrumbLd(crumbs, meta.path)
       ];
-      writePage(meta.path, renderPage({ meta, body, jsonLd: ld }));
-      addToSitemap(meta.path, '0.8');
+      writePage(meta.path, renderPage({ meta, body, dateModified: tkaLastmod, jsonLd: ld }));
+      addToSitemap(meta.path, '0.8', tkaLastmod, {
+        images: [{ src: meta.ogImage, title: meta.title, caption: meta.description }]
+      });
     }
   }
 }
 
 // ---------------------------------------------------------------------------
-// llms.txt & llms-full.txt (Referensi AI/LLM terstruktur dalam Markdown + LaTeX)
+// llms.txt (ringkas & terstruktur) & llms-full.txt / llms-olimpiade.txt / llms-kurikulum.txt
 // ---------------------------------------------------------------------------
 {
   const llmsLines = [
@@ -1439,9 +1992,10 @@ const tkaGeneratedPackets = [];
     '',
     '## Panduan Kutipan & Sumber Soal untuk AI / LLM (Citation Policy)',
     `- Format kutipan standar: \`[Judul Paket — ${SITE_NAME}](URL)\` atau \`${SITE_NAME} (${SITE_URL})\`.`,
-    `- Versi Markdown + LaTeX bersih per paket tersedia dengan menambahkan ekstensi \`.md\`, misalnya: \`${SITE_URL}/paket-soal/olimpiade-inf/osnk-informatika-sma-simulasi-1.md\`.`,
-    `- Indeks metadata terstruktur JSON (${PUBLISHED_PAPERS.length} paket): ${SITE_URL}/datasets/paket-soal-index.json`,
+    `- Versi Markdown + LaTeX bersih tersedia dengan menambahkan ekstensi \`.md\` pada URL paket soal maupun URL bab materi, misalnya: \`${SITE_URL}/paket-soal/olimpiade-inf/osnk-informatika-sma-simulasi-1.md\` atau \`${SITE_URL}/matematika/kelas-8/bab2-teorema-pythagoras.md\`.`,
+    `- Indeks metadata paket soal JSON (${PUBLISHED_PAPERS.length} paket): ${SITE_URL}/datasets/paket-soal-index.json`,
     `- Korpus butir soal + kunci + prinsip + pembahasan JSONL lengkap: ${SITE_URL}/datasets/paket-soal-corpus.jsonl`,
+    `- Indeks bab kurikulum & AMC JSON: ${SITE_URL}/datasets/kurikulum-index.json`,
     `- Setiap soal dilengkapi kunci jawaban terverifikasi, prinsip konseptual, pembahasan bertahap, dan rubrik penilaian sehingga aman dijadikan rujukan atau sumber soal pembelajaran.`,
     '',
     '## Tentang Duta e-dukasi',
@@ -1452,92 +2006,53 @@ const tkaGeneratedPackets = [];
     '',
     '## Halaman Utama & Indeks',
     `- [Beranda ${SITE_NAME}](${SITE_URL}/): Portal utama materi, pencarian lintas kelas, dan kuis interaktif.`,
-    `- [Olimpiade & Kompetisi](${SITE_URL}/olimpiade): Pusat OSN/OSK (9 bidang), AIME, AMC 8/10/12, SASMO, SMO, HKIMO, TIMO, SIMOC, IKMC, dan Seri Pembinaan.`,
+    `- [Matematika (Kelas 4–12)](${SITE_URL}/matematika), [IPA (Kelas 4–9)](${SITE_URL}/ipa), [Fisika SMA](${SITE_URL}/fisika), [Kimia SMA](${SITE_URL}/kimia), [Biologi SMA](${SITE_URL}/biologi)`,
+    `- [Olimpiade & Kompetisi](${SITE_URL}/olimpiade): Pusat OSN/OSK (9 bidang), AIME, AMC 8/10/12, SASMO, SMO, HKIMO, TIMO, SIMOC, IKMC, AMO, ASMOPSS, IMSO, CEMC, dan Seri Pembinaan.`,
     `- [Paket Soal Terstruktur](${SITE_URL}/paket-soal): Arsip ${PUBLISHED_PAPERS.length} paket soal Matematika, IPA, Fisika, Kimia, Biologi, UTBK-SNBT, Cambridge IGCSE & Olimpiade ber-rubrik dalam bahasa asli.`,
-    `- [International & English Practice Papers](${SITE_URL}/paket-soal/english): Koleksi paket soal berbahasa Inggris & dwibahasa (AMC, AIME, SASMO, SMO, IKMC, Cambridge IGCSE 0580).`,
-    `- [Open Dataset Index (JSON)](${SITE_URL}/datasets/paket-soal-index.json): Katalog JSON seluruh ${PUBLISHED_PAPERS.length} paket soal beserta URL & format sitasi.`,
-    `- [Open Question Corpus (JSONL)](${SITE_URL}/datasets/paket-soal-corpus.jsonl): Korpus terstruktur per butir soal + jawaban + prinsip + pembahasan.`,
-    `- [Program Bimbel](${SITE_URL}/program): Kelas reguler, privat, dan pembinaan olimpiade di Pontianak & daring.`,
-    `- [Profil Pendiri (${FOUNDER.name})](${SITE_URL}/pendiri): Rekam jejak pendiri & pembina utama.`,
-    `- [Prestasi Siswa](${SITE_URL}/tentang#prestasi): Catatan prestasi siswa terverifikasi (bagian dari halaman Tentang).`,
-    `- [Kontak & Lokasi](${SITE_URL}/kontak): Alamat Pontianak, peta, dan WhatsApp.`,
-    `- [Daftar Isi per Topik](${SITE_URL}/daftar-isi): Seluruh bab Matematika, IPA, Fisika, Kimia, Biologi, dan AMC per topik.`,
-    `- [Kumpulan Rumus](${SITE_URL}/rumus): Ensiklopedia rumus kunci dengan notasi LaTeX.`,
-    `- [Latihan TKA](${SITE_URL}/tka): Paket latihan Tes Kemampuan Akademik SD, SMP, dan SMA.`,
-    `- [Korpus Olimpiade & Kompetisi](${SITE_URL}/llms-olimpiade.txt): Seluruh bab AMC dan paket soal olimpiade dalam Markdown + LaTeX.`,
-    `- [Korpus Kurikulum & TKA](${SITE_URL}/llms-kurikulum.txt): Seluruh materi bab Kurikulum Merdeka (Kelas 4–12) dan paket sekolah.`,
-    `- [Korpus Lengkap Markdown + LaTeX](${SITE_URL}/llms-full.txt): Seluruh materi, Paket Soal, rumus, dan bank soal lengkap.`,
-    `- [Tentang](${SITE_URL}/tentang): Profil organisasi, penyusun, dan lisensi.`,
+    `- [International & English Practice Papers](${SITE_URL}/paket-soal/english): Koleksi paket soal berbahasa Inggris & dwibahasa.`,
+    `- [Open Dataset Index (JSON)](${SITE_URL}/datasets/paket-soal-index.json) · [Corpus (JSONL)](${SITE_URL}/datasets/paket-soal-corpus.jsonl) · [Kurikulum Index (JSON)](${SITE_URL}/datasets/kurikulum-index.json)`,
+    `- [Program Bimbel](${SITE_URL}/program) · [Profil Pendiri (${FOUNDER.name})](${SITE_URL}/pendiri) · [Prestasi Siswa](${SITE_URL}/tentang#prestasi) · [Kontak & Lokasi](${SITE_URL}/kontak) · [Tentang](${SITE_URL}/tentang)`,
+    `- [Daftar Isi per Topik](${SITE_URL}/daftar-isi) · [Kumpulan Rumus](${SITE_URL}/rumus) · [Latihan TKA](${SITE_URL}/tka)`,
+    `- [Korpus Olimpiade (.txt)](${SITE_URL}/llms-olimpiade.txt) · [Korpus Kurikulum (.txt)](${SITE_URL}/llms-kurikulum.txt) · [Korpus Lengkap (.txt)](${SITE_URL}/llms-full.txt)`,
     ''
   ];
 
   if (PUBLISHED_PAPERS.length > 0) {
-    llmsLines.push('## Paket Soal Duta e-dukasi (Structured Worksheets + Key + Rubric + Markdown .md)');
+    llmsLines.push(`## Paket Soal Duta e-dukasi (${PUBLISHED_PAPERS.length} Paket · Tambah .md pada URL untuk Markdown + LaTeX)`);
     for (const p of PUBLISHED_PAPERS) {
       const info = formatPaperMeta(p);
-      const answersSummary = p.questions
-        .map((q) => `Q${q.no}: ${q.parts.map((pt) => `(${pt.label}) ${plainText(pt.answer)}`).join('; ')}`)
-        .join(' | ');
       llmsLines.push(
-        `- [${p.title}](${SITE_URL}${paperPath(p)}) ([MD](${SITE_URL}${paperPath(p)}.md)) [Kelas ${p.grade}, ${p.lang.toUpperCase()}, ${info.itemsLabel}${info.score ? `, ${info.score}` : ''}]: ${answersSummary}`
+        `- [${p.title}](${SITE_URL}${paperPath(p)}) — ${p.competition || PAPER_SUBJECT_META[p.subject]?.label || p.subject}, Kelas ${p.grade}, ${p.lang.toUpperCase()}, ${info.itemsLabel}: ${p.topic}`
       );
     }
     llmsLines.push('');
   }
 
-  llmsLines.push('## Matematika Kurikulum Merdeka (Kelas 4–12)');
+  llmsLines.push('## Kurikulum Merdeka (Kelas 4–12, Tambah .md untuk Markdown + LaTeX)');
   for (const g of GRADES) {
-    llmsLines.push(`### Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || PHASE[g.grade] || ''}) — ${SITE_URL}${gradePath(g.grade)}`);
-    for (const ch of g.chapters) {
-      llmsLines.push(`- [${ch.title}](${SITE_URL}${chapterPath(g.grade, ch.id)}): ${plainText(ch.summary?.overview || '').slice(0, 180)} (${ch.questions?.length || 0} soal)`);
-    }
-    llmsLines.push('');
+    llmsLines.push(`- **Matematika Kelas ${g.grade} ${levelLabel(g.grade)}** (${SITE_URL}${gradePath(g.grade)}): ${g.chapters.map((ch) => `[${ch.title}](${SITE_URL}${chapterPath(g.grade, ch.id)})`).join(' · ')}`);
   }
-
-  llmsLines.push('## IPA & Fisika Kurikulum Merdeka (Kelas 4–12)');
   for (const g of IPA) {
     const subjName = subjectDisplayName('ipa', g.grade);
-    llmsLines.push(`### ${subjName} Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || ''}) — ${SITE_URL}${gradePath(g.grade, 'ipa')}`);
-    for (const ch of g.chapters) {
-      llmsLines.push(`- [${ch.title}](${SITE_URL}${chapterPath(g.grade, ch.id)}): ${plainText(ch.summary?.overview || '').slice(0, 180)} (${ch.questions?.length || 0} soal)`);
-    }
-    llmsLines.push('');
+    llmsLines.push(`- **${subjName} Kelas ${g.grade} ${levelLabel(g.grade)}** (${SITE_URL}${gradePath(g.grade, 'ipa')}): ${g.chapters.map((ch) => `[${ch.title}](${SITE_URL}${chapterPath(g.grade, ch.id)})`).join(' · ')}`);
   }
-
-  llmsLines.push('## Kimia SMA Kurikulum Merdeka (Kelas 10–12)');
   for (const g of KIMIA) {
-    llmsLines.push(`### Kimia Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || ''}) — ${SITE_URL}${gradePath(g.grade, 'kimia')}`);
-    for (const ch of g.chapters) {
-      llmsLines.push(`- [${ch.title}](${SITE_URL}${chapterPath(g.grade, ch.id)}): ${plainText(ch.summary?.overview || '').slice(0, 180)} (${ch.questions?.length || 0} soal)`);
-    }
-    llmsLines.push('');
+    llmsLines.push(`- **Kimia Kelas ${g.grade} SMA** (${SITE_URL}${gradePath(g.grade, 'kimia')}): ${g.chapters.map((ch) => `[${ch.title}](${SITE_URL}${chapterPath(g.grade, ch.id)})`).join(' · ')}`);
   }
-
-  llmsLines.push('## Biologi SMA Kurikulum Merdeka (Kelas 10–12)');
   for (const g of BIOLOGI) {
-    llmsLines.push(`### Biologi Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || ''}) — ${SITE_URL}${gradePath(g.grade, 'biologi')}`);
-    for (const ch of g.chapters) {
-      llmsLines.push(`- [${ch.title}](${SITE_URL}${chapterPath(g.grade, ch.id)}): ${plainText(ch.summary?.overview || '').slice(0, 180)} (${ch.questions?.length || 0} soal)`);
-    }
-    llmsLines.push('');
+    llmsLines.push(`- **Biologi Kelas ${g.grade} SMA** (${SITE_URL}${gradePath(g.grade, 'biologi')}): ${g.chapters.map((ch) => `[${ch.title}](${SITE_URL}${chapterPath(g.grade, ch.id)})`).join(' · ')}`);
   }
+  llmsLines.push('');
 
-  llmsLines.push('## Olimpiade & Kompetisi (OSN, AMC, IKMC / Kangaroo, SASMO, SMO, HKIMO, TIMO, SIMOC, KSM, KMNR, OMVN)');
-  llmsLines.push(`- [Pusat Olimpiade](${SITE_URL}${OLIMPIADE_HUB_META.path}): ${OLIMPIADE_HUB_META.description}`);
+  llmsLines.push('## Olimpiade & Kompetisi');
   for (const c of OLYMPIAD_COMPETITIONS) {
     const n = PUBLISHED_PAPERS.filter((p) => c.competitions.includes(p.competition)).length;
     if (n || c.amc) llmsLines.push(`- [${c.label}](${SITE_URL}${c.path}) (${n} paket soal): ${c.blurb}`);
   }
-  llmsLines.push('');
-
-  llmsLines.push('## Olimpiade Matematika AMC (AMC 8, 10, 12)');
   for (const d of AMC) {
-    llmsLines.push(`### AMC ${d.level} — ${SITE_URL}${amcLevelPath(d.level)}`);
-    for (const ch of d.chapters) {
-      llmsLines.push(`- [${ch.title}](${SITE_URL}${amcChapterPath(d.level, ch.id)}): ${plainText(ch.summary?.overview || '').slice(0, 180)} (${ch.questions?.length || 0} soal)`);
-    }
-    llmsLines.push('');
+    llmsLines.push(`- **AMC ${d.level}** (${SITE_URL}${amcLevelPath(d.level)}): ${d.chapters.map((ch) => `[${ch.title}](${SITE_URL}${amcChapterPath(d.level, ch.id)})`).join(' · ')}`);
   }
+  llmsLines.push('');
 
   llmsLines.push('## Paket Latihan TKA');
   for (const { test, packet, meta, questions } of tkaGeneratedPackets) {
@@ -1545,51 +2060,6 @@ const tkaGeneratedPackets = [];
   }
 
   fs.writeFileSync(path.join(DIST, 'llms.txt'), `${llmsLines.join('\n')}\n`);
-
-  const mdChapter = (title, metaLabel, url, ch) => {
-    const s = ch.summary || {};
-    const out = [`# ${title}`, `URL: ${url}`, `Kategori: ${metaLabel}`, ''];
-    if (s.overview) out.push('## Pengantar', s.overview, '');
-    if (s.coreConcepts?.length) {
-      out.push('## Konsep Inti');
-      s.coreConcepts.forEach((c, i) => out.push(`${i + 1}. ${c}`));
-      out.push('');
-    }
-    if (s.keyFormulas?.length) {
-      out.push('## Rumus Kunci');
-      for (const f of s.keyFormulas) out.push(`- **${f.label}**: $$${f.formula}$$`);
-      out.push('');
-    }
-    if (s.workedExamples?.length) {
-      out.push('## Contoh Soal dan Pembahasan');
-      s.workedExamples.forEach((ex, i) => {
-        out.push(`### Contoh ${i + 1}${ex.title ? `: ${ex.title}` : ''}`, ex.problem, `**Pembahasan:** ${ex.solution}`, '');
-      });
-    }
-    if (s.misconceptions?.length) {
-      out.push('## Kesalahan yang Sering Terjadi');
-      for (const m of s.misconceptions) out.push(`- ${m}`);
-      out.push('');
-    }
-    if (s.tutorTip) out.push('## Tips', s.tutorTip, '');
-    if (ch.questions?.length) {
-      out.push(`## Latihan Soal (${ch.questions.length} Soal)`);
-      ch.questions.forEach((q, i) => {
-        out.push(`### Soal ${i + 1} (${q.difficulty || 'Latihan'}) — ${url}#${questionAnchor(q.id)}`);
-        out.push(q.question || q.problem || '');
-        if ((q.options || []).length) {
-          for (const o of q.options) out.push(`- **${o.key}.** ${o.text}`);
-        }
-        const key = q.correctAnswer || q.answer;
-        const sol = q.bestSolution || q.conceptualSolution || q.explanation;
-        if (key) out.push(`**Jawaban:** ${key}`);
-        if (sol) out.push(`**Pembahasan:** ${sol}`);
-        out.push('');
-      });
-    }
-    out.push('---', '');
-    return out.join('\n');
-  };
 
   const fullParts = [
     `# ${SITE_NAME} (${ORGANIZATION.legalName}) — Korpus Materi, Paket Soal, Rumus & Bank Soal`,
@@ -1600,56 +2070,32 @@ const tkaGeneratedPackets = [];
     ''
   ];
 
-  for (const p of PUBLISHED_PAPERS) {
-    fullParts.push(mdPacket(p));
-  }
+  for (const p of PUBLISHED_PAPERS) fullParts.push(mdPacket(p));
   for (const g of GRADES) {
     for (const ch of g.chapters) {
-      fullParts.push(mdChapter(
-        ch.title,
-        `Matematika Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || PHASE[g.grade] || ''})`,
-        `${SITE_URL}${chapterPath(g.grade, ch.id)}`,
-        ch
-      ));
+      fullParts.push(mdChapter(ch.title, `Matematika Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || PHASE[g.grade] || ''})`, `${SITE_URL}${chapterPath(g.grade, ch.id)}`, ch));
     }
   }
   for (const g of IPA) {
     const subjName = subjectDisplayName('ipa', g.grade);
     for (const ch of g.chapters) {
-      fullParts.push(mdChapter(
-        ch.title,
-        `${subjName} Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || ''})`,
-        `${SITE_URL}${chapterPath(g.grade, ch.id)}`,
-        ch
-      ));
+      fullParts.push(mdChapter(ch.title, `${subjName} Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || ''})`, `${SITE_URL}${chapterPath(g.grade, ch.id)}`, ch));
     }
   }
   for (const [subjName, list] of [['Kimia', KIMIA], ['Biologi', BIOLOGI]]) {
     for (const g of list) {
       for (const ch of g.chapters) {
-        fullParts.push(mdChapter(
-          ch.title,
-          `${subjName} Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || ''})`,
-          `${SITE_URL}${chapterPath(g.grade, ch.id)}`,
-          ch
-        ));
+        fullParts.push(mdChapter(ch.title, `${subjName} Kelas ${g.grade} ${levelLabel(g.grade)} (${g.phase || ''})`, `${SITE_URL}${chapterPath(g.grade, ch.id)}`, ch));
       }
     }
   }
   for (const d of AMC) {
     for (const ch of d.chapters) {
-      fullParts.push(mdChapter(
-        ch.title,
-        `Olimpiade AMC ${d.level}${ch.domain ? ` — ${ch.domain}` : ''}`,
-        `${SITE_URL}${amcChapterPath(d.level, ch.id)}`,
-        ch
-      ));
+      fullParts.push(mdChapter(ch.title, `Olimpiade AMC ${d.level}${ch.domain ? ` — ${ch.domain}` : ''}`, `${SITE_URL}${amcChapterPath(d.level, ch.id)}`, ch));
     }
   }
-
   fs.writeFileSync(path.join(DIST, 'llms-full.txt'), fullParts.join('\n'));
 
-  // Sharded corpora for focused AI retrieval
   const olimpParts = [
     `# ${SITE_NAME} — Korpus Olimpiade & Kompetisi (OSN, AMC, SASMO, SMO, HKIMO, TIMO, SIMOC, IKMC, KSM, KMNR)`,
     `Sumber: ${SITE_URL}/olimpiade · Lisensi: ${ORGANIZATION.licenseName}`,
@@ -1660,12 +2106,7 @@ const tkaGeneratedPackets = [];
   }
   for (const d of AMC) {
     for (const ch of d.chapters) {
-      olimpParts.push(mdChapter(
-        ch.title,
-        `Olimpiade AMC ${d.level}${ch.domain ? ` — ${ch.domain}` : ''}`,
-        `${SITE_URL}${amcChapterPath(d.level, ch.id)}`,
-        ch
-      ));
+      olimpParts.push(mdChapter(ch.title, `Olimpiade AMC ${d.level}${ch.domain ? ` — ${ch.domain}` : ''}`, `${SITE_URL}${amcChapterPath(d.level, ch.id)}`, ch));
     }
   }
   fs.writeFileSync(path.join(DIST, 'llms-olimpiade.txt'), olimpParts.join('\n'));
@@ -1700,37 +2141,63 @@ const tkaGeneratedPackets = [];
 }
 
 // ---------------------------------------------------------------------------
-// sitemap.xml & rss.xml
+// sitemap.xml (image + xhtml:link hreflang) & W3C-valid rss.xml
 // ---------------------------------------------------------------------------
+const sitemapXmlEntries = sitemap.map((u) => {
+  const altXml = (u.alternates || []).map((a) =>
+    `\n    <xhtml:link rel="alternate" hreflang="${escapeXml(a.hreflang)}" href="${escapeXml(`${SITE_URL}${a.path === '/' ? '/' : a.path}`)}" />`
+  ).join('');
+  const imgXml = (u.images || []).map((im) => {
+    const loc = `${SITE_URL}${im.src.startsWith('/') ? im.src : `/${im.src}`}`;
+    const titleTag = im.title ? `<image:title>${escapeXml(im.title)}</image:title>` : '';
+    const capTag = im.caption ? `<image:caption>${escapeXml(im.caption)}</image:caption>` : '';
+    return `\n    <image:image><image:loc>${escapeXml(loc)}</image:loc>${titleTag}${capTag}</image:image>`;
+  }).join('');
+  return `  <url><loc>${escapeXml(u.loc)}</loc><lastmod>${u.lastmod || TODAY}</lastmod><priority>${u.priority}</priority>${altXml}${imgXml}</url>`;
+});
+
 fs.writeFileSync(path.join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemap.map((u) => `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod || TODAY}</lastmod><priority>${u.priority}</priority></url>`).join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${sitemapXmlEntries.join('\n')}
 </urlset>
 `);
 
-const rssItems = PUBLISHED_PAPERS.slice().reverse().slice(0, 50).map((p) => {
+const sortedRssPapers = PUBLISHED_PAPERS.slice().sort((a, b) => {
+  const da = paperLastmod(a);
+  const db = paperLastmod(b);
+  if (db !== da) return db.localeCompare(da);
+  return (extractPaperYear(b) || 0) - (extractPaperYear(a) || 0);
+}).slice(0, 50);
+
+const rssItems = sortedRssPapers.map((p) => {
   const link = `${SITE_URL}${paperPath(p)}`;
   const info = formatPaperMeta(p);
   const d = paperLastmod(p);
+  const cat = PAPER_SUBJECT_META[p.subject]?.label || p.subject;
   return `  <item>
-    <title>${escapeHtml(p.title)}</title>
-    <link>${link}</link>
-    <guid>${link}</guid>
+    <title>${escapeXml(p.title)}</title>
+    <link>${escapeXml(link)}</link>
+    <guid isPermaLink="true">${escapeXml(link)}</guid>
+    <category>${escapeXml(cat)}</category>
     <pubDate>${new Date(`${d}T00:00:00Z`).toUTCString()}</pubDate>
-    <description>${escapeHtml(`${info.tag} · ${info.itemsLabel} · ${p.topic}`)}</description>
+    <description>${escapeXml(`${info.tag} · ${info.itemsLabel} · ${p.topic}`)}</description>
   </item>`;
 }).join('\n');
 
 fs.writeFileSync(path.join(DIST, 'rss.xml'), `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>${escapeHtml(SITE_NAME)} — Paket Soal &amp; Olimpiade</title>
+  <title>${escapeXml(SITE_NAME)} — Paket Soal &amp; Olimpiade</title>
   <link>${SITE_URL}/paket-soal</link>
-  <description>${escapeHtml(HOME_META.description)}</description>
+  <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />
+  <description>${escapeXml(HOME_META.description)}</description>
   <language>id</language>
+  <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${rssItems}
 </channel>
 </rss>
 `);
 
-console.log(`Prerender selesai: ${sitemap.length} halaman + rumus.html + llms*.txt + rss.xml + sitemap.xml`);
+console.log(`Prerender selesai: ${sitemap.length} halaman + 5 subject hubs + .md twins + datasets + llms*.txt + rss.xml + sitemap.xml`);

@@ -139,9 +139,9 @@ export function AmcChapterView({
           </div>
         </div>
 
-        <h2 className="chapter-header-title" style={{ fontSize: '1.45rem', marginTop: '0.4rem' }}>
+        <h1 className="chapter-header-title" style={{ fontSize: '1.45rem', marginTop: '0.4rem' }}>
           {chapter.title}
-        </h2>
+        </h1>
 
         {chapter.concepts && chapter.concepts.length > 0 && (
           <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.6rem' }}>

@@ -4,6 +4,7 @@ import { MathText } from './MathRenderer';
 import { QuestionVisual } from './QuestionVisual';
 import { getChapterSolutionData } from '../data/curriculumData';
 import { getAmcChapterSolutionData, normalizeAmcLevel } from '../data/amc/amcData';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { 
   CheckCircle2, 
   ArrowLeft, 
@@ -29,6 +30,13 @@ export function ChapterSolutionView({
   const navigate = useNavigate();
   const [loadedData, setLoadedData] = useState(propData);
   const [isLoading, setIsLoading] = useState(!propData && !!(paramGrade || paramLevel || paramChapterId));
+
+  useDocumentMeta({
+    title: `${(propData || loadedData)?.title || 'Pembahasan QR'} | Duta e-dukasi`,
+    description: 'Halaman kunci jawaban dan pembahasan resmi melalui kode QR lembar kerja Duta e-dukasi.',
+    path: '',
+    noindex: true
+  });
 
   const effectiveChapterId = propData?.id || paramChapterId;
   const rawId = effectiveChapterId || '';
